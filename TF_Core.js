@@ -1,6 +1,6 @@
 //========================================
-// TF_Core
-// Version :0.0.0.0
+// TF_Core.js
+// Version :0.0.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -12,13 +12,16 @@
 /*:
  * @target MZ
  * @plugindesc	TF_Core
- * @author	とんび@鳶嶋工房
- * @url http://tonbi.jp
+ * @author	とんび@鳶嶋工房(tonbi.jp)
+ * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Core.js
  * @help
  * プラグインで共通して使っている処理をメモ的にまとめたもの。
  * これをライブラリとして必要とするプラグインなどを作る予定はない。
+ * 
+ * ============= この長さに合わせるとヘルプではみ出ない ==============
+ * 利用規約 : MITライセンス
  *
- * @command TF_COMMAND
+ * @command commandName
  * @text コマンド名称
  * @desc コマンド説明
  *
@@ -26,8 +29,6 @@
  * @text 引数の名称
  * @desc 引数の説明
  * 
- * ============= この長さに合わせるとヘルプではみ出ない ==============
- * 利用規約 : MITライセンス
  */
 
 ( () => {
