@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.0.1
+// Version :0.0.0.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -13,7 +13,7 @@
  * @target MZ
  * @plugindesc キャラのアニメや移動など強化
  * @author とんび@鳶嶋工房(tonbi.jp)
- * @url
+ * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_CharEx.js
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
@@ -900,7 +900,7 @@
 	/*--- Game_Interpreter ---*/
 	const _Game_Interpreter_setupChild = Game_Interpreter.prototype.setupChild;
 	Game_Interpreter.prototype.setupChild = function( list, eventId ) {
-		list.forEach( e => if( e.indent === undefined ) e.indent = 0 );// indent未設定なら0を設定する
+		list.forEach( e => { if( e.indent === undefined ) e.indent = 0; } );// indent未設定なら0を設定する
 		_Game_Interpreter_setupChild.apply( this, arguments );
 	};
 
