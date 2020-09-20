@@ -11,12 +11,12 @@ JavaScript の配列にいくつかRPGツクールMV独自のメソッドが追�
 
 #### clone () → {[Array](Array.md)}
 配列を(シャロー)コピーして返す。
-多分、標準の slice() を使った方がいい。
+実態は標準の slice(0) なので、あえて使う必要はない。
 
 
 #### contains (element) → {Boolean}
 指定した値が配列に含まれるか。
-多分、標準の includes()を使った方がいい。
+**JSの機能である、includes()を使うことが推奨されている。**
 
 ##### Parameters:
 
@@ -26,9 +26,20 @@ JavaScript の配列にいくつかRPGツクールMV独自のメソッドが追�
 
 
 #### equals (array) → {Boolean}
-配列が同じものか。
+配列が同じものか。
+
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `array` | [Array](Array.md) | 比較する配列 |
+| `array` | [Array](Array.md) | 比較する配列 |
+
+
+#### remove(element)
+**@MZ**配列から指定要素を取り除く。
+
+##### Parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `array` | [Array](Array.md) | 比較する配列 |
