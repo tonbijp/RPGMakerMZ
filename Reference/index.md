@@ -49,6 +49,7 @@
 
 ## JavaScript拡張
 
+namespace JsExtensions
 * [Array](Array.md)
 * [Math](Math.md)
 * [Number](Number.md)
