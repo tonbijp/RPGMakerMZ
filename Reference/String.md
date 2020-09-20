@@ -21,8 +21,7 @@ JavaScript の文字列にいくつかRPGツクールMV独自のメソッドが�
 
 #### format (...args) → {[String](String.md)}
 
-%1, %2 といった文字列を指定された引数で置き換えて返す。
-
+%1, %2 といった文字列を指定された引数で置き換えて返す。<br />
 引数には配列ではなく、複数の引数を渡す。
 
 ##### Parameters:
@@ -40,4 +39,5 @@ JavaScript の文字列にいくつかRPGツクールMV独自のメソッドが�
 | Name | Type | Description |
 | --- | --- | --- |
 | `length` | [Number](Number.md) | 文字列の長さ |
-
+
+
