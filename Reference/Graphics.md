@@ -19,45 +19,32 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 | `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
 | `BLEND_MULTIPLY` | [Number](Number.md) | [static] 乗算 |
 | `BLEND_SCREEN` | [Number](Number.md) | [static] スクリーン |
+| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] アプリケーション |
+| `effekseer` |  | **@MZ** |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
 | `height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
 | `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 816) |
 | `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 624) |
-| `scale` | [Number](Number.md) | [static] 拡大率 |
+| `defaultScale` | [Number](Number.md) | [static] 拡大率(scaleの名称変更) |
+| `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] アプリケーション |
 | `_width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) |
 | `_height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) |
-| `_rendererType` | [String](String.md) | [static] [レンダラタイプ](Graphics.md#レンダラタイプ) |
-| `_boxWidth` | [Number](Number.md) | [static] UI領域囲の幅(ピクセル) |
-| `_boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) |
-| `_scale` | [Number](Number.md) | [static] 拡大率 |
+| `_defaultScale` | [Number](Number.md) | [static] 拡大率(_scaleの名称変更) |
 | `_realScale` | [Number](Number.md) | [static] ウィンドウフィットした実際の拡大率 |
 | `_errorPrinter` | HTMLElemant | [static] エラー表示 p要素 |
+| `_tickHandler` |  | **@MZ** |
+| `_fpsCounter` |  | **@MZ** |
+| `_loadingSpinner` |  | **@MZ** |
+| `_effekseer` |  | **@MZ** |
+| `_wasLoading` |  | **@MZ** |
 | `_canvas` | HTMLCanvasElement | [static] canvas要素 |
-| `_video` | HTMLVideoElement | [static] video要素 |
-| `_upperCanvas` | HTMLCanvasElement | [static] 上部canvas要素 |
 | `_renderer` | PIXI.SystemRenderer | [static] レンダラ |
-| `_fpsMeter` | FPSMeter | [static] FPSメータ |
-| `_modeBox` | HTMLDivElement | [static] 描画モード表示 |
-| `_skipCount` | [Number](Number.md) | [static] スキップカウント |
-| `_maxSkip` | [Number](Number.md) | [static] 最大スキップ |
-| `_rendered` | Boolean | [static] レンダ完了か |
-| `_loadingImage` | HTMLImageElement | [static] ローディング画像 |
-| `_loadingCount` | [Number](Number.md) | [static] ローディングカウント |
-| `_fpsMeterToggled` | Boolean | [static] FPSメータのトグル情報 |
 | `_stretchEnabled` | Boolean | [static] 画面の伸縮可能か |
-| `_canUseDifferenceBlend` | Boolean | [static] 差の絶対値のブレンドが可能か |
-| `_canUseSaturationBlend` | Boolean | [static] 彩度のブレンドが可能か |
-| `_hiddenCanvas` | HTMLCanvasElement | [static] 隠れている canvas |
 
-#### レンダラタイプ
-
-| 値 | レンダラタイプ |
-| --- | --- | --- |
-| 'canvas' | canvasで描画 |
-| 'webgl', | WebGLで描画 |
-| 'auto' | 自動選択 |
-
+#### 廃止MVプロパティ
+`_cssFontLoading`,
+`_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`
 
 ### Methods
 
@@ -297,7 +284,7 @@ canvas をアップデート。
 
 
 #### (static) canUseCssFontLoading ()
-CSSフォント読み込みが使用可能か。
+**廃止** [Utils](Utils.md#canUseCssFontLoading) に移動。
 
 
 #### (static) canUseDifferenceBlend () → {Boolean}
@@ -324,8 +311,8 @@ WebGL を持っている(ブラウザ)環境か。
 FPSメータを隠す。
 
 
-#### (static) initialize (width opt, height opt, type opt)
-画像機能の初期化。<br />
+#### (static) initialize (width opt, height opt, type opt) → {Boolean}
+画像機能の初期化し、完了したら true を返す。<br />
 通常 [SceneManager](SceneManager.md) の `_screenWidth`, `_screenHeight`が引数に使われるので、x:816, y:624 が初期値となる。
 
 ##### Parameters:
@@ -428,14 +415,14 @@ FPSメータを隠す。
 | `url` | [String](String.md) | 読み込みに失敗したファイルのURL |
 
 
-#### (static) render (stage)
-指定ステージ(シーン)の描画。
+#### (static) setTickHandler (handler)
+**@MZ**ハンドラの設定。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `stage` | [Stage](Stage.md) | 描画対象オブジェクト |
+| `handler` | Function | ハンドラ |
 
 
 #### (static) setLoadingImage (src)
@@ -462,8 +449,16 @@ FPSメータを隠す。
 FPSメータを表示。
 
 
+#### (static) startGameLoop ()
+**@MZ** アプリケーションのループ開始。
+
+
 #### (static) startLoading ()
 ローディング画像表示開始。
+
+
+#### (static) stopGameLoop ()
+**@MZ** アプリケーションのループ終了。
 
 
 #### (static) tickEnd ()
@@ -478,3 +473,5 @@ FPSメータへフレーム(tick)の開始を通知。
 ローディング画面をアップデート。
 
 
+### MV廃止メソッド
+render (stage), 
