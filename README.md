@@ -1,4 +1,4 @@
-# RPGツクールMZ プラグイン置き場(予定地)
+# RPGツクールMZ プラグイン置き場
 
 [RPGツクールMV プラグイン置き場](https://github.com/tonbijp/RPGMakerMV)もあります。
 
@@ -7,4 +7,4 @@
 
 |プラグイン|説明|状況|解説(explanation)|#ツクプラ|
 |---|---|---|---|---|
-| TF_Xxx.js | 説明 | α版 | |
+| [TF_CharEx.js](https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_CharEx.js) | 歩行キャラの挙動制御 | α版 | |
