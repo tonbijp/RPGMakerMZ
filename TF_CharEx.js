@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.0.2
+// Version :0.0.1.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -18,7 +18,8 @@
  * @orderAfter PluginCommonBase
  *
  * @param moveUnit
- * @desc 移動単位(COM_END_ANIME時の配置単位)
+ * @desc [アニメの終了]時の配置単位(規定値: 通常(1タイル))
+ * @default 1
  * @type select
  * @option 通常(1タイル)
  * @value 1
@@ -26,36 +27,47 @@
  * @value 0.5
  * @option なし(アナログ)
  * @value 0
- * @default 1
  * 
  * @help
- * 主な機能とイベントコマンドにない利点。規定値:現在値)
+ * 主な機能とイベントコマンドにない利点。
  * 
  * 1 : キャラ( イベント・プレイヤー・隊列メンバー )の位置・パターンの設定。
  * 　ピクセル単位の位置指定で、キャラの繊細なアニメーションができる。
  * 　歩行パターン別の指定で、キャラ素材を無駄なく利用できる。
  * 
  * 2 : 頻出するアニメーションの指定。
- * 　収録素材の宝箱などは、3列全て同じ素材が並んでいて無駄が多い。
- * 　歩行パターン別に指定可能なので、3パターン違う素材を置ける。
+ * 　ドア・宝箱の開閉など、縦のアニメーションを1コマンドで指定。
+ * 　歩行パターン別に指定可能なので、3列違う素材を置ける。
  *
  * 3 : キャラの[ルート移動]の簡易コマンドによる指定。
  * 　例えば[上に移動][上に移動][上に移動][上に移動]と指定が必要な場合、
  * 　↑4 と書けるので回数調整が容易で、全体の見通しが良い。
  *
- * 通常のイベントコマンドでは指定できない隊列メンバーを指定できる。
+ * 4 : 通常のイベントコマンドでは指定できない隊列メンバーを指定できる。
  *
+ * 利用できるプラグインコマンド一覧
+ * [移動ルートの一括設定]
+ * [キャラパターン指定アニメ]
+ * [キャラパターンを指定]
+ * [イベントを指定座標に移動]
+ * [イベントを別のイベント位置に移動]
+ * [イベントを指定座標に配置]
+ * [イベントを別のイベント位置に配置]
+ * [隊列メンバーの追跡設定]
+ * [アニメの指定]
+ * [アニメの終了]
+ * ※ 利用方法はプラグインコマンド設定時の説明をご覧ください。
  * 
  * 【[移動ルートの設定]で使うスクリプト】
  * ------------------------------
  * this.TF_goXY( [x], [y] );
- * 　指定座標に移動。
+ * 　[イベントを指定座標に移動]コマンドの[移動ルートの設定]用。
  * ------------------------------
  * this.TF_goEv( [目標イベントID], [dx], [dy] );
- * 　目標イベント位置に移動。
+ * 　[イベントを別のイベント位置に移動]コマンドの[移動ルートの設定]用。
  * =========================
  * 
- * 【詳細】
+ * 【プラグインコマンドに指定する引数の詳細】
  * ------------------------------
  * [イベントID] は、イベントの[名前]でも指定できる。
  * ただし数値や 上記 this などと同じ名前、スペースの入った名前の指定不可。
@@ -80,14 +92,6 @@
  * 　通常速 … 8フレーム
  * 　2倍速 … 4フレーム
  * 　4倍速 … 2フレーム
- * ------------------------------
- * 真偽値( true/false )を指定する値には、on/off も使える。
- * ------------------------------
- * [イベントID][画像ファイル名][キャラ番号][歩行パターン][向き] [キャラパターン]
- * [ウェイト][x][y][mx][my][移動指定][隊列メンバーID]の値は、
- * 全てV[n]の形式で変数を指定できる。
- *
- * 例 : TF_LOCATE_XY 0 V[1] V[2]
  * ------------------------------
  * [移動指定] コマンド文字+数字を一単位とする文字列。
  * かなり量があるので、印刷するなどして手元で確認することを推奨。
@@ -148,16 +152,9 @@
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
  * 
- * TF_ROUTE [イベントID] [移動指定] [繰り返し] [飛ばす] [待つ]
- * 　イベントコマンドの[ルートの設定]を一行で書く。
- * 　[移動指定] 専用コマンド文字(例:←↓↑→)+数値の連続 ※下部詳細参照
- * 　[繰り返し] 指定した動作を繰り返すか(規定値:false)
- * 　[飛ばす] 移動できない場合は飛ばすか(規定値:true)
- *
- * 　例: TF_ROUTE this  OFF ON OFF
  * 
  * @command route
- * @text 移動ルートの設定
+ * @text 移動ルートの一括設定
  * @desc [移動ルートの設定]コマンドの文字列指定版
  *
  * @arg eventId
@@ -363,7 +360,7 @@
  * @arg isWait
  * @text 完了までウェイト
  * @desc
- * true:移動終了まで待つ false:待たない (規定値:true)
+ * ON:移動終了まで待つ OFF:待たない (規定値:ON)
  * @type boolean
  * @default true
  * 
@@ -421,7 +418,7 @@
  * @arg isWait
  * @text 完了までウェイト
  * @desc
- * true:移動終了まで待つ false:待たない (規定値:true)
+ * ON:移動終了まで待つ OFF:待たない (規定値:ON)
  * @type boolean
  * @default true
  *
@@ -491,7 +488,7 @@
  *
  *
  * @command locateEV
- * @text イベントを別のイベント位置に移動
+ * @text イベントを別のイベント位置に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
  *
@@ -574,10 +571,11 @@
  *
  * @command follow
  * @text 隊列メンバーの追跡設定
- *
+ * @desc 前のメンバーを追うか指定する。
+ * 
  * @arg eventId
  * @text 隊列メンバーID
- * @desc
+ * @desc 指定隊列メンバー(規定値:all)
  * @type select
  * @default all
  * @option all
@@ -587,8 +585,7 @@
  *
  * @arg isFollow
  * @text 追跡するか
- * @desc
- * true:追跡する false:追跡しない (規定値:true)
+ * @desc ON:追跡する OFF:追跡しない (規定値:ON)
  * @type boolean
  * @default true
  *
@@ -596,7 +593,7 @@
  * @command anime
  * @text アニメの指定
  * @desc アニメモード(移動アニメ停止・[すり抜け]ON)になるので、
- * 終わったら[アニメの終了]コマンドを実行しておくこと。
+ * [アニメの終了]を実行しておくこと。
  *
  * @arg eventId
  * @text イベントID
@@ -675,14 +672,13 @@
  *
  * @command endAnime
  * @text アニメの終了
- * @desc [アニメの指定]をするとアニメモード(移動アニメ停止・[すり抜け]ON)になるので、
- * 終わったらこのコマンドを実行しておくこと。
+ * @desc [アニメの指定]をするとアニメモード(移動アニメ停止・[すり抜け]ON)になるのでアニメ終了時に実行すること。
  *
  * @arg eventId
  * @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
+ *  または選択(規定値: 0)
  * @type combo
  * @default 0
  * @option this
@@ -794,12 +790,12 @@
 	}
 
 
-	const EVENT_THIS = 'this';
-	const EVENT_SELF = 'self';
-	const EVENT_PLAYER = 'player';
-	const EVENT_FOLLOWER0 = 'follower0';
-	const EVENT_FOLLOWER1 = 'follower1';
-	const EVENT_FOLLOWER2 = 'follower2';
+	const EVENT_THIS = "this";
+	const EVENT_SELF = "self";
+	const EVENT_PLAYER = "player";
+	const EVENT_FOLLOWER0 = "follower0";
+	const EVENT_FOLLOWER1 = "follower1";
+	const EVENT_FOLLOWER2 = "follower2";
 	/**
 	 * 文字列をイベントIDへ変換
 	 * @param {String} value イベントIDの番号か識別子
@@ -913,28 +909,38 @@
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		setCharPattern( targetEvent, args.fileName, args.characterNumber, args.patternNumber, args.d );
 	} );
+
+	// COM_GO_XY
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		goXY( targetEvent, args.x, args.y, args.isWait );
 	} );
+
+	// COM_GO_EV
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
 		goEv( targetEvent, destinationEvent, args.dx, args.dy, args.isWait );
 	} );
+
+	// COM_LOCATE_XY
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		locateXY( targetEvent, args.x, args.y, args.patternNumber, args.d );
 	} );
+
+	// COM_LOCATE_EV
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
 		locateEv( targetEvent, destinationEvent, args.dx, args.dy, args.patternNumber, args.d );
 	} );
+
+	// COM_FOLLOW
 	PluginManagerEx.registerCommand( document.currentScript, COM_FOLLOW, function( args ) {
 		if( args.eventId === "all" ) {
 			const followers = $gamePlayer.followers();
-			followers.forEach( follower => {
+			followers._data.forEach( follower => {
 				followMode( follower, args.isFollow );
 			} );
 		} else {
@@ -942,10 +948,14 @@
 			followMode( targetEvent, args.isFollow );
 		}
 	} );
+
+	// COM_ANIME
 	PluginManagerEx.registerCommand( document.currentScript, COM_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		anime( targetEvent, args.x, args.y, args.wait, args.characterNumber, args.patternNumber, args.d );
 	} );
+
+	// COM_END_ANIME
 	PluginManagerEx.registerCommand( document.currentScript, COM_END_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		animeMode( targetEvent, false );
@@ -1366,7 +1376,6 @@
 	function followMode( targetEvent, isFollow ) {
 		isFollow = ( isFollow === undefined ) ? true : parseBooleanStrict( isFollow );
 		targetEvent.TF_isFollow = isFollow;
-		if( isFollow ) return;
 	}
 
 	/**
