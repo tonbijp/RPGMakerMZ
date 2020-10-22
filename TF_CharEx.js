@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.1.1
+// Version :0.0.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -1375,7 +1375,7 @@
 	 */
 	function followMode( targetEvent, isFollow ) {
 		isFollow = ( isFollow === undefined ) ? true : parseBooleanStrict( isFollow );
-		targetEvent.TF_isFollow = isFollow;
+		targetEvent._isFollow = isFollow;
 	}
 
 	/**
@@ -1612,7 +1612,7 @@
 	Game_Follower.prototype.initMembers = function() {
 		_Game_Follower_initMembers.call( this );
 		this._originalPattern = 1;
-		this.TF_isFollow = true;
+		this._isFollow = true;
 	};
 
 	Game_Follower.prototype.isOriginalPattern = function() {
@@ -1620,32 +1620,39 @@
 	};
 
 	/**
-	 * TF_isFollow が false か、TF_isAnime フラグが true の時は
+	 * _isFollow が false か、TF_isAnime フラグが true の時は
 	 * プレイヤーを追わない。
 	 */
 	const _Game_Follower_chaseCharacter = Game_Follower.prototype.chaseCharacter;
 	Game_Follower.prototype.chaseCharacter = function( character ) {
-		if( !this.TF_isFollow || this.TF_isAnime ) return false;
+		if( !this.isFollow() || this.TF_isAnime ) return false;
 		_Game_Follower_chaseCharacter.apply( this, arguments );
 	};
 
 	/**
 	 * 隊列メンバーはプレイヤーのデータをコピーしているが、
-	 * TF_isFollow が false の時はコピーしない。
+	 * _isFollow が false の時はコピーしない。
 	 */
 	const _Game_Follower_update = Game_Follower.prototype.update;
 	Game_Follower.prototype.update = function() {
-		if( this.TF_isFollow ) {
+		if( this.isFollow() ) {
 			_Game_Follower_update.call( this );
 		} else {
 			Game_Character.prototype.update.call( this );
 		}
 	};
 
+	/**
+	 * @returns Boolean 前のキャラを追うか
+	 */
+	Game_Follower.prototype.isFollow = function() {
+		return ( this._isFollow || this._isFollow === undefined );
+	};
+
 
 	/*---- Game_Followers ----*/
 	/**
-	 * TF_isFollow が false か、TF_isFollow フラグが true の時は
+	 * _isFollow が false か、TF_isAnime フラグが true の時は
 	 * プレイヤーに同期してジャンプしない。
 	 */
 	const _Game_Followers_jumpAll = Game_Followers.prototype.jumpAll;
@@ -1654,7 +1661,7 @@
 
 		for( var i = 0; i < this._data.length; i++ ) {
 			const follower = this._data[ i ];
-			if( !follower.TF_isFollow || follower.TF_isAnime ) continue;
+			if( !follower.isFollow() || follower.TF_isAnime ) continue;
 			const sx = $gamePlayer.deltaXFrom( follower.x );
 			const sy = $gamePlayer.deltaYFrom( follower.y );
 			follower.jump( sx, sy );
