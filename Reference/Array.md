@@ -1,13 +1,15 @@
-# Class: Array
+[クラスツリー](index.md)
+
+# クラス:  Array
 
 ### new Array ()
-JavaScript の配列にいくつかRPGツクールMV独自のメソッドが追加してある。
+JavaScript の配列にいくつか『RPGツクールMZ』独自のメソッドが追加してある。
 
 詳細は [MDN の Arrayのページ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array)を見てもらうとして。
 ここでは追加されたメソッドのみ解説。
 
 
-### Methods
+### メソッド
 
 #### clone () → {[Array](Array.md)}
 配列を(シャロー)コピーして返す。
@@ -18,9 +20,9 @@ JavaScript の配列にいくつかRPGツクールMV独自のメソッドが追�
 指定した値が配列に含まれるか。
 **JSの機能である、includes()を使うことが推奨されている。**
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `element` | * | 配列を検索する値 |
 
@@ -28,18 +30,18 @@ JavaScript の配列にいくつかRPGツクールMV独自のメソッドが追�
 #### equals (array) → {Boolean}
 配列が同じものか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | [Array](Array.md) | 比較する配列 |
 
 
 #### remove(element)
-**@MZ**配列から指定要素を取り除く。
+**(New!)** 配列から指定要素を取り除く。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | [Array](Array.md) | 比較する配列 |

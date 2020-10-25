@@ -1,20 +1,22 @@
-# Class: Number
+[クラスツリー](index.md)
+
+# クラス: Number
 
 ### new Number ()
-JavaScript の数値にいくつかRPGツクールMV独自のメソッドが追加してある。
+JavaScript の数値にいくつか『RPGツクールMZ』独自のメソッドが追加してある。
 
 詳細は [MDN の Numberのページ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number)を見てもらうとして。
 ここでは追加されたメソッドのみ解説。
 
 
-### Methods
+### メソッド
 
 #### clamp (min, max) → {[Number](Number.md)}
 指定範囲に収まる値を返す。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `min` | [Number](Number.md) | 最小値 |
 | `max` | [Number](Number.md) | 最大値 |
@@ -25,9 +27,9 @@ JavaScript の数値にいくつかRPGツクールMV独自のメソッドが追�
 
 % に近いが常に正の値を返す。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `n` | [Number](Number.md) | 割る数値 |
 
@@ -35,9 +37,9 @@ JavaScript の数値にいくつかRPGツクールMV独自のメソッドが追�
 #### padZero (length) → {[String](String.md)}
 数値の頭を0で埋めて指定の長さの文字列にして返す。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `length` | [Number](Number.md) | 文字列の長さ |
-
+
