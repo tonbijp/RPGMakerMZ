@@ -252,6 +252,7 @@ namespace JsExtensions
 
 * [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
+        * ※[Tilemap.Render](Tilemap.Render.md)  **(New!)**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
 * EventEmitter
@@ -266,8 +267,8 @@ namespace JsExtensions
 * GLShader
     * [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
         * [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
-            * ~~ToneFilter~~ (廃止)
             * ※[ColorFilter](ColorFilter.md) **(New!)**
+            * ~~ToneFilter~~ (廃止)
         * PIXI.tilemap.TilemapShader
             * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
 
