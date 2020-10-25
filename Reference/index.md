@@ -48,7 +48,7 @@
 
 * **(New!)** は『RPGツクールMZ』で増えたクラス。
 * (廃止) は『RPGツクールMV』にあったが廃止されたクラス。
-* 以下で表われる「→ Extends」は継承先へのリンク。
+* 以下で表われる「→ 継承」は継承先へのリンク。
 * ※がついているのはまだ『RPGツクールMV』の記述のままのもの。
 
 
@@ -246,7 +246,7 @@ namespace JsExtensions
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
     * ※[PIXI.DisplayObject](PIXI.DisplayObject.md)
-        * ※[PIXI.Container](PIXI.Container.md) → [Extends](index.md#コンテナpixicontainer)
+        * ※[PIXI.Container](PIXI.Container.md) → [継承](index.md#コンテナpixicontainer)
 
 ### レンダラ
 
@@ -288,11 +288,11 @@ namespace JsExtensions
     * ~~ShaderTilemap~~ (廃止)
 * ※[Tilemap.Layer](Tilemap.Layer.md)  **(New!)**
 * [PIXI.Sprite](PIXI.Sprite.md)
-    * ※[Sprite](Sprite.md) → [Extends](index.md#スプライトsprite)
+    * ※[Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
 * ※[Stage](Stage.md)
-    * ※[Scene_Base](Scene_Base.md) → [Extends](index.md#シーンscene_base)
+    * ※[Scene_Base](Scene_Base.md) → [継承](index.md#シーンscene_base)
 * ※[Window](Window.md)
-    * ※[Window_Base](Window_Base.md) → [Extends](index.md#ウィンドウwindow_base)
+    * ※[Window_Base](Window_Base.md) → [継承](index.md#ウィンドウwindow_base)
 
 
 ### [スプライト(Sprite)](Sprite.md)
@@ -362,7 +362,7 @@ namespace JsExtensions
 * ※[Window_ShopStatus](Window_ShopStatus.md)
 * ※[Window_SkillStatus](Window_SkillStatus.md)
 * ※[Window_Scrollable](Window_Scrollable.md) **(New!)**
-* ※[Window_Selectable](Window_Selectable.md) → [Extends](index.md#選択ウィンドウwindow_selectable)
+* ※[Window_Selectable](Window_Selectable.md) → [継承](index.md#選択ウィンドウwindow_selectable)
 
 
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
@@ -392,7 +392,7 @@ namespace JsExtensions
 * ※[Window_StatusBase](Window_StatusBase.md) **(New!)**
     * ※[Window_StatusParams](Window_StatusParams.md) **(New!)**
     * ※[Window_StatusEquip](Window_StatusEquip.md) **(New!)**
-* ※[Window_Command](Window_Command.md) → [Extends](index.md#コマンドウィンドウwindow_command)
+* ※[Window_Command](Window_Command.md) → [継承](index.md#コマンドウィンドウwindow_command)
 
 
 ### [コマンドウィンドウ(Window_Command)](Window_Command.md)
