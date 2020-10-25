@@ -111,29 +111,29 @@ namespace JsExtensions
 
 ### Objects
 
-* [AudioParameters](MV.AudioParameters.md)
-* [BattleLogMethod](MV.BattleLogMethod.md)
-* [BattlerAnimation](MV.BattlerAnimation.md)
-* [BattleRewards](MV.BattleRewards.md)
-* [CommandItem](MV.CommandItem.md)
-* [ConfigData](MV.ConfigData.md)
-* [DatabaseFile](MV.DatabaseFile.md)
-* [Matrix](MV.Matrix.md)
-* [Motion](MV.Motion.md)
-* [PluginSettings](MV.PluginSettings.md)
-* [SaveContents](MV.SaveContents.md)
-* [SaveFileInfo](MV.SaveFileInfo.md)
-* [TextState](MV.TextState.md)
-* [TouchInputEvents](MV.TouchInputEvents.md)
+* ※[AudioParameters](MV.AudioParameters.md)
+* ※[BattleLogMethod](MV.BattleLogMethod.md)
+* ※[BattlerAnimation](MV.BattlerAnimation.md)
+* ※[BattleRewards](MV.BattleRewards.md)
+* ※[CommandItem](MV.CommandItem.md)
+* ※[ConfigData](MV.ConfigData.md)
+* ※[DatabaseFile](MV.DatabaseFile.md)
+* ※[Matrix](MV.Matrix.md)
+* ※[Motion](MV.Motion.md)
+* ※[PluginSettings](MV.PluginSettings.md)
+* ※[SaveContents](MV.SaveContents.md)
+* ※[SaveFileInfo](MV.SaveFileInfo.md)
+* ※[TextState](MV.TextState.md)
+* ※[TouchInputEvents](MV.TouchInputEvents.md)
 
 ### Arrays
 
-* [Color](MV.Color.md)
-* [Tone](MV.Tone.md)
+* ※[Color](MV.Color.md)
+* ※[Tone](MV.Tone.md)
 
 ### Strings
 
-* [CssColor](MV.CssColor.md)
+* ※[CssColor](MV.CssColor.md)
 
 
 
@@ -142,41 +142,41 @@ namespace JsExtensions
 
 ### イベントコマンド
 
-* [BattleEventPage](RPG.BattleEventPage.md) . [Conditions](RPG.BattleEventPage.Conditions.md)
-* [CommonEvent](RPG.CommonEvent.md)([$dataCommonEvents](global.md#datacommonevents-arrayrpgcommonevent))
-* [EventCommand](RPG.EventCommand.md)([$testEvent](global.md#testevent-arrayrpgeventcommand))
-* [EventPage](RPG.EventPage.md) . [Conditions](RPG.EventPage.Conditions.md) \| [Image](RPG.EventPage.Image.md)
-* [MoveCommand](RPG.MoveCommand.md)
-* [MoveRoute](RPG.MoveRoute.md)
+* ※[BattleEventPage](RPG.BattleEventPage.md) . [Conditions](RPG.BattleEventPage.Conditions.md)
+* ※[CommonEvent](RPG.CommonEvent.md)([$dataCommonEvents](global.md#datacommonevents-arrayrpgcommonevent))
+* ※[EventCommand](RPG.EventCommand.md)([$testEvent](global.md#testevent-arrayrpgeventcommand))
+* ※[EventPage](RPG.EventPage.md) . [Conditions](RPG.EventPage.Conditions.md) \| [Image](RPG.EventPage.Image.md)
+* ※[MoveCommand](RPG.MoveCommand.md)
+* ※[MoveRoute](RPG.MoveRoute.md)
 
 ### メモつきデータ(MetaData)
 
-* [MetaData](RPG.MetaData.md)
-	* [Actor](RPG.Actor.md)([$dataActors](global.md#dataactors-arrayrpgactor))
-	* [Class](RPG.Class.md)([$dataClasses](global.md#dataclasses-arrayrpgclass)) . [Learning](RPG.Class.Learning.md)
-	* [Enemy](RPG.Enemy.md)([$dataEnemies](global.md#dataenemies-arrayrpgenemy)) . [Action](RPG.Enemy.Action.md) \| [DropItem](RPG.Enemy.DropItem.md)
-	* [Event](RPG.Event.md)
-	* [Map](RPG.Map.md)([$dataMap](global.md#datamap-rpgmap)) . [Encounter](RPG.Map.Encounter.md)
-	* [State](RPG.State.md)([$dataStates](global.md#datastates-arrayrpgstate))
-	* [Tileset](RPG.Tileset.md)([$dataTilesets](global.md#datatilesets-arrayrpgtileset))
-	* [BaseItem](RPG.BaseItem.md)
-	    * [UsableItem](RPG.UsableItem.md)
-	        * [Item](RPG.Item.md)([$dataItems](global.md#dataitems-arrayrpgitem))
-	        * [Skill](RPG.Skill.md)([$dataSkills](global.md#dataskills-arrayrpgskill))
-	    * [EquipItem](RPG.EquipItem.md)
-	        * [Armor](RPG.Armor.md)([$dataArmors](global.md#dataarmors-arrayrpgarmor))
-	        * [Weapon](RPG.Weapon.md)([$dataWeapons](global.md#dataweapons-arrayrpgweapon))
+* ※[MetaData](RPG.MetaData.md)
+	* ※[Actor](RPG.Actor.md)([$dataActors](global.md#dataactors-arrayrpgactor))
+	* ※[Class](RPG.Class.md)([$dataClasses](global.md#dataclasses-arrayrpgclass)) . [Learning](RPG.Class.Learning.md)
+	* ※[Enemy](RPG.Enemy.md)([$dataEnemies](global.md#dataenemies-arrayrpgenemy)) . [Action](RPG.Enemy.Action.md) \| [DropItem](RPG.Enemy.DropItem.md)
+	* ※[Event](RPG.Event.md)
+	* ※[Map](RPG.Map.md)([$dataMap](global.md#datamap-rpgmap)) . [Encounter](RPG.Map.Encounter.md)
+	* ※[State](RPG.State.md)([$dataStates](global.md#datastates-arrayrpgstate))
+	* ※[Tileset](RPG.Tileset.md)([$dataTilesets](global.md#datatilesets-arrayrpgtileset))
+	* ※[BaseItem](RPG.BaseItem.md)
+	    * ※[UsableItem](RPG.UsableItem.md)
+	        * ※[Item](RPG.Item.md)([$dataItems](global.md#dataitems-arrayrpgitem))
+	        * ※[Skill](RPG.Skill.md)([$dataSkills](global.md#dataskills-arrayrpgskill))
+	    * ※[EquipItem](RPG.EquipItem.md)
+	        * ※[Armor](RPG.Armor.md)([$dataArmors](global.md#dataarmors-arrayrpgarmor))
+	        * ※[Weapon](RPG.Weapon.md)([$dataWeapons](global.md#dataweapons-arrayrpgweapon))
 
 ### その他データベース
 
-* [Animation](RPG.Animation.md)([$dataAnimations](global.md#dataanimations-arrayrpganimation)) . [Timing](RPG.Animation.Timing.md)
-* [AudioFile](RPG.AudioFile.md)
-* [MapInfo](RPG.MapInfo.md)([$dataMapInfos](global.md#datamapinfos-arrayrpgmapinfo))
-* [System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) . [AttackMotion](RPG.System.AttackMotion.md) \| [Terms](RPG.System.Terms.md) \| [TestBattler](RPG.System.TestBattler.md) \| [Vehicle](RPG.System.Vehicle.md)
-* [Troop](RPG.Troop.md)([$dataTroops](global.md#datatroops-arrayrpgtroop)) . [Member](RPG.Troop.Member.md)
-* [Damage](RPG.Damage.md)
-* [Effect](RPG.Effect.md)
-* [Trait](RPG.Trait.md)
+* ※[Animation](RPG.Animation.md)([$dataAnimations](global.md#dataanimations-arrayrpganimation)) . [Timing](RPG.Animation.Timing.md)
+* ※[AudioFile](RPG.AudioFile.md)
+* ※[MapInfo](RPG.MapInfo.md)([$dataMapInfos](global.md#datamapinfos-arrayrpgmapinfo))
+* ※[System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) . [AttackMotion](RPG.System.AttackMotion.md) \| [Terms](RPG.System.Terms.md) \| [TestBattler](RPG.System.TestBattler.md) \| [Vehicle](RPG.System.Vehicle.md)
+* ※[Troop](RPG.Troop.md)([$dataTroops](global.md#datatroops-arrayrpgtroop)) . [Member](RPG.Troop.Member.md)
+* ※[Damage](RPG.Damage.md)
+* ※[Effect](RPG.Effect.md)
+* ※[Trait](RPG.Trait.md)
 
 
 
@@ -245,8 +245,8 @@ namespace JsExtensions
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
-    * [PIXI.DisplayObject](PIXI.DisplayObject.md)
-        * [PIXI.Container](PIXI.Container.md) → [Extends](index.md#コンテナpixicontainer)
+    * ※[PIXI.DisplayObject](PIXI.DisplayObject.md)
+        * ※[PIXI.Container](PIXI.Container.md) → [Extends](index.md#コンテナpixicontainer)
 
 ### レンダラ
 
@@ -312,13 +312,13 @@ namespace JsExtensions
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)
     * ※[Spriteset_Map](Spriteset_Map.md)
-* [Sprite_Base](Sprite_Base.md)
-    * ※[Sprite_Balloon](Sprite_Balloon.md)
-    * ※[Sprite_Character](Sprite_Character.md)
-    * ※[Sprite_Weapon](Sprite_Weapon.md)
-    * ※[Sprite_Battler](Sprite_Battler.md)
-        * ※[Sprite_Actor](Sprite_Actor.md)
-        * ※[Sprite_Enemy](Sprite_Enemy.md)
+* ~~Sprite_Base~~ (廃止)
+* ※[Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
+* ※[Sprite_Character](Sprite_Character.md) (継承位置変更)
+* ※[Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
+* ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
+    * ※[Sprite_Actor](Sprite_Actor.md)
+    * ※[Sprite_Enemy](Sprite_Enemy.md)
 
 
 ### [シーン(Scene_Base)](Scene_Base.md)
@@ -355,7 +355,7 @@ namespace JsExtensions
 * ※[Window_Help](Window_Help.md)
 * ※[Window_MapName](Window_MapName.md)
 * ※[Window_Message](Window_Message.md)
-* ※[Window_NameBox] **(New!)**
+* ※[Window_NameBox](Window_NameBox.md) **(New!)**
 * ※[Window_NameEdit](Window_NameEdit.md)
 * ※[Window_ScrollText](Window_ScrollText.md)
 * ※[Window_ShopStatus](Window_ShopStatus.md)
