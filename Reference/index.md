@@ -47,7 +47,7 @@
 ### 注釈
 
 * **(New!)** は『RPGツクールMZ』で増えたクラス。
-* (obsoleted) は『RPGツクールMV』にあったが廃止されたクラス。
+* (廃止) は『RPGツクールMV』にあったが廃止されたクラス。
 * 以下で表われる「→ Extends」は継承先へのリンク。
 * ※がついているのはまだ『RPGツクールMV』の記述のままのもの。
 
@@ -81,7 +81,7 @@ namespace JsExtensions
 ## ユーティリティ
 
 * ※[JsonEx](JsonEx.md)
-* ~~ResourceHandler~~ (obsoleted)
+* ~~ResourceHandler~~ (廃止)
 * ※[Utils](Utils.md)
 * ※[Video](Video.md) **(New!)**
 
@@ -93,17 +93,17 @@ namespace JsExtensions
 
 ## ファイル
 
-* ~~CacheEntry~~ (obsoleted)
-* ~~CacheMap~~ (obsoleted)
-* ~~ImageCache~~ (obsoleted)
-* ~~RequestQueue~~ (obsoleted)
-* ~~Decrypter~~ (obsoleted)
+* ~~CacheEntry~~ (廃止)
+* ~~CacheMap~~ (廃止)
+* ~~ImageCache~~ (廃止)
+* ~~RequestQueue~~ (廃止)
+* ~~Decrypter~~ (廃止)
 
 
 ## 音声
 
 * ※[WebAudio](WebAudio.md)
-* ~~Html5Audio~~ (obsoleted)
+* ~~Html5Audio~~ (廃止)
 
 
 ## オブジェクト構造データ
@@ -266,7 +266,7 @@ namespace JsExtensions
 * GLShader
     * [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
         * [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
-            * ~~ToneFilter~~ (obsoleted)
+            * ~~ToneFilter~~ (廃止)
             * ※[ColorFilter](ColorFilter.md) **(New!)**
         * PIXI.tilemap.TilemapShader
             * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
@@ -275,16 +275,16 @@ namespace JsExtensions
 ### [コンテナ(PIXI.Container)](PIXI.Container.md)
 
 * ※[ScreenSprite](ScreenSprite.md)
-* ~~ToneSprite~~ (obsoleted)
+* ~~ToneSprite~~ (廃止)
 * ※[Weather](Weather.md)
 * ※[WindowLayer](WindowLayer.md)
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
 * [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
-* ~~PIXI.tilemap.ZLayer~~ (obsoleted)
+* ~~PIXI.tilemap.ZLayer~~ (廃止)
 * [PIXI.Graphics](PIXI.Graphics.md)
     * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 * ※[Tilemap](Tilemap.md)
-    * ~~ShaderTilemap~~ (obsoleted)
+    * ~~ShaderTilemap~~ (廃止)
 * ※[Tilemap.Layer](Tilemap.Layer.md)  **(New!)**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * ※[Sprite](Sprite.md) → [Extends](index.md#スプライトsprite)
