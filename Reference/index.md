@@ -233,7 +233,7 @@ namespace JsExtensions
 
 ### コア機能
 
-* ※[Bitmap](Bitmap.md)
+* [Bitmap](Bitmap.md)
 * ※[Graphics](Graphics.md)
 * [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
     * ※[Point](Point.md)
