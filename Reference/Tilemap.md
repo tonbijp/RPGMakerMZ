@@ -72,7 +72,7 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 | `_needsRepaint` | Boolean | 描画の必要があるか |
 
 
-`_upperBitmap`, `_lowerBitmap `, `_layerWidth `, `_layerHeight `,`_lastTiles ` は廃止。
+`upperZLayer`, `lowerZLayer`, `_upperBitmap`, `_lowerBitmap `, `_layerWidth `, `_layerHeight `,`_lastTiles ` は廃止。
 
 
 #### レイヤーの配置
@@ -525,40 +525,9 @@ OverpassTile.js プラグインで使われている。
 | `tileId` | [Number](Number.md) | タイルID |
 
 
-#### _paintAllTiles (startX, startY)
- 全タイルを描画。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
-| `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
-
-
-#### _paintTiles (startX, startY, x, y)
- 指定位置のタイルを描画。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
-| `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
-| `x` | [Number](Number.md) | 画面上の x座標(タイル数) |
-| `y` | [Number](Number.md) | 画面上の y座標(タイル数) |
-
-
-#### _readLastTiles (i, x, y) → {[Array](Array.md).<[Number](Number.md)>}
-指定位置の最新タイル配列を返す。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `i` | [Number](Number.md) | レイヤー階層(0: 低層, 1: 高層) |
-| `x` | [Number](Number.md) | x座標(タイル数) |
-| `y` | [Number](Number.md) | y座標(タイル数) |
+#### ~~_paintAllTiles (startX, startY)~~ (廃止)
+#### ~~_paintTiles (startX, startY, x, y)~~ (廃止)
+#### ~~_readLastTiles (i, x, y)~~ (廃止)
 
 
 #### _readMapData (x, y, z) → {[Number](Number.md)}
