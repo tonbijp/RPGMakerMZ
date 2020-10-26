@@ -252,7 +252,7 @@ namespace JsExtensions
 
 * [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
-        * ※[Tilemap.Render](Tilemap.Render.md)  **(New!)**
+        * [Tilemap.Render](Tilemap.Render.md)  **(New!)**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
 * EventEmitter
@@ -284,9 +284,9 @@ namespace JsExtensions
 * ~~PIXI.tilemap.ZLayer~~ (廃止)
 * [PIXI.Graphics](PIXI.Graphics.md)
     * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
-* ※[Tilemap](Tilemap.md)
+* [Tilemap](Tilemap.md)
     * ~~ShaderTilemap~~ (廃止)
-* ※[Tilemap.Layer](Tilemap.Layer.md)  **(New!)**
+* [Tilemap.Layer](Tilemap.Layer.md)  **(New!)**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * ※[Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
 * ※[Stage](Stage.md)
