@@ -5,7 +5,7 @@
 ### new Spriteset_Map ()
 
 | データベース| JSONデータ | オプジェクト |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | マップ | [RPG.Map](RPG.Map.md) | [Game_Map](Game_Map.md) |
 
  マップ表示用スプライトセット。
