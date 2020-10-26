@@ -1,27 +1,33 @@
-# Class: Tilemap
+[クラスツリー](index.md)
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+# クラス: Tilemap
+
+## 継承元: [PIXI.Container](PIXI.Container.md)
 
 ### new Tilemap ()
 2Dベースのタイルマップを表示するためのコンテナクラス。 
 
 静的メソッドを多く持つユーティリティクラスでもある。
 
-描画モード(F2キーを押して確かめられる)が Canvas Mode の場合に使われる。<br />
-なお、Canvas Mode は古いブラウザなどの一部環境でしか使われない。
+新規にインナークラス Tilemap.Layer が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
 
+### インナークラス
 
-### Sub Classes
+* [Tilemap.Layer](Tilemap.Layer.md) **(New!)**
+* [Tilemap.Renderer](Tilemap.Renderer.md) **(New!)**
 
-*  [ShaderTilemap](ShaderTilemap.md) 
+### 継承先
+『RPGツクールMV』では描画モードが別れていたので以下のWebGL用クラスがあったが、『RPGツクールMZ』ではWebGLに一本化されたので廃止された。
+
+*  ~~ShaderTilemap~~ (廃止)
 
 
-### Properties:
+### プロパティ
 TILE_ から始まる定数はタイルブロックのタイルIDの開始番号。
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `TILE_ID_A1` | [Number](Number.md) | [static] A1(アニメーション)タイルIDの開始番号(2048) |
 | `TILE_ID_A2` | [Number](Number.md) | [static] A2(地面)タイルIDの開始番号(2816) |
@@ -39,25 +45,56 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 | `parent` | Object | [read-only][super] 親オブジェクト(タイルマップを保持している[Spriteset_Map](Spriteset_Map.md)) |
 | `children` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; | [read-only][super] 子オブジェクト([Sprite](Sprite.md) 、[Sprite_Character](Sprite_Character.md) 、[Sprite_Destination](Sprite_Destination.md) を含む配列) |
 | `animationCount` | [Number](Number.md) |  オートタイルアニメーションのカウント |
-| `bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列(0〜9)<br />(0:A1, 1:A2, 2:A3, 3:A4, 4:A5, 5:B, 6:C, 7:D, 8:E) |
+| `animationFrame` | [Number](Number.md) |  30 animationCount = 1 とした値 |
+| `bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列(0〜8)<br />(0:A1, 1:A2, 2:A3, 3:A4, 4:A5, 5:B, 6:C, 7:D, 8:E) |
 | `origin` | [Point](Point.md) |  スクロールに対する基準点 |
-| `flags` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  フラグ(See:[RPG.Tileset](RPG.Tileset.md)) |
-| `tileHeight` | [Number](Number.md) | タイル高さ(規定値:48 ピクセル) |
+| `flags` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  フラグ(参照:[RPG.Tileset](RPG.Tileset.md)) |
 | `tileWidth` | [Number](Number.md) | タイル幅(規定値:48 ピクセル) |
-| `height` | [Number](Number.md) | 画面高さ(規定値:816 ピクセル) |
-| `width` | [Number](Number.md) | 画面幅(規定値:624 ピクセル) |
+| `tileHeight` | [Number](Number.md) | タイル高さ(規定値:48 ピクセル) |
+| `width` | [Number](Number.md) | 画面幅(規定値:624 ピクセル) (参照:[Graphics.width](Graphics.md)) |
+| `height` | [Number](Number.md) | 画面高さ(規定値:816 ピクセル) (参照:[Graphics.height](Graphics.md)) |
 | `horizontalWrap` | Boolean | 横方向にループするか |
 | `verticalWrap` | Boolean | 縦方向にループするか |
-| `_lowerBitmap ` | [Bitmap](Bitmap.md) | 下層ビットマップ |
-| `_upperBitmap ` | [Bitmap](Bitmap.md) | 上層ビットマップ |
-| `_layerWidth ` | [Number](Number.md) | レイヤーの幅 |
-| `_layerHeight ` | [Number](Number.md) | レイヤーの高さ |
-| `_lowerLayer ` | [Sprite](Sprite.md) | 下層レイヤー( z = 0 ) |
-| `_upperLayer ` | [Sprite](Sprite.md) | 上層レイヤー( z = 4 ) |
-| `_lastTiles ` | [Array](Array.md) | 最新のタイル情報 |
+| `_tileWidth` | [Number](Number.md) | タイル幅 |
+| `_tileHeight` | [Number](Number.md) | タイル高さ |
+| `_width` | [Number](Number.md) | 画面幅 |
+| `_height` | [Number](Number.md) | 画面高さ |
+| `_margin` | [Number](Number.md) | マージン |
+| `_mapWidth` | [Number](Number.md) | マップ幅 |
+| `_mapHeight` | [Number](Number.md) | マップ高さ |
+| `_mapData` | [Number](Number.md) |  |
+| `_bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列 |
+| `_upperLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 高層レイヤー( z = 4 ) |
+| `_lowerLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 低層レイヤー( z = 0 ) |
+| `_lastStartX` | [Number](Number.md) | 前回の開始 x座標 |
+| `_lastStartY` | [Number](Number.md) | 前回の開始 y座標 |
+| `_lastAnimationFrame` | [Number](Number.md) | 前回のアニメフレーム位置 |
+| `_needsRepaint` | Boolean | 描画の必要があるか |
 
 
-### Inherited From
+`_upperBitmap`, `_lowerBitmap `, `_layerWidth `, `_layerHeight `,`_lastTiles ` は廃止。
+
+
+#### レイヤーの配置
+children に含まれるレイヤーの種類と位置。<br />
+エディタで指定する[レイヤー]は、0:低層タイルに描画されます。<br />
+通行設定が[☆]の場合は、4:高層[☆]タイルです。
+
+| Z番号 | 型 | 説明 |
+| --- | --- | --- |
+| 9 | [Sprite_Destination](Sprite_Destination.md) | タッチ位置表示 |
+| 8 | [Sprite_Animation](Sprite_Animation.md) | アニメーション |
+| 7 | [Sprite_Balloon](Sprite_Balloon.md) | フキダシ |
+| 6 | [Sprite_Character](Sprite_Character.md) | 飛行船の影 |
+| 5 | [Sprite_Character](Sprite_Character.md) | 高層キャラ(立体交差用) |
+| 4 | [Tileset.Layer](Tileset.Layer.md) | 高層[☆]タイル |
+| 3 | [Sprite_Character](Sprite_Character.md) | 通常キャラ |
+| 2 |  | 未使用 |
+| 1 | [Sprite_Character](Sprite_Character.md) | 低層キャラ |
+| 0 | [Tileset.Layer](Tileset.Layer.md) | 低層タイル |
+
+
+### 継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -77,7 +114,6 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -93,22 +129,22 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 
 
-### Methods
+### メソッド
 
 #### (static) getAutotileKind (tileId) → {[Number](Number.md)}
  オートタイルの種類を返す。<br />
  返り値から以下の表にしたがって判断が必要だが、各種isXXXメソッドを使えば種類が確定できる。
 
-| Set | Description |
+| セット | 説明 |
 | --- | --- |
 | A1 | 海:0、深海:1、浅瀬障害:2,3、水面:4,6,8,10,12,14、滝:5,7,9,11,13,15 |
 | A2 | 地面:16〜19,24〜27,32〜35,40〜43、重ねて配置用:20〜23,28〜31,36〜39,44〜47 |
 | A3 | 屋根:48〜55,64〜71、壁:56〜63,72〜79 |
 | A4 | 壁上：80〜87,96〜103,112〜119、壁:88〜95,104〜111,120〜127 |
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -117,9 +153,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
  オートタイルのシェイプを返す。
 地面・床・壁上面:0〜47、屋根・壁:0〜15、滝:0〜3 の値
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -127,9 +163,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isAutotile (tileId) → {Boolean}
  オートタイル(A1〜A4)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -137,9 +173,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isFloorTypeAutotile (tileId) → {Boolean}
  (48シェイプを持つ)地表面タイプのオートタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -147,9 +183,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isGroundTile (tileId) → {Boolean}
  地表(A1,A2,A5)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -157,9 +193,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isRoofTile (tileId) → {Boolean}
  屋根(A3奇数行)タイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -167,9 +203,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isSameKindTile (tileID1, tileID2) → {Boolean}
  指定したタイルが(オートタイルのシェイプは問わないで)同じ種類か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileID1` | [Number](Number.md) | タイルID |
 | `tileID2` | [Number](Number.md) | タイルID |
@@ -178,9 +214,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isShadowingTile (tileId) → {Boolean}
  設置した時に影が自動でつけられるタイル(A3 と A4)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -188,9 +224,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 #### (static) isTileA1 (tileId) → {Boolean}
 A1(アニメーション)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -198,9 +234,9 @@ A1(アニメーション)のタイルか。
 #### (static) isTileA2 (tileId) → {Boolean}
 A2(地面)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -208,9 +244,9 @@ A2(地面)のタイルか。
 #### (static) isTileA3 (tileId) → {Boolean}
 A3(建物)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -218,9 +254,9 @@ A3(建物)のタイルか。
 #### (static) isTileA4 (tileId) → {Boolean}
 A4(壁)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -228,9 +264,9 @@ A4(壁)のタイルか。
 #### (static) isTileA5 (tileId) → {Boolean}
 A5(通常)のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -238,9 +274,9 @@ A5(通常)のタイルか。
 #### (static) isVisibleTile (tileId) → {Boolean}
  表示されるタイル(0〜TILE_ID_MAXに含まれる)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -248,9 +284,9 @@ A5(通常)のタイルか。
 #### (static) isWallSideTile (tileId) → {Boolean}
  壁面タイル(A3偶数行 と A4偶数行)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -258,9 +294,9 @@ A5(通常)のタイルか。
 #### (static) isWallTile (tileId) → {Boolean}
  壁タイル(A3偶数行 と A4)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -268,9 +304,9 @@ A5(通常)のタイルか。
 #### (static) isWallTopTile (tileId) → {Boolean}
  壁上面タイル(A4奇数行)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -278,9 +314,9 @@ A5(通常)のタイルか。
 #### (static) isWallTypeAutotile (tileId) → {Boolean}
  (16シェイプを持つ)壁タイプのタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -288,9 +324,9 @@ A5(通常)のタイルか。
 #### (static) isWaterfallTile (tileId) → {Boolean}
  滝のタイル(A1で偶数列2番目以降)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -298,9 +334,9 @@ A5(通常)のタイルか。
 #### (static) isWaterfallTypeAutotile (tileId) → {Boolean}
  (4シェイプを持つ)滝タイプのオートタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -308,9 +344,9 @@ A5(通常)のタイルか。
 #### (static) isWaterTile (tileId) → {Boolean}
  水面のタイル(浅瀬障害を除くA1)か。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -318,12 +354,12 @@ A5(通常)のタイルか。
 #### (static) makeAutotileId (kind, shape) → {[Number](Number.md)}
  指定したオートタイルの種類とシェイプからタイルIDを返す。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `kind` | [Number](Number.md) | 種類(See: [getAutotileKind](#static-getautotilekind-tileid--number)) |
-| `shape` | [Number](Number.md) | シェイプ(See: [getAutotileShape](#static-getautotileshape-tileid--number)) |
+| `kind` | [Number](Number.md) | 種類(参照: [getAutotileKind](#static-getautotilekind-tileid--number)) |
+| `shape` | [Number](Number.md) | シェイプ(参照: [getAutotileShape](#static-getautotileshape-tileid--number)) |
 
 
 #### _compareChildOrder (a, b)
@@ -332,89 +368,136 @@ childrenプロパティに含まれる子オブジェクトが、a, b に渡さ�
 順番は渡されたオブジェクトの z, y, spriteIdプロパティによって評価される。<br />
 z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参照。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `a` | Object | z, y, spriteIdプロパティを持つオブジェクト |
 | `b` | Object | z, y, spriteIdプロパティを持つオブジェクト |
 
 
+
+#### _addAllSpots (startX, startY) 
+**(New!)** 全スポットを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `startX` | [Number](Number.md) | 開始 x座標(タイル数) |
+| `startY` | [Number](Number.md) | 開始 y座標(タイル数) |
+
+
+#### _addSpot (startX, startY, x, y) 
+**(New!)** スポットを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `startX` | [Number](Number.md) | 開始 x座標(タイル数) |
+| `startY` | [Number](Number.md) | 開始 y座標(タイル数) |
+| `x` | [Number](Number.md) | 開始位置からの相対 x座標(タイル数) |
+| `y` | [Number](Number.md) | 開始位置からの相対 y座標(タイル数) |
+
+
+#### _addSpotTile (tileId, dx, dy) 
+**(New!)** スポットタイルをタイルIDによって(_upperLayer か _lowerLayer に)レイヤー分けして追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `tileId` | [Number](Number.md) | タイルID |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+#### _addTile (layer, tileId, dx, dy) 
+**(New!)** タイルレイヤーにタイルを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
+| `tileId` | [Number](Number.md) | タイルID |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+#### _addNormalTile (layer, tileId, dx, dy) 
+**(New!)** タイルレイヤーに通常タイルを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
+| `tileId` | [Number](Number.md) | タイルID |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+#### _addAutotile (layer, tileId, dx, dy) 
+**(New!)** タイルレイヤーにオートタイルを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
+| `tileId` | [Number](Number.md) | タイルID |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+#### _addTableEdge (layer, tileId, dx, dy) 
+**(New!)** タイルレイヤーにテーブルの下端を追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
+| `tileId` | [Number](Number.md) | タイルID |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+
+#### _addShadow (layer, shadowBits, dx, dy) 
+**(New!)** タイルレイヤーに影ペンのデータを追加。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
+| `shadowBits` | [Number](Number.md) | タイルを4分割したうちで描く位置を指定するビット（下位から左上/右上/左下/右下） |
+| `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
+| `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
+
+
+
 #### _createLayers ()
  低層×4 + 高層×4 レイヤー(z: 0 〜 7)を生成。
+ (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置))
 
 
-#### _drawAutotile (bitmap, tileId, dx, dy)
- 渡されたBitmapにオートタイル画像を書き込む。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | 書き込み対象画像 |
-| `tileId` | [Number](Number.md) | タイルID |
-| `dx` | [Number](Number.md) | 書き込む x座標(ピクセル) |
-| `dy` | [Number](Number.md) | 書き込む y座標(ピクセル) |
-
-
-#### _drawNormalTile (bitmap, tileId, dx, dy)
- 渡されたBitmapに(オートタイルでない通常の)タイル画像を書き込む。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | 書き込み対象画像 |
-| `tileId` | [Number](Number.md) | タイルID |
-| `dx` | [Number](Number.md) | 書き込む x座標(ピクセル) |
-| `dy` | [Number](Number.md) | 書き込む y座標(ピクセル) |
-
-
-#### _drawShadow (bitmap, shadowBits, dx, dy)
- 渡されたBitmapに影ペンの影を描画。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | 書き込み対象画像 |
-| `shadowBits` | [Number](Number.md) |  タイルを4分割したうちで描く位置を指定するビット（下位から左上/右上/左下/右下） |
-| `dx` | [Number](Number.md) | 書き込む x座標(ピクセル) |
-| `dy` | [Number](Number.md) | 書き込む y座標(ピクセル) |
-
-
-#### _drawTableEdge (bitmap, tileId, dx, dy)
- 渡されたBitmapにテーブル端の画像を書き込む。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | 書き込み対象画像 |
-| `tileId` | [Number](Number.md) | タイルID |
-| `dx` | [Number](Number.md) | 書き込む x座標(ピクセル) |
-| `dy` | [Number](Number.md) | 書き込む y座標(ピクセル) |
-
-
-#### _drawTile (bitmap, tileId, dx, dy)
- 渡されたBitmapにタイル画像を書き込む。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | 書き込み対象画像 |
-| `tileId` | [Number](Number.md) | タイルID |
-| `dx` | [Number](Number.md) | 書き込む x座標(ピクセル) |
-| `dy` | [Number](Number.md) | 書き込む y座標(ピクセル) |
+#### ~~_drawAutotile (bitmap, tileId, dx, dy)~~ (廃止)
+#### ~~_drawNormalTile (bitmap, tileId, dx, dy)~~ (廃止)
+#### ~~_drawShadow (bitmap, shadowBits, dx, dy)~~ (廃止)
+#### ~~_drawTableEdge (bitmap, tileId, dx, dy)~~ (廃止)
+#### ~~_drawTile (bitmap, tileId, dx, dy)~~ (廃止)
 
 
 #### _isHigherTile (tileId) → {Boolean}
  高層[☆]のタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -424,9 +507,9 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 標準では何の動作もしない空メソッドでプラグインによって機能を追加する。<br />
 OverpassTile.js プラグインで使われている。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `mx` | [Number](Number.md) | マップ x座標(タイル数) |
 | `my` | [Number](Number.md) | マップ y座標(タイル数) |
@@ -435,9 +518,9 @@ OverpassTile.js プラグインで使われている。
 ####  _isTableTile (tileId) → {Boolean}
  テーブルタイルか。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
@@ -445,9 +528,9 @@ OverpassTile.js プラグインで使われている。
 #### _paintAllTiles (startX, startY)
  全タイルを描画。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
 | `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
@@ -456,9 +539,9 @@ OverpassTile.js プラグインで使われている。
 #### _paintTiles (startX, startY, x, y)
  指定位置のタイルを描画。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
 | `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
@@ -469,9 +552,9 @@ OverpassTile.js プラグインで使われている。
 #### _readLastTiles (i, x, y) → {[Array](Array.md).<[Number](Number.md)>}
 指定位置の最新タイル配列を返す。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `i` | [Number](Number.md) | レイヤー階層(0: 低層, 1: 高層) |
 | `x` | [Number](Number.md) | x座標(タイル数) |
@@ -482,9 +565,9 @@ OverpassTile.js プラグインで使われている。
 指定位置のタイルIDを返す。<br />
 ただし z が 4 の場合、返り値は [\_drawShadow](Tilemap.md#_drawshadow-bitmap-shadowbits-dx-dy) の引数 shadowBits にあたる。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | マップ x座標(タイル数) |
 | `y` | [Number](Number.md) | マップ y座標(タイル数) |
@@ -496,12 +579,16 @@ OverpassTile.js プラグインで使われている。
  ソート条件は[\_compareChildOrder](#_comparechildorder-a-b)に記述。
 
 
+#### _updateBitmaps()
+**(New!)** ビットマップのアップデート。
+
+
 ####  _updateLayerPositions (startX, startY)
  レイヤーの位置をアップデート。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
 | `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
@@ -510,9 +597,9 @@ OverpassTile.js プラグインで使われている。
 ####  _writeLastTiles (i, x, y, tiles)
  指定位置に最新のタイル情報を書き込む。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `i` | [Number](Number.md) |  レイヤー階層(0: 低層, 1: 高層) |
 | `x` | [Number](Number.md) | マップ x座標(タイル数) |
@@ -520,8 +607,15 @@ OverpassTile.js プラグインで使われている。
 | `tiles` | [Array](Array.md).&lt;[Number](Number.md)&gt; | タイルIDの配列 |
 
 
+#### destroy ()
+**(New!)**
+
+Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
+
+
 #### initialize ()
  オブジェクト生成時の初期化。
+
 
 #### isReady () → {Boolean}
  描画準備ができているか。
@@ -535,16 +629,26 @@ OverpassTile.js プラグインで使われている。
  タイルセットを更新。
 
 
+#### setBitmaps (bitmaps)
+**(New!)** タイルセット画像の設定。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; |  タイルセットのビットマップの配列 |
+
+
 #### setData (width, height, data)
  タイルマップのデータを設定。
 
-##### Parameters:
+##### 引数:
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `width` | [Number](Number.md) |  マップの幅(タイル数) |
 | `height` | [Number](Number.md) |  マップの高さ(タイル数) |
-| `data` | [Array](Array.md) | 一次元配列によるマップのデータ(See: [Game_Map.data](Game_Map.md#data---arraynumber)) |
+| `data` | [Array](Array.md) | 一次元配列によるマップのデータ(参照: [Game_Map.data](Game_Map.md#data---arraynumber)) |
 
 
 #### update ()

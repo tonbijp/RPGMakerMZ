@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # Namespace: MV
 『RPGツクールMZ』 で使われるメソッドのパラメータとなるオブジェクト。
 
@@ -6,7 +8,7 @@
 MV は Multi Value の略とでも思ってください。プリーズ。
 
 
-### Objects
+### オブジェクト(Object)
 
 * [AudioParameters](MV.AudioParameters.md)
 * [BattleLogMethod](MV.BattleLogMethod.md)
@@ -24,12 +26,13 @@ MV は Multi Value の略とでも思ってください。プリーズ。
 * [TouchInputEvents](MV.TouchInputEvents.md)
 
 
-### Arrays
+### 配列(Array)
 
 * [Color](MV.Color.md)
 * [Tone](MV.Tone.md)
+* [TileRect](MV.TileRect.md)
 
 
-### Strings
+### 文字列(String)
 
 * [CssColor](MV.CssColor.md)
