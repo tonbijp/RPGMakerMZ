@@ -18,7 +18,7 @@
 ### データベース(JSON)
 
 * [イベントコマンド](index.md#イベントコマンド)
-*  [メモつきデータ(MetaData)](index.md#メモつきデータmetadata)
+* [メモつきデータ(MetaData)](index.md#メモつきデータmetadata)
 * [その他データベース](index.md#その他データベース)
 
 ### オブジェクト
@@ -129,6 +129,7 @@ namespace JsExtensions
 ### Arrays
 
 * ※[Color](MV.Color.md)
+* [TileRect](MV.TileRect.md)
 * ※[Tone](MV.Tone.md)
 
 ### Strings
