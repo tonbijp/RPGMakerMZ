@@ -29,8 +29,8 @@ MV は Multi Value の略とでも思ってください。プリーズ。
 ### 配列(Array)
 
 * [Color](MV.Color.md)
-* [Tone](MV.Tone.md)
 * [TileRect](MV.TileRect.md)
+* [Tone](MV.Tone.md)
 
 
 ### 文字列(String)
