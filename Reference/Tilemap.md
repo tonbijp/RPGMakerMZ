@@ -62,9 +62,9 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 | `_margin` | [Number](Number.md) | マージン |
 | `_mapWidth` | [Number](Number.md) | マップ幅 |
 | `_mapHeight` | [Number](Number.md) | マップ高さ |
-| `_mapData` | [Number](Number.md) |  |
+| `_mapData` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 1次元配列によるマップのデータ(参照: [RPG.Map.data](RPG.Map.md#マップデータ)) |
 | `_bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列 |
-| `_upperLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 高層レイヤー( z = 4 ) |
+| `_upperLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 高層[☆]タイル( z = 4 ) |
 | `_lowerLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 低層レイヤー( z = 0 ) |
 | `_lastStartX` | [Number](Number.md) | 前回の開始 x座標 |
 | `_lastStartY` | [Number](Number.md) | 前回の開始 y座標 |
@@ -80,7 +80,7 @@ children に含まれるレイヤーの種類と位置。<br />
 エディタで指定する[レイヤー]は、0:低層タイルに描画されます。<br />
 通行設定が[☆]の場合は、4:高層[☆]タイルです。
 
-| Z番号 | 型 | 説明 |
+| z番号 | 型 | 説明 |
 | --- | --- | --- |
 | 9 | [Sprite_Destination](Sprite_Destination.md) | タッチ位置表示 |
 | 8 | [Sprite_Animation](Sprite_Animation.md) | アニメーション |
@@ -376,7 +376,6 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | `b` | Object | z, y, spriteIdプロパティを持つオブジェクト |
 
 
-
 #### _addAllSpots (startX, startY) 
 **(New!)** 全スポットを追加。
 
@@ -465,7 +464,6 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
 
-
 #### _addShadow (layer, shadowBits, dx, dy) 
 **(New!)** タイルレイヤーに影ペンのデータを追加。
 
@@ -479,10 +477,9 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
 
-
 #### _createLayers ()
  低層×4 + 高層×4 レイヤー(z: 0 〜 7)を生成。
- (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置))
+ (参照: [レイヤーの配置](#レイヤーの配置))
 
 
 #### ~~_drawAutotile (bitmap, tileId, dx, dy)~~ (廃止)
@@ -532,7 +529,7 @@ OverpassTile.js プラグインで使われている。
 
 #### _readMapData (x, y, z) → {[Number](Number.md)}
 指定位置のタイルIDを返す。<br />
-ただし z が 4 の場合、返り値は [\_drawShadow](Tilemap.md#_drawshadow-bitmap-shadowbits-dx-dy) の引数 shadowBits にあたる。
+ただし z が 4 の場合、返り値は [\_drawShadow](#_drawshadow-bitmap-shadowbits-dx-dy) の引数 shadowBits にあたる。
 
 ##### 引数:
 
@@ -552,28 +549,8 @@ OverpassTile.js プラグインで使われている。
 **(New!)** ビットマップのアップデート。
 
 
-####  _updateLayerPositions (startX, startY)
- レイヤーの位置をアップデート。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `startX` | [Number](Number.md) | 画面の左上 マップ x座標(タイル数) |
-| `startY` | [Number](Number.md) | 画面の左上 マップ y座標(タイル数) |
-
-
-####  _writeLastTiles (i, x, y, tiles)
- 指定位置に最新のタイル情報を書き込む。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `i` | [Number](Number.md) |  レイヤー階層(0: 低層, 1: 高層) |
-| `x` | [Number](Number.md) | マップ x座標(タイル数) |
-| `y` | [Number](Number.md) | マップ y座標(タイル数) |
-| `tiles` | [Array](Array.md).&lt;[Number](Number.md)&gt; | タイルIDの配列 |
+####  ~~_updateLayerPositions (startX, startY)~~ (廃止)
+####  ~~_writeLastTiles (i, x, y, tiles)~~ (廃止)
 
 
 #### destroy ()
@@ -594,8 +571,7 @@ Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
  タイルマップを更新。
 
 
-#### refreshTileset ()
- タイルセットを更新。
+#### ~~refreshTileset ()~~ (廃止)
 
 
 #### setBitmaps (bitmaps)
@@ -617,7 +593,7 @@ Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
 | --- | --- | --- |
 | `width` | [Number](Number.md) |  マップの幅(タイル数) |
 | `height` | [Number](Number.md) |  マップの高さ(タイル数) |
-| `data` | [Array](Array.md) | 一次元配列によるマップのデータ(参照: [Game_Map.data](Game_Map.md#data---arraynumber)) |
+| `data` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 1次元配列によるマップのデータ(参照: [RPG.Map.data](RPG.Map.md#マップデータ)) |
 
 
 #### update ()
