@@ -509,13 +509,13 @@
      * パラメータを受け取る
      */
     const pluginParams = PluginManager.parameters( "TF_LayeredMap" );
-    const TF_UseLayeredCounter = pluginParams.UseLayeredCounter;
-    const TF_BillboardPriority = conpairPluginParam( "BillboardPriority", "front", false ) ? Infinity : -Infinity;
-    const TF_IsA2FullCollision = pluginParams.IsA2FullCollision;
-    const TF_IsA3UpperOpen = pluginParams.IsA3UpperOpen;
-    const TF_IsA4UpperOpen = pluginParams.IsA4UpperOpen;
-    const TF_OverpassTerrainTag = pluginParams.OverpassTerrainTag;
-    const TF_CharacterSize = pluginParams.CharacterSize;
+    const TF_UseLayeredCounter = parseBooleanStrict( pluginParams.UseLayeredCounter );
+    const TF_BillboardPriority = conpairPluginParam( 'BillboardPriority', 'front', false ) ? Infinity : -Infinity;
+    const TF_IsA2FullCollision = parseBooleanStrict( pluginParams.IsA2FullCollision );
+    const TF_IsA3UpperOpen = parseBooleanStrict( pluginParams.IsA3UpperOpen );
+    const TF_IsA4UpperOpen = parseBooleanStrict( pluginParams.IsA4UpperOpen );
+    const TF_OverpassTerrainTag = parseIntStrict( pluginParams.OverpassTerrainTag );
+    const TF_CharacterSize = parseIntStrict( pluginParams.CharacterSize );
 
     /*---- Game_Interpreter ----*/
     /**
