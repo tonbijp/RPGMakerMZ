@@ -22,11 +22,12 @@
 | `_vao` | [PIXI.Geometry](http://pixijs.download/release/docs/PIXI.Geometry.html) | ジオメトリ |
 | `_indexArray` | Float32Array | インデックスの配列 |
 | `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | インデックスのバッファ |
-| `_vertexArray` | Float32Array | 頂点の配列 |
+| `_vertexArray` | Float32Array | `_elements`を一次元化した配列 |
 | `_vertexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | 頂点のバッファ |
 | `_needsTexturesUpdate` | Boolean | テクスチャのアップデートが必要か |
 | `_needsVertexUpdate` | Boolean | 頂点のアップデートが必要か |
 | `_state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
+| `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
 
 
 ### 継承されたメソッド
@@ -68,11 +69,12 @@
 ### _createVao ()
 VAOの生成。
 
+
 ### _updateIndexBuffer ()
 バッファのアップデート。
 
 
-### updateVertexBuffer ()
+### _updateVertexBuffer ()
 バッファのアップデート。
 
 
