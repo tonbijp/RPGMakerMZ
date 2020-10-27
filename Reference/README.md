@@ -1,7 +1,6 @@
-# RPGツクールMZ 非公式リファレンス
+# RPGツクールMZ 非公式JavaScriptリファレンス
 
 [RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) のjsdoc部分をコピーして、MZで変更のあった部分をメモ的に書き換えてます。
-
 
 [クラスツリー](index.md)
 
