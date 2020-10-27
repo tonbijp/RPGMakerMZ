@@ -8,3 +8,4 @@
 |プラグイン|説明|状況|解説(explanation)|#ツクプラ|
 |---|---|---|---|---|
 | [TF_CharEx.js](https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_CharEx.js) | 歩行キャラの挙動制御 | α版 | |
+| [TF_LayeredMap.js](https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
