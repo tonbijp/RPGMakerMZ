@@ -22,7 +22,7 @@
  * @type select
  * @option Put it front
  * @value front
- * @option Put it back
+ * @option Put it back(default)
  * @value back
  * @desc Put billboard in front or back.
  * @default back
@@ -34,35 +34,35 @@
  * @param UseLayeredCounter
  * @type boolean
  * @on Layered counter
- * @off Normal
+ * @off Normal(default)
  * @desc Counter becomes layered.
  * A2 counter tile can layered like billboard.
  *  (HalfMove.js is needed)
- * @default true
+ * @default false
  * @parent Autotile
  * 
  * @param IsA2FullCollision
  * @type boolean
- * @on Full collision
+ * @on Full collision(default)
  * @off Closed and inside is accessible
  * @desc Entire tile on the ground(A2) collision to activate.
- * @default false
+ * @default true
  * @parent Autotile
  * 
  * @param IsA3UpperOpen
  * @type boolean
- * @on Open
- * @off Close
+ * @on Open south
+ * @off Close(default)
  * @desc Remove the south collision of the roof(A3)?
  * @default false
  * @parent Autotile
  * 
  * @param IsA4UpperOpen
  * @type boolean
- * @on Open
+ * @on Open south(default)
  * @off Close
  * @desc Remove the south collision of the wall top(A4)?
- * @default false
+ * @default true
  * @parent Autotile
  * 
  * 
@@ -72,7 +72,7 @@
  * @type number
  * @min 0
  * @max 7
- * @desc Terraing tag for overpass tile.
+ * @desc Terraing tag for overpass tile(default:3)
  * @default 3
  * @parent Overpass
  * 
@@ -82,7 +82,7 @@
  * @value 1
  * @option 2tile size
  * @value 2
- * @desc Collision of overpass for.
+ * @desc Collision of overpass for(default:1tile size)
  * @default 1
  * @parent Overpass
  * 
@@ -153,10 +153,6 @@
  *      A4 odd line(walltop)
  *          [TerrainTag:3][×] North = upper[☆], All = can't enter.
  * 
- * 7. Move up one layer.
- * 　Add [TerrainTag:3] to A5 tile, Set the tile at base layer and target tile up one layer.
- *      The overpass will not work. If the right side of A2 is on the target tile, it will gone.
- * 
  * 8. adjust the overlap
  * 　<TF_zDef:Number> Put this tag in the note in event.
  *      Add a number to the y position and set a virtual y position.
@@ -195,25 +191,25 @@
  * @type boolean
  * @text カウンター回り込み
  * @on 回り込み
- * @off 通常
+ * @off 通常(規定値)
  * @desc A2のカウンターの後ろに回り込めるようにするか
  * (HalfMove.js が必要)
- * @default true
+ * @default false
  * @parent Autotile
  * 
  * @param IsA2FullCollision
  * @type boolean
- * @on 通行止め
+ * @on 通行止め(規定値)
  * @off 閉じて内側は通行可
  * @text タイル全体を通行不可にするか
  * @desc A2(地面)のタイル全体を通行不可にするか
- * @default false
+ * @default true
  * @parent Autotile
  * 
  * @param IsA3UpperOpen
  * @type boolean
  * @on 南を開く
- * @off 閉じて内側は通行可
+ * @off 閉じて内側は通行可(規定値)
  * @text 屋根南を開くか
  * @desc A3(屋根)[周囲=通行不可]の場合に、南の衝突判定をなくすか
  * @default false
@@ -221,11 +217,11 @@
  * 
  * @param IsA4UpperOpen
  * @type boolean
- * @on 南を開く
+ * @on 南を開く(規定値)
  * @off 閉じて内側は通行可
  * @text 壁上面南を開くか
  * @desc A4(壁上上面)[周囲=通行不可]の場合に、南の衝突判定をなくすか
- * @default false
+ * @default true
  * @parent Autotile
  * 
  * 
@@ -238,19 +234,19 @@
  * @max 7
  * @text 立体交差の地形タグ
  * @desc 立体交差不使用 : 0
- * 立体交差をさせたいタイルに指定する地形タグ
+ * 立体交差をさせたいタイルに指定する地形タグ(規定値:3)
  * @default 3
  * @parent Overpass
  * 
  * @param CharacterSize
  * @type select
- * @option 1tile size
+ * @option 1タイルサイズ
  * @value 1
- * @option 2tile size
+ * @option 2タイルサイズ
  * @value 2
  * @desc Collision of overpass for.
  * @text キャラのタイルサイズ
- * @desc 立体交差の衝突判定用のキャラサイズ
+ * @desc 立体交差の衝突判定用のキャラサイズ(規定値:1タイルサイズ)
  * @default 1
  * @parent Overpass
  * 
@@ -321,10 +317,6 @@
  * 6.  上を歩かない壁用の設定
  *      A4の奇数列(壁上面)
  *          [地形タグ:3][×] 北=高層[☆]、全面通行不可
- * 
- * 7. ひとつ上のレイヤーに移動
- * 　A5タイルに[地形タグ:3] で、背景を補完しA2右側レイヤーに移動。
- *      立体交差は機能しないし、A2右側タイルがあれば消える。
  * 
  * 8. 重ね合わせの順番を調節
  * 　<TF_zDef:数値> をイベントのメモに入力。
@@ -517,13 +509,13 @@
      * パラメータを受け取る
      */
     const pluginParams = PluginManager.parameters( "TF_LayeredMap" );
-    const TF_UseLayeredCounter = parseBooleanStrict( pluginParams.UseLayeredCounter );
+    const TF_UseLayeredCounter = pluginParams.UseLayeredCounter;
     const TF_BillboardPriority = conpairPluginParam( "BillboardPriority", "front", false ) ? Infinity : -Infinity;
-    const TF_IsA2FullCollision = parseBooleanStrict( pluginParams.IsA2FullCollision );
-    const TF_IsA3UpperOpen = parseBooleanStrict( pluginParams.IsA3UpperOpen );
-    const TF_IsA4UpperOpen = parseBooleanStrict( pluginParams.IsA4UpperOpen );
-    const TF_OverpassTerrainTag = parseIntStrict( pluginParams.OverpassTerrainTag );
-    const TF_CharacterSize = parseIntStrict( pluginParams.CharacterSize );
+    const TF_IsA2FullCollision = pluginParams.IsA2FullCollision;
+    const TF_IsA3UpperOpen = pluginParams.IsA3UpperOpen;
+    const TF_IsA4UpperOpen = pluginParams.IsA4UpperOpen;
+    const TF_OverpassTerrainTag = pluginParams.OverpassTerrainTag;
+    const TF_CharacterSize = pluginParams.CharacterSize;
 
     /*---- Game_Interpreter ----*/
     /**
