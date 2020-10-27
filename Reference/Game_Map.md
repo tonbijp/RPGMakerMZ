@@ -1,4 +1,6 @@
-# Class: Game_Map
+[クラスツリー](index.md)
+
+# クラス:  Game_Map
 
 ### new Game_Map ()
 
@@ -13,9 +15,9 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_interpreter` | [Game_Interpreter](Game_Interpreter.md) |コマンドインタプリタ |
 | `_mapId` | [Number](Number.md) | [マップ]のID |
@@ -23,12 +25,12 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 | `_events` | [Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt; | [イベント]の配列 |
 | `_commonEvents` | [Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt; | [コモンイベント]の配列 |
 | `_vehicles` | [Array](Array.md).&lt;[Game_Vehicle](Game_Vehicle.md)&gt; | [乗り物]の配列 |
-| `_displayX` | [Number](Number.md) | マップ表示のX座標 |
-| `_displayY` | [Number](Number.md) | マップ表示のY座標 |
+| `_displayX` | [Number](Number.md) | マップ表示の x座標 |
+| `_displayY` | [Number](Number.md) | マップ表示の y座標 |
 | `_nameDisplay` | Boolean | マップの[名前]を表示するか |
 | `_scrollDirection` | [Number](Number.md) | スクロール方向(テンキー対応) |
 | `_scrollRest` | [Number](Number.md) | スクロールの残り距離 |
-| `_scrollSpeed` | [Number](Number.md) | スクロール速度 |
+| `_scrollSpeed` | [Number](Number.md) | スクロール速度 (規定値:4)|
 | `_parallaxName` | [String](String.md) | [遠景]のファイル名 |
 | `_parallaxZero` | Boolean | 視差を0にするか |
 | `_parallaxLoopX` | Boolean | [横方向にループする] |
@@ -42,44 +44,26 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 | `_needsRefresh` | Boolean | [requestRefresh()](Game_Map.md#requestrefresh-mapid)などで更新予約がされているか |
 
 
-### Methods
+### メソッド
 
 #### adjustX (x) → {[Number](Number.md)}
-(タイル数)を返す。
+指定されたマップ右 x座標に対応する、正の値に調整されたマップ左の x位置(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
-
 
 #### adjustY (y) → {[Number](Number.md)}
-(タイル数)を返す。
+指定されたマップ下 y座標に対応する、正の値に調整されたマップ上の y位置(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y位置(タイル数) |
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
 
 
 #### airship () → {[Game_Vehicle](Game_Vehicle.md)}
@@ -89,9 +73,9 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 #### allTiles (x, y) → {[Array](Array.md).<[Number](Number.md)>}
 指定位置に重なった[イベント]も含めた全タイルIDの配列を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -104,9 +88,9 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 #### autotileType (x, y, z) → {[Number](Number.md)}
  指定位置のオートタイルのタイプ(オートタイルでない場合は-1)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -126,21 +110,21 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 
 
 #### canvasToMapX (x) → {[Number](Number.md)}
-canvasのx座標をタイル数に変換して返す。
+canvasの x座標をタイル数に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 
 
 #### canvasToMapY (y) → {[Number](Number.md)}
-canvasのy座標をタイル数に変換して返す。
+canvasの y座標をタイル数に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -148,9 +132,9 @@ canvasのy座標をタイル数に変換して返す。
 #### changeBattleback (battleback1Name, battleback2Name)
 [戦闘背景の変更]を行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `battleback1Name` | [String](String.md) | レイヤー奥の戦闘背景画像1(地面)のファイル名 |
 | `battleback2Name` | [String](String.md) | レイヤー手前の戦闘背景画像2(壁)のファイル名 |
@@ -159,9 +143,9 @@ canvasのy座標をタイル数に変換して返す。
 #### changeParallax (name, loopX, loopY, sx, sy)
 [遠景の変更]を行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | [画像]ファイル名 |
 | `loopX` | Boolean | [横方向にループする] |
@@ -173,9 +157,9 @@ canvasのy座標をタイル数に変換して返す。
 #### changeTileset (tilesetId)
 [タイルセットの変更]を行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `tilesetId` | [Number](Number.md) | [タイルセット]のID |
 
@@ -183,9 +167,9 @@ canvasのy座標をタイル数に変換して返す。
 #### checkLayeredTilesFlags (x, y, bit) → {Boolean}
  指定位置のタイルのうち指定フラグが立っているものがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -196,9 +180,9 @@ canvasのy座標をタイル数に変換して返す。
  指定位置の指定フラグビットが通行可か。<br />
 [☆]でない最初のタイルのうち、指定したビットが立っていれば false
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -210,15 +194,15 @@ canvasのy座標をタイル数に変換して返す。
 
 
 #### data () → {[Array](Array.md).<[Number](Number.md)>}
- マップデータの配列を返す。
+ マップデータの配列を返す。(参照: [RPG.Map.data](RPG.Map.md#マップデータ))
 
 
 #### deltaX (x1, x2) → {[Number](Number.md)}
 x座標2点間のタイル距離を(ループも考慮して)返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x1` | [Number](Number.md) | x位置(タイル数) |
 | `x2` | [Number](Number.md) | x位置(タイル数) |
@@ -227,9 +211,9 @@ x座標2点間のタイル距離を(ループも考慮して)返す。
 #### deltaY (y1, y2) → {[Number](Number.md)}
 y座標2点間のタイル距離を(ループも考慮して)返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y1` | [Number](Number.md) | y位置(タイル数) |
 | `y2` | [Number](Number.md) | y位置(タイル数) |
@@ -244,20 +228,20 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### displayX () → {[Number](Number.md)}
- マップ表示のX座標(タイル数)を返す。
+ マップ表示の x座標(タイル数)を返す。
 
 
 #### displayY () → {[Number](Number.md)}
- マップ表示のY座標(タイル数)を返す。
+ マップ表示の y座標(タイル数)を返す。
 
 
 #### distance (x1, y1, x2, y2) → {[Number](Number.md)}
 2点間の距離を返す。<br />
 直線距離ではなく、4方向移動でかかるタイル数。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x1` | [Number](Number.md) | x位置(タイル数) |
 | `y1` | [Number](Number.md) | y位置(タイル数) |
@@ -268,9 +252,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### doScroll (direction, distance)
 指定方向と距離の分だけスクロール。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `direction` | [Number](Number.md) | 方向(テンキー対応) |
 | `distance` | [Number](Number.md) | 距離(タイル数) |
@@ -291,9 +275,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### eraseEvent (eventId)
  イベントIDに対応する[イベント]を削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `eventId` | [Number](Number.md) | イベントID |
 
@@ -301,9 +285,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### event (eventId) → {[Game_Event](Game_Event.md)}
  イベントIDに対応する[イベント]を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `eventId` | [Number](Number.md) | イベントID |
 
@@ -312,9 +296,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
  指定位置にある[イベント]のイベントIDを返す。<br />
  イベントがない場合は0、複数ある場合は最初のイベントID
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -327,20 +311,20 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### eventsXy (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
  指定位置にある[イベント]を配列で返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
 #### eventsXyNt (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
- 指定位置にある、通行不可の[イベント]を配列で返す。たぶん Nt = No Through。
+ 指定位置にある、通行不可の[イベント]を配列で返す。Nt = No Through。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -357,9 +341,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isAirshipLandOk (x, y) → {Boolean}
 [飛行船]で指定位置に着地できるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -372,9 +356,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isBoatPassable (x, y) → {Boolean}
 [小型船]で指定位置が通れるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -383,9 +367,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isBush (x, y) → {Boolean}
  指定位置のタイルに[茂み]フラグを持つものがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -394,9 +378,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isCounter (x, y) → {Boolean}
  指定位置のタイルに[カウンター]フラグを持つものがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -405,9 +389,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isDamageFloor (x, y) → {Boolean}
  指定位置のタイルに[ダメージ床]フラグを持つものがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -424,9 +408,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isLadder (x, y) → {Boolean}
  指定位置のタイルに[梯]\(はしご)フラグを持つものがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -451,9 +435,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isPassable (x, y, d) → {Boolean}
  指定位置から指定方向に進めるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -467,9 +451,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isShipPassable (x, y) → {Boolean}
 [大型船]で指定位置が通れるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -478,9 +462,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### isValid (x, y) → {Boolean}
  指定位置がマップ範囲に含まれているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -489,9 +473,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### layeredTiles (x, y) → {[Array](Array.md).<[Number](Number.md)>}
  指定位置に重なったタイルIDの配列を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -506,27 +490,11 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### parallaxOx () → {[Number](Number.md)}
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+[遠景]画像の視差を考慮した x位置(ピクセル)を返す。
 
 
 #### parallaxOy () → {[Number](Number.md)}
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+[遠景]画像の視差を考慮した y位置(ピクセル)を返す。
 
 
 #### parallelCommonEvents () → {[Array](Array.md).<[RPG.CommonEvent](RPG.CommonEvent.md)>}
@@ -542,40 +510,35 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### refreshIfNeeded ()
-[Game_Map#requestRefresh](Game_Map.html#requestrefresh-mapid) で予約されていたら再描画。
+[Game_Map#requestRefresh](#requestrefresh-mapid) で予約されていたら再描画。
 
 
 #### refreshTileEvents ()
- タイルが設定されている[イベント]を更新。
+ タイル画像が設定されている[イベント]を更新。
 
 
 #### regionId (x, y) → {[Number](Number.md)}
  指定位置のタイルのリージョンIDを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
-#### requestRefresh (mapId)
- マップの再描画を予約。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `mapId` | [Number](Number.md) |  |
+#### requestRefresh ()
+ マップの再描画を予約。<br />
+ ※mapId引数は不要だったので廃止。
 
 
 #### roundX (x) → {[Number](Number.md)}
  ループ回数を考慮しない x座標(タイル数)に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 
@@ -583,9 +546,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### roundXWithDirection (x, d) → {[Number](Number.md)}
  指定方向に移動した(ループ回数を考慮しない) x座標(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `d` | [Number](Number.md) | 方向(テンキー対応) |
@@ -594,9 +557,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### roundY (y) → {[Number](Number.md)}
  ループ回数を考慮しない y座標(タイル数)に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
@@ -604,9 +567,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### roundYWithDirection (y, d) → {[Number](Number.md)}
  指定方向に移動した(ループ回数を考慮しない) y座標(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 | `d` | [Number](Number.md) | 方向(テンキー対応) |
@@ -627,9 +590,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### scrollDown (distance)
  指定距離だけ下にスクロール。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `distance` | [Number](Number.md) | 下への移動距離(タイル数) |
 
@@ -637,9 +600,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### scrollLeft (distance)
  指定距離だけ左にスクロール。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `distance` | [Number](Number.md) | 左への移動距離(タイル数) |
 
@@ -647,9 +610,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### scrollRight (distance)
  指定距離だけ右にスクロール。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `distance` | [Number](Number.md) | 右への移動距離(タイル数) |
 
@@ -657,9 +620,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### scrollUp (distance)
  指定距離だけ上にスクロール。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `distance` | [Number](Number.md) | 上への移動距離(タイル数) |
 
@@ -667,9 +630,9 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### setDisplayPos (x, y)
  指定位置(画面左上基準)にマップ表示。 マップ端でスクロールが止まるか、ループする処理も行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -678,23 +641,15 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 #### setup (mapId)
  マップ移動などで新たなマップを表示する場合の初期化。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `mapId` | [Number](Number.md) | マップID |
 
 
 #### setupAutorunCommonEvent () → {Boolean}
-Sets up an auto run common event.
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+トリガー[自動実行]のコモンイベントの準備を行い、準備したものがあったか返す。
 
 
 #### setupBattleback ()
@@ -714,39 +669,16 @@ Sets up an auto run common event.
 
 
 #### setupStartingEvent () → {Boolean}
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+テストイベント・マップイベント・コモンイベントについて、<br />
+開始時に実行するイベントの準備を行い、準備したものがあったか返す。
 
 
 #### setupStartingMapEvent () → {Boolean}
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+開始時に実行するマップイベントの準備を行い、準備したものがあったか返す。
 
 
 #### setupTestEvent () → {Boolean}
-
-<dl>
-    <dt>To Do:</dt>
-    <dd>
-        <ul>
-            <li>この用語の意味が分かったら教えてください</li>
-        </ul>
-    </dd>
-</dl>
+開始時に実行するテストベントの準備を行い、準備したものがあったか返す。
 
 
 #### ship () → {[Game_Vehicle](Game_Vehicle.md)}
@@ -756,9 +688,9 @@ Sets up an auto run common event.
 #### startScroll (direction, distance, speed)
  スクロール開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `direction` | [Number](Number.md) |  |
 | `distance` | [Number](Number.md) |  |
@@ -768,9 +700,9 @@ Sets up an auto run common event.
 #### terrainTag (x, y) → {[Number](Number.md)}
  指定位置のタイルのうち最初の[地形タグ]を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -779,9 +711,9 @@ Sets up an auto run common event.
 #### tileEventsXy (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
  指定位置にある、画像にタイルセットを選択した[イベント]を配列で返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -794,9 +726,9 @@ Sets up an auto run common event.
 #### tileId (x, y, z) → {[Number](Number.md)}
  指定位置のタイルIDを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
@@ -823,9 +755,9 @@ Sets up an auto run common event.
 #### unlockEvent (eventId)
  指定IDの[イベント]をアンロック。 決定ボタンでイベントをプレイヤーの方に向かせた状態の解除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `eventId` | [Number](Number.md) |  |
 
@@ -833,9 +765,9 @@ Sets up an auto run common event.
 #### update (sceneActive)
  マップをアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneActive` | Boolean |  |
 
@@ -863,9 +795,9 @@ Sets up an auto run common event.
 #### vehicle (type) → {[Game_Vehicle](Game_Vehicle.md)}
  数値( 0:小型船, 1:大型船, 2:飛行船 )か文字列( 'boat', 'ship', 'airship' )による指定で[乗り物]を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | [String](String.md) |  |
 
@@ -881,9 +813,9 @@ Sets up an auto run common event.
 #### xWithDirection (x, d) → {[Number](Number.md)}
  指定方向に移動した x座標(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `d` | [Number](Number.md) | 方向(テンキー対応) |
@@ -892,9 +824,9 @@ Sets up an auto run common event.
 #### yWithDirection (y, d) → {[Number](Number.md)}
  指定方向に移動した y座標(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 | `d` | [Number](Number.md) | 方向(テンキー対応) |
