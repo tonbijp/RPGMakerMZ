@@ -35,6 +35,9 @@
     'use strict';
     const PLUGIN_NAME = 'TF_Core';
 
+    const pluginParams = PluginManager.parameters( PLUGIN_NAME );
+    
+
     /**
      * パラメータを受け取る
      */
