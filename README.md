@@ -2,6 +2,7 @@
 
 [RPGツクールMV プラグイン置き場](https://github.com/tonbijp/RPGMakerMV)もあります。
 
+[RPGツクールMZの非公式JavaScriptリファレンス](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/README.md)もどーぞ。
 
 プラグイン名(TF_Xxx.js)のリンクから最新版のプラグインがダウンロードできます。
 
