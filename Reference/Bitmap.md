@@ -53,15 +53,15 @@
 
 | 文字列 | 説明 |
 | --- | --- |
-| 'none' | 画像なし |
-| 'pending' | URLリクエスト保留中 |
-| 'purged' | URLリクエストを受けてパージ |
-| 'requesting' | URI を補完してリクエスト |
-| 'requestCompleted' | リクエスト終了 |
-| 'decrypting' | 復号中 |
-| 'decryptCompleted' | 復号完了 |
-| 'loaded' | 画像の利用準備完了 |
-| 'error' | エラー発生 |
+| "none" | 画像なし |
+| "pending" | URLリクエスト保留中 |
+| "purged" | URLリクエストを受けてパージ |
+| "requesting" | URI を補完してリクエスト |
+| "requestCompleted" | リクエスト終了 |
+| "decrypting" | 復号中 |
+| "decryptCompleted" | 復号完了 |
+| "loaded" | 画像の利用準備完了 |
+| "error" | エラー発生 |
 
 
 ### メソッド
@@ -423,7 +423,7 @@
 
 
 #### startRequest ()
-'pending' の状態を解除し画像のリクエストを開始。
+"pending" の状態を解除し画像のリクエストを開始。
 
 
 #### strokeRect (x, y, width, height, color) 
