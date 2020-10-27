@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.0.0.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2020
@@ -30,22 +30,6 @@
  * 
  * @param Autotile
  * 
- * @param FillWithNeighborTile
- * @type boolean
- * @on Fill with neighbor tile
- * @off Default lower tile
- * @desc Fill with neighbor tile.It is function for A3 or A4 tile.
- * @default true
- * @parent Autotile
- * 
- * @param DefaultLowerTile
- * @type number
- * @min 0
- * @max 127
- * @desc If FillWithNeighborTile option is OFF, fill with this tile.
- * Start with 0 at upper left A5 to right.
- * @default 16
- * @parent Autotile
  * 
  * @param UseLayeredCounter
  * @type boolean
@@ -206,26 +190,7 @@
  * 
  * @param Autotile
  * @text オートタイル
- * 
- * @param FillWithNeighborTile
- * @type boolean
- * @on 周辺のタイル
- * @off 補完用規定タイル
- * @text 周辺のタイルでの補完
- * @desc 低層(地面)を北(最南端は南)のタイルで補完するか
- * @default true
- * @parent Autotile
- * 
- * @param DefaultLowerTile
- * @type number
- * @min 0
- * @max 127
- * @text 補完用規定タイル
- * @desc [周辺のタイルでの補完]がOFFの場合に使う規定タイル
- * 番号はA5左上を0として右への順。規定値:16(草原)
- * @default 16
- * @parent Autotile
- * 
+ *
  * @param UseLayeredCounter
  * @type boolean
  * @text カウンター回り込み
@@ -552,8 +517,6 @@
      * パラメータを受け取る
      */
     const pluginParams = PluginManager.parameters( "TF_LayeredMap" );
-    const TF_FillWithNeighborTile = parseBooleanStrict( pluginParams.FillWithNeighborTile );
-    const TF_DefaultLowerTileId = Tilemap.TILE_ID_A5 + parseIntStrict( pluginParams.DefaultLowerTile );
     const TF_UseLayeredCounter = parseBooleanStrict( pluginParams.UseLayeredCounter );
     const TF_BillboardPriority = conpairPluginParam( "BillboardPriority", "front", false ) ? Infinity : -Infinity;
     const TF_IsA2FullCollision = parseBooleanStrict( pluginParams.IsA2FullCollision );
@@ -561,14 +524,6 @@
     const TF_IsA4UpperOpen = parseBooleanStrict( pluginParams.IsA4UpperOpen );
     const TF_OverpassTerrainTag = parseIntStrict( pluginParams.OverpassTerrainTag );
     const TF_CharacterSize = parseIntStrict( pluginParams.CharacterSize );
-
-    /*---- SceneManager ----*/
-    // URLでの指定がない限り、WebGL モードを採用する。
-    const MODE_CANVAS = "canvas";
-    const MODE_WEBGL = "webgl";
-    SceneManager.preferableRendererType = function() {
-        return ( Utils.isOptionValid( MODE_CANVAS ) ) ? MODE_CANVAS : MODE_WEBGL;
-    };
 
     /*---- Game_Interpreter ----*/
     /**
@@ -1196,7 +1151,7 @@
                 for( let x = 0; x < $dataMap.width; x++ ) {
                     const tileId = getMapData( x, y, 0 );
 
-                    // 対象タイルを上層へ
+                    // 対象タイルを上層へ TODO: レイヤー機能を考慮して配置を考えること
                     if( Tilemap.isTileA5( tileId ) && isOverpassTile( flags[ tileId ] ) ) {
                         setMapData( x, y, 1, tileId );
                     } else if( isA3A4Tile( tileId ) ) {
@@ -1204,22 +1159,7 @@
                             setMapData( x, y, 2, tileId );
                         } else if( !isFullCollisionTile( flags[ tileId ] ) && isCollisionTile( flags[ tileId ] ) ) {
                             setMapData( x, y, 1, tileId );
-                        } else continue;    // 衝突判定が完全に[○]か[×]のタイルは通常処理(A2右タイルを上に置ける)
-                    } else continue;
-
-
-                    if( TF_FillWithNeighborTile ) {
-                        // 北タイルで補完ただし、一番南は南で補完
-                        const southTileId = getMapData( x, $gameMap.roundY( y + 1 ), 0 );
-                        if( isA3A4Tile( southTileId ) || Tilemap.isTileA5( southTileId ) && isOverpassTile( flags[ southTileId ] ) ) {
-                            const northTileId = getMapData( x, $gameMap.roundY( y - 1 ), 0 );
-                            setMapData( x, y, 0, northTileId ? northTileId : TF_DefaultLowerTileId );
-                        } else {
-                            setMapData( x, y, 0, southTileId ? southTileId : TF_DefaultLowerTileId );
                         }
-                    } else {
-                        // 指定タイルで補完
-                        setMapData( x, y, 0, TF_DefaultLowerTileId );
                     }
                 }
             }
@@ -1260,7 +1200,7 @@
     /*---- Game_CharacterBase ----*/
     /**
      * レイヤー位置を返す。
-     * @returns {Number} レイヤー位置(立体交差上5、その他3)
+     * @returns {Number} z位置(立体交差上:5、低層:3)
      */
     const _Game_CharacterBase_screenZ = Game_CharacterBase.prototype.screenZ;
     Game_CharacterBase.prototype.screenZ = function() {
