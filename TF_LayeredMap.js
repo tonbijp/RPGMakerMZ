@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.1.0.0
+// Version :0.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2020
@@ -615,13 +615,62 @@
         _Tilemap__addAllSpots.apply( this, arguments );
     };
 
+    /**
+     * タイル描画の振り分けを行う。
+     * @param {Number} startX 基点 x座標(タイル数)
+     * @param {Number} startY 基点 y座標(タイル数)
+     * @param {Number} x 相対 x座標(タイル数)
+     * @param {Number} y 相対 y座標(タイル数)
+     */
+    Tilemap.prototype._addSpot = function( startX, startY, x, y ) {
+        const mx = startX + x;
+        const my = startY + y;
+        const dx = x * this._tileWidth;
+        const dy = y * this._tileHeight;
+        const tileId0 = this._readMapData( mx, my, 0 );
+        const tileId1 = this._readMapData( mx, my, 1 );
+        const tileId2 = this._readMapData( mx, my, 2 );
+        const tileId3 = this._readMapData( mx, my, 3 );
+        const shadowBits = this._readMapData( mx, my, 4 );
+        const upperTileId1 = this._readMapData( mx, my - 1, 1 );
+
+        this.TF_addSpotTile( tileId0, dx, dy, mx, my );
+        this.TF_addSpotTile( tileId1, dx, dy, mx, my );
+        this._addShadow( this._lowerLayer, shadowBits, dx, dy );
+        if( this._isTableTile( upperTileId1 ) && !this._isTableTile( tileId1 ) ) {
+            if( !Tilemap.isShadowingTile( tileId0 ) ) {
+                this._addTableEdge( this._lowerLayer, upperTileId1, dx, dy );
+            }
+        }
+        if( this._isOverpassPosition( mx, my ) ) {
+            this._addTile( this._upperLayer, tileId2, dx, dy );
+            this._addTile( this._upperLayer, tileId3, dx, dy );
+        } else {
+            this.TF_addSpotTile( tileId2, dx, dy, mx, my );
+            this.TF_addSpotTile( tileId3, dx, dy, mx, my );
+        }
+    };
 
     /**
-     * タイルを描画(upperLayer,lowerLayer,dx,dy は親の変数を使う)
+     * タイルを描画
      * @param {Number} tileId タイルID
+     * @param {Number} dx レイヤー内描画 x座標(ピクセル)
+     * @param {Number} dy レイヤー内描画 y座標(ピクセル)
+     * @param {Number} mx 目標 x座標(タイル数)
+     * @param {Number} my 目標 x座標(タイル数)
      */
-    Tilemap.prototype._addSpotTile = function( tileId, dx, dy ) {
+    Tilemap.prototype.TF_addSpotTile = function( tileId, dx, dy, mx, my ) {
+
+        if( !this._isHigherTile( tileId )
+            || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_FULL
+            || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_HALF
+        ) {
+            // 高層タイルではない
+            this._addSpotTile( tileId, dx, dy );
+            return;
+        }
         const y = dy / this._tileHeight;
+
         /**
          * 指定位置の壁の状態を調べる。
          * @param {Number} tileId タイルID
@@ -646,15 +695,6 @@
             if( ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR3_BOARD ) return 3;
             return 1;
         };
-
-        if( !this._isHigherTile( tileId )
-            || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_FULL
-            || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_HALF
-        ) {
-            // 高層タイルではない
-            this._addTile( this._lowerLayer, tileId, dx, dy );
-            return;
-        }
 
         /**
          * 表示階(floorNumber)を得る
@@ -691,7 +731,7 @@
 
         } else {
             // 全方向通行可の場合は通常の高層[☆]表示
-            this._addTile( this._upperLayer, tileId, dx, dy );
+            this._addSpotTile( tileId, dx, dy );
         }
     };
 
