@@ -1,4 +1,4 @@
-[クラスツリー](index.md)
+[クラスツリー](index.md) | [公式リファレンス:Bitmap](https://tkool.jp/mz/rmmz_api/Bitmap.html)
 
 # クラス: Bitmap
 
