@@ -1,4 +1,6 @@
-# Class: DataManager
+[クラスツリー](index.md)
+
+# クラス: DataManager
 [データベース]の管理を行う静的クラス。
 
 $XXXで大域変数に設定されているものや、セーブデータの管理など行う。
@@ -7,33 +9,56 @@ $XXXで大域変数に設定されているものや、セーブデータの管�
 
 関連クラス: [JsonEx](JsonEx.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_globalId` | [String](String.md) | [static] システムID 'RPGMV' |
-| `_lastAccessedId` | [Number](Number.md) | [static] 最後にセーブ・ロードを行ったファイルのID |
-| `_errorUrl` | * | [static] |
+| `_globalInfo` | Object | **(New!)** [static] セーブされるシステム情報  |
+| `_errors` | [Array](Array.md) | **(New!)**[static] エラーの配列 |
 | `_databaseFiles` | [Array](Array.md).&lt;[MV.DatabaseFile](MV.DatabaseFile.md)&gt; | [static] 読み込むデータファイル情報 |
 
+
+`_globalId`,`_lastAccessedId`,`_errorUrl`は廃止。
 
 ### Methods
 
 #### (static) checkError ()
- エラーが記録されていれば、エラーを表示。
+エラーが記録されていれば、エラーを表示。
+
+
+#### (static) correctDataErrors ()
+**(New!)** セーブデータに含まれるエラーを正す。
 
 
 #### (static) createGameObjects ()
 $game から始まる大域変数に、対応したオブジェクトを生成し代入。
 
 
+#### (static) earliestSavefileId () → {[Number](Number.md)}
+一番古いセーブファイルID を返す。
+
+
+#### (static) emptySavefileId () → {[Number](Number.md)}
+空のセーブファイルID を返す。
+
+
+#### (static) extractArrayMetadata (array)
+**(New!)** 渡したデータの配列に含まれるnoteをメタデータに分解して、データに追加する。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `array` | [Array](Array.md)&gt;[RPG.MetaData](RPG.MetaData.md)&lt;  | データの配列 |
+
+
 #### (static) extractMetadata (data)
 data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 渡したdata自体が書き換えられるので、返り値はない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `data` | Object | [RPG.MetaData](RPG.MetaData.md) |
 
@@ -41,9 +66,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) extractSaveContents (contents)
 渡したオブジェクトから$gameで始まる大域変数に値を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `contents` | [MV.SaveContents](MV.SaveContents.md) | 大域変数用オブジェクト |
 
@@ -55,9 +80,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) isArmor (item) → {Boolean}
 指定した項目が[防具]に含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | Object | [RPG.Armor](RPG.Armor.md)など |
 
@@ -74,26 +99,40 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 [イベントテスト]モードか。
 
 
+#### (static) isGlobalInfoLoaded () → {Boolean}
+**(New!)** `_globalInfo`が読み込まれているか。
+
+
 #### (static) isItem (item) → {Boolean}
  指定した項目が[アイテム]に含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | Object | [RPG.Item](RPG.Item.md)など |
 
 
 #### (static) isMapLoaded () → {Boolean}
  マップの読み込みが完了しているか。
+ 
+
+#### (static) isMapObject (object) → {Boolean}
+**(New!)** 渡したオブジェクトがマップオブジェクトか。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `object` | Object | データを格納したオブジェクト |
 
 
 #### (static) isSkill (item) → {Boolean}
  指定した項目が[スキル]に含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | Object | [RPG.Skill](RPG.Skill.md)など |
 
@@ -101,9 +140,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) isThisGameFile (savefileId) → {Boolean}
  指定した ID のセーブファイルが存在するか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -111,9 +150,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) isWeapon (item) → {Boolean}
  指定した項目が[武器]に含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | Object | [RPG.Weapon](RPG.Weapon.md)など |
 
@@ -137,9 +176,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) loadDataFile (name, src)
  指定したデータを読み込む。読み込みが完了したら onLoad が呼ばれる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) |  データ代入先の大域変数名 $dataXXX |
 | `src` | [String](String.md) | data/以下のファイル名 |
@@ -148,9 +187,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) loadGame (savefileId)
  指定したセーブファイルID からデータを読み込む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -158,23 +197,24 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) loadGameWithoutRescue (savefileId) → {Boolean}
  指定したセーブファイルID からリソース抜きの情報を読み込み、 読み込みに成功したか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
-#### (static) loadGlobalInfo () → {[Array](Array.md).<[MV.SaveFileInfo](MV.SaveFileInfo.md)>}
-セーブファイル情報の配列を読み込んで返す。
+#### (static) loadGlobalInfo ()
+セーブファイル情報の配列を読み込む。<br />
+返り値は廃止され、`_globalInfo`に書き込むように変更。
 
 
 #### (static) loadMapData (mapId)
  マップデータを読み込む。完了時は onLoad が呼ばれる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `mapId` | [Number](Number.md) | 1: 空のマップを作る |
 
@@ -183,9 +223,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
  セーブファイルに必要な画像を読み込む。<br />
 読み込まれた画像は[ImageManager](ImageManager.md)に保管される。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | [MV.SaveFileInfo](MV.SaveFileInfo.md) | セーブファイル情報 |
 
@@ -193,9 +233,9 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) loadSavefileInfo (savefileId) → {Object}
  指定したセーブファイルID の情報を読み込んで返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -209,39 +249,98 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) makeSavefileInfo () → {[MV.SaveFileInfo](MV.SaveFileInfo.md)}
- 新規のセーブファイル情報を作って返す。
+新規のセーブファイル情報を作って返す。
 
 
 #### (static) maxSavefiles () → {[Number](Number.md)}
- セーブ可能なファイルの最大数を返す。
+セーブ可能なファイルの最大数を返す。
+
+
+#### (static) makeSavename (savefileId)
+**(New!)**  指定したセーブファイルID からセーブ名を返す。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) onLoad (object)
- データ読み込み完了時に呼ばれるハンドラ。
+データ読み込み完了時に呼ばれるハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `object` | * |  データを格納したオブジェクト |
+| `object` | Object |  データを格納したオブジェクト |
+
+
+#### (static) onXhrLoad (xhr, name, src, url)
+**(New!)**  xhr(XMLHttpRequest)データ読み込み完了時に呼ばれるハンドラ。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `xhr` | XMLHttpRequest |  データを格納したオブジェクト |
+| `name` | [String](String.md) |  データ代入先の大域変数名 $dataXXX |
+| `src` | [String](String.md) | data/以下のファイル名 |
+| `url` | [String](String.md) | data/も含んだパス |
+
+
+#### (static) onXhrError ( name, src, url)
+**(New!)**  xhr(XMLHttpRequest)データ読み込みエラー発生時に呼ばれるハンドラ。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `name` | [String](String.md) |  データ代入先の大域変数名 $dataXXX |
+| `src` | [String](String.md) | data/以下のファイル名 |
+| `url` | [String](String.md) |  data/も含んだパス |
+
+
+#### (static) removeInvalidGlobalInfo ()
+**(New!)** 適正でない情報を`_globalInfo`から削除。
+
+ 
+#### (static) savefileExists (savefileId)
+**(New!)** 指定IDのセーブファイルが存在するか。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) saveGame (savefileId) → {Boolean}
- ゲームデータをセーブファイルに保存し、 保存に成功したか。
+ゲームデータをセーブファイルに保存し、 保存に成功したか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) saveGameWithoutRescue (savefileId) → {Boolean}
- 指定したセーブファイルID にリソース抜きの情報を保存し、 保存に成功したか。
+指定したセーブファイルID にリソース抜きの情報を保存し、 保存に成功したか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `savefileId` | [Number](Number.md) | セーブファイルID |
+
+
+#### (static) savefileInfo (savefileId) → {[MV.SaveFileInfo](MV.SaveFileInfo.md)}
+**(New!)** 指定IDのセーブファイル情報を得る。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -249,15 +348,15 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 #### (static) saveGlobalInfo (info)
 セーブファイル情報を保存。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | [MV.SaveFileInfo](MV.SaveFileInfo.md) | セーブファイル情報 |
 
 
 #### (static) selectSavefileForNewGame ()
- 新規ゲーム用のセーブファイルを選択。
+新規ゲーム用のセーブファイルを選択。
 
 
 #### (static) setupBattleTest ()
@@ -269,5 +368,5 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) setupNewGame ()
- 新規ゲームの準備。
+新規ゲームの準備。
 

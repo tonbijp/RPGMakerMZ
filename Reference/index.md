@@ -67,7 +67,7 @@ namespace JsExtensions
 * ※[BattleManager](BattleManager.md)
 * ※[ColorManager](ColorManager.md) **(New!)**
 * ※[ConfigManager](ConfigManager.md)
-* ※[DataManager](DataManager.md)
+* [DataManager](DataManager.md)
 * ※[EffectManager](EffectManager.md) **(New!)**
 * ※[FontManager](FontManager.md) **(New!)**
 * ※[ImageManager](ImageManager.md)
