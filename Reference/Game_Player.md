@@ -5,7 +5,7 @@
 ### new Game_Player ()
 
 | データベース | 大域変数 | セーブデータ | JSONデータ | スプライト |
-| --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | [プレイヤー] | [$gamePlayer](global.md#gameplayer-game_player) | 保存される | [RPG.Actor](RPG.Actor.md) | [Sprite_Character](Sprite_Character.md) |
 
 (乗り物を含む)プレイヤーキャラクタを定義したクラス。マップの[場所移動]の処理なども含む。
