@@ -1,6 +1,6 @@
 //========================================
 // TF_Billboard.js
-// Version :0.0.0.0
+// Version :0.0.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -134,6 +134,7 @@
         const tiles = this.allTiles( x, y );
         for( const tile of tiles ) {
             const flag = flags[ tile ];
+            if( ( flag & 0x10 ) !== 0 && ( flag & 0xF ) == 0 ) continue;
             if( ( flag & bit ) === 0 ) return true;
             if( ( flag & bit ) === bit ) return false;
         }
