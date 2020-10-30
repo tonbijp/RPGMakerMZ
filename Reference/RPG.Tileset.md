@@ -3,10 +3,10 @@
 ## Extends: [RPG.MetaData](RPG.MetaData.md)
 
 | データベース| JSONファイル | 大域変数 |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | [タイルセット] | Tilesets.json | [$dataTilesets](global.md#datatilesets-arrayrpgtileset)(配列) |
 
-関連クラス: [Game_Map](Game_Map.md),  [ShaderTilemap](ShaderTilemap.md)
+関連クラス: [Game_Map](Game_Map.md),  [Tilemap](Tilemap.md)
 
 
 ### Properties:
