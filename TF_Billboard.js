@@ -1,6 +1,6 @@
 //========================================
 // TF_Billboard.js
-// Version :0.0.1.0
+// Version :0.0.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -57,7 +57,7 @@
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
         _Tilemap_createLayers.call( this );
-        const maxBillboard = Math.ceil( this._height / this._tileHeight ) + 1;  // 縦タイル数とスクロール時に必要になる+1
+        const maxBillboard = Math.ceil( this._height / this._tileHeight ) + 2;  // 縦タイル数とスクロール時に必要になる+2
         if( !this.hasOwnProperty( "_billboards" ) ) {
             this._billboards = [];
         }
