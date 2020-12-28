@@ -9,6 +9,8 @@
 | マップ | [RPG.Map](RPG.Map.md) | [Game_Map](Game_Map.md) |
 
  マップ表示用スプライトセット。
+
+v1.1.1 で変更あり。
  
  関連クラス: [Scene_Map](Scene_Map.md)
 

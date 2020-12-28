@@ -11,6 +11,8 @@
 [アニメーション]を表示するスプライト。主に戦闘シーンで使用される。<br />
 [アニメーションの表示]スクリプトコマンドからも実行される。
 
+v1.1.0 で変更あり。
+
 関連クラス: [Sprite_Base](Sprite_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
 
@@ -105,20 +107,24 @@
 ### Methods
 
 #### absoluteX () → {[Number](Number.md)}
-x座標の絶対値を返す。
+x座標の絶対値を返す。
+
 
 #### absoluteY () → {[Number](Number.md)}
 y座標の絶対値を返す。
 
 
 #### createCellSprites ()
-セル用のスプライトを生成。
+セル用のスプライトを生成。
+
 
 #### createScreenFlashSprite ()
-画面に対するフラッシュ用のスプライトを生成。
+画面に対するフラッシュ用のスプライトを生成。
+
 
 #### createSprites ()
-アニメーション用のスプライトのセットを生成。
+アニメーション用のスプライトのセットを生成。
+
 
 #### currentFrameIndex () → {[Number](Number.md)}
 現在のフレーム番号を返す。
@@ -133,13 +139,16 @@ Overrides:[Sprite](Sprite.md#initialize-)
 
 
 #### isPlaying () → {Boolean}
-アニメーションが再生中か。
+アニメーションが再生中か。
+
 
 #### isReady () → {Boolean}
-アニメーションの準備ができているか。
+アニメーションの準備ができているか。
+
 
 #### loadBitmaps ()
-アニメーション用の画像の読み込み。
+アニメーション用の画像の読み込み。
+
 
 #### processTimingData (timing)
 [SEとフラッシュのタイミング]データの実行。
@@ -233,19 +242,24 @@ Overrides:[Sprite](Sprite.md#update-)
 
 
 #### updateFlash ()
-フラッシュのアップデート。
+フラッシュのアップデート。
+
 
 #### updateFrame ()
-フレームのアップデート。
+フレームのアップデート。
+
 
 #### updateHiding ()
-対象消去のアップデート。
+対象消去のアップデート。
+
 
 #### updateMain ()
-主要なアップデート。
+主要なアップデート。
+
 
 #### updatePosition ()
-位置のアップデート。
+位置のアップデート。
+
 
 #### updateScreenFlash ()
 画面のフラッシュのアップデート。

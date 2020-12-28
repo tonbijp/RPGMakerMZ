@@ -7,6 +7,8 @@
 
 表示する文章は Window_ScrollText ではなく [$gameMessage](global.md#gamemessage-game_message) の [setScroll()](Game_Message.md#setscroll-speed-nofast) と [add()](Game_Message.md#add-text) メソッドを利用して設定する。
 
+v1.1.1 で変更あり。
+
 関連クラス:  [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
 

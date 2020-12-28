@@ -10,6 +10,8 @@
 
 [敵キャラ]表示用のスプライトクラス
 
+v1.0.2 で変更あり。
+
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Game_Troop](Game_Troop.md)
 
 #### Parameters:

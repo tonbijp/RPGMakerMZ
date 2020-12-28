@@ -4,6 +4,7 @@
 ローカルファイル機能は、node.js の fs モジュールを使っている。<br />
 Webストレージは JavaScript の localStorage を使っている。
 
+v1.1.0 で変更あり。
 
 ### Methods
 
@@ -110,7 +111,8 @@ Webストレージは JavaScript の localStorage を使っている。
 
 
 #### (static) localFileDirectoryPath () → {[String](String.md)}
-ローカルのセーブファイルディレクトリのバス(規定値: ゲームフォルダ + 'save/')を返す。
+ローカルのセーブファイルディレクトリのバス(規定値: ゲームフォルダ + 'save/')
+を返す。
 
 
 #### (static) localFileExists (savefileId) → {Boolean}

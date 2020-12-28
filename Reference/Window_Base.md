@@ -6,6 +6,8 @@
 メッセージやステータスなどを描くためのメソッドを多く持つ、ウィンドウオブジェクト。<br />
 多くは、`contents` に対して[Bitmap](Bitmap.md) のメソッドを使う機能。
 
+v1.1.1 で変更あり。
+
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 
 #### Parameters:

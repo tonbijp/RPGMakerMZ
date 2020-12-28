@@ -5,6 +5,8 @@ Web Audio API を使った音声データ。
 
 静的メソッドも多く、ユーティリティとしての利用も多い。
 
+v1.0.2 で変更あり。
+
 関連クラス: [CacheEntry](CacheEntry.md), [SoundManager](SoundManager.md), [Html5Audio](Html5Audio.md), [RPG.AudioFile](RPG.AudioFile.md)
 
 #### Parameters:
@@ -198,12 +200,15 @@ Web Audio API を使った音声データ。
 
 
 #### (static) canPlayM4a () → {Boolean}
-Checks whether the browser can play m4a files.
+Checks whether the browser can play m4a files.
+
 
 #### (static) canPlayOgg () → {Boolean}
-Checks whether the browser can play ogg files.
+Checks whether the browser can play ogg files.
 
-#### (static) initialize (noAudio) → {Boolean}Initializes the audio system.
+
+#### (static) initialize (noAudio) → {Boolean}
+Initializes the audio system.
 
 ##### Parameters:
 
@@ -212,7 +217,8 @@ Checks whether the browser can play ogg files.
 | `noAudio` | Boolean | Flag for the no-audio mode |
 
 
-#### (static) setMasterVolume (value)Sets the master volume of the all audio.
+#### (static) setMasterVolume (value)
+Sets the master volume of the all audio.
 
 ##### Parameters:
 
@@ -242,7 +248,8 @@ Add a callback function that will be called when the playback is stopped.
 
 
 #### clear ()
-Clears the audio data.
+Clears the audio data.
+
 
 #### fadeIn (duration)
 Performs the audio fade-in.
@@ -254,7 +261,8 @@ Performs the audio fade-in.
 | `duration` | [Number](Number.md) | Fade-in time in seconds |
 
 
-#### fadeOut (duration)Performs the audio fade-out.
+#### fadeOut (duration)
+Performs the audio fade-out.
 
 ##### Parameters:
 
@@ -264,19 +272,24 @@ Performs the audio fade-in.
 
 
 #### initialize ()
-オブジェクト生成時の初期化。
+オブジェクト生成時の初期化。
+
 
 #### isError () → {Boolean}
-Checks whether a loading error has occurred.
+Checks whether a loading error has occurred.
+
 
 #### isPlaying () → {Boolean}
-Checks whether the audio is playing.
+Checks whether the audio is playing.
+
 
 #### isReady () → {Boolean}
-Checks whether the audio data is ready to play.
+Checks whether the audio data is ready to play.
 
 
-#### play (loop, offset)Plays the audio.
+
+#### play (loop, offset)
+Plays the audio.
 
 ##### Parameters:
 
@@ -286,6 +299,11 @@ Checks whether the audio data is ready to play.
 | `offset` | [Number](Number.md) | The start position to play in seconds |
 
 
-#### seek ()Gets the seek position of the audio.
+#### seek ()
+Gets the seek position of the audio.
 
-#### stop ()Stops the audio.
+
+#### stop ()
+Stops the audio.
+
+

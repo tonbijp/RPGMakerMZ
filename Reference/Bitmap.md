@@ -6,6 +6,8 @@
 
 画像を表す基本オブジェクト。概ね [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)のラッパーオブジェクト。
 
+v1.1.1 で変更あり。
+
 関連クラス: [Graphics](Graphics.md), [ImageManager](ImageManager.md), [Game_Screen](Game_Screen.md), [Sprite](Sprite.md), [Game_Picture](Game_Picture.md)
 
 #### 引数
@@ -388,7 +390,8 @@
 
 
 #### measureTextWidth (text) → {[Number](Number.md)}
-指定文字列の幅を返す。
+指定文字列の幅を返す。<br />
+**(v1.1.1)** 返り値をceil()を通して整数に (文字のぼやけを抑える)。
 
 ##### 引数
 
