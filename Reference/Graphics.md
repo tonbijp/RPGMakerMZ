@@ -21,7 +21,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 | `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
 | `BLEND_MULTIPLY` | [Number](Number.md) | [static] 乗算 |
 | `BLEND_SCREEN` | [Number](Number.md) | [static] スクリーン |
-| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] PIXIアプリケーション |
+| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static][read-only] PIXIアプリケーション |
 | `effekseer` | [EffekseerContext](EffekseerContext.md)  | **@MZ**[static][read-only] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
