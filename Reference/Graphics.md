@@ -6,6 +6,8 @@
 ウィンドウサイズは、プロジェクト直下の package.json ファイルで決められていて、この width, heigth に合わせて再設定される。<br />
 なので package.json の値と揃えておくと、ゲーム起動時にウィンドウの大きさが変わってパタつくのを防げる。
 
+描画がWebGLに統一されたこと、Utilityに移った機能があることなどで、多くのMVにあったプロパティ・メソッドが廃止されている。
+
 
 関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md)
 
@@ -19,15 +21,15 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 | `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
 | `BLEND_MULTIPLY` | [Number](Number.md) | [static] 乗算 |
 | `BLEND_SCREEN` | [Number](Number.md) | [static] スクリーン |
-| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] アプリケーション |
-| `effekseer` |  | **@MZ** |
+| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] PIXIアプリケーション |
+| `effekseer` | [EffekseerContext](EffekseerContext.md)  | **@MZ**[static][r/o] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
 | `height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
 | `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 816) |
 | `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 624) |
 | `defaultScale` | [Number](Number.md) | [static] 拡大率(scaleの名称変更) |
-| `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] アプリケーション |
+| `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] PIXIアプリケーション |
 | `_width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) |
 | `_height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) |
 | `_defaultScale` | [Number](Number.md) | [static] 拡大率(_scaleの名称変更) |
@@ -55,6 +57,8 @@ canvas フィルタを適用。
 #### (static) _cancelFullScreen ()
 フルスクリーンを終了。
 
+#### (static) _canRender ()→ {Boolean}
+**＠MZ** レンダリング可能(ステージの準備ができている)か。
 
 #### (static) _centerElement (element)
 指定要素を中央に配置。
@@ -66,8 +70,21 @@ canvas フィルタを適用。
 | `element` | HTMLElement | HTML要素 |
 
 
-#### (static) _clearUpperCanvas ()
-上部 canvas をクリア。
+#### (static) _clearCanvasFilter ()
+**@MZ** canvas フィルタを削除。
+
+
+#### (static) _createFPSCounter ()
+**@MZ** FPSカウンタを生成。
+
+
+#### (static) _createLoadingSpinner ()
+**@MZ** ローディング表示を生成。
+
+
+#### (static) _createPixiApp ()
+**@MZ** _app を生成。
+
 
 
 #### (static) _createAllElements ()
@@ -78,43 +95,12 @@ canvas フィルタを適用。
 canvas の生成。
 
 
+#### (static) _createEffekseerContext ()
+**@MZ** _effekseer の生成。
+
+
 #### (static) _createErrorPrinter ()
 エラー表示要素を生成。
-
-
-#### (static) _createFontLoader (name)
-指定フォント名でフォントローダを生成。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `name` | [String](String.md) | フォント名 |
-
-
-#### (static) _createFPSMeter ()
-FPSメータ要素を生成。
-
-
-#### (static) _createGameFontLoader ()
-GameFont のフォントローダを生成。
-
-
-#### (static) _createModeBox ()
-モードボックスの生成。<br />
-'WebGL mode' か 'Canvas mode' を表示する要素。
-
-
-#### (static) _createRenderer ()
-レンダラを生成。
-
-
-#### (static) _createUpperCanvas ()
-上部 canvas を生成。
-
-
-#### (static) _createVideo ()
-ビデオ要素を生成。
 
 
 #### (static) _defaultStretchMode () → {Boolean}
@@ -125,16 +111,8 @@ GameFont のフォントローダを生成。
 コンテクストメニューを無効化。
 
 
-#### (static) _disableTextSelection ()
-テキスト選択を無効化。
-
-
 #### (static) _isFullScreen () → {Boolean}
 フルスクリーンか。
-
-
-#### (static) _isVideoVisible () → {Boolean}
-ビデオが表示されているか。
 
 
 #### (static) _makeErrorHtml (name, message) → {[String](String.md)}
@@ -148,10 +126,6 @@ GameFont のフォントローダを生成。
 | `message` | [String](String.md) | メッセージ |
 
 
-#### (static) _modifyExistingElements ()
-存在するHTML要素を(正の zIndex を 0 に)変更。
-
-
 #### (static) _onKeyDown (event)
 キーが押された時に呼ばれるハンドラ。<br />
 (F2, F3, F4 キーの処理)
@@ -163,60 +137,42 @@ GameFont のフォントローダを生成。
 | `event` | KeyboardEvent | キーボードイベント |
 
 
-#### (static) _onTouchEnd (event)
-タッチ操作が終了した時に呼ばれるハンドラ。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `event` | TouchEvent | タッチイベント |
-
-
-#### (static) _onVideoEnd ()
-ビデオが終了した時に呼ばれるハンドラ。
-
-
-#### (static) _onVideoError ()
-ビデオのエラーが発生した時に呼ばれるハンドラ。
-
-
-#### (static) _onVideoLoad ()
-ビデオが読み込まれた時に呼ばれるハンドラ。
-
-
 #### (static) _onWindowResize ()
 ウィンドウのリサイズした時に呼ばれるハンドラ。
 
 
-#### (static) _paintUpperCanvas ()
-読み込まれた画像を上部 canvas に描画。
-
-
-#### (static) _playVideo (src)
-指定したビデオの再生。
+#### (static) _onTick (deltaTime)
+**@MZ** FPSカウンタを進める時に呼ばれるハンドラ。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `src` | [String](String.md) | 映像ファイルのパス |
+| `deltaTime` | [Number](Number.md) | 単位時間 |
 
 
 #### (static) _requestFullScreen ()
 フルスクリーンを要求。
 
 
-#### (static) _setupCssFontLoading ()
-CSSフォント読み込みの準備。
-
-
 #### (static) _setupEventHandlers ()
 イベントハンドラの準備。
 
 
-#### (static) _switchFPSMeter ()
-FPSメーターの切り替え。
+#### (static) _setupPixi ()
+**@MZ** PIXI の準備。
+
+
+#### (static) _stretchWidth ()
+**@MZ** 幅を拡大。
+
+
+#### (static) _stretchHeight ()
+**@MZ** 高さを拡大。
+
+
+#### (static) _switchFPSCounter ()
+**@MZ** FPSカウンタの切り替え。
 
 
 #### (static) _switchFullScreen ()
@@ -225,10 +181,6 @@ FPSメーターの切り替え。
 
 #### (static) _switchStretchMode ()
 画面の伸縮モードをトグルで切り替え。
-
-
-#### (static) _testCanvasBlendModes ()
-ブレンドモードのテスト。
 
 
 #### (static) _updateAllElements ()
@@ -247,68 +199,16 @@ canvas をアップデート。
 実際の拡大率をアップデート。
 
 
-#### (static) _updateRenderer ()
-レンダラをアップデート。
-
-
-#### (static) _updateUpperCanvas ()
-上部 canvas をアップデート。
-
-
 #### (static) _updateVideo ()
 ビデオをアップデート。
 
 
-#### (static) _updateVisibility (videoVisible)
-表示・非表示をアップデート。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `videoVisible` | Boolean | ビデオを表示するか |
+#### (static) endLoading () → {Boolean}
+"Now Loading" 画像を消し、ローディング画像がアクティブか返す。
 
 
-#### (static) callGC ()
-ガベッジコレクションを呼ぶ。
-
-
-#### (static) canPlayVideoType (type) → {Boolean}
-指定のビデオタイプが再生できるか。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `type` | [String](String.md) | ビデオタイプ |
-
-
-#### (static) canUseCssFontLoading ()
-**廃止** [Utils](Utils.md#canUseCssFontLoading) に移動。
-
-
-#### (static) canUseDifferenceBlend () → {Boolean}
-差の絶対値のブレンドが可能か。
-
-
-#### (static) canUseSaturationBlend () → {Boolean}
-彩度のブレンドが可能か。
-
-
-#### (static) endLoading ()
-"Now Loading" 画像を消す。
-
-
-#### (static) eraseLoadingError ()
-読み込みエラーの表示を消す。
-
-
-#### (static) hasWebGL () → {Boolean}
-WebGL を持っている(ブラウザ)環境か。
-
-
-#### (static) hideFps ()
-FPSメータを隠す。
+#### (static) eraseError ()
+**@MZ** 読み込みエラーの表示を消す。
 
 
 #### (static) initialize (width opt, height opt, type opt) → {Boolean}
@@ -324,16 +224,6 @@ FPSメータを隠す。
 | `type` | [String](String.md) | [レンダラタイプ](Graphics.md#レンダラタイプ) (規定値:auto) |
 
 
-#### (static) isFontLoaded (name) → {Boolean}
-指定したフォントファイルが読み込まれているか。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `name` | [String](String.md) | フォント名 |
-
-
 #### (static) isInsideCanvas (x, y) → {Boolean}
 指定座標が canvas 内にあるか。
 
@@ -343,25 +233,6 @@ FPSメータを隠す。
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
-
-
-#### (static) isVideoPlaying () → {Boolean}
-ビデオが再生されているか。
-
-
-#### (static) isWebGL () → {Boolean}
-[レンダラタイプ](Graphics.md#レンダラタイプ) が WebGL か。
-
-
-#### (static) loadFont (name, url)
-指定したフォントファイルを読み込む。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `name` | [String](String.md) | フォント名 |
-| `url` | [String](String.md) | フォントファイルのURL |
 
 
 #### (static) pageToCanvasX (x) → {[Number](Number.md)}
@@ -384,16 +255,6 @@ FPSメータを隠す。
 | `y` | [Number](Number.md) | ページ内の x座標(ピクセル) |
 
 
-#### (static) playVideo (src)
-指定ビデオファイルを再生。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `src` | [String](String.md) | ファイルパス |
-
-
 #### (static) printError (name, message)
 エラーを表示。
 
@@ -405,48 +266,40 @@ FPSメータを隠す。
 | `message` | [String](String.md) | エラーメッセージ |
 
 
-#### (static) printLoadingError (url)
-読み込みエラーを表示。
+
+#### (static) resize (width, height)
+**@MZ** ゲーム画面のサイズを再設定。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `url` | [String](String.md) | 読み込みに失敗したファイルのURL |
+| `width` | [Number](Number.md) | ゲーム画面の幅(ピクセル) (規定値:800)|
+| `height` | [Number](Number.md) | ゲーム画面の高さ(ピクセル) (規定値:600) |
 
 
 #### (static) setTickHandler (handler)
-**@MZ**ハンドラの設定。
+**@MZ** tickイベントのハンドラの設定。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `handler` | Function | ハンドラ |
+| `handler` | Function | 設定するハンドラ |
 
 
-#### (static) setLoadingImage (src)
-ローディング画像を設定。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `src` | [String](String.md) | ファイルパス |
-
-
-#### (static) setVideoVolume (value)
-ビデオの音量を設定。
+#### (static) showRetryButton (retry)
+**@MZ** リトライボタンを表示し、クリックハンドラを設定。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `value` | [Number](Number.md) | 音量 |
+| `retry` | Function | ボタンクリック時に実行されるハンドラ |
 
 
-#### (static) showFps ()
-FPSメータを表示。
+#### (static) showScreen ()
+**@MZ** ゲーム画面を表示。
 
 
 #### (static) startGameLoop ()
@@ -461,17 +314,10 @@ FPSメータを表示。
 **@MZ** アプリケーションのループ終了。
 
 
-#### (static) tickEnd ()
-FPSメータへフレーム(tick)の終了を通知。
-
-
-#### (static) tickStart ()
-FPSメータへフレーム(tick)の開始を通知。
-
-
-#### (static) updateLoading ()
-ローディング画面をアップデート。
-
-
 ### MV廃止メソッド
-render (stage), 
+[static]
+_clearUpperCanvas (), _createFontLoader (name), _createFPSMeter (), _createGameFontLoader (), _createModeBox (), _createRenderer (), 
+_createUpperCanvas (), _createVideo (), _disableTextSelection (), _isVideoVisible (), _modifyExistingElements (), _onTouchEnd (event), _onVideoEnd (), _onVideoError (), _onVideoLoad (),
+_paintUpperCanvas (), _playVideo (src), _setupCssFontLoading (), _switchFPSMeter (), _testCanvasBlendModes (), _updateRenderer (), _updateUpperCanvas (),_updateVisibility (videoVisible), callGC (), canPlayVideoType (type), canUseCssFontLoading (), canUseDifferenceBlend (), canUseSaturationBlend (), eraseLoadingError (), hasWebGL (), hideFps (), isFontLoaded (name), isVideoPlaying (), isWebGL (), loadFont (name, url), playVideo (src), printLoadingError (url), render (stage), setLoadingImage (src), setVideoVolume (value), showFps (), tickEnd (), tickStart (), updateLoading ()
+
+canUseCssFontLoading は [Utils](Utils.md#canUseCssFontLoading) に移動。
