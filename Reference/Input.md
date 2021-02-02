@@ -14,18 +14,19 @@ JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/Keyb
 | `keyRepeatInterval` | [Number](Number.md) | [static] キーリピート間隔(フレーム) |
 | `keyMapper` | Object | [static] [キーボード入力マップ](Input.md#キーボード入力マップ) |
 | `gamepadMapper` | Object | [static] [ゲームパッド入力マップ](Input.md#ゲームパッド入力マップ)  |
+| `date` | [Number](Number.md) | [static][read-only] 最後に入力された時刻(ミリ秒) |
 | `dir4` | [Number](Number.md) | [static][read-only] 4方向入力の数値(テンキー対応) |
 | `dir8` | [Number](Number.md) | [static][read-only]  8方向入力の数値(テンキー対応) |
-| `date` | [Number](Number.md) | [static][read-only] 最後に入力された時刻(ミリ秒) |
 | `_currentState` | Object | [static] 現在の入力状態 {[key: string]: boolean} |
 | `_previousState` | Object | [static] 直前の入力状態 {[key: string]: boolean} |
 | `_gamepadStates` | [Array](Array.md).&lt;[Array](Array.md).&lt;Boolean&gt;&gt; | [static] ゲームパッドの状態<br />(ゲームパッドの番号, code, 押されているか) |
 | `_latestButton` | [String](String.md) | [static] 最新のボタン |
 | `_pressedTime` | [Number](Number.md) | [static] 入力時間 |
+| `_date` | [Number](Number.md) | [static] 入力時刻 |
 | `_dir4` | [Number](Number.md) | [static] 4方向入力の数値 |
 | `_dir8` | [Number](Number.md) | [static] 8方向入力の数値 |
 | `_preferredAxis` | [String](String.md) | [static] xとyのうち優先軸<br />(4方向入力を自然にするのに使われる)|
-| `_date` | [Number](Number.md) | [static] 入力時刻 |
+| `_virtualButton` | [String](String.md) | [static] 仮想的な最新のボタン |
 
 #### キー名称
 RPGツクールMVでは、実際のキーボードのキーやゲームパッドのボタンの名前ではなく、仮想のキー名を使って処理される。<br />
@@ -53,7 +54,7 @@ N/A は変換はされているものの、使われていない。
 
 #### キーボード入力マップ
 <code>{ code: 'キー名称', ...}</code> の形の、キーコードと[キー名称](Input.md#キー名称)の変換テーブル。<br />
-以下のキー名称は規定値。
+keyMapper に設定されている。以下のキー名称は規定値。
 
 | code | キー名称 | キーボード |
 | --- | --- | --- |
@@ -92,7 +93,7 @@ command は参考。
 <code>{ code: 'キー名称', ...}</code> の形の、ゲームパッドのボタンコードと[キー名称](Input.md#キー名称)の変換テーブル。<br />
 アナログスティックの入力は up, down, right, left に変換される。<br />
 バッドによってボタンコードとボタンの対応はまちまち。<br />
-以下のキー名称は規定値。
+gamepadMapper に設定されている。以下のキー名称は規定値。
 
 | code | キー名称 | Xboxパッド |
 | --- | --- | --- |
@@ -172,7 +173,7 @@ x,y方向の入力からテンキー方向(0 : ニュートラル)を生成。
 
 #### (static) _shouldPreventDefault (keyCode)
 イベントの規定動作を防ぐか。<br/>
-keyCode が 33:pageup, 34:pagedown, 37:left, 38:up, 39:right, 40:down のいずれかであった場合 true を返す。<br />
+keyCode が 8: backspace, case 9: tab, 33:pageup, 34:pagedown, 37:left, 38:up, 39:right, 40:down のいずれかであった場合 true を返す。<br />
 これにより、キーボードによるブラウザの基本動作をある程度回避する。
 
 ##### Parameters:
@@ -203,9 +204,6 @@ y軸の入力(-1, 0, 1)を返す。
 | --- | --- | --- |
 | `gamepad` | Gamepad | ゲームパッドオブジェクト |
 
-
-#### (static) _wrapNwjsAlert ()
-NW.jsの警告のラッパー。
 
 #### (static) clear ()
 入力データを初期化。
@@ -259,3 +257,16 @@ NW.jsの警告のラッパー。
 フレーム毎のアップデート。
 
 
+#### (static) virtualClick (buttonName)
+**@MZ** 仮想的に指定キーが押されたことにする。
+
+##### Parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `buttonName` | [String](String.md) | [キー名称](Input.md#キー名称) |
+
+
+### MV廃止メソッド
+[static]
+_wrapNwjsAlert ()
