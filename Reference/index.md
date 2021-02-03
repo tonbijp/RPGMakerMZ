@@ -46,7 +46,7 @@
 
 ### 注釈
 
-* **(New!)** は『RPGツクールMZ』で増えたクラス。
+* **@MZ** は『RPGツクールMZ』で増えたクラス。
 * (廃止) は『RPGツクールMV』にあったが廃止されたクラス。
 * 以下で表われる「→ 継承」は継承先へのリンク。
 * ※がついているのはまだ『RPGツクールMV』の記述のままのもの。
@@ -65,11 +65,11 @@ namespace JsExtensions
 
 * ※[AudioManager](AudioManager.md)
 * ※[BattleManager](BattleManager.md)
-* ※[ColorManager](ColorManager.md) **(New!)**
+* ※[ColorManager](ColorManager.md) **@MZ**
 * ※[ConfigManager](ConfigManager.md)
 * [DataManager](DataManager.md)
-* ※[EffectManager](EffectManager.md) **(New!)**
-* ※[FontManager](FontManager.md) **(New!)**
+* ※[EffectManager](EffectManager.md) **@MZ**
+* ※[FontManager](FontManager.md) **@MZ**
 * ※[ImageManager](ImageManager.md)
 * ※[PluginManager](PluginManager.md) ([プラグインファイルの設定](MV.PluginSettings.md#プラグインファイルの設定))
 * ※[SceneManager](SceneManager.md)
@@ -83,7 +83,7 @@ namespace JsExtensions
 * [JsonEx](JsonEx.md)
 * ~~ResourceHandler~~ (廃止)
 * [Utils](Utils.md)
-* [Video](Video.md) **(New!)**
+* [Video](Video.md) **@MZ**
 
 ## 入力
 
@@ -242,7 +242,7 @@ namespace JsExtensions
     * ※[Rectangle](Rectangle.md)
 * PIXI.TilingSprite( PIXI.extras.PictureTilingSprite から変更 )
     * ※[TilingSprite](TilingSprite.md)
-        * ※[Sprite_Battleback](Sprite_Battleback.md) **(New!)**
+        * ※[Sprite_Battleback](Sprite_Battleback.md) **@MZ**
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
@@ -253,7 +253,7 @@ namespace JsExtensions
 
 * [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
-        * [Tilemap.Render](Tilemap.Render.md)  **(New!)**
+        * [Tilemap.Render](Tilemap.Render.md)  **@MZ**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
 * EventEmitter
@@ -268,7 +268,7 @@ namespace JsExtensions
 * GLShader
     * [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
         * [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
-            * ※[ColorFilter](ColorFilter.md) **(New!)**
+            * [ColorFilter](ColorFilter.md) **@MZ**
             * ~~ToneFilter~~ (廃止)
         * PIXI.tilemap.TilemapShader
             * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
@@ -287,7 +287,7 @@ namespace JsExtensions
     * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 * [Tilemap](Tilemap.md)
     * ~~ShaderTilemap~~ (廃止)
-* [Tilemap.Layer](Tilemap.Layer.md)  **(New!)**
+* [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * ※[Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
 * ※[Stage](Stage.md)
@@ -299,17 +299,17 @@ namespace JsExtensions
 ### [スプライト(Sprite)](Sprite.md)
 
 * ※[Sprite_Animation](Sprite_Animation.md)
-* ※[Sprite_AnimationMV](Sprite_AnimationMV.md) **(New!)**
+* ※[Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
 * ※[Sprite_Button](Sprite_Button.md)
-* ※[Sprite_Clickable](Sprite_Clickable.md) **(New!)**
+* ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**
 * ※[Sprite_Damage](Sprite_Damage.md)
 * ※[Sprite_Destination](Sprite_Destination.md)
-* ※[Sprite_Gauge](Sprite_Gauge.md) **(New!)**
-* ※[Sprite_Name](Sprite_Name.md) **(New!)**
+* ※[Sprite_Gauge](Sprite_Gauge.md) **@MZ**
+* ※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_Picture](Sprite_Picture.md)
 * ※[Sprite_StateIcon](Sprite_StateIcon.md)
 * ※[Sprite_Timer](Sprite_Timer.md)
-* ※[Sprite_Name](Sprite_Name.md) **(New!)**
+* ※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)
@@ -329,7 +329,7 @@ namespace JsExtensions
 * ※[Scene_Boot](Scene_Boot.md)
 * ※[Scene_Gameover](Scene_Gameover.md)
 * ※[Scene_Map](Scene_Map.md)
-* ※[Scene_Message](Scene_Message.md) **(New!)**
+* ※[Scene_Message](Scene_Message.md) **@MZ**
 * ※[Scene_Title](Scene_Title.md)
 * ※[Scene_MenuBase](Scene_MenuBase.md)
     * ※[Scene_Debug](Scene_Debug.md)
@@ -357,12 +357,12 @@ namespace JsExtensions
 * ※[Window_Help](Window_Help.md)
 * ※[Window_MapName](Window_MapName.md)
 * ※[Window_Message](Window_Message.md)
-* ※[Window_NameBox](Window_NameBox.md) **(New!)**
+* ※[Window_NameBox](Window_NameBox.md) **@MZ**
 * ※[Window_NameEdit](Window_NameEdit.md)
 * ※[Window_ScrollText](Window_ScrollText.md)
 * ※[Window_ShopStatus](Window_ShopStatus.md)
 * ※[Window_SkillStatus](Window_SkillStatus.md)
-* ※[Window_Scrollable](Window_Scrollable.md) **(New!)**
+* ※[Window_Scrollable](Window_Scrollable.md) **@MZ**
 * ※[Window_Selectable](Window_Selectable.md) → [継承](index.md#選択ウィンドウwindow_selectable)
 
 
@@ -390,9 +390,9 @@ namespace JsExtensions
     * ※[Window_EquipItem](Window_EquipItem.md)
     * ※[Window_EventItem](Window_EventItem.md)
     * ※[Window_ShopSell](Window_ShopSell.md)
-* ※[Window_StatusBase](Window_StatusBase.md) **(New!)**
-    * ※[Window_StatusParams](Window_StatusParams.md) **(New!)**
-    * ※[Window_StatusEquip](Window_StatusEquip.md) **(New!)**
+* ※[Window_StatusBase](Window_StatusBase.md) **@MZ**
+    * ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
+    * ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
 * ※[Window_Command](Window_Command.md) → [継承](index.md#コマンドウィンドウwindow_command)
 
 
