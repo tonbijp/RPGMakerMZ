@@ -17,15 +17,6 @@ Namespace [RPG](RPG.md) に分類しているのがJSONデータ。
 
 ### Methods
 
-#### (static) _cleanMetadata (object)
-指定オブジェクトからエンコード・デコードで使うメタデータ('@'、'@c')を取り除く。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `object` | Object | オブジェクト |
-
 #### (static) _decode (value, circular, registry) → {Object}
 parseの前処理。
 
@@ -48,53 +39,6 @@ stringifyの前処理。
 | `value` | Object \|  [Array](Array.md) | エンコードするオブジェクト |
 | `circular` | [Array](Array.md) | 循環参照チェック配列 |
 | `depth` | [Number](Number.md) | 深さ |
-
-
-#### (static) _generateId () → {[Number](Number.md)}
-IDを生成して返す。
-
-
-#### (static) _getConstructorName (value) → {[String](String.md)}
-指定オブジェクトのコンストラクタの名前を返す。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `value` | Object | オブジェクト |
-
-
-#### (static) _linkCircularReference (contents, circular, registry) → {Object}
-循環参照のリンク。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `contents ` | Object | デコードするオブジェクト |
-| `circular` | [Array](Array.md) | 循環参照チェック配列 |
-| `registry` | Object | レジストリ |
-
-
-#### (static) _resetPrototype (value, prototype) → {Object}
-指定オブジェクトに、指定プロトタイプを再定義して返す。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `value` | Object | オブジェクト |
-| `prototype` | Object | プロトタイプオブジェクト |
-
-
-#### (static) _restoreCircularReference (circulars) 
-循環参照チェック配列から復帰。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `circular` | [Array](Array.md) | 循環参照チェック配列 |
 
 
 #### (static) makeDeepCopy (object) → {Object}
@@ -127,3 +71,7 @@ JSON文字列をオブジェクトに変換して返す。<br />
 | --- | --- | --- |
 | `object` | Object | 変換するオブジェクト |
 
+
+### MV廃止メソッド
+[static]
+_cleanMetadata (object), _generateId (), _getConstructorName (value), _linkCircularReference (contents, circular, registry), _restoreCircularReference (circulars) 
