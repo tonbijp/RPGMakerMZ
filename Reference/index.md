@@ -80,15 +80,15 @@ namespace JsExtensions
 
 ## ユーティリティ
 
-* ※[JsonEx](JsonEx.md)
+* [JsonEx](JsonEx.md)
 * ~~ResourceHandler~~ (廃止)
 * ※[Utils](Utils.md)
 * ※[Video](Video.md) **(New!)**
 
 ## 入力
 
-* ※[Input](Input.md)
-* ※[TouchInput](TouchInput.md)
+* [Input](Input.md)
+* [TouchInput](TouchInput.md)
 
 
 ## ファイル
