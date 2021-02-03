@@ -82,8 +82,8 @@ namespace JsExtensions
 
 * [JsonEx](JsonEx.md)
 * ~~ResourceHandler~~ (廃止)
-* ※[Utils](Utils.md)
-* ※[Video](Video.md) **(New!)**
+* [Utils](Utils.md)
+* [Video](Video.md) **(New!)**
 
 ## 入力
 
@@ -235,7 +235,7 @@ namespace JsExtensions
 ### コア機能
 
 * [Bitmap](Bitmap.md)
-* ※[Graphics](Graphics.md)
+* [Graphics](Graphics.md)
 * [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
     * ※[Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
