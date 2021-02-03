@@ -6,7 +6,7 @@
 ウィンドウサイズは、プロジェクト直下の package.json ファイルで決められていて、この width, heigth に合わせて再設定される。<br />
 なので package.json の値と揃えておくと、ゲーム起動時にウィンドウの大きさが変わってパタつくのを防げる。
 
-描画がWebGLに統一されたこと、Utilityに移った機能があることなどで、多くのMVにあったプロパティ・メソッドが廃止されている。
+描画がWebGLに統一されたこと、[Utils](Utils.md#canUseCssFontLoading) 、[Video](Video.md) クラスに機能が移ったことなどで、多くのMVにあったプロパティ・メソッドが廃止されている。
 
 
 関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md)
@@ -320,5 +320,3 @@ canvas をアップデート。
 _clearUpperCanvas (), _createFontLoader (name), _createFPSMeter (), _createGameFontLoader (), _createModeBox (), _createRenderer (), 
 _createUpperCanvas (), _createVideo (), _disableTextSelection (), _isVideoVisible (), _modifyExistingElements (), _onTouchEnd (event), _onVideoEnd (), _onVideoError (), _onVideoLoad (),
 _paintUpperCanvas (), _playVideo (src), _setupCssFontLoading (), _switchFPSMeter (), _testCanvasBlendModes (), _updateRenderer (), _updateUpperCanvas (),_updateVisibility (videoVisible), callGC (), canPlayVideoType (type), canUseCssFontLoading (), canUseDifferenceBlend (), canUseSaturationBlend (), eraseLoadingError (), hasWebGL (), hideFps (), isFontLoaded (name), isVideoPlaying (), isWebGL (), loadFont (name, url), playVideo (src), printLoadingError (url), render (stage), setLoadingImage (src), setVideoVolume (value), showFps (), tickEnd (), tickStart (), updateLoading ()
-
-canUseCssFontLoading は [Utils](Utils.md#canUseCssFontLoading) に移動。
