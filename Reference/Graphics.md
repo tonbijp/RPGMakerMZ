@@ -45,6 +45,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 | `_stretchEnabled` | Boolean | [static] 画面の伸縮可能か |
 
 #### 廃止MVプロパティ
+[static]
 `_cssFontLoading`,
 `_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`
 
