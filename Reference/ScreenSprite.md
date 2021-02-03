@@ -11,16 +11,14 @@
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `YEPWarned` | Boolean | [static] YEP_CoreEngine の警告が必要か |
 | `opacity` | [Number](Number.md) |  不透明度 (0〜255) |
-| `anchor` | [Point](Point.md) | 基点 |
-| `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `_graphics` | [PIXI.Graphics](PIXI.Graphics.md) |  画像管理オブジェクト |
 | `_red` | [Number](Number.md) |  赤 (0〜255) |
 | `_green` | [Number](Number.md) |  緑 (0〜255) |
 | `_blue` | [Number](Number.md) |  青 (0〜255) |
-| `_colorText` | [String](String.md) |  色文字列(例: 'red') |
 
+#### 廃止MVプロパティ
+`YEPWarned`, `anchor`, `blendMode`, `_colorText` 
 
 ### Inherited From
 
@@ -63,8 +61,8 @@
 
 ### Methods
 
-#### (static) warnYep ()
-必要なら YEP_CoreEngine の警告。
+#### destroy ()
+**@MZ** オブジェクトの廃棄。
 
 
 #### initialize ()
@@ -90,3 +88,6 @@
 #### setWhite ()
 白に設定。
 
+
+### MV廃止メソッド
+[static] warnYep ()

@@ -237,9 +237,9 @@ namespace JsExtensions
 * [Bitmap](Bitmap.md)
 * [Graphics](Graphics.md)
 * [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
-    * ※[Point](Point.md)
+    * [Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
-    * ※[Rectangle](Rectangle.md)
+    * [Rectangle](Rectangle.md)
 * PIXI.TilingSprite( PIXI.extras.PictureTilingSprite から変更 )
     * ※[TilingSprite](TilingSprite.md)
         * ※[Sprite_Battleback](Sprite_Battleback.md) **@MZ**
@@ -276,7 +276,7 @@ namespace JsExtensions
 
 ### [コンテナ(PIXI.Container)](PIXI.Container.md)
 
-* ※[ScreenSprite](ScreenSprite.md)
+* [ScreenSprite](ScreenSprite.md)
 * ~~ToneSprite~~ (廃止)
 * ※[Weather](Weather.md)
 * ※[WindowLayer](WindowLayer.md)
