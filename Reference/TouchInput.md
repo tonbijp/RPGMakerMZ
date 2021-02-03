@@ -1,5 +1,5 @@
 # Class: TouchInput
-The static class that handles input data from the mouse and touchscreen.
+マウスやタッチスクリーンによるタッチ入力を扱う静的クラス。
 
 関連クラス: [Input](Input.md), [Sprite_Destination](Sprite_Destination.md)
 
@@ -18,21 +18,37 @@ The static class that handles input data from the mouse and touchscreen.
 | `_mousePressed` | Boolean | [static] |
 | `_screenPressed` | Boolean | [static] |
 | `_pressedTime` | [Number](Number.md) | [static] |
-| `_events` | [MV.TouchInputEvents](MV.TouchInputEvents.md) | [static] |
-| `_triggered` | Boolean | [static] |
-| `_cancelled` | Boolean | [static] |
 | `_moved` | Boolean | [static] |
 | `_released` | Boolean | [static] |
-| `_wheelX` | [Number](Number.md) | [static] |
-| `_wheelY` | [Number](Number.md) | [static] |
 | `_x` | [Number](Number.md) | [static] |
 | `_y` | [Number](Number.md) | [static] |
 | `_date` | [Number](Number.md) | [static] |
 
 
+#### 廃止MVプロパティ
+[static]
+`_events`, `_triggered`, `_cancelled`, `_wheelX`, `_wheelY`
+
+
 ### Methods
 
+#### (static) _createNewState ()
+**@MZ** 新たな状態を作る。
+
+
 #### (static) _onCancel (x, y)
+二本指でタッチあるいはキャンセル(右)ボタンが押された時のイベント。
+
+##### Parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `x` | [Number](Number.md) |  |
+| `y` | [Number](Number.md) |  |
+
+
+#### (static) _onHover (x, y)
+**@MZ** ボタンを離した状態で移動した時のイベント。
 
 ##### Parameters:
 
@@ -43,6 +59,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onLeftButtonDown (event)
+決定(左)ボタンが押された時のイベント。
 
 ##### Parameters:
 
@@ -51,7 +68,13 @@ The static class that handles input data from the mouse and touchscreen.
 | `event` | MouseEvent |  |
 
 
+#### (static) _onLostFocus ()
+**@MZ** フォーカスを失った時のイベント。
+
+
 #### (static) _onMiddleButtonDown (event)
+補助(中央)ボタン(ホイール)が押された時のイベント。<br />
+コアスクリプトでの実装はない。
 
 ##### Parameters:
 
@@ -61,6 +84,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onMouseDown (event)
+いずれかのマウスボタンが押された時のイベント。
 
 ##### Parameters:
 
@@ -70,6 +94,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onMouseMove (event)
+マウスが移動した時のイベント。
 
 ##### Parameters:
 
@@ -79,6 +104,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onMouseUp (event)
+いずれかのマウスボタンが離された時のイベント。
 
 ##### Parameters:
 
@@ -88,6 +114,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onMove (x, y)
+タッチした指あるいはマウスが移動した時のイベント。
 
 ##### Parameters:
 
@@ -97,16 +124,8 @@ The static class that handles input data from the mouse and touchscreen.
 | `y` | [Number](Number.md) |  |
 
 
-#### (static) _onPointerDown (event)
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `event` | PointerEvent |  |
-
-
 #### (static) _onRelease (x, y)
+タッチした指あるいはボタンが離れた時のイベント。
 
 ##### Parameters:
 
@@ -117,6 +136,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onRightButtonDown (event)
+キャンセル(右)ボタンが押された時のイベント。
 
 ##### Parameters:
 
@@ -126,6 +146,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onTouchCancel (event)
+タッチがキャンセル(二本指でタッチ)された時のイベント。
 
 ##### Parameters:
 
@@ -135,6 +156,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onTouchEnd (event)
+タッチした指が離れた時のイベント。
 
 ##### Parameters:
 
@@ -144,6 +166,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onTouchMove (event)
+タッチした状態で指が移動した時のイベント。
 
 ##### Parameters:
 
@@ -153,6 +176,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onTouchStart (event)
+タッチされた時のイベント。
 
 ##### Parameters:
 
@@ -163,6 +187,8 @@ The static class that handles input data from the mouse and touchscreen.
 
 #### (static) _onTrigger (x, y)
 
+トリガされた時のイベント。
+
 ##### Parameters:
 
 | Name | Type | Description |
@@ -172,6 +198,7 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _onWheel (event)
+ホイールが回された時のイベント。
 
 ##### Parameters:
 
@@ -181,34 +208,57 @@ The static class that handles input data from the mouse and touchscreen.
 
 
 #### (static) _setupEventHandlers ()
+イベントハンドラを設定。
 
 
 #### (static) clear ()
-Clears all the touch data.
+タッチ・クリック入力に関するデータを消去。
+
 
 #### (static) initialize ()
-Initializes the touch system.
+クラスの初期化。
+
 
 #### (static) isCancelled () → {Boolean}
-Checks whether the right mouse button is just pressed.
+キャンセル(右ボタン)が押されたか。
+
+
+#### (static) isClicked () → {Boolean}
+**@MZ** 押されたか。
+
+
+#### (static) isHovered () → {Boolean}
+**@MZ** ボタンが押されない状態で移動したたか。
+
 
 #### (static) isLongPressed () → {Boolean}
-Checks whether the left mouse button or touchscreen is kept depressed.
+タッチあるいは決定(左)ボタンが長押しされたか。
+
 
 #### (static) isMoved () → {Boolean}
-Checks whether the mouse or a finger on the touchscreen is moved.
+タッチした指あるいはマウスカーソルが移動しているか。
+
 
 #### (static) isPressed () → {Boolean}
-Checks whether the mouse button or touchscreen is currently pressed down.
+タッチあるいは決定(左)ボタンが押されているか。
+
 
 #### (static) isReleased () → {Boolean}
-Checks whether the left mouse button or touchscreen is released.
+タッチあるいは決定(左)ボタンが離されているか。
+
 
 #### (static) isRepeated () → {Boolean}
-Checks whether the left mouse button or touchscreen is just pressed or a pseudo key repeat occurred.
+タッチあるいは決定(左)ボタンが押されている、もしくは仮想のキーリピートが発生しているか。
+
 
 #### (static) isTriggered () → {Boolean}
-Checks whether the left mouse button or touchscreen is just pressed.
+タッチあるいは決定(左)ボタンが押されているか。
+
 
 #### (static) update ()
-Updates the touch data.
+タッチ・クリック入力のアップデート。
+
+
+### MV廃止メソッド
+[static]
+_onPointerDown (event)
