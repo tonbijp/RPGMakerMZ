@@ -1,14 +1,14 @@
 # Class: Utils
-便利なメソッドを集めた静的クラス。
+便利なメソッドを集めた静的クラス。主に利用環境のチェックを行う。
 
-利用環境のチェックなど。
+関連クラス: [Graphics](Graphics.md), [Video](Video.md), 
 
-##### Properties:
+### Properties:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `RPGMAKER_NAME` | [String](String.md) | [static] RPGツクールの名前(規定値: "MZ") |
-| `RPGMAKER_VERSION` | [String](String.md) | [static] RPGツクールのバージョン(例:  "1.0.0") |
+| `RPGMAKER_NAME` | [String](String.md) | [static][read-only] RPGツクールの名前(規定値: "MZ") |
+| `RPGMAKER_VERSION` | [String](String.md) | [static][read-only]  RPGツクールのバージョン(例:  "1.0.0") |
 
 
 ### Methods
@@ -84,7 +84,7 @@ MV ではGraphicsのメソッドだった。
 
 
 #### (static) escapeHtml (str) → {[String](String.md))}
-**@MZ** HTML 用の実体参照によるエスケープを行う。
+**@MZ** HTML 用の実体参照(&amp;amp;など)によるエスケープを行う。
 
 ##### Parameters:
 
