@@ -3,7 +3,7 @@
 ## Extends: [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
 
 ### new ColorFilter ()
-WebGLカラーフィルタオブジェクト。親クラスについて詳細は本家 PIXI のサイト [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html) を参照。
+WebGLカラーフィルタオブジェクト。
 
 関連クラス: [Scene_Base](Scene_Base.md), [Sprite](Sprite.md), [Spriteset_Base](Spriteset_Base.md)
 
