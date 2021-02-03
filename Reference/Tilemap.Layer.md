@@ -95,11 +95,11 @@ VAOの生成。
 
 
 #### destroy ()
-Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
+オーバーライド: [PIXI.Container](PIXI.Container.md#destroy-)
 
 
 #### initialize ()
-Overrides: [PIXI.Container](PIXI.Container.md#initialize-)
+オーバーライド: [PIXI.Container](PIXI.Container.md#initialize-)
 
 
 #### isReady () → {Boolean}
@@ -107,7 +107,7 @@ Overrides: [PIXI.Container](PIXI.Container.md#initialize-)
 
 
 #### render (renderer)
-Overrides:  [PIXI.Container](PIXI.Container.md#render-renderer)
+オーバーライド:  [PIXI.Container](PIXI.Container.md#render-renderer)
 
 
 #### setBitmaps (bitmaps)

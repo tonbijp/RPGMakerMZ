@@ -558,7 +558,7 @@ OverpassTile.js プラグインで使われている。
 #### destroy ()
 **(New!)**
 
-Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
+オーバーライド: [PIXI.Container](PIXI.Container.md#destroy-)
 
 
 #### initialize ()
@@ -603,6 +603,6 @@ Overrides: [PIXI.Container](PIXI.Container.md#destroy-)
 
 
 #### updateTransform ()
-Overrides: [PIXI.Container](PIXI.Container.md#updatetransform-)
+オーバーライド: [PIXI.Container](PIXI.Container.md#updatetransform-)
 
 

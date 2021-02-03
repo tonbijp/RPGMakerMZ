@@ -47,11 +47,11 @@ VAOの生成。
 
 
 #### destroy ()
-Overrides: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html#destroy)
+オーバーライド: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html#destroy)
 
 
 #### initialize ()
-Overrides: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html#initialize)
+オーバーライド: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html#initialize)
 
 
 ### getShader () → {[PIXI.Shader](PIXI.Shader.md)}
