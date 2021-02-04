@@ -2,7 +2,7 @@
 
 # クラス: [Tilemap](Tilemap.md).Layer
 
-## 継承元: [PIXI.Container](PIXI.Container.md)
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new Tilemap.Layer ()
 
@@ -30,7 +30,7 @@
 | `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
 
 
-### 継承されたメソッド
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
