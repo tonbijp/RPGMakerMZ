@@ -2,8 +2,7 @@
 
 # クラス: Math
 
-### new Math ()
-JavaScript の Mathオブジェクトにいくつか『RPGツクールMZ』独自のメソッドが追加してある。
+JavaScript の Mathオブジェクトに『RPGツクールMZ』独自のメソッドが追加してある。
 
 詳細は [MDN の Mathのページ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math)を見てもらうとして。
 ここでは追加されたメソッドのみ解説。

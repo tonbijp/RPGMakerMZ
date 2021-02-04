@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Input
 キーボードとゲームパッド(コントローラ)の入力に関する静的クラス。
 
@@ -8,7 +10,7 @@ JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/Keyb
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `keyRepeatWait` | [Number](Number.md) | [static] キーリピートまでの待ち時間(フレーム) |
 | `keyRepeatInterval` | [Number](Number.md) | [static] キーリピート間隔(フレーム) |

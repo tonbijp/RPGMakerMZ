@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Utils
 便利なメソッドを集めた静的クラス。主に利用環境のチェックを行う。
 
@@ -5,14 +7,13 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `RPGMAKER_NAME` | [String](String.md) | [static][read-only] RPGツクールの名前(規定値: "MZ") |
 | `RPGMAKER_VERSION` | [String](String.md) | [static][read-only]  RPGツクールのバージョン(例:  "1.0.0") |
 
 
 ### メソッド
-
 
 #### (static) canPlayOgg () → {Boolean}
 **@MZ** oggファイル再生可能か。

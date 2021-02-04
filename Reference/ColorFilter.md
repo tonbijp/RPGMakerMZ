@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: ColorFilter
 
 ## スーパークラス: [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
@@ -10,7 +12,7 @@ WebGLカラーフィルタオブジェクト。
 ### プロパティ
 以下は PIXI.Filter から継承されたプロパティです。
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `defaultFragmentSrc` | [String](String.md) | [static] |
 | `defaultVertexSrc` | [String](String.md)  | [static]  |

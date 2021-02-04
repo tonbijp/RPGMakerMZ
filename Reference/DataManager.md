@@ -13,12 +13,13 @@ $XXXで大域変数に設定されているものや、セーブデータの管�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_globalInfo` | Object | **(New!)** [static] セーブされるシステム情報  |
-| `_errors` | [Array](Array.md) | **(New!)**[static] エラーの配列 |
+| `_globalInfo` | Object | **@MZ** [static] セーブされるシステム情報  |
+| `_errors` | [Array](Array.md) | **@MZ**[static] エラーの配列 |
 | `_databaseFiles` | [Array](Array.md).&lt;[MV.DatabaseFile](MV.DatabaseFile.md)&gt; | [static] 読み込むデータファイル情報 |
 
+### 廃止MVプロパティ
+`_globalId`,`_lastAccessedId`,`_errorUrl`
 
-`_globalId`,`_lastAccessedId`,`_errorUrl`は廃止。
 
 ### メソッド
 
@@ -27,7 +28,7 @@ $XXXで大域変数に設定されているものや、セーブデータの管�
 
 
 #### (static) correctDataErrors ()
-**(New!)** セーブデータに含まれるエラーを正す。
+**@MZ** セーブデータに含まれるエラーを正す。
 
 
 #### (static) createGameObjects ()
@@ -43,7 +44,7 @@ $game から始まる大域変数に、対応したオブジェクトを生成�
 
 
 #### (static) extractArrayMetadata (array)
-**(New!)** 渡したデータの配列に含まれるnoteをメタデータに分解して、データに追加する。
+**@MZ** 渡したデータの配列に含まれるnoteをメタデータに分解して、データに追加する。
 
 ##### 引数
 
@@ -100,7 +101,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) isGlobalInfoLoaded () → {Boolean}
-**(New!)** `_globalInfo`が読み込まれているか。
+**@MZ** `_globalInfo`が読み込まれているか。
 
 
 #### (static) isItem (item) → {Boolean}
@@ -118,7 +119,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
  
 
 #### (static) isMapObject (object) → {Boolean}
-**(New!)** 渡したオブジェクトがマップオブジェクトか。
+**@MZ** 渡したオブジェクトがマップオブジェクトか。
 
 ##### 引数
 
@@ -257,7 +258,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) makeSavename (savefileId)
-**(New!)**  指定したセーブファイルID からセーブ名を返す。
+**@MZ**  指定したセーブファイルID からセーブ名を返す。
 
 ##### 引数
 
@@ -277,7 +278,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) onXhrLoad (xhr, name, src, url)
-**(New!)**  xhr(XMLHttpRequest)データ読み込み完了時に呼ばれるハンドラ。
+**@MZ**  xhr(XMLHttpRequest)データ読み込み完了時に呼ばれるハンドラ。
 
 ##### 引数
 
@@ -290,7 +291,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) onXhrError ( name, src, url)
-**(New!)**  xhr(XMLHttpRequest)データ読み込みエラー発生時に呼ばれるハンドラ。
+**@MZ**  xhr(XMLHttpRequest)データ読み込みエラー発生時に呼ばれるハンドラ。
 
 ##### 引数
 
@@ -302,11 +303,11 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) removeInvalidGlobalInfo ()
-**(New!)** 適正でない情報を`_globalInfo`から削除。
+**@MZ** 適正でない情報を`_globalInfo`から削除。
 
  
 #### (static) savefileExists (savefileId)
-**(New!)** 指定IDのセーブファイルが存在するか。
+**@MZ** 指定IDのセーブファイルが存在するか。
 
 ##### 引数
 
@@ -336,7 +337,7 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) savefileInfo (savefileId) → {[MV.SaveFileInfo](MV.SaveFileInfo.md)}
-**(New!)** 指定IDのセーブファイル情報を得る。
+**@MZ** 指定IDのセーブファイル情報を得る。
 
 ##### 引数
 

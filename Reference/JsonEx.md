@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: JsonEx
 JSONファイルを扱う静的ビルトインクラス [JSON](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON) のラッパークラス。
 
@@ -10,7 +12,7 @@ Namespace [RPG](RPG.md) に分類しているのがJSONデータ。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `maxDepth` | [Number](Number.md) | [static] オブジェクトの最高深度(規定値:100) |
 

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Graphics
 画像の処理を行うための静的クラス。
 
@@ -15,7 +17,7 @@
 ### プロパティ
 BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合成方法]](Sprite.md#合成方法)の指定用定数。
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `BLEND_ADD` | [Number](Number.md) | [static] 加算 |
 | `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
@@ -44,7 +46,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 | `_renderer` | PIXI.SystemRenderer | [static] レンダラ |
 | `_stretchEnabled` | Boolean | [static] 画面の伸縮可能か |
 
-#### 廃止MVプロパティ
+### 廃止MVプロパティ
 [static]
 `_cssFontLoading`,
 `_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`

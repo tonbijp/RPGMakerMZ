@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Rectangle
 
 ## スーパークラス: [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
@@ -20,7 +22,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | 矩形左の x座標(ピクセル) |
 | `y` | [Number](Number.md) | 矩形上の y座標(ピクセル) |
@@ -28,7 +30,7 @@
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
-#### 廃止MVプロパティ
+### 廃止MVプロパティ
 `emptyRectangle` (代わりに親クラスから継承したEMPTYを使う)
 
 ### メソッド

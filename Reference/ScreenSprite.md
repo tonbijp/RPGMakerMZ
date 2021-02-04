@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: ScreenSprite
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
@@ -9,7 +11,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `opacity` | [Number](Number.md) |  不透明度 (0〜255) |
 | `_graphics` | [PIXI.Graphics](PIXI.Graphics.md) |  画像管理オブジェクト |
@@ -17,7 +19,7 @@
 | `_green` | [Number](Number.md) |  緑 (0〜255) |
 | `_blue` | [Number](Number.md) |  青 (0〜255) |
 
-#### 廃止MVプロパティ
+### 廃止MVプロパティ
 `YEPWarned`, `anchor`, `blendMode`, `_colorText` 
 
 ### スーパークラスから継承されたメソッド

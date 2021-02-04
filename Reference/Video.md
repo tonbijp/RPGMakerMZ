@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Video
 **@MZ** 動画の処理を行うための静的クラス。
 
@@ -8,7 +10,7 @@ MVでは [Graphics](Graphics.md) に含まれていた動画機能が独立し�
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_element` | HTMLElament | [static] HTMLVideoElement |
 | `_loading` | Boolean | [static] ロード中か |

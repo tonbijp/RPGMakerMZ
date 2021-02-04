@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: TouchInput
 マウスやタッチスクリーンによるタッチ入力を扱う静的クラス。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `keyRepeatWait` | [Number](Number.md) | [static] The wait time of the pseudo key repeat in frames. |
 | `keyRepeatInterval` | [Number](Number.md) | [static] The interval of the pseudo key repeat in frames. |
@@ -25,7 +27,7 @@
 | `_date` | [Number](Number.md) | [static] |
 
 
-#### 廃止MVプロパティ
+### 廃止MVプロパティ
 [static]
 `_events`, `_triggered`, `_cancelled`, `_wheelX`, `_wheelY`
 

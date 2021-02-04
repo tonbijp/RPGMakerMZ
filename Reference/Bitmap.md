@@ -1,4 +1,4 @@
-[クラスツリー](index.md) | [公式リファレンス:Bitmap](https://tkool.jp/mz/rmmz_api/Bitmap.html)
+[クラスツリー](index.md)
 
 # クラス: Bitmap
 
@@ -47,9 +47,7 @@ v1.1.1 で変更あり。
 | `_baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) |  |
 | `_context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) |  |
 | `_canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)  |  |
-| `_image` |  **(New!)** [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  |
-
-`cacheEntry` は廃止。
+| `_image` |  **@MZ** [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  |
 
 #### 読み込みの状態
 
@@ -64,6 +62,9 @@ v1.1.1 で変更あり。
 | "decryptCompleted" | 復号完了 |
 | "loaded" | 画像の利用準備完了 |
 | "error" | エラー発生 |
+
+### 廃止MVプロパティ
+`cacheEntry`
 
 
 ### メソッド
@@ -133,11 +134,11 @@ v1.1.1 で変更あり。
 
 
 #### _createBaseTexture (source)
-**(New!)** 基礎テクスチャの生成。
+**@MZ** 基礎テクスチャの生成。
 
 
 #### _createCanvas (width, height)
-**(New!)** キャンバスの生成。
+**@MZ** キャンバスの生成。
 
 ##### 引数
 
@@ -148,11 +149,11 @@ v1.1.1 で変更あり。
 
 
 #### _destroyCanvas ()
-**(New!)** キャンバスを破棄。
+**@MZ** キャンバスを破棄。
 
 
 #### _ensureCanvas ()
-**(New!)** キャンバスを確保。
+**@MZ** キャンバスを確保。
 
 
 #### _onLoad ()
@@ -160,7 +161,7 @@ v1.1.1 で変更あり。
 
 
 #### _onXhrLoad (xhr)
-**(New!)** XMLHttpRequest読み込み時に呼ばれるハンドラ。
+**@MZ** XMLHttpRequest読み込み時に呼ばれるハンドラ。
 
 ##### 引数
 
@@ -170,15 +171,15 @@ v1.1.1 で変更あり。
 
 
 #### _startLoading ()
-**(New!)** 読み込みの開始。
+**@MZ** 読み込みの開始。
 
 
 #### _startDecrypting ()
-**(New!)** 復号の開始。
+**@MZ** 復号の開始。
 
 
 #### _updateScaleMode ()
-**(New!)** 拡大モードのアップデート。
+**@MZ** 拡大モードのアップデート。
 
 
 #### addLoadListener (listner)
@@ -401,7 +402,7 @@ v1.1.1 で変更あり。
 
 
 #### retry ()
-**(New!)** 画像読み込みの再施行。
+**@MZ** 画像読み込みの再施行。
 
 
 #### resize (width, height)
@@ -430,7 +431,7 @@ v1.1.1 で変更あり。
 
 
 #### strokeRect (x, y, width, height, color) 
-**(New!)** 矩形を描画。
+**@MZ** 矩形を描画。
 
 ##### 引数
 
@@ -443,4 +444,5 @@ v1.1.1 で変更あり。
 | `color` | [MV.CssColor](MV.CssColor.md) | 色 |
 
 
-#### ~~touch ()~~ (廃止)
+### MV廃止メソッド
+touch ()

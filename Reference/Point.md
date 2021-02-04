@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Point
 
 ## スーパークラス: [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
@@ -16,7 +18,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
