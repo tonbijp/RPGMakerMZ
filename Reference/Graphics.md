@@ -1,4 +1,4 @@
-# Class: Graphics
+# クラス: Graphics
 画像の処理を行うための静的クラス。
 
 通常の画面を中心に、ローディングやエラー表示も取り扱う。
@@ -12,10 +12,10 @@
 関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md)
 
 
-### Properties:
+### プロパティ
 BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合成方法]](Sprite.md#合成方法)の指定用定数。
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `BLEND_ADD` | [Number](Number.md) | [static] 加算 |
 | `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
@@ -49,7 +49,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[[合
 `_cssFontLoading`,
 `_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`
 
-### Methods
+### メソッド
 
 #### (static) _applyCanvasFilter ()
 canvas フィルタを適用。
@@ -64,9 +64,9 @@ canvas フィルタを適用。
 #### (static) _centerElement (element)
 指定要素を中央に配置。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `element` | HTMLElement | HTML要素 |
 
@@ -118,9 +118,9 @@ canvas の生成。
 #### (static) _makeErrorHtml (name, message) → {[String](String.md)}
 エラー文字列を生成して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | エラー名 |
 | `message` | [String](String.md) | メッセージ |
@@ -130,9 +130,9 @@ canvas の生成。
 キーが押された時に呼ばれるハンドラ。<br />
 (F2, F3, F4 キーの処理)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | KeyboardEvent | キーボードイベント |
 
@@ -144,9 +144,9 @@ canvas の生成。
 #### (static) _onTick (deltaTime)
 **@MZ** FPSカウンタを進める時に呼ばれるハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `deltaTime` | [Number](Number.md) | 単位時間 |
 
@@ -215,9 +215,9 @@ canvas をアップデート。
 画像機能の初期化し、完了したら true を返す。<br />
 通常 [SceneManager](SceneManager.md) の `_screenWidth`, `_screenHeight`が引数に使われるので、x:816, y:624 が初期値となる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `width` | [Number](Number.md) | ゲーム画面の幅(ピクセル) (規定値:800)|
 | `height` | [Number](Number.md) | ゲーム画面の高さ(ピクセル) (規定値:600) |
@@ -227,9 +227,9 @@ canvas をアップデート。
 #### (static) isInsideCanvas (x, y) → {Boolean}
 指定座標が canvas 内にあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -238,9 +238,9 @@ canvas をアップデート。
 #### (static) pageToCanvasX (x) → {[Number](Number.md)}
 ページ内の x座標を canvas 内の x座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ページ内の x座標(ピクセル) |
 
@@ -248,9 +248,9 @@ canvas をアップデート。
 #### (static) pageToCanvasY (y) → {[Number](Number.md)}
 ページ内の y座標を canvas 内の y座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | ページ内の x座標(ピクセル) |
 
@@ -258,9 +258,9 @@ canvas をアップデート。
 #### (static) printError (name, message)
 エラーを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | エラー名 |
 | `message` | [String](String.md) | エラーメッセージ |
@@ -270,9 +270,9 @@ canvas をアップデート。
 #### (static) resize (width, height)
 **@MZ** ゲーム画面のサイズを再設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `width` | [Number](Number.md) | ゲーム画面の幅(ピクセル) (規定値:800)|
 | `height` | [Number](Number.md) | ゲーム画面の高さ(ピクセル) (規定値:600) |
@@ -281,9 +281,9 @@ canvas をアップデート。
 #### (static) setTickHandler (handler)
 **@MZ** tickイベントのハンドラの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `handler` | Function | 設定するハンドラ |
 
@@ -291,9 +291,9 @@ canvas をアップデート。
 #### (static) showRetryButton (retry)
 **@MZ** リトライボタンを表示し、クリックハンドラを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `retry` | Function | ボタンクリック時に実行されるハンドラ |
 

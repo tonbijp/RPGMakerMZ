@@ -1,6 +1,6 @@
-# Class:  [RPG](RPG.md).Tileset
+# クラス:  [RPG](RPG.md).Tileset
 
-## Extends: [RPG.MetaData](RPG.MetaData.md)
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md)
 
 | データベース| JSONファイル | 大域変数 |
 | --- | --- | --- |
@@ -9,9 +9,9 @@
 関連クラス: [Game_Map](Game_Map.md),  [Tilemap](Tilemap.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) |  タイルセットのID |
 | `name` | [String](String.md) | [名前] |

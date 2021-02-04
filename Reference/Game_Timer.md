@@ -1,4 +1,4 @@
-# Class: Game_Timer
+# クラス: Game_Timer
 
 ### new Game_Timer ()
 
@@ -9,15 +9,15 @@
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_frames` | [Number](Number.md) | 残り時間(フレーム数) |
 | `_working` | Boolean | 動作しているか |
 
 
-### Methods
+### メソッド
 
 #### initialize ()
  オブジェクト生成時の初期化。
@@ -35,9 +35,9 @@
 #### start (count)
 指定されたカウントでタイマーを開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `count` | [Number](Number.md) | カウント時間(フレーム数) |
 
@@ -48,9 +48,9 @@
 #### update (sceneActive)
 シーンがアクティブな場合、タイマーをアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneActive` | Boolean | シーンがアクティブか |
 

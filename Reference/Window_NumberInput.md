@@ -1,6 +1,6 @@
-# Class: Window_NumberInput
+# クラス: Window_NumberInput
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_NumberInput (messageWindow)
 [数値入力の処理]を行うウィンドウ。
@@ -8,16 +8,16 @@
 関連クラス: [Window_EventItem](Window_EventItem.md)
 
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 | `_number` | [Number](Number.md) | 入力中の数値 |
@@ -25,7 +25,7 @@
 | `_buttons` | [Array](Array.md).&lt;[Sprite_Button](Sprite_Button.md)&gt; | ボタンの配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -241,7 +241,7 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### buttonY () → {[Number](Number.md)}
 ボタンY座標(ピクセル)を返す。
@@ -249,9 +249,9 @@
 #### changeDigit (up)
 編集中の桁を変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `up` | Boolean | 桁をあげるか |
 
@@ -261,7 +261,7 @@
 
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### hideButtons ()
@@ -269,41 +269,41 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (messageWindow)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 
 
 #### isCancelEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
 
 
 #### isOkEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#isokenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#isokenabled---boolean)
 |
 
 #### isOkTriggered () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
 
 
 #### isTouchOkEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#istouchokenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#istouchokenabled---boolean)
 
 
 #### itemWidth () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#itemwidth---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#itemwidth---number)
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### onButtonDown ()
@@ -327,7 +327,7 @@ OKが選択された時に呼ばれるハンドラ。
 
 
 #### processOk ()
-Overrides: [Window_Selectable](Window_Selectable.md#processok-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processok-)
 
 
 #### showButtons ()
@@ -335,7 +335,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#processok-)
 
 
 #### spacing () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#spacing---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#spacing---number)
 
 
 #### start ()
@@ -343,7 +343,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#spacing---number)
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateButtonsVisiblity ()

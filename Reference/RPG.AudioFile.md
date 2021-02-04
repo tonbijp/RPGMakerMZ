@@ -1,10 +1,10 @@
-# Class: [RPG](RPG.md).AudioFile
+# クラス: [RPG](RPG.md).AudioFile
 音声ファイル情報を記述したJSONデータ。
 
 関連クラス: [RPG.Animation.Timing](RPG.Animation.Timing.md), [SoundManager](SoundManager.md), [WebAudio](WebAudio.md), [Html5Audio](Html5Audio.md)
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 音声ファイル名 |
 | `pan` | [Number](Number.md) | パン |

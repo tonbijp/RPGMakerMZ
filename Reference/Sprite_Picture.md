@@ -1,6 +1,6 @@
-# Class: Sprite_Picture
+# クラス: Sprite_Picture
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Picture (pictureId)
 
@@ -12,23 +12,23 @@
 
 関連クラス:  [Spriteset_Base](Spriteset_Base.md), [Game_Screen](Game_Screen.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID( [Game_Screen](Game_Screen.md) の _pictures 配列番号 ) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_pictureId` | [Number](Number.md) | ピクチャID |
 | `_pictureName` | [String](String.md) | 名前 |
 | `_isPicture` | Boolean | [ピクチャ]か |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -92,14 +92,14 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### initialize (pictureId)
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 
@@ -113,7 +113,7 @@ Overrides:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateBitmap ()

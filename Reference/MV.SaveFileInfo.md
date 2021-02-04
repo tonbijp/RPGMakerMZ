@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).SaveFileInfo
+# クラス: [MV](MV.md).SaveFileInfo
 
 ## Type: Object
 セーブファイル情報のパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [DataManager](DataManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `globalId` | [String](String.md) | グローバルID |
 | `title` | [String](String.md) | タイトル |

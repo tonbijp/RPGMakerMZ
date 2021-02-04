@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[System](RPG.System.md).TestBattler
+# クラス: [RPG](RPG.md).[System](RPG.System.md).TestBattler
 [戦闘テスト]用のバトラー(パーティメンバ)を渡すためのJSONデータ。
 
 実際のゲームのプレイで使われることはない。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 | `level` | [Number](Number.md) | アクターの[レベル] |

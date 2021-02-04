@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Item
+# クラス: [RPG](RPG.md).Item
 
-## Extends: [RPG.UsableItem](RPG.UsableItem.md)
+## スーパークラス: [RPG.UsableItem](RPG.UsableItem.md)
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -9,9 +9,9 @@
 [Game_Item](Game_Item.md) の _dataClass プロパティは 'item' になる。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `itypeId` | [Number](Number.md) | [アイテムタイプID](RPG.Item.md#アイテムタイプid) |
 | `price` | [Number](Number.md) | [価格] |

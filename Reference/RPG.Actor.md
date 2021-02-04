@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Actor
+# クラス: [RPG](RPG.md).Actor
 
-## Extends: [RPG.MetaData](RPG.MetaData.md)
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md)
 
 | データベース| JSONファイル | 大域変数 | オブジェクト | スプライト |
 | --- | --- | --- | --- | --- |
@@ -10,9 +10,9 @@
 
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Followers](Game_Followers.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | アクターID |
 | `name` | [String](String.md) | [名前] |

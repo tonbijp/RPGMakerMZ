@@ -1,26 +1,26 @@
-# Class: Sprite_Battler
+# クラス: Sprite_Battler
 
-## Extends: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Base](Sprite_Base.md)
 
 ### new Sprite_Battler (battler opt)
 戦闘シーンで表示されるキャラ画像。
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `battler` | [Game_Battler](Game_Battler.md) | &lt;optional&gt; | バトラー |
 
 
-### Sub Classes
+### サブクラス
 
 * [Sprite_Actor](Sprite_Actor.md)
 * [Sprite_Enemy](Sprite_Enemy.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_battler` | [Game_Battler](Game_Battler.md) | バトラー |
 | `_damages` | [Array](Array.md).&lt;[Sprite_Damage](Sprite_Damage.md)&gt; | ダメージポップアップ用 |
@@ -34,7 +34,7 @@
 | `_selectionEffectCount` | [Number](Number.md) | 選択エフェクトのカウント |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -109,7 +109,7 @@
 * [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
 
 
-### Methods
+### メソッド
 
 #### damageOffsetX () → {[Number](Number.md)}
 ダメージの xオフセットを返す。
@@ -124,7 +124,7 @@
 
 
 #### initialize ()
-Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### initMembers ()
@@ -146,9 +146,9 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 #### setBattler (battler)
 バトラーを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battler` | [Game_Battler](Game_Battler.md) | バトラー |
 
@@ -156,9 +156,9 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 #### setHome (x, y)
 基点を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | 基点の x座標 |
 | `y` | [Number](Number.md) | 基点の y座標 |
@@ -175,9 +175,9 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 #### startMove (x, y, duration)
 指定座標へ移動開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | 対象 x座標 |
 | `y` | [Number](Number.md) | 対象 y座標 |
@@ -185,7 +185,7 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite_Base](Sprite_Base.md#update-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateAnimation ()
@@ -221,7 +221,7 @@ Overrides:[Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateVisibility ()
-Overrides:[Sprite_Base](Sprite_Base.md#updateVisibility-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#updateVisibility-)
 
 
 

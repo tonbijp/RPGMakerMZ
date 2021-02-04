@@ -1,6 +1,6 @@
-# Class: Scene_Debug
+# クラス: Scene_Debug
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Debug ()
 F9キーで開かれる、スイッチ・変数を編集するデバッグスクリーン用のクラス。
@@ -8,16 +8,16 @@ F9キーで開かれる、スイッチ・変数を編集するデバッグスク
 関連シーン: [Scene_Map](Scene_Map.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_rangeWindow ` | [Window_DebugRange](Window_DebugRange.md) |  範囲ウィンドウ |
 | `_editWindow ` | [Window_DebugEdit](Window_DebugEdit.md) |  編集ウィンドウ |
 | `_debugHelpWindow` | [Window_Base](Window_Base.md) |  ヘルプウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -87,10 +87,10 @@ F9キーで開かれる、スイッチ・変数を編集するデバッグスク
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createDebugHelpWindow ()
@@ -106,7 +106,7 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 ヘルプウィンドウに表示する文字を返す。
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### onEditCancel ()

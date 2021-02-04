@@ -1,20 +1,20 @@
-# Class: Window_ActorCommand
+# クラス: Window_ActorCommand
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_ActorCommand ()
 戦闘シーンのアクターのコマンド( [攻撃][スキル][防御][アイテム] )のウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
-#### Properties:
+#### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) |アクター |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -257,7 +257,7 @@
 * [windowWidth ()](Window_Command.md#windowwidth---number)
 
 
-### Methods
+### メソッド
 
 #### addAttackCommand ()
 [攻撃]コマンドを追加。
@@ -276,31 +276,31 @@
 
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
+オーバーライド: [Window_Command](Window_Command.md#numvisiblerows-)
 
 
 #### processOk ()
-Overrides: [Window_Selectable](Window_Selectable.md#processok-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processok-)
 
 
 #### setup (actor)
 指定アクターのコマンドを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 

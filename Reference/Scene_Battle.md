@@ -1,6 +1,6 @@
-# Class: Scene_Battle
+# クラス: Scene_Battle
 
-## Extends: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Base](Scene_Base.md)
 
 ### new Scene_Battle ()
 戦闘シーンのコマンドやメッセージのウィンドウ、[敵キャラ]やサイドビューの[アクター]の画像を管理するクラス。
@@ -8,9 +8,9 @@
 関連クラス: [SceneManager](SceneManager.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Game_Enemy](Game_Enemy.md), [Game_Troop](Game_Troop.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md)<br />
 関連シーン: [Scene_Boot](Scene_Boot.md), [Scene_Map](Scene_Map.md), [Scene_GameEnd](Scene_GameEnd.md), [Scene_Gameover](Scene_Gameover.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_spriteset` | [Spriteset_Battle](Spriteset_Battle.md) | 戦闘スプライトセット |
 | `_statusWindow` | [Window_BattleStatus](Window_BattleStatus.md) | [ステータス]ウィンドウ |
@@ -26,7 +26,7 @@
 | `_scrollTextWindow` | [Window_ScrollText](Window_ScrollText.md) | スクロールテキストウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -82,7 +82,7 @@
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 
-### Methods
+### メソッド
 
 #### changeInputWindow ()
 [パーティ]か[アクター]のコマンドウィンドウの選択、非選択を状態に応じて切り替え。
@@ -113,7 +113,7 @@
 
 
 #### create ()
-Overrides: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
 #### createActorCommandWindow ()
@@ -178,7 +178,7 @@ Overrides: [Scene_Base](Scene_Base.md#create-)
 
 
 #### initialize ()
-Overrides:[Scene_Base](Scene_Base.md#initialize-)
+オーバーライド:[Scene_Base](Scene_Base.md#initialize-)
 
 
 #### isAnyInputWindowActive () → {Boolean}
@@ -245,7 +245,7 @@ Overrides:[Scene_Base](Scene_Base.md#initialize-)
 
 
 #### start ()
-Overrides:[Scene_Base](Scene_Base.md#start-)
+オーバーライド:[Scene_Base](Scene_Base.md#start-)
 
 
 #### startActorCommandSelection ()
@@ -256,15 +256,15 @@ Overrides:[Scene_Base](Scene_Base.md#start-)
 [パーティ]コマンドの選択開始。
 
 #### stop ()
-Overrides:[Scene_Base](Scene_Base.md#stop-)
+オーバーライド:[Scene_Base](Scene_Base.md#stop-)
 
 
 #### terminate ()
-Overrides:[Scene_Base](Scene_Base.md#terminate-)
+オーバーライド:[Scene_Base](Scene_Base.md#terminate-)
 
 
 #### update ()
-Overrides:[Scene_Base](Scene_Base.md#update-)
+オーバーライド:[Scene_Base](Scene_Base.md#update-)
 
 
 #### updateBattleProcess ()

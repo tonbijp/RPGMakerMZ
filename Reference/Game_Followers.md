@@ -1,4 +1,4 @@
-# Class: Game_Followers
+# クラス: Game_Followers
 
 ### new Game_Followers ()
 [Game_Follower](Game_Follower.md) をまとめた[隊列メンバー]の並びなどを管理するクラス。
@@ -6,16 +6,16 @@
  [$gamePlayer.followers()](Game_Player.md#followers---game_followers) メソッドで得られる。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_visible` | Boolean | [パーティの隊列歩行]か |
 | `_gathering` | Boolean | 集合しているか |
 | `_data` | [Array](Array.md).&lt;[Game_Follower](Game_Follower.md)&gt; | [隊列メンバー]の配列 |
 
 
-### Methods
+### メソッド
 
 #### areGathered () → {Boolean}
 [隊列メンバー]が集合しているか。
@@ -33,9 +33,9 @@
 指定した番号の[隊列メンバー]を返す。<br />
 プレイヤー(先頭のキャラ)は隊列メンバーに含まれず、 0:2番目, 1:3番目, 2:4番目とindex は0から始まり2番目のキャラから指定される。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | [隊列メンバー]番号 |
 
@@ -43,9 +43,9 @@
 #### forEach (callback, thisObject)
  各[隊列メンバー]オブジェクトを対象に関数を実行する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `callback` | function | コールバック関数 |
 | `thisObject` | * | 現在のオブジェクト(通常this) |
@@ -66,9 +66,9 @@
 #### isSomeoneCollided (x, y) → {Boolean}
  指定位置に[隊列メンバー]の誰かがいるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  x座標(タイル数) |
 | `y` | [Number](Number.md) |  y座標(タイル数) |
@@ -89,9 +89,9 @@
 #### reverseEach (callback, thisObject)
  各[隊列メンバー]オブジェクトを対象に逆順に関数を実行する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `callback` | function | コールバック関数 |
 | `thisObject` | * | 現在のオブジェクト(通常this) |
@@ -104,9 +104,9 @@
 #### synchronize (x, y, d)
  指定の位置と向きに[隊列メンバー]を揃える。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |

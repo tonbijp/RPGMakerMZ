@@ -1,11 +1,11 @@
-# Class: [RPG](RPG.md).Effect
+# クラス: [RPG](RPG.md).Effect
 アイテムやスキルの[使用効果]のデータ。
 
 関連クラス: [Game_Action](Game_Action.md), [RPG.UsableItem](RPG.UsableItem.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `code` | [Number](Number.md) | [使用効果]コード \([下表](RPG.Effect.md#code)を参照) |
 | `dataId` | [Number](Number.md) | code 毎に意味の異なるID |

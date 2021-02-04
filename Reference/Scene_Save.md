@@ -1,6 +1,6 @@
-# Class: Scene_Save
+# クラス: Scene_Save
 
-## Extends: [Scene_File](Scene_File.md)
+## スーパークラス: [Scene_File](Scene_File.md)
 
 #### new Scene_Save ()
 セーブ画面のシーン。
@@ -9,7 +9,7 @@
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Menu](Scene_Menu.md)
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -85,22 +85,22 @@
 * [start ()](Scene_File.md#start-)
 
 
-### Methods
+### メソッド
 
 #### firstSavefileIndex () → {[Number](Number.md)}
-Overrides:  [Scene_File](Scene_File.md#firstsavefileindex---number)
+オーバーライド:  [Scene_File](Scene_File.md#firstsavefileindex---number)
 
 
 #### helpWindowText () → {[String](String.md)}
-Overrides: [Scene_File](Scene_File.md#helpwindowtext---string)
+オーバーライド: [Scene_File](Scene_File.md#helpwindowtext---string)
 
 
 #### initialize ()
-Overrides: [Scene_File](Scene_File.md#initialize-)
+オーバーライド: [Scene_File](Scene_File.md#initialize-)
 
 
 #### mode () → {[String](String.md)}
-Overrides: [Scene_File](Scene_File.md#mode---string)
+オーバーライド: [Scene_File](Scene_File.md#mode---string)
 
 
 #### onSaveFailure ()
@@ -108,7 +108,7 @@ Overrides: [Scene_File](Scene_File.md#mode---string)
 
 
 #### onSavefileOk ()
-Overrides: [onSavefileOk ()](Scene_File.md#onsavefileok-)
+オーバーライド: [onSavefileOk ()](Scene_File.md#onsavefileok-)
 
 
 #### onSaveSuccess ()

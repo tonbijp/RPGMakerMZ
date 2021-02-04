@@ -1,15 +1,15 @@
-# Class: Window_BattleSkill
+# クラス: Window_BattleSkill
 
-## Extends: [Window_SkillList](Window_SkillList.md)
+## スーパークラス: [Window_SkillList](Window_SkillList.md)
 
 ### new Window_BattleSkill (x, y, width, height)
 戦闘シーンでのスキル選択ウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,7 +17,7 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -253,17 +253,17 @@
 * [updateHelp ()](Window_SkillList.md#updatehelp-)
 
 
-### Methods
+### メソッド
 
 #### initialize (x, y, width, height)
-Overrides: [Window_SkillList](Window_SkillList.md#initialize-x-y-width-height)
+オーバーライド: [Window_SkillList](Window_SkillList.md#initialize-x-y-width-height)
 
 
 #### show ()
-Overrides: [Window_Base](Window_Base.md#show-)
+オーバーライド: [Window_Base](Window_Base.md#show-)
 
 
 #### hide ()
-Overrides: [Window_Base](Window_Base.md#hide-)
+オーバーライド: [Window_Base](Window_Base.md#hide-)
 
 

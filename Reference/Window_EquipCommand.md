@@ -1,29 +1,29 @@
-# Class: Window_EquipCommand
+# クラス: Window_EquipCommand
 
-## Extends: [Window_HorzCommand](Window_HorzCommand.md)
+## スーパークラス: [Window_HorzCommand](Window_HorzCommand.md)
 
 ### new Window_EquipCommand (x, y, width)
 [装備]シーンで水平に並ぶコマンド( [装備][最強装備][全て外す] )のウィンドウ。
 
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 | `width` | [Number](Number.md) | 幅(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_windowWidth` | [Number](Number.md) | 幅(ピクセル) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -269,21 +269,21 @@
 * [numVisibleRows ()](Window_HorzCommand.md#numvisiblerows---number)
 
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_HorzCommand](Window_HorzCommand.md#initialize-x-y)
+オーバーライド: [Window_HorzCommand](Window_HorzCommand.md#initialize-x-y)
 
 
 #### itemTextAlign () → {[String](String.md)}
-Overrides: [Window_HorzCommand](Window_Command.md#itemtextalign---string)
+オーバーライド: [Window_HorzCommand](Window_Command.md#itemtextalign---string)
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_HorzCommand](Window_HorzCommand.md#maxcols---number)
+オーバーライド: [Window_HorzCommand](Window_HorzCommand.md#maxcols---number)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 

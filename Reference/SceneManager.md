@@ -1,13 +1,13 @@
-# Class: SceneManager
+# クラス: SceneManager
 シーン( [Scene_Base](Scene_Base.md) の子孫クラス )を管理する静的クラス。
  
 また、全体の update の基点になるクラス。
 
 関連クラス: [Graphics](Graphics.md), [Bitmap](Bitmap.md), [AudioManager](AudioManager.md), [Input](Input.md), [TouchInput](TouchInput.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_scene` | [Scene_Base](Scene_Base.md) | [static] 現在のシーン |
 | `_nextScene` | [Scene_Base](Scene_Base.md) | [static] 次のシーン |
@@ -26,7 +26,7 @@
 | `_accumulator` | [Number](Number.md) | [static] _deltaTimeまでの経過時間 |
 
 
-### Methods
+### メソッド
 
 #### (static) _getTimeInMsWithoutMobileSafari () → {[Number](Number.md)}
 iOS Safari を除き、現在の時刻(ms)を返す。
@@ -39,9 +39,9 @@ iOS Safari を除き、現在の時刻(ms)を返す。
 #### (static) catchException (e)
 例外を受け取るハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `e` | Event | エラーイベント |
 
@@ -73,9 +73,9 @@ WebGL が使えない環境ならエラーを発生させる。
 #### (static) goto (sceneClass)
 指定したシーンに遷移。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneClass` | [Scene_Base](Scene_Base.md) | 移動先のシーン |
 
@@ -111,9 +111,9 @@ NW.js の初期化。
 #### (static) isNextScene (sceneClass) → {Boolean}
 指定したシーンが次のシーンか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneClass` | [Scene_Base](Scene_Base.md) | 比較するシーン |
 
@@ -121,9 +121,9 @@ NW.js の初期化。
 #### (static) isPreviousScene (sceneClass) → {Boolean}
 指定したシーンが前のシーンか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneClass` | [Scene_Base](Scene_Base.md) | 比較するシーン  |
 
@@ -135,9 +135,9 @@ NW.js の初期化。
 #### (static) onError (e)
 エラーハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `e` | Event |  エラーイベント |
 
@@ -145,9 +145,9 @@ NW.js の初期化。
 #### (static) onKeyDown (event)
 キー押下イベントハンドラ。ここではリロード(F5)とデバッグウィンドウ(F8)の制御を行なっている。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | KeyboardEvent | キーボードイベント |
 
@@ -179,9 +179,9 @@ NW.js の初期化。
 #### (static) push (sceneClass)
 指定したシーンに遷移し履歴を残す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneClass` | [Scene_Base](Scene_Base.md) | 遷移先のシーン |
 
@@ -201,9 +201,9 @@ NW.js の初期化。
 #### (static) run (sceneClass)
 指定したシーンの実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sceneClass` | [Scene_Base](Scene_Base.md) |  実行するシーン |
 

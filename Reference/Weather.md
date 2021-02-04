@@ -1,14 +1,14 @@
-# Class: Weather
+# クラス: Weather
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 #### new Weather ()
 The weather effect which displays rain, storm, or snow.
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [String](String.md) | The type of the weather. |
 | `power` | [Number](Number.md) | The power of the weather in the range (0, 9). |
@@ -30,7 +30,7 @@ The weather effect which displays rain, storm, or snow.
 | storm |  |
 | snow |  |
 
-### Methods
+### メソッド
 
 #### (static) _addSprite ()
 
@@ -43,9 +43,9 @@ The weather effect which displays rain, storm, or snow.
 
 #### (static) _rebornSprite (sprite)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 
@@ -61,36 +61,36 @@ The weather effect which displays rain, storm, or snow.
 
 #### (static) _updateRainSprite (sprite)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 
 
 #### (static) _updateSnowSprite (sprite)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 
 
 #### (static) _updateSprite (sprite)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 
 
 #### (static) _updateStormSprite (sprite)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 

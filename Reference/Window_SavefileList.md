@@ -1,15 +1,15 @@
-# Class: Window_SavefileList
+# クラス: Window_SavefileList
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_SavefileList (x, y, width, height)
 セーブ・ロード時にファイルを選択するウィンドウ。
 
 関連クラス: [Scene_File](Scene_File.md), [Scene_Save](Scene_Save.md), [Scene_Load](Scene_Load.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -17,14 +17,14 @@
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_mode` | [String](String.md) | モード( 'load', 'save' ) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -247,14 +247,14 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawContents (info, rect, valid)
 内容を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | Object | 情報 {key:String} |
 | `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
@@ -264,9 +264,9 @@
 #### drawFileId (id, x, y)
 指定ファイルIDの内容を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | ファイルID |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -276,9 +276,9 @@
 #### drawGameTitle (info, x, y, width)
 タイトルを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | Object | 情報 {key:String} |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -287,15 +287,15 @@
 
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### drawPartyCharacters (info, x, y)
 指定したパーティキャラを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | Object | 情報 {key:String} |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -305,9 +305,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### drawPlaytime (info, x, y, width)
 プレイ時間を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `info` | Object | 情報 {key: string} |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -316,15 +316,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### itemHeight () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#itemheight---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#itemheight---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### maxVisibleItems () → {[Number](Number.md)}
@@ -332,15 +332,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### playOkSound ()
-Overrides: [Window_Selectable](Window_Selectable.md#playoksound-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#playoksound-)
 
 
 #### setMode (mode)
 モードを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `mode` | [String](String.md) | モード( 'load', 'save' ) |
 

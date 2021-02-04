@@ -1,6 +1,6 @@
-# Class: Window
+# クラス: Window
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new Window ()
 ゲーム内で使われるウィンドウ。ブラウザやその他アプリケーションのウィンドウではない。<br />
@@ -22,14 +22,14 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md)
 
-### Sub Classes
+### サブクラス
 
 * [Window_Base](Window_Base.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `active` | Boolean | ウィンドウがアクティブか |
 | `openness` | [Number](Number.md) | 開放度(0 〜 255) |
@@ -65,7 +65,7 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 | `_upArrowSprite` | [Sprite](Sprite.md) | 上向き矢印 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -100,7 +100,7 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 
 
-### Methods
+### メソッド
 
 ####  _createAllParts ()
 ウィンドウの表示に必要な部品を生成する。
@@ -157,9 +157,9 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 #### addChildToBack (child) → {Object}
 ウィンドウ( `_windowSpriteContainer` )の上に子オブジェクトを追加し、追加されたオブジェクトを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `child` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 追加するオブジェクト |
 
@@ -182,9 +182,9 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 #### move (x, y, width, height)
 指定した位置と大きさにウィンドウを変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -195,9 +195,9 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 #### setCursorRect (x, y, width, height)
 コマンド用カーソルの位置と大きさを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | カーソル x座標(ピクセル) |
 | `y` | [Number](Number.md) | カーソル y座標(ピクセル) |
@@ -208,9 +208,9 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 #### setTone (r, g, b)
 背景の色調を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `r` | [Number](Number.md) | 赤(-255 〜 255) |
 | `g` | [Number](Number.md) | 緑(-255 〜 255) |
@@ -222,6 +222,6 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 
 
 #### updateTransform ()
-Overrides: [PIXI.Container](PIXI.Container.md#updatetransform-)
+オーバーライド: [PIXI.Container](PIXI.Container.md#updatetransform-)
 
 

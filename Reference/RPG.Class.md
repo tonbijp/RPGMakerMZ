@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Class
+# クラス: [RPG](RPG.md).Class
 
-## Extends: [RPG.MetaData](RPG.MetaData.md) 
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -9,9 +9,9 @@
 [Game_Actor](Game_Actor.md) の _classId プロパティで参照される。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) |職業ID |
 | `name` | [String](String.md) | [名前] |

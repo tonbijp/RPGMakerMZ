@@ -1,29 +1,29 @@
-# Class: Window_SkillType
+# クラス: Window_SkillType
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_SkillType (x, y)
 [スキルタイプ]\( [魔法][必殺技] )選択ウィンドウ。
 
 関連クラス: [Scene_Skill](Scene_Skill.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | 対象アクター |
 | `_skillWindow` | [Window_SkillList](Window_SkillList.md) | スキルウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -266,18 +266,18 @@
 * [windowHeight ()](Window_Command.md#windowheight---number)
 
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
+オーバーライド: [Window_Command](Window_Command.md#numvisiblerows-)
 
 
 #### selectLast ()
@@ -287,9 +287,9 @@ Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
 #### setActor (actor)
 指定アクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -297,18 +297,18 @@ Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
 #### setSkillWindow (skillWindow)
 指定されたスキルウィンドウを設定する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillWindow` | [Window_SkillList](Window_SkillList.md) | スキルウィンドウ |
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 

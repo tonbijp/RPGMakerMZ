@@ -1,6 +1,6 @@
-# Class: Window_Help
+# クラス: Window_Help
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_Help (numLines)
 項目が選択された際の解説などを表示するウィンドウ。<br />
@@ -8,21 +8,21 @@
 
 関連クラス: [Scene_Battle](Scene_Battle.md), [Scene_MenuBase](Scene_MenuBase.md), [Scene_File](Scene_File.md), [Window_Selectable](Window_Selectable.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `numLines` | [Number](Number.md) | 行数 |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_text` | [String](String.md) | 表示される文 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -165,18 +165,18 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### clear ()
 文字の消去。
 
 
 #### initialize (numLines)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `numLines` | [Number](Number.md) | 行数 |
 
@@ -188,9 +188,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### setItem (item)
 指定アイテムの説明を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム情報 |
 
@@ -198,9 +198,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### setText (text)
 指定文字を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 表示する文 |
 

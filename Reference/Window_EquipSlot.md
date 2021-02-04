@@ -1,15 +1,15 @@
-# Class: Window_EquipSlot
+# クラス: Window_EquipSlot
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_EquipSlot (x, y, width, height)
 [装備]シーンでのスロットの選択ウィンドウ。
 
 関連クラス: [Scene_Equip](Scene_Equip.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -17,16 +17,16 @@
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `_itemWindow` | [Window_EquipItem](Window_EquipItem.md) | アイテム選択ウィンドウ |
 | `_statusWindow` | [Window_EquipStatus](Window_EquipStatus.md) | ステータスウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -249,25 +249,25 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### isEnabled (index) → {Boolean}指定番号のスロットが使えるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | スロット番号 |
 
@@ -277,15 +277,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boole
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number) 
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number) 
 
 
 #### setActor (actor)
 対象となるアクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -293,9 +293,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 #### setItemWindow (itemWindow)
 アイテムウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `itemWindow` | [Window_EquipItem](Window_EquipItem.md) | アイテムウィンドウ |
 
@@ -303,9 +303,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 #### setStatusWindow (statusWindow)
 ステータスウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `statusWindow` | [Window_EquipStatus](Window_EquipStatus.md) | ステータスウィンドウ |
 
@@ -313,18 +313,18 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 #### slotName (index) → {[String](String.md)}
 指定番号のスロット名を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | スロット番号 |
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateHelp ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatehelp-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatehelp-)
 
 

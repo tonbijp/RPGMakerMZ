@@ -1,4 +1,4 @@
-# Class: ImageManager
+# クラス: ImageManager
 画像ファイルの読み込み、保持(キャッシュ)、管理を行う静的オブジェクト。
 
 読み込みには、キャッシュの方式などが異なる loadXxxx()、reserveXxxx()、reserveXxxx() の3系統がある。
@@ -24,9 +24,9 @@
 関連クラス: [Bitmap](Bitmap.md), [Graphics](Graphics.md), [Game_Screen](Game_Screen.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `cache` | [CacheMap](CacheMap.md) | [static] キャッシュマップ |
 | `_imageCache` | [ImageCache](ImageCache.md) | [static] 画像キャッシュ |
@@ -34,7 +34,7 @@
 | `_systemReservationId` | [Number](Number.md) | [static] システム予約ID |
 
 
-### Methods
+### メソッド
 
 #### (static) clear ()
 RPGツクールMVの画像キャッシュをクリア。<br />
@@ -49,9 +49,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 指定したファイル名に'$'がついているか。<br />
 '$'がついている場合は3×4のひとキャラ分の画像とみなすのであって、実際大きい(big)かどうかはわからない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名 |
 
@@ -60,9 +60,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 指定したファイル名に'!'がついているか。<br />
 '!'がついている場合は表示際に上にずらさない画像とみなすのであって、実際が物体(object)の画像かどうかはわからない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名 |
 
@@ -75,9 +75,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 指定したファイル名に'!'がついているか。<br />
 '!'がついている場合はずらさない遠景画像とみなす。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名 |
 
@@ -85,9 +85,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadAnimation (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/animations/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -96,9 +96,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadBattleback1 (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/battlebacks1/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -107,9 +107,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadBattleback2 (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/battlebacks2/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -119,9 +119,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 指定したフォルダ・ファイル名の画像をプロジェクトフォルダ以下から読み込み、指定した色相にずらし、指定したスムージングの状態で返す。<br />
 色相の変更が必要ない場合 loadBitmap( folder, filename, null, true )　のように、色相に null を渡せば良い。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `folder` | [String](String.md) | | フォルダ名('img/faces/'のように指定する) |
 | `filename` | [String](String.md) | | ファイル名(拡張子.pngを除く） |
@@ -132,9 +132,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadCharacter (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/characters/'フォルダから読み込み、指定した色相にずらして返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -147,9 +147,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadEnemy (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/enemies/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -158,9 +158,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadFace (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/faces/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) (規定値:0) |
@@ -169,9 +169,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadNormalBitmap (path, hue) → {[Bitmap](Bitmap.md)}
 指定したパスの画像をプロジェクトフォルダ以下から読み込み、指定した色相にずらして返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `path` | [String](String.md) | パス文字列('img/system/Balloon.png'のように記述) |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -180,9 +180,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadParallax (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/parallaxes/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -191,9 +191,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadPicture (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/pictures/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -202,9 +202,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadSvActor (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/sv_actors/'フォルダから読み込み、指定した色相にずらして返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -213,9 +213,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadSvEnemy (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/sv_enemies/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -224,9 +224,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadSystem (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/system/'フォルダから読み込み、指定した色相にずらして返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -235,9 +235,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadTileset (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/tilesets/'フォルダから読み込み、指定した色相にずらして返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -246,9 +246,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadTitle1 (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/titles1/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -257,9 +257,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) loadTitle2 (filename, hue opt) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/titles2/'フォルダから読み込み、指定した色相にずらしスムージングをかけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `filename` | [String](String.md) |  | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | &lt;optional&gt; | 色相(360度) |
@@ -268,9 +268,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) releaseReservation (reservationId)
 指定IDの予約を開放。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `reservationId` | [Number](Number.md) | キャッシュID |
 
@@ -278,9 +278,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestAnimation (filename, hue) → {[Bitmap](Bitmap.md)}
 アニメーションを予約し、画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -289,9 +289,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestBattleback1 (filename, hue) → {[Bitmap](Bitmap.md)}
 戦闘の背景1を予約し、画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -300,9 +300,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestBattleback2 (filename, hue) → {[Bitmap](Bitmap.md)}
 戦闘の背景2を予約し、画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -311,9 +311,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestBitmap (folder, filename, hue, smooth) → {[Bitmap](Bitmap.md)}
 画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `folder` | [String](String.md) | フォルダ名('img/faces/'のように指定する) |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
@@ -324,9 +324,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestCharacter (filename, hue) → {[Bitmap](Bitmap.md)}
 キャラ画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -335,9 +335,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestEnemy (filename, hue) → {[Bitmap](Bitmap.md)}
 [敵キャラ]画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -346,9 +346,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestFace (filename, hue) → {[Bitmap](Bitmap.md)}
 [顔]画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -357,9 +357,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestNormalBitmap (path, hue) → {[Bitmap](Bitmap.md)}
 通常の画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `path` | [String](String.md) | パス文字列('img/system/Balloon.png'のように記述) |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -368,9 +368,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestParallax (filename, hue) → {[Bitmap](Bitmap.md)}
 マップ背景画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -379,9 +379,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestPicture (filename, hue) → {[Bitmap](Bitmap.md)}
 画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -390,9 +390,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestSvActor (filename, hue) → {[Bitmap](Bitmap.md)}
 サイドビュー[アクター]画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -401,9 +401,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestSvEnemy (filename, hue) → {[Bitmap](Bitmap.md)}
 サイドビュー[敵キャラ]画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -412,9 +412,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestSystem (filename, hue) → {[Bitmap](Bitmap.md)}
 システム画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -423,9 +423,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestTileset (filename, hue) → {[Bitmap](Bitmap.md)}
 タイルセット画像を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -434,9 +434,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestTitle1 (filename, hue) → {[Bitmap](Bitmap.md)}
 タイトル画像1を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -445,9 +445,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) requestTitle2 (filename, hue) → {[Bitmap](Bitmap.md)}
 タイトル画像2を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -456,9 +456,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveAnimation (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/animations/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -468,9 +468,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveBattleback1 (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/battlebacks1/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -480,9 +480,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveBattleback2 (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/battlebacks2/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -492,9 +492,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveBitmap (folder, filename, hue, smooth, reservationId) → {[Bitmap](Bitmap.md)}
 指定したフォルダ・ファイル名の画像をプロジェクトフォルダ以下から読み込み、指定した色相にずらし、指定したスムージングの状態で、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `folder` | [String](String.md) | フォルダ名('img/faces/'のように指定する) |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
@@ -506,9 +506,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveCharacter (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/characters/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -518,9 +518,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveEnemy (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/enemies/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -530,9 +530,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveFace (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/faces/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -542,9 +542,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveNormalBitmap (path, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したパスの画像をプロジェクトフォルダ以下から読み込み、指定した色相にずらして、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `path` | [String](String.md) | パス文字列('img/system/Balloon.png'のように記述)  |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -554,9 +554,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveParallax (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/parallaxes/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -566,9 +566,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reservePicture (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/pictures/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -578,9 +578,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveSvActor (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/sv_actors/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -590,9 +590,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveSvEnemy (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/sv_enemies/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -602,9 +602,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveSystem (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/system/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -614,9 +614,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveTileset (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/tilesets/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -626,9 +626,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveTitle1 (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/titles1/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -638,9 +638,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) reserveTitle2 (filename, hue, reservationId) → {[Bitmap](Bitmap.md)}
 指定したファイル名の画像を'img/titles2/'フォルダから読み込み、指定したキャッシュIDに登録し、返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名(拡張子.pngを除く） |
 | `hue` | [Number](Number.md) | 色相(360度) |
@@ -650,9 +650,9 @@ RPGツクールMVの画像キャッシュをクリア。<br />
 #### (static) setDefaultReservationId (reservationId)
 キャッシュIDの規定値を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `reservationId` | [Number](Number.md) | キャッシュID |
 

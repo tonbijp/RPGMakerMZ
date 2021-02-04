@@ -1,6 +1,6 @@
-# Class: Scene_Skill
+# クラス: Scene_Skill
 
-## Extends: [Scene_ItemBase](Scene_ItemBase.md)
+## スーパークラス: [Scene_ItemBase](Scene_ItemBase.md)
 
 ### new Scene_Skill ()
 [スキル]のシーン。
@@ -9,14 +9,14 @@
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_skillTypeWindow` | [Window_SkillType](Window_SkillType.md) | スキルタイプ選択ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -102,14 +102,14 @@
 * [showSubWindow (window)](Scene_ItemBase.md#showsubwindow-window)
 
 
-### Methods
+### メソッド
 
 #### commandSkill ()
 スキル選択を開始。
 
 
 #### create ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#create-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#create-)
 
 
 #### createItemWindow ()
@@ -124,11 +124,11 @@ Overrides: [Scene_ItemBase](Scene_ItemBase.md#create-)
 ステータスウィンドウを生成。
 
 #### initialize ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
 
 
 #### onActorChange ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
 
 
 #### onItemCancel ()
@@ -147,14 +147,14 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 
 #### useItem ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#useitem-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#useitem-)
 
 
 #### user () → {[Game_Actor](Game_Actor.md)}
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
 
 

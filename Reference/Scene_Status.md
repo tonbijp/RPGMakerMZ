@@ -1,20 +1,20 @@
-# Class: Scene_Status
+# クラス: Scene_Status
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Status ()
 [ステータス]のシーン。
 
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_statusWindow` | [Window_Status](Window_Status.md) | ステータスウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -82,23 +82,23 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### onActorChange ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
 
 
 #### refreshActor ()
 アクターの再描画。
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 

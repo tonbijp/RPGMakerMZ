@@ -1,13 +1,13 @@
-# Class: Window_MenuActor
+# クラス: Window_MenuActor
 
-## Extends: [Window_MenuStatus](Window_MenuStatus.md)
+## スーパークラス: [Window_MenuStatus](Window_MenuStatus.md)
 
 ### new Window_MenuActor ()
 [アイテム][スキル] メニューで、アクターを選択するのに使われるウィンドウ。
 
 関連クラス: [Scene_ItemBase](Scene_ItemBase.md), [Scene_Item](Scene_Item.md), [Scene_Skill](Scene_Skill.md)
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -246,26 +246,26 @@
 * [windowHeight ()](Window_MenuStatus.md#windowheight---number)
 * [windowWidth ()](Window_MenuStatus.md#windowwidth---number)
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_MenuStatus](Window_MenuStatus.md#initialize-x-y)
+オーバーライド: [Window_MenuStatus](Window_MenuStatus.md#initialize-x-y)
 
 
 #### processOk ()
-Overrides: [Window_MenuStatus](Window_MenuStatus.md#processok-)
+オーバーライド: [Window_MenuStatus](Window_MenuStatus.md#processok-)
 
 
 #### selectForItem (item)
 選択されたアイテム・スキルの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム・スキル |
 
 
 #### selectLast ()
-Overrides: [Window_MenuStatus](Window_MenuStatus.md#selectlast-)
+オーバーライド: [Window_MenuStatus](Window_MenuStatus.md#selectlast-)
 

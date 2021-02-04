@@ -1,6 +1,6 @@
-# Class: Sprite_Character
+# クラス: Sprite_Character
 
-## Extends: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Base](Sprite_Base.md)
 
 ### new Sprite_Character (character)
 
@@ -17,16 +17,16 @@
 
 関連クラス: [Scene_Map](Scene_Map.md), [Spriteset_Map](Spriteset_Map.md),[Sprite_Actor](Sprite_Actor.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタデータ |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_character` | [Game_Character](Game_Character.md) | キャラクタデータ |
 | `_balloonDuration` | [Number](Number.md) | フキダシの継続時間 |
@@ -37,7 +37,7 @@
 | `_balloonSprite` | [Sprite_Balloon](Sprite_Balloon.md) | 付随するフキダシスプライト |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -112,7 +112,7 @@
 * [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
 
 
-### Methods
+### メソッド
 
 #### characterBlockX () → {[Number](Number.md)}
 ブロックの x座標を返す。
@@ -139,11 +139,11 @@
 
 
 #### initialize (character)
-Overrides: [Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド: [Sprite_Base](Sprite_Base.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタデータ |
 
@@ -175,9 +175,9 @@ Overrides: [Sprite_Base](Sprite_Base.md#initialize-)
 #### setCharacter (character)
 キャラクタを再設定。コンストラクタに渡す値と同じ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) |  |
 
@@ -205,15 +205,15 @@ Overrides: [Sprite_Base](Sprite_Base.md#initialize-)
 #### tilesetBitmap (tileId) → {[Bitmap](Bitmap.md)}
 指定タイルIDのタイルセット画像(ビットマップ)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID |
 
 
 #### update ()
-Overrides: [Sprite_Base](Sprite_Base.md#update-)
+オーバーライド: [Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateAnimation ()
@@ -253,5 +253,5 @@ Overrides: [Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateVisibility ()
-Overrides: [Sprite_Base](Sprite_Base.md#updateVisibility-)
+オーバーライド: [Sprite_Base](Sprite_Base.md#updateVisibility-)
 

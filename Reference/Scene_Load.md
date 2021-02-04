@@ -1,6 +1,6 @@
-# Class: Scene_Load
+# クラス: Scene_Load
 
-## Extends: [Scene_File](Scene_File.md)
+## スーパークラス: [Scene_File](Scene_File.md)
 
 ### new Scene_Load ()
 ロード画面のシーン。
@@ -9,14 +9,14 @@
 関連シーン: [Scene_Save](Scene_Save.md), [Scene_Title](Scene_Title.md), [Scene_Map](Scene_Map.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_loadSuccess` | Boolean | ロードに成功したか |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -93,22 +93,22 @@
 * [start ()](Scene_File.md#start-)
 
 
-### Methods
+### メソッド
 
 #### firstSavefileIndex () → {[Number](Number.md)}
-Overrides:  [Scene_File](Scene_File.md#firstsavefileindex---number)
+オーバーライド:  [Scene_File](Scene_File.md#firstsavefileindex---number)
 
 
 #### helpWindowText () → {[String](String.md)}
-Overrides: [Scene_File](Scene_File.md#helpwindowtext---string)
+オーバーライド: [Scene_File](Scene_File.md#helpwindowtext---string)
 
 
 #### initialize ()
-Overrides: [Scene_File](Scene_File.md#initialize-)
+オーバーライド: [Scene_File](Scene_File.md#initialize-)
 
 
 #### mode () → {[String](String.md)}
-Overrides: [Scene_File](Scene_File.md#mode---string)
+オーバーライド: [Scene_File](Scene_File.md#mode---string)
 
 
 #### onLoadFailure ()
@@ -120,7 +120,7 @@ Overrides: [Scene_File](Scene_File.md#mode---string)
 
 
 #### onSavefileOk ()
-Overrides: [Scene_File](Scene_File.md#onsavefileok-)
+オーバーライド: [Scene_File](Scene_File.md#onsavefileok-)
 
 
 #### reloadMapIfUpdated ()
@@ -128,5 +128,5 @@ Overrides: [Scene_File](Scene_File.md#onsavefileok-)
 
 
 #### terminate ()
-Overrides: [Scene_Base](Scene_Base.md#terminate-)
+オーバーライド: [Scene_Base](Scene_Base.md#terminate-)
 

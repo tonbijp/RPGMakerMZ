@@ -1,20 +1,20 @@
-# Class: Scene_Options
+# クラス: Scene_Options
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Options ()
 [オプション]のシーン。
 
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Menu](Scene_Menu.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_optionsWindow` | [Window_Options](Window_Options.md) | オプションウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -83,17 +83,17 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### terminate ()
-Overrides: [Scene_Base](Scene_Base.md#terminate-)
+オーバーライド: [Scene_Base](Scene_Base.md#terminate-)
 
 

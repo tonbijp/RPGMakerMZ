@@ -1,23 +1,23 @@
-# Class: Game_Unit
+# クラス: Game_Unit
 
 ### new Game_Unit ()
 戦闘時のグループを扱うクラス。
 
 
-### Sub Classes
+### サブクラス
 
 * [Game_Party](Game_Party.md)
 * [Game_Troop](Game_Troop.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_inBattle` | Boolean | 戦闘中か |
 
 
-### Methods
+### メソッド
 
 #### agility () → {[Number](Number.md)}
 ユニットの素早さを返す。
@@ -82,9 +82,9 @@
 #### select (activeMember)
 指定されたバトラーを選択する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `activeMember` | [Game_Battler](Game_Battler.md) | バトラー |
 
@@ -92,9 +92,9 @@
 #### smoothDeadTarget (index) → {[Game_Battler](Game_Battler.md)}
 指定番号のメンバーを優先して死亡しているメンバーを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | メンバー番号 |
 
@@ -102,9 +102,9 @@
 #### smoothTarget (index) → {[Game_Battler](Game_Battler.md)}
 指定番号のメンバーを優先して生きているメンバーを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | メンバー番号 |
 

@@ -1,21 +1,21 @@
-# Class: Window_Command
+# クラス: Window_Command
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_Command (x, y)
 コマンド選択用ウィンドウ。
 
 コマンド項目には画面に表示される「表示名」と、内部で識別に使われる「シンボル」が別に存在するので注意。
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_ActorCommand](Window_ActorCommand.md)
 * [Window_ChoiceList](Window_ChoiceList.md)
@@ -28,14 +28,14 @@
 * [Window_HorzCommand](Window_HorzCommand.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_list` | [Array](Array.md).&lt;[MV.CommandItem](MV.CommandItem.md)&gt; | コマンド項目の配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -257,14 +257,14 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### addCommand (name, symbol, enabled opt, ext opt)
 コマンド項目を追加。 
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `name` | [String](String.md) | | 表示名 |
 | `symbol` | [String](String.md) | | シンボル |
@@ -273,15 +273,15 @@
 
 
 #### callOkHandler ()
-Overrides: [Window_Selectable](Window_Selectable.md#callokhandler-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#callokhandler-)
 
 
 #### commandName (index) → {[String](String.md)}
 指定コマンド項目番号の表示名を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | コマンド項目番号 |
 
@@ -289,9 +289,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#callokhandler-)
 #### commandSymbol (index) → {[String](String.md)}
 指定コマンド項目番号のシンボルを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | コマンド項目番号 |
 
@@ -309,15 +309,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#callokhandler-)
 
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### findExt (ext) → {[Number](Number.md)}
 指定した追加情報を持ったコマンド項目の番号を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `ext` | * | 追加情報 |
 
@@ -325,19 +325,19 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### findSymbol (symbol) → {[Number](Number.md)}
 指定されたシンボルをもつコマンド項目の番号を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 
 
 #### initialize (x, y)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -346,19 +346,19 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 #### isCommandEnabled (index) → {Boolean}
 指定番号のコマンド項目が使用可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | コマンド項目番号 |
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### isOkEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#isokenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#isokenabled---boolean)
 
 
 #### itemTextAlign () → {[String](String.md)}
@@ -370,7 +370,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#isokenabled---boolean)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
@@ -378,15 +378,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### selectExt (ext)
 指定した追加情報に従ってコマンド項目を選択。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `ext` | * | 追加情報 |
 
@@ -394,9 +394,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### selectSymbol (symbol)
 指定シンボルに従ってコマンド項目を選択。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 

@@ -1,15 +1,15 @@
-# Class: Window_EquipItem
+# クラス: Window_EquipItem
 
-## Extends: [Window_ItemList](Window_ItemList.md)
+## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
 ### new Window_EquipItem (x, y, width, height)
 [装備]シーンでのアイテム選択ウィンドウ。
 
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md), [Window_EquipSlot](Window_EquipSlot.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,16 +17,16 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `_slotId` | [Number](Number.md) | スロットID |
 | `_statusWindow` | [Window_EquipStatus](Window_EquipStatus.md) | ステータスウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -261,34 +261,34 @@
 
 
 
-### Methods
+### メソッド
 
 #### includes (item) → {Boolean}
-Overrides: [Window_ItemList](Window_ItemList.md#includes-item--boolean)
+オーバーライド: [Window_ItemList](Window_ItemList.md#includes-item--boolean)
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
+オーバーライド: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
 
 
 #### isEnabled (item) → {Boolean}
-Overrides: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
+オーバーライド: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
 
 
 #### playOkSound ()
-Overrides: [Window_Selectable](Window_Selectable.md#playoksound-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#playoksound-)
 
 
 #### selectLast ()
-Overrides: [Window_ItemList](Window_ItemList.md#selectlast-)
+オーバーライド: [Window_ItemList](Window_ItemList.md#selectlast-)
 
 
 #### setActor (actor)
 アクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -296,9 +296,9 @@ Overrides: [Window_ItemList](Window_ItemList.md#selectlast-)
 #### setSlotId (slotId)
 スロットIDを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `slotId` | [Number](Number.md) | スロットID |
 
@@ -306,14 +306,14 @@ Overrides: [Window_ItemList](Window_ItemList.md#selectlast-)
 #### setStatusWindow (statusWindow)
 ステータスウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `statusWindow` | [Window_EquipStatus](Window_EquipStatus.md) | ステータスウィンドウ |
 
 
 #### updateHelp ()
-Overrides: [Window_ItemList](Window_ItemList.md#updatehelp-)
+オーバーライド: [Window_ItemList](Window_ItemList.md#updatehelp-)
 
 

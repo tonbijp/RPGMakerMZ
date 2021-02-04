@@ -1,12 +1,12 @@
-# Class:  [RPG](RPG.md).MoveRoute
+# クラス:  [RPG](RPG.md).MoveRoute
 [移動ルート]を構成する JSONデータ。
 
 関連クラス: [Game_Character](Game_Character.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `repeat` | Boolean | [動作をくり返す]　|
 | `skippable` | Boolean | [移動できない場合は飛ばす] |

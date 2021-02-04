@@ -1,4 +1,4 @@
-# Class: WebAudio
+# クラス: WebAudio
 
 ### new WebAudio (url)
 Web Audio API を使った音声データ。
@@ -9,16 +9,16 @@ v1.0.2 で変更あり。
 
 関連クラス: [CacheEntry](CacheEntry.md), [SoundManager](SoundManager.md), [Html5Audio](Html5Audio.md), [RPG.AudioFile](RPG.AudioFile.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `url` | [String](String.md) | The url of the audio file |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `url` | [String](String.md) | [read-only] 音声ファイルのURL |
 | `volume` | [Number](Number.md) | The volume of the audio. |
@@ -35,7 +35,7 @@ v1.0.2 で変更あり。
 #### (static) _standAlone
 
 
-### Methods
+### メソッド
 
 #### (static) _connectNodes ()
 
@@ -57,27 +57,27 @@ v1.0.2 で変更あり。
 
 #### (static) _fadeIn (duration)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) |  |
 
 
 #### (static) _fadeOut (duration)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) |  |
 
 
 #### (static) _load (url)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `url` | [String](String.md) |  |
 
@@ -99,18 +99,18 @@ v1.0.2 で変更あり。
 
 #### (static) _onXhrLoad (xhr)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `xhr` | XMLHttpRequest |  |
 
 
 #### (static) _readBigEndian (array, index)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 | `index` | [Number](Number.md) |  |
@@ -118,9 +118,9 @@ v1.0.2 で変更あり。
 
 #### (static) _readFourCharacters (array, index)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 | `index` | [Number](Number.md) |  |
@@ -128,9 +128,9 @@ v1.0.2 で変更あり。
 
 #### (static) _readLittleEndian (array, index)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 | `index` | [Number](Number.md) |  |
@@ -138,18 +138,18 @@ v1.0.2 で変更あり。
 
 #### (static) _readLoopComments (array)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 
 
 #### (static) _readMetaData (array, index, size)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 | `index` | [Number](Number.md) |  |
@@ -158,18 +158,18 @@ v1.0.2 で変更あり。
 
 #### (static) _readMp4 (array)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 
 
 #### (static) _readOgg (array)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `array` | Uint8Array |  |
 
@@ -188,9 +188,9 @@ v1.0.2 で変更あり。
 
 #### (static) _startPlaying (loop, offset)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `loop` | Boolean |  |
 | `offset` | [Number](Number.md) |  |
@@ -210,9 +210,9 @@ Checks whether the browser can play ogg files.
 #### (static) initialize (noAudio) → {Boolean}
 Initializes the audio system.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `noAudio` | Boolean | Flag for the no-audio mode |
 
@@ -220,9 +220,9 @@ Initializes the audio system.
 #### (static) setMasterVolume (value)
 Sets the master volume of the all audio.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | Master volume (min: 0, max: 1) |
 
@@ -230,9 +230,9 @@ Sets the master volume of the all audio.
 #### addLoadListener (listner)
 Add a callback function that will be called when the audio data is loaded.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `listner` | function | The callback function |
 
@@ -240,9 +240,9 @@ Add a callback function that will be called when the audio data is loaded.
 #### addStopListener (listner)
 Add a callback function that will be called when the playback is stopped.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `listner` | function | The callback function |
 
@@ -254,9 +254,9 @@ Clears the audio data.
 #### fadeIn (duration)
 Performs the audio fade-in.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) | Fade-in time in seconds |
 
@@ -264,9 +264,9 @@ Performs the audio fade-in.
 #### fadeOut (duration)
 Performs the audio fade-out.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) | Fade-out time in seconds |
 
@@ -291,9 +291,9 @@ Checks whether the audio data is ready to play.
 #### play (loop, offset)
 Plays the audio.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `loop` | Boolean | Whether the audio data play in a loop |
 | `offset` | [Number](Number.md) | The start position to play in seconds |

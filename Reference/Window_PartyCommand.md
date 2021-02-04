@@ -1,6 +1,6 @@
-# Class: Window_PartyCommand
+# クラス: Window_PartyCommand
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_PartyCommand ()
 パーティコマンド( [戦う][逃げる] )を表示するウィンドウ。
@@ -8,7 +8,7 @@
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -254,18 +254,18 @@
 * [windowWidth ()](Window_Command.md#windowwidth---number)
 
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides:[Window_Command](Window_Command.md#initialize-)
+オーバーライド:[Window_Command](Window_Command.md#initialize-)
 
 
 #### makeCommandList ()
-Overrides:[Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド:[Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
-Overrides:[Window_Command](Window_Command.md#numvisiblerows-number)
+オーバーライド:[Window_Command](Window_Command.md#numvisiblerows-number)
 
 
 #### setup ()
@@ -273,6 +273,6 @@ Overrides:[Window_Command](Window_Command.md#numvisiblerows-number)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides:[Window_Command](Window_Command.md#windowwidth-number)
+オーバーライド:[Window_Command](Window_Command.md#windowwidth-number)
 
 

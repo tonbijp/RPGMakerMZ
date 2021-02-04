@@ -1,6 +1,6 @@
-# Class: Scene_File
+# クラス: Scene_File
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_File ()
 セーブファイルを扱うためのシーン。
@@ -13,14 +13,14 @@
 * [Scene_Load](Scene_Load.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_listWindow` | [Window_SavefileList](Window_SavefileList.md) | セーブファイルのリストウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -87,18 +87,18 @@
 * [setBackgroundOpacity (opacity)](Scene_MenuBase.md#setbackgroundopacity-opacity)
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
-### Methods
+### メソッド
 
 #### activateListWindow ()
 リストウィンドウをアクティベート。
 
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createHelpWindow ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#createhelpwindow-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#createhelpwindow-)
 
 
 #### createListWindow ()
@@ -114,7 +114,7 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#createhelpwindow-)
 
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### mode () → {[String](String.md)}
@@ -130,5 +130,5 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 

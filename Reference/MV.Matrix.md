@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).Matrix
+# クラス: [MV](MV.md).Matrix
 
 ## Type: Object
 どこで使われているかよくわからないパラメータ。
@@ -6,9 +6,9 @@
 
 関連クラス: 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [String](String.md) |  |
 | `value` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |

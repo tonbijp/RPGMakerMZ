@@ -1,15 +1,15 @@
-# Class: Sprite_Button
+# クラス: Sprite_Button
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Button ()
 ボタン表示用スプライト。
 
 関連クラス: [Window_ShopNumber](Window_ShopNumber.md), [Window_NumberInput](Window_NumberInput.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_touching` | Boolean | タッチ・クリック対応か |
 | `_coldFrame` | [Rectangle](Rectangle.md) | 表示枠 |
@@ -17,7 +17,7 @@
 | `_clickHandler` | Function | タッチ・クリック時に呼ばれるハンドラ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -81,7 +81,7 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### callClickHandler ()
 クリックハンドラがあれば呼び出す。
@@ -90,9 +90,9 @@
 #### canvasToLocalX (x) → {number}
 canvas の x座標をローカル x座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | canvas の x座標(ピクセル) |
 
@@ -100,15 +100,15 @@ canvas の x座標をローカル x座標に変換して返す。
 #### canvasToLocalY (y) → {number}
 canvas の y座標をローカル x座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | canvas の y座標(ピクセル) |
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### isActive () → {boolean}
@@ -126,9 +126,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setClickHandler (method)
 クリックハンドラの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `method` | Function | クリックハンドラ |
 
@@ -136,9 +136,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setColdFrame (x, y, width, height)
 コールド(非アクティブ)の枠を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -149,9 +149,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setHotFrame (x, y, width, height)
 ホット(アクティブ)の枠を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -160,7 +160,7 @@ Overrides:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateFrame ()

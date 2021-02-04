@@ -1,21 +1,21 @@
-# Class: Sprite_Weapon
+# クラス: Sprite_Weapon
 
-## Extends: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Base](Sprite_Base.md)
 
 ### new Sprite_Weapon ()
 武器(img/system/WeaponsX.png)のスプライト。
 
 
-#### Properties:
+#### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_weaponImageId` | [Number](Number.md) | 武器画像ID |
 | `_animationCount` | [Number](Number.md) | アニメーションカウント |
 | `_pattern` | [Number](Number.md) | パターン |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -88,7 +88,7 @@
 * [updateVisibility ()](Sprite_Base.md#updatevisibility-)
 
 
-### Methods
+### メソッド
 
 
 #### animationWait () → {[Number](Number.md)}
@@ -96,7 +96,7 @@
 
 
 #### initialize ()
-Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### initMembers ()
@@ -115,15 +115,15 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 準備。
 
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `weaponImageId` | [Number](Number.md) | 武器画像ID |
 
 
 #### update ()
-Overrides:[Sprite_Base](Sprite_Base.md#update-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateFrame ()

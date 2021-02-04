@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).TouchInputEvents
+# クラス: [MV](MV.md).TouchInputEvents
 
 ## Type: Object
 タッチ入力のイベントのパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [TouchInput](TouchInput.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `trigger` | Boolean | トリガが発生したか |
 | `cancelled` | Boolean | キャンセルされたか |

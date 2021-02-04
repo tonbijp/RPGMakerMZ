@@ -1,6 +1,6 @@
-# Class: Scene_Name
+# クラス: Scene_Name
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Name ()
 [名前入力の処理]のシーン。
@@ -8,9 +8,9 @@
 関連クラス:  [Game_Interpreter](Game_Interpreter.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actorId ` | [Number](Number.md) |  アクターID |
 | `_maxLength ` | [Number](Number.md)  | 文字の最大長 |
@@ -19,7 +19,7 @@
 | `_editWindow` | [Window_NameEdit](Window_NameEdit.md) |  編集ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -88,10 +88,10 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createEditWindow ()
@@ -102,7 +102,7 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 入力ウィンドウを生成。
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### onInputOk ()
@@ -112,13 +112,13 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 #### prepare (actorId, maxLength)
 指定のアクターと文字数で入力欄を準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 | `maxLength` | [Number](Number.md) | 最大文字数 |
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-) 
+オーバーライド: [Scene_Base](Scene_Base.md#start-) 

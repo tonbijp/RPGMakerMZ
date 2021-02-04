@@ -1,6 +1,6 @@
-# Class: Window_ShopStatus
+# クラス: Window_ShopStatus
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_ShopStatus (x, y, width, height)
 [ショップの処理]でアイテム選択時に[持っている数]やパーティメンバの装備可不可が表示されるウィンドウ。
@@ -8,9 +8,9 @@
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopBuy](Window_ShopBuy.md), [Window_ShopNumber](Window_ShopNumber.md)
 
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -18,15 +18,15 @@
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム情報 |
 | `_pageIndex` | [Number](Number.md) | ページ番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -169,7 +169,7 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### changePage ()
 現在のページを変更。
@@ -178,9 +178,9 @@
 #### currentEquippedItem (actor, etypeId) → {[RPG.EquipItem](RPG.EquipItem.md)}
 指定アクター・装備位置の装備アイテム情報を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `etypeId` | [Number](Number.md) | 装備タイプID |
@@ -189,9 +189,9 @@
 #### drawActorEquipInfo (x, y, actor)
 アクターの装備情報を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -201,9 +201,9 @@
 #### drawActorParamChange (x, y, actor, item1)
 パラメータの変動を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -214,9 +214,9 @@
 #### drawEquipInfo (x, y)
 装備情報を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -225,16 +225,16 @@
 #### drawPossession (x, y)
 所持品を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Base.initialize (x, y, width, height)](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base.initialize (x, y, width, height)](Window_Base.md#initialize-x-y-width-height)
 
 
 #### isEquipItem () → {Boolean}
@@ -272,9 +272,9 @@ Overrides: [Window_Base.initialize (x, y, width, height)](Window_Base.md#initial
 #### setItem (item)
 アイテムを設定する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム情報 |
 
@@ -283,7 +283,7 @@ Overrides: [Window_Base.initialize (x, y, width, height)](Window_Base.md#initial
 メンバーの配列を返す。
 
 #### update ()
-Overrides: [Window_Base.update ()](Window_Base.md#update-)
+オーバーライド: [Window_Base.update ()](Window_Base.md#update-)
 
 
 #### updatePage ()

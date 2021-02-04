@@ -1,15 +1,15 @@
-# Class: Window_ShopSell
+# クラス: Window_ShopSell
 
-## Extends: [Window_ItemList](Window_ItemList.md)
+## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
 ### new Window_ShopSell (x, y, width, height)
 ショップでの売却時のアイテム選択ウィンドウ。
 
 関連クラス: [Scene_Shop](Scene_Shop.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,7 +17,7 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -255,13 +255,13 @@
 * [updateHelp ()](Window_ItemList.md#updatehelp-)
 
 
-### Methods
+### メソッド
 
 #### initialize (x, y, width, height)
-Overrides: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
+オーバーライド: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
 
 
 #### isEnabled (item) → {Boolean}
-Overrides: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
+オーバーライド: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
 
 

@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).BattleLogMethod
+# クラス: [MV](MV.md).BattleLogMethod
 
 ## Type: Object
 [Window_BattleLog](Window_BattleLog.md) のメソッドを、後から呼ぶために貯めておくパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [TextManager](TextManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | [メソッド名](MV.BattleLogMethod.md#メソッド名) |
 | `params` | [Array](Array.md) | 引数の配列(詳細は各メソッドの解説を参照) |

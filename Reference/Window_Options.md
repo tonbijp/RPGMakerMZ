@@ -1,13 +1,13 @@
-# Class: Window_Options
+# クラス: Window_Options
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_Options ()
 [オプション]コマンド( [常時ダッシュ][コマンド記憶][BGM 音量][BGS 音量][ME 音量][SE 音量] )のウィンドウ。
 
 関連クラス: [Scene_Options](Scene_Options.md), [Window_TitleCommand](Window_TitleCommand.md), [Window_MenuCommand](Window_MenuCommand.md)
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -247,7 +247,7 @@
 * [selectSymbol (symbol)](Window_Command.md#selectsymbol-symbol)
 
 
-### Methods
+### メソッド
 
 #### addGeneralOptions ()
  [常時ダッシュ][コマンド記憶]をメニューに追加。
@@ -260,9 +260,9 @@
 #### booleanStatusText (value) → {[String](String.md)}
 指定真偽値を 'ON' か 'OFF' に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | Boolean | 真偽値 |
 
@@ -270,64 +270,64 @@
 #### changeValue (symbol, value)
 指定シンボルの値を変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 | `value` | Boolean | [Number](Number.md) | 値 |
 
 
 #### cursorLeft (wrap)
-Overrides: [Window_Selectable](Window_Selectable.md#cursorleft-wrap)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorleft-wrap)
 
 
 #### cursorRight (wrap)
-Overrides:  [Window_Selectable](Window_Selectable.md#cursorright-wrap)
+オーバーライド:  [Window_Selectable](Window_Selectable.md#cursorright-wrap)
 
 
 #### drawItem (index)
-Overrides: [Window_Command](Window_Command.md#drawitem-index)
+オーバーライド: [Window_Command](Window_Command.md#drawitem-index)
 
 
 #### getConfigValue (symbol) → {Boolean | Number}
 指定シンボルの値を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### isVolumeSymbol (symbol) → {Boolean}
 指定シンボルが音量に関するものか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### processOk ()
-Overrides: [Window_Selectable](Window_Command.md#processok-)
+オーバーライド: [Window_Selectable](Window_Command.md#processok-)
 
 
 #### setConfigValue (symbol, value)
 指定シンボルに値を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | シンボル |
 | `value` | Boolean \| [Number](Number.md) | 値 |
@@ -340,9 +340,9 @@ Overrides: [Window_Selectable](Window_Command.md#processok-)
 #### statusText (index) → {[String](String.md)}
 指定番号のステータス文字列を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | コマンド番号 |
 
@@ -354,9 +354,9 @@ Overrides: [Window_Selectable](Window_Command.md#processok-)
 #### volumeStatusText (value) → {[String](String.md)}
 指定した数値に単位(%)をつけて返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | 数値 |
 
@@ -366,10 +366,10 @@ Overrides: [Window_Selectable](Window_Command.md#processok-)
 
 
 #### windowHeight () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowheight---number)
+オーバーライド: [Window_Command](Window_Command.md#windowheight---number)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 

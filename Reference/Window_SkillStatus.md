@@ -1,15 +1,15 @@
-# Class: Window_SkillStatus
+# クラス: Window_SkillStatus
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_SkillStatus (x, y, width, height)
 スキル選択時に表示されるウィンドウ。
 
 関連クラス: [Scene_Skill](Scene_Skill.md), [Window_SkillType](Window_SkillType.md), [Window_SkillList](Window_SkillList.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -17,14 +17,14 @@
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | アクター |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -168,10 +168,10 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 
 #### refresh ()
@@ -181,9 +181,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### setActor (actor)
 アクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 

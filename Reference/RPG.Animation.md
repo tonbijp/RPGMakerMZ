@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).Animation
+# クラス: [RPG](RPG.md).Animation
 
 | データベース| JSONファイル | 大域変数 | スプライト |
 | --- | --- | --- | --- |
@@ -10,9 +10,9 @@
 関連クラス: [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | アニメーションID |
 | `name` | [String](String.md) | エディタで表示される[名前] |

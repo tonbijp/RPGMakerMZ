@@ -1,6 +1,6 @@
-# Class: PIXI.DisplayObject
+# クラス: PIXI.DisplayObject
 
-## Extends: [PIXI.utils.EventEmitter](http://pixijs.download/release/docs/PIXI.utils.EventEmitter.html)
+## スーパークラス: [PIXI.utils.EventEmitter](http://pixijs.download/release/docs/PIXI.utils.EventEmitter.html)
 
 ### new PIXI.DisplayObject ()
 画面に表示されるもの一般の基本となるオブジェクト。
@@ -8,13 +8,13 @@
 詳細は本家 PIXI のサイト [PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html) を参照。
 
 
-### Sub Classes
+### サブクラス
 * [PIXI.Container](PIXI.Container.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `accessible` | Boolean | 操作可能か |
 | `accessibleHint` | [String](String.md) |  |
@@ -56,14 +56,14 @@
 | `_zIndex` | [Number](Number.md) | 高い番号ほど手前に表示される番号 |
 
 
-### Methods
+### メソッド
 
 #### (static) mixin (source)
 指定オブジェクトを元に、列挙可能なすべてのプロパティとメソッドをミックスインさせます。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `source` | Object | ミックスインの元となるオブジェクト |
 
@@ -81,9 +81,9 @@
 #### getBounds (skipUpdate, rect) → {PIXI.Rectangle}
 矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skipUpdate` | Boolean | opt. |
 | `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | opt. |
@@ -92,9 +92,9 @@
 #### getGlobalPosition (point, skipUpdate) → {PIXI.Point}
 
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `point` | PIXI.Point | opt. |
 | `skipUpdate` | Boolean | opt. |
@@ -102,18 +102,18 @@
 
 #### getLocalBounds (rect) → {PIXI.Rectangle}
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | opt. |
 
 
 #### render (renderer)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) |  |
 
@@ -121,9 +121,9 @@
 #### setParent (container) → {PIXI.Container}
 親オブジェクトを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `container ` | [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | 親に指定するコンテナオブジェクト |
 
@@ -131,9 +131,9 @@
 #### setTransform (x, y, scaleX, scaleY, rotation, skewX, skewY, pivotX, pivotY) → {PIXI.DisplayObject}
 まとめて変形を設定して[PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標 |
 | `y` | [Number](Number.md) | y座標 |
@@ -149,7 +149,7 @@
 #### toGlobal (position, point, skipUpdate) → {PIXI.Point}
 グローバル座標に変換。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -161,7 +161,7 @@
 #### toLocal (position, from, point, skipUpdate) → {PIXI.Point}
 ローカル座標に変換。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -179,188 +179,188 @@
 
 #### added(container)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `container` | [PIXI.Container](PIXI.Container.md) | 子が追加されたコンテナ |
 
 
 #### click(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mousedown(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mousemove(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mouseout(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mouseover(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mouseup(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### mouseupoutside(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointercancel(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointerdown(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointermove(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointerout(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointerover(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointertap(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointerup(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### pointerupoutside(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### removed(container)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `container` | [PIXI.Container](PIXI.Container.md) | 子が削除されたコンテナ |
 
 #### rightclick(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### rightdown(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### rightup(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### rightupoutside(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### tap(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### touchcancel(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### touchend(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### touchendoutside(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### touchmove(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 
 
 #### touchstart(event)
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | [PIXI.interaction.InteractionEvent](http://pixijs.download/release/docs/PIXI.interaction.InteractionEvent.html) | 操作イベント |
 

@@ -1,6 +1,6 @@
-# Class: Game_Party
+# クラス: Game_Party
 
-## Extends: [Game_Unit](Game_Unit.md)
+## スーパークラス: [Game_Unit](Game_Unit.md)
 
 ### new Game_Party ()
 
@@ -13,11 +13,11 @@
 関連クラス: [Game_Troop](Game_Troop.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md), [Game_Actor](Game_Actor.md), [Game_Actors](Game_Actors.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
 
-### Properties:
+### プロパティ
 
 ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パーティ能力id)に使われる。
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `ABILITY_ENCOUNTER_HALF` | [Number](Number.md) | [static] エンカウント半減 |
 | `ABILITY_ENCOUNTER_NONE` | [Number](Number.md) | [static] エンカウント無効 |
@@ -36,7 +36,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `_armors` | Object | {[itemId: number]: number} |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_Unit](Game_Unit.md)
 
@@ -59,14 +59,14 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 * [tgrSum ()](Game_Unit.md#tgrsum---number)
 
 
-### Methods
+### メソッド
 
 #### addActor (actorId)
 指定したアクターを追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 
@@ -94,9 +94,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### canUse (item) → {Boolean}
 指定アイテムが使用可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -109,9 +109,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### consumeItem (item)
 指定アイテムを消費。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -119,9 +119,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### discardMembersEquip (item, amount)
 指定の装備を捨てる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | 装備アイテム |
 | `amount` | [Number](Number.md) | 数 |
@@ -142,9 +142,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### gainGold (amount)
 指定金額ぶん所持金を増やす。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `amount` | [Number](Number.md) | 金額 |
 
@@ -152,9 +152,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### gainItem (item, amount, includeEquip)
 指定アイテムを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 | `amount` | [Number](Number.md) | 数 |
@@ -188,9 +188,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### hasItem (item, includeEquip) → {Boolean}
 指定アイテムをパーティが持っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 | `includeEquip` | Boolean | 装備しているものを含むか |
@@ -199,9 +199,9 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 #### hasMaxItems (item) → {Boolean}
 指定アイテムを最大数を持っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -223,19 +223,19 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 
 #### initialize ()
-Overrides:[Game_Unit](Game_Unit.md#initialize-)
+オーバーライド:[Game_Unit](Game_Unit.md#initialize-)
 
 
 #### isAllDead () → {Boolean}
-Overrides:[Game_Unit](Game_Unit.md#isalldead---boolean)
+オーバーライド:[Game_Unit](Game_Unit.md#isalldead---boolean)
 
 
 #### isAnyMemberEquipped (item) → {Boolean}
 指定アイテムをいずれかのメンバーが装備しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | 装備アイテム |
 
@@ -248,9 +248,9 @@ Overrides:[Game_Unit](Game_Unit.md#isalldead---boolean)
 指定アイテムが含まれるカテゴリ全体を配列で返す。<br />
 [アイテム][武器][防具]のいずれかのカテゴリ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -270,9 +270,9 @@ Overrides:[Game_Unit](Game_Unit.md#isalldead---boolean)
 #### loseGold (amount)
 指定金額の所持金を減らす。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `amount` | [Number](Number.md) | 金額 |
 
@@ -280,9 +280,9 @@ Overrides:[Game_Unit](Game_Unit.md#isalldead---boolean)
 #### loseItem (item, amount, includeEquip)
 指定アイテムを減らす。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 | `amount` | [Number](Number.md) | 数 |
@@ -308,15 +308,15 @@ Overrides:[Game_Unit](Game_Unit.md#isalldead---boolean)
 #### maxItems (item) → {[Number](Number.md)}
 指定アイテムの最大数(規定値:99)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
 #### members () → {[Array](Array.md).<[Game_Actor](Game_Actor.md)>}
-Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
+オーバーライド:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 
 
 #### menuActor () → {[Game_Actor](Game_Actor.md)}
@@ -331,9 +331,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### numItems (item) → {[Number](Number.md)}
 パーティが持っている指定アイテムの数を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -345,9 +345,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### partyAbility (abilityId) → {Boolean}
 指定[パーティ能力]を持つアクターがいるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `abilityId` | [Number](Number.md) | [パーティ能力ID](RPG.Trait.md#パーティ能力id)  |
 
@@ -363,9 +363,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### ratePreemptive (troopAgi) → {[Number](Number.md)}
 指定敵素早さに対して先制攻撃の確率を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `troopAgi` | [Number](Number.md) | 素早さ |
 
@@ -373,9 +373,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### rateSurprise (troopAgi) → {[Number](Number.md)}
 指定敵素早さに対して不意打ちの確率を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `troopAgi` | [Number](Number.md) | 素早さ |
 
@@ -383,9 +383,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### removeActor (actorId)
 指定アクターを取り除く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 
@@ -405,9 +405,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### setLastItem (item)
 指定アイテムを最後のアイテムに設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -415,9 +415,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### setMenuActor (actor)
 指定アクターをメニューで選択された状態に。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -425,9 +425,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### setTargetActor (actor)
 指定アクターを対象アクターに。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -459,9 +459,9 @@ Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 #### swapOrder (index1, index2)
 指定した番号のアクターを入れ替え。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index1` | [Number](Number.md) | アクター1の番号 |
 | `index2` | [Number](Number.md) | アクター2の番号 |

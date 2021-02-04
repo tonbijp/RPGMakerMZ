@@ -1,20 +1,20 @@
-# Class: Window_Status
+# クラス: Window_Status
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_Status ()
 アクターの全ステータスを表示するウィンドウ。
 
 関連クラス: [Scene_Status](Scene_Status.md)
 
-#### Properties:
+#### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | アクター |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -240,14 +240,14 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawBasicInfo (x, y)
 基本的な情報を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -256,9 +256,9 @@
 #### drawBlock1 (y)
 ブロック1を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -266,9 +266,9 @@
 #### drawBlock2 (y)
 ブロック2を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -276,9 +276,9 @@
 #### drawBlock3 (y)
 ブロック3を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -286,9 +286,9 @@
 #### drawBlock4 (y)
 ブロック4を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -296,9 +296,9 @@
 #### drawEquipments (x, y)
 装備を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -307,9 +307,9 @@
 #### drawExpInfo (x, y)
 経験値の情報を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -318,9 +318,9 @@
 #### drawHorzLine (y)
 水平の線を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
@@ -329,9 +329,9 @@
 #### drawParameters (x, y)
 パラメータを描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -340,16 +340,16 @@
 #### drawProfile (x, y)
 プロフィールを描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### initialize ()
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### lineColor () → {[String](String.md)}
@@ -361,15 +361,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setActor (actor)
 アクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 

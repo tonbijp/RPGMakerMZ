@@ -1,6 +1,6 @@
-# Class: Scene_Equip
+# クラス: Scene_Equip
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Equip ()
 [装備]シーン。
@@ -9,9 +9,9 @@
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_statusWindow` | [Window_EquipStatus](Window_EquipStatus.md) | ステータスウィンドウ |
 | `_commandWindow` | [Window_EquipCommand](Window_EquipCommand.md) | コマンド選択ウィンドウ |
@@ -19,7 +19,7 @@
 | `_itemWindow` | [Window_EquipItem](Window_EquipItem.md) | 装備選択ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -88,7 +88,7 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### commandClear ()
 [全て外す]コマンド実行。
@@ -102,7 +102,7 @@
 [最強装備]コマンド実行。
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createCommandWindow ()
@@ -121,11 +121,11 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 ステータスウィンドウの生成。
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### onActorChange ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
 
 
 #### onItemCancel ()

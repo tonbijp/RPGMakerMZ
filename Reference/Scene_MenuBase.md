@@ -1,11 +1,11 @@
-# Class: Scene_MenuBase
+# クラス: Scene_MenuBase
 
-## Extends: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Base](Scene_Base.md)
 
 ### new Scene_MenuBase ()
  メニュー型シーンの基礎クラス。
 
-### Sub Classes
+### サブクラス
 
 * [Scene_Debug](Scene_Debug.md)
 * [Scene_Equip](Scene_Equip.md)
@@ -19,16 +19,16 @@
 * [Scene_ItemBase](Scene_ItemBase.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) |  選択されているアクター |
 | `_backgroundSprite` | [Sprite](Sprite.md) |  シーンの背景となるスプライト |
 | `_helpWindow` | [Window_Help](Window_Help.md) |  シーンに付加されるヘルプウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -88,14 +88,14 @@
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 
-### Methods
+### メソッド
 
 #### actor () → {[Game_Actor](Game_Actor.md)}
 現在のアクターを返す。
 
 
 #### create ()
-Overrides: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
 #### createHelpWindow ()
@@ -103,7 +103,7 @@ Overrides: [Scene_Base](Scene_Base.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_Base](Scene_Base.md#initialize-)
+オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
 #### nextActor ()
@@ -121,9 +121,9 @@ Overrides: [Scene_Base](Scene_Base.md#initialize-)
 #### setBackgroundOpacity (opacity)
 背景の不透明度を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `opacity` | [Number](Number.md) | 不透明度(0〜255) |
 

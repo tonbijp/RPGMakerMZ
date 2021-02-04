@@ -1,28 +1,28 @@
-# Class: Window_MenuCommand
+# クラス: Window_MenuCommand
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_MenuCommand (x, y)
 メニューコマンド( [アイテム][スキル][装備][ステータス][並び替え][オプション][セーブ][ゲーム終了] )のウィンドウ。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Window_MenuStatus](Window_MenuStatus.md), [Window_Gold](Window_Gold.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_lastCommandSymbol` | [String](String.md) | [Static] [コマンド記憶]用シンボル |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -266,7 +266,7 @@
 * [selectSymbol (symbol)](Window_Command.md#selectsymbol-symbol)
 * [windowHeight ()](Window_Command.md#windowheight---number)
 
-### Methods
+### メソッド
 
 #### (static) initCommandPosition ()
 コマンド位置の初期化。
@@ -301,7 +301,7 @@
 
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### isFormationEnabled () → {Boolean}
@@ -321,25 +321,25 @@ Overrides: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### needsCommand (name) → {Boolean}
 [メニューコマンド]でチェックされているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name ` | [String](String.md) | コマンド名( 'item', 'skill', 'equip', 'status', 'formation', 'save' ) |
 
 
 #### numVisibleRows () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
+オーバーライド: [Window_Command](Window_Command.md#numvisiblerows-)
 
 
 #### processOk ()
-Overrides: [Window_Command](Window_Command.md#processok-)
+オーバーライド: [Window_Command](Window_Command.md#processok-)
 
 
 #### selectLast ()
@@ -347,7 +347,7 @@ Overrides: [Window_Command](Window_Command.md#processok-)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 
 

@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).CommonEvent
+# クラス: [RPG](RPG.md).CommonEvent
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -7,9 +7,9 @@
 関連クラス: [RPG.Event](RPG.Event.md)、[RPG.Troop](RPG.Troop.md), [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md), [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | [コモンイベントID](RPG.CommonEvent.md#コモンイベントid) |
 | `name` | [String](String.md) | [名前] |

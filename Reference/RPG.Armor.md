@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Armor
+# クラス: [RPG](RPG.md).Armor
 
-## Extends: [RPG.EquipItem](RPG.EquipItem.md)
+## スーパークラス: [RPG.EquipItem](RPG.EquipItem.md)
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -9,9 +9,9 @@
 [Game_Item](Game_Item.md) の _dataClass プロパティは 'armor' になる。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `atypeId` | [Number](Number.md) | [防具タイプID](RPG.Armor.md#防具タイプid) |
 

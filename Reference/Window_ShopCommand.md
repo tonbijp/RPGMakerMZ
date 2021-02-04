@@ -1,29 +1,29 @@
-# Class: Window_ShopCommand
+# クラス: Window_ShopCommand
 
-## Extends: [Window_HorzCommand](Window_HorzCommand.md)
+## スーパークラス: [Window_HorzCommand](Window_HorzCommand.md)
 
 ### new Window_ShopCommand (width, purchaseOnly)
 [ショップの処理]で水平に並ぶコマンド( [アイテム][武器][防具][大事なもの] )のウィンドウ。
 
 関連クラス: [Scene_Shop](Scene_Shop.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `width` | [Number](Number.md) | 幅(ピクセル) |
 | `purchaseOnly` | Boolean | [購入のみ]か |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_windowWidth` | [Number](Number.md) | 幅(ピクセル) |
 | `_purchaseOnly` | Boolean | [購入のみ]か |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -269,22 +269,22 @@
 * [numVisibleRows ()](Window_HorzCommand.md#numvisiblerows---number)
 
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_HorzCommand](Window_HorzCommand.md#initialize-x-y)
+オーバーライド: [Window_HorzCommand](Window_HorzCommand.md#initialize-x-y)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_HorzCommand](Window_HorzCommand.md#maxcols---number)
+オーバーライド: [Window_HorzCommand](Window_HorzCommand.md#maxcols---number)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 
 

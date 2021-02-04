@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[Enemy](RPG.Enemy.md).Action
+# クラス: [RPG](RPG.md).[Enemy](RPG.Enemy.md).Action
 [敵キャラ]の[行動パターン]のJSONデータ。
 
 関連クラス: [Game_Enemy](Game_Enemy.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 | `conditionType` | [Number](Number.md) | [[条件](RPG.Enemy.Action.md#条件)] |

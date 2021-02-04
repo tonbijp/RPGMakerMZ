@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).SaveContents
+# クラス: [MV](MV.md).SaveContents
 
 ## Type: Object
 セーブされるデータをまとめたパラメータ。
@@ -8,9 +8,9 @@
 関連クラス: [DataManager](DataManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `system` | [Game_System](Game_System.md) | [$gameSystem](global.md#gamesystem-game_system) |
 | `screen` | [Game_Screen](Game_Screen.md) | [$gameScreen](global.md#gamescreen-game_screen) |

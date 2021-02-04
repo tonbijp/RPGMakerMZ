@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).CssColor
+# クラス: [MV](MV.md).CssColor
 
 ## Type: [String](String.md)
 CSS形式の文字列による色指定方法。

@@ -1,6 +1,6 @@
-# Class: Window_MenuStatus
+# クラス: Window_MenuStatus
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_MenuStatus (x, y)
 メニューでパーティメンバーのステータスを表示するウィンドウ。<br />
@@ -10,28 +10,28 @@ v1.1.1 で変更あり。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Window_MenuCommand](Window_MenuCommand.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_MenuActor](Window_MenuActor.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_formationMode` | Boolean | [並び替え]モードか |
 | `_pendingIndex` | [Number](Number.md) | 待ち番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -253,18 +253,18 @@ v1.1.1 で変更あり。
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### drawItemBackground (index)
 指定アクターの背景を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 
@@ -272,9 +272,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### drawItemImage (index)
 指定アクターの画像を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 
@@ -282,9 +282,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### drawItemStatus (index)
 指定アクターのステータスを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 
@@ -294,22 +294,22 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (x, y)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### itemHeight () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#itemheight---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#itemheight---number)
 
 
 #### loadImages ()
@@ -317,7 +317,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#itemheight---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
@@ -329,7 +329,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### processOk ()
-Overrides: [Window_Selectable](Window_Selectable.md#processok-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processok-)
 
 
 #### selectLast ()
@@ -339,9 +339,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#processok-)
 #### setFormationMode (formationMode)
 隊列変更モードを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `formationMode` | Boolean | 隊列変更可能か |
 
@@ -349,9 +349,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#processok-)
 #### setPendingIndex (index)
 保留するアクター番号を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 

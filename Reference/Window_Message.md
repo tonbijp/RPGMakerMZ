@@ -1,6 +1,6 @@
-# Class: Window_Message
+# クラス: Window_Message
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_Message ()
 [文章の表示]をするウィンドウ。
@@ -12,9 +12,9 @@
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_background` | [Number](Number.md) | [背景]のタイプ |
 | `_positionType` | [Number](Number.md) | [ウィンドウ位置] |
@@ -29,7 +29,7 @@
 | `_itemWindow` | [Window_EventItem](Window_EventItem.md) | [アイテム選択の処理]ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -170,7 +170,7 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### areSettingsChanged () → {Boolean}
 ウィンドウの設定が変更されたか。
@@ -197,7 +197,7 @@
 
 
 #### initialize ()
-Overrides: [Window_Base](Window_Base.md#initialize-)
+オーバーライド: [Window_Base](Window_Base.md#initialize-)
 
 
 #### initMembers ()
@@ -211,9 +211,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-)
 #### isEndOfText (textState) → {Boolean}
 指定したテキストの情報が最後にあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
 
@@ -229,9 +229,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-)
 #### needsNewPage (textState) → {Boolean}
 指定テキストの情報に次のページがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
 
@@ -243,9 +243,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-)
 #### newPage (textState)
 指定したテキストの情報に従って新しいページを用意。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
 
@@ -259,11 +259,11 @@ Overrides: [Window_Base](Window_Base.md#initialize-)
 
 
 #### processNewLine (textState)
-Overrides: [Window_Base](Window_Base.md#processnewline-textstate)
+オーバーライド: [Window_Base](Window_Base.md#processnewline-textstate)
 
 
 #### processNewPage (textState)
-Overrides: [Window_Base](Window_Base.md#processnewpage-textstate)
+オーバーライド: [Window_Base](Window_Base.md#processnewpage-textstate)
 
 
 #### startInput () → {Boolean}
@@ -282,9 +282,9 @@ Overrides: [Window_Base](Window_Base.md#processnewpage-textstate)
 #### startWait (count)
 指定カウント分の待ち状態の開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `count` | [Number](Number.md) | 待ち時間(フレーム) |
 
@@ -298,7 +298,7 @@ Overrides: [Window_Base](Window_Base.md#processnewpage-textstate)
 
 
 #### update ()
-Overrides: [Window_Base](Window_Base.md#update-)
+オーバーライド: [Window_Base](Window_Base.md#update-)
 
 
 #### updateBackground ()

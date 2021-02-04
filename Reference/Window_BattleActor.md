@@ -1,21 +1,21 @@
-# Class: Window_BattleActor
+# クラス: Window_BattleActor
 
-## Extends: [Window_BattleStatus](Window_BattleStatus.md)
+## スーパークラス: [Window_BattleStatus](Window_BattleStatus.md)
 
 ### new Window_BattleActor (x, y)
 戦闘中にアクターを選択するウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -253,30 +253,30 @@
 * [windowWidth ()](Window_BattleStatus.md#windowwidth---number)
 
 
-### Methods
+### メソッド
 
 #### actor () → {[Game_Actor](Game_Actor.md)}
 選択中のアクターを返す。
 
 
 #### hide ()
-Overrides: [Window_Base](Window_Base.md#hide-)
+オーバーライド: [Window_Base](Window_Base.md#hide-)
 
 
 #### initialize (x, y)
-Overrides: [Window_BattleStatus](Window_Selectable.md#initialize-)
+オーバーライド: [Window_BattleStatus](Window_Selectable.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### select (index)
-Overrides:[Window_Selectable](Window_Selectable.md#select-index)
+オーバーライド:[Window_Selectable](Window_Selectable.md#select-index)
 
 
 #### show ()
-Overrides:[Window_Base](Window_Base.md#show-)
+オーバーライド:[Window_Base](Window_Base.md#show-)

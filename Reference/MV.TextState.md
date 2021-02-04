@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).TextState
+# クラス: [MV](MV.md).TextState
 
 ## Type: Object
 テキストの表示に使われるパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [Window_Base](Window_Base.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 処理中の文字の位置 |
 | `x` | [Number](Number.md) | x座標 |

@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).Tone
+# クラス: [MV](MV.md).Tone
 
 ## Type: [Array](Array.md).&lt;[Number](Number.md)&gt;
 

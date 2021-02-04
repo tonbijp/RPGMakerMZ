@@ -1,16 +1,16 @@
-# Class: [RPG](RPG.md).EquipItem
+# クラス: [RPG](RPG.md).EquipItem
 
-## Extends: [RPG.BaseItem](RPG.BaseItem.md)
+## スーパークラス: [RPG.BaseItem](RPG.BaseItem.md)
 
-### Sub Classes
+### サブクラス
 
 * [RPG.Armor](RPG.Armor.md)
 * [RPG.Weapon](RPG.Weapon.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `price` | [Number](Number.md) | [価格] |
 | `etypeId` | [Number](Number.md) | [装備タイプID](RPG.EquipItem.md#装備タイプID) |

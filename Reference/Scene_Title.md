@@ -1,6 +1,6 @@
-# Class: Scene_Title
+# クラス: Scene_Title
 
-## Extends: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Base](Scene_Base.md)
 
 ### new Scene_Title ()
 タイトルのシーン。
@@ -9,9 +9,9 @@
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Options](Scene_Options.md), [Scene_Boot](Scene_Boot.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Scene_GameEnd](Scene_GameEnd.md), [Scene_Gameover](Scene_Gameover.md)
 
    
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_TitleCommand](Window_TitleCommand.md) | コマンドウィンドウ |
 | `_backSprite1` | [Sprite](Sprite.md) | 背景1 |
@@ -19,7 +19,7 @@
 | `_gameTitleSprite` | [Sprite](Sprite.md) | タイトル |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -77,7 +77,7 @@
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
 
-### Methods
+### メソッド
 
 #### commandContinue ()
 [コンティニュー]の実行ハンドラ。
@@ -92,7 +92,7 @@
 
 
 #### create ()
-Overrides: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
 #### createBackground ()
@@ -112,11 +112,11 @@ Overrides: [Scene_Base](Scene_Base.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_Base](Scene_Base.md#initialize-)
+オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
 #### isBusy () → {Boolean}
-Overrides: [Scene_Base](Scene_Base.md#isBusy-boolean)
+オーバーライド: [Scene_Base](Scene_Base.md#isBusy-boolean)
 
 
 #### playTitleMusic ()
@@ -124,12 +124,12 @@ Overrides: [Scene_Base](Scene_Base.md#isBusy-boolean)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 
 #### terminate ()
-Overrides: [Scene_Base](Scene_Base.md#terminate-)
+オーバーライド: [Scene_Base](Scene_Base.md#terminate-)
 
 
 #### update ()
-Overrides: [Scene_Base](Scene_Base.md#update-)
+オーバーライド: [Scene_Base](Scene_Base.md#update-)

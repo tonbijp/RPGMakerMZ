@@ -1,6 +1,6 @@
-# Class: Window_Base
+# クラス: Window_Base
 
-## Extends: [Window](Window.md)
+## スーパークラス: [Window](Window.md)
 
 ### new Window_Base (x, y, width, height )
 メッセージやステータスなどを描くためのメソッドを多く持つ、ウィンドウオブジェクト。<br />
@@ -10,9 +10,9 @@ v1.1.1 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -20,7 +20,7 @@ v1.1.1 で変更あり。
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_EquipStatus](Window_EquipStatus.md)
 * [Window_Gold](Window_Gold.md)
@@ -34,9 +34,9 @@ v1.1.1 で変更あり。
 * [Window_Selectable](Window_Selectable.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_iconWidth` | [Number](Number.md) | [static] 基本のアイコン幅 (規定値 : 32) |
 | `_iconHeight` | [Number](Number.md) | [static] 基本のアイコン高さ (規定値 : 32) |
@@ -47,7 +47,7 @@ v1.1.1 で変更あり。
 | `_dimmerSprite ` | [Sprite](Sprite.md) | [暗くする]背景 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -93,7 +93,7 @@ v1.1.1 で変更あり。
 * [updateTransform ()](Window.md#updatetransform-)
 
 
-### Methods
+### メソッド
 
 #### activate ()
 ウィンドウをアクティブにする。
@@ -102,9 +102,9 @@ v1.1.1 で変更あり。
 #### actorName (actorIndex) → {[String](String.md)}
 指定された番号の[アクター]の名前を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorIndex` | [Number](Number.md) | アクターの番号(1から始まる) |
 
@@ -112,9 +112,9 @@ v1.1.1 で変更あり。
 #### calcTextHeight (textState, all) → {[Number](Number.md)}
 指定したテキストの表示時の高さ(ピクセル)を計算して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 計算するテキストの情報 |
 | `all` | Boolean | 複数行を加算するか |
@@ -123,9 +123,9 @@ v1.1.1 で変更あり。
 #### canvasToLocalX (x) → {[Number](Number.md)}
 指定したCanvas の x座標を、ゲーム画面のローカルx座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | Canvas の x座標 |
 
@@ -133,9 +133,9 @@ v1.1.1 で変更あり。
 #### canvasToLocalY (y) → {[Number](Number.md)}
 指定したCanvas の y座標を、ゲーム画面のローカルy座標に変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | Canvas の y座標 |
 
@@ -144,9 +144,9 @@ v1.1.1 で変更あり。
 描画を不透明にするか。<br />
 主に選択の可不可の表現に使う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `enabled` | Boolean | true: 不透明(255), false: 半透明(160) |
 
@@ -154,9 +154,9 @@ v1.1.1 で変更あり。
 #### changeTextColor (color)
 文字の色を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [MV.CssColor](MV.CssColor.md) | 色(CSS文字列) |
 
@@ -176,9 +176,9 @@ v1.1.1 で変更あり。
 #### convertEscapeCharacters (text) → {[String](String.md)}
 エスケープ文字を変換して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 変換元の文字列 |
 
@@ -210,9 +210,9 @@ v1.1.1 で変更あり。
 指定した[アクター]のキャラクタを指定位置に描画。<br />
 詳細は [drawCharacter()](Window_Base.md#drawcharacter-charactername-characterindex-x-y) を参照。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | 足元のx座標(ピクセル) |
@@ -222,9 +222,9 @@ v1.1.1 で変更あり。
 #### drawActorClass (actor, x, y, width)
 指定した[アクター]の[クラス]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -235,9 +235,9 @@ v1.1.1 で変更あり。
 #### drawActorFace (actor, x, y, width, height)
 指定した[アクター]の顔画像を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -249,9 +249,9 @@ v1.1.1 で変更あり。
 #### drawActorHp (actor, x, y, width)
 指定した[アクター]の[HP]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -263,9 +263,9 @@ v1.1.1 で変更あり。
 指定した[アクター]のアイコンを指定位置に描画。
 
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -276,9 +276,9 @@ v1.1.1 で変更あり。
 #### drawActorLevel (actor, x, y)
 指定した[アクター]の[レベル]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -288,9 +288,9 @@ v1.1.1 で変更あり。
 #### drawActorMp (actor, x, y, width)
 指定した[アクター]の[MP]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -301,9 +301,9 @@ v1.1.1 で変更あり。
 #### drawActorName (actor, x, y, width)
 指定した[アクター]の[名前]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -314,9 +314,9 @@ v1.1.1 で変更あり。
 #### drawActorNickname (actor, x, y, width)
 指定した[アクター]の[二つ名]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -327,9 +327,9 @@ v1.1.1 で変更あり。
 #### drawActorSimpleStatus (actor, x, y, width)
 指定した[アクター]の簡易ステータスを指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -340,9 +340,9 @@ v1.1.1 で変更あり。
 #### drawActorTp (actor, x, y, width)
 指定した[アクター]の[TP]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -355,9 +355,9 @@ v1.1.1 で変更あり。
 キャラクタ番号は左上から始まり右へ進み、2段目に移る。$付きの場合は0のみ。表示されるのは下向き中央のパターン。<br />
 指定するのは足元の座標なので、左上を指定したい場合 x+24, y+48 としてずらす必要がある。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `characterName` | [String](String.md) |  ファイル名(拡張子.pngを除く) |
 | `characterIndex` | [Number](Number.md) | キャラクタ番号(0 〜 7)  |
@@ -368,9 +368,9 @@ v1.1.1 で変更あり。
 #### drawCurrencyValue (value, unit, x, y, width)
 所持金を通貨単位付きで指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | 所持金 |
 | `unit` | [String](String.md) | 通貨単位 |
@@ -382,9 +382,9 @@ v1.1.1 で変更あり。
 #### drawCurrentAndMax (current, max, x, y, width, color1, color2)
 現在値と最大値の組み合わせを指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `current` | [Number](Number.md) | 現在値 |
 | `max` | [Number](Number.md) | 最大値 |
@@ -399,9 +399,9 @@ v1.1.1 で変更あり。
 指定した'img/faces/'フォルダのファイル名とキャラクタ番号で、指定位置に顔画像を描画。<br />
 キャラクタ番号は左上から始まり右へ進み、2段目に移る。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `faceName` | [String](String.md) |  | ファイル名(拡張子.pngを除く) |
 | `faceIndex` | [Number](Number.md) |  | キャラクタ番号(0 〜 7) |
@@ -414,9 +414,9 @@ v1.1.1 で変更あり。
 #### drawGauge (x, y, width, rate, color1, color2)
 指定位置にゲージを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -431,9 +431,9 @@ v1.1.1 で変更あり。
 'img/system/IconSet.png'のファイルを16×20に分割した画像。
 アイコン番号は左上から始まり右へ進み、端まで到達したら下へ進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `iconIndex` | [Number](Number.md) | アイコン番号(0 〜 319) |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -443,9 +443,9 @@ v1.1.1 で変更あり。
 #### drawItemName (item, x, y, width)
 指定した[アイテム]の[名前]を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | 対象の[アイテム] |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -456,9 +456,9 @@ v1.1.1 で変更あり。
 #### drawText (text, x, y, maxWidth, align)
 指定した文字列を指定位置に描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` |  [String](String.md) \| [Number](Number.md) | 表示する文字列 |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -470,9 +470,9 @@ v1.1.1 で変更あり。
 #### drawTextEx (text, x, y) → {[Number](Number.md)}
 指定したエスケープ文字入の文字列を指定位置に描画し、x座標の差分を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 表示する文字列 |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -483,9 +483,9 @@ v1.1.1 で変更あり。
 指定された行数に必要な高さを返す。<br />
 高さ = 行数 * 行の高さ + パディング幅 * 2。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `numLines` | [Number](Number.md) | 行数 |
 
@@ -505,9 +505,9 @@ v1.1.1 で変更あり。
 #### hpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
 指定した[アクター]の[HP]の色を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 
@@ -521,11 +521,11 @@ v1.1.1 で変更あり。
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window](Window.md#initialize-)
+オーバーライド: [Window](Window.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -561,9 +561,9 @@ Overrides: [Window](Window.md#initialize-)
 #### mpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
 指定した[アクター]の[MP]の色を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 
@@ -588,9 +588,9 @@ Overrides: [Window](Window.md#initialize-)
 textStateのindex以降に含まれる制御文字本体を大文字で返す。<br />
 indexは取り出した文字の数だけ進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -600,9 +600,9 @@ textStateのindex以降に含まれる制御文字の添字を返す。<br />
 indexは取り出した文字の数だけ進む。<br />
 添字がある場合は数値が返り、ない場合は空文字が返る。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -615,9 +615,9 @@ indexは取り出した文字の数だけ進む。<br />
 指定した数値に対応する色を返す。<br />
 装備を変える際の能力差分の表示などに使う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `change` | [Number](Number.md) | 負の値: powerDownColor, 0:normalColor, 正の値:powerUpColor |
 
@@ -625,9 +625,9 @@ indexは取り出した文字の数だけ進む。<br />
 #### partyMemberName (partyMemberIndex) → {[String](String.md)}
 指定したパーティーメンバー番号に対応した名前を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `partyMemberIndex` | [Number](Number.md) | パーティーメンバー番号(1から開始される) |
 
@@ -648,9 +648,9 @@ indexは取り出した文字の数だけ進む。<br />
 改行・改ページ・エスケープ文字などを含む文字を処理する。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -660,9 +660,9 @@ indexは取り出した文字の数だけ進む。<br />
 制御文字'\I[n]'の対応。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `iconIndex` | [Number](Number.md) | アイコン番号(0 〜 319) |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
@@ -672,9 +672,9 @@ indexは取り出した文字の数だけ進む。<br />
 制御文字の処理。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `code` | [String](String.md) | 制御文字(C I \{ \}) |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
@@ -684,9 +684,9 @@ indexは取り出した文字の数だけ進む。<br />
 改行の処理。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -695,9 +695,9 @@ indexは取り出した文字の数だけ進む。<br />
 改ページの処理。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -706,9 +706,9 @@ indexは取り出した文字の数だけ進む。<br />
 通常文字の処理。<br />
 処理した文字列の分だけindexは進む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
@@ -732,9 +732,9 @@ indexは取り出した文字の数だけ進む。<br />
 #### setBackgroundType (type)
 背景の種類を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | 0:不透明度255 (標準), 1:薄暗く表示, その他:不透明度0 |
 
@@ -771,9 +771,9 @@ indexは取り出した文字の数だけ進む。<br />
 指定した番号に対応する色を返す。<br />
 'img/system/window.png' の色で設定される。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `n` | [Number](Number.md) | カラー番号(0 〜 31) |
 
@@ -785,9 +785,9 @@ indexは取り出した文字の数だけ進む。<br />
 #### textWidth (text) → {[Number](Number.md)}
 指定文字列の幅(ピクセル)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 測定する文字列 |
 
@@ -795,9 +795,9 @@ indexは取り出した文字の数だけ進む。<br />
 #### tpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
 指定した[アクター]の[TP]の色を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
 
@@ -819,7 +819,7 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 #### update ()
-Overrides: [Window](Window#update-)
+オーバーライド: [Window](Window#update-)
 
 
 #### updateBackgroundDimmer ()

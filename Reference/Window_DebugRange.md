@@ -1,4 +1,4 @@
-# Class: Window_DebugRange
+# クラス: Window_DebugRange
 
 ##  Extends: [Window_Selectable](Window_Selectable.md)
 
@@ -7,24 +7,24 @@
 
 関連クラス: [Scene_Debug](Scene_Debug.md), [Window_DebugEdit](Window_DebugEdit.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `lastTopRow` | [Number](Number.md) | [static] |
 | `lastIndex` | [Number](Number.md) | [static] |
 | `_editWindow` | [Window_DebugEdit](Window_DebugEdit.md) |  |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -244,29 +244,29 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (x, y)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### isCancelTriggered () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscanceltriggered---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscanceltriggered---boolean)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### mode () → {[String](String.md)}
@@ -274,19 +274,19 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### processCancel ()
-Overrides: [Window_Selectable](Window_Selectable.md#processcancel-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processcancel-)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setEditWindow (index)
 編集ウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Window_DebugEdit](Window_DebugEdit.md) | 編集ウィンドウ |
 
@@ -296,7 +296,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### windowHeight () → {[Number](Number.md)}

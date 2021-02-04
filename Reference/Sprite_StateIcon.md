@@ -1,6 +1,6 @@
-# Class: Sprite_StateIcon
+# クラス: Sprite_StateIcon
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_StateIcon ()
 
@@ -11,9 +11,9 @@
 ステートアイコン( img/system/IconSet.png )表示用スプライト。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_iconWidth` | [Number](Number.md) | [static] アイコンの幅(規定値:32ピクセル) |
 | `_iconHeight` | [Number](Number.md) | [static] アイコンの高さ(規定値:32ピクセル) |
@@ -23,7 +23,7 @@
 | `_animationIndex` | [Number](Number.md) | アニメーション番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -87,14 +87,14 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### animationWait () → {[Number](Number.md)}
 アニメーションの待ち時間を返す。
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### initMembers ()
@@ -108,15 +108,15 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setup (battler)
 対象バトラーに対する準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battler` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateFrame ()

@@ -1,4 +1,4 @@
-# Class: Game_Actors
+# クラス: Game_Actors
 
 ### new Game_Actors ()
 
@@ -10,21 +10,21 @@
 
 関連クラス: [Game_Party](Game_Party.md)、[Game_Follower](Game_Follower.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt; | アクターの配列 |
 
 
-### Methods
+### メソッド
 
 #### actor (actorId) → {[Game_Actor](Game_Actor.md)}
 指定IDのアクターを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 

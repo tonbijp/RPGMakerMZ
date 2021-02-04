@@ -1,26 +1,26 @@
-# Class: Window_HorzCommand
+# クラス: Window_HorzCommand
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_HorzCommand (x, y)
 水平方向に並ぶコマンドのウィンドウ。
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_EquipCommand](Window_EquipCommand.md)
 * [Window_ItemCategory](Window_ItemCategory.md)
 * [Window_ShopCommand](Window_ShopCommand.md)
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -263,18 +263,18 @@
 * [windowWidth ()](Window_Command.md#windowwidth---number)
 
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 #### itemTextAlign () → {[String](String.md)}
-Overrides: [Window_Command](Window_Command.md#itemtextalign---string)
+オーバーライド: [Window_Command](Window_Command.md#itemtextalign---string)
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 #### numVisibleRows () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#numvisiblerows---number)
+オーバーライド: [Window_Command](Window_Command.md#numvisiblerows---number)
 
 

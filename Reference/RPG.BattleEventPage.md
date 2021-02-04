@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).BattleEventPage
+# クラス: [RPG](RPG.md).BattleEventPage
 [RPG.Troop](RPG.Troop.md) の [EVページ] を構成する JSON データ。
 
 関連クラス: [RPG.EventPage](RPG.EventPage.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `conditions` | [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md) | [条件] |
 | `list` | [Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt; | [実行内容] |

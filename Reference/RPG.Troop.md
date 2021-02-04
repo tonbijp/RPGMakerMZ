@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).Troop
+# クラス: [RPG](RPG.md).Troop
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -7,9 +7,9 @@
 関連クラス: [RPG.Event](RPG.Event.md), [RPG.CommonEvent](RPG.CommonEvent.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | 敵グループID |
 | `name` | [String](String.md) | 敵グループ名 |

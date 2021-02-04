@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[System](RPG.System.md).Terms
+# クラス: [RPG](RPG.md).[System](RPG.System.md).Terms
 [用語]のJSONデータ。
 
 関連クラス: [TextManager](TextManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `basic` | [Array](Array.md).&lt;[String](String.md)&gt; | [[基本ステータス]](RPG.System.Terms.md#[基本ステータス]) |
 | `params` | [Array](Array.md).&lt;[String](String.md)&gt; | [[能力値]](RPG.System.Terms.md#[能力値]) |

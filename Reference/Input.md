@@ -1,4 +1,4 @@
-# Class: Input
+# クラス: Input
 キーボードとゲームパッド(コントローラ)の入力に関する静的クラス。
 
 JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent)と[Gamepad](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad) 周りを扱う。
@@ -6,9 +6,9 @@ JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/Keyb
 関連クラス: [Window_Selectable](Window_Selectable.md), [TouchInput](TouchInput.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyRepeatWait` | [Number](Number.md) | [static] キーリピートまでの待ち時間(フレーム) |
 | `keyRepeatInterval` | [Number](Number.md) | [static] キーリピート間隔(フレーム) |
@@ -116,14 +116,14 @@ gamepadMapper に設定されている。以下のキー名称は規定値。
 
 Xboxパッドは参考。
 
-### Methods
+### メソッド
 
 #### (static) _isEscapeCompatible (keyName) → {Boolean}
 ESCキーに当たるキー(cancel, menu)か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 
@@ -131,9 +131,9 @@ ESCキーに当たるキー(cancel, menu)か。
 #### (static) _makeNumpadDirection (x, y) → {[Number](Number.md)}
 x,y方向の入力からテンキー方向(0 : ニュートラル)を生成。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x方向の入力(-1, 0, 1) |
 | `y` | [Number](Number.md) | y方向の入力(-1, 0, 1) |
@@ -142,9 +142,9 @@ x,y方向の入力からテンキー方向(0 : ニュートラル)を生成。
 #### (static) _onKeyDown (event)
 キーが押し下げられた時に呼ばれるイベントハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | KeyboardEvent | キーボードイベント |
 
@@ -152,9 +152,9 @@ x,y方向の入力からテンキー方向(0 : ニュートラル)を生成。
 #### (static) _onKeyUp (event)
 キーが離された時に呼ばれるイベントハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | KeyboardEvent | キーボードイベント |
 
@@ -176,9 +176,9 @@ x,y方向の入力からテンキー方向(0 : ニュートラル)を生成。
 keyCode が 8: backspace, case 9: tab, 33:pageup, 34:pagedown, 37:left, 38:up, 39:right, 40:down のいずれかであった場合 true を返す。<br />
 これにより、キーボードによるブラウザの基本動作をある程度回避する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyCode` | [Number](Number.md) | キーコード |
 
@@ -198,9 +198,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) _updateGamepadState (gamepad, index)
 ゲームパッドの状態をアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `gamepad` | Gamepad | ゲームパッドオブジェクト |
 
@@ -216,9 +216,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) isLongPressed (keyName) → {Boolean}
 指定キーが長押し状態か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 
@@ -226,9 +226,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) isPressed (keyName) → {Boolean}
 指定キーが押されているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 
@@ -236,9 +236,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) isRepeated (keyName) → {Boolean}
 指定キーがキーリピート状態か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 
@@ -246,9 +246,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) isTriggered (keyName) → {Boolean}
 指定キーが押された直後か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 
@@ -260,9 +260,9 @@ y軸の入力(-1, 0, 1)を返す。
 #### (static) virtualClick (buttonName)
 **@MZ** 仮想的に指定キーが押されたことにする。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `buttonName` | [String](String.md) | [キー名称](Input.md#キー名称) |
 

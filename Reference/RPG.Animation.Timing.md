@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[Animation](RPG.Animation.md).Timing
+# クラス: [RPG](RPG.md).[Animation](RPG.Animation.md).Timing
 [アニメーション]の[SEとフラッシュのタイミング]を記述したデータ。
 
 関連クラス: [Sprite_Animation](Sprite_Animation.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `frame` | [Number](Number.md) | [フレーム]番号(エディタで表示されるより1少ない) |
 | `se` | [RPG.AudioFile](RPG.AudioFile.md) | [SE] |

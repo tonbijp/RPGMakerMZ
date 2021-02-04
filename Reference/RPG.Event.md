@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Event
+# クラス: [RPG](RPG.md).Event
 
-## Extends: [RPG.MetaData](RPG.MetaData.md) 
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
 
 | データベース| オブジェクト | スプライト |
 | --- | --- | --- | --- | --- |
@@ -14,9 +14,9 @@
 関連クラス: [RPG.CommonEvent](RPG.CommonEvent.md), [RPG.Troop](RPG.Troop.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | イベントID |
 | `name` | [String](String.md) | イベント名 |

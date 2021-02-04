@@ -1,6 +1,6 @@
-# Class: Game_Troop
+# クラス: Game_Troop
 
-## Extends: [Game_Unit](Game_Unit.md)
+## スーパークラス: [Game_Unit](Game_Unit.md)
 
 ### new Game_Troop ()
 
@@ -13,9 +13,9 @@
 関連クラス: [Game_Enemy](Game_Enemy.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `LETTER_TABLE_HALF` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 名前の接尾辞(A〜Zの半角記号) |
 | `LETTER_TABLE_FULL` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 名前の接尾辞(A〜Zの全角記号) |
@@ -27,7 +27,7 @@
 | `_namesCount` | Object | {[name: String]: Number} |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_Unit](Game_Unit.md)
 
@@ -51,7 +51,7 @@
 * [tgrSum ()](Game_Unit.md#tgrsum---number)
 
 
-### Methods
+### メソッド
 
 #### clear ()
 データの初期化。
@@ -77,7 +77,7 @@
 
 
 #### initialize ()
-Overrides:[Game_Unit](Game_Unit.md#initialize-)
+オーバーライド:[Game_Unit](Game_Unit.md#initialize-)
 
 
 #### isEventRunning () → {Boolean}
@@ -99,23 +99,23 @@ Overrides:[Game_Unit](Game_Unit.md#initialize-)
 #### meetsConditions (page) → {Boolean}
 指定ページが条件に合っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `page` | [RPG.BattleEventPage](RPG.BattleEventPage.md) | バトルEVページ |
 
 
 #### members () → {[Array](Array.md).<[Game_Enemy](Game_Enemy.md)>}
-Overrides:[Game_Unit](Game_Unit.md#members---arraygame_battler)
+オーバーライド:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 
 
 #### setup (troopId)
 指定した[敵グループ]を準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `troopId` | [Number](Number.md) | 敵グループID |
 

@@ -1,28 +1,28 @@
-# Class: Point
+# クラス: Point
 
-## Extends: [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
+## スーパークラス: [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
 
 ### new Point (x oot, y opt)
 座標点を表すクラス。
 
 関連クラス: [Rectangle](Rectangle.md)
 
-#### Parameters:
+#### 引数
 
 | Name | Type | Attributes | Default | Description |
 | --- | --- | --- | --- | --- |
 | `x` | [Number](Number.md) |&lt;optional&gt; | 0 | x座標(ピクセル) |
 | `y` | [Number](Number.md) |&lt;optional&gt; | 0 | y座標(ピクセル) |
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Methods
+### メソッド
 
 #### initialize ()
 オブジェクト生成時の初期化。

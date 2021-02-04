@@ -1,6 +1,6 @@
-# Class: Spriteset_Base
+# クラス: Spriteset_Base
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Spriteset_Base ()
 複数のスプライトを組み合わせて使うクラス。
@@ -10,15 +10,15 @@ v1.1.1 で変更あり。
 関連クラス: [Sprite_Picture](Sprite_Picture.md)
 
 
-### Sub Classes
+### サブクラス
 
 * [Spriteset_Map](Spriteset_Map.md)
 * [Spriteset_Battle](Spriteset_Battle.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_tone` | [MV.Tone](MV.Tone.md) | [色調] |
 | `_baseSprite` | [Sprite](Sprite.md) | 基本スプライト |
@@ -31,7 +31,7 @@ v1.1.1 で変更あり。
 | `_fadeSprite` | [ScreenSprite](ScreenSprite.md) | フェードスプライト |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -98,7 +98,7 @@ v1.1.1 で変更あり。
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### createBaseSprite ()
  基本スプライトを生成。
@@ -137,11 +137,11 @@ WebGL [色調]変更を生成。
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateCanvasToneChanger ()

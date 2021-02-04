@@ -1,10 +1,10 @@
-# Class: [RPG](RPG.md).[Enemy](RPG.Enemy.md).DropItem
+# クラス: [RPG](RPG.md).[Enemy](RPG.Enemy.md).DropItem
 [ドロップアイテム]のJSONデータ。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `kind` | [Number](Number.md) | [種類](RPG.Enemy.DropItem.md#種類)  |
 | `dataId` | [Number](Number.md) | 種類毎のID |

@@ -1,4 +1,4 @@
-# Class: Game_CommonEvent
+# クラス: Game_CommonEvent
 
 ### new Game_CommonEvent ()
 
@@ -9,15 +9,15 @@
 関連クラス: [Game_Map](Game_Map.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_commonEventId` | [Number](Number.md) | コモンイベントID |
 | `_interpreter` | [Game_Interpreter](Game_Interpreter.md) | コマンドインタプリタ |
 
 
-### Methods
+### メソッド
 
 #### event () → {[RPG.CommonEvent](RPG.CommonEvent.md)}
 JSONの定義データを返す。

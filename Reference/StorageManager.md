@@ -1,4 +1,4 @@
-# Class: StorageManager
+# クラス: StorageManager
 ゲームのセーブデータを管理する静的クラス。
 
 ローカルファイル機能は、node.js の fs モジュールを使っている。<br />
@@ -6,14 +6,14 @@ Webストレージは JavaScript の localStorage を使っている。
 
 v1.1.0 で変更あり。
 
-### Methods
+### メソッド
 
 #### (static) backup (savefileId)
 指定セーブファイルのバックアップを取る。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -21,9 +21,9 @@ v1.1.0 で変更あり。
 #### (static) backupExists (savefileId) → {Boolean}
 指定セーブファイルのバックアップがあるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -31,9 +31,9 @@ v1.1.0 で変更あり。
 #### (static) cleanBackup (savefileId) 
 指定セーブファイルのバックアップを削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -41,9 +41,9 @@ v1.1.0 で変更あり。
 #### (static) exists (savefileId) → {Boolean}
 指定セーブファイルが存在するか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -55,9 +55,9 @@ v1.1.0 で変更あり。
 #### (static) load (savefileId) → {[String](String.md)}
 指定セーブファイルを読み込んで返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -65,9 +65,9 @@ v1.1.0 で変更あり。
 #### (static) loadFromLocalBackupFile (savefileId) → {[String](String.md)}
 指定セーブファイルをローカルバックアップから読み込んで返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -75,27 +75,27 @@ v1.1.0 で変更あり。
 #### (static) loadFromLocalFile (savefileId) → {[String](String.md)}
 指定セーブファイルをローカルから読み込んで返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) loadFromWebStorage (savefileId) → {[String](String.md)}
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) loadFromWebStorageBackup (savefileId) → {[String](String.md)}
 指定セーブファイルをWebストレージバックアップから読み込んで返す。
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -103,9 +103,9 @@ v1.1.0 で変更あり。
 #### (static) localFileBackupExists (savefileId) → {Boolean}
 指定セーブファイルがWebストレージに存在するか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -118,9 +118,9 @@ v1.1.0 で変更あり。
 #### (static) localFileExists (savefileId) → {Boolean}
 指定セーブファイルがローカルに存在するか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -128,9 +128,9 @@ v1.1.0 で変更あり。
 #### (static) localFilePath (savefileId) → {[String](String.md)}
 指定セーブファイルのローカルファイルパスを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -138,9 +138,9 @@ v1.1.0 で変更あり。
 #### (static) remove (savefileId)
 指定セーブファイルを削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -148,9 +148,9 @@ v1.1.0 で変更あり。
 #### (static) removeLocalFile (savefileId)
 指定セーブファイルをローカルから削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -158,9 +158,9 @@ v1.1.0 で変更あり。
 #### (static) removeWebStorage (savefileId)
 指定セーブファイルをWebストレージから削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -168,18 +168,18 @@ v1.1.0 で変更あり。
 #### (static) restoreBackup (savefileId)
 指定セーブファイルをバックアップから復元。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
 
 #### (static) save (savefileId, json)
 JSON文字列を記録した指定セーブファイルを保存。
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 | `json` | [String](String.md) | JSON文字列 |
@@ -188,9 +188,9 @@ JSON文字列を記録した指定セーブファイルを保存。
 #### (static) saveToLocalFile (savefileId, json)
 JSON文字列を記録した指定セーブファイルをローカルに保存。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 | `json` | [String](String.md) | JSON文字列 |
@@ -199,9 +199,9 @@ JSON文字列を記録した指定セーブファイルをローカルに保存�
 #### (static) saveToWebStorage (savefileId, json)
 JSON文字列を記録した指定セーブファイルをWebストレージに保存。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 | `json` | [String](String.md) | JSON文字列 |
@@ -209,9 +209,9 @@ JSON文字列を記録した指定セーブファイルをWebストレージに�
 
 #### (static) webStorageBackupExists (savefileId) → {Boolean}
 指定セーブファイルがWebストレージのバックアップに存在するか。
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -219,9 +219,9 @@ JSON文字列を記録した指定セーブファイルをWebストレージに�
 #### (static) webStorageExists (savefileId) → {Boolean}
 指定セーブファイルがWebストレージに存在するか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 
@@ -229,9 +229,9 @@ JSON文字列を記録した指定セーブファイルをWebストレージに�
 #### (static) webStorageKey (savefileId) → {[String](String.md)}
 指定セーブファイルのWebストレージキーを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `savefileId` | [Number](Number.md) | セーブファイルID |
 

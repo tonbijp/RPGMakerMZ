@@ -1,6 +1,6 @@
-# Class: Scene_Map
+# クラス: Scene_Map
 
-## Extends: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Base](Scene_Base.md)
 
 ### new Scene_Map ()
 マップ表示シーン。
@@ -8,9 +8,9 @@
 関連クラス: [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md), [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Boot](Scene_Boot.md), [Scene_ItemBase](Scene_ItemBase.md), [Scene_Battle](Scene_Battle.md), [Scene_Load](Scene_Load.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `menuCalling` | Boolean | メニューが呼ばれているか |
 | `_waitCount` | [Number](Number.md) | 待ちカウント |
@@ -24,7 +24,7 @@
 | `_messageWindow` | [Window_Message](Window_Message.md) | メッセージウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -83,14 +83,14 @@
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 
-### Methods
+### メソッド
 
 #### callMenu ()
  メニューの呼び出し。
 
 
 #### create ()
-Overrides: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
 #### createAllWindows ()
@@ -130,11 +130,11 @@ Overrides: [Scene_Base](Scene_Base.md#create-)
  
 
 #### initialize ()
-Overrides: [Scene_Base](Scene_Base.md#initialize-)
+オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
 #### isBusy () → {Boolean}
-Overrides: [Scene_Base](Scene_Base.md#isbusy---boolean)
+オーバーライド: [Scene_Base](Scene_Base.md#isbusy---boolean)
 
 
 #### isDebugCalled () → {Boolean}
@@ -158,7 +158,7 @@ Overrides: [Scene_Base](Scene_Base.md#isbusy---boolean)
 
 
 #### isReady () → {Boolean}
-Overrides: [Scene_Base](Scene_Base.md#isready---boolean)
+オーバーライド: [Scene_Base](Scene_Base.md#isready---boolean)
 
 
 #### isSceneChangeOk () → {Boolean}
@@ -190,7 +190,7 @@ Overrides: [Scene_Base](Scene_Base.md#isready---boolean)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 
 #### startEncounterEffect ()
@@ -200,15 +200,15 @@ Overrides: [Scene_Base](Scene_Base.md#start-)
 #### startFlashForEncounter (duration)
  エンカウント時のフラッシュ開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) |  |
 
 
 #### stop ()
-Overrides: [Scene_Base](Scene_Base.md#stop-)
+オーバーライド: [Scene_Base](Scene_Base.md#stop-)
 
 
 #### stopAudioOnBattleStart ()
@@ -216,11 +216,11 @@ Overrides: [Scene_Base](Scene_Base.md#stop-)
 
 
 #### terminate ()
-Overrides: [Scene_Base](Scene_Base.md#terminate-)
+オーバーライド: [Scene_Base](Scene_Base.md#terminate-)
 
 
 #### update ()
-Overrides: [Scene_Base](Scene_Base.md#update-)
+オーバーライド: [Scene_Base](Scene_Base.md#update-)
 
 
 #### updateCallDebug ()

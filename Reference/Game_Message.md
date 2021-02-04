@@ -1,4 +1,4 @@
-# Class: Game_Message
+# クラス: Game_Message
 
 ### new Game_Message ()
 
@@ -13,9 +13,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 関連クラス: [Window_Base](Window_Base.md), [Window_Message](Window_Message.md), [Window_ChoiceList](Window_ChoiceList.md), [Window_NumberInput](Window_NumberInput.md), [Window_EventItem](Window_EventItem.md), [Window_ScrollText](Window_ScrollText.md), [RPG.Actor](RPG.Actor.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_texts` | [Array](Array.md).&lt;[String](String.md)&gt; | 文章 |
 | `_choices` | [Array](Array.md).&lt;[String](String.md)&gt; | 選択肢 |
@@ -53,14 +53,14 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 | 2 | 下 |
 
 
-### Methods
+### メソッド
 
 #### add (text)
 テキストを追加する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 追加するテキスト |
 
@@ -152,9 +152,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### onChoice (n)
 選択時に呼ばれるハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `n` | [Number](Number.md) | 選択項目の番号 |
 
@@ -178,9 +178,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setBackground (background)
 メッセージウィンドウの[背景]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `background` | [Number](Number.md) |  [[背景]](Game_Message.md#背景) (既定値 : 0) |
 
@@ -188,9 +188,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setChoiceBackground (background)
 選択肢の[背景]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `background` | [Number](Number.md) |  [[背景]](Game_Message.md#背景) |
 
@@ -198,9 +198,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setChoiceCallback (callback)
 選択肢のコールバック関数を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `callback` | function | コールバック関数 |
 
@@ -208,9 +208,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setChoicePositionType (positionType)
 選択肢の[ウィンドウ位置]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `positionType` | [Number](Number.md) | [[ウィンドウ位置]](Game_Message.md#ウィンドウ位置) |
 
@@ -218,9 +218,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setChoices (choices, defaultType, cancelType)
 [選択肢]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `choices` | [Array](Array.md).&lt;[String](String.md)&gt; | 選択肢 |
 | `defaultType` | [Number](Number.md) | [デフォルト]のタイプ |
@@ -230,9 +230,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setFaceImage (faceName, faceIndex)
 [顔]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `faceName` | [String](String.md) | ファイル名 |
 | `faceIndex` | [Number](Number.md) | 番号 |
@@ -241,9 +241,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setItemChoice (variableId, itemType)
 変数と[アイテムタイプ]を同時に設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `variableId` | [Number](Number.md) | [変数]のID |
 | `itemType` | [Number](Number.md) | [アイテムタイプ] |
@@ -252,9 +252,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setNumberInput (variableId, maxDigits)
 変数と[桁数]を同時に設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `variableId` | [Number](Number.md) | [変数]のID |
 | `maxDigits` | [Number](Number.md) | [桁数] |
@@ -263,9 +263,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setPositionType (positionType)
 メッセージウィンドウの[ウィンドウ位置]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `positionType` | [Number](Number.md) | [[ウィンドウ位置]](Game_Message.md#ウィンドウ位置) (既定値 : 2) |
 
@@ -273,9 +273,9 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 #### setScroll (speed, noFast)
 スクロールの速度と[早送りなし]を同時に設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `speed` | [Number](Number.md) | スクロール速度 |
 | `noFast` | Boolean | [早送りなし]か |

@@ -1,6 +1,6 @@
-# Class: Window_ChoiceList
+# クラス: Window_ChoiceList
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_ChoiceList (messageWindow)
 [選択肢の表示]コマンドで表示されるウィンドウ。
@@ -9,21 +9,21 @@
   
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageWindow` | [Window_Message](Window_Message.md) | メッセージウィンドウ |
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_messageWindow` | [Window_Message](Window_Message.md) | メッセージウィンドウ |
 | `_background` | [Number](Number.md) | バックグラウンド番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -260,38 +260,38 @@
 * [selectSymbol (symbol)](Window_Command.md#selectsymbol-symbol)
 * [windowHeight ()](Window_Command.md#windowheight---number)
 
-### Methods
+### メソッド
 
 #### callCancelHandler ()
-Overrides: [Window_Selectable](Window_Selectable.md#callcancelhandler-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#callcancelhandler-)
 
 
 #### callOkHandler ()
-Overrides: [Window_Command](Window_Command.md#callokhandler-)
+オーバーライド: [Window_Command](Window_Command.md#callokhandler-)
 
 
 #### contentsHeight () → {[Number](Number.md)}
-Overrides: [Window_Base](Window_Base.md#contentsheight---number)
+オーバーライド: [Window_Base](Window_Base.md#contentsheight---number)
 
 
 #### drawItem (index)
-Overrides: [Window_Command](Window_Command.md#drawitem-index)
+オーバーライド: [Window_Command](Window_Command.md#drawitem-index)
 
 
 #### initialize (messageWindow)
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 
 #### isCancelEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
 
 
 #### isOkTriggered () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### maxChoiceWidth () → {[Number](Number.md)}
@@ -299,7 +299,7 @@ Overrides: [Window_Command](Window_Command.md#makecommandlist-)
 
 
 #### numVisibleRows ()
-Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
+オーバーライド: [Window_Command](Window_Command.md#numvisiblerows-)
 
 
 #### selectDefault ()
@@ -313,9 +313,9 @@ Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
 #### textWidthEx (text) → {[Number](Number.md)}
 指定メッセージ文字列を表示した時の幅を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 文字列 |
 
@@ -329,6 +329,6 @@ Overrides: [Window_Command](Window_Command.md#numvisiblerows-)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 

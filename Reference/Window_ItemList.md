@@ -1,15 +1,15 @@
-# Class: Window_ItemList
+# クラス: Window_ItemList
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_ItemList (x, y, width, height)
 [アイテム]の選択ウィンドウ。
 
 関連クラス: [Scene_Item](Scene_Item.md), [Window_ItemCategory](Window_ItemCategory.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,7 +17,7 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_BattleItem](Window_BattleItem.md)
 * [Window_EquipItem](Window_EquipItem.md)
@@ -25,9 +25,9 @@
 * [Window_ShopSell](Window_ShopSell.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_category` | [String](String.md) | [アイテムカテゴリ](Window_ItemList.md#アイテムカテゴリ) |
 | `_data` | [Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt; | アイテムの配列 |
@@ -43,7 +43,7 @@
 | 'keyItem' | [大事なもの] |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -263,18 +263,18 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### drawItemNumber (item, x, y, width)
 指定したアイテムの数を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
@@ -285,27 +285,27 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### includes (item) → {Boolean}
 指定したアイテムが含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### isEnabled (item) → {Boolean}
 指定したアイテムが利用可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -319,11 +319,11 @@ Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boole
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### needsNumber () → {Boolean}
@@ -335,7 +335,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### selectLast ()
@@ -345,19 +345,19 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setCategory (category)
 カテゴリの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_category` | [String](String.md) | カテゴリ( 'none', 'item', 'weapon', 'armor', 'keyItem' ) |
 
 
 #### spacing () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#spacing---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#spacing---number)
 
 
 #### updateHelp ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatehelp-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatehelp-)
 
 
 

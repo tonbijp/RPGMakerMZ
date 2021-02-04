@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).Color
+# クラス: [MV](MV.md).Color
 
 ## Type: [Array](Array.md).&lt;[Number](Number.md)&gt;
 

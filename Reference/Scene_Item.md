@@ -1,20 +1,20 @@
-# Class: Scene_Item
+# クラス: Scene_Item
 
-## Extends: [Scene_ItemBase](Scene_ItemBase.md)
+## スーパークラス: [Scene_ItemBase](Scene_ItemBase.md)
 
 ### new Scene_Item ()
 [アイテム]のシーン。
 
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_categoryWindow` | [Window_ItemCategory](Window_ItemCategory.md) | カテゴリ選択ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -102,10 +102,10 @@
 * [showSubWindow (window)](Scene_ItemBase.md#showsubwindow-window)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#create-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#create-)
 
 
 #### createCategoryWindow ()
@@ -115,7 +115,7 @@ Overrides: [Scene_ItemBase](Scene_ItemBase.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
 
 
 #### onCategoryOk ()
@@ -135,9 +135,9 @@ Overrides: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
 
 
 #### useItem ()
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#useitem-)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#useitem-)
 
 
 #### user () → {[Game_Actor](Game_Actor.md)}
-Overrides: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
 

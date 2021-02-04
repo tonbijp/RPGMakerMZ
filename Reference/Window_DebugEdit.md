@@ -1,30 +1,30 @@
-# Class: Window_DebugEdit
+# クラス: Window_DebugEdit
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_DebugEdit (x, y, width)
 デバッグ(F9)でスイッチや変数を表示するウィンドウ。
 
 関連クラス: [Scene_Debug](Scene_Debug.md), [Window_DebugRange](Window_DebugRange.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 | `width` | [Number](Number.md) | 幅(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_mode` | [String](String.md) | モード( 'switch', 'variable' ) |
 | `_topId` | [Number](Number.md) | 先頭に表示される値のID |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -247,26 +247,26 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 
 #### currentId () → {[Number](Number.md)}
 
 
 #### drawItem (index)
-Overrides:  [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド:  [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides:  [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド:  [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### initialize (x, y, width)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -276,32 +276,32 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 #### itemName (dataId) → {[String](String.md)}
 指定IDのアイテム名を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `dataId` | [Number](Number.md) | データID |
 
 
 #### itemStatus (dataId) → {[String](String.md)}
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `dataId` | [Number](Number.md) |  |
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setMode (mode)
 モードを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `mode` | [String](String.md) | モード( 'switch', 'variable' ) |
 
@@ -309,15 +309,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setTopId (id)
 先頭に表示される値のIDを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | 値(スイッチまたは変数)のID |
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateSwitch ()

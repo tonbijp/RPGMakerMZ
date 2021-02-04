@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[System](RPG.System.md).Vehicle
+# クラス: [RPG](RPG.md).[System](RPG.System.md).Vehicle
 [乗り物]のJSONデータ。
 
 画像指定については [RPG.Actor](RPG.Actor.md) と同じような作り。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `characterName` | [String](String.md) | 画像ファイル名(拡張子を含まない) |
 | `characterIndex` | [Number](Number.md) | 画像番号 (0〜7) |

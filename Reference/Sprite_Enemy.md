@@ -1,4 +1,4 @@
-# Class: Sprite_Enemy
+# クラス: Sprite_Enemy
 
 ##  Extends: [Sprite_Battler](Sprite_Battler.md)
 
@@ -14,16 +14,16 @@ v1.0.2 で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Game_Troop](Game_Troop.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `enemy` | [Game_Enemy](Game_Enemy.md) | &lt;optional&gt; | [敵キャラ] |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_enemy` | [Game_Enemy](Game_Enemy.md) | [敵キャラ]のデータ |
 | `_appeared` | Boolean | 出現しているか |
@@ -35,7 +35,7 @@ v1.0.2 で変更あり。
 | `_stateIconSprite` | [Sprite_StateIcon](Sprite_StateIcon.md) | ステートアイコン |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -125,29 +125,29 @@ v1.0.2 で変更あり。
 * [updateSelectionEffect ()](Sprite_Battler.md#updateselectioneffect-)
 * [updateVisibility ()](Sprite_Battler.md#updatevisibility-)
 
-### Methods
+### メソッド
 
 
 #### createStateIconSprite ()
 
 #### damageOffsetX () → {[Number](Number.md)}
-Overrides:[Sprite_Battler](Sprite_Battler.md#damageoffsetx---number)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#damageoffsetx---number)
 
 #### damageOffsetY () → {[Number](Number.md)}
-Overrides:[Sprite_Battler](Sprite_Battler.md#damageoffsety---number)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#damageoffsety---number)
 
 #### initialize (battler)
-Overrides:[Sprite_Battler](Sprite_Battler.md#initialize-)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battler` | [Game_Enemy](Game_Enemy.md) |  |
 
 
 #### initMembers ()
-Overrides:[Sprite_Battler](Sprite_Battler.md#initmembers-)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#initmembers-)
 
 
 #### initVisibility ()
@@ -155,15 +155,15 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#initmembers-)
 
 
 #### isEffecting () → {Boolean}
-Overrides:[Sprite_Battler](Sprite_Battler.md#iseffecting---boolean)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#iseffecting---boolean)
 
 
 #### loadBitmap (name, hue)
 指定したビットマップ画像を読み込む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | ファイル名(拡張子を含まない) |
 | `hue` | [Number](Number.md) | 色相(0〜360) |
@@ -174,7 +174,7 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#iseffecting---boolean)
 
 
 #### setBattler (battler)
-Overrides:[Sprite_Battler](Sprite_Battler.md#setbattler-battler)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#setbattler-battler)
 
 
 #### setupEffect ()
@@ -206,9 +206,9 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#setbattler-battler)
 
 エフェクトタイプは 'appear', 'disappear', 'whiten', 'blink', 'collapse':, 'bossCollapse', 'instantCollapse'
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `effectType` | [String](String.md) | エフェクトタイプ |
 
@@ -222,7 +222,7 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#setbattler-battler)
 
 
 #### update ()
-Overrides:[Sprite_Battler](Sprite_Battler.md#update-)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#update-)
 
 
 #### updateAppear ()
@@ -230,7 +230,7 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#update-)
 
 
 #### updateBitmap ()
-Overrides:[Sprite_Battler](Sprite_Battler.md#updatebitmap-)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#updatebitmap-)
 
 
 #### updateBlink ()
@@ -254,7 +254,7 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#updatebitmap-)
 
 
 #### updateFrame ()
-Overrides:[Sprite_Battler](Sprite_Battler.md#updateframe-)
+オーバーライド:[Sprite_Battler](Sprite_Battler.md#updateframe-)
 
 
 #### updateInstantCollapse ()
@@ -262,7 +262,7 @@ Overrides:[Sprite_Battler](Sprite_Battler.md#updateframe-)
 
 
 #### updatePosition ()
-Overrides:[updatePosition ()](Sprite_Battler.md#updateposition-)
+オーバーライド:[updatePosition ()](Sprite_Battler.md#updateposition-)
 
 
 #### updateStateSprite ()

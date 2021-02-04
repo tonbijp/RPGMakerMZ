@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).[EventPage](RPG.EventPage.md).Image
+# クラス: [RPG](RPG.md).[EventPage](RPG.EventPage.md).Image
 イベントの [EVページ] の [画像] を構成するJSONデータ。
 
 [RPG.EventPage](RPG.EventPage.md) の image プロパティに含まれる。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) | タイルID (0 : タイルでない場合) |
 | `characterName` | [String](String.md) | 画像ファイル名(characters フォルダ以下 .pngを含まない) |

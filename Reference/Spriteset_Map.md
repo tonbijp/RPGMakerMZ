@@ -1,4 +1,4 @@
-# Class: Spriteset_Map
+# クラス: Spriteset_Map
 
 ##  Extends: [Spriteset_Base](Spriteset_Base.md)
 
@@ -15,9 +15,9 @@ v1.1.1 で変更あり。
  関連クラス: [Scene_Map](Scene_Map.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_parallax` | [TilingSprite](TilingSprite.md) | [遠景]スプライト |
 | `_tilemap` | [Tilemap](Tilemap.md) \| [ShaderTilemap](ShaderTilemap.md) | マップ画像本体 |
@@ -29,7 +29,7 @@ v1.1.1 で変更あり。
 | `_parallaxName` | [String](String.md) | [遠景]画像ファイル名 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -109,7 +109,7 @@ v1.1.1 で変更あり。
 * [updateWebGLToneChanger ()](Spriteset_Base.md#updatewebgltonechanger-)
 
 
-### Methods
+### メソッド
 
 #### createCharacters ()
 キャラクタスプライト([Sprite_Character](Sprite_Character.md))の生成。
@@ -120,7 +120,7 @@ v1.1.1 で変更あり。
 
 
 #### createLowerLayer ()
-Overrides:[Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
+オーバーライド:[Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 
 基本スプライトに加え、[遠景]、[タイルマップ]、キャラクタ、影、タッチ位置表示、天候を含む下レイヤを生成。
 
@@ -146,7 +146,7 @@ Overrides:[Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 
 
 #### initialize ()
-Overrides:[Spriteset](Spriteset.md#initialize-)
+オーバーライド:[Spriteset](Spriteset.md#initialize-)
 
 
 #### loadTileset ()
@@ -154,7 +154,7 @@ Overrides:[Spriteset](Spriteset.md#initialize-)
 
 
 #### update ()
-Overrides:[Spriteset.](Spriteset.md#update-)
+オーバーライド:[Spriteset.](Spriteset.md#update-)
 
 
 #### updateParallax ()

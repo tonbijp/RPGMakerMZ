@@ -1,22 +1,22 @@
-# Class: TilingSprite
+# クラス: TilingSprite
 
-## Extends: PIXI.extras.PictureTilingSprite([PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html))
+## スーパークラス: PIXI.extras.PictureTilingSprite([PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html))
 
 ### new TilingSprite (bitmap)
 The sprite object for a tiling image.
 
 関連クラス: [Spriteset_Map](Spriteset_Map.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) | The image for the tiling sprite |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) | The image for the tiling sprite. |
 | `opacity` | [Number](Number.md) | The opacity of the tiling sprite (0 to 255). |
@@ -32,7 +32,7 @@ The sprite object for a tiling image.
 | `_frame` | [Number](Number.md) |  |
 
 
-### Methods
+### メソッド
 
 #### (static) _onBitmapLoad ()
 
@@ -42,27 +42,27 @@ The sprite object for a tiling image.
 
 #### (static) _renderCanvas (renderer)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `renderer` | Object |  |
 
 
 #### (static) _renderWebGL (renderer)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `renderer` | Object |  |
 
 
 #### (static) _renderWebGL (renderer)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `renderer` | Object |  |
 
@@ -73,9 +73,9 @@ The sprite object for a tiling image.
 #### initialize (bitmap)
  オブジェクト生成時の初期化。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) |  |
 
@@ -83,9 +83,9 @@ The sprite object for a tiling image.
 #### move (x, y, width, height)
 Sets the x, y, width, and height all at once.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | The x coordinate of the tiling sprite |
 | `y` | [Number](Number.md) | The y coordinate of the tiling sprite |
@@ -96,9 +96,9 @@ Sets the x, y, width, and height all at once.
 #### setFrame (x, y, width, height)
 Specifies the region of the image that the tiling sprite will use.
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | The x coordinate of the frame |
 | `y` | [Number](Number.md) | The y coordinate of the frame |

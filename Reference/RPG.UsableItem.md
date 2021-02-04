@@ -1,18 +1,18 @@
-# Class: [RPG](RPG.md).UsableItem
+# クラス: [RPG](RPG.md).UsableItem
 
-## Extends: [RPG.BaseItem](RPG.BaseItem.md)
+## スーパークラス: [RPG.BaseItem](RPG.BaseItem.md)
 アイテム・スキルの基本情報。
 
 
-### Sub Classes
+### サブクラス
 
 * [RPG.Skill](RPG.Skill.md)
 * [RPG.Item](RPG.Item.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `scope` | [Number](Number.md) | [範囲](RPG.UsableItem.md#範囲) |
 | `occasion` | [Number](Number.md) | [使用可能時](RPG.UsableItem.md#使用可能時)  |

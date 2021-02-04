@@ -1,6 +1,6 @@
-# Class: Sprite_Animation
+# クラス: Sprite_Animation
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Animation ()
 
@@ -16,9 +16,9 @@ v1.1.0 で変更あり。
 関連クラス: [Sprite_Base](Sprite_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_checker1` | Object | [static] すでに生成済みかチェック用オブジェクト {key: [RPG.Animation](RPG.Animation.md)} |
 | `_checker2` | Object | [static] すでに生成済みかチェック用オブジェクト {key: [RPG.Animation](RPG.Animation.md)} |
@@ -40,7 +40,7 @@ v1.1.0 で変更あり。
 | `_reduceArtifacts` | Boolean | 減らすか |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -104,7 +104,7 @@ v1.1.0 で変更あり。
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### absoluteX () → {[Number](Number.md)}
 x座標の絶対値を返す。
@@ -131,7 +131,7 @@ y座標の絶対値を返す。
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
  
 #### initMembers ()
@@ -153,9 +153,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### processTimingData (timing)
 [SEとフラッシュのタイミング]データの実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `timing` | [RPG.Animation.Timing](RPG.Animation.Timing.md) | [SEとフラッシュのタイミング] |
 
@@ -167,9 +167,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setup (target, animation, mirror, delay)
 アニメーションの準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Sprite_Base](Sprite_Base.md) | 対象 |
 | `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
@@ -188,9 +188,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### startFlash (color, duration)
 フラッシュの開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 色の配列 [ 赤, 緑, 青, 強さ ] |
 | `duration` | [Number](Number.md) | 継続時間 |
@@ -199,9 +199,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### startHiding (duration)
 対象を隠す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) | 継続時間 |
 
@@ -209,33 +209,33 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### startScreenFlash (color, duration)
 画面のフラッシュの開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 色の配列 [ 赤, 緑, 青, 強さ ] |
 | `duration` | [Number](Number.md) | 継続時間 |
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateAllCellSprites (frame)
 全セルスプライトのアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `frame` | [Array](Array.md).&lt;[Array](Array.md).&lt;[Number](Number.md)&gt;&gt; | [フレーム情報](RPG.Animation.md#フレーム情報)のセル番号以降 |
 
 
 #### updateCellSprite (sprite, cell)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  |
 | `cell` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |

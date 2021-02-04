@@ -1,6 +1,6 @@
-# Class:  [RPG](RPG.md).Skill
+# クラス:  [RPG](RPG.md).Skill
 
-## Extends: [RPG.UsableItem](RPG.UsableItem.md)
+## スーパークラス: [RPG.UsableItem](RPG.UsableItem.md)
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -9,9 +9,9 @@
 [Game_Item](Game_Item.md) の _dataClass プロパティは 'skill' になる。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stypeId` | [Number](Number.md) | [スキルタイプID](RPG.Skill.md#スキルタイプid) |
 | `mpCost` | [Number](Number.md) | [消費MP] |

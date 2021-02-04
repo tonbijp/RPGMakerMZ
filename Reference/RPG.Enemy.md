@@ -1,15 +1,15 @@
-# Class: [RPG](RPG.md).Enemy
+# クラス: [RPG](RPG.md).Enemy
 
-## Extends: [RPG.MetaData](RPG.MetaData.md) 
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
 | [敵キャラ] | Enemies.json | [$dataEnemies](global.md#dataenemies-arrayrpgenemy) (配列) | [Game_Enemy](Game_Enemy.md) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battlerName` | [String](String.md) | 画像ファイル名(拡張子なし) |
 | `battlerHue` | [Number](Number.md) | [色相] \(0~360) |

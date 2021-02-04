@@ -1,4 +1,4 @@
-# Class: Spriteset_Battle
+# クラス: Spriteset_Battle
 
 ##  Extends: [Spriteset_Base](Spriteset_Base.md)
 
@@ -8,9 +8,9 @@
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_battlebackLocated` | Boolean | 背景画像が表示されているか |
 | `_backgroundSprite` | [Sprite](Sprite.md) | [背景]スプライト |
@@ -21,7 +21,7 @@
 | `_actorSprites` | [Array](Array.md).&lt;[Sprite_Actor](Sprite_Actor.md)&gt; | [アクター]スプライトの配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -101,14 +101,14 @@
 * [updateWebGLToneChanger ()](Spriteset_Base.md#updatewebgltonechanger-)
 
 
-### Methods
+### メソッド
 
 #### autotileType (z) → {[Number](Number.md)}
 戦闘発生地点の指定レイヤーのオートタイルタイプ(地形タイプ)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `z` | [Number](Number.md) | レイヤー |
 
@@ -138,9 +138,9 @@
 [敵キャラ]スプライトを比較し、その差を返す。
 重ね合わせのソートで使われるコールバック関数。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `a` | [Sprite_Enemy](Sprite_Enemy.md) | [敵キャラ]スプライトA |
 | `b` | [Sprite_Enemy](Sprite_Enemy.md) | [敵キャラ]スプライトB |
@@ -167,7 +167,7 @@
 
 
 #### createLowerLayer ()
-Overrides: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
+オーバーライド: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 
 
 #### defaultBattleback1Name () → {[String](String.md)}
@@ -225,9 +225,9 @@ Overrides: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 #### terrainBattleback1Name (type) → {[String](String.md)}
 指定した地形に応じた背景1のファイル名。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | 地形タイプ(autotileTypeの返り値) |
 
@@ -235,9 +235,9 @@ Overrides: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 #### terrainBattleback2Name (type) → {[String](String.md)}
 指定した地形に応じた背景1のファイル名。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | 地形タイプ(autotileTypeの返り値) |
 

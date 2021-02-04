@@ -1,17 +1,17 @@
-# Class: Utils
+# クラス: Utils
 便利なメソッドを集めた静的クラス。主に利用環境のチェックを行う。
 
 関連クラス: [Graphics](Graphics.md), [Video](Video.md), 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `RPGMAKER_NAME` | [String](String.md) | [static][read-only] RPGツクールの名前(規定値: "MZ") |
 | `RPGMAKER_VERSION` | [String](String.md) | [static][read-only]  RPGツクールのバージョン(例:  "1.0.0") |
 
 
-### Methods
+### メソッド
 
 
 #### (static) canPlayOgg () → {Boolean}
@@ -46,9 +46,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) checkRMVersion (versiton) → {Boolean}
 **@MZ** 指定バージョン文字列 =< 現在のバージョン か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `versiton` | [String](String.md) | バージョン文字列(例:  "1.0.0") |
 
@@ -56,9 +56,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) containsArabic (str) → {Boolean}
 **@MZ** 指定文字列がアラビア文字を含むか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `str` | [String](String.md) | 文字列 |
 
@@ -66,9 +66,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) decryptArrayBuffer (source) → {[ArrayBuffer](ArrayBuffer.md)}
 **@MZ** 暗号化されたデータを復号する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `str` | [ArrayBuffer](ArrayBuffer.md) | 復号するデータ |
 
@@ -76,9 +76,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) encodeURI (str) → {[String](String.md))}
 **@MZ** URIエンコーディングを行う(ただし / はそのまま)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `str` | [String](String.md) | エンコードする文字列 |
 
@@ -86,9 +86,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) escapeHtml (str) → {[String](String.md))}
 **@MZ** HTML 用の実体参照(&amp;amp;など)によるエスケープを行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `str` | [String](String.md) | エスケープする文字列 |
 
@@ -130,9 +130,9 @@ MV ではGraphicsのメソッドだった。
 指定オプション(ブラウザだとURLの?以降の&amp;で区切られたクエリ)が含まれるか。<br />
 "test", "btest", "etest", "onTop", "devToolOff", "showfps", "canvas", "webgl", "noaudio"
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | オプション文字列 |
 
@@ -144,9 +144,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) rgbToCssColor (r, g, b) → {[MV.CssColor](MV.CssColor.md)}
 指定したRGBの色数値から CSS色文字列を生成して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `r` | [Number](Number.md) | 赤 (0〜255) |
 | `g` | [Number](Number.md) | 緑 (0〜255) |
@@ -156,9 +156,9 @@ MV ではGraphicsのメソッドだった。
 #### (static) setEncryptionInfo (hasImages, hasAudio, key)
 **@MZ** 暗号化情報の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `hasImages` | Boolean | 画像を暗号化するか |
 | `hasAudio` | Boolean | 音声を暗号化するか |

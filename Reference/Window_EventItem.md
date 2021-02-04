@@ -1,27 +1,27 @@
-# Class: Window_EventItem
+# クラス: Window_EventItem
 
-## Extends: [Window_ItemList](Window_ItemList.md)
+## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
 ### new Window_EventItem (messageWindow)
 [アイテム選択の処理]をするウィンドウ。
 
 関連クラス: [Window_NumberInput](Window_NumberInput.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -258,24 +258,24 @@
 * [updateHelp ()](Window_ItemList.md#updatehelp-)
 
 
-### Methods
+### メソッド
 
 #### includes (item) → {Boolean}
-Overrides: [Window_ItemList](Window_ItemList.md#includes-item--boolean)
+オーバーライド: [Window_ItemList](Window_ItemList.md#includes-item--boolean)
 
 
 #### initialize (messageWindow)
-Overrides: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
+オーバーライド: [Window_ItemList](Window_ItemList.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageWindow` | [Window_Message](Window_Message.md) | 親メッセージウィンドウ |
 
 
 #### isEnabled (item) → {Boolean}
-Overrides: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
+オーバーライド: [Window_ItemList](Window_ItemList.md#isenabled-item--boolean)
 
 
 #### numVisibleRows () → {[Number](Number.md)}

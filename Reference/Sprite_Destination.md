@@ -1,20 +1,20 @@
-# Class: Sprite_Destination
+# クラス: Sprite_Destination
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Destination ()
 タッチ箇所を表示するスプライト。
 
 関連クラス: [TouchInput](TouchInput.md), [Spriteset_Map](Spriteset_Map.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_frameCount` | [Number](Number.md) | フレームカウント |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -78,18 +78,18 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### createBitmap ()
 タッチ画像を生成。
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateAnimation ()

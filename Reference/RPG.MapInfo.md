@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).MapInfo
+# クラス: [RPG](RPG.md).MapInfo
 
 | データベース| JSONファイル | 大域変数 |
 | --- | --- | --- |
@@ -9,9 +9,9 @@
 関連クラス: [RPG.Map](RPG.Map.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | [ID] \(おそらく未使用) |
 | `name` | [String](String.md) | [名前] |

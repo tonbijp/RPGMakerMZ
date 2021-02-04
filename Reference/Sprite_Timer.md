@@ -1,6 +1,6 @@
-# Class: Sprite_Timer
+# クラス: Sprite_Timer
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Timer ()
 
@@ -11,14 +11,14 @@
 関連クラス: [Game_Interpreter](Game_Interpreter.md), [Spriteset_Base](Spriteset_Base.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_seconds` | [Number](Number.md) | 秒 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -82,14 +82,14 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### createBitmap ()
 画像の生成。
 
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### redraw ()
@@ -100,7 +100,7 @@ Overrides:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateBitmap ()

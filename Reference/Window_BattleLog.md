@@ -1,6 +1,6 @@
-# Class: Window_BattleLog
+# クラス: Window_BattleLog
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_BattleLog ()
 戦闘ログのウィンドウ。
@@ -12,9 +12,9 @@
 関連クラス: [Scene_Battle](Scene_Battle.md), [RPG.State](RPG.State.md), [Game_ActionResult](Game_ActionResult.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_backBitmap ` | [Bitmap](Bitmap.md) | 背景画像 |
 | `_lines` | [Array](Array.md).&lt;[String](String.md)&gt; | 行の配列 |
@@ -32,7 +32,7 @@
 | 'movement' | 移動 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -256,15 +256,15 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### addText (text)
 行を追加。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 行の文字列 |
 
@@ -310,9 +310,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayAction (subject, item)
 指定された行動( [スキル][アイテム]の使用 )を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `item` | [RPG.UsableItem](RPG.UsableItem.md) | 使用項目 |
@@ -321,9 +321,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayActionResults (subject, target)
 行動結果を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -332,9 +332,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayAddedStates (target)
 追加されたステートを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -342,9 +342,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayAffectedStatus (target)
 能力値変化を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -352,9 +352,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayAutoAffectedStatus (target)
 自動での能力値変化を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -362,9 +362,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayChangedBuffs (target)
 [強化][弱体]の変化を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -372,9 +372,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayChangedStates (target)
 ステートの変化を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -382,9 +382,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayCounter (target)
 カウンター攻撃を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -392,9 +392,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayCritical (target)
 クリティカル攻撃を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -402,9 +402,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayCurrentState (subject)
 現在のステートを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -412,9 +412,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayDamage (target)
 ダメージ表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -422,9 +422,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayEvasion (target)
 回避を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -432,9 +432,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### displayHpDamage (target)
 HPへのダメージを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -442,9 +442,9 @@ HPへのダメージを表示。
 #### displayMiss (target)
 攻撃の失敗を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -452,9 +452,9 @@ HPへのダメージを表示。
 #### displayMpDamage (target)
 MPへのダメージを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -462,9 +462,9 @@ MPへのダメージを表示。
 #### displayReflection (target)
 反射を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -472,9 +472,9 @@ MPへのダメージを表示。
 #### displayRemovedStates (target)
 ステートが外れたことを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -482,9 +482,9 @@ MPへのダメージを表示。
 #### displayRegeneration (subject)
 再生を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -492,9 +492,9 @@ MPへのダメージを表示。
 #### displaySubstitute (substitute, target)
 [かばう]行動を表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `substitute` | [Game_Battler](Game_Battler.md) | 代理バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -503,9 +503,9 @@ MPへのダメージを表示。
 #### displayTpDamage (target)
 TPへのダメージを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -517,9 +517,9 @@ TPへのダメージを表示。
 #### drawLineText (index)
 指定行の文字を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 行位置 |
 
@@ -527,15 +527,15 @@ TPへのダメージを表示。
 #### endAction (subject)
 アクションの終了。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
 #### initialize ()
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isBusy () → {Boolean}
@@ -549,9 +549,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 #### makeHpDamageText (target)
 HPへのダメージのメッセージを生成。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -559,9 +559,9 @@ HPへのダメージのメッセージを生成。
 #### makeMpDamageText (target) → {[String](String.md)}
 MPへのダメージのメッセージを生成。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -569,9 +569,9 @@ MPへのダメージのメッセージを生成。
 #### makeTpDamageText (target) → {[String](String.md)}
 TPへのダメージのメッセージを生成。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -592,9 +592,9 @@ TPへのダメージのメッセージを生成。
 行動を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `action` | [Game_Action](Game_Action.md) | 行動 |
@@ -604,9 +604,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 行動の終了を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -615,9 +615,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 行動の開始を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `action` | [Game_Action](Game_Action.md) | 行動 |
@@ -627,9 +627,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 倒れたことを適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -638,9 +638,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 カウンター攻撃を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -649,9 +649,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 ダメージを適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -660,9 +660,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 回避を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -671,9 +671,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 魔法反射を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -682,9 +682,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 攻撃失敗を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -693,9 +693,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 回復を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -704,9 +704,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 反射を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -715,9 +715,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 [かばう]行動を適用。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -731,9 +731,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 ダメージを表示。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -742,9 +742,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 ログの挙動を予約する。<br />
 引数の内容は [MV.BattleLogMethod](MV.BattleLogMethod.md) と同じ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `methodName` | [String](String.md) | 呼び出すメソッド名 |
 | `args` | [Array](Array.md).&lt;*&gt; | メソッド毎に異なる引数 |
@@ -756,15 +756,15 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setSpriteset (spriteset)
 スプライトセットを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `spriteset` | [Spriteset_Battle](Spriteset_Battle.md) | スプライトセット |
 
@@ -772,9 +772,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setWaitMode (waitMode)
 待機状態を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `waitMode` | [String](String.md) | 待機状態( 'effect', 'movement' ) |
 
@@ -782,9 +782,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### showActorAttackAnimation (subject, targets)
 アクターの攻撃アニメを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 目標バトラーの配列 |
@@ -793,9 +793,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### showAttackAnimation (subject, targets)
 攻撃アニメを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 目標バトラーの配列 |
@@ -805,9 +805,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 アニメを表示。<br />
 See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 目標バトラーの配列 |
@@ -817,9 +817,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### showEnemyAttackAnimation (subject, targets)
 敵の攻撃アニメを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 目標バトラーの配列 |
@@ -828,9 +828,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### showNormalAnimation (targets, animationId, mirror)
 通常のアニメを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 目標バトラーの配列 |
 | `animationId` | [Number](Number.md) | アニメーションID |
@@ -840,9 +840,9 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 #### startAction (subject, action, targets)
 行動の開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `action` | [Game_Action](Game_Action.md) | 行動 |
@@ -854,7 +854,7 @@ See: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateWait () → {Boolean}

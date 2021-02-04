@@ -1,16 +1,16 @@
-# Class: ColorFilter
+# クラス: ColorFilter
 
-## Extends: [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
+## スーパークラス: [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
 
 ### new ColorFilter ()
 WebGLカラーフィルタオブジェクト。
 
 関連クラス: [Scene_Base](Scene_Base.md), [Sprite](Sprite.md), [Spriteset_Base](Spriteset_Base.md)
 
-### Properties:
+### プロパティ
 以下は PIXI.Filter から継承されたプロパティです。
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `defaultFragmentSrc` | [String](String.md) | [static] |
 | `defaultVertexSrc` | [String](String.md)  | [static]  |
@@ -26,7 +26,7 @@ WebGLカラーフィルタオブジェクト。
 | `uniforms` | Object |  [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)からの継承 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
 
@@ -37,7 +37,7 @@ WebGLカラーフィルタオブジェクト。
 * [apply (filterManager, input, output, clearMode, currentState)](http://pixijs.download/release/docs/PIXI.Filter.html#apply)
 
 
-### Methods
+### メソッド
 
 #### _fragmentSrc () → {String}
 fragment shader のソースを文字列で返す。
@@ -50,9 +50,9 @@ fragment shader のソースを文字列で返す。
 #### setBlendColor (color)
 指定した値でブレンド色を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [MV.Color](MV.Color.md) | ブレンド色[r, g, b, a] |
 
@@ -60,9 +60,9 @@ fragment shader のソースを文字列で返す。
 #### setBrightness (brightness)
 指定した値で明るさを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `brightness` | [Number](Number.md)  | 明るさ(0 〜 255) |
  
@@ -70,9 +70,9 @@ fragment shader のソースを文字列で返す。
 #### setColorTone (tone)
 指定した値で[色調]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tone` | [[MV.Tone](MV.Tone.md) | 色調[r, g, b, gray] |
 
@@ -80,9 +80,9 @@ fragment shader のソースを文字列で返す。
 #### setHue (hue)
 指定した値で色相を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `hue` | [Number](Number.md) | 色相(-360 〜 360) |
 

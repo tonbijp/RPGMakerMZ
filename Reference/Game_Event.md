@@ -1,6 +1,6 @@
-# Class: Game_Event
+# クラス: Game_Event
 
-## Extends: [Game_Character](Game_Character.md)
+## スーパークラス: [Game_Character](Game_Character.md)
 
 ### new Game_Event ()
 
@@ -13,9 +13,9 @@
  [RPG.Event](RPG.Event.md) を返す [Game_Event.event ()](Game_Event.md#event---rpgevent) メソッドなどを含む。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_mapId` | [Number](Number.md) | マップID |
 | `_eventId` | [Number](Number.md) | イベントID |
@@ -31,7 +31,7 @@
 | `_interpreter` | [Game_Interpreter](Game_Interpreter.md) | コマンドインタプリタ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_CharacterBase](Game_CharacterBase.md)
 
@@ -160,14 +160,14 @@
 * [updateRoutineMove ()](Game_Character.md#updateroutinemove-)
 
 
-### Methods
+### メソッド
 
 #### checkEventTriggerAuto ()
 [トリガー:自動実行]の[イベント]を実行。
 
 
 #### checkEventTriggerTouch (x, y)
-Overrides: [Game_Character](Game_Character.md#checkeventtriggertouch-x-y--boolean)
+オーバーライド: [Game_Character](Game_Character.md#checkeventtriggertouch-x-y--boolean)
 
 
 #### clearPageSettings ()
@@ -195,31 +195,31 @@ Overrides: [Game_Character](Game_Character.md#checkeventtriggertouch-x-y--boolea
 
 
 #### forceMoveRoute (moveRoute)
-Overrides: [Game_Character](Game_Character.md#forcemoveroute-moveroute)
+オーバーライド: [Game_Character](Game_Character.md#forcemoveroute-moveroute)
 
 
 #### initialize ()
-Overrides: [Game_Character](Game_Character.md#initialize-)
+オーバーライド: [Game_Character](Game_Character.md#initialize-)
 
 
 #### initMembers ()
-Overrides: [Game_Character](Game_Character.md#initmembers-)
+オーバーライド: [Game_Character](Game_Character.md#initmembers-)
 
 
 #### isCollidedWithCharacters (x, y) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#iscollidedwithcharacters-x-y--boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#iscollidedwithcharacters-x-y--boolean)
 
 
 #### isCollidedWithEvents (x, y) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#iscollidedwithevents-x-y--boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#iscollidedwithevents-x-y--boolean)
 
 
 #### isCollidedWithPlayerCharacters (x, y) → {Boolean}
  指定位置がプレイヤーキャラクタによって塞がれているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -230,7 +230,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#iscollidedwithevents-x-y--
 
 
 #### isOriginalPattern () → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#isoriginalpattern---boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#isoriginalpattern---boolean)
 
 
 #### isStarting () → {Boolean}
@@ -240,9 +240,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#isoriginalpattern---boolea
 #### isTriggerIn (triggers) → {Boolean}
  指定した配列に、この[イベント]の[トリガー]が含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `triggers` | [Array](Array.md).<[Number](Number.md)> | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 
@@ -252,7 +252,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#isoriginalpattern---boolea
 
 
 #### locate (x, y)
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 
 
 #### lock ()
@@ -262,9 +262,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 #### meetsConditions (page) → {Boolean}
  指定ページの[出現条件]が満たされているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `page` | [RPG.EventPage](RPG.EventPage.md) | EVページ |
 
@@ -290,7 +290,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 
 
 #### resetPattern ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#resetpattern-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#resetpattern-)
 
 
 #### setupPage ()
@@ -314,7 +314,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#resetpattern-)
 
 
 #### update ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#update-)
 
 
 #### updateParallel ()
@@ -326,5 +326,5 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
 
 
 #### updateStop ()
-Overrides: [Game_Character](Game_Character.md#updatestop-)
+オーバーライド: [Game_Character](Game_Character.md#updatestop-)
 

@@ -1,20 +1,20 @@
-# Class: Scene_GameEnd
+# クラス: Scene_GameEnd
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_GameEnd ()
 [ゲーム終了]のシーン。
 
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_GameEnd](Window_GameEnd.md) | [ゲーム終了]選択ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -83,14 +83,14 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### commandToTitle ()
 [タイトルへ]コマンドの実行。
 
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createBackground ()
@@ -101,8 +101,8 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 コマンド選択ウィンドウの生成。
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### stop ()
-Overrides: [Scene_Base](Scene_Base.md#stop-)
+オーバーライド: [Scene_Base](Scene_Base.md#stop-)

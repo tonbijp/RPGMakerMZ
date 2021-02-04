@@ -1,15 +1,15 @@
-# Class: ScreenSprite
+# クラス: ScreenSprite
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 #### new ScreenSprite ()
  画面全体を覆うフェードなどのエフェクト用スプライト。
 
 関連クラス: [Spriteset_Base](Spriteset_Base.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `opacity` | [Number](Number.md) |  不透明度 (0〜255) |
 | `_graphics` | [PIXI.Graphics](PIXI.Graphics.md) |  画像管理オブジェクト |
@@ -20,7 +20,7 @@
 #### 廃止MVプロパティ
 `YEPWarned`, `anchor`, `blendMode`, `_colorText` 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -59,7 +59,7 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
-### Methods
+### メソッド
 
 #### destroy ()
 **@MZ** オブジェクトの廃棄。
@@ -76,9 +76,9 @@
 #### setColor (r, g, b)
 指定した色に設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `r` | [Number](Number.md) | 赤(0〜255) |
 | `g` | [Number](Number.md) | 緑(0〜255) |

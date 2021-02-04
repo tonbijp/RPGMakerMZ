@@ -1,6 +1,6 @@
-# Class: PIXI.Renderer
+# クラス: PIXI.Renderer
 
-## Extends: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
+## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
 
 ### new PIXI.Renderer (options)
 レンダリングを行うためのクラス。
@@ -11,9 +11,9 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 
 関連クラス: [WindowLayer](WindowLayer.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `options ` | Object | 詳細は以下の表を参照 |
 
@@ -21,7 +21,7 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 
 全ての値は任意(optional)です。
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `width` | [Number](Number.md) | 画面の幅(ピクセル) (規定値: 800) |
 | `height` | [Number](Number.md) | 画面の高さ(ピクセル) (規定値: 600) |
@@ -38,13 +38,13 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 | `context` | Object | 指定したWebGLコンテキストから、すべてのパラメーターを取得 |
 
 
-### Sub Classes
+### サブクラス
 
 * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- | 
 | `_activeRenderTarget` | [PIXI.RenderTarget](http://pixijs.download/release/docs/PIXI.RenderTarget.html) | ターゲット |
 | `_fillStyle` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | 塗りの形式 |
@@ -65,7 +65,7 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 | `vertexData` | Float32Array | 頂点データ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -103,16 +103,16 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 
 
 
-### Methods
+### メソッド
 
 #### _calculateBounds ()
-Overrides:[PIXI.Container.md](PIXI.Container.md#_calculatebounds-)
+オーバーライド:[PIXI.Container.md](PIXI.Container.md#_calculatebounds-)
  
  
 #### _initCurve (x, y)
 曲線の初期化。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -121,13 +121,13 @@ Overrides:[PIXI.Container.md](PIXI.Container.md#_calculatebounds-)
 
  
 #### _render (renderer)
-Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
+オーバーライド:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 
 
 #### arc (cx, cy, radius, startAngle, endAngle, anticlockwise) →  {PIXI.Graphics}
 円弧を描き、自分自身を返す。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -143,9 +143,9 @@ Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 角丸を描き、自身を返す。<br />
 直前のポイント - 中間点、中間点 - 到達点 と直線を引き、両直線に接するようにradius 半径の円弧を描く、という手順で角丸を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x1` | [Number](Number.md)  | 中間点の x座標(ピクセル) |
 | `y1` | [Number](Number.md)  | 中間点の y座標(ピクセル) |
@@ -157,7 +157,7 @@ Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 #### beginFill (color, alpha) →  {PIXI.Graphics}
 塗り潰しを開始し、自身を返す。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -174,7 +174,7 @@ Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 第1引数の color は代わりに texture も使える。<br />
 第2引数の alpha は数値でも PIXI.Matrix でも指定可能。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -187,9 +187,9 @@ Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 #### bezierCurveTo (cpX, cpY, cpX2, cpY2, toX, toY) →  {PIXI.Graphics}
 3次ベジェ曲線を引き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `cpX` | [Number](Number.md)  | 制御点1の x座標(ピクセル) |
 | `cpY` | [Number](Number.md)  | 制御点1の y座標(ピクセル) |
@@ -222,19 +222,19 @@ Overrides:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 #### containsPoint (point) →  {Boolean}
 指定座標が含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `point ` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) |  |
 
 
 #### destroy (options)
-Overrides:[PIXI.Container](PIXI.Container.md#destroy-options)
+オーバーライド:[PIXI.Container](PIXI.Container.md#destroy-options)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `options ` | Object \| Boolean | opt. 以下のオプション全てに同じ値が設定される |
 
@@ -250,9 +250,9 @@ options に Object として指定する内容
 #### drawCircle (x, y, radius) →  {PIXI.Graphics}
 円を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
 | `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
@@ -262,9 +262,9 @@ options に Object として指定する内容
 #### drawEllipse (x, y, width, height) →  {PIXI.Graphics}
 楕円を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
 | `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
@@ -275,9 +275,9 @@ options に Object として指定する内容
 #### drawPolygon (path) →  {PIXI.Graphics}
 多角形を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `path ` | [Array](Array.md).&lt;[Number](Number.md)&gt; \| [Array](Array.md).&lt;[PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)&gt; \| [Array](Array.md).&lt;[PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html)&gt;  | パス |
 
@@ -285,9 +285,9 @@ options に Object として指定する内容
 #### drawRect (x, y, width, height) →  {PIXI.Graphics}
 四角形を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
 | `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
@@ -299,9 +299,9 @@ options に Object として指定する内容
 #### drawRoundedRect (x, y, width, height, radius) →  {PIXI.Graphics}
 角丸の四角形を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | 中心のx座標(ピクセル) |
 | `y` | [Number](Number.md)  | 中心のy座標(ピクセル) |
@@ -313,9 +313,9 @@ options に Object として指定する内容
 #### drawShape (shape) →  {PIXI.Graphics}
 角丸の四角形を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `shape` | [PIXI.Circle](http://pixijs.download/release/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/release/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/release/docs/PIXI.RoundedRectangle.html)  | |
 
@@ -323,7 +323,7 @@ options に Object として指定する内容
 #### drawStar (x, y, points, radius, innerRadius, rotation) →  {PIXI.Graphics}
 星型の図形を描き、自身を返す。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -350,9 +350,9 @@ options に Object として指定する内容
 #### generateCanvasTexture (scaleMode, resolution) →  {PIXI.Texture}
 指定の設定でテクスチャ([PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html))を生成して返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `scaleMode` | [Number](Number.md) | [PIXI.SCALE_MODES](http://pixijs.download/release/docs/PIXI.html#.SCALE_MODES) |
 | `resolution` | [Number](Number.md) | 解像度 |
@@ -365,7 +365,7 @@ options に Object として指定する内容
 #### lineStyle (width, color, alpha, alignment, native) →  {PIXI.Graphics}
 指定の値でラインスタイルを設定し、自身を返す。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -379,7 +379,7 @@ options に Object として指定する内容
 #### lineTextureStyle (width, texture, color, alpha, matrix, alignment, native) →  {PIXI.Graphics}
 指定の値でラインテクスチャスタイルを設定し、自身を返す。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -395,9 +395,9 @@ options に Object として指定する内容
 #### lineTo (x, y) →  {PIXI.Graphics}
 指定座標まで線を引き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | x座標(ピクセル) |
 | `y` | [Number](Number.md)  | y座標(ピクセル) |
@@ -406,9 +406,9 @@ options に Object として指定する内容
 #### moveTo (x, y) →  {PIXI.Graphics}
 指定座標まで描画位置を移動し、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md)  | x座標(ピクセル) |
 | `y` | [Number](Number.md)  | y座標(ピクセル) |
@@ -417,9 +417,9 @@ options に Object として指定する内容
 #### quadraticCurveTo (cpX, cpY, toX, toY) →  {PIXI.Graphics}
 2次ベジェ曲線を引き、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `cpX` | [Number](Number.md)  | コントロールポイントx座標(ピクセル) |
 | `cpY` | [Number](Number.md)  | コントロールポイントy座標(ピクセル) |
@@ -430,9 +430,9 @@ options に Object として指定する内容
 #### setMatrix (matrix) →  {PIXI.Graphics}
 マトリクスを設定し、自身を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html)   | マトリクス |
 

@@ -1,10 +1,10 @@
-# Class: [RPG](RPG.md).[Troop](RPG.Troop.md).Member
+# クラス: [RPG](RPG.md).[Troop](RPG.Troop.md).Member
  [RPG.Troop](RPG.Troop.md) のメンバーを構成する JSONデータ。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `enemyId` | [Number](Number.md) | 敵キャラID |
 | `x` | [Number](Number.md) | x座標(ピクセル) |

@@ -1,4 +1,4 @@
-# Class: Game_Variables
+# クラス: Game_Variables
 
 ### new Game_Variables ()
 
@@ -13,14 +13,14 @@
 関連クラス: [Game_Switches](Game_Switches.md), [Game_SelfSwitches](Game_SelfSwitches.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 変数の内容の配列 |
 
 
-### Methods
+### メソッド
 
 #### clear ()
 値を初期化。
@@ -37,9 +37,9 @@
 #### setValue (variableId, value)
 指定した[変数]に値を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `variableId` | [Number](Number.md) | 変数ID |
 | `value` | * | 値 |
@@ -48,9 +48,9 @@
 #### value (variableId) → {*}
 指定した[変数]の値を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `variableId` | [Number](Number.md) | 変数ID |
 

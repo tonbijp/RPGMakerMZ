@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Weapon
+# クラス: [RPG](RPG.md).Weapon
 
-## Extends: [RPG.EquipItem](RPG.EquipItem.md)
+## スーパークラス: [RPG.EquipItem](RPG.EquipItem.md)
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -10,9 +10,9 @@
 
 関連クラス: [RPG.BaseItem](RPG.BaseItem.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wtypeId` | [Number](Number.md) | [武器タイプID](RPG.Weapon#武器タイプid) |
 | `animationId` | [Number](Number.md) | [[アニメーション](RPG.Animation.md)]のID |

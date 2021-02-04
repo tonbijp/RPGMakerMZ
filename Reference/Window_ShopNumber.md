@@ -1,6 +1,6 @@
-# Class: Window_ShopNumber
+# クラス: Window_ShopNumber
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_ShopNumber (x, y, height)
 [ショップの処理]で売買時に個数を選択するウィンドウ。
@@ -9,18 +9,18 @@ img/system/ButtonSet.png の画像が使用される。
 
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopBuy](Window_ShopBuy.md), [Window_ShopStatus](Window_ShopStatus.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 | `height` | [Number](Number.md) | 高さ(ピクセル) ||
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_item` | [RPG.BaseItem](RPG.BaseItem.md) | 売買対象のアイテム |
 | `_max` | [Number](Number.md) | 最大個数 |
@@ -30,7 +30,7 @@ img/system/ButtonSet.png の画像が使用される。
 | `_buttons` | [Array](Array.md).&lt;[Sprite_Button](Sprite_Button.md)&gt; | ボタンスプライトの配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -252,7 +252,7 @@ img/system/ButtonSet.png の画像が使用される。
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### buttonY () → {[Number](Number.md)}
 ボタンのy座標(ピクセル)を返す。
@@ -261,9 +261,9 @@ img/system/ButtonSet.png の画像が使用される。
 #### changeNumber (amount)
 指定個数に変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `amount` | [Number](Number.md) | 個数 |
 
@@ -297,11 +297,11 @@ img/system/ButtonSet.png の画像が使用される。
 
 
 #### initialize (x, y, height)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -309,7 +309,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isOkTriggered ()
-Overrides: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#isoktriggered---boolean)
 
 
 #### itemY () → {[Number](Number.md)}
@@ -349,7 +349,7 @@ OKが選択された時に呼ばれるハンドラ。
 
 
 #### playOkSound ()
-Overrides: [Window_Selectable](Window_Selectable.md#playoksound-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#playoksound-)
 
 
 #### priceY () → {[Number](Number.md)}
@@ -361,15 +361,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#playoksound-)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setCurrencyUnit (currencyUnit)
 通貨単位を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `currencyUnit` | [String](String.md) | 通貨単位 |
 
@@ -377,9 +377,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setup (item, max, price)
 準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 | `max` | [Number](Number.md) | 最大数 |
@@ -391,7 +391,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### update ()
-Overrides: [Window_Selectable](Window_Selectable.md#update-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateButtonsVisiblity ()
@@ -399,7 +399,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#update-)
 
 
 #### updateCursor ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatecursor-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatecursor-)
 
 
 #### windowWidth () → {[Number](Number.md)}

@@ -1,12 +1,12 @@
-# Class: TouchInput
+# クラス: TouchInput
 マウスやタッチスクリーンによるタッチ入力を扱う静的クラス。
 
 関連クラス: [Input](Input.md), [Sprite_Destination](Sprite_Destination.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `keyRepeatWait` | [Number](Number.md) | [static] The wait time of the pseudo key repeat in frames. |
 | `keyRepeatInterval` | [Number](Number.md) | [static] The interval of the pseudo key repeat in frames. |
@@ -30,7 +30,7 @@
 `_events`, `_triggered`, `_cancelled`, `_wheelX`, `_wheelY`
 
 
-### Methods
+### メソッド
 
 #### (static) _createNewState ()
 **@MZ** 新たな状態を作る。
@@ -39,9 +39,9 @@
 #### (static) _onCancel (x, y)
 二本指でタッチあるいはキャンセル(右)ボタンが押された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -50,9 +50,9 @@
 #### (static) _onHover (x, y)
 **@MZ** ボタンを離した状態で移動した時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -61,9 +61,9 @@
 #### (static) _onLeftButtonDown (event)
 決定(左)ボタンが押された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -76,9 +76,9 @@
 補助(中央)ボタン(ホイール)が押された時のイベント。<br />
 コアスクリプトでの実装はない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -86,9 +86,9 @@
 #### (static) _onMouseDown (event)
 いずれかのマウスボタンが押された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -96,9 +96,9 @@
 #### (static) _onMouseMove (event)
 マウスが移動した時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -106,9 +106,9 @@
 #### (static) _onMouseUp (event)
 いずれかのマウスボタンが離された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -116,9 +116,9 @@
 #### (static) _onMove (x, y)
 タッチした指あるいはマウスが移動した時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -127,9 +127,9 @@
 #### (static) _onRelease (x, y)
 タッチした指あるいはボタンが離れた時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -138,9 +138,9 @@
 #### (static) _onRightButtonDown (event)
 キャンセル(右)ボタンが押された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | MouseEvent |  |
 
@@ -148,9 +148,9 @@
 #### (static) _onTouchCancel (event)
 タッチがキャンセル(二本指でタッチ)された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | TouchEvent |  |
 
@@ -158,9 +158,9 @@
 #### (static) _onTouchEnd (event)
 タッチした指が離れた時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | TouchEvent |  |
 
@@ -168,9 +168,9 @@
 #### (static) _onTouchMove (event)
 タッチした状態で指が移動した時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | TouchEvent |  |
 
@@ -178,9 +178,9 @@
 #### (static) _onTouchStart (event)
 タッチされた時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | TouchEvent |  |
 
@@ -189,9 +189,9 @@
 
 トリガされた時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -200,9 +200,9 @@
 #### (static) _onWheel (event)
 ホイールが回された時のイベント。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `event` | WheelEvent |  |
 

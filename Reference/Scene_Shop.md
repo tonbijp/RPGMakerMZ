@@ -1,6 +1,6 @@
-# Class: Scene_Shop
+# クラス: Scene_Shop
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Shop ()
 [ショップの処理]のシーン。
@@ -8,9 +8,9 @@
 関連クラス: [Game_Interpreter](Game_Interpreter.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_goods` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 商品の配列 |
 | `_purchaseOnly` | Boolean | [購入のみ]か |
@@ -26,7 +26,7 @@
 | `_helpWindow` | [Window_Help](Window_Help.md) | ヘルプウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -96,7 +96,7 @@
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### activateBuyWindow ()
 購入ウィンドウをアクティベート。
@@ -118,7 +118,7 @@
 
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createBuyWindow ()
@@ -156,9 +156,9 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 #### doBuy (number)
 指定個数の購入を実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `number` | [Number](Number.md) | 個数 |
 
@@ -166,9 +166,9 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 #### doSell (number)
 指定個数の売却を実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `number` | [Number](Number.md) | 個数 |
 
@@ -178,7 +178,7 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### maxBuy () → {[Number](Number.md)}
@@ -222,9 +222,9 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 #### prepare (goods, purchaseOnly)
 [ショップの処理]を実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `goods` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 商品の配列 |
 | `purchaseOnly` | Boolean | 購入のみか |

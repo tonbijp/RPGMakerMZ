@@ -20,7 +20,7 @@ $XXXで大域変数に設定されているものや、セーブデータの管�
 
 `_globalId`,`_lastAccessedId`,`_errorUrl`は廃止。
 
-### Methods
+### メソッド
 
 #### (static) checkError ()
 エラーが記録されていれば、エラーを表示。

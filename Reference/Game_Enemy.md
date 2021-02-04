@@ -1,6 +1,6 @@
-# Class: Game_Enemy
+# クラス: Game_Enemy
 
-## Extends: [Game_Battler](Game_Battler.md)
+## スーパークラス: [Game_Battler](Game_Battler.md)
 
 ### new Game_Enemy ()
 
@@ -13,9 +13,9 @@
 関連クラス: [RPG.Enemy.Action](RPG.Enemy.Action.md), [Game_Troop](Game_Troop.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Window_BattleEnemy](Window_BattleEnemy.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_enemyId` | [Number](Number.md) | 敵キャラID |
 | `_letter` | [String](String.md) | 接尾辞(A,B...など) |
@@ -24,7 +24,7 @@
 | `_screenY` | [Number](Number.md) | 画面上の y座標  |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_BattlerBase](Game_BattlerBase.md)
 
@@ -235,7 +235,7 @@
 * [weaponImageId ()](Game_Battler.md#weaponimageid---number)
 
 
-### Methods
+### メソッド
 
 #### battlerHue () → {[Number](Number.md)}
 色相。
@@ -275,11 +275,11 @@
 
 #### initialize (enemyId, x, y)
 指定の[敵キャラ]と座標で初期化。
-Overrides:[Game_Battler#initialize]
+オーバーライド:[Game_Battler#initialize]
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `enemyId` | [Number](Number.md) | 敵キャラID |
 | `x` | [Number](Number.md) | x座標 |
@@ -287,15 +287,15 @@ Overrides:[Game_Battler#initialize]
 
 
 #### initMembers ()
-Overrides:[Game_Battler](Game_Battler.md#initmembers-)
+オーバーライド:[Game_Battler](Game_Battler.md#initmembers-)
 
 
 #### isActionValid (action) → {Boolean}
 [行動パターン]が実行可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `action` | [RPG.Enemy.Action](RPG.Enemy.Action.md) | [行動パターン] |
 
@@ -305,7 +305,7 @@ Overrides:[Game_Battler](Game_Battler.md#initmembers-)
 
 
 #### isEnemy () → {Boolean}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#isenemy---boolean)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#isenemy---boolean)
 
 
 #### isLetterEmpty () → {Boolean}
@@ -319,16 +319,16 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isenemy---boolean)
 #### itemObject (kind, dataId) → {[RPG.BaseItem](RPG.BaseItem.md)}
 指定したアイテムを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `kind` | [Number](Number.md) | 種類(1:アイテム, 2:武器, 3:防具) |
 | `dataId` | Numver | アイテムID |
 
 
 #### makeActions ()
-Overrides:[Game_Battler](Game_Battler.md#makeactions-)
+オーバーライド:[Game_Battler](Game_Battler.md#makeactions-)
 
 
 #### makeDropItems () → {[Array](Array.md).<[RPG.BaseItem](RPG.BaseItem.md)>}
@@ -338,9 +338,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsCondition (action) → {Boolean}
 [行動パターン]が[条件]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `action` | [RPG.Enemy.Action](RPG.Enemy.Action.md) | [行動パターン] |
 
@@ -348,9 +348,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsHpCondition (param1, param2) → {Boolean}
 [条件 - HP]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param1` | [Number](Number.md) | 範囲下限HP |
 | `param2` | [Number](Number.md) | 範囲上限HP |
@@ -359,9 +359,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsMpCondition (param1, param2) → {Boolean}
 [条件 - MP]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param1` | [Number](Number.md) | 範囲下限MP |
 | `param2` | [Number](Number.md) | 範囲上限MP |
@@ -370,9 +370,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsPartyLevelCondition (param) → {Boolean}
 [条件 - パーティLv]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param` | [Number](Number.md) | レベル |
 
@@ -380,9 +380,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsStateCondition (param) → {Boolean}
 [条件 - ステート]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -390,9 +390,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsSwitchCondition (param) → {Boolean}
 [条件 - スイッチ]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param` | [Number](Number.md) | スイッチID |
 
@@ -400,9 +400,9 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 #### meetsTurnCondition (param1, param2) → {Boolean}
 [条件 - ターン]に合致しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `param1` | [Number](Number.md) | 範囲下限ターン |
 | `param2` | [Number](Number.md) | 範囲上限ターン |
@@ -421,15 +421,15 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 
 
 #### paramBase (paramId) → {[Number](Number.md)}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#parambase-paramid--number)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#parambase-paramid--number)
 
 
 #### performAction (action)
-Overrides:[Game_Battler](Game_Battler.md#performaction-action)
+オーバーライド:[Game_Battler](Game_Battler.md#performaction-action)
 
 
 #### performActionEnd ()
-Overrides:[Game_Battler](Game_Battler.md#performactionend-)
+オーバーライド:[Game_Battler](Game_Battler.md#performactionend-)
 
 
 #### performActionStart (action)
@@ -437,11 +437,11 @@ Overrides [Game_Battler](Game_Battler.md#performactionstart-action)
 
 
 #### performCollapse ()
-Overrides:[Game_Battler](Game_Battler.md#performcollapse-)
+オーバーライド:[Game_Battler](Game_Battler.md#performcollapse-)
 
 
 #### performDamage ()
-Overrides:[Game_Battler](Game_Battler.md#performdamage-)
+オーバーライド:[Game_Battler](Game_Battler.md#performdamage-)
 
 
 #### screenX () → {[Number](Number.md)}
@@ -455,9 +455,9 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 #### selectAction (actionList, ratingZero) → {[RPG.Enemy.Action](RPG.Enemy.Action.md)}
 指定した[行動パターン]リストの中から選択した[行動パターン]を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actionList` | [Array](Array.md).<[RPG.Enemy.Action](RPG.Enemy.Action.md)> | [行動パターン]の配列 |
 | `ratingZero` | [Number](Number.md) | ゼロのレーティング |
@@ -466,9 +466,9 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 #### selectAllActions (actionList)
 指定した[行動パターン]リストを元に全行動を選択。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actionList` | [Array](Array.md).<[RPG.Enemy.Action](RPG.Enemy.Action.md)> | [行動パターン]の配列 |
 
@@ -476,9 +476,9 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 #### setLetter (letter)
 接尾辞(A,B...など)を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `letter` | [String](String.md) | 接尾辞 |
 
@@ -486,9 +486,9 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 #### setPlural (plural)
 群(2体以上)であるか設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `plural` | Boolean | 群か |
 
@@ -496,9 +496,9 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 #### setup (enemyId, x, y)
 指定の敵と座標で Gama_Enemy を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `enemyId` | [Number](Number.md) | 敵キャラID |
 | `x` | [Number](Number.md) | x座標 |
@@ -506,15 +506,15 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 
 
 #### traitObjects () → {[Array](Array.md).<[RPG.State](RPG.State.md)>}
-Overrides:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
+オーバーライド:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
 
 
 #### transform (enemyId)
 指定の[敵キャラ]へ変更(変身)。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `enemyId` | [Number](Number.md) | 敵キャラID |
 

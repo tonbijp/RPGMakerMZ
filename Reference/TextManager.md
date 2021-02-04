@@ -1,4 +1,4 @@
-# Class: TextManager
+# クラス: TextManager
 [用語]のテキストを管理する静的クラス。
 
 大域変数 [$dataSystem](global.md#datasystem-rpgsystem).terms に保存されている [RPG.System.Terms](RPG.System.Terms.md) を、呼び出しやすくしたもの。
@@ -6,9 +6,9 @@
 用意されているメソッドはプロパティの準備のために使われるもので、通常は素直に必要なプロパティにアクセスすれば良い。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `currencyUnit` | [String](String.md) | [static][read-only] [通貨単位] |
 | `level` | [String](String.md) | [static][read-only] [レベル] |
@@ -98,14 +98,14 @@
 | `actionFailure` | [String](String.md) | [static][read-only] [行動失敗] |
 
 
-### Methods
+### メソッド
 
 #### (static) basic (basicId) → {[String](String.md)}
 指定IDの[[基本ステータス]](RPG.System.Terms.md#[基本ステータス])の用語を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `basicId` | [Number](Number.md) | 基本ステータスID |
 
@@ -113,9 +113,9 @@
 #### (static) command (commandId) → {[String](String.md)}
 指定IDの[[コマンド]](RPG.System.Terms.md#[コマンド])の用語を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `commandId` | [Number](Number.md) | コマンドID |
 
@@ -125,9 +125,9 @@
 
 プロパティが読まれた時に使われる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `method` | [String](String.md) | メソッド名( 'basic', 'param', 'command', 'message' ) |
 | `param` | [Number](Number.md) \| [String](String.md) | メソッド毎のID |
@@ -136,18 +136,18 @@
 #### (static) message (messageId) → {[String](String.md)}
 指定IDの[メッセージ]の用語を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `messageId` | [String](String.md) | メッセージID |
 
 
 #### (static) param (paramId) → {[String](String.md)}
 指定IDの[[能力値]](RPG.System.Terms.md#[能力値])の用語を返す。
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | 能力値ID |
 

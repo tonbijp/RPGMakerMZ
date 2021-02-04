@@ -1,15 +1,15 @@
-# Class: Sprite_Damage
+# クラス: Sprite_Damage
 
-## Extends: [Sprite](Sprite.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Damage ()
 ダメージをポップアップさせるスプライト。
 
 関連クラス: [Sprite_Animation](Sprite_Animation.md), [Sprite_Battler](Sprite_Battler.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_duration` | [Number](Number.md) | 継続時間 |
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
@@ -17,7 +17,7 @@
 | `_damageBitmap` | [Bitmap](Bitmap.md) | ダメージ画像( img/system/Damage.png ) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -81,7 +81,7 @@
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
 
 
-### Methods
+### メソッド
 
 #### createChildSprite () → {[Sprite](Sprite.md)}
 ダメージ画像スプライトを生成して子に追加して返す。
@@ -90,9 +90,9 @@
 #### createDigits (baseRow, value)
 指定行位置に数値スプライトを生成。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `baseRow` | [Number](Number.md) | 行位置 |
 | `value` | [Number](Number.md) | 数値 |
@@ -110,7 +110,7 @@
 数値の幅(ピクセル)を返す。
 
 #### initialize ()
-Overrides:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### isPlaying () → {Boolean}
@@ -120,9 +120,9 @@ Overrides:[Sprite](Sprite.md#initialize-)
 #### setup (target)
 対象に対する準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Actor](Game_Actor.md) | 対象アクター |
 
@@ -132,15 +132,15 @@ Overrides:[Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite](Sprite.md#update-)
 
 
 #### updateChild (sprite)
 指定小スプライトをアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) | 小スプライト |
 

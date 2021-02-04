@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).CommandItem
+# クラス: [MV](MV.md).CommandItem
 
 ## Type: Object
 コマンドウィンドウ( [Window_Command](Window_Command.md) )の項目のパラメータ。
@@ -8,9 +8,9 @@
 関連クラス: 
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 表示名 |
 | `symbol` | [String](String.md) | シンボル(内部的な名前) |

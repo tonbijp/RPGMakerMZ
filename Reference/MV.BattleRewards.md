@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).BattleRewards
+# クラス: [MV](MV.md).BattleRewards
 
 ## Type: Object
 戦闘の報酬パラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [BattleManager](BattleManager.md), [RPG.Enemy](RPG.Enemy.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `gold` | [Number](Number.md) | 所持金 |
 | `exp` | [Number](Number.md) | 経験値 |

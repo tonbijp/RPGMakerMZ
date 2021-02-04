@@ -1,6 +1,6 @@
-# Class: Scene_ItemBase
+# クラス: Scene_ItemBase
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_ItemBase ()
 [アイテム][スキル]の使用シーン。
@@ -10,20 +10,20 @@ v1.0.2 で変更あり。
 関連クラス: [Game_Action](Game_Action.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md)
 
-### Sub Classes
+### サブクラス
 
 * [Scene_Item](Scene_Item.md)
 * [Scene_Skill](Scene_Skill.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actorWindow` | [Window_MenuActor](Window_MenuActor.md) | アクター選択ウィンドウ |
 | `_itemWindow` | [Window_Selectable](Window_Selectable.md) | アイテム・スキル選択ウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -93,7 +93,7 @@ v1.0.2 で変更あり。
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### activateItemWindow ()
 アイテムウィンドウをアクティベート。
@@ -115,7 +115,7 @@ v1.0.2 で変更あり。
 
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### determineItem ()
@@ -125,15 +125,15 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 #### hideSubWindow (window)
 指定サブウィンドウを隠す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `window` | [Window_Base](Window_Base.md) | サブウィンドウ |
 
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### isCursorLeft () → {Boolean}
@@ -163,9 +163,9 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 #### showSubWindow (window)
 指定したサブウィンドウを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `window` | [Window_Base](Window_Base.md) | サブウィンドウ |
 

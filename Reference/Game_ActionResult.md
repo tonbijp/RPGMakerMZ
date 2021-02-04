@@ -1,12 +1,12 @@
-# Class: Game_ActionResult
+# クラス: Game_ActionResult
 
 ### new Game_ActionResult ()
  [Game_Action](Game_Action.md) の結果を記述したオブジェクト。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `used` | Boolean | 使ったか |
 | `missed` | Boolean | 失敗か |
@@ -26,7 +26,7 @@
 | `removedBuffs` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 削除された[強化][弱体]の配列 |
 
 
-### Methods
+### メソッド
 
 #### addedStateObjects () → {[Array](Array.md).<[RPG.State](RPG.State.md)>}
 付加された[ステート]の配列を返す。
@@ -41,9 +41,9 @@
 #### isBuffAdded (paramId) → {Boolean}
 指定された能力値に[強化]が付加されたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -51,9 +51,9 @@
 #### isBuffRemoved (paramId) → {Boolean}
 指定された能力値の[強化]が削除されたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -61,9 +61,9 @@
 #### isDebuffAdded (paramId) → {Boolean}
 指定された能力値に[弱体]が付加されたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -74,9 +74,9 @@
 #### isStateAdded (stateId) → {Boolean}
 指定ステートが付加されたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -84,9 +84,9 @@
 #### isStateRemoved (stateId) → {Boolean}
 指定ステートが削除されたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -98,9 +98,9 @@
 #### pushAddedBuff (paramId)
 指定された能力値の[強化]の付加を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -108,9 +108,9 @@
 #### pushAddedDebuff (paramId)
 指定された能力値の[弱体]の付加を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -118,9 +118,9 @@
 #### pushAddedState (stateId)
 指定ステートの付加を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -128,9 +128,9 @@
 #### pushRemovedBuff (paramId)
 指定された能力値の[強化]の削除を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -138,9 +138,9 @@
 #### pushRemovedState (stateId)
 指定ステートの削除を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 

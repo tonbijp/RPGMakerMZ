@@ -1,6 +1,6 @@
-# Class: Sprite_StateOverlay
+# クラス: Sprite_StateOverlay
 
-## Extends: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Base](Sprite_Base.md)
 
 ### new Sprite_StateOverlay ()
 ステート画像(img/system/States.png)のスプライト。
@@ -8,9 +8,9 @@
 関連クラス: [Sprite_Character](Sprite_Character.md)
 
 
-#### Properties:
+#### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_battler` | [Game_Battler](Game_Battler.md) | バトラー |
 | `_overlayIndex` | [Number](Number.md) | 番号 |
@@ -18,7 +18,7 @@
 | `_pattern` | [Number](Number.md) | パターン |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -91,14 +91,14 @@
 * [updateVisibility ()](Sprite_Base.md#updatevisibility-)
 
 
-### Methods
+### メソッド
 
 #### animationWait () → {[Number](Number.md)}
 アニメーションの待ち時間を返す。
 
 
 #### initialize ()
-Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### initMembers ()
@@ -112,15 +112,15 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 #### setup (battler)
 準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battler` | [Game_Battler](Game_Battler.md) | バトラー |
 
 
 #### update ()
-Overrides:[Sprite_Base](Sprite_Base.md#update-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updatePattern ()

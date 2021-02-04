@@ -1,6 +1,6 @@
-# Class: Game_Follower
+# クラス: Game_Follower
 
-## Extends: [Game_Character](Game_Character.md)
+## スーパークラス: [Game_Character](Game_Character.md)
 
 ### new Game_Follower ()
 
@@ -13,14 +13,14 @@
 関連クラス: [Game_Followers](Game_Followers.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_memberIndex` | [Number](Number.md) | 隊列メンバー番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_CharacterBase](Game_CharacterBase.md)
 
@@ -154,7 +154,7 @@
 * [updateRoutineMove ()](Game_Character.md#updateroutinemove-)
 
 
-### Methods
+### メソッド
 
 #### actor () → {[Game_Actor](Game_Actor.md)}
 [アクター]を返す。
@@ -163,15 +163,15 @@
 #### chaseCharacter (character)
  指定したキャラクタを追う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) |  |
 
 
 #### initialize ()
-Overrides: [Game_Character](Game_Character.md#initialize-)
+オーバーライド: [Game_Character](Game_Character.md#initialize-)
 
 
 #### isVisible () → {Boolean}
@@ -183,6 +183,6 @@ Overrides: [Game_Character](Game_Character.md#initialize-)
 
 
 #### update ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#update-)
 
 

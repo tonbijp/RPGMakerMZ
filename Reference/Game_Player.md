@@ -1,6 +1,6 @@
-# Class: Game_Player
+# クラス: Game_Player
 
-## Extends: [Game_Character](Game_Character.md)
+## スーパークラス: [Game_Character](Game_Character.md)
 
 ### new Game_Player ()
 
@@ -14,9 +14,9 @@ v1.1.0 で変更あり。
 
 関連クラス: [Game_Vehicle](Game_Vehicle.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_vehicleType` | [String](String.md) | [乗り物]の種類 |
 | `_vehicleGettingOn` | Boolean | [乗り物]に乗っているか |
@@ -33,7 +33,7 @@ v1.1.0 で変更あり。
 | `_encounterCount` | [Number](Number.md) | エンカウントのカウント |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_CharacterBase](Game_CharacterBase.md)
 
@@ -160,7 +160,7 @@ v1.1.0 で変更あり。
 
 
 
-### Methods
+### メソッド
 
 #### areFollowersGathered () → {Boolean}
 [隊列メンバー]が集合しているか。
@@ -185,9 +185,9 @@ v1.1.0 で変更あり。
 #### center (x, y)
  画面中心を基準にマップを表示。 [Game_Map.setDisplayPos()](Game_Map.md#setDisplayPos-x-y) は左上を基準とする。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | タイル数 |
 | `y` | [Number](Number.md) | タイル数 |
@@ -204,9 +204,9 @@ v1.1.0 で変更あり。
 #### checkEventTriggerHere (triggers)
  現在地にある[イベント]のうち、指定[トリガー]のものを実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
 
@@ -214,15 +214,15 @@ v1.1.0 で変更あり。
 #### checkEventTriggerThere (triggers)
  現在地の一歩前にある[イベント]のうち、指定[トリガー]のものを実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
 
 
 #### checkEventTriggerTouch (x, y) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#checkeventtriggertouch-x-y--boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#checkeventtriggertouch-x-y--boolean)
 
 
 #### clearTransferInfo ()
@@ -241,9 +241,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#checkeventtriggertouch-x-y
 #### executeMove (direction)
  指定の向きへ[一歩前進]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `direction` | [Number](Number.md) |  向き(テンキー対応) |
 
@@ -287,24 +287,24 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#checkeventtriggertouch-x-y
 #### isCollided (x, y) → {Boolean}
  指定位置が通行不能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | タイル数 |
 | `y` | [Number](Number.md) | タイル数 |
 
 
 #### increaseSteps ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#increasesteps-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#increasesteps-)
 
 
 #### initialize ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#initialize-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#initialize-)
 
 
 #### initMembers ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 
 
 #### isDashButtonPressed () → {Boolean}
@@ -312,11 +312,11 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 
 
 #### isDashing () → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#isdashing---boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#isdashing---boolean)
 
 
 #### isDebugThrough () → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#isdebugthrough---boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#isdebugthrough---boolean)
 
 
 #### isInAirship () → {Boolean}
@@ -336,7 +336,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#isdebugthrough---boolean)
 
 
 #### isMapPassable (x, y, d) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boolean)
 
 
 #### isNormal () → {Boolean}
@@ -348,7 +348,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boole
 
 
 #### isStopping () → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#isstopping---boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#isstopping---boolean)
 
 
 #### isTransferring () → {Boolean}
@@ -356,11 +356,11 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#isstopping---boolean)
 
 
 #### jump (xPlus, yPlus)
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#jump-xplus-yplus)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#jump-xplus-yplus)
 
 
 #### locate (x, y)
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 
 
 #### makeEncounterCount ()
@@ -374,9 +374,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 #### meetsEncounterConditions (encounter) → {Boolean}
 ※ この用語の意味が分かったら教えてください
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `encounter` | [RPG.Map.Encounter](RPG.Map.Encounter.md) |  |
 
@@ -386,11 +386,11 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#locate-x-y)
 
 
 #### moveDiagonally (horz, vert)
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#movediagonally-horz-vert)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#movediagonally-horz-vert)
 
 
 #### moveStraight (d)
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 
 
 #### newMapId () → {[Number](Number.md)}
@@ -412,9 +412,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 #### reserveTransfer (mapId, x, y, d opt, fadeType opt)
  指定した値で[場所移動]の予約。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `mapId` | [Number](Number.md) |  |  |
 | `x` | [Number](Number.md) |  |  タイル数 |
@@ -430,9 +430,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 #### startMapEvent (x, y, triggers, normal)
  指定位置と[トリガー]に対応する[イベント]を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -455,9 +455,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 #### triggerTouchActionD1 (x1, y1) → {Boolean}
 ※ この用語の意味が分かったら教えてください
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x1` | [Number](Number.md) |  |
 | `y1` | [Number](Number.md) |  |
@@ -466,9 +466,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 #### triggerTouchActionD2 (x2, y2) → {Boolean}
 ※ この用語の意味が分かったら教えてください
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x2` | [Number](Number.md) |  |
 | `y2` | [Number](Number.md) |  |
@@ -478,16 +478,16 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#movestraight-d)
 #### triggerTouchActionD3 (x2, y2) → {Boolean}
 ※ この用語の意味が分かったら教えてください
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x2` | [Number](Number.md) |  |
 | `y2` | [Number](Number.md) |  |
 
 
 #### update ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#update-)
 
 
 #### updateDashing ()
@@ -501,9 +501,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
 #### updateNonmoving (wasMoving)
  移動状態をアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wasMoving` | Boolean | (true: 動いた, false: 止まっている) |
 
@@ -511,9 +511,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
 #### updateScroll (lastScrolledX, lastScrolledY)
 スクロール処理
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `lastScrolledX` | [Number](Number.md) |  |
 | `lastScrolledY` | [Number](Number.md) |  |

@@ -1,4 +1,4 @@
-# Class: Game_Item
+# クラス: Game_Item
 
 ### new Game_Item ()
 
@@ -11,15 +11,15 @@
 
 関連クラス: [RPG.UsableItem](RPG.UsableItem.md), [RPG.Item](RPG.Item.md), [RPG.Skill](RPG.Skill.md), [RPG.EquipItem](RPG.EquipItem.md), [RPG.Weapon](RPG.Weapon.md), [RPG.Armor](RPG.Armor.md), [Game_Actor](Game_Actor.md), [Game_Action](Game_Action.md)
 
-##### Properties:
+##### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor', '' ) |
 | `_itemId` | [Number](Number.md) | アイテムID(種類毎に異なる) |
 
 
-### Methods
+### メソッド
 
 #### initialize ()
  オブジェクト生成時の初期化。
@@ -55,9 +55,9 @@ JSONデータを返す。
 #### setEquip (isWeapon, itemId)
 指定アイテムで装備品の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `isWeapon` | Boolean | 武器か |
 | `itemId` | [Number](Number.md) | アイテムID |
@@ -66,9 +66,9 @@ JSONデータを返す。
 #### setObject (item)
 指定JSONデータで書き換える。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 

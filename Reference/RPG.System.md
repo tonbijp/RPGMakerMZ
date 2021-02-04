@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).System
+# クラス: [RPG](RPG.md).System
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
 | --- | --- | --- | --- |
@@ -7,9 +7,9 @@
 関連クラス: [Game_System](Game_System.md), [Game_Variables](Game_Variables.md), [Game_Switches](Game_Switches.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `gameTitle` | [String](String.md) | [ゲームタイトル] |
 | `versionId` | [Number](Number.md) | RPGメーカーMVによって自動的に保存されるバージョンID |

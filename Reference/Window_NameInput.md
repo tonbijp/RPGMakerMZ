@@ -1,22 +1,22 @@
-# Class: Window_NameInput
+# クラス: Window_NameInput
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_NameInput (editWindow)
 [名前の入力の処理]で文字を選択するウィンドウ。
 
 関連クラス: [Scene_Name](Scene_Name.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `editWindow` | [Window_NameEdit](Window_NameEdit.md) | 編集ウィンドウ |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `LATIN1` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] アルファベットの配列 |
 | `LATIN2` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 符号付ラテン文字の配列 |
@@ -29,7 +29,7 @@
 | `_index` | [Number](Number.md) | 文字番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -239,52 +239,52 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### character () → {[String](String.md)}
 選択中の文字を返す。
 
 
 #### cursorDown (wrap)
-Overrides: [Window_Selectable](Window_Selectable.md#cursordown-wrap)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursordown-wrap)
 
 
 #### cursorLeft (wrap)
-Overrides: [Window_Selectable](Window_Selectable.md#cursorleft-wrap)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorleft-wrap)
 
 
 #### cursorPagedown ()
-Overrides: [Window_Selectable](Window_Selectable.md#cursorpagedown-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorpagedown-)
 
 
 #### cursorPageup ()
-Overrides: [Window_Selectable](Window_Selectable.md#cursorpageup-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorpageup-)
 
 
 #### cursorRight (wrap)
-Overrides: [Window_Selectable](Window_Selectable.md#cursorright-wrap)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorright-wrap)
 
 
 #### cursorUp (wrap)
-Overrides: [Window_Selectable](Window_Selectable.md#cursorup-wrap)
+オーバーライド: [Window_Selectable](Window_Selectable.md#cursorup-wrap)
 
 
 #### initialize (editWindow)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `editWindow` | [Window_NameEdit](Window_NameEdit.md) | 編集ウィンドウ |
 
 
 #### isCancelEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscancelenabled---boolean)
 
 
 #### isCursorMovable () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscursormovable---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscursormovable---boolean)
 
 
 #### isOk () → {Boolean}
@@ -296,15 +296,15 @@ OKを選択中か。
 
 
 #### itemRect () → {[Rectangle](Rectangle.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#itemrect-index--rectangle)
+オーバーライド: [Window_Selectable](Window_Selectable.md#itemrect-index--rectangle)
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### onNameAdd ()
@@ -320,15 +320,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### processCancel ()
-Overrides: [Window_Selectable](Window_Selectable.md#processcancel-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processcancel-)
 
 
 #### processCursorMove ()
-Overrides: [Window_Selectable](Window_Selectable.md#processcursormove-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processcursormove-)
 
 
 #### processHandling ()
-Overrides: [Window_Selectable](Window_Selectable.md#processhandling-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processhandling-)
 
 
 #### processJump ()
@@ -336,11 +336,11 @@ OKに移動。
 
 
 #### processOk ()
-Overrides: [Window_Selectable](Window_Selectable.md#processok-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#processok-)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### table () → {[Array](Array.md).&lt;[Array](Array.md).&lt;[String](String.md)&gt;&gt;}
@@ -348,7 +348,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### updateCursor ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatecursor-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatecursor-)
 
 
 #### windowHeight () → {[Number](Number.md)}

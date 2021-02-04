@@ -1,4 +1,4 @@
-# Class: Game_SelfSwitches
+# クラス: Game_SelfSwitches
 
 ### new Game_SelfSwitches ()
 
@@ -11,14 +11,14 @@
 関連クラス: [Game_Variables](Game_Variables.md), [Game_Switches](Game_Switches.md), [RPG.EventPage](RPG.EventPage.md), [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md), [RPG.BattleEventPage](RPG.BattleEventPage.md), [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | Object | {key: Array, …} の形 |
 
 
-### Methods
+### メソッド
 
 #### clear ()
 [セルフスイッチ]のデータを初期化。
@@ -37,9 +37,9 @@
 指定した[セルフスイッチ]に値を設定。<br />
 タイプは A,B,C,D いずれかの文字。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `key` | [Array](Array.md).&lt;*&gt; | [ マップID, イベントID, タイプ ] の配列 |
 | `value` | Boolean | スイッチがONか |
@@ -49,9 +49,9 @@
 指定キーの値がONか。<br />
 タイプは A,B,C,D いずれかの文字。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `key` | [Array](Array.md).&lt;*&gt;  |  [ マップID, イベントID, タイプ ] の配列 |
 

@@ -1,4 +1,4 @@
-# Class: Game_Picture
+# クラス: Game_Picture
 
 ### new Game_Picture ()
 
@@ -11,9 +11,9 @@
 関連クラス: [Game_Screen](Game_Screen.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_name` | [String](String.md) | ファイル名 |
 | `_origin` | [Number](Number.md) | [[原点]](Game_Picture.md#原点) |
@@ -44,7 +44,7 @@
 | 1 | 中央 |
 
 
-### Methods
+### メソッド
 
 #### angle () → {[Number](Number.md)}
 回転角度を返す。
@@ -81,9 +81,9 @@
 #### move (origin, x, y, scaleX, scaleY, opacity, blendMode, duration)
 指定位置へ移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `origin` | [Number](Number.md) | [[原点]](Game_Picture.md#原点) |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
@@ -110,9 +110,9 @@
 #### rotate (speed)
 指定速度で回転。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `speed` | [Number](Number.md) | 速度 |
 
@@ -128,9 +128,9 @@
 #### show (name, origin, x, y, scaleX, scaleY, opacity, blendMode)
 指定した位置に表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 名前 |
 | `origin` | [Number](Number.md) | [[原点]](Game_Picture.md#原点) |
@@ -144,9 +144,9 @@
 
 #### tint (tone, duration)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tone` | [MV.Tone](MV.Tone.md) | 色調 |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |

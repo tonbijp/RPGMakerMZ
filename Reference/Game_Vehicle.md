@@ -1,6 +1,6 @@
-# Class: Game_Vehicle
+# クラス: Game_Vehicle
 
-## Extends: [Game_Character](Game_Character.md)
+## スーパークラス: [Game_Character](Game_Character.md)
 
 ### new Game_Vehicle ()
 
@@ -11,9 +11,9 @@
 [乗り物]を定義したクラス。 大体の機能は [Game_Player](Game_Player.md) クラスから使える。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_type` | [String](String.md) | [乗り物]の種類 |
 | `_mapId` | [Number](Number.md) | マップID |
@@ -22,7 +22,7 @@
 | `_bgm` | [RPG.AudioFile](RPG.AudioFile.md) | [乗り物]用BGM |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_CharacterBase](Game_CharacterBase.md)
 
@@ -155,7 +155,7 @@
 * [updateRoutineMove ()](Game_Character.md#updateroutinemove-)
 
 
-### Methods
+### メソッド
 
 #### canMove () → {Boolean}
 [乗り物]を操作可能か。
@@ -170,11 +170,11 @@
 
 
 #### initialize (type)
-Overrides: [Game_Character](Game_Character.md#initialize-)
+オーバーライド: [Game_Character](Game_Character.md#initialize-)
 
 
 #### initMembers ()
-Overrides: [Game_Character](Game_Character.md#initmembers-)
+オーバーライド: [Game_Character](Game_Character.md#initmembers-)
  
  
 #### initMoveSpeed ()
@@ -196,9 +196,9 @@ Overrides: [Game_Character](Game_Character.md#initmembers-)
 #### isLandOk (x, y, d) → {Boolean}
  指定位置と向きで着陸可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  x座標(タイル数) |
 | `y` | [Number](Number.md) |  y座標(タイル数) |
@@ -210,7 +210,7 @@ Overrides: [Game_Character](Game_Character.md#initmembers-)
 
 
 #### isMapPassable (x, y, d) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boolean)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boolean)
 
 
 #### isShip () → {Boolean}
@@ -234,7 +234,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#ismappassable-x-y-d--boole
 
 
 #### pos (x, y) → {Boolean}
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#pos-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#pos-)
 
 
 #### refresh ()
@@ -248,9 +248,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#pos-)
 #### setBgm (bgm)
 [乗り物]用のBGMの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bgm` | [RPG.AudioFile](RPG.AudioFile.md) |  |
 
@@ -258,9 +258,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#pos-)
 #### setLocation (mapId, x, y)
  指定マップ・位置に移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `mapId` | [Number](Number.md) |  |
 | `x` | [Number](Number.md) |  タイル数 |
@@ -284,7 +284,7 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#pos-)
 
 
 #### update ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#update-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#update-)
 
 
 #### updateAirship ()

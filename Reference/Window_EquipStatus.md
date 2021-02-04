@@ -1,13 +1,13 @@
-# Class: Window_EquipStatus
+# クラス: Window_EquipStatus
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_EquipStatus (x, y)
 [装備]シーンでパラメータの変化を表示するウィンドウ。
 
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md), [Window_EquipSlot](Window_EquipSlot.md), [Window_EquipItem](Window_EquipItem.md)
 
-#### Parameters:
+#### 引数
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -15,7 +15,7 @@
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -23,7 +23,7 @@
 | `_tempActor` | [Game_Actor](Game_Actor.md) | 装備の着脱後のアクター |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -167,7 +167,7 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### drawCurrentParam (x, y, paramId)
 現在のパラメータを描く。
@@ -220,7 +220,7 @@
 
 
 #### initialize (x, y)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 | Parameter | Type | Description |
 | --- | --- | --- |

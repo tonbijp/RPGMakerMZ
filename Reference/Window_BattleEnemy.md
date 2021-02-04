@@ -1,28 +1,28 @@
-# Class: Window_BattleEnemy
+# クラス: Window_BattleEnemy
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_BattleEnemy (x, y)
 敵の選択用のウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_enemies` | [Array](Array.md).&lt;[Game_Enemy](Game_Enemy.md)&gt; | [敵キャラ]の配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -241,10 +241,10 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### enemy () → {[Game_Enemy](Game_Enemy.md)}
@@ -256,26 +256,26 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### hide ()
-Overrides: [Window_Base](Window_Base.md#hide-)
+オーバーライド: [Window_Base](Window_Base.md#hide-)
 
 
 #### initialize (x, y)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
@@ -283,15 +283,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### select (index)
-Overrides: [Window_Selectable](Window_Selectable.md#select-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#select-index)
 
 
 #### show ()
-Overrides: [Window_Base](Window_Base.md#show-)
+オーバーライド: [Window_Base](Window_Base.md#show-)
 
 
 #### windowHeight () → {[Number](Number.md)}

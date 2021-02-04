@@ -1,10 +1,10 @@
-# Class: ConfigManager
+# クラス: ConfigManager
 [オプション]のデータを扱う、静的クラス。
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `alwaysDash ` | Boolean | [static] [常時ダッシュ] |
 | `commandRemember ` | Boolean | [static] [コマンド記憶] |
@@ -14,14 +14,14 @@
 | `seVolume` | [Number](Number.md) | [static] [SE 音量] |
 
 
-### Methods
+### メソッド
 
 #### (static) applyData (config)
 指定オプションを適用。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `config` | [MV.ConfigData](MV.ConfigData.md) | オプションデータ |
 
@@ -37,9 +37,9 @@
 #### (static) readFlag (config, name) → {Boolean}
 指定オプションデータのフラグを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `config` | [MV.ConfigData](MV.ConfigData.md) | オプションデータ |
 | `name` | [String](String.md) | 設定名( 'alwaysDash', 'commandRemember' ) |
@@ -48,9 +48,9 @@
 #### (static) readVolume (config, name) → {[Number](Number.md)}
 指定オプションデータの音量を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `config` | [MV.ConfigData](MV.ConfigData.md) |  |
 | `name` | [String](String.md) | 設定名( 'bgmVolume', 'bgsVolume', 'meVolume', 'seVolume' ) |

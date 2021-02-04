@@ -1,6 +1,6 @@
-# Class: Scene_Gameover
+# クラス: Scene_Gameover
 
-## Extends: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Base](Scene_Base.md)
 
 ### new Scene_Gameover ()
 ゲームオーバーのシーン。
@@ -8,14 +8,14 @@
 関連クラス: [BattleManager](BattleManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Base](Scene_Base.md), [Scene_Battle](Scene_Battle.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_backSprite` | [Sprite](Sprite.md) | 背景画像 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -71,10 +71,10 @@
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 
-### Methods
+### メソッド
 
 #### create ()
-Overrides: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
 #### createBackground ()
@@ -86,7 +86,7 @@ Overrides: [Scene_Base](Scene_Base.md#create-)
 
 
 #### initialize ()
-Overrides: [Scene_Base](Scene_Base.md#initialize-)
+オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
 #### isTriggered ()
@@ -98,18 +98,18 @@ Overrides: [Scene_Base](Scene_Base.md#initialize-)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 
 #### stop ()
-Overrides: [Scene_Base](Scene_Base.md#stop-)
+オーバーライド: [Scene_Base](Scene_Base.md#stop-)
 
 
 #### terminate ()
-Overrides: [Scene_Base](Scene_Base.md#terminate-)
+オーバーライド: [Scene_Base](Scene_Base.md#terminate-)
 
 
 #### update ()
-Overrides: [Scene_Base](Scene_Base.md#update-)
+オーバーライド: [Scene_Base](Scene_Base.md#update-)
 
 

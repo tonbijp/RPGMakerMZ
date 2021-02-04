@@ -1,13 +1,13 @@
-# Class: Window_GameEnd
+# クラス: Window_GameEnd
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_GameEnd ()
 [ゲーム終了]コマンドを選んだ時に表示されるコマンド([タイトルへ][やめる])のウィンドウ。
 
 関連クラス: [Scene_GameEnd](Scene_GameEnd.md)
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -252,19 +252,19 @@
 * [selectSymbol (symbol)](Window_Command.md#selectsymbol-symbol)
 * [windowHeight ()](Window_Command.md#windowheight---number)
 
-### Methods
+### メソッド
 
 #### initialize ()
-Overrides: [Window_Command](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command](Window_Command.md#initialize-x-y)
 
 #### updatePlacement ()
 ウィンドウの配置のアップデート。
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command](Window_Command.md#makecommandlist-)
 
 

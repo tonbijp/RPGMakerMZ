@@ -1,4 +1,4 @@
-# Class: Game_Temp
+# クラス: Game_Temp
 
 ### new Game_Temp ()
 
@@ -11,9 +11,9 @@
 関連クラス: [Game_CommonEvent](Game_CommonEvent.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_isPlaytest` | Boolean |  |
 | `_commonEventId` | [Number](Number.md) |  |
@@ -21,7 +21,7 @@
 | `_destinationY` | [Number](Number.md) |  |
 
 
-### Methods
+### メソッド
 
 #### clearCommonEvent ()
 一時保存の[コモンイベント]を消去。
@@ -50,9 +50,9 @@
 #### reserveCommonEvent (commonEventId)
 指定[コモンイベント]を、あとで処理するために保持。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `commonEventId` | [Number](Number.md) | コモンイベントID |
 
@@ -63,9 +63,9 @@
 #### setDestination (x, y)
 移動目標の座標を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(タイル数) |
 | `y` | [Number](Number.md) | y座標(タイル数) |

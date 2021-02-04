@@ -1,12 +1,12 @@
-# Class: [RPG](RPG.md).Damage
+# クラス: [RPG](RPG.md).Damage
 [ダメージ]のデータ。
 
 関連クラス: [RPG.UsableItem](RPG.UsableItem.md), [Game_Action](Game_Action.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | [タイプ](RPG.Damage.md#タイプ) |
 | `elementId` | [Number](Number.md) | [属性ID](RPG.Damage.md#属性id) |

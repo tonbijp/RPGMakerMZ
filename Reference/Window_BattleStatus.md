@@ -1,18 +1,18 @@
-# Class: Window_BattleStatus
+# クラス: Window_BattleStatus
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_BattleStatus ()
 戦闘時のパーティメンバーのステータス表示ウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
-### Sub Classes
+### サブクラス
 
 * [Window_BattleActor](Window_BattleActor.md)
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -235,14 +235,14 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### basicAreaRect (index) → {[Rectangle](Rectangle.md)}
 指定番号のアクターのステータス表示矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 
@@ -250,9 +250,9 @@
 #### drawBasicArea (rect, actor)
 指定範囲を指定アクターで描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `rect` | [Rectangle](Rectangle.md) | 描画範囲 |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
@@ -261,9 +261,9 @@
 #### drawGaugeArea (rect, actor)
 指定範囲に指定アクターのゲージを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `rect` | [Rectangle](Rectangle.md) | 描画範囲 |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
@@ -272,9 +272,9 @@
 #### drawGaugeAreaWithoutTp (rect, actor)
 指定範囲に指定アクターのTPを除いたゲージを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `rect` | [Rectangle](Rectangle.md) | 描画範囲 |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
@@ -283,24 +283,24 @@
 #### drawGaugeAreaWithTp (rect, actor)
 指定範囲に指定アクターのTPを含めたゲージを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `rect` | [Rectangle](Rectangle.md) | 描画範囲 |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### gaugeAreaRect (index) → {[Rectangle](Rectangle.md)}
 指定番号のアクター用ゲージの矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクター番号 |
 
@@ -310,11 +310,11 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize ()
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### numVisibleRows () → {[Number](Number.md)}
@@ -322,7 +322,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### windowHeight () → {[Number](Number.md)}

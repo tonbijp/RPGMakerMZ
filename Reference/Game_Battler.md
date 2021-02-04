@@ -1,21 +1,21 @@
-# Class: Game_Battler
+# クラス: Game_Battler
 
-## Extends: [Game_BattlerBase](Game_BattlerBase.md)
+## スーパークラス: [Game_BattlerBase](Game_BattlerBase.md)
 
 ### new Game_Battler ()
 戦闘シーンでのアイコンやアニメーションを含む、バトラーの動作を制御する。
 
 v1.1.0 で変更あり。
 
-### Sub Classes
+### サブクラス
 
 * [Game_Actor](Game_Actor.md)
 * [Game_Enemy](Game_Enemy.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actions` | [Array](Array.md).&lt;[Game_Action](Game_Action.md)&gt; | 行動の配列 |
 | `_speed` | [Number](Number.md) | 速度(行動順を決定する) |
@@ -40,7 +40,7 @@ v1.1.0 で変更あり。
 | 'acting' | 行動中 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_BattlerBase](Game_BattlerBase.md)
 
@@ -167,14 +167,14 @@ v1.1.0 で変更あり。
 * [xparam (xparamId)](Game_BattlerBase.md#xparam-xparamid--number)
 
 
-### Methods
+### メソッド
 
 #### action (index) → {[Game_Action](Game_Action.md)}
 指定番号のアクションを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | アクション番号 |
 
@@ -182,9 +182,9 @@ v1.1.0 で変更あり。
 #### addBuff (paramId, turns)
 指定通常能力に指定ターン数の[強化]を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 | `turns` | [Number](Number.md) | ターン数 |
@@ -193,9 +193,9 @@ v1.1.0 で変更あり。
 #### addDebuff (paramId, turns)
 指定通常能力に指定ターン数の[弱体]を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 | `turns` | [Number](Number.md) | ターン数 |
@@ -204,9 +204,9 @@ v1.1.0 で変更あり。
 #### addState (stateId)
 指定ステートを追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -214,9 +214,9 @@ v1.1.0 で変更あり。
 #### chargeTpByDamage (damageRate)
 ダメージ率にしたがって、TPを増やす。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `damageRate` | [Number](Number.md) | (最大HPを1とした場合の)ダメージ割合 |
 
@@ -252,9 +252,9 @@ TPを0に。
 #### consumeItem (item)
 指定アイテムを消費。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.UsableItem](RPG.UsableItem.md) | アイテム |
 
@@ -278,9 +278,9 @@ TPを0に。
 #### forceAction (skillId, targetIndex)
 指定したスキルを強制する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 | `targetIndex` | [Number](Number.md) | 対象番号 |
@@ -289,9 +289,9 @@ TPを0に。
 #### gainHp (value)
 指定量のHPを回復。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | HP回復量 |
 
@@ -299,9 +299,9 @@ TPを0に。
 #### gainMp (value)
 指定量のMPを回復。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | MP回復量 |
 
@@ -309,9 +309,9 @@ TPを0に。
 #### gainSilentTp (value)
 指定量のTPを非表示で回復。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | TP回復量 |
 
@@ -319,19 +319,19 @@ TPを0に。
 #### gainTp (value)
 指定量のTPを回復。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | TP回復量 |
 
 
 #### initialize ()
-Overrides: [Game_BattlerBase](Game_BattlerBase.md#initialize-)
+オーバーライド: [Game_BattlerBase](Game_BattlerBase.md#initialize-)
 
 
 #### initMembers ()
-Overrides: [Game_BattlerBase](Game_BattlerBase.md#initmembers-)
+オーバーライド: [Game_BattlerBase](Game_BattlerBase.md#initmembers-)
 
 
 #### initTp ()
@@ -381,9 +381,9 @@ TPの量を25までのランダムな値に初期化。
 #### isStateAddable (stateId) → {Boolean}
 指定ステートが付加可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -391,9 +391,9 @@ TPの量を25までのランダムな値に初期化。
 #### isStateRestrict (stateId) → {Boolean}
 指定ステートが[行動制約によって解除]かつ、現在行動制約中か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -449,15 +449,15 @@ TPの量を25までのランダムな値に初期化。
 #### onDamage (value)
 被ダメージハンドラ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Number](Number.md) | HPダメージ量 |
 
 
 #### onRestrict ()
-Overrides: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
+オーバーライド: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
 
 
 #### onTurnEnd ()
@@ -467,9 +467,9 @@ Overrides: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
 #### performAction (action)
 指定アクションを実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `action` | [Game_Action](Game_Action.md) | アクション |
 
@@ -481,9 +481,9 @@ Overrides: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
 #### performActionStart (action)
 指定アクションの開始動作を実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `action` | [Game_Action](Game_Action.md) | アクション |
 
@@ -523,15 +523,15 @@ Overrides: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
 #### performSubstitute (target)
 身代わり動作を実行
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 身代わり対象 |
 
 
 #### refresh ()
-Overrides:[Game_BattlerBase](Game_BattlerBase.md)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md)
 
 
 #### regenerateAll ()
@@ -560,9 +560,9 @@ TP自動回復を適用。
 #### removeBuff (paramId)
 指定通常能力の[強化]を解除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
@@ -578,9 +578,9 @@ TP自動回復を適用。
 #### removeState (stateId)
 指定ステートを解除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
@@ -588,9 +588,9 @@ TP自動回復を適用。
 #### removeStatesAuto (timing)
 指定条件のステートを解除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `timing` | [Number](Number.md) | 解除条件( 1:行動終了時 2:ターン終了時 ) |
 
@@ -602,9 +602,9 @@ TP自動回復を適用。
 #### requestEffect (effectType)
 指定エフェクトを要求。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `effectType` | [String](String.md) | エフェクトタイプ |
 
@@ -612,9 +612,9 @@ TP自動回復を適用。
 #### requestMotion (motionType)
 指定モーションを要求。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `motionType` | [String](String.md) | モーションタイプ |
 
@@ -634,9 +634,9 @@ TP自動回復を適用。
 #### setAction (index, action)
 指定番号のバトラーにアクションを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | バトラー番号 |
 | `action` | [Game_Action](Game_Action.md) | アクション |
@@ -645,9 +645,9 @@ TP自動回復を適用。
 #### setActionState (actionState)
 指定アクション状態を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actionState` | [String](String.md) | [アクション状態](Game_Battler.md#アクション状態) |
 
@@ -655,9 +655,9 @@ TP自動回復を適用。
 #### setLastTarget (target)
 目標バトラーを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
@@ -673,9 +673,9 @@ TP自動回復を適用。
 #### startAnimation (animationId, mirror, delay)
 指定アニメーション開始(追加)。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `animationId` | [Number](Number.md) | アニメーションID |
 | `mirror` | Boolean | 反転するか |
@@ -689,9 +689,9 @@ TP自動回復を適用。
 #### startWeaponAnimation (weaponImageId)
 指定武器のアニメーション開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `weaponImageId` | [Number](Number.md) | 武器ID |
 
@@ -699,9 +699,9 @@ TP自動回復を適用。
 #### useItem (item)
 指定アイテムを使用。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.UsableItem](RPG.UsableItem.md) | アイテム |
 

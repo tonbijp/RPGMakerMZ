@@ -1,12 +1,12 @@
-# Class: BattleManager
+# クラス: BattleManager
 戦闘の進行を制御する静的クラス。
 
 関連クラス: [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Game_Enemy](Game_Enemy.md), [Game_Troop](Game_Troop.md), [Scene_Battle](Scene_Battle.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_phase` | [String](String.md) | [static] [行動状態](BattleManager.md#行動状態) |
 | `_canEscape` | Boolean | [static] [逃走可] |
@@ -46,7 +46,7 @@
 | null | 戦闘シーンではない | 
 
 
-### Methods
+### メソッド
 
 #### (static) abort ()
 中止。
@@ -64,9 +64,9 @@
 対象が死んでいるなどしたら、代わりを選んで返す。
 問題なければ、対象をそのまま返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -82,9 +82,9 @@
 #### (static) changeActor (newActorIndex, lastActorActionState)
 アクターの変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `newActorIndex` | [Number](Number.md) | 新しいアクターの番号 |
 | `lastActorActionState` | [String](String.md) | 現在のアクターの行動状態 |
@@ -101,9 +101,9 @@
 #### (static) checkSubstitute (target) → {Boolean}
 対象が死んでいるなどして代わりが必要か返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -155,9 +155,9 @@
 #### (static) endBattle (result)
 戦闘終了処理。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `result` | [Number](Number.md) | 0:勝利 1:中断 2:敗北 |
 
@@ -169,9 +169,9 @@
 #### (static) forceAction (battler)
 強制行動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battler` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
@@ -207,9 +207,9 @@
 #### (static) invokeAction (subject, target)
 指定対象が指定目標に対してのアクションを起動する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -218,9 +218,9 @@
 #### (static) invokeCounterAttack (subject, target)
 指定対象が指定目標に対しての反撃アクションを起動する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -229,9 +229,9 @@
 #### (static) invokeMagicReflection (subject, target)
 指定対象が指定目標に対しての魔法反射アクションを起動する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -240,9 +240,9 @@
 #### (static) invokeNormalAction (subject, target)
 指定対象が指定目標に対しての通常アクションを起動する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
@@ -368,9 +368,9 @@ BGMとBGSの状態を保存。
 #### (static) setBattleTest (battleTest)
 [テスト戦闘]状態か設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `battleTest` | Boolean | [テスト戦闘]状態か |
 
@@ -378,9 +378,9 @@ BGMとBGSの状態を保存。
 #### (static) setEventCallback (callback)
 (endBattleから帰る)コールバック関数を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `callback` | function | コールバック関数 |
 
@@ -388,9 +388,9 @@ BGMとBGSの状態を保存。
 #### (static) setLogWindow (logWindow)
 ログウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `logWindow` | [Window_BattleLog](Window_BattleLog.md) | ログウィンドウ |
 
@@ -398,9 +398,9 @@ BGMとBGSの状態を保存。
 #### (static) setSpriteset (spriteset)
 スプライトセットを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `spriteset` | [Spriteset_Battle](Spriteset_Battle.md) | スプライトセット |
 
@@ -408,9 +408,9 @@ BGMとBGSの状態を保存。
 #### (static) setStatusWindow (statusWindow)
 ステータスウィンドウを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `statusWindow` | [Window_BattleStatus](Window_BattleStatus.md) | ステータスウィンドウ |
 
@@ -418,9 +418,9 @@ BGMとBGSの状態を保存。
 #### (static) setup (troopId, canEscape, canLose)
 戦闘の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `troopId` | [Number](Number.md) | 敵グループID |
 | `canEscape` | Boolean | [逃走可] |

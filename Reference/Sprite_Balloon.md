@@ -1,21 +1,21 @@
-# Class: Sprite_Balloon
+# クラス: Sprite_Balloon
 
-## Extends: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Base](Sprite_Base.md)
 
 ### new Sprite_Balloon ()
 フキダシアイコン(img/system/Balloon.png)のスプライト。
 
 関連クラス: [Sprite_Character](Sprite_Character.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_balloonId` | [Number](Number.md) | フキダシID |
 | `_duration` | [Number](Number.md) | 継続時間(フレーム) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -88,14 +88,14 @@
 * [updateVisibility ()](Sprite_Base.md#updatevisibility-)
 
 
-### Methods
+### メソッド
 
 #### frameIndex () → {[Number](Number.md)}
 フレーム番号(0〜7)を返す。
 
 
 #### initialize ()
-Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### initMembers ()
@@ -113,9 +113,9 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 #### setup (balloonId)
 準備。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `balloonId` | [Number](Number.md) | フキダシID |
 
@@ -125,7 +125,7 @@ Overrides:[Sprite_Base](Sprite_Base.md#initialize-)
 
 
 #### update ()
-Overrides:[Sprite_Base](Sprite_Base.md#update-)
+オーバーライド:[Sprite_Base](Sprite_Base.md#update-)
 
 
 #### updateFrame ()

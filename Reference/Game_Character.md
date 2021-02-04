@@ -1,6 +1,6 @@
-# Class: Game_Character
+# クラス: Game_Character
 
-## Extends: [Game_CharacterBase](Game_CharacterBase.md)
+## スーパークラス: [Game_CharacterBase](Game_CharacterBase.md)
 
 ### new Game_Character ()
 
@@ -16,7 +16,7 @@
 関連クラス: [Game_Interpreter](Game_Interpreter.md), [Game_Actor](Game_Actor.md)
 
 
-### Sub Classes
+### サブクラス
 
 * [Game_Event](Game_Event.md)
 * [Game_Follower](Game_Follower.md)
@@ -24,11 +24,11 @@
 * [Game_Vehicle](Game_Vehicle.md)
 
 
-### Properties:
+### プロパティ
 
 ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマンド]に対応している。
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `ROUTE_END` | [Number](Number.md) | [static] 終了 |
 | `ROUTE_MOVE_DOWN` | [Number](Number.md) | [static] [下に移動] |
@@ -84,7 +84,7 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 | `_waitCount` | [Number](Number.md) | ウェイト |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_CharacterBase](Game_CharacterBase.md)
 
@@ -185,7 +185,7 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 * [updatePattern ()](Game_CharacterBase.md#updatepattern-)
 
 
-### Methods
+### メソッド
 
 #### advanceMoveRouteIndex ()
 [移動ルート]の実行位置を進める。
@@ -194,9 +194,9 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 #### deltaXFrom (x) → {[Number](Number.md)}
  指定した x座標と自身の x座標の差分(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(タイル数) |
 
@@ -204,9 +204,9 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 #### deltaYFrom (y) → {[Number](Number.md)}
  指定した y座標と自身の y座標の差分(タイル数)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `y` | [Number](Number.md) | y座標(タイル数) |
 
@@ -214,9 +214,9 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 #### findDirectionTo (goalX, goalY) → {[Number](Number.md)}
  指定座標へたどり着くための向き(テンキー対応)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `goalX` | [Number](Number.md) | x座標(タイル数) |
 | `goalY` | [Number](Number.md) | y座標(タイル数) |
@@ -225,19 +225,19 @@ ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマン�
 #### forceMoveRoute (moveRoute)
 [移動ルート]を強制。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `moveRoute` | [RPG.MoveRoute](RPG.MoveRoute.md) | [移動ルート] |
 
 
 #### initialize ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#initialize-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#initialize-)
 
 
 #### initMembers ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 
 
 #### isMoveRouteForcing () → {Boolean}
@@ -251,9 +251,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### moveAwayFromCharacter (character)
  指定キャラクタから遠ざかる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
@@ -277,9 +277,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### moveTowardCharacter (character)
  指定キャラクタに近づく。[タイプ:近づく]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
@@ -291,9 +291,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### processMoveCommand (command)
 [移動コマンド]を実行。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `command` | [RPG.MoveCommand](RPG.MoveCommand.md) | [移動コマンド] |
 
@@ -313,9 +313,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### setMoveRoute (moveRoute)
 [移動ルート]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `moveRoute` | [RPG.MoveRoute](RPG.MoveRoute.md) | [移動ルート] |
 
@@ -323,9 +323,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### swap (character)
  指定したキャラクタと場所を入れ替わる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
@@ -337,9 +337,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### turnAwayFromCharacter (character)
  指定キャラクタの逆を向く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
@@ -367,9 +367,9 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 #### turnTowardCharacter (character)
  指定キャラクタの方を向く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
@@ -383,6 +383,6 @@ Overrides: [Game_CharacterBase](Game_CharacterBase.md#initmembers-)
 
 
 #### updateStop ()
-Overrides: [Game_CharacterBase](Game_CharacterBase.md#updatestop-)
+オーバーライド: [Game_CharacterBase](Game_CharacterBase.md#updatestop-)
 
 

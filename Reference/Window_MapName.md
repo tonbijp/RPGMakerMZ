@@ -1,20 +1,20 @@
-# Class: Window_MapName
+# クラス: Window_MapName
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_MapName ()
 マップの[表示名]を表示するウィンドウ。
 
 関連クラス: [Scene_Map](Scene_Map.md)
 
-#### Properties:
+#### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_showCount` | [Number](Number.md) | 表示時間(フレーム) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -155,18 +155,18 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### close ()
-Overrides: [Window_Base](Window_Base.md#close-)
+オーバーライド: [Window_Base](Window_Base.md#close-)
 
 
 #### drawBackground (x, y, width, height)
 背景を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -175,11 +175,11 @@ Overrides: [Window_Base](Window_Base.md#close-)
 
 
 #### initialize ()
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 
 #### open ()
-Overrides: [Window_Base](Window_Base.md#open-)
+オーバーライド: [Window_Base](Window_Base.md#open-)
 
 
 #### refresh ()
@@ -187,7 +187,7 @@ Overrides: [Window_Base](Window_Base.md#open-)
 
 
 #### update ()
-Overrides: [Window_Base](Window_Base.md#update-)
+オーバーライド: [Window_Base](Window_Base.md#update-)
 
 
 #### updateFadeIn ()

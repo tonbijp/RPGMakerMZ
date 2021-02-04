@@ -1,21 +1,21 @@
-# Class: Window_Gold
+# クラス: Window_Gold
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_Gold (x, y)
 [所持金]を表示するウィンドウ。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -158,14 +158,14 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### currencyUnit () → {[String](String.md)}
 通貨単位を返す。
 
 
 #### initialize (x, y)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -174,7 +174,7 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 
 #### open ()
-Overrides: [Window_Base](Window_Base.md#open-)
+オーバーライド: [Window_Base](Window_Base.md#open-)
 
 
 #### refresh ()

@@ -1,6 +1,6 @@
-# Class: [RPG](RPG.md).Map
+# クラス: [RPG](RPG.md).Map
 
-## Extends: [RPG.MetaData](RPG.MetaData.md) 
+## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
 
 | データベース| JSONファイル | 大域変数 | オブジェクト | スプライトセット |
 | --- | --- | --- | --- | --- |
@@ -11,9 +11,9 @@ JSONファイルの XXX は3桁の数値。
 関連クラス: [Scene_Map](Scene_Map.md), [ShaderTilemap](ShaderTilemap.md), [RPG.MapInfo](RPG.MapInfo.md)
  
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `displayName` | [String](String.md) | [表示名] |
 | `tilesetId` | [Number](Number.md) | [タイルセット]のID |

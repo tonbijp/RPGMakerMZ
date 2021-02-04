@@ -1,4 +1,4 @@
-# Class: Game_Switches
+# クラス: Game_Switches
 
 ### new Game_Switches ()
 
@@ -13,14 +13,14 @@
 関連クラス: [Game_Variables](Game_Variables.md), [Game_SelfSwitches](Game_SelfSwitches.md) 
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;Boolean&gt; | 真偽値の配列 |
 
 
-### Methods
+### メソッド
 
 #### clear ()
 値を初期化。
@@ -38,9 +38,9 @@
 #### setValue (switchId, value)
 指定した[スイッチ]に値を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `switchId` | [Number](Number.md) | スイッチID |
 | `value` | Boolean | スイッチがONか |
@@ -49,9 +49,9 @@
 #### value (switchId)
 指定した[スイッチ]の値を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `switchId` | [Number](Number.md) | スイッチID |
 

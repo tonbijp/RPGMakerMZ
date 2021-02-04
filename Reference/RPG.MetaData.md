@@ -1,11 +1,11 @@
-# Class: [RPG](RPG.md).MetaData
+# クラス: [RPG](RPG.md).MetaData
  多くのデータに含まれる[メモ]のデータ。
  
  note から meta への変換は[DataManager.extractMetadata](DataManager.md#static-extractmetadata-data)メソッドで行われる。<br />
  meta プロパティに記録されたデータは、プラグイン用のパラメータとして使う。
 
 
-### Sub Classes
+### サブクラス
 
 *  [RPG.Actor](RPG.Actor.md)
 *  [RPG.Class](RPG.Class.md)
@@ -17,9 +17,9 @@
 *  [RPG.Tileset](RPG.Tileset.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `note` | [String](String.md) | [メモ]の内容 |
 | `meta` | Object | note 内の &lt;名前:値&gt;形式のデータを解析した結果 |

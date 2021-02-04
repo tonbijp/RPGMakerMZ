@@ -1,6 +1,6 @@
-# Class: Window_NameEdit
+# クラス: Window_NameEdit
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_NameEdit (actor, maxLength)
 [名前入力の処理]で、アクターの名前を編集するウィンドウ。
@@ -8,23 +8,23 @@
 関連クラス: [Scene_Name](Scene_Name.md)
 
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `maxLength` | [Number](Number.md) | 最大文字数 |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_name` | [String](String.md) | 名前 |
 | `_index` | [Number](Number.md) | 番号 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -168,14 +168,14 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### add (ch) → {Boolean}
 文字を追加し、成功したか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `ch` | [String](String.md) | 追加する文字 |
 
@@ -191,9 +191,9 @@
 #### drawChar (index)
 指定個所の文字を描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 位置 |
 
@@ -201,9 +201,9 @@
 #### drawUnderline (index)
 指定個所にアンダーラインを描く。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 位置 |
 
@@ -213,11 +213,11 @@
 
 
 #### initialize (actor, maxLength)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `maxLength` | [Number](Number.md) | 最大文字数 |
@@ -226,9 +226,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### itemRect (index) → {[Rectangle](Rectangle.md)}
 指定位置に占める文字の矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 位置 |
 
@@ -256,9 +256,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### underlineRect (index) → {[Rectangle](Rectangle.md)}
 指定位置のアンダーラインの矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 位置 |
 

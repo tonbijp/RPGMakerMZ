@@ -1,18 +1,18 @@
-# Class: SoundManager
+# クラス: SoundManager
 [効果音]で設定された音声を管理する静的クラス。
 
 データは大域変数 [$dataSystem](global.md#datasystem-rpgsystem) の sounds プロパティに記録されている。
 
 関連クラス: [RPG.System](RPG.System.md), [WebAudio](WebAudio.md), [Html5Audio](Html5Audio.md), [RPG.AudioFile](RPG.AudioFile.md)
 
-### Methods
+### メソッド
 
 #### (static) loadSystemSound (n)
 指定番号の音声を読み込む。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `n` | [Number](Number.md) | 音声番号 |
 
@@ -108,9 +108,9 @@
 #### (static) playSystemSound (n)
 指定番号の音声を再生。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `n` | [Number](Number.md) | 音声番号 |
 

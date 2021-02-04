@@ -1,15 +1,15 @@
-# Class: Window_Selectable
+# クラス: Window_Selectable
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_Selectable (x, y, width, height)
 コマンドカーソルの移動やスクロールを行うウィンドウ。
 
 関連クラス: [Input](Input.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,7 +17,7 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_BattleEnemy](Window_BattleEnemy.md)
 * [Window_BattleLog](Window_BattleLog.md)
@@ -37,9 +37,9 @@
 * [Window_Command](Window_Command.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_index` | [Number](Number.md) | 選択されている項目の番号 |
 | `_cursorFixed` | Boolean | カーソルが固定されているか |
@@ -67,7 +67,7 @@ RPGツクールMVの主要な入力ハンドラ。<br />
 | `pagedown` | ページダウン |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -208,10 +208,10 @@ RPGツクールMVの主要な入力ハンドラ。<br />
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### activate ()
-Overrides: [Window_Base](Window_Base.md#activate-)
+オーバーライド: [Window_Base](Window_Base.md#activate-)
 
 
 #### bottomRow () → {[Number](Number.md)}
@@ -225,9 +225,9 @@ Overrides: [Window_Base](Window_Base.md#activate-)
 #### callHandler (symbol)
 指定したハンドラを呼ぶ。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
 
@@ -243,9 +243,9 @@ OKのハンドラを呼ぶ。
 #### clearItem (index)
 指定した番号の項目を削除。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号 |
 
@@ -257,9 +257,9 @@ OKのハンドラを呼ぶ。
 #### cursorDown (wrap)
 カーソルを下に移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wrap` | Boolean | リストの前後をつなぐか |
 
@@ -271,9 +271,9 @@ OKのハンドラを呼ぶ。
 #### cursorLeft (wrap)
 カーソルを左に移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wrap` | Boolean | リストの前後をつなぐか |
 
@@ -289,9 +289,9 @@ OKのハンドラを呼ぶ。
 #### cursorRight (wrap)
 カーソルを右に移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wrap` | Boolean | リストの前後をつなぐか |
 
@@ -299,15 +299,15 @@ OKのハンドラを呼ぶ。
 #### cursorUp (wrap)
 カーソルを上に移動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wrap` | Boolean | リストの前後をつなぐか |
 
 
 #### deactivate ()
-Overrides: [Window_Base](Window_Base.md#deactivate-)
+オーバーライド: [Window_Base](Window_Base.md#deactivate-)
 
 
 #### deselect ()
@@ -321,9 +321,9 @@ Overrides: [Window_Base](Window_Base.md#deactivate-)
 #### drawItem (index)
 指定番号の項目を描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号 |
 
@@ -339,9 +339,9 @@ Overrides: [Window_Base](Window_Base.md#deactivate-)
 #### hitTest (x, y) → {[Number](Number.md)}
 指定座標が項目の範囲に含まれるか上から判定を行い、最初に適合した項目番号を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -352,7 +352,7 @@ Overrides: [Window_Base](Window_Base.md#deactivate-)
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
+オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 
 
 #### isCancelEnabled () → {Boolean}
@@ -366,9 +366,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### isContentsArea (x, y) → {Boolean}
 指定座標がコンテンツの範囲内か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -389,9 +389,9 @@ Overrides: [Window_Base](Window_Base.md#initialize-x-y-width-height)
 #### isHandled (symbol) → {Boolean}
 指定されたハンドラが利用可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
 
@@ -427,9 +427,9 @@ OKが起動されたか。
 #### itemRect (index) → {[Rectangle](Rectangle.md)}
 指定された項目の矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号 |
 
@@ -437,9 +437,9 @@ OKが起動されたか。
 #### itemRectForText (index) → {[Rectangle](Rectangle.md)}
 指定された項目の文字列用の矩形範囲を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号 |
 
@@ -475,9 +475,9 @@ OKが起動されたか。
 #### onTouch (triggered)
 タッチの処理。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `triggered` | Boolean | タッチされた瞬間か |
 
@@ -529,9 +529,9 @@ OKの処理。
 #### redrawItem (index)
 指定した番号の項目の再描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号 |
 
@@ -563,9 +563,9 @@ OKの処理。
 #### select (index)
 指定した番号の項目を選択。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 項目番号(0から開始) |
 
@@ -573,9 +573,9 @@ OKの処理。
 #### setBottomRow (row)
 下の行(ロー)を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `row` | [Number](Number.md) | 行番号 |
 
@@ -583,9 +583,9 @@ OKの処理。
 #### setCursorAll (cursorAll)
 全項目選択の状態を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `cursorAll` | Boolean | 全選択か |
 
@@ -593,9 +593,9 @@ OKの処理。
 #### setCursorFixed (cursorFixed)
 カーソルの固定状態を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `cursorFixed` | Boolean | カーソル固定か |
 
@@ -603,9 +603,9 @@ OKの処理。
 #### setHandler (symbol, method)
 ハンドラを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
 | `method` | Function | ハンドラ関数 |
@@ -613,9 +613,9 @@ OKの処理。
 
 #### setHelpWindow (helpWindow)
 ヘルプウィンドウを設定。
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `helpWindow` | [Window_Help](Window_Help.md) | ヘルプウィンドウ |
 
@@ -623,9 +623,9 @@ OKの処理。
 #### setHelpWindowItem (item)
 指定項目をヘルプウィンドウに表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) \| [String](String.md) | 設定する項目 |
 
@@ -633,9 +633,9 @@ OKの処理。
 #### setTopRow (row)
 上の行(ロー)を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `row` | [Number](Number.md) | 行番号 |
 
@@ -657,7 +657,7 @@ OKの処理。
 
 
 #### update ()
-Overrides: [Window_Base](Window_Base.md#update-)
+オーバーライド: [Window_Base](Window_Base.md#update-)
 
 
 #### updateArrows ()

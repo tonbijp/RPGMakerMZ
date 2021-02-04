@@ -1,6 +1,6 @@
-# Class: Scene_Menu
+# クラス: Scene_Menu
 
-## Extends: [Scene_MenuBase](Scene_MenuBase.md)
+## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Menu ()
 The scene class of the menu screen.
@@ -8,15 +8,15 @@ The scene class of the menu screen.
 関連クラス: [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md), [Scene_Item](Scene_Item.md), [Scene_Skill](Scene_Skill.md), [Scene_Equip](Scene_Equip.md), [Scene_Status](Scene_Status.md), [Scene_Options](Scene_Options.md), [Scene_Save](Scene_Save.md), [Scene_GameEnd](Scene_GameEnd.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_MenuCommand](Window_MenuCommand.md) | コマンド選択ウィンドウ |
 | `_statusWindow` | [Window_MenuStatus](Window_MenuStatus.md) | ステータス表示・選択ウィンドウ |
 | `_goldWindow` | [Window_Gold](Window_Gold.md) | 所持金ウィンドウ |
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -85,7 +85,7 @@ The scene class of the menu screen.
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
 
 
-### Methods
+### メソッド
 
 #### commandFormation ()
 [並び替え]コマンドの実行。
@@ -112,7 +112,7 @@ The scene class of the menu screen.
 
 
 #### create ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
 
 #### createCommandWindow ()
@@ -127,7 +127,7 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#create-)
 ステータスウィンドウを生成。
 
 #### initialize ()
-Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### onFormationCancel ()
@@ -147,6 +147,6 @@ Overrides: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
 
 
 #### start ()
-Overrides: [Scene_Base](Scene_Base.md#start-)
+オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 

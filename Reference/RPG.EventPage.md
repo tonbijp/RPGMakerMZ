@@ -1,4 +1,4 @@
-# Class: [RPG](RPG.md).EventPage
+# クラス: [RPG](RPG.md).EventPage
 イベントの[EVページ]を構成するJSONデータ。
 
 [RPG.Event](RPG.Event.md)  pages プロパティに含まれている。
@@ -6,9 +6,9 @@
 関連クラス: [RPG.BattleEventPage](RPG.BattleEventPage.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `conditions` | [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md) | [出現条件] |
 | `image` | [RPG.EventPage.Image](RPG.EventPage.Image.md) | [画像] |

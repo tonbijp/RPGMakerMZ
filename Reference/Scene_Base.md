@@ -1,12 +1,12 @@
-# Class: Scene_Base
+# クラス: Scene_Base
 
-## Extends: [Stage](Stage.md)
+## スーパークラス: [Stage](Stage.md)
 
 ### new Scene_Base ()
 シーンの基礎オブジェクト。シーン管理は [SceneManager](SceneManager.md) で行う。
 
 
-### Sub Classes
+### サブクラス
 
 * [Scene_Boot](Scene_Boot.md)
 * [Scene_Title](Scene_Title.md)
@@ -16,9 +16,9 @@
 * [Scene_MenuBase](Scene_MenuBase.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_active` | Boolean |  アクティブか |
 | `_fadeSign` | [Number](Number.md) | フェードの状態(  -1:OUT, 0:なし, 1:IN ) |
@@ -28,7 +28,7 @@
 | `_windowLayer` | [WindowLayer](WindowLayer.md) |  ウィンドウレイヤ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -64,14 +64,14 @@
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
 
-### Methods
+### メソッド
 
 #### addWindow (Window)
 ウィンドウレイヤにウィンドウを追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `Window` | [Window_Base](Window_Base.md) |  追加するウィンドウ |
 
@@ -109,7 +109,7 @@
 
 
 #### initialize ()
-Overrides: [Stage](Stage.md#initialize-)
+オーバーライド: [Stage](Stage.md#initialize-)
 
 
 #### isActive () → {Boolean}
@@ -139,7 +139,7 @@ Overrides: [Stage](Stage.md#initialize-)
 #### startFadeIn (duration opt, white opt)
 フェードインの要求。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Attributes | Default | Description |
 | --- | --- | --- | --- | --- |
@@ -150,7 +150,7 @@ Overrides: [Stage](Stage.md#initialize-)
 #### startFadeOut (duration opt, white opt)
  フェードアウトの要求。
 
-##### Parameters:
+##### 引数
 
 | Name | Type | Attributes | Default | Description |
 | --- | --- | --- | --- | --- |

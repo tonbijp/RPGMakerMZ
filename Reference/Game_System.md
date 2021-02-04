@@ -1,4 +1,4 @@
-# Class: Game_System
+# クラス: Game_System
 
 ### new Game_System ()
 
@@ -12,9 +12,9 @@
 関連クラス: [RPG.System](RPG.System.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_saveEnabled` | Boolean | [セーブ]メニューありか |
 | `_menuEnabled` | Boolean | メニュー表示されるか |
@@ -36,7 +36,7 @@
 | `_walkingBgm` | [RPG.AudioFile](RPG.AudioFile.md) | 移動のBGM |
 
 
-### Methods
+### メソッド
 
 #### battleBgm () → {[RPG.AudioFile](RPG.AudioFile.md)}
 戦闘BGMを返す。
@@ -184,9 +184,9 @@
 #### setBattleBgm (value)
 指定した戦闘BGMに設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [RPG.AudioFile](RPG.AudioFile.md) | 戦闘BGM |
 
@@ -194,9 +194,9 @@
 #### setDefeatMe (value)
 敗北MEの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [RPG.AudioFile](RPG.AudioFile.md) | 敗北ME |
 
@@ -204,9 +204,9 @@
 #### setVictoryMe (value)
 勝利MEの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [RPG.AudioFile](RPG.AudioFile.md) | 勝利ME |
 
@@ -214,9 +214,9 @@
 #### setWindowTone (value)
 指定した[ウィンドウカラー]に設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `value` | [Array](Array.md).<[Number](Number.md)> | [ r, g, b ] の配列(各-255〜255) |
 

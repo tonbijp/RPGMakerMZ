@@ -1,4 +1,4 @@
-# Class:  [MV](MV.md).AudioParameters
+# クラス:  [MV](MV.md).AudioParameters
 
 ## Type: Object
 音声に指定するパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [AudioManager](AudioManager.md), [BattleManager](BattleManager.md), [Decrypter](Decrypter.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 名前 |
 | `volume` | [Number](Number.md) | 音量 |

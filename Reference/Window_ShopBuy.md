@@ -1,6 +1,6 @@
-# Class: Window_ShopBuy
+# クラス: Window_ShopBuy
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_ShopBuy (x, y, height, shopGoods)
 [ショップの処理]で購入商品の選択に使われるウィンドウ。
@@ -8,9 +8,9 @@
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopNumber](Window_ShopNumber.md), [Window_ShopStatus](Window_ShopStatus.md), [Window_Help](Window_Help.md)
 
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -18,9 +18,9 @@
 | `shopGoods` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 商品の配列 |
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_shopGoods` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 商品の配列 |
 | `_money` | [Number](Number.md) | 所持金 |
@@ -29,7 +29,7 @@
 | `_statusWindow` | [Window_ShopStatus](Window_ShopStatus.md) | ステータスウィンドウ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -251,18 +251,18 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### initialize (x, y, height, shopGoods)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -271,15 +271,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### isEnabled (item) → {Boolean}
 指定アイテムが売買可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -293,29 +293,29 @@ Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boole
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### price (item) → {[Number](Number.md)}
 指定アイテムの値段を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setMoney (money)
 所持金の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `money` | [Number](Number.md) | 所持金 |
 
@@ -325,7 +325,7 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### updateHelp ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatehelp-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatehelp-)
 
 
 #### windowWidth () → {[Number](Number.md)}

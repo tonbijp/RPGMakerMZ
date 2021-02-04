@@ -1,13 +1,13 @@
-# Class: [MV](MV.md).ConfigData
+# クラス: [MV](MV.md).ConfigData
 
 ## Type: Object
 [オプション]に含まれるパラメータ。
 
 関連クラス: [ConfigManager](ConfigManager.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `alwaysDash` | Boolean | [常時ダッシュ] |
 | `commandRemember` | Boolean | [コマンド記憶] |

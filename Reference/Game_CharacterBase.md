@@ -1,4 +1,4 @@
-# Class: Game_CharacterBase
+# クラス: Game_CharacterBase
 
 ### new Game_CharacterBase ()
  マップ上のキャラクタに共通する処理を行うクラス。
@@ -8,14 +8,14 @@
 [移動ルートの設定]で[スクリプト]を使用した際の this はこのクラスになるので例えば <code>this.setPattern(0)</code> とすれば歩行パターンを指定できる。
 
 
-### Sub Classes
+### サブクラス
 
 * [Game_Character](Game_Character.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | [read-only] マップ上のX座標(タイル数) |
 | `y` | [Number](Number.md) | [read-only] マップ上のY座標(タイル数) |
@@ -51,7 +51,7 @@
 | `_movementSuccess` | Boolean | 移動できたか |
 
 
-### Methods
+### メソッド
 
 #### animationId () → {[Number](Number.md)}
  アニメーションIDを返す。
@@ -77,9 +77,9 @@
 #### canPass (x, y, d) → {Boolean}
  指定位置から指定向きへの通行が可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -89,9 +89,9 @@
 #### canPassDiagonally (x, y, horz, vert) → {Boolean}
  指定位置から斜め指定向きへの通行が可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -110,9 +110,9 @@
 #### checkEventTriggerTouch (x, y) → {Boolean}
  指定位置にあるイベントトリガを起動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(タイル数) |
 | `y` | [Number](Number.md) | y座標(タイル数) |
@@ -121,9 +121,9 @@
 #### checkEventTriggerTouchFront (d)
  指定方向にあるイベントトリガを起動。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `d` | [Number](Number.md) |  向き(テンキー対応) |
 
@@ -131,9 +131,9 @@
 #### checkStop (threshold) → {Boolean}
  停止状態が閾値を超えたか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `threshold` | [Number](Number.md) |  停止カウントの閾値(フレーム) |
 
@@ -141,9 +141,9 @@
 #### copyPosition (character)
  指定キャラクタの位置を自身の位置にコピー。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `character` | [Game_Player](Game_Player.md) |  |
 
@@ -195,9 +195,9 @@
 #### isCollidedWithCharacters (x, y) → {Boolean}
  指定位置がキャラによって塞がれているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -206,9 +206,9 @@
 #### isCollidedWithEvents (x, y) → {Boolean}
  指定位置が[イベント]によって塞がれているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -217,9 +217,9 @@
 #### isCollidedWithVehicles (x, y) → {Boolean}
  指定位置が[乗り物]によって塞がれているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -244,9 +244,9 @@
 #### isMapPassable (x, y, d) → {Boolean}
  指定位置から指定向きへのマップ通行が可能か。 キャラ・[イベント]による障害を考慮しない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -256,9 +256,9 @@
 #### isMovementSucceeded (x opt, y opt) → {Boolean}
  移動に成功したか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `x` | [Number](Number.md) | <optional> |  |
 | `y` | [Number](Number.md) | <optional> |  |
@@ -311,9 +311,9 @@
 #### jump (xPlus, yPlus)
 [ジャンプ]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `xPlus` | [Number](Number.md) | x方向の移動(タイル数) |
 | `yPlus` | [Number](Number.md) | y方向の移動(タイル数) |
@@ -326,9 +326,9 @@
 #### locate (x, y)
  現在のマップ内での[イベントの位置設定]。 [setPosition](Game_CharacterBase.md#setposition-x-y) と異なり、姿勢などを初期化。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -342,9 +342,9 @@
  指定の方向に斜めに進む。
  テンキーの対応に従って9で右上に進めそうだが、水平と垂直を別に指定する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `horz` | [Number](Number.md) |  水平向き(4: 左, 6:右) |
 | `vert` | [Number](Number.md) |  垂直向き(2: 下, 8: 上) |
@@ -363,9 +363,9 @@
 #### moveStraight (d)
  指定の向きへ[一歩前進]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `d` | [Number](Number.md) |  向き(テンキー対応) |
 
@@ -381,9 +381,9 @@
 #### pos (x, y) → {Boolean}
  指定位置にいるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -392,9 +392,9 @@
 #### posNt (x, y) → {Boolean}
  指定位置にいて、通行不可か。たぶん Nt = No Through。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  |
 | `y` | [Number](Number.md) |  |
@@ -415,9 +415,9 @@
 #### requestAnimation (animationId)
 指定アニメーションIDにしたがって[アニメーションの表示]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `animationId` | [Number](Number.md) | アニメーションID(1〜) |
 
@@ -425,9 +425,9 @@
 #### requestBalloon (balloonId)
  フキダシアイコンIDを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `balloonId` | [Number](Number.md) |  |
 
@@ -443,9 +443,9 @@
 #### reverseDir (d) → {[Number](Number.md)}
  指定向きの逆向き(テンキー対応)を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `d` | [Number](Number.md) |  向き(テンキー対応) |
 
@@ -490,9 +490,9 @@
 #### setBlendMode (blendMode)
 [合成方法]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `blendMode` | [Number](Number.md) | 0: 通常, 1: 加算, 2: 乗算, 3: スクリーン |
 
@@ -500,9 +500,9 @@
 #### setDirection (d)
  向きの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `d` | [Number](Number.md) |  向き(テンキー対応) |
 
@@ -510,9 +510,9 @@
 #### setDirectionFix (directionFix)
 [向き固定]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `directionFix` | Boolean |  |
 
@@ -520,9 +520,9 @@
 #### setImage (characterName, characterIndex)
  キャラクタ画像の設定(タイル画像と同時には設定できない)。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `characterName` | [String](String.md) | 拡張子抜きのファイル名 |
 | `characterIndex` | [Number](Number.md) | 番号(0〜7) |
@@ -531,9 +531,9 @@
 #### setMoveFrequency (moveFrequency)
  移動[頻度]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `moveFrequency` | [Number](Number.md) | 1: 最低, 2: 低, 3: 通常, 4: 高, 5: 最高 |
 
@@ -541,9 +541,9 @@
 #### setMovementSuccess (success)
  移動可能かの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `success` | Boolean |  |
 
@@ -551,9 +551,9 @@
 #### setMoveSpeed (moveSpeed)
  移動[速度]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `moveSpeed` | [Number](Number.md) | 1: 1/8倍速, 2: 1/4倍速, 3: 1/2倍速, 4: 通常速, 5: 2倍速, 6: 4倍速 |
 
@@ -561,9 +561,9 @@
 #### setOpacity (opacity)
 [不透明度]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `opacity` | [Number](Number.md) | 0〜255 |
 
@@ -571,9 +571,9 @@
 #### setPattern (pattern)
  指定番号のパターンを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pattern` | [Number](Number.md) |  |
 
@@ -581,9 +581,9 @@
 #### setPosition (x, y)
  現在のマップ内での[イベントの位置設定]
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
@@ -592,9 +592,9 @@
 #### setPriorityType (priorityType)
 [プライオリティ]の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `priorityType` | [Number](Number.md) | 0: 通常キャラの下, 1:通常キャラと同じ , 2: 通常キャラの上 |
 
@@ -602,9 +602,9 @@
 #### setStepAnime (stepAnime)
 [足踏みアニメ]するかの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stepAnime` | Boolean |  |
 
@@ -612,9 +612,9 @@
 #### setThrough (through)
 [すり抜け]状態の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `through` | Boolean |  |
 
@@ -622,9 +622,9 @@
 #### setTileImage (tileId)
  タイル画像の設定(キャラクタ画像と同時には設定できない)。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tileId` | [Number](Number.md) |  タイルID |
 
@@ -632,9 +632,9 @@
 #### setTransparent (transparent)
 [透明]状態の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `transparent` | Boolean |  |
 
@@ -642,9 +642,9 @@
 #### setWalkAnime (walkAnime)
 [歩行アニメ]するかの設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `walkAnime` | Boolean |  |
 

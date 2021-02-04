@@ -1,15 +1,15 @@
-# Class: Window_SkillList
+# クラス: Window_SkillList
 
-## Extends: [Window_Selectable](Window_Selectable.md)
+## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
 ### new Window_SkillList (x, y, width, height)
 [スキル]の選択ウィンドウ。
 
 関連クラス: [Scene_Skill](Scene_Skill.md), [Window_SkillType](Window_SkillType.md)
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
@@ -17,21 +17,21 @@
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
 
 
-### Sub Classes
+### サブクラス
 
 * [Window_BattleSkill](Window_BattleSkill.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) | アクター |
 | `_stypeId` | [Number](Number.md) | [スキルタイプID](RPG.Skill.md#スキルタイプid) |
 | `_data` | [Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt; | スキルの配列 |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -251,21 +251,21 @@
 * [updateInputData ()](Window_Selectable.md#updateinputdata-)
 
 
-### Methods
+### メソッド
 
 #### costWidth () → {[Number](Number.md)}
 消費コスト用の幅(ピクセル)を返す
 
 #### drawItem (index)
-Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
 #### drawSkillCost (skill, x, y, width)
 指定スキルの消費コストを描画。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skill` | [RPG.Skill](RPG.Skill.md) | スキル |
 | `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
@@ -276,27 +276,27 @@ Overrides: [Window_Selectable](Window_Selectable.md#drawitem-index)
 #### includes (item) → {Boolean}
 指定したスキルが含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.Skill](RPG.Skill.md) | スキル |
 
 
 #### initialize (x, y, width, height)
-Overrides: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
+オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-x-y-width-height)
 
 
 #### isCurrentItemEnabled () → {Boolean}
-Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
+オーバーライド: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boolean)
 
 
 #### isEnabled (item) → {Boolean}
 指定したスキルが利用可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.Skill](RPG.Skill.md) | スキル |
 
@@ -310,15 +310,15 @@ Overrides: [Window_Selectable](Window_Selectable.md#iscurrentitemenabled---boole
 
 
 #### maxCols () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxcols---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
 
 
 #### maxItems () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#maxitems---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
 #### refresh ()
-Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### selectLast ()
@@ -328,9 +328,9 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setActor (actor)
 対象となるアクターを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
 
@@ -338,19 +338,19 @@ Overrides: [Window_Selectable](Window_Selectable.md#refresh-)
 #### setStypeId (stypeId)
 スキルタイプIDを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `stypeId` | [Number](Number.md) | スキルタイプID |
 
 
 #### spacing () → {[Number](Number.md)}
-Overrides: [Window_Selectable](Window_Selectable.md#spacing---number)
+オーバーライド: [Window_Selectable](Window_Selectable.md#spacing---number)
 
 
 #### updateHelp ()
-Overrides: [Window_Selectable](Window_Selectable.md#updatehelp-)
+オーバーライド: [Window_Selectable](Window_Selectable.md#updatehelp-)
 
 
 

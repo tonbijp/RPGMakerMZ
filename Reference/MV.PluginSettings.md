@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).PluginSettings
+# クラス: [MV](MV.md).PluginSettings
 
 ## Type: Object
 
@@ -12,9 +12,9 @@
 
 関連クラス: [PluginManager](PluginManager.md),  [JsonEx](JsonEx.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | プラグインの[名前]\(拡張子を含まない) |
 | `status` | [String](String.md) | ON/OFF の[状態] |

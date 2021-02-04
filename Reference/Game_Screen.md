@@ -1,4 +1,4 @@
-# Class: Game_Screen
+# クラス: Game_Screen
 
 ### new Game_Screen ()
 
@@ -11,9 +11,9 @@
 関連クラス: [Game_Map](Game_Map.md), [Game_Picture](Game_Picture.md), [Sprite_Picture](Sprite_Picture.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Graphics](Graphics.md), [ImageManager](ImageManager.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_shake` | [Number](Number.md) | [シェイク]でずれた距離 |
 | `_shakePower` | [Number](Number.md) | [シェイク]強さ |
@@ -40,7 +40,7 @@
 | `_pictures` | [Array](Array.md).&lt;[Game_Picture](Game_Picture.md)&gt; | 追加された[ピクチャ]の配列 |
 
 
-### Methods
+### メソッド
 
 #### brightness () → {[Number](Number.md)}
 画面の明るさを返す。
@@ -49,9 +49,9 @@
 #### changeWeather (type, power, duration)
 指定した[天候]に変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [String](String.md) | [天候]タイプ |
 | `power` | [Number](Number.md) | [天候]強さ |
@@ -97,9 +97,9 @@
 #### erasePicture (pictureId)
 指定した[ピクチャの消去]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 
@@ -117,9 +117,9 @@
 #### movePicture (pictureId, origin, x, y, scaleX, scaleY, opacity, blendMode, duration)
 指定した[ピクチャの移動]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 | `origin` | [Number](Number.md) | [[原点]](Game_Picture.md#原点) |
@@ -139,9 +139,9 @@
 #### picture (pictureId) → {[Game_Picture](Game_Picture.md)}
 指定ピクチャを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 
@@ -149,9 +149,9 @@
 #### realPictureId (pictureId) → {[Number](Number.md)}
 通常シーンと戦闘シーンに共通のピクチャIDを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 
@@ -159,9 +159,9 @@
 #### rotatePicture (pictureId, speed)
 指定した[ピクチャの回転]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 | `speed` | [Number](Number.md) | 速度 |
@@ -170,9 +170,9 @@
 #### setZoom (x, y, scale)
 指定した拡大の設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | 拡大箇所の x座標(ピクセル) |
 | `y` | [Number](Number.md) | 拡大箇所の y座標(ピクセル) |
@@ -186,9 +186,9 @@
 #### showPicture (pictureId, name, origin, x, y, scaleX, scaleY, opacity, blendMode)
 指定した[ピクチャの表示]。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 | `name` | [String](String.md) | 名前 |
@@ -204,9 +204,9 @@
 #### startFadeIn (duration)
 指定した[フェードイン]を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
 
@@ -214,9 +214,9 @@
 #### startFadeOut (duration)
 指定した[フェードアウト]を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
 
@@ -224,9 +224,9 @@
 #### startFlash (color, duration)
 指定した[フラッシュ]を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
@@ -239,9 +239,9 @@
 #### startShake (power, speed, duration)
 指定した[シェイク]を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `power` | [Number](Number.md) | [シェイク]強さ |
 | `speed` | [Number](Number.md) | [シェイク]速度 |
@@ -251,9 +251,9 @@
 #### startTint (tone, duration)
 指定した[色調]効果を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tone` | [MV.Tone](MV.Tone.md) | [色調] |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
@@ -262,9 +262,9 @@
 #### startZoom (x, y, scale, duration)
 指定した拡大を開始。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | 拡大箇所の x座標(ピクセル) |
 | `y` | [Number](Number.md) | 拡大箇所の y座標(ピクセル) |
@@ -275,9 +275,9 @@
 #### tintPicture (pictureId, tone, duration)
 指定したピクチャに[色調]効果を追加。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `pictureId` | [Number](Number.md) | ピクチャID |
 | `tone` | [MV.Tone](MV.Tone.md) | [色調] |

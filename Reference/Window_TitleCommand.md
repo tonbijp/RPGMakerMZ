@@ -1,20 +1,20 @@
-# Class: Window_TitleCommand
+# クラス: Window_TitleCommand
 
-## Extends: [Window_Command](Window_Command.md)
+## スーパークラス: [Window_Command](Window_Command.md)
 
 ### new Window_TitleCommand ()
 タイトル画面に表示されるコマンドウィンドウ。
 
 関連クラス: [Scene_Title](Scene_Title.md), [Window_Options](Window_Options.md)
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_lastCommandSymbol` | [String](String.md) | [Static] [コマンド記憶]用シンボル |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -257,13 +257,13 @@
 * [windowHeight ()](Window_Command.md#windowheight---number)
 
 
-### Methods
+### メソッド
 
 #### (static) initCommandPosition ()
 コマンド位置を初期化する。
 
 #### initialize ()
-Overrides: [Window_Command.initialize (x, y)](Window_Command.md#initialize-x-y)
+オーバーライド: [Window_Command.initialize (x, y)](Window_Command.md#initialize-x-y)
 
 
 #### isContinueEnabled () → {Boolean}
@@ -271,11 +271,11 @@ Overrides: [Window_Command.initialize (x, y)](Window_Command.md#initialize-x-y)
 
 
 #### makeCommandList ()
-Overrides: [Window_Command.makeCommandList ()](Window_Command.md#makecommandlist-)
+オーバーライド: [Window_Command.makeCommandList ()](Window_Command.md#makecommandlist-)
 
 
 #### processOk ()
-Overrides: [Window_Selectable.processOk ()](Window_Selectable.md#processok-)
+オーバーライド: [Window_Selectable.processOk ()](Window_Selectable.md#processok-)
 
 
 #### selectLast ()
@@ -287,6 +287,6 @@ Overrides: [Window_Selectable.processOk ()](Window_Selectable.md#processok-)
 
 
 #### windowWidth () → {[Number](Number.md)}
-Overrides: [Window_Command](Window_Command.md#windowwidth---number)
+オーバーライド: [Window_Command](Window_Command.md#windowwidth---number)
 
 

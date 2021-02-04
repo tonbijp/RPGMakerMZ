@@ -1,6 +1,6 @@
-# Class: Window_ScrollText
+# クラス: Window_ScrollText
 
-## Extends: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_Base](Window_Base.md)
 
 ### new Window_ScrollText ()
 画面全体に[文章のスクロール表示]をするウィンドウ。
@@ -12,15 +12,15 @@ v1.1.1 で変更あり。
 関連クラス:  [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `_text` | [String](String.md) | 表示する文章 |
 | `_allTextHeight` | [Number](Number.md) | 全体の文章の高さ |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -162,10 +162,10 @@ v1.1.1 で変更あり。
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
-### Methods
+### メソッド
 
 #### contentsHeight ()
-Overrides: [Window_Base](Window_Base#contentsHeight)
+オーバーライド: [Window_Base](Window_Base#contentsHeight)
 
 
 #### fastForwardRate () → {[Number](Number.md)}
@@ -173,7 +173,7 @@ Overrides: [Window_Base](Window_Base#contentsHeight)
 
 
 #### initialize ()
-Overrides: [Window_Base](Window_Base.md#initialize)
+オーバーライド: [Window_Base](Window_Base.md#initialize)
 
 
 #### isFastForward () → {Boolean}
@@ -197,7 +197,7 @@ Overrides: [Window_Base](Window_Base.md#initialize)
 
 
 #### update ()
-Overrides: [Window_Base](Window_Base.md#update)
+オーバーライド: [Window_Base](Window_Base.md#update)
 
 
 #### updateMessage ()

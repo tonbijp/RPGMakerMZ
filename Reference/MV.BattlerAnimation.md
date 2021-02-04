@@ -1,4 +1,4 @@
-# Class: [MV](MV.md).BattlerAnimation
+# クラス: [MV](MV.md).BattlerAnimation
 
 ## Type: Object
 バトラーのアニメーションのパラメータ。
@@ -6,9 +6,9 @@
 関連クラス: [Game_Battler](Game_Battler.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `animationId` | [Number](Number.md) | アニメーションID |
 | `mirror` | Boolean | 反転しているか |

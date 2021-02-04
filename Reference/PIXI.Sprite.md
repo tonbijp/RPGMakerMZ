@@ -1,25 +1,25 @@
-# Class: PIXI.Sprite
+# クラス: PIXI.Sprite
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new PIXI.Sprite (texture)
 描画のための基本オブジェクト。詳細は本家 PIXI のサイト [PIXI.Sprite](http://pixijs.download/release/docs/PIXI.Sprite.html) を参照。
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `texture` | [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html) |  スプライトに設定する画像 |
 
 
-### Sub Classes
+### サブクラス
 
 * [Sprite](Sprite.md) 
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html) \| [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) | [static] シェーダ |
 | `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値:0xFFFFFF) |
@@ -34,7 +34,7 @@
 
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -70,26 +70,26 @@
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
 
-### Methods
+### メソッド
 
 #### (static) from (source, options opt) → {PIXI.Sprite}
 指定データを元に PIXI.Sprite を生成して返す。<br />
 source には [Number](Number.md)(フレームID), [String](String.md)(画像・ビデオURL), [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html), HTMLCanvasElement, HTMLVideoElement が指定できる。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Attributes | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `source` | * | | 生成元となるデータ |
 | `options` | Object | &lt;optional&gt; | [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html) のコンストラクタの option と同じ形式 |
 
 
 #### _calculateBounds ()
-Overrides:[PIXI.Container](PIXI.Container.md#_calculatebounds-)
+オーバーライド:[PIXI.Container](PIXI.Container.md#_calculatebounds-)
  
  
 #### _render (renderer)
-Overrides:[PIXI.Container](PIXI.Container.md#_render-renderer)
+オーバーライド:[PIXI.Container](PIXI.Container.md#_render-renderer)
  
  
 #### calculateTrimmedVertices ()
@@ -103,21 +103,21 @@ Overrides:[PIXI.Container](PIXI.Container.md#_render-renderer)
 #### containsPoint (point) → {Boolean}
 指定座標が含まれるか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `point` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 座標 |
 
 
 #### destroy (options)
-Overrides:[PIXI.Container](PIXI.Container.md#destroy-options)
+オーバーライド:[PIXI.Container](PIXI.Container.md#destroy-options)
 
 
 #### getLocalBounds (rect) → {PIXI.Rectangle}
-Overrides:[PIXI.DisplayObject](PIXI.DisplayObject.md#getlocalbounds-rect--pixirectangle)
+オーバーライド:[PIXI.DisplayObject](PIXI.DisplayObject.md#getlocalbounds-rect--pixirectangle)
 
 
 #### renderCanvas (renderer)
-Overrides:[PIXI.Container](PIXI.Container.md#rendercanvas-renderer)
+オーバーライド:[PIXI.Container](PIXI.Container.md#rendercanvas-renderer)
 
