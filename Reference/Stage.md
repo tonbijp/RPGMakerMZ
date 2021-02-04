@@ -1,6 +1,8 @@
-# Class: Stage
+[クラスツリー](index.md)
 
-## Extends: [PIXI.Container](PIXI.Container.md)
+# クラス: Stage
+
+## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new Stage ()
  画面構成オブジェクトのツリーへの追加・削除を行う基礎オブジェクト。 
@@ -8,12 +10,12 @@
  関連クラス: [Graphics](Graphics.md)
 
  
-### Sub Classes
+### サブクラス
 
 * [Scene_Base](Scene_Base.md)
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -32,7 +34,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -48,8 +49,12 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
-### Methods
+### メソッド
+
+#### destroy ()
+**@MZ** オーバーライド: [PIXI.Container](PIXI.Container.md#destroy-)
+
 
 #### initialize ()
- オブジェクト生成時の初期化。
+オブジェクト生成時の初期化。
 

@@ -290,7 +290,7 @@ namespace JsExtensions
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * [Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
-* ※[Stage](Stage.md)
+* [Stage](Stage.md)
     * ※[Scene_Base](Scene_Base.md) → [継承](index.md#シーンscene_base)
 * ※[Window](Window.md)
     * ※[Window_Base](Window_Base.md) → [継承](index.md#ウィンドウwindow_base)
