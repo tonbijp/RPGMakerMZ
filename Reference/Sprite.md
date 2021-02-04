@@ -5,7 +5,8 @@
 ### new Sprite (bitmap)
 描画のための基本オブジェクト。
 
-PRGツクールMVでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
+PRGツクールMZでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
+
 
 #### Parameters:
 
@@ -15,32 +16,48 @@ PRGツクールMVでは、[ImageManager](ImageManager.md)で画像ファイル�
 
 
 ### Sub Classes
+MZになって新規クラスが増えたのとSprite_Baseが廃止された関係上、サブクラスが多い。
 
 * [Sprite_Animation](Sprite_Animation.md)
+* [Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
 * [Sprite_Button](Sprite_Button.md)
+* [Sprite_Clickable](Sprite_Clickable.md) **@MZ**
 * [Sprite_Damage](Sprite_Damage.md)
 * [Sprite_Destination](Sprite_Destination.md)
+* [Sprite_Gauge](Sprite_Gauge.md) **@MZ**
+* [Sprite_Name](Sprite_Name.md) **@MZ**
 * [Sprite_Picture](Sprite_Picture.md)
 * [Sprite_StateIcon](Sprite_StateIcon.md)
 * [Sprite_Timer](Sprite_Timer.md)
+* [Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
 * [Spriteset_Base](Spriteset_Base.md)
-* [Sprite_Base](Sprite_Base.md)
+* ~~Sprite_Base~~ (廃止)
+* [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
+* [Sprite_Character](Sprite_Character.md) (継承位置変更)
+* [Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
+* [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
 
 
 ### Properties:
 
 | Name | Type | Description |
 | --- | --- | --- |
+| `_emptyBaseTexture` |  | **@MZ** [static]  |
 | `_counter` | [Number](Number.md) | [static] スプライトの(生成順)番号 |
-| `voidFilter` | [PIXI.filters.VoidFilter](http://pixijs.download/dev/docs/PIXI.filters.VoidFilter.html) | [static] |
 | `spriteId` | [Number](Number.md) | スプライトID |
-| `opaque` | Boolean | 不[透明状態]か |
 | `bitmap` | [Bitmap](Bitmap.md) | スプライトに設定する画像 |
 | `opacity` | [Number](Number.md) | 不透明度 (0 〜 255) |
 | `visible` | Boolean |  表示中か |
 | `z` | [Number](Number.md) | [重なりの優先度](Sprite.md#重なりの優先度) |
-| `point` | [Point](Point.md) | 位置(x, y を同時に指定) [PIXI.DisplayObject](PIXI.DisplayObject.md)のpositionと同じ |
 | `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
+| `_bitmap` | |  |
+| `_blendColor` | [Array](Array.md) | ブレンドカラー [r, g, b, g]|
+| `_blendMode` | | ブレンドモード(規定値:PIXI.BLEND_MODES.NORMAL) |
+| `_colorFilter` | | 色フィルタ |
+| `_colorTone` | [Array](Array.md) | 色調 [r, g, b, a]|
+| `_frame` | [Rectangle](Rectangle.md) | 枠 |
+| `_hidden` | Boolean | 隠されているか |
+| `_hue` | [Number](Number.md) | 色相 (-360 〜 360) | 
 
 #### 重なりの優先度
 [Tilemap.\_comparechildorder](Tilemap.md#_comparechildorder-a-b)でソートの際に使われる。
@@ -67,6 +84,9 @@ PRGツクールMVでは、[ImageManager](ImageManager.md)で画像ファイル�
 | 1 | BLEND_ADD | 加算 |
 | 2 | BLEND_MULTIPLY | 乗算 |
 | 3 | BLEND_SCREEN | スクリーン |
+
+#### 廃止MVプロパティ
+`voidFilter`, `opaque`, `point`, `_isPicture`, `_tintTexture`, `_context`, `_canvas`, `_realFrame`
 
 
 ### Inherited From
@@ -97,6 +117,7 @@ PRGツクールMVでは、[ImageManager](ImageManager.md)で画像ファイル�
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -110,90 +131,34 @@ PRGツクールMVでは、[ImageManager](ImageManager.md)で画像ファイル�
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 
 ### Methods
 
-#### _createTinter (w, h)
-指定の幅と高さで矩形枠を生成。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `w` | [Number](Number.md) | 幅(ピクセル) |
-| `h` | [Number](Number.md) | 高さ(ピクセル) |
+#### _createColorFilter ()
+**@MZ** 色フィルタを生成。
 
 
-#### _executeTint (x, y, w, h)
-指定した矩形枠に[色調]変化を適用。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `w` | [Number](Number.md) | 幅(ピクセル) |
-| `h` | [Number](Number.md) | 高さ(ピクセル) |
-
-
-#### _isInBitmapRect (x, y, w, h) → {Boolean}
-指定した矩形枠内にいるか。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `w` | [Number](Number.md) | 幅(ピクセル) |
-| `h` | [Number](Number.md) | 高さ(ピクセル) |
-
-
-#### _needsTint () → {Boolean}
-[色調]変化が必要か。
+#### _onBitmapChange ()
+**@MZ** ビットマップが変更された時のハンドラ。
 
 
 #### _onBitmapLoad ()
-ビットマップ読み込み時に呼ばれるハンドラ。
+ビットマップ読み込み時のハンドラ。
 
 
 #### _refresh ()
 再設定。
 
 
-#### _renderCanvas (renderer)
-Overrides: [PIXI.Container](PIXI.Container.md#_rendercanvas-renderer)
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `renderer` | Object | レンダラ |
+#### _updateColorFilter ()
+**@MZ** 色フィルタをアップデート。
 
 
-#### _renderWebGL (renderer)
-WebGL でレンダリング。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `renderer` | Object | レンダラ |
-
-
-#### _speedUpCustomBlendModes (renderer)
-カスタムブレンドモードのスピードアップの要不要をチェック。
-
-##### Parameters:
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `renderer` | Object | レンダラ |
+#### destroy ()
+**@MZ** オーバーライド: [PIXI.Sprite](PIXI.Sprite.md#destroy-options)
 
 
 #### getBlendColor () → {[MV.Color](MV.Color.md)}
@@ -202,6 +167,10 @@ WebGL でレンダリング。
 
 #### getColorTone () → {[MV.Tone](MV.Tone.md)}
  補正される[色調]を返す。
+
+
+#### hide ()
+**@MZ** このオブジェクトを非表示。
 
 
 #### initialize (bitmap)
@@ -232,7 +201,7 @@ WebGL でレンダリング。
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `color` | [Array](Array.md) | [r, g, b, a] の配列 |
+| `color` | [MV.Color](MV.Color.md) | [r, g, b, a] の配列 |
 
 
 #### setColorTone (tone)
@@ -243,6 +212,16 @@ WebGL でレンダリング。
 | Name | Type | Description |
 | --- | --- | --- |
 | `tone` | [MV.Tone](MV.Tone.md) | [色調] |
+
+
+#### setHue (hue)
+**@MZ** 色相を設定。
+
+##### Parameters:
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `color` | [Number](Number.md) | 色相 (-360 〜 360) |
 
 
 #### setFrame (x, y, width, height)
@@ -258,7 +237,17 @@ WebGL でレンダリング。
 | `height` | [Number](Number.md) |  矩形枠の高さ(ピクセル) |
 
 
+#### show ()
+**@MZ** このオブジェクトを表示。
+
+
 #### update ()
  フレーム毎のアップデート。
 
 
+#### updateVisibility ()
+**@MZ** 表示状態のアップデート。
+
+
+### MV廃止メソッド
+_createTinter (w, h), _executeTint (x, y, w, h), _isInBitmapRect (x, y, w, h), _needsTint (), _renderWebGL (renderer), _speedUpCustomBlendModes (renderer)

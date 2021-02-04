@@ -289,7 +289,7 @@ namespace JsExtensions
     * ~~ShaderTilemap~~ (廃止)
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)
-    * ※[Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
+    * [Sprite](Sprite.md) → [継承](index.md#スプライトsprite)
 * ※[Stage](Stage.md)
     * ※[Scene_Base](Scene_Base.md) → [継承](index.md#シーンscene_base)
 * ※[Window](Window.md)
@@ -309,7 +309,6 @@ namespace JsExtensions
 * ※[Sprite_Picture](Sprite_Picture.md)
 * ※[Sprite_StateIcon](Sprite_StateIcon.md)
 * ※[Sprite_Timer](Sprite_Timer.md)
-* ※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)

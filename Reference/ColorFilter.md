@@ -54,7 +54,7 @@ fragment shader のソースを文字列で返す。
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `color` | [Array](Array.md) | ブレンド色[r, g, b, a] |
+| `color` | [MV.Color](MV.Color.md) | ブレンド色[r, g, b, a] |
 
 
 #### setBrightness (brightness)
@@ -68,13 +68,13 @@ fragment shader のソースを文字列で返す。
  
  
 #### setColorTone (tone)
-指定した値で色調を設定。
+指定した値で[色調]を設定。
 
 ##### Parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `tone` | [Array](Array.md) | 色調[r, g, b, gray] |
+| `tone` | [[MV.Tone](MV.Tone.md) | 色調[r, g, b, gray] |
 
 
 #### setHue (hue)
