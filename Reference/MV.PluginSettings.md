@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).PluginSettings
 
-## Type: Object
+## 型: Object
 
 | データベース| JSファイル | 大域変数 |
 | --- | --- | --- |

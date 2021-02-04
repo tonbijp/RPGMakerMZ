@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).TextState
 
-## Type: Object
+## 型: Object
 テキストの表示に使われるパラメータ。
 
 関連クラス: [Window_Base](Window_Base.md)

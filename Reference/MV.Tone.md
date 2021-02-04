@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).Tone
 
-## Type: [Array](Array.md).&lt;[Number](Number.md)&gt;
+## 型: [Array](Array.md).&lt;[Number](Number.md)&gt;
 
 [色調]データ用配列。
 

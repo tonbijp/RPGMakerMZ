@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).DatabaseFile
 
-## Type: Object
+## 型: Object
 JSONファイルを読み込む際に使われるパラメータ。
 
 関連クラス: [DataManager](DataManager.md)

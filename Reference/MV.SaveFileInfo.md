@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).SaveFileInfo
 
-## Type: Object
+## 型: Object
 セーブファイル情報のパラメータ。
 
 関連クラス: [DataManager](DataManager.md)

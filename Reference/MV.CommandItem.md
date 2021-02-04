@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).CommandItem
 
-## Type: Object
+## 型: Object
 コマンドウィンドウ( [Window_Command](Window_Command.md) )の項目のパラメータ。
 
 シンボルは、[Window_Selectable.setHandler()](Window_Selectable.md#sethandler-symbol-method)メソッドでコールバック関数に紐づけられるのがパターン。

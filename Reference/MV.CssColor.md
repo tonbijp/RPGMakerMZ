@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).CssColor
 
-## Type: [String](String.md)
+## 型: [String](String.md)
 CSS形式の文字列による色指定方法。
 
 16進による'#ff4000' のような形式の他、関数 rgb( 255, 64, 0 )' や色名'red'などでの指定が可能。

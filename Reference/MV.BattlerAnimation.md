@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).BattlerAnimation
 
-## Type: Object
+## 型: Object
 バトラーのアニメーションのパラメータ。
 
 関連クラス: [Game_Battler](Game_Battler.md)

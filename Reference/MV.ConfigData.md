@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).ConfigData
 
-## Type: Object
+## 型: Object
 [オプション]に含まれるパラメータ。
 
 関連クラス: [ConfigManager](ConfigManager.md)

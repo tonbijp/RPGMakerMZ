@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).BattleRewards
 
-## Type: Object
+## 型: Object
 戦闘の報酬パラメータ。
 
 関連クラス: [BattleManager](BattleManager.md), [RPG.Enemy](RPG.Enemy.md)

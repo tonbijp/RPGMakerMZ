@@ -1,6 +1,6 @@
 # クラス: [MV](MV.md).BattleLogMethod
 
-## Type: Object
+## 型: Object
 [Window_BattleLog](Window_BattleLog.md) のメソッドを、後から呼ぶために貯めておくパラメータ。
 
 関連クラス: [TextManager](TextManager.md)
