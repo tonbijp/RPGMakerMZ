@@ -1,9 +1,11 @@
+[クラスツリー](index.md)
+
 # クラス: TilingSprite
 
-## スーパークラス: PIXI.extras.PictureTilingSprite([PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html))
+## スーパークラス: [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html)
 
 ### new TilingSprite (bitmap)
-The sprite object for a tiling image.
+タイル画像用のスプライト。
 
 関連クラス: [Spriteset_Map](Spriteset_Map.md)
 
@@ -11,63 +13,45 @@ The sprite object for a tiling image.
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | The image for the tiling sprite |
+| `bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | The image for the tiling sprite. |
-| `opacity` | [Number](Number.md) | The opacity of the tiling sprite (0 to 255). |
-| `spriteId` | [Number](Number.md) |  |
-| `origin` | [Point](Point.md) | The origin point of the tiling sprite for scrolling. |
-| `x` | [Number](Number.md) | The x coordinate of the tiling sprite. |
-| `y` | [Number](Number.md) | The y coordinate of the tiling sprite. |
-| `spriteId` | [Number](Number.md) |  |
-| `visibility` | [Number](Number.md) | The visibility of the tiling sprite. |
-| `_bitmap` | [Bitmap](Bitmap.md) |  |
-| `_width` | [Number](Number.md) |  |
-| `_height` | [Number](Number.md) |  |
-| `_frame` | [Number](Number.md) |  |
+| `bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
+| `opacity` | [Number](Number.md) | 不透明度 (0 〜 255). |
+| `spriteId` | [Number](Number.md) | スプライトID |
+| `origin` | [Point](Point.md) | スクロールの原点 |
+| `x` | [Number](Number.md) | x座標(ピクセル数) |
+| `y` | [Number](Number.md) | y座標(ピクセル数) |
+| `_bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
+| `_width` | [Number](Number.md) | 幅 |
+| `_height` | [Number](Number.md) | 高さ |
+| `_frame` | [Rectangle](Rectangle.md) | 枠 |
+
+
+### 廃止MVプロパティ
+`visibility` 
 
 
 ### メソッド
 
-#### (static) _onBitmapLoad ()
+#### _onBitmapChange ()
+**@MZ** 画像が変更された時のハンドラ。
 
 
-#### (static) _refresh ()
+#### _onBitmapLoad ()
+画像が読み込まれた時のハンドラ。
 
 
-#### (static) _renderCanvas (renderer)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `renderer` | Object |  |
+#### _refresh ()
+再描画。
 
 
-#### (static) _renderWebGL (renderer)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `renderer` | Object |  |
-
-
-#### (static) _renderWebGL (renderer)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `renderer` | Object |  |
-
-
-#### (static) updateTransform ()
+#### destroy ()
+**@MZ** オブジェクトの破棄。
 
 
 #### initialize (bitmap)
@@ -77,35 +61,42 @@ The sprite object for a tiling image.
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) |  |
+| `bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
 
 
 #### move (x, y, width, height)
-Sets the x, y, width, and height all at once.
+移動。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | The x coordinate of the tiling sprite |
-| `y` | [Number](Number.md) | The y coordinate of the tiling sprite |
-| `width` | [Number](Number.md) | The width of the tiling sprite |
-| `height` | [Number](Number.md) | The height of the tiling sprite |
+| `x` | [Number](Number.md) | x座標(ピクセル数) |
+| `y` | [Number](Number.md) | y座標(ピクセル数)  |
+| `width` | [Number](Number.md) | 幅(ピクセル数)  |
+| `height` | [Number](Number.md) | 高さ(ピクセル数)  |
 
 
 #### setFrame (x, y, width, height)
-Specifies the region of the image that the tiling sprite will use.
+表示枠を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | The x coordinate of the frame |
-| `y` | [Number](Number.md) | The y coordinate of the frame |
-| `width` | [Number](Number.md) | The width of the frame |
-| `height` | [Number](Number.md) | The height of the frame |
+| `x` | [Number](Number.md) | x座標(ピクセル数) |
+| `y` | [Number](Number.md) | y座標(ピクセル数)  |
+| `width` | [Number](Number.md) | 幅(ピクセル数)  |
+| `height` | [Number](Number.md) | 高さ(ピクセル数)  |
 
 
 #### update ()
-Updates the tiling sprite for each frame.
+フレームごとのアップデート。
 
+
+#### updateTransform ()
+変形のアップデート。
+
+
+### MV廃止メソッド
+_renderCanvas (renderer), _renderWebGL (renderer)
