@@ -1,65 +1,55 @@
+[クラスツリー](index.md)
+
 # クラス: Weather
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 #### new Weather ()
-The weather effect which displays rain, storm, or snow.
+天候のエフェクト表示用クラス。
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `type` | [String](String.md) | The type of the weather. |
-| `power` | [Number](Number.md) | The power of the weather in the range (0, 9). |
-| `origin` | [Point](Point.md) | The origin point of the weather for scrolling. |
-| `_width` | [Number](Number.md) |  |
-| `_height` | [Number](Number.md) |  |
-| `_sprites` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; |  |
-| `_rainBitmap` | [Bitmap](Bitmap.md) |  |
-| `_stormBitmap` | [Bitmap](Bitmap.md) |  |
-| `_snowBitmap` | [Bitmap](Bitmap.md) |  |
-| `_dimmerSprite` | [ScreenSprite](ScreenSprite.md) |  |
+| `type` | [String](String.md) | [天候の種類](Weather.md#天候タイプ) |
+| `power` | [Number](Number.md) | 天候の強度 (0 〜 9) |
+| `origin` | [Point](Point.md) | スクロールの原点 |
+| `viewport` | [Bitmap](Bitmap.md) |  |
+| `_width` | [Number](Number.md) | 幅(ピクセル数) |
+| `_height` | [Number](Number.md) | 高さ(ピクセル数) |
+| `_sprites` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; | 含まれるスプライト |
+| `_rainBitmap` | [Bitmap](Bitmap.md) | 雨用画像 |
+| `_stormBitmap` | [Bitmap](Bitmap.md) | 嵐用画像 |
+| `_snowBitmap` | [Bitmap](Bitmap.md) | 雪用画像 |
+| `_dimmerSprite` | [ScreenSprite](ScreenSprite.md) | 調光用スプライト |
 
 #### 天候タイプ
 
 | type | 天候タイプ |
 | --- | --- |
-| none |  |
-| rain |  |
-| storm |  |
-| snow |  |
+| "none" | なし |
+| "rain" | 雨 |
+| "storm" | 嵐 |
+| "snow" | 雪 |
+
 
 ### メソッド
 
-#### (static) _addSprite ()
+#### _addSprite ()
+スプライトを追加。
 
 
-#### (static) _createBitmaps ()
+####  _createBitmaps ()
+画像を生成。
 
 
-#### (static) _createDimmer ()
+#### _createDimmer ()
+調光用スプライトを生成。
 
 
-#### (static) _rebornSprite (sprite)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `sprite` | [Sprite](Sprite.md) |  |
-
-
-#### (static) _removeSprite ()
-
-
-#### (static) _updateAllSprites ()
-
-
-#### (static) _updateDimmer ()
-
-
-#### (static) _updateRainSprite (sprite)
+####  _rebornSprite (sprite)
+スプライトを再配置。
 
 ##### 引数
 
@@ -68,36 +58,61 @@ The weather effect which displays rain, storm, or snow.
 | `sprite` | [Sprite](Sprite.md) |  |
 
 
-#### (static) _updateSnowSprite (sprite)
+#### _removeSprite ()
+スプライトを取り除く。
+
+
+#### _updateAllSprites ()
+全スプライトをアップデート。
+
+
+#### _updateDimmer ()
+調光用スプライトをアップデート。
+
+
+#### _updateRainSprite (sprite)
+雨のスプライトをアップデート。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `sprite` | [Sprite](Sprite.md) |  |
+| `sprite` | [Sprite](Sprite.md) | スプライト |
+
+
+#### _updateSnowSprite (sprite)
+雪ののスプライトをアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `sprite` | [Sprite](Sprite.md) | スプライト |
 
 
 #### (static) _updateSprite (sprite)
+スプライトをアップデート。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `sprite` | [Sprite](Sprite.md) |  |
+| `sprite` | [Sprite](Sprite.md) | スプライト |
 
 
 #### (static) _updateStormSprite (sprite)
+嵐のスプライトをアップデート。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `sprite` | [Sprite](Sprite.md) |  |
+| `sprite` | [Sprite](Sprite.md) | スプライト |
 
 
 #### initialize ()
  オブジェクト生成時の初期化。
 
-#### update ()
-Updates the weather for each frame.
 
+#### update ()
+フレーム毎のアップデート。

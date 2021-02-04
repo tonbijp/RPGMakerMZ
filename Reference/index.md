@@ -240,8 +240,8 @@ namespace JsExtensions
     * [Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
     * [Rectangle](Rectangle.md)
-* PIXI.TilingSprite( PIXI.extras.PictureTilingSprite から変更 )
-    * ※[TilingSprite](TilingSprite.md)
+* [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html) ( PIXI.extras.PictureTilingSprite から変更 )
+    * [TilingSprite](TilingSprite.md)
         * ※[Sprite_Battleback](Sprite_Battleback.md) **@MZ**
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
@@ -278,7 +278,7 @@ namespace JsExtensions
 
 * [ScreenSprite](ScreenSprite.md)
 * ~~ToneSprite~~ (廃止)
-* ※[Weather](Weather.md)
+* [Weather](Weather.md)
 * ※[WindowLayer](WindowLayer.md)
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
 * [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
