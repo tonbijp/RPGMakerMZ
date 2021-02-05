@@ -1,22 +1,30 @@
+[クラスツリー](index.md)
+
 # クラス: Window
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new Window ()
 ゲーム内で使われるウィンドウ。ブラウザやその他アプリケーションのウィンドウではない。<br />
-通常 [WindowLayer](WindowLayer.md) に含まれ、内部に以下のような形で画像を持っている。
+通常 [WindowLayer](WindowLayer.md) に含まれ、内部に以下のような形で画像を持っている。重なり順で並べていてポーズサインが一番画面手前で、ウィンドウ背景が一番奥だ。
 
-* `_windowPauseSignSprite ` ポーズサイン
-* `_upArrowSprite ` 上向き矢印
-* `_downArrowSprite ` 下向き矢印
-* `_windowContentsSprite ` 内容
-	*  `contents `
-* `_windowCursorSprite ` カーソル
-* `_windowSpriteContainer ` ウィンドウ
-	* `_windowFrameSprite ` 枠
-	* `_windowBackSprite ` 背景
+* `_pauseSignSprite` ポーズサイン
+* `_upArrowSprite` 上向き矢印
+* `_downArrowSprite` 下向き矢印
+* `_clientArea` クライアントエリア
+	* `_contentsSprite` 内容
+		*  `contents` ( _contentsSprite.bitmap )
+	* `_cursorSprite` カーソル
+		* Sprite × 9 カーソルを構成する9スライスのパーツ
+	* `_contentsBackSprite` 内容の背景
+		* `contentsBack`  ( _contentsBackSprite.bitmap )
+* `_container` ウィンドウ
+	* `_frameSprite` ウィンドウ枠
+		* Sprite × 9  ウィンドウ枠を構成する9スライスのパーツ
+	* `_backSprite` ウィンドウ背景
 
 このうち `contents ` を書き換えることで、メッセージやアイコンなどの表示内容を変更する。
+『RPGツクールMV』と要素はほぼ同じだが、大きく構成が変わっている。
 
 opacity系のプロパティは、対象スプライトの alpha プロパティを読み書きしているだけ。
 
@@ -32,37 +40,52 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `active` | Boolean | ウィンドウがアクティブか |
-| `openness` | [Number](Number.md) | 開放度(0 〜 255) |
-| `contents` | [Bitmap](Bitmap.md) | 内容( `_windowContentsSprite` )の画像 |
-| `windowskin` | [Bitmap](Bitmap.md) | ウィンドウのスキン画像 |
+| `openness` | [Number](Number.md) | `_container`の開放度(0 〜 255) |
+| `contents` | [Bitmap](Bitmap.md) | 内容( `_contentsSprite` )の画像 |
+| `contentsBack` | [Bitmap](Bitmap.md) | **@MZ** 背景( `_contentsBackSprite` )の画像 |
+| `windowskin` | [Bitmap](Bitmap.md) | ウィンドウのスキン画像(system/Window.png)  |
 | `pause` | Boolean | ポーズサインが表示中か |
 | `downArrowVisible` | Boolean | 下向きスクロールアローが表示中か|
 | `upArrowVisible` | Boolean | 上むきスクロールアローが表示中か |
-| `opacity` | [Number](Number.md) | ウィンドウ( `_windowSpriteContainer` ) の不透明度(0 〜 255) |
-| `backOpacity` | [Number](Number.md) | 背景( `_windowBackSprite` ) の不透明度(0 〜 255) |
-| `contentsOpacity` | [Number](Number.md) | 内容( `_windowContentsSprite` ) の不透明度(0 〜 255) |
+| `opacity` | [Number](Number.md) | ウィンドウ( `_container` ) の不透明度(0 〜 255) |
+| `backOpacity` | [Number](Number.md) | ウィンドウ背景( `_backSprite` ) の不透明度(0 〜 255) |
+| `contentsOpacity` | [Number](Number.md) | 内容( `_contentsSprite` ) の不透明度(0 〜 255) |
 | `origin` | [Point](Point.md) | スクロールの際のウィンドウの原点 |
-| `margin` | [Number](Number.md) | 枠の幅(ピクセル) |
-| `padding` | [Number](Number.md) | 枠とコンテンツの間のパディング幅(ピクセル) |
+| `margin` | [Number](Number.md) | 枠の幅(規定値:4ピクセル) |
+| `padding` | [Number](Number.md) | 枠とコンテンツの間のパディング幅(規定値:12ピクセル) |
+| `width` | [Number](Number.md) | 幅 |
+| `height` | [Number](Number.md) | 高さ |
+| `innerWidth` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの幅 |
+| `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ |
+| `innerRect` | [Rectangle](Rectangle.md) | **@MZ** [read-only]クライアントエリアの矩形範囲 |
 | `_isWindow` | Boolean | ウィンドウか |
-| `_windowskin` | [Bitmap](Bitmap.md) | ウィンドウのスキンに使う画像 |
-| `_width` | [Number](Number.md) | 幅 |
-| `_height` | [Number](Number.md) | 高さ |
+| `_windowskin` | [Bitmap](Bitmap.md) | |
+| `_width` | [Number](Number.md) |  |
+| `_height` | [Number](Number.md) |  |
+| `_innerChildren` | [Array](Array.md) | **@MZ** クライアントエリアの子オブジェクトの配列 |
 | `_cursorRect` | [Rectangle](Rectangle.md) | コマンド選択カーソルの矩形範囲 |
-| `_openness` | [Number](Number.md) | 開放度  |
+| `_openness` | [Number](Number.md) |  |
 | `_animationCount` | [Number](Number.md) | アニメーションカウント |
-| `_padding` | [Number](Number.md) | パディング |
-| `_margin` | [Number](Number.md) | マージン |
+| `_padding` | [Number](Number.md) |  |
+| `_margin` | [Number](Number.md) |  |
 | `_colorTone` | [MV.Tone](MV.Tone.md) | [色調] |
-| `_windowSpriteContainer` | [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | ウィンドウ画像コンテナ |
-| `_windowBackSprite` | [Sprite](Sprite.md) | 背景 |
-| `_windowCursorSprite` | [Sprite](Sprite.md) | コマンド選択カーソル |
-| `_windowFrameSprite` | [Sprite](Sprite.md) | 枠 |
-| `_windowContentsSprite` | [Sprite](Sprite.md) | 内容( `contents` を含む ) |
-| `_windowArrowSprites` | [Array](Array.md).&lt;*&gt; | 矢印 |
-| `_windowPauseSignSprite` | [Sprite](Sprite.md) | ポーズサイン |
+| `_container` | [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** ウィンドウ画像コンテナ |
+| `_backSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ背景 |
+| `_cursorSprite` | [Sprite](Sprite.md) | **@MZ** コマンド選択カーソル |
+| `_frameSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ枠 |
+| `_clientArea` |  [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** [ 内容( `contents` を含む ) |
+| `_contentsBackSprite` | [Sprite](Sprite.md) | **@MZ** 内容の背景 |
+| `_contentsSprite` | [Sprite](Sprite.md) | **@MZ** 内容 |
+| `_pauseSignSprite` | [Sprite](Sprite.md) | **@MZ** ポーズサイン |
 | `_downArrowSprite` | [Sprite](Sprite.md) | 下向き矢印 |
 | `_upArrowSprite` | [Sprite](Sprite.md) | 上向き矢印 |
+
+
+### 廃止MVプロパティ
+MZでは、ほぼ同じものがwindowを省略する形で採用されている。
+
+`_windowPauseSignSprite`, `_windowCursorSprite`, `_windowSpriteContainer`, `_windowFrameSprite`,  `_windowContentsSprite`, `_windowBackSprite`, `_arrowSprites`
+
 
 
 ### スーパークラスから継承されたメソッド
@@ -84,7 +107,6 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -106,8 +128,48 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 ウィンドウの表示に必要な部品を生成する。
 
 
+####  _createArrowSprites ()
+**@MZ** 矢印(_downArrowSprite, _upArrowSprite)を生成する。
+
+
+####  _createBackSprite ()
+**@MZ** ウィンドウ背景(_backSprite)を生成する。
+
+
+####  _createContainer ()
+**@MZ** ウィンドウコンテナ(_container)を生成する。
+
+
+####  _createClientArea ()
+**@MZ** クライアントエリア(_clientArea)を生成する。
+
+
+####  _createContentsSprite ()
+**@MZ** 内容(_contentsSprite)を生成する。
+
+
+####  _createContentsBackSprite ()
+**@MZ** 内容の背景(_contentsBackSprite)を生成する。
+
+
+####  _createCursorSprite ()
+**@MZ** カーソル(_cursorSprite)を生成する。
+
+
+####  _createFrameSprite ()
+**@MZ** ウィンドウ枠(_frameSprite)を生成する。
+
+
+####  _createPauseSignSprites ()
+**@MZ** ポーズサイン(_pauseSignSprite)を生成する。
+
+
+####  _makeCursorAlpha () → {Number}
+**@MZ** アニメーションのカウントに応じてカーソルの不透明度を変更し、基本不透明度(0 〜 1)を返す。
+
+
 ####  _onWindowskinLoad ()
-スキンがダウンロードされたときのハンドラ。
+スキンがダウンロードされた時のハンドラ。
 
 
 ####  _refreshAllParts ()
@@ -122,10 +184,6 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 背景の再描画。
 
 
-####  _refreshContents ()
-内容の再描画。
-
-
 ####  _refreshCursor ()
 カーソルの再描画。
 
@@ -138,16 +196,45 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 ポーズサインの再描画。
 
 
+####  _setRectPartsGeometry (sprite, srect, drect, m)
+**@MZ** 指定スプライトに枠を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `sprite` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 枠を設定するスプライト |
+| `srect` | Object | スキンから切り取る矩形範囲 { x: , y: , width: , height:  } |
+| `drect` | Object | 配置する矩形範囲 { x: , y: , width: , height:  } |
+| `m` | [Number](Number.md) | マージン(ピクセル) |
+
+
 ####  _updateArrows ()
 矢印のアップデート。
+
+
+####  _updateClientArea ()
+**@MZ** クライアントエリアのアップデート。
 
 
 ####  _updateContents ()
 内容のアップデート。
 
 
+####  _updateContentsBack ()
+**@MZ** 内容の背景のアップデート。
+
+
 ####  _updateCursor ()
 カーソルのアップデート。
+
+
+####  _updateFilterArea ()
+**@MZ** クライアントエリアのフィルタのアップデート
+
+
+####  _updateFrame ()
+**@MZ** ウィンドウ枠のアップデート
 
 
 ####  _updatePauseSign ()
@@ -155,13 +242,37 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 
 
 #### addChildToBack (child) → {Object}
-ウィンドウ( `_windowSpriteContainer` )の上に子オブジェクトを追加し、追加されたオブジェクトを返す。
+ウィンドウ( `_container` )とクライアントエリアの間に子オブジェクトを追加し、追加されたオブジェクトを返す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `child` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 追加するオブジェクト |
+
+
+#### addInnerChild (child) → {Object}
+**@MZ** クライアントエリアに子オブジェクトを追加し、追加されたオブジェクトを返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `child` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 追加するオブジェクト |
+
+
+#### destroy ()
+**@MZ** オーバーライド: [PIXI.Container](PIXI.Container.md#destroy-)
+
+
+#### drawShape (graphics)
+**@MZ** 指定グラフィックをウィンドウの大きさの白い矩形で塗る。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `graphics` | [PIXI.Graphics](PIXI.Graphics.md)  | 描画するオブジェクト |
 
 
 #### initialize ()
@@ -190,6 +301,28 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 | `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
 | `width` | [Number](Number.md) | ウィンドウ幅(ピクセル) |
 | `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
+
+
+#### moveCursorBy (x, y)
+**@MZ** 指定した距離カーソルを移動。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `x` | [Number](Number.md) | カーソルx移動距離(ピクセル) |
+| `y` | [Number](Number.md) | カーソルy移動距離(ピクセル) |
+
+
+#### moveInnerChildrenBy (x, y)
+**@MZ** 指定した距離クライアントエリアの子オブジェクトをすべて移動。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `x` | [Number](Number.md) | 子オブジェクトx移動距離(ピクセル) |
+| `y` | [Number](Number.md) | 子オブジェクトy移動距離(ピクセル) |
 
 
 #### setCursorRect (x, y, width, height)
@@ -225,3 +358,5 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 オーバーライド: [PIXI.Container](PIXI.Container.md#updatetransform-)
 
 
+### MV廃止メソッド
+ _refreshContents ()
