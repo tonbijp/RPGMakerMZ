@@ -1,6 +1,8 @@
-# Class: Sprite
+[クラスツリー](index.md)
 
-## Extends: [PIXI.Sprite](PIXI.Sprite.md)
+# クラス: Sprite
+
+## スーパークラス: [PIXI.Sprite](PIXI.Sprite.md)
 
 ### new Sprite (bitmap)
 描画のための基本オブジェクト。
@@ -8,14 +10,14 @@
 PRGツクールMZでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
 
 
-#### Parameters:
+#### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) |  スプライトに設定する画像 |
 
 
-### Sub Classes
+### サブクラス
 MZになって新規クラスが増えたのとSprite_Baseが廃止された関係上、サブクラスが多い。
 
 * [Sprite_Animation](Sprite_Animation.md)
@@ -38,9 +40,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 * [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_emptyBaseTexture` |  | **@MZ** [static]  |
 | `_counter` | [Number](Number.md) | [static] スプライトの(生成順)番号 |
@@ -85,11 +87,12 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | 2 | BLEND_MULTIPLY | 乗算 |
 | 3 | BLEND_SCREEN | スクリーン |
 
-#### 廃止MVプロパティ
+
+### 廃止MVプロパティ
 `voidFilter`, `opaque`, `point`, `_isPicture`, `_tintTexture`, `_context`, `_canvas`, `_realFrame`
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -135,7 +138,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 
-### Methods
+### メソッド
 
 #### _createColorFilter ()
 **@MZ** 色フィルタを生成。
@@ -176,9 +179,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### initialize (bitmap)
  オブジェクト生成時の初期化。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) | ビットマップ |
 
@@ -186,9 +189,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### move (x, y)
  位置の指定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
@@ -197,9 +200,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### setBlendColor (color)
  合成される色(r, g, b)と不透明度(a)を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [MV.Color](MV.Color.md) | [r, g, b, a] の配列 |
 
@@ -207,9 +210,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### setColorTone (tone)
  補正される[色調]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `tone` | [MV.Tone](MV.Tone.md) | [色調] |
 
@@ -217,9 +220,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### setHue (hue)
 **@MZ** 色相を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [Number](Number.md) | 色相 (-360 〜 360) |
 
@@ -227,9 +230,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 #### setFrame (x, y, width, height)
  保持している画像(bitmap)の表示領域を指定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  矩形枠のx座標(ピクセル) |
 | `y` | [Number](Number.md) |  矩形枠のy座標(ピクセル) |
