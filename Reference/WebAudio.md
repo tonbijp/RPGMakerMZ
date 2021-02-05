@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: WebAudio
 
 ### new WebAudio (url)
@@ -18,86 +20,131 @@ v1.0.2 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
+| `_context` | AudioContext | [static] |
+| `_masterGainNode` | GainNode |  [static]  |
 | `url` | [String](String.md) | [read-only] 音声ファイルのURL |
-| `volume` | [Number](Number.md) | The volume of the audio. |
-| `pitch` | [Number](Number.md) | The pitch of the audio. |
-| `pan` | [Number](Number.md) | The pan of the audio. |
-| `_context` | AudioContext |  |
-| `_masterGainNode` | GainNode |  |
-| `_initialized` | Boolean |  |
-| `_unlocked` | Boolean |  |
+| `volume` | [Number](Number.md) | [音量] |
+| `pitch` | [Number](Number.md) | [ピッチ] |
+| `pan` | [Number](Number.md) | [位相] |
+| `_buffers` | [Array](Array.md)  |  |
+| `_data` |  |  |
+| `_decoder` |  |  |
+| `_endTimer` |  |  |
+| `_fetchedData` | [Array](Array.md)  |  |
+| `_fetchedSize` | [Number](Number.md)  |  |
+| `_gainNode` |  |  |
+| `_isError` | Boolean |  |
+| `_isLoaded` | Boolean |  |
+| `_isPlaying` | Boolean |  |
+| `_lastUpdateTime` | [Number](Number.md)  |  |
+| `_loadListeners` | [Array](Array.md) |  |
+| `_loop` | [Number](Number.md)  |  |
+| `_loopLength` | [Number](Number.md)  |  |
+| `_loopLengthTime` | [Number](Number.md)  |  |
+| `_loopStart` | [Number](Number.md)  |  |
+| `_loopStartTime` | [Number](Number.md)  |  |
+| `_pan` | [Number](Number.md)  |  |
+| `_pannerNode` |  |  |
+| `_pitch` | [Number](Number.md) |  |
+| `_sampleRate` | [Number](Number.md)  |  |
+| `_sourceNodes` | [Array](Array.md)  |  |
+| `_startTime` | [Number](Number.md)  |  |
+| `_stopListeners` | [Array](Array.md) |  |
+| `_totalTime` | [Number](Number.md)  |  |
+| `_url` |  [String](String.md) |  |
+| `_volume` | [Number](Number.md)  |  |
 
-
-### Members
-
-#### (static) _standAlone
+### 廃止MVプロパティ
+`_initialized`, `_unlocked`
 
 
 ### メソッド
 
-#### (static) _connectNodes ()
-
-
 #### (static) _createContext ()
-
-
-#### (static) _createEndTimer ()
+コンテキストを生成。
 
 
 #### (static) _createMasterGainNode ()
+マスターゲインノード生成。
 
 
-#### (static) _createNodes ()
-
-
-#### (static) _detectCodecs ()
+#### (static) _currentTime () → {Number}
+**@MZ** 現在の時間を返す。
 
 
 #### (static) _fadeIn (duration)
+フェードイン。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `duration` | [Number](Number.md) |  |
+| `duration` | [Number](Number.md) | フェード時間(秒) |
 
 
 #### (static) _fadeOut (duration)
+フェードアウト。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `duration` | [Number](Number.md) |  |
-
-
-#### (static) _load (url)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `url` | [String](String.md) |  |
+| `duration` | [Number](Number.md) | フェード時間(秒) |
 
 
 #### (static) _onHide ()
-
-
-#### (static) _onLoad ()
-
+ゲームが非表示になった時のハンドラ。
 
 #### (static) _onShow ()
+ゲームが表示された時のハンドラ。
 
 
-#### (static) _onTouchStart ()
+#### (static) _onUserGesture ()
+**@MZ** ユーザの入力があった時のハンドラ。
 
 
 #### (static) _onVisibilityChange ()
+表示状態に変更があった時のハンドラ。
 
 
-#### (static) _onXhrLoad (xhr)
+#### (static) _resetVolume ()
+**@MZ** 音量を初期化。
+
+
+#### (static) _setupEventHandlers ()
+イベントハンドラを準備。
+
+
+#### (static) _shouldMuteOnHide () → {Boolean}
+非表示の時に音をミュートするか。
+
+
+#### (static) initialize ()→ {Boolean}
+音声機能全体の初期化し、準備が完了しているか返す。
+
+
+#### (static) setMasterVolume (value)
+主音量を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `value` | [Number](Number.md) | 音量 (0 〜 1) |
+
+
+#### _createEndTimer ()
+終了タイマーを生成。
+
+
+####  _onLoad ()
+音声ファイル読み込み完了時のハンドラ。
+
+
+####  _onXhrLoad (xhr)
+XMLHttpRequestのハンドラ。
 
 ##### 引数
 
@@ -106,204 +153,150 @@ v1.0.2 で変更あり。
 | `xhr` | XMLHttpRequest |  |
 
 
-#### (static) _readBigEndian (array, index)
+#### _readFourCharacters (view, index) → {String}
+viewの指定位置から4文字を取り出す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `array` | Uint8Array |  |
-| `index` | [Number](Number.md) |  |
+| `view` | Uint8Array |  |
+| `index` | [Number](Number.md) | 取り出し位置 |
 
 
-#### (static) _readFourCharacters (array, index)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `array` | Uint8Array |  |
-| `index` | [Number](Number.md) |  |
-
-
-#### (static) _readLittleEndian (array, index)
+#### _readLoopComments (arrayBuffer)
+ループコメントを読む。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `array` | Uint8Array |  |
-| `index` | [Number](Number.md) |  |
+| `arrayBuffer` | Uint8Array |  |
 
 
-#### (static) _readLoopComments (array)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `array` | Uint8Array |  |
-
-
-#### (static) _readMetaData (array, index, size)
+#### _readMetaData (view, index, size)
+メタデータを読む。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `array` | Uint8Array |  |
+| `view` | Uint8Array |  |
 | `index` | [Number](Number.md) |  |
 | `size` | [Number](Number.md) |  |
 
 
-#### (static) _readMp4 (array)
+#### _removeEndTimer ()
+終了タイマーを削除。
+
+
+#### _removeNodes ()
+ノードを削除。
+
+
+#### _startPlaying (offset)
+再生の開始。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `array` | Uint8Array |  |
+| `offset` | [Number](Number.md) | 開始(秒) |
 
 
-#### (static) _readOgg (array)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `array` | Uint8Array |  |
+#### _updatePanner ()
+位相をアップデート。
 
 
-#### (static) _removeEndTimer ()
-
-
-#### (static) _removeNodes ()
-
-
-#### (static) _setupEventHandlers ()
-
-
-#### (static) _shouldMuteOnHide ()
-
-
-#### (static) _startPlaying (loop, offset)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `loop` | Boolean |  |
-| `offset` | [Number](Number.md) |  |
-
-
-#### (static) _updatePanner ()
-
-
-#### (static) canPlayM4a () → {Boolean}
-Checks whether the browser can play m4a files.
-
-
-#### (static) canPlayOgg () → {Boolean}
-Checks whether the browser can play ogg files.
-
-
-#### (static) initialize (noAudio) → {Boolean}
-Initializes the audio system.
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `noAudio` | Boolean | Flag for the no-audio mode |
-
-
-#### (static) setMasterVolume (value)
-Sets the master volume of the all audio.
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `value` | [Number](Number.md) | Master volume (min: 0, max: 1) |
-
-
-#### addLoadListener (listner)
-Add a callback function that will be called when the audio data is loaded.
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `listner` | function | The callback function |
-
-
-#### addStopListener (listner)
-Add a callback function that will be called when the playback is stopped.
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `listner` | function | The callback function |
-
-
-#### clear ()
-Clears the audio data.
+#### destroy ()
+**@MZ** 音声を破棄。
 
 
 #### fadeIn (duration)
-Performs the audio fade-in.
+フェードイン。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `duration` | [Number](Number.md) | Fade-in time in seconds |
+| `duration` | [Number](Number.md) | フェード時間(秒) |
 
 
 #### fadeOut (duration)
-Performs the audio fade-out.
+フェードアウト。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `duration` | [Number](Number.md) | Fade-out time in seconds |
+| `duration` | [Number](Number.md) | フェード時間(秒) |
 
 
-#### initialize ()
+#### addLoadListener (listner)
+音声ファイルの読み込みが終わった時のハンドラを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `listner` | Function | コールバック関数 |
+
+
+#### addStopListener (listner)
+音声ファイルの停止時のハンドラを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `listner` | function | コールバック関数 |
+
+
+#### clear ()
+音声データを消去(初期化)。
+
+
+####  initialize (url)
 オブジェクト生成時の初期化。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `url` | [String](String.md) | 音声ファイルパス |
 
 
 #### isError () → {Boolean}
-Checks whether a loading error has occurred.
+読み込みエラーが発生したか。
 
 
 #### isPlaying () → {Boolean}
-Checks whether the audio is playing.
+音声が再生されているか。
 
 
 #### isReady () → {Boolean}
-Checks whether the audio data is ready to play.
-
+再生の準備ができているか。
 
 
 #### play (loop, offset)
-Plays the audio.
+音声を再生。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `loop` | Boolean | Whether the audio data play in a loop |
-| `offset` | [Number](Number.md) | The start position to play in seconds |
+| `loop` | Boolean | ループするか |
+| `offset` | [Number](Number.md) | 再生開始箇所(秒) |
 
 
-#### seek ()
-Gets the seek position of the audio.
+#### seek () → {Number}
+生成箇所(秒)を返す。
 
 
 #### stop ()
-Stops the audio.
+音声を停止。
 
 
+### MV廃止メソッド
+_connectNodes (), _createNodes (), _detectCodecs (), _load (url)
+, _onTouchStart (), _readBigEndian (array, index), _readLittleEndian (array, index), _readMp4 (array), _readOgg (array), canPlayM4a (), canPlayOgg ()

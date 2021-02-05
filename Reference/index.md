@@ -102,7 +102,7 @@ namespace JsExtensions
 
 ## 音声
 
-* ※[WebAudio](WebAudio.md)
+* [WebAudio](WebAudio.md)
 * ~~Html5Audio~~ (廃止)
 
 
