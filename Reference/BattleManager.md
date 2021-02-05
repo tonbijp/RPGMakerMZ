@@ -1,18 +1,23 @@
+[クラスツリー](index.md)
+
 # クラス: BattleManager
 戦闘の進行を制御する静的クラス。
+
+MZでは主にタイムプログレス先頭関連の機能が増えている。
 
 関連クラス: [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Game_Enemy](Game_Enemy.md), [Game_Troop](Game_Troop.md), [Scene_Battle](Scene_Battle.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_phase` | [String](String.md) | [static] [行動状態](BattleManager.md#行動状態) |
 | `_canEscape` | Boolean | [static] [逃走可] |
 | `_canLose` | Boolean | [static] [敗北可] |
 | `_battleTest` | Boolean | [static] [戦闘テスト]か |
 | `_eventCallback` | function | [static] コールバック関数 |
+| `_inputting` | Boolean | **@MZ** [static] 入力中か |
 | `_preemptive` | Boolean | [static] [先制攻撃]か |
 | `_surprise` | Boolean | [static] [不意打ち]か |
 | `_actorIndex` | [Number](Number.md) | [static] アクター番号 |
@@ -24,26 +29,29 @@
 | `_action` | [Game_Action](Game_Action.md) | [static] アクション |
 | `_targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | [static] 目標バトラーの配列 |
 | `_logWindow` | [Window_BattleLog](Window_BattleLog.md) | [static] ログウィンドウ |
-| `_statusWindow` | [Window_BattleStatus](Window_BattleStatus.md) | [static] ステータスウィンドウ |
 | `_spriteset` | [Spriteset_Battle](Spriteset_Battle.md) | [static] スプライトセット |
 | `_escapeRatio` | [Number](Number.md) | [static] 逃走確率 |
 | `_escaped` | Boolean | [static] 逃走成功か |
 | `_rewards` | [MV.BattleRewards](MV.BattleRewards.md) | [static] 報酬 |
+| `_tpbNeedsPartyCommand` | Boolean | [static] TPバトルにパーティコマンドが必要か |
 
 #### 行動状態
 
-| Phase | Description | update () |
+| 文字列 | 説明 | update () |
 | --- | --- | ---|
-| 'init' | 初期化 |
-| 'start' | 開始 | yes |
-| 'input' | 入力 |
-| 'turn' | ターン進行 | yes |
-| 'action' | アクション | yes |
-| 'turnEnd' | ターン終了 | yes |
-| 'battleEnd' | 戦闘終了 | yes |
-| 'aborting' | 戦闘中断 |
-| 'waiting' | 待ち状態 |
+| "init" | 初期化 |
+| "start" | 開始 | yes |
+| "input" | 入力 |
+| "turn" | ターン進行 | yes |
+| "action" | アクション | yes |
+| "turnEnd" | ターン終了 | yes |
+| "battleEnd" | 戦闘終了 | yes |
+| "aborting" | 戦闘中断 |
+| "waiting" | 待ち状態 |
 | null | 戦闘シーンではない | 
+
+### 廃止MVプロパティ
+`_statusWindow`, `_turnForced`
 
 
 ### メソッド
@@ -71,23 +79,16 @@
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
+#### (static) cancelActorInput ()
+**@MZ** アクターの入力中止。
+
+
 #### (static) canEscape () → {Boolean}
 [逃走可]か。
 
 
 #### (static) canLose () → {Boolean}
 [敗北可]か。
-
-
-#### (static) changeActor (newActorIndex, lastActorActionState)
-アクターの変更。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `newActorIndex` | [Number](Number.md) | 新しいアクターの番号 |
-| `lastActorActionState` | [String](String.md) | 現在のアクターの行動状態 |
 
 
 #### (static) checkAbort () → {Boolean}
@@ -108,8 +109,30 @@
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### (static) clearActor ()
-アクターの順番を初期位置に戻す。
+#### (static) checkTpbInputClose ()
+**@MZ** タイムプログレス戦闘の入力停止チェック。
+
+
+#### (static) checkTpbInputOpen ()
+**@MZ** タイムプログレス戦闘の入力開始チェック。
+
+
+#### (static) checkTpbTurnEnd ()
+**@MZ** タイムプログレス戦闘のターン終了チェック。
+
+
+#### (static) changeCurrentActor (forward)
+**@MZ** 現在のアクターを変更。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `forward` | Boolean | 先へ進むか |
+
+
+#### (static) displayBattlerStatus ()
+**@MZ** 戦闘ステータスの表示。
 
 
 #### (static) displayDefeatMessage ()
@@ -162,8 +185,20 @@
 | `result` | [Number](Number.md) | 0:勝利 1:中断 2:敗北 |
 
 
+#### (static) endBattlerActions ()
+**@MZ** 戦闘アクションの終了。
+
+
+#### (static) endAllBattlersTurn ()
+**@MZ** 全バトラーのターン終了。
+
+
 #### (static) endTurn ()
 ターン終了処理。
+
+
+#### (static) finishActorInput ()
+**@MZ** アクターの入力終了。
 
 
 #### (static) forceAction (battler)
@@ -248,6 +283,10 @@
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
 
+#### (static) isActiveTpb () → {Boolean}
+**@MZ** アクティブタイムプログレス戦闘か。
+
+
 #### (static) isAborting () → {Boolean}
 中断処理中か。
 
@@ -272,16 +311,24 @@
 逃走完了したか。
 
 
-#### (static) isForcedTurn () → {Boolean}
-強制されたターンか。
-
-
 #### (static) isInputting () → {Boolean}
 入力中か。
 
 
+#### (static) isTpb () → {Boolean}
+**@MZ** タイムプログレス戦闘か。
+
+
 #### (static) isInTurn () → {Boolean}
 ターンの最中か。
+
+
+#### (static) isPartyTpbInputtable ()→ {Boolean}
+**@MZ** タイムプログレス戦闘のパーティーコマンドありか。
+
+
+#### (static) isTpbMainPhase () → {Boolean}
+**@MZ** タイムプログレス戦闘の主要状態("turn", "turnEnd", "action" )か。
 
 
 #### (static) isTurnEnd () → {Boolean}
@@ -300,9 +347,21 @@
 報酬を設定。
 
 
+#### (static) needsActorInputCancel ()→ {Boolean}
+**@MZ** アクターコマンド入力のキャンセルが必要か。
+
+
 #### (static) onEncounter ()
-エンカウント時に呼ばれるハンドラ。
+エンカウント時のハンドラ。
 [先制攻撃][不意打ち]の判定。
+
+
+#### (static) onEscapeFailure ()
+**@MZ** 逃亡失敗の時のハンドラ。
+
+
+#### (static) onEscapeSuccess ()
+**@MZ** 逃亡成功の時のハンドラ。
 
 
 #### (static) playBattleBgm ()
@@ -357,8 +416,16 @@ BGMとBGSの続きを再生。
 BGMとBGSの状態を保存。
 
 
+#### (static) selectNextActor ()
+**@MZ** ひとつ先のアクターを選択。
+
+
 #### (static) selectNextCommand ()
 ひとつ先のコマンドを選択。
+
+
+#### (static) selectPreviousActor ()
+**@MZ** ひとつ前のアクターを選択。
 
 
 #### (static) selectPreviousCommand ()
@@ -405,16 +472,6 @@ BGMとBGSの状態を保存。
 | `spriteset` | [Spriteset_Battle](Spriteset_Battle.md) | スプライトセット |
 
 
-#### (static) setStatusWindow (statusWindow)
-ステータスウィンドウを設定。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `statusWindow` | [Window_BattleStatus](Window_BattleStatus.md) | ステータスウィンドウ |
-
-
 #### (static) setup (troopId, canEscape, canLose)
 戦闘の設定。
 
@@ -431,6 +488,10 @@ BGMとBGSの状態を保存。
 アクション開始。
 
 
+#### (static) startActorInput ()
+**@MZ** アクターの入力開始。
+
+
 #### (static) startBattle ()
 戦闘開始。
 
@@ -443,11 +504,22 @@ BGMとBGSの状態を保存。
 ターン開始。
 
 
-#### (static) update ()
+#### (static) update (timeActive)
 フレーム毎のアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `timeActive` | Boolean | **@MZ** 時間経過がアクティブか |
+
 
 #### (static) updateAction ()
 アクションのアップデート。
+
+
+#### (static) updateAllTpbBattlers ()
+**@MZ** タイムプログレス戦闘の全バトラーのアップデート。
 
 
 #### (static) updateBattleEnd ()
@@ -462,11 +534,52 @@ BGMとBGSの状態を保存。
 イベント主要部分のアップデートを行い、何か実行されたか返す。
 
 
-#### (static) updateTurn ()
+#### (static) updatePhase (timeActive)
+**@MZ** 行動状態(フェイズ)のアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `timeActive` | Boolean | 時間経過がアクティブか |
+
+
+#### (static) updateTpb ()
+**@MZ** タイムプログレス戦闘のアップデート。
+
+
+#### (static) updateTpbBattler (battler)
+**@MZ** タイムプログレス戦闘の指定バトラーのアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `battler` | [Game_Battler](Game_Battler.md) | バトラー |
+
+
+#### (static) updateTpbInput ()
+**@MZ** タイムプログレス戦闘の入力のアップデート。
+
+
+#### (static) updateStart ()
+**@MZ** 開始状態のアップデート。
+
+
+#### (static) updateTurn (timeActive)
 ターンのアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `timeActive` | Boolean | **@MZ** 時間経過がアクティブか |
 
 
 #### (static) updateTurnEnd ()
 ターン終了のアップテート。
 
 
+### 廃止MVメソッド
+[static]
+setStatusWindow (statusWindow), clearActor (), changeActor (newActorIndex, lastActorActionState), isForcedTurn ()

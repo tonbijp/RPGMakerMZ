@@ -64,7 +64,7 @@ namespace JsExtensions
 ## マネージャ
 
 * [AudioManager](AudioManager.md)
-* ※[BattleManager](BattleManager.md)
+* [BattleManager](BattleManager.md)
 * ※[ColorManager](ColorManager.md) **@MZ**
 * ※[ConfigManager](ConfigManager.md)
 * [DataManager](DataManager.md)
