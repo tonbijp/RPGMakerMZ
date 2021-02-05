@@ -37,7 +37,7 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `active` | Boolean | ウィンドウがアクティブか |
 | `openness` | [Number](Number.md) | `_container`の開放度(0 〜 255) |
