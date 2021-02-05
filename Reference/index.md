@@ -279,7 +279,7 @@ namespace JsExtensions
 * [ScreenSprite](ScreenSprite.md)
 * ~~ToneSprite~~ (廃止)
 * [Weather](Weather.md)
-* ※[WindowLayer](WindowLayer.md)
+* [WindowLayer](WindowLayer.md)
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
 * [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
 * ~~PIXI.tilemap.ZLayer~~ (廃止)
