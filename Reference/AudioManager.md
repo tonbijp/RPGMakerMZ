@@ -6,7 +6,7 @@ BGM, BGS, ME, SE を扱う静的クラス。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `bgmVolume` | [Number](Number.md) | [static] BGM音量 |
 | `bgsVolume` | [Number](Number.md) | [static] BGS音量 |
