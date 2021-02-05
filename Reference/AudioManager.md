@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: AudioManager
 BGM, BGS, ME, SE を扱う静的クラス。
 
@@ -6,7 +8,6 @@ BGM, BGS, ME, SE を扱う静的クラス。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `masterVolume` | [Number](Number.md) | [static] 主音量 |
 | `bgmVolume` | [Number](Number.md) | [static] BGM音量 |
 | `bgsVolume` | [Number](Number.md) | [static] BGS音量 |
 | `meVolume` | [Number](Number.md) | [static] ME音量 |
@@ -24,7 +25,10 @@ BGM, BGS, ME, SE を扱う静的クラス。
 | `_staticBuffers ` | [Array](Array.md).&lt;Html5AudioStatic \| [WebAudio](WebAudio.md)&gt; | [static] 静的バッファ |
 | `_replayFadeTime` | [Number](Number.md) | [static] リプレイフェード時間 |
 | `_path` | [String](String.md) | [static] 音声フォルダのパス(規定値: 'audio/') |
-| `_blobUrl` | [String](String.md) | [static] URL |
+| | [String](String.md) | [static] URL |
+
+### 廃止MVプロパティ
+`masterVolume`, `_blobUrl`
 
 
 ### メソッド
@@ -47,20 +51,12 @@ BGM, BGS, ME, SE を扱う静的クラス。
 | `webAudio` | [WebAudio](WebAudio.md) | Webオーディオ |
 
 
+#### (static) cleanupSe () 
+**@MZ** SEの整理。
+
+
 #### (static) createBuffer () → {Html5AudioStatic|[WebAudio](WebAudio.md)}
 バッファの生成。
-
-
-#### (static) createDecryptBuffer (url, bgm, pos opt)
-復号されたバッファを生成。
-
-##### 引数
-
-| 名前 | 型 | 特性 | 説明 |
-| --- | --- | --- | --- |
-| `url` | [String](String.md) |  | URL |
-| `bgm` | [MV.AudioParameters](MV.AudioParameters.md) |  | 音声オブジェクト |
-| `pos` | [Number](Number.md) | &lt;optional&gt; | 再生位置 |
 
 
 #### (static) fadeInBgm (duration)
@@ -178,17 +174,6 @@ BGSを再生。
 | `pos` | [Number](Number.md) | &lt;optional&gt; | 再生位置 |
 
 
-#### (static) playEncryptedBgm (bgm, pos opt)
-暗号化されたBGMを再生。
-
-##### 引数
-
-| 名前 | 型 | 特性 | 説明 |
-| --- | --- | --- | --- |
-| `bgm` | [MV.AudioParameters](MV.AudioParameters.md) |  | 音声オブジェクト |
-| `pos` | [Number](Number.md) | &lt;optional&gt; | 再生位置 |
-
-
 #### (static) playMe (me)
 MEを再生。
 
@@ -282,7 +267,8 @@ BGMのパラメータをアップデート。
 
 
 #### (static) updateBgsParameters (bgs)
-BGSのパラメータをアップデート。
+BGSのパラメータをアップデート。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
@@ -291,7 +277,8 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateBufferParameters (buffer, configVolume, audio)
-バッファのパラメータをアップデート。
+バッファのパラメータをアップデート。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
@@ -302,7 +289,8 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateCurrentBgm (bgm, pos)
-現在のBGMをアップデート。
+現在のBGMをアップデート。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
@@ -312,7 +300,9 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateCurrentBgs (bgs, pos)
-現在のBGSをアップデート。##### 引数
+現在のBGSをアップデート。
+
+##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -321,7 +311,8 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateMeParameters (me)
-MEのパラメータをアップデート。
+MEのパラメータをアップデート。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
@@ -340,3 +331,4 @@ SEのパラメータをアップデート。
 | `se` | [MV.AudioParameters](MV.AudioParameters.md) |  |
 
 
+createDecryptBuffer (url, bgm, pos opt), playEncryptedBgm (bgm, pos opt)
