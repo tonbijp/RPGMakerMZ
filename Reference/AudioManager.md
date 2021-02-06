@@ -331,4 +331,5 @@ SEのパラメータをアップデート。
 | `se` | [MV.AudioParameters](MV.AudioParameters.md) |  |
 
 
-createDecryptBuffer (url, bgm, pos opt), playEncryptedBgm (bgm, pos opt)
+### 廃止MVメソッド
+[static] createDecryptBuffer (url, bgm, pos opt), playEncryptedBgm (bgm, pos opt)

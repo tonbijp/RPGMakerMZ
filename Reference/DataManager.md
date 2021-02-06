@@ -329,4 +329,4 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 ### 廃止MVメソッド
-loadGameWithoutRescue (savefileId), isThisGameFile (savefileId), loadSavefileInfo (savefileId), lastAccessedSavefileId (), saveGameWithoutRescue (savefileId) 
+[static] loadGameWithoutRescue (savefileId), isThisGameFile (savefileId), loadSavefileInfo (savefileId), lastAccessedSavefileId (), saveGameWithoutRescue (savefileId) 

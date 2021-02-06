@@ -581,5 +581,4 @@ BGMとBGSの状態を保存。
 
 
 ### 廃止MVメソッド
-[static]
-setStatusWindow (statusWindow), clearActor (), changeActor (newActorIndex, lastActorActionState), isForcedTurn ()
+[static] setStatusWindow (statusWindow), clearActor (), changeActor (newActorIndex, lastActorActionState), isForcedTurn ()

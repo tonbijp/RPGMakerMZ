@@ -28,7 +28,6 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 通常色(カラー番号:0)を返す。
 
 
-
 #### (static) mpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
 [MP]の色を返す。引数 actor は拡張用で、使われていない。
 
@@ -167,9 +166,4 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 
 #### (static) itemBackColor2 () → {[MV.CssColor](MV.CssColor.md)}
 **@MZ** アイテムの背景色2(規定値:"rgba(0, 0, 0, 0.5)")を返す。
-
-
-
-
-
 
