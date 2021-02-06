@@ -1,10 +1,13 @@
+[クラスツリー](index.md)
+
 # クラス: ConfigManager
 [オプション]のデータを扱う、静的クラス。
 
+関連クラス: [Window_Options](Window_Options.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `alwaysDash ` | Boolean | [static] [常時ダッシュ] |
 | `commandRemember ` | Boolean | [static] [コマンド記憶] |
@@ -12,6 +15,8 @@
 | `bgsVolume` | [Number](Number.md) | [static] [BGS 音量] |
 | `meVolume` | [Number](Number.md) | [static] [ME 音量] |
 | `seVolume` | [Number](Number.md) | [static] [SE 音量] |
+| `touchUI ` | Boolean | **@MZ** [static] [タッチUI] |
+| `_isLoaded ` | Boolean | **@MZ** [static] 読み込まれたか |
 
 
 ### メソッド
