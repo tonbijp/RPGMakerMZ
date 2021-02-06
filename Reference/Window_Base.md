@@ -186,24 +186,9 @@ v1.1.1 で変更あり。
 #### createContents ()
 テキストなどを表示するコンテンツ領域を生成。
 
-#### crisisColor () → {[MV.CssColor](MV.CssColor.md)}
-危険色(カラー番号:17)を返す。
-
 
 #### deactivate ()
 非アクティブにする。
-
-
-#### deathColor () → {[MV.CssColor](MV.CssColor.md)}
-死亡色(カラー番号:18)を返す。
-
-
-#### dimColor1 () → {[MV.CssColor](MV.CssColor.md)}
- [暗くする]背景の色1(規定値:'rgba(0, 0, 0, 0.6)')を返す。
-
-
-#### dimColor2 () → {[MV.CssColor](MV.CssColor.md)}
- [暗くする]背景の色2(規定値:'rgba(0, 0, 0, 0)')を返す。
 
 
 #### drawActorCharacter (actor, x, y)
@@ -490,34 +475,12 @@ v1.1.1 で変更あり。
 | `numLines` | [Number](Number.md) | 行数 |
 
 
-#### gaugeBackColor () → {[MV.CssColor](MV.CssColor.md)}
-ゲージの背景色(カラー番号:19)を返す。
-
-
 #### hide ()
 ウィンドウを非表示(閉じるわけではない)。
 
 
 #### hideBackgroundDimmer ()
  [暗くする]背景を非表示。
-
-
-#### hpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
-指定した[アクター]の[HP]の色を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-
-
-#### hpGaugeColor1 () → {[MV.CssColor](MV.CssColor.md)}
-[HP]ゲージの色1(カラー番号:20)を返す。
-
-
-#### hpGaugeColor2 () → {[MV.CssColor](MV.CssColor.md)}
-[HP]ゲージの色2(カラー番号:21)を返す。
 
 
 #### initialize (x, y, width, height)
@@ -558,32 +521,6 @@ v1.1.1 で変更あり。
 フォントサイズを12小さくする。
 
 
-#### mpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
-指定した[アクター]の[MP]の色を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-
-
-#### mpCostColor () → {[MV.CssColor](MV.CssColor.md)}
-[消費MP]の色(カラー番号:23)を返す。
-
-
-#### mpGaugeColor1 () → {[MV.CssColor](MV.CssColor.md)}
-[MP]ゲージの色1(カラー番号:22)を返す。
-
-
-#### mpGaugeColor2 () → {[MV.CssColor](MV.CssColor.md)}
-[MP]ゲージの色2(カラー番号:23)を返す。
-
-
-#### normalColor () → {[MV.CssColor](MV.CssColor.md)}
-通常色(カラー番号:0)を返す。
-
-
 #### obtainEscapeCode (textState)
 textStateのindex以降に含まれる制御文字本体を大文字で返す。<br />
 indexは取り出した文字の数だけ進む。
@@ -611,17 +548,6 @@ indexは取り出した文字の数だけ進む。<br />
 ウィンドウを開く。
 
 
-#### paramchangeTextColor (change) → {[MV.CssColor](MV.CssColor.md)}
-指定した数値に対応する色を返す。<br />
-装備を変える際の能力差分の表示などに使う。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `change` | [Number](Number.md) | 負の値: powerDownColor, 0:normalColor, 正の値:powerUpColor |
-
-
 #### partyMemberName (partyMemberIndex) → {[String](String.md)}
 指定したパーティーメンバー番号に対応した名前を返す。
 
@@ -630,18 +556,6 @@ indexは取り出した文字の数だけ進む。<br />
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `partyMemberIndex` | [Number](Number.md) | パーティーメンバー番号(1から開始される) |
-
-
-#### pendingColor () → {[MV.CssColor](MV.CssColor.md)}
-未決定色(選択カーソルの中央の色)を返す。
-
-
-#### powerDownColor () → {[MV.CssColor](MV.CssColor.md)}
-パワーダウン色(カラー番号:25)を返す。
-
-
-#### powerUpColor () → {[MV.CssColor](MV.CssColor.md)}
-パワーアップ色(カラー番号:24)を返す。
 
 
 #### processCharacter (textState)
@@ -763,20 +677,6 @@ indexは取り出した文字の数だけ進む。<br />
 標準のパディング幅(規定値:18)を返す。
 
 
-#### systemColor () → {[MV.CssColor](MV.CssColor.md)}
-システム色(カラー番号:16)を返す。
-
-
-#### textColor (n) → {[MV.CssColor](MV.CssColor.md)}
-指定した番号に対応する色を返す。<br />
-'img/system/window.png' の色で設定される。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `n` | [Number](Number.md) | カラー番号(0 〜 31) |
-
 
 #### textPadding () → {[Number](Number.md)}
 文字パディング幅(規定値:6)を返す。
@@ -790,28 +690,6 @@ indexは取り出した文字の数だけ進む。<br />
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `text` | [String](String.md) | 測定する文字列 |
-
-
-#### tpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
-指定した[アクター]の[TP]の色を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-
-
-#### tpCostColor () → {[MV.CssColor](MV.CssColor.md)}
-[消費TP]の色(カラー番号:29)を返す。
-
-
-#### tpGaugeColor1 () → {[MV.CssColor](MV.CssColor.md)}
-[TP]ゲージの色1(カラー番号:28)を返す。
-
-
-#### tpGaugeColor2 () → {[MV.CssColor](MV.CssColor.md)}
-[TP]ゲージの色2(カラー番号:29)を返す。
 
 
 #### translucentOpacity () → {[Number](Number.md)}
@@ -846,3 +724,6 @@ indexは取り出した文字の数だけ進む。<br />
 [色調]をアップデート。
 
 
+### 廃止MVメソッド
+コレらのメソッドは [ColorManager](ColorManager.md) に移っている。<br />
+textColor (n),normalColor (), mpColor (actor), mpCostColor (), mpGaugeColor1 (), mpGaugeColor2 (), systemColor (), tpColor (actor), tpCostColor (), tpGaugeColor1 (), tpGaugeColor2 (), crisisColor (), deathColor (), dimColor1 (), dimColor2 (), gaugeBackColor (), hpColor (actor), hpGaugeColor1 (), hpGaugeColor2 (),paramchangeTextColor (change), pendingColor (), powerDownColor (),powerUpColor ()

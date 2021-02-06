@@ -15,4 +15,5 @@ CSS形式の文字列による色指定方法。
 関連クラス: [Bitmap](Bitmap.md), [Window_Base](Window_Base.md), [Window_NameEdit](Window_NameEdit.md), [MV.Color](MV.Color.md), [MV.Tone](MV.Tone.md)
 
 
-
+
+
