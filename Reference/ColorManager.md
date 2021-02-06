@@ -29,8 +29,14 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 
 
 
-#### (static) mpColor () → {[MV.CssColor](MV.CssColor.md)}
-[MP]の色を返す。
+#### (static) mpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
+[MP]の色を返す。引数 actor は拡張用で、使われていない。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `actor` | [Game_Battler](Game_Battler.md)| 対象のバトラー |
 
 
 #### (static) mpCostColor () → {[MV.CssColor](MV.CssColor.md)}
@@ -49,8 +55,14 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 システム色(カラー番号:16)を返す。
 
 
-#### (static) tpColor () → {[MV.CssColor](MV.CssColor.md)}
-[TP]の色を返す。
+#### (static) tpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
+[TP]の色を返す。引数 actor は拡張用で、使われていない。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `actor` | [Game_Battler](Game_Battler.md)| 対象のバトラー |
 
 
 #### (static) tpCostColor () → {[MV.CssColor](MV.CssColor.md)}
@@ -86,13 +98,14 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 
 
 #### (static) hpColor (actor) → {[MV.CssColor](MV.CssColor.md)}
-指定した[アクター]の[HP]の色を返す。
+指定したバトラーの[HP]の色を返す。<br />
+引数の状態によって返す色が変わる。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
+| `actor` | [Game_Battler](Game_Battler.md)| 対象のバトラー |
 
 
 #### (static) hpGaugeColor1 () → {[MV.CssColor](MV.CssColor.md)}
