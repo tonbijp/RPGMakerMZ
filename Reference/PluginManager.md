@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: PluginManager
  プラグインを管理する静的クラス。
 
@@ -8,26 +10,54 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `_path` | [String](String.md) | [static] プラグインフォルダのパス |
-| `_scripts` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] スクリプト名の配列 |
+| `_scripts` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] プラグイン名の配列 |
 | `_errorUrls` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 読み込みエラーを記録した配列 |
-| `_parameters` | Object | [static] パラメータのオブジェクト { スクリプト名: [Parameters](MV.PluginSettings.md#parameters), … } |
+| `_parameters` | Object.&lt;[Parameters](MV.PluginSettings.md#parameters)&gt; | [static] プラグイン名をキーとするパラメータのリスト |
+| `_commands` | Object.&lt;Function&gt; | **@MZ** [static] "プラグイン名:コマンド名"をキーとする関数リスト |
 
+
+### 廃止MVプロパティ
+`_path`
 
 ### メソッド
+
+
+#### (static) callCommand (self, pluginName, commandName, args)
+**@MZ** コマンドを実行。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `self` | Function |  this に設定するスコープとなる関数 |
+| `pluginName` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
+| `commandName` | [String](String.md) |  コマンド名(英字の大小を区別しない) |
+| `args` | [Array](Array.md) | コマンドに渡す引数 |
+
 
 #### (static) checkErrors ()
  エラーを検査。
 
 
-#### (static) loadScript (name)
+#### (static) makeUrl (filename)→ {String}
+**@MZ** 指定ファイル名からURLを生成して返す。<br />
+具体的には "js/plugins/ファイル名.js"
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `filename` | [String](String.md) | ファイル名(拡張子.jsを含まない) |
+
+
+#### (static) loadScript (filename)
 プラグインファイルを読み込む。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `name` | [String](String.md) | ファイル名(拡張子.jsを含む) |
+| `filename` | [String](String.md) | ファイル名(拡張子.jsを含まない) |
 
 
 #### (static) onError (e)
@@ -51,8 +81,20 @@
 | `name` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
 
 
+#### (static) registerCommand (pluginName, commandName, func)
+**@MZ** コマンドを登録。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `pluginName` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
+| `commandName` | [String](String.md) |  コマンド名(英字の大小を区別しない) |
+| `func` | Function |  コマンドの関数 |
+
+
 #### (static) setParameters (name, parameters)
- パラメータを設定。
+パラメータを設定。
 
 ##### 引数
 
@@ -72,5 +114,12 @@
 | `plugins` | [Array](Array.md).&lt;[MV.PluginSettings](MV.PluginSettings.md)&gt; | プラグイン設定の配列 |
 
 
+#### (static) throwLoadError (url)
+読み込みエラーを投げる。
 
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `url` | [String](String.md) | ファイルURL |
 
