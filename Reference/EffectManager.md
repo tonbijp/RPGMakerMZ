@@ -19,6 +19,18 @@ v1.1.0 で変更あり。
 
 ### メソッド
 
+#### (static) checkErrors ()
+エラーが発生していたらエラーを投げる。
+
+
+#### (static) clear ()
+キャッシュを消去。
+
+
+#### (static) isReady ()→ {String}
+準備が完了しているか。
+
+
 #### (static) load (filename)
 指定ファイルからエフェクト情報を読み込む。
 
@@ -27,41 +39,6 @@ v1.1.0 で変更あり。
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
 | `filename` | [String](String.md) | ファイル名 |
-
-
-#### (static) startLoading (url)
-指定URLからエフェクト情報を読み込む。
-
-##### 引数
-
-| 名前 | 型 |  説明 |
-| --- | --- | --- |
-| `url` | [String](String.md) | ファイルURL |
-
-
-#### (static) clear ()
-キャッシュを消去。
-
-
-#### (static) onLoad (url)
-読み込みが完了した時のハンドラ。<br />
-拡張用の空関数。
-
-##### 引数
-
-| 名前 | 型 |  説明 |
-| --- | --- | --- |
-| `url` | [String](String.md) | ファイルURL |
-
-
-#### (static) onError (url)
-読み込みエラーが発生した時のハンドラ。
-
-##### 引数
-
-| 名前 | 型 |  説明 |
-| --- | --- | --- |
-| `url` | [String](String.md) | ファイルURL |
 
 
 #### (static) makeUrl (filename)→ {String}
@@ -75,8 +52,35 @@ v1.1.0 で変更あり。
 | `filename` | [String](String.md) | ファイル名 |
 
 
-#### (static) checkErrors ()
-エラーが発生していたらエラーを投げる。
+#### (static) onError (url)
+読み込みエラーが発生した時のハンドラ。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `url` | [String](String.md) | ファイルURL |
+
+
+#### (static) onLoad (url)
+読み込みが完了した時のハンドラ。<br />
+拡張用の空関数。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `url` | [String](String.md) | ファイルURL |
+
+
+#### (static) startLoading (url)
+指定URLからエフェクト情報を読み込む。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `url` | [String](String.md) | ファイルURL |
 
 
 #### (static) throwLoadError (url)
@@ -87,7 +91,3 @@ v1.1.0 で変更あり。
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
 | `url` | [String](String.md) | ファイルURL |
-
-
-#### (static) isReady ()→ {String}
-準備が完了しているか。
