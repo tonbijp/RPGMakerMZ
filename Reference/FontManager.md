@@ -38,7 +38,6 @@ MVで [Graphics](Graphics.md) にあった機能のうちフォント読み込�
 | `filename` | [String](String.md) | フォントファイル名 |
 
 
-
 #### (static) makeUrl (filename)→ {String}
 指定ファイル名からURLを生成して返す。<br />
 具体的には "fonts/ファイル名"
