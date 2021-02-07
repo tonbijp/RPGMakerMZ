@@ -209,7 +209,7 @@ namespace JsExtensions
 
 ### バトルキャラクタ
 
-* ※[Game_Action](Game_Action.md)
+* [Game_Action](Game_Action.md)
 * ※[Game_ActionResult](Game_ActionResult.md)
 * ※[Game_Actors](Game_Actors.md)([$gameActors](global.md#dataactors-arrayrpgactor))
 * ※[Game_Unit](Game_Unit.md)
