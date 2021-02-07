@@ -1,43 +1,79 @@
+[クラスツリー](index.md)
+
 # クラス: SceneManager
 シーン( [Scene_Base](Scene_Base.md) の子孫クラス )を管理する静的クラス。
  
 また、全体の update の基点になるクラス。
 
-関連クラス: [Graphics](Graphics.md), [Bitmap](Bitmap.md), [AudioManager](AudioManager.md), [Input](Input.md), [TouchInput](TouchInput.md)
+MZでは、他のクラスと被っている機能が廃止されている。<br />
+環境チェック系は [Utils](Utils.md) にまとめられている。
+
+関連クラス:   [Graphics](Graphics.md), [Bitmap](Bitmap.md), [AudioManager](AudioManager.md), [Input](Input.md), [TouchInput](TouchInput.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_scene` | [Scene_Base](Scene_Base.md) | [static] 現在のシーン |
 | `_nextScene` | [Scene_Base](Scene_Base.md) | [static] 次のシーン |
 | `_stack` | [Array](Array.md).&lt;Function&gt; | [static] シーンなどの履歴 |
-| `_stopped` | Boolean | [static] 停止しているか|
-| `_sceneStarted` | Boolean | [static] 開始しているか|
 | `_exiting` | Boolean | [static] 抜けているか |
+| `_previousScene` | [Scene_Base](Scene_Base.md)  | [static]前のシーン |
 | `_previousClass` | Function | [static]前のシーンなど |
 | `_backgroundBitmap` | [Bitmap](Bitmap.md) | [static] 背景画像 |
-| `_screenWidth` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
-| `_screenHeight` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
-| `_boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 816) |
-| `_boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 624) |
-| `_deltaTime` | [Number](Number.md) | [static] 単位時間 |
-| `_currentTime` | [Number](Number.md) | [static] 現在の時刻 |
-| `_accumulator` | [Number](Number.md) | [static] _deltaTimeまでの経過時間 |
+| `_smoothDeltaTime` | [Number](Number.md) | [static] 調整用フレーム間隔 |
+| `_elapsedTime` | [Number](Number.md) | [static] 経過時間 |
+
+
+### 廃止MVプロパティ
+各種画面サイズは[RPG.System($dataSystem)](RPG.System.md)を参照する。
+
+`_deltaTime`, `_currentTime`, `_accumulator`, `_stopped`, `_sceneStarted`, `_screenWidth`, `_screenHeight` , `_boxWidth`, `_boxHeight`
 
 
 ### メソッド
-
-#### (static) _getTimeInMsWithoutMobileSafari () → {[Number](Number.md)}
-iOS Safari を除き、現在の時刻(ms)を返す。
 
 
 #### (static) backgroundBitmap () → {[Bitmap](Bitmap.md)}
 生成された背景用に(ぼかした)スナップショットを返す。
 
 
+#### (static) checkBrowser ()
+**@MZ** ブラウザに必要な機能を検査して対応していない場合エラーを投げる。
+
+
 #### (static) catchException (e)
-例外を受け取るハンドラ。
+エラーを受け取る。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `e` | Event | エラーイベント |
+
+
+#### (static) catchLoadError (e)
+**@MZ** 読み込みエラーを受け取る。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `e` | Event | エラーイベント |
+
+
+#### (static) catchNormalError (e)
+**@MZ** 通常のエラーを受け取る。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `e` | Event | エラーイベント |
+
+
+#### (static) catchUnknownError (e)
+**@MZ** 不明なエラーを受け取る。
 
 ##### 引数
 
@@ -50,20 +86,22 @@ iOS Safari を除き、現在の時刻(ms)を返す。
 シーンの切り替え。
 
 
-#### (static) checkFileAccess ()
-ファイル操作ができない環境ならエラーを発生させる。
-
-
 #### (static) checkPluginErrors ()
 プラグインの検査。
 
 
-#### (static) checkWebGL ()
-WebGL が使えない環境ならエラーを発生させる。
-
-
 #### (static) clearStack ()
 履歴を消去。
+
+
+#### (static) determineRepeatNumber (deltaTime) → {Number}
+**@MZ** 遅延時間からループを回す回数を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `deltaTime` | [Number](Number.md) | 遅延時間 |
 
 
 #### (static) exit ()
@@ -88,6 +126,10 @@ WebGL が使えない環境ならエラーを発生させる。
 画像の初期化。
 
 
+#### (static) initVideo ()
+**@MZ** 動画の初期化。
+
+
 #### (static) initialize ()
 初期化。
 
@@ -96,16 +138,12 @@ WebGL が使えない環境ならエラーを発生させる。
 入力の初期化。
 
 
-#### (static) initNwjs ()
-NW.js の初期化。
-
-
 #### (static) isCurrentSceneBusy () → {Boolean}
 シーンの実行中か。
 
 
-#### (static) isCurrentSceneStarted () → {Boolean}
-現在のシーンが開始されているか。
+#### (static) isGameActive () → {Boolean}
+ゲームがアクティブ(手前のウィンドウ)か。
 
 
 #### (static) isNextScene (sceneClass) → {Boolean}
@@ -132,6 +170,10 @@ NW.js の初期化。
  シーンの変更中か。
 
 
+#### (static) onBeforeSceneStart ()
+**@MZ** シーンがスタートする直前のハンドラ。
+
+
 #### (static) onError (e)
 エラーハンドラ。
 
@@ -152,24 +194,28 @@ NW.js の初期化。
 | `event` | KeyboardEvent | キーボードイベント |
 
 
+#### (static) onReject ()
+**@MZ** エラー発生時のハンドラ。
+
+
 #### (static) onSceneCreate ()
-シーンが生成された時に呼ばれるハンドラ。
-
-
-#### (static) onSceneLoading ()
-シーンが読み込まれる時に呼ばれるハンドラ。
+シーンが生成された時のハンドラ。
 
 
 #### (static) onSceneStart ()
-シーンが開始された時に呼ばれるハンドラ。
+シーンが開始された時のハンドラ。
+
+
+#### (static) onSceneTerminate ()
+**@MZ** シーンが破棄された時のハンドラ。
+
+
+#### (static) onUnload ()
+**@MZ** ウィンドウが閉じられるなどアンロード時のハンドラ。
 
 
 #### (static) pop ()
  履歴からシーンを取り出して遷移。
-
-
-#### (static) preferableRendererType () → {[String](String.md)}
-環境に適したレンダ方式(canvas, webgl, auto のいずれか)を返す。
 
 
 #### (static) prepareNextScene ()
@@ -186,12 +232,8 @@ NW.js の初期化。
 | `sceneClass` | [Scene_Base](Scene_Base.md) | 遷移先のシーン |
 
 
-#### (static) renderScene ()
-シーンの描画。
-
-
-#### (static) requestUpdate ()
-アップデートを要求。
+#### (static) reloadGame ()
+**@MZ** ゲームのリロード。
 
 
 #### (static) resume ()
@@ -208,12 +250,12 @@ NW.js の初期化。
 | `sceneClass` | [Scene_Base](Scene_Base.md) |  実行するシーン |
 
 
-#### (static) setupErrorHandlers ()
-エラーハンドラを準備。
+#### (static) setupEventHandlers()
+**@MZ** 各種ハンドラを準備。
 
 
-#### (static) shouldUseCanvasRenderer () → {Boolean}
-canvas レンダ方式を使っているか。
+#### (static) showDevTools ()
+**@MZ** デベロッパーツールの表示。テスト時のみ。
 
 
 #### (static) snap () → {[Bitmap](Bitmap.md)}
@@ -232,16 +274,22 @@ canvas レンダ方式を使っているか。
  終了。
 
 
-#### (static) tickEnd ()
-フレームの終了を記録。
-
-
-#### (static) tickStart ()
-FPSMeter を使いフレームの開始を記録。
-
-
-#### (static) update ()
+#### (static) update (deltaTime)
  フレーム毎のアップデート。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `deltaTime` | [Number](Number.md) | 遅延時間 |
+
+
+#### (static) updateEffekseer ()
+**@MZ** Effekseer のアップデート。
+
+
+#### (static) updateFrameCount ()
+**@MZ** フレームカウントを増やす。
 
 
 #### (static) updateInputData ()
@@ -252,11 +300,16 @@ FPSMeter を使いフレームの開始を記録。
  主要部分のアップデート。
 
 
-#### (static) updateManagers ()
- マネージャのアップデート。
-
-
 #### (static) updateScene ()
  シーンのアップデート。
 
 
+
+### 廃止MVメソッド
+
+[static] checkFileAccess (), initNwjs ()
+
+setupErrorHandlers ()
+preferableRendererType ()
+
+_getTimeInMsWithoutMobileSafari (), checkWebGL (), isCurrentSceneStarted (), onSceneLoading (), renderScene (),  requestUpdate (), shouldUseCanvasRenderer (), tickEnd (), tickStart (), updateManagers ()
