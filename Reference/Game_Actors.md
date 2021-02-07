@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Actors
 
 ### new Game_Actors ()
@@ -12,7 +14,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt; | アクターの配列 |
 
