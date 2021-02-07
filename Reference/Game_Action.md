@@ -72,7 +72,7 @@
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### applyCritical (damage) → {Number}
+#### applyCritical (damage) → {[Number](Number.md)}
 指定ダメージで[会心]攻撃。
 
 ##### 引数
@@ -86,7 +86,7 @@
 [使用効果]に含まれる[コモンイベント]を抽出して [$GameTemp](global.md#gametemp-game_temp)([Game_Temp](Game_Temp.md)) に保持。
 
 
-#### applyGuard (damage, target) → {Number}
+#### applyGuard (damage, target) → {[Number](Number.md)}
 指定ダメージを対象バトラーが防御し、防御分を減らしたダメージを返す。
 
 ##### 引数
@@ -118,7 +118,7 @@
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### applyVariance (damage, variance) → {Number}
+#### applyVariance (damage, variance) → {[Number](Number.md)}
 指定ダメージに対して[分散度]を適用したダメージを返す。
 
 ##### 引数
@@ -129,7 +129,7 @@
 | `variance` | [Number](Number.md) | [分散度] % (0〜100) |
 
 
-#### calcElementRate (target) → {Number}
+#### calcElementRate (target) → {[Number](Number.md)}
 指定対象への[属性]の効果率を返す。
 
 ##### 引数
@@ -171,7 +171,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 [範囲]に沿って、対象をランダムに決定。
 
 
-#### elementsMaxRate (target, elements) → {Number}
+#### elementsMaxRate (target, elements) → {[Number](Number.md)}
  指定対象の指定属性のうち最大の[耐性 - 属性有効度]を返す。
 
 ##### 引数
@@ -182,7 +182,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `elements` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [属性ID](RPG.Damage.md#属性id)の配列 |
 
 
-#### evalDamageFormula (target) → {Number}
+#### evalDamageFormula (target) → {[Number](Number.md)}
 [[ダメージ]](RPG.Damage.md)の[計算式]を適用し、ダメージ量を返す。
 
 ##### 引数
@@ -192,11 +192,11 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー( [計算式]の b ) |
 
 
-#### evaluate () → {Number}
+#### evaluate () → {[Number](Number.md)}
 全ての対象に効果を適用して、総ダメージ量を返す。
 
 
-#### evaluateWithTarget (target) → {Number}
+#### evaluateWithTarget (target) → {[Number](Number.md)}
 指定対象に効果を適用して、ダメージ量を返す。
 
 ##### 引数
@@ -377,7 +377,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 道具というより項目ぐらいの意味で、攻撃・スキルなどにもこれが使われる。
 
 
-#### itemCnt (target) → {Number}
+#### itemCnt (target) → {[Number](Number.md)}
 指定対象の[反撃率]を返す。
 
 ##### 引数
@@ -387,7 +387,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### itemCri (target) → {Number}
+#### itemCri (target) → {[Number](Number.md)}
 指定対象の[会心率]を返す。
 
 ##### 引数
@@ -562,7 +562,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `effect` | [RPG.Effect](RPG.Effect.md) | [使用効果] |
 
 
-#### itemEva (target) → {Number}
+#### itemEva (target) → {[Number](Number.md)}
 指定対象の[回避率]を返す。
 
 ##### 引数
@@ -572,7 +572,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### itemHit (target) → {Number}
+#### itemHit (target) → {[Number](Number.md)}
 指定対象の[命中率]を返す。
 
 ##### 引数
@@ -582,7 +582,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### itemMrf (target) → {Number}
+#### itemMrf (target) → {[Number](Number.md)}
 指定対象の[魔法反射率]を返す。
 
 ##### 引数
@@ -592,11 +592,11 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### itemTargetCandidates () → {Array.<[Game_Battler](Game_Battler.md)>}
+#### itemTargetCandidates () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 対象となり得るバトラーを配列で返す。
 
 
-#### lukEffectRate (target) → {Number}
+#### lukEffectRate (target) → {[Number](Number.md)}
 指定対象の[幸運]の適用率を返す。
 
 ##### 引数
@@ -606,7 +606,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### makeDamageValue (target, critical) → {Number}
+#### makeDamageValue (target, critical) → {[Number](Number.md)}
 指定対象へのダメージ量を計算して返す。
 
 ##### 引数
@@ -627,7 +627,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### makeTargets () → {Array.<[Game_Battler](Game_Battler.md)>}
+#### makeTargets () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 対象となり得るバトラーを配列で返す。
 
 
@@ -635,11 +635,11 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 [[範囲](RPG.UsableItem.md#範囲)]が単体で対象の選択が必要か。
 
 
-#### numRepeats () → {Number}
+#### numRepeats () → {[Number](Number.md)}
 繰り返し行動回数を返す。
 
 
-#### numTargets () → {Number}
+#### numTargets () → {[Number](Number.md)}
 単体攻撃対象の数を返す。
 
 
@@ -651,7 +651,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 準備(標準では[混乱]の設定しかしていない)
 
 
-#### repeatTargets (targets) → {Array.<[Game_Battler](Game_Battler.md)>}
+#### repeatTargets (targets) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 繰り返し行動の対象を配列で返す。
 
 ##### 引数
@@ -733,7 +733,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `targetIndex` | [Number](Number.md) | 対象番号 |
 
 
-#### speed () → {Number}
+#### speed () → {[Number](Number.md)}
 速度を返す。
 
 
@@ -741,7 +741,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 行動主体を返す。
 
 
-#### targetsForAlive (unit) → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForAlive (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 **@MZ** 生存しているバトラーの配列を返す。
 
 ##### 引数
@@ -751,7 +751,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForDead (unit) → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForDead (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 **@MZ** 戦闘不能のバトラーの配列を返す。
 
 ##### 引数
@@ -761,7 +761,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForDeadAndAlive (unit) → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForDeadAndAlive (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 **@MZ** 戦闘不能・生存のバトラーの配列を返す。
 
 ##### 引数
@@ -771,15 +771,15 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForEveryone () → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForEveryone () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 **@MZ** 全バトラーの配列を返す。
 
 
-#### targetsForFriends () → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForFriends () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 味方側のバトラーの配列を返す。
 
 
-#### targetsForOpponents () → {Array.<[Game_Battler](Game_Battler.md)>}
+#### targetsForOpponents () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
 敵側のバトラーの配列を返す。
 
 
