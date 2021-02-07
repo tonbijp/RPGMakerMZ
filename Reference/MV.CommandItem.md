@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).CommandItem
 
 ## 型: Object
@@ -10,7 +12,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 表示名 |
 | `symbol` | [String](String.md) | シンボル(内部的な名前) |

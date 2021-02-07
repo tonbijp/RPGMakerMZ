@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).System
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
@@ -9,7 +11,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `gameTitle` | [String](String.md) | [ゲームタイトル] |
 | `versionId` | [Number](Number.md) | RPGメーカーMVによって自動的に保存されるバージョンID |
@@ -56,9 +58,11 @@
 | `editMapId` | [Number](Number.md) | 最後に編集中だったマップID |
 
 
-### Classes
+### インナークラス
 
 * [RPG.System.AttackMotion](RPG.System.AttackMotion.md)
 * [RPG.System.Terms](RPG.System.Terms.md)
 * [RPG.System.TestBattler](RPG.System.TestBattler.md)
-* [RPG.System.Vehicle](RPG.System.Vehicle.md)
+* [RPG.System.Vehicle](RPG.System.Vehicle.md)
+
+

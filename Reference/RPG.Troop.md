@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Troop
 
 | データベース| JSONファイル | 大域変数 | オブジェクト |
@@ -9,14 +11,14 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | 敵グループID |
 | `name` | [String](String.md) | 敵グループ名 |
 | `members` | [Array](Array.md).&lt;[RPG.Troop.Member](RPG.Troop.Member.md)&gt; | メンバー |
 | `pages` | [Array](Array.md).&lt;[RPG.BattleEventPage](RPG.BattleEventPage.md)&gt; | [バトルイベント] |
 
-### Classes
+### インナークラス
 
 * [RPG.Troop.Member](RPG.Troop.Member.md)
 

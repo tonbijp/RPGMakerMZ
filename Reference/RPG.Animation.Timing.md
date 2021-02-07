@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[Animation](RPG.Animation.md).Timing
 [アニメーション]の[SEとフラッシュのタイミング]を記述したデータ。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `frame` | [Number](Number.md) | [フレーム]番号(エディタで表示されるより1少ない) |
 | `se` | [RPG.AudioFile](RPG.AudioFile.md) | [SE] |

@@ -1,14 +1,18 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[Enemy](RPG.Enemy.md).DropItem
 [ドロップアイテム]のJSONデータ。
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `kind` | [Number](Number.md) | [種類](RPG.Enemy.DropItem.md#種類)  |
 | `dataId` | [Number](Number.md) | 種類毎のID |
-| `denominator` | [Number](Number.md) | 1/N で表される[出現率]のNの部分 |#### 種類
+| `denominator` | [Number](Number.md) | 1/N で表される[出現率]のNの部分 |
+
+#### 種類
 
 | 番号 | 種類 | dataId |
 | --- | --- | --- |

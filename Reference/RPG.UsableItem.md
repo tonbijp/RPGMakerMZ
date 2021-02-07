@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).UsableItem
 
 ## スーパークラス: [RPG.BaseItem](RPG.BaseItem.md)
@@ -12,7 +14,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `scope` | [Number](Number.md) | [範囲](RPG.UsableItem.md#範囲) |
 | `occasion` | [Number](Number.md) | [使用可能時](RPG.UsableItem.md#使用可能時)  |

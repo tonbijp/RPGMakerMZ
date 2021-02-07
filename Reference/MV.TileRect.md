@@ -11,7 +11,7 @@
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md), [Tilemap](Tilemap.md), [Tilemap.Layer](Tilemap.Layer.md)
 
-### 内容:
+### 配列内容
 タイルセットの画像( setNumber )と位置(sx, sy)のデータ、マップのレイヤーに描画される位置(dx, dy)、そして両者に共通するタイルの大きさ(w, h)で構成される配列。
 
 | 番号 | 型 | 説明 |

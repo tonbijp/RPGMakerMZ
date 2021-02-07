@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).DatabaseFile
 
 ## 型: Object
@@ -7,8 +9,8 @@ JSONファイルを読み込む際に使われるパラメータ。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 大域変数名('$dataXxx') |
 | `src` | [String](String.md) | ファイル名('Xxx.json') |
-
+

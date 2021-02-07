@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).PluginSettings
 
 ## 型: Object
@@ -14,7 +16,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | プラグインの[名前]\(拡張子を含まない) |
 | `status` | [String](String.md) | ON/OFF の[状態] |
@@ -80,12 +82,14 @@
 データに親子関係を持たせたい場合、`@type *[]` や `@type struct<*>`を検討しても良い。
 
 ##### Example
-``` * @param group
+```
+ * @param group
  * @text --- グループ名 ---
  *
  * @param childData
  * @parent group
-```
+```
+
 #### @type (ver1.5.0 以降)
 パラメータの型(詳細は後述)<br />
 入力時のUIが型に合わせて変わるが、プラグインに渡される値は全て文字列。

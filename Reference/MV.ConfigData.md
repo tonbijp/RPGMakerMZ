@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).ConfigData
 
 ## 型: Object
@@ -7,7 +9,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `alwaysDash` | Boolean | [常時ダッシュ] |
 | `commandRemember` | Boolean | [コマンド記憶] |

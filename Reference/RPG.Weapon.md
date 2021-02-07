@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Weapon
 
 ## スーパークラス: [RPG.EquipItem](RPG.EquipItem.md)
@@ -12,7 +14,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `wtypeId` | [Number](Number.md) | [武器タイプID](RPG.Weapon#武器タイプid) |
 | `animationId` | [Number](Number.md) | [[アニメーション](RPG.Animation.md)]のID |

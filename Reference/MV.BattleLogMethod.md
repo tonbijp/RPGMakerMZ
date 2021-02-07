@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).BattleLogMethod
 
 ## 型: Object
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | [メソッド名](MV.BattleLogMethod.md#メソッド名) |
 | `params` | [Array](Array.md) | 引数の配列(詳細は各メソッドの解説を参照) |

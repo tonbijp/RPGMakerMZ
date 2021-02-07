@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).SaveFileInfo
 
 ## 型: Object
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `globalId` | [String](String.md) | グローバルID |
 | `title` | [String](String.md) | タイトル |
@@ -16,4 +18,4 @@
 | `faces` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 顔 |
 | `playtime` | [String](String.md) |  プレイ時間 |
 | `timestamp` | Date |  現在時刻 |
-
+

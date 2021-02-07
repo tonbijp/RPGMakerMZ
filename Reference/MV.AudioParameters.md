@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス:  [MV](MV.md).AudioParameters
 
 ## 型: Object
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | 名前 |
 | `volume` | [Number](Number.md) | 音量 |

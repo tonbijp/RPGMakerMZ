@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).State
 
 ## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
@@ -13,7 +15,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 | `name` | [String](String.md) | [名前] |

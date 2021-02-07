@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).TextState
 
 ## 型: Object
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `index` | [Number](Number.md) | 処理中の文字の位置 |
 | `x` | [Number](Number.md) | x座標 |

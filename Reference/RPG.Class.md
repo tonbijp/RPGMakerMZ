@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Class
 
 ## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
@@ -11,7 +13,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) |職業ID |
 | `name` | [String](String.md) | [名前] |
@@ -21,7 +23,7 @@
 | `traits` | [Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt; | [特徴]の配列 |
 
 
-### Classes
+### インナークラス
 
 * [RPG.Class.Learning](RPG.Class.Learning.md)
 

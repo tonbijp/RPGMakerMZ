@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).BattleRewards
 
 ## 型: Object
@@ -8,9 +10,9 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `gold` | [Number](Number.md) | 所持金 |
 | `exp` | [Number](Number.md) | 経験値 |
 | `items` | [Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt; | アイテムの配列 |
-
+

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).BattleEventPage
 [RPG.Troop](RPG.Troop.md) の [EVページ] を構成する JSON データ。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `conditions` | [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md) | [条件] |
 | `list` | [Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt; | [実行内容] |
@@ -21,7 +23,8 @@
 | 2 | モーメント |
 
 
-### Classes
+### インナークラス
 
-* [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
+* [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
+
 

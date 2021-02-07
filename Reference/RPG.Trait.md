@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Trait
 主に戦闘の際に利用される[特徴]のJSONデータ。
 
@@ -7,7 +9,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `code` | [Number](Number.md) | [特徴]コード([下表](RPG.Trait.md#code)を参照) |
 | `dataId` | [Number](Number.md) | code 毎に意味の異なるID |

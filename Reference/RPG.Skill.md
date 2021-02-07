@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス:  [RPG](RPG.md).Skill
 
 ## スーパークラス: [RPG.UsableItem](RPG.UsableItem.md)
@@ -11,7 +13,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `stypeId` | [Number](Number.md) | [スキルタイプID](RPG.Skill.md#スキルタイプid) |
 | `mpCost` | [Number](Number.md) | [消費MP] |

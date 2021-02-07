@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Actor
 
 ## スーパークラス: [RPG.MetaData](RPG.MetaData.md)
@@ -12,7 +14,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | アクターID |
 | `name` | [String](String.md) | [名前] |

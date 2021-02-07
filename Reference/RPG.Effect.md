@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Effect
 アイテムやスキルの[使用効果]のデータ。
 
@@ -5,7 +7,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `code` | [Number](Number.md) | [使用効果]コード \([下表](RPG.Effect.md#code)を参照) |
 | `dataId` | [Number](Number.md) | code 毎に意味の異なるID |

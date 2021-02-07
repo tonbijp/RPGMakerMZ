@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).Color
 
 ## 型: [Array](Array.md).&lt;[Number](Number.md)&gt;
@@ -9,12 +11,13 @@
 関連クラス: [Sprite](Sprite.md), [MV.Tone](MV.Tone.md), [MV.CssColor](MV.CssColor.md)
 
 
-### Contents:
+### 配列内容
 
-| Index | Description |
+| 番号 | 説明 |
 | --- | --- |
 | 0 | 赤( 0〜255 ) |
 | 1 | 緑( 0〜255 ) |
 | 2 | 青( 0〜255 ) |
 | 3 | 不透明度( 0〜255 ) |
-
+
+

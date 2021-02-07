@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Damage
 [ダメージ]のデータ。
 
@@ -6,18 +8,25 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `type` | [Number](Number.md) | [タイプ](RPG.Damage.md#タイプ) |
 | `elementId` | [Number](Number.md) | [属性ID](RPG.Damage.md#属性id) |
 | `formula` | [String](String.md) | [[計算式]](RPG.Damage.md#計算式) |
 | `variance` | [Number](Number.md) | [分散度] % (0〜100) |
 | `critical` | Boolean | [会心]するか |
-#### タイプ
+
+#### タイプ
 
 | 番号 | [タイプ] |
 | --- | --- |
-|  0 | なし ||  1 | HPダメージ ||  2 | MPダメージ ||  3 | HP回復 ||  4 | MP回復 ||  5 | HP吸収 ||  6 | MP吸収 |
+|  0 | なし |
+|  1 | HPダメージ |
+|  2 | MPダメージ |
+|  3 | HP回復 |
+|  4 | MP回復 |
+|  5 | HP吸収 |
+|  6 | MP吸収 |
 
 #### 属性ID
 

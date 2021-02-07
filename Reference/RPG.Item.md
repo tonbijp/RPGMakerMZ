@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Item
 
 ## スーパークラス: [RPG.UsableItem](RPG.UsableItem.md)
@@ -11,7 +13,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `itypeId` | [Number](Number.md) | [アイテムタイプID](RPG.Item.md#アイテムタイプid) |
 | `price` | [Number](Number.md) | [価格] |

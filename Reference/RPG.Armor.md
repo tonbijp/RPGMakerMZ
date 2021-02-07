@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Armor
 
 ## スーパークラス: [RPG.EquipItem](RPG.EquipItem.md)
@@ -11,7 +13,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `atypeId` | [Number](Number.md) | [防具タイプID](RPG.Armor.md#防具タイプid) |
 

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[Enemy](RPG.Enemy.md).Action
 [敵キャラ]の[行動パターン]のJSONデータ。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 | `conditionType` | [Number](Number.md) | [[条件](RPG.Enemy.Action.md#条件)] |

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[EventPage](RPG.EventPage.md).Conditions
 イベントの [EVページ] の [出現条件] を構成するJSONデータ。<br/>
 [RPG.EventPage](RPG.EventPage.md) の conditions プロパティに含まれる。
@@ -7,7 +9,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `switch1Valid` | Boolean | 1番目の [スイッチ] を使うか |
 | `switch1Id` | [Number](Number.md) | 1番目の [スイッチ] のID |

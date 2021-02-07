@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[System](RPG.System.md).Vehicle
 [乗り物]のJSONデータ。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `characterName` | [String](String.md) | 画像ファイル名(拡張子を含まない) |
 | `characterIndex` | [Number](Number.md) | 画像番号 (0〜7) |
@@ -14,4 +16,6 @@
 | `startMapId` | [Number](Number.md) | [初期位置] マップID |
 | `startX` | [Number](Number.md) | [初期位置] x座標(タイル数) |
 | `startY` | [Number](Number.md) |  [初期位置] y座標(タイル数) |
-
+
+
+

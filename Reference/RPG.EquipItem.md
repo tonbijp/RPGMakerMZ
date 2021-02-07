@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).EquipItem
 
 ## スーパークラス: [RPG.BaseItem](RPG.BaseItem.md)
@@ -10,7 +12,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `price` | [Number](Number.md) | [価格] |
 | `etypeId` | [Number](Number.md) | [装備タイプID](RPG.EquipItem.md#装備タイプID) |

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).SaveContents
 
 ## 型: Object
@@ -10,7 +12,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `system` | [Game_System](Game_System.md) | [$gameSystem](global.md#gamesystem-game_system) |
 | `screen` | [Game_Screen](Game_Screen.md) | [$gameScreen](global.md#gamescreen-game_screen) |
@@ -22,4 +24,4 @@
 | `party` | [Game_Party](Game_Party.md) | [$gameParty](global.md#gameparty-game_party) |
 | `map` | [Game_Map](Game_Map.md) |  [$gameMap](global.md#gamemap-game_map) |
 | `player` | [Game_Player](Game_Player.md) | [$gamePlayer](global.md#gameplayer-game_player) |
-
+

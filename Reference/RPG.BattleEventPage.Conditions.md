@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).[BattleEventPage](RPG.BattleEventPage.md).Conditions
 [敵グループ]の [EVページ] の [条件] を構成するJSONデータ。
 
@@ -6,7 +8,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `turnEnding` | Boolean | [ターン終了] を使うか |
 | `turnValid` | Boolean | [ターン] を使うか |

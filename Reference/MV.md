@@ -1,6 +1,6 @@
 [クラスツリー](index.md)
 
-# Namespace: MV
+# ネームスペース: MV
 『RPGツクールMZ』 で使われるメソッドのパラメータとなるオブジェクト。
 
 ネームスペースに MV とか、クラス名を便宜上つけているが、JavaScript上は単なる Object・Array・Stringデータ。

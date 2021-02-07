@@ -1,10 +1,12 @@
-# Namespace: RPG
+[クラスツリー](index.md)
+
+# ネームスペース: RPG
 
  主に dataフォルダ以下の JSONファイル(.json)の構造を表すデータ群。
 
 ネームスペースに RPG とか、クラス名を便宜上つけているが、JavaScript上は単なる Object の一種。
 
-### Objects
+### オブジェクト(Object)
 
 * [Animation](RPG.Animation.md) . [Timing](RPG.Animation.Timing.md)
 * [AudioFile](RPG.AudioFile.md)

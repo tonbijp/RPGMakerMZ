@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Enemy
 
 ## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
@@ -9,7 +11,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `battlerName` | [String](String.md) | 画像ファイル名(拡張子なし) |
 | `battlerHue` | [Number](Number.md) | [色相] \(0~360) |
@@ -36,7 +38,7 @@
 | 7 | 運 |
 
 
-### Classes
+### インナークラス
 
 * [RPG.Enemy.Action](RPG.Enemy.Action.md)
 * [RPG.Enemy.DropItem](RPG.Enemy.DropItem.md)

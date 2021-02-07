@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).EventPage
 イベントの[EVページ]を構成するJSONデータ。
 
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `conditions` | [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md) | [出現条件] |
 | `image` | [RPG.EventPage.Image](RPG.EventPage.Image.md) | [画像] |
@@ -73,7 +75,8 @@
 | 4 | 並列処理 |
 
 
-### Classes
+### インナークラス
 
 * [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md)
-* [RPG.EventPage.Image](RPG.EventPage.Image.md)
+* [RPG.EventPage.Image](RPG.EventPage.Image.md)
+

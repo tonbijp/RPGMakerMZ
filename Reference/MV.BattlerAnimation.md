@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [MV](MV.md).BattlerAnimation
 
 ## 型: Object
@@ -8,9 +10,9 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `animationId` | [Number](Number.md) | アニメーションID |
 | `mirror` | Boolean | 反転しているか |
 | `delay` | [Number](Number.md) | 継続時間 |
-
+

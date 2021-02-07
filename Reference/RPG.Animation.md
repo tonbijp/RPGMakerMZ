@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: [RPG](RPG.md).Animation
 
 | データベース| JSONファイル | 大域変数 | スプライト |
@@ -12,7 +14,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `id` | [Number](Number.md) | アニメーションID |
 | `name` | [String](String.md) | エディタで表示される[名前] |
@@ -50,7 +52,8 @@
 | 7 | [[合成方法]](Sprite.md#合成方法) |
 
 
-### Classes
+### インナークラス
 
-* [RPG.Animation.Timing](RPG.Animation.Timing.md)
+* [RPG.Animation.Timing](RPG.Animation.Timing.md)
+
 
