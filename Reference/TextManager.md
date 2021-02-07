@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: TextManager
 [用語]のテキストを管理する静的クラス。
 
@@ -8,7 +10,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `currencyUnit` | [String](String.md) | [static][read-only] [通貨単位] |
 | `level` | [String](String.md) | [static][read-only] [レベル] |
@@ -47,6 +49,7 @@
 | `sell` | [String](String.md) | [static][read-only] [売却する] |
 | `alwaysDash` | [String](String.md) | [static][read-only] [常時ダッシュ] |
 | `commandRemember` | [String](String.md) | [static][read-only] [コマンド記憶] |
+| `touchUI` | [String](String.md) | **@MZ** [static][read-only] [タッチUI] |
 | `bgmVolume` | [String](String.md) | [static][read-only] [BGM 音量] |
 | `bgsVolume` | [String](String.md) | [static][read-only] [BGS 音量] |
 | `meVolume` | [String](String.md) | [static][read-only] [ME 音量] |
@@ -56,6 +59,7 @@
 | `expNext` | [String](String.md) | [static][read-only] [次のレベルまで] |
 | `saveMessage` | [String](String.md) | [static][read-only] [セーブメッセージ] |
 | `loadMessage` | [String](String.md) | [static][read-only] [ロードメッセージ] |
+| `autosave` | [String](String.md) | **@MZ** [static][read-only] [オートセーブ] |
 | `file` | [String](String.md) | [static][read-only] [ファイル] |
 | `partyName` | [String](String.md) | [static][read-only] [パーティ名] |
 | `emerge` | [String](String.md) | [static][read-only] [出現] |
@@ -121,15 +125,14 @@
 
 
 #### (static) getter (method, param) → {Object}
-指定メソッドとIDのゲッターオブジェクト { get: Function, configurable: Boolean } を返す。
-
+指定メソッドとIDのゲッターオブジェクト { get: Function, configurable: Boolean } を返す。<br />
 プロパティが読まれた時に使われる。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `method` | [String](String.md) | メソッド名( 'basic', 'param', 'command', 'message' ) |
+| `method` | [String](String.md) | メソッド名( "basic", "param", "command", "message" ) |
 | `param` | [Number](Number.md) \| [String](String.md) | メソッド毎のID |
 
 
@@ -145,10 +148,9 @@
 
 #### (static) param (paramId) → {[String](String.md)}
 指定IDの[[能力値]](RPG.System.Terms.md#[能力値])の用語を返す。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `paramId` | [Number](Number.md) | 能力値ID |
-
-

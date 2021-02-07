@@ -75,7 +75,7 @@ namespace JsExtensions
 * [SceneManager](SceneManager.md)
 * [SoundManager](SoundManager.md)
 * [StorageManager](StorageManager.md)
-* ※[TextManager](TextManager.md)
+* [TextManager](TextManager.md)
 
 
 ## ユーティリティ
