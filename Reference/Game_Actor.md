@@ -1,6 +1,8 @@
-# Class: Game_Actor
+[クラスツリー](index.md)
 
-## Extends: [Game_Battler](Game_Battler.md)
+# クラス: Game_Actor
+
+## スーパークラス: [Game_Battler](Game_Battler.md)
 
 ### new Game_Actor ()
 
@@ -10,12 +12,14 @@
 
 アクターのパラメータの取得、画像の設定、戦闘の処理とサイドビュー時の画像処理を行うクラス。
 
+v1.1.0 で変更あり。
+
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Party](Game_Party.md), [Game_Troop](Game_Troop.md), [Game_Enemy](Game_Enemy.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md)
 
 
-### Properties:
+### プロパティ
 
-| Name | Type | Description |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `level` | [Number](Number.md) | [read-only] [レベル] |
 | `_actorId` | [Number](Number.md) | アクターID |
@@ -28,7 +32,7 @@
 | `_characterIndex` | [Number](Number.md) | [歩行キャラ]画像番号 |
 | `_faceName` | [String](String.md) | [顔]画像ファイル名(拡張子なし) |
 | `_faceIndex` | [Number](Number.md) | [顔]画像番号 |
-| `_battlerName` | [String](String.md) | [[SV]戦闘キャラ]画像ファイル名(拡張子なし) |
+| `_battlerName` | [String](String.md) | [[SV\]戦闘キャラ]画像ファイル名(拡張子なし) |
 | `_exp` | Object | {[classId: number]: number} |
 | `_skills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [スキル]の配列 |
 | `_equips` | [Array](Array.md).&lt;[Game_Item](Game_Item.md)&gt; | [装備]の配列 |
@@ -39,7 +43,7 @@
 | `_stateSteps` | Object | {[stateId: number]: number} |
 
 
-### Inherited From
+### スーパークラスから継承されたメソッド
 
 #### [Game_BattlerBase](Game_BattlerBase.md)
 
@@ -80,7 +84,6 @@
 * [elementRate (elementId)](Game_BattlerBase.md#elementrate-elementid--number)
 * [eraseBuff (paramId)](Game_BattlerBase.md#erasebuff-paramid)
 * [guardSkillId ()](Game_BattlerBase.md#guardskillid---number)
-* [hide ()](Game_BattlerBase.md#hide-)
 * [hpRate ()](Game_BattlerBase.md#hprate---number)
 * [increaseBuff (paramId)](Game_BattlerBase.md#increasebuff-paramid)
 * [isAlive ()](Game_BattlerBase.md#isalive---boolean)
@@ -122,6 +125,7 @@
 * [param (paramId)](Game_BattlerBase.md#param-paramid--number)
 * [paramBuffRate (paramId)](Game_BattlerBase.md#parambuffrate-paramid--number)
 * [paramMin (paramId)](Game_BattlerBase.md#parammin-paramid--number)
+* [paramMax(paramId)](Game_BattlerBase.md#parammax-paramid--number)
 * [paramRate (paramId)](Game_BattlerBase.md#paramrate-paramid--number)
 * [partyAbility (abilityId)](Game_BattlerBase.md#partyability-abilityid--boolean)
 * [paySkillCost (skill)](Game_BattlerBase.md#payskillcost-skill)
@@ -230,6 +234,7 @@
 * [setLastTarget (target)](Game_Battler.md#setlasttarget-target)
 * [shiftAnimation ()](Game_Battler.md#shiftanimation---mvbattleranimation)
 * [speed ()](Game_Battler.md#speed---number)
+* [ startAnimation (animationId, mirror, delay)](Game_Battler.md#startanimation-animationid-mirror-delay)
 * [startDamagePopup ()](Game_Battler.md#startdamagepopup-)
 * [startWeaponAnimation (weaponImageId)](Game_Battler.md#startweaponanimation-weaponimageid)
 * [useItem (item)](Game_Battler.md#useitem-item)
@@ -237,7 +242,7 @@
 
 
 
-### Methods
+### メソッド
 
 #### actor () → {[RPG.Actor](RPG.Actor.md)}
 [アクター]のデータベース情報を返す。
@@ -247,7 +252,7 @@
 アクターIDを返す。
 
 
-#### armors () → {[Array](Array.md).<[RPG.Armor](RPG.Armor.md)>}
+#### armors () → {[Array](Array.md).&lt;[RPG.Armor](RPG.Armor.md)&gt;}
 防具を返す。
 
 
@@ -259,8 +264,8 @@
 2撃目のアニメーションIDを返す。
 
 
-#### attackElements () → {[Array](Array.md).<[Number](Number.md)>}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
+#### attackElements () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 
 
 #### bareHandsAnimationId () → {[Number](Number.md)}
@@ -286,9 +291,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### bestEquipItem (slotId)
 指定スロットの最強装備を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `slotId` | [Number](Number.md) | スロットID |
 
@@ -296,9 +301,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### calcEquipItemPerformance (item) → {[Number](Number.md)}
 指定アイテムと装備アイテムの能力の差分の値を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | アイテム |
 
@@ -306,9 +311,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### changeClass (classId, keepExp)
 指定クラスに変更する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `classId` | [Number](Number.md) | クラスID |
 | `keepExp` | Boolean | 経験値を保持するか |
@@ -317,9 +322,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### changeEquip (slotId, item)
 指定スロットを指定装備に変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `slotId` | [Number](Number.md) | スロットID |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | アイテム |
@@ -328,9 +333,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### changeEquipById (etypeId, itemId)
 指定装備タイプを指定装備に変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `etypeId` | [Number](Number.md) | 装備タイプID |
 | `itemId` | [Number](Number.md) | アイテムID |
@@ -339,9 +344,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### changeExp (exp, show)
 経験値を加え、必要ならレベルアップ処理を行う。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `exp` | [Number](Number.md) | 経験値 |
 | `show` | Boolean | レベルアップ表示をするか |
@@ -350,9 +355,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 #### changeLevel (level, show)
 指定レベルに変更する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `level` | [Number](Number.md) | レベル |
 | `show` | Boolean | レベルを表示するか |
@@ -371,7 +376,7 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#attackelements---arraynumber)
 
 
 #### clearActions ()
-Overrides:[Game_Battler](Game_Battler.md#clearactions-)
+オーバーライド:[Game_Battler](Game_Battler.md#clearactions-)
 
 
 #### clearEquipments ()
@@ -379,7 +384,7 @@ Overrides:[Game_Battler](Game_Battler.md#clearactions-)
 
 
 #### clearStates ()
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#clearstates-)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#clearstates-)
 
 
 #### currentClass () → {[RPG.Class](RPG.Class.md)}
@@ -397,9 +402,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#clearstates-)
 #### discardEquip (item)
 装備を捨て、所持品に残さない。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | アイテム |
 
@@ -407,23 +412,23 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#clearstates-)
 #### displayLevelUp (newSkills)
 指定スキルの習得とレベルアップのメッセージを表示。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `newSkills` | [Array](Array.md).<[RPG.Skill](RPG.Skill.md)> | スキルの配列 |
+| `newSkills` | [Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt; | スキルの配列 |
 
 
-#### equips () → {[Array](Array.md).<[RPG.EquipItem](RPG.EquipItem.md)>}
+#### equips () → {[Array](Array.md).&lt;[RPG.EquipItem](RPG.EquipItem.md)&gt;}
 装備の配列を返す。
 
 
-#### equipSlots () → {[Array](Array.md).<[Number](Number.md)>}
+#### equipSlots () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 装備スロットの配列を返す。
 
 
 #### eraseState (stateId)
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 
 
 #### executeFloorDamage ()
@@ -433,9 +438,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### expForLevel (level) → {[Number](Number.md)}
 指定レベルまでのレベルアップに必要な経験値を返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `level` | [Number](Number.md) | レベル |
 
@@ -452,12 +457,12 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 戦闘に出ているか控えかで変わる経験値の比率を返す。
 
 
-#### findNewSkills (lastSkills) → {[Array](Array.md).<[RPG.Skill](RPG.Skill.md)>}
+#### findNewSkills (lastSkills) → {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
 指定スキルを習得済みとして、身習得スキルを返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `lastSkills` | [Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt; | スキルの配列 |
 
@@ -465,9 +470,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### forceChangeEquip (slotId, item)
 指定スロットの装備を(持ち物に戻さず)強制的に変更。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `slotId` | [Number](Number.md) | スロットID |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | アイテム |
@@ -476,9 +481,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### forgetSkill (skillId)
 指定スキルを忘却(非習得に)。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 
@@ -490,9 +495,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### gainExp (exp)
 指定経験値を加える。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `exp` | [Number](Number.md) | 経験値 |
 
@@ -500,9 +505,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### hasArmor (armor) → {Boolean}
 指定鎧を装備しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `armor` | [RPG.Armor](RPG.Armor.md) | 鎧 |
 
@@ -514,9 +519,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### hasSkill (skillId) → {Boolean}
 指定スキルを持っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 
@@ -524,11 +529,15 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### hasWeapon (weapon) → {Boolean}
 指定武器を持っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `weapon` | [RPG.Weapon](RPG.Weapon.md) | 武器 |
+
+
+#### hide ()
+**@MZ** オーバーライド: [Game_BattlerBase](Game_BattlerBase.md#hide-)
 
 
 #### index () → {[Number](Number.md)}
@@ -538,9 +547,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 #### initEquips (equips)
 指定スロットを初期化する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `equips` | [Array](Array.md).&lt;[Number](Number.md)&gt; | スロットIDの配列 |
 
@@ -551,11 +560,11 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#erasestate-stateid)
 
 #### initialize (actorId)
 指定アクターで初期化。
-Overrides:[Game_Battler](Game_Battler.md#initialize-)
+オーバーライド:[Game_Battler](Game_Battler.md#initialize-)
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 
@@ -565,7 +574,7 @@ Overrides:[Game_Battler](Game_Battler.md#initialize-)
 
 
 #### initMembers ()
-Overrides:[Game_Battler](Game_Battler.md#initmembers-)
+オーバーライド:[Game_Battler](Game_Battler.md#initmembers-)
 
 
 #### initSkills ()
@@ -577,7 +586,7 @@ Overrides:[Game_Battler](Game_Battler.md#initmembers-)
 
 
 #### isActor () → {Boolean}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 
 
 #### isBattleMember () → {Boolean}
@@ -587,9 +596,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 #### isClass (gameClass) → {Boolean}
 指定したクラスか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `gameClass` | [RPG.Class](RPG.Class.md) | クラス |
 
@@ -597,9 +606,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 #### isEquipChangeOk (slotId) → {Boolean}
 指定スロットの装備を変更可能か。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `slotId` | [Number](Number.md) | スロットID |
 
@@ -607,9 +616,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 #### isEquipped (item) → {Boolean}
 指定アイテムが装備されているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.EquipItem](RPG.EquipItem.md) | アイテム |
 
@@ -621,9 +630,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 #### isLearnedSkill (skillId) → {Boolean}
 指定スキルを習得しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 
@@ -633,7 +642,7 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isactor---boolean)
 
 
 #### isSkillWtypeOk (skill) → {Boolean}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#isskillwtypeok-skill--boolean)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#isskillwtypeok-skill--boolean)
 
 
 #### isSpriteVisible () → {Boolean}
@@ -643,11 +652,15 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isskillwtypeok-skill--boolean)
 #### isWtypeEquipped (wtypeId) → {Boolean}
 指定武器タイプの武器を装備しているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `wtypeId` | [Number](Number.md) | 武器タイプID |
+
+
+#### lastSkill () → {[RPG.Skill](RPG.Skill.md)}
+**@MZ** 最後のスキルを返す。
 
 
 #### lastBattleSkill () → {[RPG.Skill](RPG.Skill.md)}
@@ -665,9 +678,9 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isskillwtypeok-skill--boolean)
 #### learnSkill (skillId)
 指定スキルを習得する。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skillId` | [Number](Number.md) | [スキルID](RPG.Skill.md#スキルid) |
 
@@ -680,12 +693,12 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#isskillwtypeok-skill--boolean)
 レベルアップを実行。
 
 
-#### makeActionList () → {[Array](Array.md).<[Game_Action](Game_Action.md)>}
+#### makeActionList () → {[Array](Array.md).&lt;[Game_Action](Game_Action.md)&gt;}
 行動の配列を生成して返す。
 
 
 #### makeActions ()
-Overrides:[Game_Battler](Game_Battler.md#makeactions-)
+オーバーライド:[Game_Battler](Game_Battler.md#makeactions-)
 
 
 #### makeAutoBattleActions ()
@@ -705,7 +718,7 @@ Overrides:[Game_Battler](Game_Battler.md#makeactions-)
 
 
 #### meetsUsableItemConditions (item) → {Boolean}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#meetsusableitemconditions-item--boolean)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#meetsusableitemconditions-item--boolean)
 
 
 #### name ()
@@ -725,7 +738,11 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#meetsusableitemconditions-item-
 
 
 #### onPlayerWalk ()
-マップシーンで歩いているときに呼ばれるハンドラ。
+マップシーンで歩いている時のハンドラ。
+
+
+#### onEscapeFailure ()
+**@MZ** 逃亡に失敗した時のハンドラ。
 
 
 #### opponentsUnit () → {[Game_Troop](Game_Troop.md)}
@@ -737,27 +754,23 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#meetsusableitemconditions-item-
 
 
 #### paramBase (paramId) → {[Number](Number.md)}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#parambase-paramid--number)
-
-
-#### paramMax (paramId) → {[Number](Number.md)}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#parammax-paramid--number)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#parambase-paramid--number)
 
 
 #### paramPlus (paramId) → {[Number](Number.md)}
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#paramplus-paramid--number)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#paramplus-paramid--number)
 
 
 #### performAction (action)
-Overrides:[Game_Battler](Game_Battler.md#performaction-action)
+オーバーライド:[Game_Battler](Game_Battler.md#performaction-action)
 
 
 #### performActionEnd ()
-Overrides:[Game_Battler](Game_Battler.md#performactionend-)
+オーバーライド:[Game_Battler](Game_Battler.md#performactionend-)
 
 
 #### performActionStart (action)
-Overrides:[Game_Battler](Game_Battler.md#performactionstart-action)
+オーバーライド:[Game_Battler](Game_Battler.md#performactionstart-action)
 
 
 #### performAttack ()
@@ -765,15 +778,15 @@ Overrides:[Game_Battler](Game_Battler.md#performactionstart-action)
 
 
 #### performCollapse ()
-Overrides:[Game_Battler](Game_Battler.md#performcollapse-)
+オーバーライド:[Game_Battler](Game_Battler.md#performcollapse-)
 
 
 #### performCounter ()
-Overrides:[Game_Battler](Game_Battler.md#performcounter-)
+オーバーライド:[Game_Battler](Game_Battler.md#performcounter-)
 
 
 #### performDamage ()
-Overrides:[Game_Battler](Game_Battler.md#performdamage-)
+オーバーライド:[Game_Battler](Game_Battler.md#performdamage-)
 
 
 #### performEscape ()
@@ -781,11 +794,11 @@ Overrides:[Game_Battler](Game_Battler.md#performdamage-)
 
 
 #### performEvasion ()
-Overrides:[Game_Battler](Game_Battler.md#performevasion-)
+オーバーライド:[Game_Battler](Game_Battler.md#performevasion-)
 
 
 #### performMagicEvasion ()
-Overrides:[Game_Battler](Game_Battler.md#performmagicevasion-)
+オーバーライド:[Game_Battler](Game_Battler.md#performmagicevasion-)
 
 
 #### performMapDamage ()
@@ -801,21 +814,21 @@ Overrides:[Game_Battler](Game_Battler.md#performmagicevasion-)
 
 
 #### refresh ()
-Overrides:[Game_Battler](Game_Battler.md#refresh-)
+オーバーライド:[Game_Battler](Game_Battler.md#refresh-)
 
 
 #### releaseUnequippableItems (forcing)
 装備不可アイテムの装備を外す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `forcing` | Boolean | 強制的に外すか |
 
 
 #### resetStateCounts (stateId)
-Overrides:[Game_BattlerBase](Game_BattlerBase.md#resetstatecounts-stateid)
+オーバーライド:[Game_BattlerBase](Game_BattlerBase.md#resetstatecounts-stateid)
 
 
 #### selectNextCommand () → {Boolean}
@@ -829,19 +842,19 @@ Overrides:[Game_BattlerBase](Game_BattlerBase.md#resetstatecounts-stateid)
 #### setBattlerImage (battlerName)
 SVのバトラー画像を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `battlerName` | [String](String.md) | [[SV]戦闘キャラ]画像ファイル名(拡張子なし) |
+| `battlerName` | [String](String.md) | [[SV\]戦闘キャラ]画像ファイル名(拡張子なし) |
 
 
 #### setCharacterImage (characterName, characterIndex)
 トップビューのキャラ画像を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `characterName` | [String](String.md) | キャラ画像ファイル名(拡張子なし) |
 | `characterIndex` | [Number](Number.md) | キャラ画像番号 |
@@ -850,9 +863,9 @@ SVのバトラー画像を設定。
 #### setFaceImage (faceName, faceIndex)
 キャラの[顔]画像を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `faceName` | [String](String.md) | [顔]画像ファイル名(拡張子なし) |
 | `faceIndex` | [Number](Number.md) | [顔]画像番号 |
@@ -861,9 +874,9 @@ SVのバトラー画像を設定。
 #### setLastBattleSkill (skill)
 最後の戦闘スキルを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skill` | [RPG.Skill](RPG.Skill.md) | スキル |
 
@@ -871,9 +884,9 @@ SVのバトラー画像を設定。
 #### setLastCommandSymbol (symbol)
 最後に選択されたコマンドを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `symbol` | [String](String.md) | コマンドシンボル |
 
@@ -881,9 +894,9 @@ SVのバトラー画像を設定。
 #### setLastMenuSkill (skill)
 最後に選択されたメニュースキルを設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `skill` | [RPG.Skill](RPG.Skill.md) | スキル |
 
@@ -891,9 +904,9 @@ SVのバトラー画像を設定。
 #### setName (name)
 [名前]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) | [名前] |
 
@@ -901,9 +914,9 @@ SVのバトラー画像を設定。
 #### setNickname (nickname)
 [二つ名]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `nickname` | [String](String.md) | [二つ名] |
 
@@ -911,9 +924,9 @@ SVのバトラー画像を設定。
 #### setProfile (profile)
 [プロフィール]を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `profile` | [String](String.md) | [プロフィール] |
 
@@ -921,9 +934,9 @@ SVのバトラー画像を設定。
 #### setup (actorId)
 指定アクターで Gama_Actor を設定。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
 
@@ -940,12 +953,12 @@ SVのバトラー画像を設定。
 ステート解除のメッセージ表示を行うか。
 
 
-#### skills () → {[Array](Array.md).<[RPG.Skill](RPG.Skill.md)>}
+#### skills () → {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
 取得済みスキルを返す。
 
 
-#### startAnimation (animationId, mirror, delay)
-Overrides:[Game_Battler](Game_Battler.md#startanimation-animationid-mirror-delay)
+#### skillTypes ()→ {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
+**@MZ** スキルタイプを返す。
 
 
 #### stepsForTurn () → {[Number](Number.md)}
@@ -955,9 +968,9 @@ Overrides:[Game_Battler](Game_Battler.md#startanimation-animationid-mirror-delay
 #### testEscape (item)
 指定アイテムが[特殊効果 - 逃げる]を持っているか。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
@@ -965,16 +978,16 @@ Overrides:[Game_Battler](Game_Battler.md#startanimation-animationid-mirror-delay
 #### tradeItemWithParty (newItem, oldItem) → {Boolean}
 所持アイテムを交換し、交換できたか返す。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `newItem` | [RPG.EquipItem](RPG.EquipItem.md) | 新アイテム |
 | `oldItem` | [RPG.EquipItem](RPG.EquipItem.md) | 旧アイテム |
 
 
 #### traitObjects () → {[Array](Array.md).<*>}
-Overrides:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
+オーバーライド:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
 
 
 #### turnEndOnMap ()
@@ -984,17 +997,21 @@ Overrides:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
 #### updateStateSteps (state)
 指定ステート解除条件の歩数をアップデート。
 
-##### Parameters:
+##### 引数
 
-| Name | Type | Description |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `state` | [RPG.State](RPG.State.md) | ステート |
 
 
-#### usableSkills () → {[Array](Array.md).<[RPG.Skill](RPG.Skill.md)>}
+#### usableSkills () → {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
 使用可能なスキルの配列を返す。
 
 
-#### weapons () → {[Array](Array.md).<[RPG.Weapon](RPG.Weapon.md)>}
+#### weapons () → {[Array](Array.md).&lt;[RPG.Weapon](RPG.Weapon.md)&gt;}
 装備している武器を配列で返す。
 
+
+### 廃止MVメソッド
+
+paramMax (paramId),  startAnimation (animationId, mirror, delay)
