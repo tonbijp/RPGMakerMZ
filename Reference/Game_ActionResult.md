@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_ActionResult
 
 ### new Game_ActionResult ()
@@ -33,10 +35,12 @@
 
 
 #### clear ()
-結果情報を消す。
+結果情報を消す。
+
 
 #### initialize ()
- オブジェクト生成時の初期化。
+ オブジェクト生成時の初期化。
+
 
 #### isBuffAdded (paramId) → {Boolean}
 指定された能力値に[強化]が付加されたか。
@@ -69,7 +73,8 @@
 
 
 #### isHit () → {Boolean}
-攻撃がヒットしたか。
+攻撃がヒットしたか。
+
 
 #### isStateAdded (stateId) → {Boolean}
 指定ステートが付加されたか。
@@ -146,4 +151,5 @@
 
 
 #### removedStateObjects () → {[Array](Array.md).<[RPG.State](RPG.State.md)>}
-削除されたステートの配列を返す。
+削除されたステートの配列を返す。
+
