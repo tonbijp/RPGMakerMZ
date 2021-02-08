@@ -215,7 +215,7 @@ namespace JsExtensions
 * ※[Game_Unit](Game_Unit.md)
     * ※[Game_Party](Game_Party.md)([$gameParty](global.md#gameparty-game_party))
     * ※[Game_Troop](Game_Troop.md)([$gameTroop](global.md#gametroop-game_troop))
-* ※[Game_BattlerBase](Game_BattlerBase.md)
+* [Game_BattlerBase](Game_BattlerBase.md)
     * [Game_Battler](Game_Battler.md)
         * [Game_Actor](Game_Actor.md)
         * ※[Game_Enemy](Game_Enemy.md)

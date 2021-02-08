@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_BattlerBase
 
 ### new Game_BattlerBase ()
@@ -17,7 +19,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 計算式の <code>a.atk * 4 - b.def * 2</code> の a や b に Game_BattlerBase(のサブクラス)が代入されている。
 
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `TRAIT_ELEMENT_RATE` | [Number](Number.md) | [static] [耐性 - 属性有効度] |
 | `TRAIT_DEBUFF_RATE` | [Number](Number.md) | [static] [耐性 - 弱体有効度]  |
@@ -30,6 +32,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 | `TRAIT_ATTACK_STATE` | [Number](Number.md) | [static] [攻撃 - 攻撃時ステート] |
 | `TRAIT_ATTACK_SPEED` | [Number](Number.md) | [static] [攻撃 - 攻撃速度補正] |
 | `TRAIT_ATTACK_TIMES` | [Number](Number.md) | [static] [攻撃 - 攻撃追加回数] |
+| `TRAIT_ATTACK_SKILL` | [Number](Number.md) | **@MZ** [static] [攻撃 - 攻撃スキル] |
 | `TRAIT_STYPE_ADD` | [Number](Number.md) | [static] [スキル - スキルタイプ追加] |
 | `TRAIT_STYPE_SEAL` | [Number](Number.md) | [static] [スキル - スキルタイプ封印] |
 | `TRAIT_SKILL_ADD` | [Number](Number.md) | [static] [スキル - スキル追加] |
@@ -37,7 +40,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 | `TRAIT_EQUIP_WTYPE` | [Number](Number.md) | [static] [装備 - 武器タイプ装備] |
 | `TRAIT_EQUIP_ATYPE` | [Number](Number.md) | [static] [装備 - 防具タイプ装備] |
 | `TRAIT_EQUIP_LOCK` | [Number](Number.md) | [static] [装備 - 装備固定] |
-| `TRAIT_EQUIP_SEAL` | [Number](Number.md) | [static] [装備 - 装備封印 |
+| `TRAIT_EQUIP_SEAL` | [Number](Number.md) | [static] [装備 - 装備封印] |
 | `TRAIT_SLOT_TYPE` | [Number](Number.md) | [static] [装備 - スロットタイプ] |
 | `TRAIT_ACTION_PLUS` | [Number](Number.md) | [static] [その他 - 行動回数追加] |
 | `TRAIT_SPECIAL_FLAG` | [Number](Number.md) | [static] [その他 - 特殊フラグ] |
@@ -93,15 +96,15 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 ### メソッド
 
-#### actionPlusSet () → {[Array](Array.md).<[Number](Number.md)>}
+#### actionPlusSet () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
  [その他 - 行動回数追加] の配列を返す。
 
 
-#### addedSkills () → {[Array](Array.md).<[Number](Number.md)>}
+#### addedSkills () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 [スキル - スキル追加]の配列を返す。
 
 
-#### addedSkillTypes () → {[Array](Array.md).<[Number](Number.md)>}
+#### addedSkillTypes () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
  [スキル - スキルタイプ追加] の配列を返す。
 
 
@@ -126,11 +129,11 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 | `value` | [Number](Number.md) | 値 |
 
 
-#### allIcons () → {[Array](Array.md).<[Number](Number.md)>}
+#### allIcons () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 全アイコン番号を配列で返す。
 
 
-#### allTraits () → {[Array](Array.md).<[RPG.Trait](RPG.Trait.md)>}
+#### allTraits () → {[Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt;}
 全特徴を配列で返す。
 
 
@@ -138,19 +141,20 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 バトラーを出現させる。
 
 
-#### attackElements () → {[Array](Array.md).<[Number](Number.md)>}
+#### attackElements () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
  [攻撃時属性]の配列を返す。
 
 
 #### attackSkillId () → {[Number](Number.md)}
-攻撃スキルのIDを返す。
+攻撃スキルのID(規定値:1)を返す。<br />
+**@MZ**[攻撃 - 攻撃スキル]の設定があればその値。
 
 
 #### attackSpeed () → {[Number](Number.md)}
  [攻撃 - 攻撃速度補正] を返す。
 
 
-#### attackStates () → {[Array](Array.md).<[Number](Number.md)>}
+#### attackStates () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 攻撃[ステートID](RPG.State.md#ステートid)を配列で返す。
 
 
@@ -189,7 +193,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 | `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
 
 
-#### buffIcons () → {[Array](Array.md).<[Number](Number.md)>}
+#### buffIcons () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 付加中の[強化]アイコン番号を配列で返す。
 
 
@@ -669,7 +673,17 @@ MPのパーセント量を返す。
 
 
 #### paramBase (paramId) → {[Number](Number.md)}
-指定通常能力値の基本値を返す。
+指定通常能力値の基本値(規定値:0)を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `paramId` | [Number](Number.md) | [能力値ID](RPG.Enemy.md#能力値id) |
+
+
+#### paramBasePlus (paramId) → {[Number](Number.md)}
+**@MZ** 指定通常能力値の基本値+加算値を返す。
 
 ##### 引数
 
@@ -854,7 +868,7 @@ TPを設定。
 | `flagId` | [Number](Number.md) | フラグID |
 
 
-#### stateIcons () → {[Array](Array.md).<[Number](Number.md)>}
+#### stateIcons () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 ステートのアイコン番号を配列で返す。
 
 
@@ -876,11 +890,11 @@ SVでのステートの重ね合わせ番号を返す。
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
 
-#### stateResistSet () → {[Array](Array.md).<[Number](Number.md)>}
+#### stateResistSet () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 [耐性 - ステート無効化]に対応する、[ステートID](RPG.State.md#ステートid)の配列を返す。
 
 
-#### states () → {[Array](Array.md).<[RPG.State](RPG.State.md)>}
+#### states () → {[Array](Array.md).&lt;[RPG.State](RPG.State.md)&gt;}
 適用中のステートを配列で返す。
 
 
@@ -888,11 +902,11 @@ SVでのステートの重ね合わせ番号を返す。
 TPのパーセント量を返す。
 
 
-#### traitObjects () → {[Array](Array.md).<*>}
+#### traitObjects () → {[Array](Array.md).lt;*&gt;}
 特徴オブジェクトを配列で返す。
 
 
-#### traits (code) → {[Array](Array.md).<[RPG.Trait](RPG.Trait.md)>}
+#### traits (code) → {[Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt;}
 指定特徴コード(TRAIT_定数)の特徴を返す。
 
 ##### 引数
@@ -913,7 +927,7 @@ TPのパーセント量を返す。
 | `id` | [Number](Number.md) | 特徴ID |
 
 
-#### traitsSet (code) → {[Array](Array.md).<[Number](Number.md)>}
+#### traitsSet (code) → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 指定特徴コード(TRAIT_定数)の、特徴IDの配列を返す。
 
 ##### 引数
@@ -944,7 +958,7 @@ TPのパーセント量を返す。
 | `code` | [Number](Number.md) | [特徴コード](RPG.Trait.md#code) |
 
 
-#### traitsWithId (code, id) → {[Array](Array.md).<[RPG.Trait](RPG.Trait.md)>}
+#### traitsWithId (code, id) → {[Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt;}
 指定特徴コード(TRAIT_定数)・IDの特徴を配列で返す。
 
 ##### 引数
