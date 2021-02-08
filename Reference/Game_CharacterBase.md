@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_CharacterBase
 
 ### new Game_CharacterBase ()
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `x` | [Number](Number.md) | [read-only] マップ上のX座標(タイル数) |
 | `y` | [Number](Number.md) | [read-only] マップ上のY座標(タイル数) |
@@ -53,16 +55,9 @@
 
 ### メソッド
 
-#### animationId () → {[Number](Number.md)}
- アニメーションIDを返す。
-
 
 #### animationWait () → {[Number](Number.md)}
  アニメーションの待ち時間(フレーム数)を返す。
-
-
-#### balloonId () → {[Number](Number.md)}
- フキダシアイコンIDを返す。
 
 
 #### blendMode () → {[Number](Number.md)}
@@ -412,26 +407,6 @@
  乗っているリージョンIDを返す。
 
 
-#### requestAnimation (animationId)
-指定アニメーションIDにしたがって[アニメーションの表示]。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `animationId` | [Number](Number.md) | アニメーションID(1〜) |
-
-
-#### requestBalloon (balloonId)
- フキダシアイコンIDを設定。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `balloonId` | [Number](Number.md) |  |
-
-
 #### resetPattern ()
  オリジナルのパターンにリセット。
 
@@ -701,3 +676,5 @@
  停止状態をアップデート。
 
 
+### 廃止MVメソッド
+animationId (), balloonId (), requestAnimation (animationId), requestBalloon (balloonId)
