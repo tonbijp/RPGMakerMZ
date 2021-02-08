@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Enemy
 
 ## スーパークラス: [Game_Battler](Game_Battler.md)
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_enemyId` | [Number](Number.md) | 敵キャラID |
 | `_letter` | [String](String.md) | 接尾辞(A,B...など) |

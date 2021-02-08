@@ -218,7 +218,7 @@ namespace JsExtensions
 * [Game_BattlerBase](Game_BattlerBase.md)
     * [Game_Battler](Game_Battler.md)
         * [Game_Actor](Game_Actor.md)
-        * ※[Game_Enemy](Game_Enemy.md)
+        * [Game_Enemy](Game_Enemy.md)
 
 ### その他オブジェクト
 
