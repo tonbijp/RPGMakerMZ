@@ -1,9 +1,13 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Battler
 
 ## スーパークラス: [Game_BattlerBase](Game_BattlerBase.md)
 
 ### new Game_Battler ()
-戦闘シーンでのアイコンやアニメーションを含む、バトラーの動作を制御する。
+戦闘シーンでのアイコン、バトラーの動作を制御する。
+
+MZで武器以外のアニメーション制御は廃止され、タイムプログレス戦闘関連のプロパティ・メソッドが多く追加されている。
 
 v1.1.0 で変更あり。
 
@@ -15,29 +19,48 @@ v1.1.0 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_actions` | [Array](Array.md).&lt;[Game_Action](Game_Action.md)&gt; | 行動の配列 |
 | `_speed` | [Number](Number.md) | 速度(行動順を決定する) |
 | `_result` | [Game_ActionResult](Game_ActionResult.md) | 行動の結果 |
-| `_actionState` | [String](String.md) | [アクション状態](Game_Battler.md#アクション状態) |
+| `_actionState` | [String](String.md) | [アクション状態](#アクション状態) |
 | `_lastTargetIndex` | [Number](Number.md) | 最後の対象番号 |
-| `_animations` | [Array](Array.md).&lt;[MV.BattlerAnimation](MV.BattlerAnimation.md)&gt; | アニメーションの配列 |
 | `_damagePopup` | Boolean | ダメージポップアップするか |
 | `_effectType` | [String](String.md) | エフェクトタイプ |
 | `_motionType` | [String](String.md) | モーションタイプ |
 | `_weaponImageId` | [Number](Number.md) | 武器画像ID |
 | `_motionRefresh` | Boolean | モーションを更新するか |
 | `_selected` | Boolean | 選択されているか |
+| `_tpbState` | [String](String.md) | [タイムプログレス戦闘状態](#タイムプログレス戦闘状態) |
+| `_tpbChargeTime` | [Number](Number.md) | タイムプログレス戦闘チャージ時間 |
+| `_tpbCastTime` | [Number](Number.md) | タイムプログレス戦闘キャスト(詠唱)時間 |
+| `_tpbIdleTime` | [Number](Number.md) | タイムプログレス戦闘待機時間 |
+| `_tpbTurnCount` | [Number](Number.md) | タイムプログレス戦闘ターンカウント |
+| `_tpbTurnEnd` | Boolean | タイムプログレス戦闘ターン終了か |
 
 #### アクション状態
 
-| ActionState | Description |
+| 文字列 | 説明 |
 | --- | --- |
-| 'undecided' | 行動未決定 |
-| 'inputting' | 入力中 |
-| 'waiting' | 待ち状態 |
-| 'acting' | 行動中 |
+| "undecided" | 行動未決定 |
+| "inputting" | 入力中 |
+| "waiting" | 待ち状態 |
+| "acting" | 行動中 |
+
+#### タイムプログレス戦闘状態
+
+| 文字列 | 説明 |
+| --- | --- |
+| "charging" | チャージ中 |
+| "casting" | キャスト(詠唱)中 |
+| "acting" | 行動中 |
+| "charged" | チャージ完了 |
+| "ready" | 準備 |
+
+
+### 廃止MVプロパティ
+`_animations`
 
 
 ### スーパークラスから継承されたメソッド
@@ -211,6 +234,14 @@ v1.1.0 で変更あり。
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
 
+#### applyTpbPenalty ()
+**@MZ** タイムプログレス戦闘、ペナルティを適用。
+
+
+#### canInput () → {Boolean}
+**@MZ** タイムプログレス戦闘、入力可能な状態か。
+
+
 #### chargeTpByDamage (damageRate)
 ダメージ率にしたがって、TPを増やす。
 
@@ -223,10 +254,6 @@ v1.1.0 で変更あり。
 
 #### clearActions ()
 アクションを消去。
-
-
-#### clearAnimations ()
-アニメーションを消去。
 
 
 #### clearDamagePopup ()
@@ -243,6 +270,10 @@ v1.1.0 で変更あり。
 
 #### clearTp ()
 TPを0に。
+
+
+#### clearTpbChargeTime ()
+**@MZ** タイムプログレス戦闘、チャージ時間をクリア。
 
 
 #### clearWeaponAnimation ()
@@ -273,6 +304,10 @@ TPを0に。
 
 #### escape ()
 戦闘から逃げる。
+
+
+#### finishTpbCharge ()
+**@MZ** タイムプログレス戦闘、チャージ完了。
 
 
 #### forceAction (skillId, targetIndex)
@@ -338,12 +373,22 @@ TPを0に。
 TPの量を25までのランダムな値に初期化。
 
 
+#### initTpbChargeTime (advantageous)
+**@MZ** タイムプログレス戦闘、チャージ時間を初期化。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `advantageous` | Boolean | アドバンテージがあるか |
+
+
+#### initTpbTurn ()
+**@MZ** タイムプログレス戦闘、ターンの初期化。
+
+
 #### isActing () → {Boolean}
 アクション実行中か。
-
-
-#### isAnimationRequested () → {Boolean}
-アニメーションが要求されているか。
 
 
 #### isChanting () → {Boolean}
@@ -398,6 +443,22 @@ TPの量を25までのランダムな値に初期化。
 | `stateId` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
 
 
+#### isTpbCharged () → {Boolean}
+**@MZ** タイムプログレス戦闘、チャージが完了しているか。
+
+
+#### isTpbReady () → {Boolean}
+**@MZ** タイムプログレス戦闘、準備状態か。
+
+
+#### isTpbTimeout () → {Boolean}
+**@MZ** タイムプログレス戦闘、タイムアウトか。
+
+
+#### isTpbTurnEnd () → {Boolean}
+**@MZ** タイムプログレス戦闘、ターン終了か。
+
+
 #### isUndecided () → {Boolean}
 行動が未選択か。
 
@@ -422,6 +483,10 @@ TPの量を25までのランダムな値に初期化。
 速度(行動順を決定する)を設定。
 
 
+#### makeTpbActions ()
+**@MZ** タイムプログレス戦闘、行動を生成。
+
+
 #### maxSlipDamage () → {[Number](Number.md)}
 最大スリップダメージ量を返す。
 
@@ -442,8 +507,14 @@ TPの量を25までのランダムな値に初期化。
 戦闘終了ハンドラ。
 
 
-#### onBattleStart ()
+#### onBattleStart (advantageous)
 戦闘開始ハンドラ。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `advantageous` | Boolean | **@MZ** アドバンテージがあるか |
 
 
 #### onDamage (value)
@@ -458,6 +529,14 @@ TPの量を25までのランダムな値に初期化。
 
 #### onRestrict ()
 オーバーライド: [Game_BattlerBase](Game_BattlerBase.md#onrestrict-)
+
+
+#### onTpbCharged ()
+**@MZ** タイムプログレス戦闘、チャージ完了時のハンドラ。
+
+
+#### onTpbTimeout ()
+**@MZ** タイムプログレス戦闘、タイムアウト時のハンドラ。
 
 
 #### onTurnEnd ()
@@ -662,24 +741,12 @@ TP自動回復を適用。
 | `target` | [Game_Battler](Game_Battler.md) | 目標バトラー |
 
 
-#### shiftAnimation () → {[MV.BattlerAnimation](MV.BattlerAnimation.md)}
-次のアニメーションを返す。
+#### shouldDelayTpbCharge () → {Boolean}
+**@MZ** タイムプログレス戦闘、チャージに遅延が必要か。
 
 
 #### speed () → {[Number](Number.md)}
 速度(行動順を決定する)を返す。
-
-
-#### startAnimation (animationId, mirror, delay)
-指定アニメーション開始(追加)。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `animationId` | [Number](Number.md) | アニメーションID |
-| `mirror` | Boolean | 反転するか |
-| `delay` | [Number](Number.md) | 遅延 |
 
 
 #### startDamagePopup ()
@@ -696,6 +763,70 @@ TP自動回復を適用。
 | `weaponImageId` | [Number](Number.md) | 武器ID |
 
 
+#### startTpbTurn ()
+**@MZ** タイムプログレス戦闘、ターンの開始。
+
+
+#### shouldPopupDamage () → {Boolean}
+**@MZ** ポップアップダメージの必要があるか。
+
+
+#### tpbChargeTime () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、チャージ時間を返す。
+
+
+#### startTpbCasting ()
+**@MZ** タイムプログレス戦闘、キャスト(詠唱)を開始。
+
+
+#### startTpbAction ()
+**@MZ** タイムプログレス戦闘、行動を開始。
+
+
+#### tpbAcceleration () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、加速度を返す。
+
+
+#### tpbBaseSpeed () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、基底速度を返す。
+
+
+#### tpbRelativeSpeed () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、相対速度を返す。
+
+
+#### tpbSpeed () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、速度を返す。
+
+
+#### tpbRequiredCastTime () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、必要なキャスト(詠唱)時間を返す。
+
+
+#### turnCount () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘、ターンカウントを返す。
+
+
+#### updateTpb ()
+**@MZ** タイムプログレス戦闘、アップデート。
+
+
+#### updateTpbAutoBattle ()
+**@MZ** タイムプログレス戦闘、オートバトルをアップデート。
+
+
+#### updateTpbCastTime ()
+**@MZ** タイムプログレス戦闘、キャスト(詠唱)時間アップデート。
+
+
+#### updateTpbChargeTime ()
+**@MZ** タイムプログレス戦闘、チャージ時間アップデート。
+
+
+#### updateTpbIdleTime ()
+**@MZ** タイムプログレス戦闘、待機時間アップデート。
+
+ 
 #### useItem (item)
 指定アイテムを使用。
 
@@ -710,3 +841,6 @@ TP自動回復を適用。
 武器画像IDを返す。
 
 
+
+### 廃止MVメソッド
+clearAnimations (), isAnimationRequested (), shiftAnimation (), startAnimation (animationId, mirror, delay)

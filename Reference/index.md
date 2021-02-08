@@ -216,7 +216,7 @@ namespace JsExtensions
     * ※[Game_Party](Game_Party.md)([$gameParty](global.md#gameparty-game_party))
     * ※[Game_Troop](Game_Troop.md)([$gameTroop](global.md#gametroop-game_troop))
 * ※[Game_BattlerBase](Game_BattlerBase.md)
-    * ※[Game_Battler](Game_Battler.md)
+    * [Game_Battler](Game_Battler.md)
         * [Game_Actor](Game_Actor.md)
         * ※[Game_Enemy](Game_Enemy.md)
 
@@ -253,7 +253,7 @@ namespace JsExtensions
 
 * [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
-        * [Tilemap.Render](Tilemap.Render.md)  **@MZ**
+        * ※[Tilemap.Render](Tilemap.Render.md)  **@MZ**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
 * EventEmitter
