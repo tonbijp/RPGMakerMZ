@@ -185,7 +185,7 @@ namespace JsExtensions
 
 ### システム
 
-* ※[Game_CommonEvent](Game_CommonEvent.md)
+* [Game_CommonEvent](Game_CommonEvent.md)
 * ※[Game_Interpreter](Game_Interpreter.md)
 * ※[Game_System](Game_System.md)([$gameSystem](global.md#gamesystem-game_system))
 * ※[Game_Temp](Game_Temp.md)([$gameTemp](global.md#gametemp-game_temp))

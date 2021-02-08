@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_CommonEvent
 
 ### new Game_CommonEvent ()
@@ -11,7 +13,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_commonEventId` | [Number](Number.md) | コモンイベントID |
 | `_interpreter` | [Game_Interpreter](Game_Interpreter.md) | コマンドインタプリタ |
@@ -31,7 +33,7 @@ JSONの定義データを返す。
 この[コモンイベント]がアクティブか。
 
 
-#### list () → {[Array](Array.md).<[RPG.EventCommand](RPG.EventCommand.md)>}
+#### list () → {[Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;}
 [イベントコマンド]を配列で返す。
 
 
