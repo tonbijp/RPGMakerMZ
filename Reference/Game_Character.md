@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Character
 
 ## スーパークラス: [Game_CharacterBase](Game_CharacterBase.md)
@@ -28,7 +30,7 @@
 
 ROUTE_ から始まる定数は、[移動ルートの設定]の[移動コマンド]に対応している。
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `ROUTE_END` | [Number](Number.md) | [static] 終了 |
 | `ROUTE_MOVE_DOWN` | [Number](Number.md) | [static] [下に移動] |

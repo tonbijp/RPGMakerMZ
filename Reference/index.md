@@ -201,7 +201,7 @@ namespace JsExtensions
 
 * ※[Game_Followers](Game_Followers.md)
 * ※[Game_CharacterBase](Game_CharacterBase.md)
-    * ※[Game_Character](Game_Character.md)
+    * [Game_Character](Game_Character.md)
         * ※[Game_Player](Game_Player.md)([$gamePlayer](global.md#gameplayer-game_player))
         * ※[Game_Follower](Game_Follower.md)
         * ※[Game_Event](Game_Event.md)
