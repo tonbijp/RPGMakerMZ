@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Event
 
 ## スーパークラス: [Game_Character](Game_Character.md)
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_mapId` | [Number](Number.md) | マップID |
 | `_eventId` | [Number](Number.md) | イベントID |
