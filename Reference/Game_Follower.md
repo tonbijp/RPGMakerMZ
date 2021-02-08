@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Follower
 
 ## スーパークラス: [Game_Character](Game_Character.md)
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_memberIndex` | [Number](Number.md) | 隊列メンバー番号 |
 
@@ -167,11 +169,15 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `character` | [Game_Character](Game_Character.md) |  |
+| `character` | [Game_Character](Game_Character.md) | 追跡対象キャラクター |
 
 
 #### initialize ()
 オーバーライド: [Game_Character](Game_Character.md#initialize-)
+
+
+#### isGathered () → {Boolean}
+**@MZ** [隊列メンバー]が集合しているか。
 
 
 #### isVisible () → {Boolean}
