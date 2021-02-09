@@ -37,7 +37,7 @@
 | `_angle` | [Number](Number.md) | 回転角(度) |
 | `_rotationSpeed` | [Number](Number.md) | 回転速度 |
 | `_wholeDuration` | [Number](Number.md) | **@MZ** 全体継続時間(フレーム) |
-| `_easingType` | [Number](Number.md) | **@MZ** イージング方法 |
+| `_easingType` | [Number](Number.md) | **@MZ** [イージングタイプ](#イージングタイプ) |
 | `_easingExponent` | [Number](Number.md) | **@MZ** イージング指数 |
 
 #### 原点
@@ -47,6 +47,15 @@
 | --- | --- |
 | 0 | 左上 |
 | 1 | 中央 |
+
+#### イージングタイプ
+
+| 番号 | 説明 |
+| --- | --- |
+| 0 | 一定速度 |
+| 1 | ゆっくり始まる |
+| 2 | ゆっくり終わる |
+| 3 | ゆっくり始まってゆっくり終わる |
 
 
 ### メソッド
@@ -81,7 +90,7 @@
 
 
 #### easeIn (t, exponent) → {[Number](Number.md)}
-**@MZ** イーズインの場合の単位進捗値を返す。
+**@MZ** イーズイン(ゆっくり始まる)の場合の単位進捗値を返す。
 
 ##### 引数
 
@@ -92,7 +101,7 @@
 
 
 #### easeInOut (t, exponent) → {[Number](Number.md)}
-**@MZ** イーズインアウトの場合の単位進捗値を返す。
+**@MZ** イーズインアウト(ゆっくり始まってゆっくり終わる)の場合の単位進捗値を返す。
 
 ##### 引数
 
@@ -103,7 +112,7 @@
 
 
 #### easeOut (t, exponent) → {[Number](Number.md)}
-**@MZ** イーズアウトの場合の単位進捗値を返す。
+**@MZ** イーズアウト(ゆっくり終わる)の場合の単位進捗値を返す。
 
 ##### 引数
 
@@ -133,7 +142,7 @@
 [色調]を初期化。
 
 
-#### move (origin, x, y, scaleX, scaleY, opacity, blendMode, duration)
+#### move (origin, x, y, scaleX, scaleY, opacity, blendMode, duration, easingType)
 指定位置へ移動。
 
 ##### 引数
@@ -148,6 +157,7 @@
 | `opacity` | [Number](Number.md) | [不透明度]\(0〜255) |
 | `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
+| `easingType` | [Number](Number.md) | **@MZ** [イージングタイプ](#イージングタイプ)  |
 
 
 #### name () → {[String](String.md)}

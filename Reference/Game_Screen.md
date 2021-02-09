@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Screen
 
 ### new Game_Screen ()
@@ -13,7 +15,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_shake` | [Number](Number.md) | [シェイク]でずれた距離 |
 | `_shakePower` | [Number](Number.md) | [シェイク]強さ |
@@ -104,17 +106,19 @@
 | `pictureId` | [Number](Number.md) | ピクチャID |
 
 
-#### flashColor () → {[Array](Array.md).<[Number](Number.md)>}
+#### flashColor () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 [フラッシュ]の色を返す。
 
 
-#### initialize () オブジェクト生成時の初期化。
+#### initialize ()
+ オブジェクト生成時の初期化。
+
 
 #### maxPictures () → {[Number](Number.md)}
 最大ピクチャ数を返す。
 
 
-#### movePicture (pictureId, origin, x, y, scaleX, scaleY, opacity, blendMode, duration)
+#### movePicture (pictureId, origin, x, y, scaleX, scaleY, opacity, blendMode, duration, easingType)
 指定した[ピクチャの移動]。
 
 ##### 引数
@@ -130,6 +134,7 @@
 | `opacity` | [Number](Number.md) | [不透明度] |
 | `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `duration` | [Number](Number.md) | 継続時間 |
+| `easingType` | [Number](Number.md) | **@MZ** [イージングタイプ](Game_Picture.md#イージングタイプ))  |
 
 
 #### onBattleStart ()
@@ -326,7 +331,9 @@
 
 #### weatherPower () → {[Number](Number.md)}
 [天候]強さを返す。
-#### weatherType () → {[String](String.md)}
+
+
+#### weatherType () → {[String](String.md)}
 [天候]のタイプを返す。
 
 
@@ -340,4 +347,5 @@
 
 #### zoomY () → {[Number](Number.md)}
 拡大箇所の y座標(ピクセル)を返す。
-
+
+

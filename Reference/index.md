@@ -226,7 +226,7 @@ namespace JsExtensions
 * [Game_Map](Game_Map.md)([$gameMap](global.md#gamemap-game_map))
 * [Game_Message](Game_Message.md)([$gameMessage](global.md#gamemessage-game_message))
 * [Game_Picture](Game_Picture.md)
-* ※[Game_Screen](Game_Screen.md)([$gameScreen](global.md#gamescreen-game_screen))
+* [Game_Screen](Game_Screen.md)([$gameScreen](global.md#gamescreen-game_screen))
 
 
 
