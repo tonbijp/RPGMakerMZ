@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Vehicle
 
 ## スーパークラス: [Game_Character](Game_Character.md)
@@ -13,7 +15,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_type` | [String](String.md) | [乗り物]の種類 |
 | `_mapId` | [Number](Number.md) | マップID |

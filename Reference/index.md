@@ -204,14 +204,14 @@ namespace JsExtensions
         * [Game_Player](Game_Player.md)([$gamePlayer](global.md#gameplayer-game_player))
         * [Game_Follower](Game_Follower.md)
         * [Game_Event](Game_Event.md)
-        * ※[Game_Vehicle](Game_Vehicle.md)
+        * [Game_Vehicle](Game_Vehicle.md)
 
 ### バトルキャラクタ
 
 * [Game_Action](Game_Action.md)
 * [Game_ActionResult](Game_ActionResult.md)
 * [Game_Actors](Game_Actors.md)([$gameActors](global.md#dataactors-arrayrpgactor))
-* ※[Game_Unit](Game_Unit.md)
+* [Game_Unit](Game_Unit.md)
     * [Game_Party](Game_Party.md)([$gameParty](global.md#gameparty-game_party))
     * [Game_Troop](Game_Troop.md)([$gameTroop](global.md#gametroop-game_troop))
 * [Game_BattlerBase](Game_BattlerBase.md)

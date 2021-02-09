@@ -119,5 +119,16 @@
 生きているメンバーの[狙われ率]の合計を返す。
 
 
+#### tpbBaseSpeed () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘の基本速度を返す。
+
+
+#### tpbReferenceTime () → {[Number](Number.md)}
+**@MZ** タイムプログレス戦闘の参照速度を返す。
+
+
+#### updateTpb ()
+**@MZ** タイムプログレス戦闘をアップデート。
+
 
 
