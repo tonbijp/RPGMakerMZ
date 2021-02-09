@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Player
 
 ## スーパークラス: [Game_Character](Game_Character.md)
@@ -16,7 +18,7 @@ v1.1.0 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_vehicleType` | [String](String.md) | [乗り物]の種類 |
 | `_vehicleGettingOn` | Boolean | [乗り物]に乗っているか |
@@ -421,6 +423,10 @@ v1.1.0 で変更あり。
 | `y` | [Number](Number.md) |  |  タイル数 |
 | `d` | [Number](Number.md) | &lt;optional&gt; |  向き(テンキー対応) |
 | `fadeType` | [Number](Number.md) | &lt;optional&gt; |  |
+
+
+#### setupForNewGame ()
+**@MZ** ニューゲームの準備(マップや座標の設定)。
 
 
 #### showFollowers ()
