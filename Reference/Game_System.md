@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_System
 
 ### new Game_System ()
@@ -14,7 +16,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_saveEnabled` | Boolean | [セーブ]メニューありか |
 | `_menuEnabled` | Boolean | メニュー表示されるか |
@@ -25,6 +27,7 @@
 | `_escapeCount` | [Number](Number.md) | 逃亡回数 |
 | `_saveCount` | [Number](Number.md) | セーブ回数 |
 | `_versionId` | [Number](Number.md) | バージョンID |
+| `_savefileId` | [Number](Number.md) | **@MZ** バージョンID |
 | `_framesOnSave` | [Number](Number.md) | 保存累積フレーム数 |
 | `_bgmOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGM |
 | `_bgsOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGS |
@@ -90,6 +93,10 @@
 オブジェクト生成時の初期化。
 
 
+#### isAutosaveEnabled () → {Boolean}
+**@MZ**オートセーブ可能か。
+
+
 #### isChinese () → {Boolean}
 ロケールが中国か。
 
@@ -127,6 +134,14 @@
 
 #### isSideView () → {Boolean}
 サイドビュー戦闘か。
+
+
+#### mainFontFace () → {[String](String.md)}
+**@MZ** メインフォント(フォント名を, で区切って並べたもの)を返す。
+
+
+#### numberFontFace () → {[String](String.md)}
+**@MZ** 数字フォント(フォント名を, で区切って並べたもの)を返す。
 
 
 #### onAfterLoad ()
@@ -201,6 +216,20 @@
 | `value` | [RPG.AudioFile](RPG.AudioFile.md) | 敗北ME |
 
 
+#### savefileId () → {[Number](Number.md)}
+**@MZ** セーブファイルIDを返す。
+
+
+#### setSavefileId (savefileId)
+**@MZ** セーブファイルIDを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `savefileId` | [Number](Number.md) | セーブファイルID |
+
+
 #### setVictoryMe (value)
 勝利MEの設定。
 
@@ -231,6 +260,10 @@
 
 #### winCount () → {[Number](Number.md)}
 勝利回数を返す。
+
+
+#### windowPadding () → {[Number](Number.md)}
+**@MZ** ウィンドウのパディング幅(規定値:12ピクセル)を返す。
 
 
 #### windowTone () → {[Array](Array.md).<[Number](Number.md)>}

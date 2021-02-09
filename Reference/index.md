@@ -173,12 +173,11 @@ namespace JsExtensions
 * [Animation](RPG.Animation.md)([$dataAnimations](global.md#dataanimations-arrayrpganimation)) . [Timing](RPG.Animation.Timing.md)
 * [AudioFile](RPG.AudioFile.md)
 * [MapInfo](RPG.MapInfo.md)([$dataMapInfos](global.md#datamapinfos-arrayrpgmapinfo))
-* [System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) . [AttackMotion](RPG.System.AttackMotion.md) \| [Terms](RPG.System.Terms.md) \| [TestBattler](RPG.System.TestBattler.md) \| [Vehicle](RPG.System.Vehicle.md)
+* [System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) . [Advanced](RPG.System.Advanced.md) **@MZ** \| [titleCommandWindow](RPG.System.titleCommandWindow.md) **@MZ** \| [AttackMotion](RPG.System.AttackMotion.md) \| [Terms](RPG.System.Terms.md) \| [TestBattler](RPG.System.TestBattler.md) \| [Vehicle](RPG.System.Vehicle.md)
 * [Troop](RPG.Troop.md)([$dataTroops](global.md#datatroops-arrayrpgtroop)) . [Member](RPG.Troop.Member.md)
 * [Damage](RPG.Damage.md)
 * [Effect](RPG.Effect.md)
 * [Trait](RPG.Trait.md)
-
 
 
 ## オブジェクト
@@ -187,7 +186,7 @@ namespace JsExtensions
 
 * [Game_CommonEvent](Game_CommonEvent.md)
 * [Game_Interpreter](Game_Interpreter.md)([イベントコマンド系メソッド](Game_Interpreter_command.md))
-* ※[Game_System](Game_System.md)([$gameSystem](global.md#gamesystem-game_system))
+* [Game_System](Game_System.md)([$gameSystem](global.md#gamesystem-game_system))
 * ※[Game_Temp](Game_Temp.md)([$gameTemp](global.md#gametemp-game_temp))
 * ※[Game_Timer](Game_Timer.md)([$gameTimer](global.md#gametimer-game_timer))
 
