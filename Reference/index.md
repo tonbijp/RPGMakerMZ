@@ -213,7 +213,7 @@ namespace JsExtensions
 * [Game_ActionResult](Game_ActionResult.md)
 * [Game_Actors](Game_Actors.md)([$gameActors](global.md#dataactors-arrayrpgactor))
 * ※[Game_Unit](Game_Unit.md)
-    * ※[Game_Party](Game_Party.md)([$gameParty](global.md#gameparty-game_party))
+    * [Game_Party](Game_Party.md)([$gameParty](global.md#gameparty-game_party))
     * ※[Game_Troop](Game_Troop.md)([$gameTroop](global.md#gametroop-game_troop))
 * [Game_BattlerBase](Game_BattlerBase.md)
     * [Game_Battler](Game_Battler.md)

@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Party
 
 ## スーパークラス: [Game_Unit](Game_Unit.md)
@@ -17,7 +19,7 @@
 
 ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パーティ能力id)に使われる。
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `ABILITY_ENCOUNTER_HALF` | [Number](Number.md) | [static] エンカウント半減 |
 | `ABILITY_ENCOUNTER_NONE` | [Number](Number.md) | [static] エンカウント無効 |
@@ -338,8 +340,12 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
+#### onEscapeFailure ()
+**@MZ** 逃亡が失敗した時のハンドラ。
+
+
 #### onPlayerWalk ()
-プレイヤーが歩く時に呼ばれるハンドラ。
+プレイヤーが歩く時のハンドラ。
 
 
 #### partyAbility (abilityId) → {Boolean}
@@ -392,6 +398,10 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 #### removeBattleStates ()
 全パーティメンバーのステートを削除。
+
+
+#### removeInvalidMembers ()
+**@MZ** 不正なアクターを取り除く。
 
 
 #### requestMotionRefresh ()
