@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Message
 
 ### new Game_Message ()
@@ -15,10 +17,11 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_texts` | [Array](Array.md).&lt;[String](String.md)&gt; | 文章 |
+| `_texts` | [Array](Array.md).&lt;[String](String.md)&gt; | [文章] |
 | `_choices` | [Array](Array.md).&lt;[String](String.md)&gt; | 選択肢 |
+| `_speakerName` | [String](String.md) | [名前]欄の内容 |
 | `_faceName` | [String](String.md) | [顔]ファイル名 |
 | `_faceIndex` | [Number](Number.md) | [顔]番号 |
 | `_background` | [Number](Number.md) | [[背景]](Game_Message.md#背景) |
@@ -127,6 +130,10 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 
 #### isNumberInput () → {Boolean}
 [数値入力の処理]か。
+
+
+#### isRTL () → {Boolean}
+**@MZ** 右から左への文章(アラビア語)を含むか。
 
 
 #### itemChoiceItypeId () → {[Number](Number.md)}
@@ -281,4 +288,15 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 | `noFast` | Boolean | [早送りなし]か |
 
 
+#### setSpeakerName (speakerName)
+**@MZ** メッセージの[名前]欄を設定。
 
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `speakerName` | [String](String.md) | [名前] |
+
+
+#### speakerName () → {[String](String.md)}
+**@MZ**メッセージの[名前]欄の内容を返す。
