@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Troop
 
 ## スーパークラス: [Game_Unit](Game_Unit.md)
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `LETTER_TABLE_HALF` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 名前の接尾辞(A〜Zの半角記号) |
 | `LETTER_TABLE_FULL` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 名前の接尾辞(A〜Zの全角記号) |
@@ -82,6 +84,10 @@
 
 #### isEventRunning () → {Boolean}
 イベントが実行中か。
+
+
+#### isTpbTurnEnd () → {Boolean}
+**@MZ** タイムプログレス戦闘のターンが終了しているか。
 
 
 #### letterTable () → {[Array](Array.md).<[String](String.md)>}
