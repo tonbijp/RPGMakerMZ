@@ -222,7 +222,7 @@ namespace JsExtensions
 
 ### その他オブジェクト
 
-* ※[Game_Item](Game_Item.md)
+* [Game_Item](Game_Item.md)
 * [Game_Map](Game_Map.md)([$gameMap](global.md#gamemap-game_map))
 * ※[Game_Message](Game_Message.md)([$gameMessage](global.md#gamemessage-game_message))
 * ※[Game_Picture](Game_Picture.md)

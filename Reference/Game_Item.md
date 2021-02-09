@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Item
 
 ### new Game_Item ()
@@ -13,7 +15,7 @@
 
 ##### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor', '' ) |
 | `_itemId` | [Number](Number.md) | アイテムID(種類毎に異なる) |
@@ -22,31 +24,40 @@
 ### メソッド
 
 #### initialize ()
- オブジェクト生成時の初期化。
+ オブジェクト生成時の初期化。
+
 
 #### isArmor () → {Boolean}
-防具か。
+防具か。
+
 
 #### isEquipItem () → {Boolean}
-装備品か。
+装備品か。
+
 
 #### isItem () → {Boolean}
-アイテムか。
+アイテムか。
+
 
 #### isNull () → {Boolean}
-未設定か。
+未設定か。
+
 
 #### isSkill () → {Boolean}
-スキルか。
+スキルか。
+
 
 #### isUsableItem () → {Boolean}
-使用できるアイテムか。
+使用できるアイテムか。
+
 
 #### isWeapon () → {Boolean}
-武器か。
+武器か。
+
 
 #### itemId () → {[Number](Number.md)}
-アイテムIDを返す。
+アイテムIDを返す。
+
 
 #### object () → {[RPG.BaseItem](RPG.BaseItem.md)}
 JSONデータを返す。
@@ -71,4 +82,5 @@ JSONデータを返す。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
-
+
+

@@ -72,7 +72,7 @@ v1.1.0 で変更あり。
 [飛行船]を返す。
 
 
-#### allTiles (x, y) → {[Array](Array.md).<[Number](Number.md)>}
+#### allTiles (x, y) → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 指定位置に重なった[イベント]も含めた全タイルIDの配列を返す。
 
 ##### 引数
@@ -97,6 +97,10 @@ v1.1.0 で変更あり。
 | `x` | [Number](Number.md) | x位置(タイル数) |
 | `y` | [Number](Number.md) | y位置(タイル数) |
 | `z` | [Number](Number.md) | 重なり(0〜3) |
+
+
+#### autorunCommonEvents () → {Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt;}
+**@MZ** [自動実行]のコモンイベントを返す。
 
 
 #### battleback1Name () → {[String](String.md)}
@@ -195,7 +199,7 @@ canvasの y座標をタイル数に変換して返す。
  マップ上に[乗り物]( boat, ship, airship )を生成。
 
 
-#### data () → {[Array](Array.md).<[Number](Number.md)>}
+#### data () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
  マップデータの配列を返す。(参照: [RPG.Map.data](RPG.Map.md#マップデータ))
 
 
@@ -266,7 +270,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
  マップ[表示名]を表示に設定。
 
 
-#### encounterList () → {[Array](Array.md).<[RPG.Map.Encounter](RPG.Map.Encounter.md)>}
+#### encounterList () → {[Array](Array.md).&lt;[RPG.Map.Encounter](RPG.Map.Encounter.md)&gt;}
 [エンカウント]の配列を返す。
 
 
@@ -306,11 +310,11 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
-#### events () → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
+#### events () → {[Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt;}
  現在のマップ上に存在する全[イベント]の配列を返す。
 
 
-#### eventsXy (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
+#### eventsXy (x, y) → {[Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt;}
  指定位置にある[イベント]を配列で返す。
 
 ##### 引数
@@ -321,7 +325,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
-#### eventsXyNt (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
+#### eventsXyNt (x, y) → {[Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt;}
  指定位置にある、通行不可の[イベント]を配列で返す。Nt = No Through。
 
 ##### 引数
@@ -472,7 +476,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
-#### layeredTiles (x, y) → {[Array](Array.md).<[Number](Number.md)>}
+#### layeredTiles (x, y) → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
  指定位置に重なったタイルIDの配列を返す。
 
 ##### 引数
@@ -499,7 +503,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 [遠景]画像の視差を考慮した y位置(ピクセル)を返す。
 
 
-#### parallelCommonEvents () → {[Array](Array.md).<[RPG.CommonEvent](RPG.CommonEvent.md)>}
+#### parallelCommonEvents () → {[Array](Array.md).&lt;[RPG.CommonEvent](RPG.CommonEvent.md)&gt;}
 [並列処理]の[コモンイベント]の配列を返す。
 
 
@@ -710,7 +714,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 | `y` | [Number](Number.md) | y位置(タイル数) |
 
 
-#### tileEventsXy (x, y) → {[Array](Array.md).<[Game_Event](Game_Event.md)>}
+#### tileEventsXy (x, y) → {[Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt;}
  指定位置にある、画像にタイルセットを選択した[イベント]を配列で返す。
 
 ##### 引数
@@ -741,7 +745,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 [タイルセット]を返す。
 
 
-#### tilesetFlags () → {[Array](Array.md).<[Number](Number.md)>}
+#### tilesetFlags () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
 [タイルセット]に設定された[通行]などの地形フラグを返す。<br />
 地形フラグの 詳細は[RPG.Tileset](RPG.Tileset.md) を参照
 
@@ -804,7 +808,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 | `type` | [Number](Number.md) | [String](String.md) |  |
 
 
-#### vehicles () → {[Array](Array.md).<[Game_Vehicle](Game_Vehicle.md)>}
+#### vehicles () → {[Array](Array.md).&lt;[Game_Vehicle](Game_Vehicle.md)&gt;}
  生成されている[乗り物]の配列を返す。
 
 
