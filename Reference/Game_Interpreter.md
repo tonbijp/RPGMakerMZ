@@ -63,7 +63,7 @@ v1.1.1 で変更あり。
 
 
 ### メソッド
-イベントコマンドに対応した commandNnn メソッドは、[別ファイル](Game_Interpreter_command.md)に分けています。<br />
+イベントコマンドに対応した commandXxx メソッドは、[別ファイル](Game_Interpreter_command.md)に分けています。<br />
 が、単にコマンンド並べているだけなので、詳しい内容はトリアコンタンさんの
 [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=2095105278) を参照してください。
 
