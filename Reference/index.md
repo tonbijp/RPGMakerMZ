@@ -186,7 +186,7 @@ namespace JsExtensions
 ### システム
 
 * [Game_CommonEvent](Game_CommonEvent.md)
-* ※[Game_Interpreter](Game_Interpreter.md)
+* [Game_Interpreter](Game_Interpreter.md)([イベントコマンド系メソッド](Game_Interpreter_command.md))
 * ※[Game_System](Game_System.md)([$gameSystem](global.md#gamesystem-game_system))
 * ※[Game_Temp](Game_Temp.md)([$gameTemp](global.md#gametemp-game_temp))
 * ※[Game_Timer](Game_Timer.md)([$gameTimer](global.md#gametimer-game_timer))
