@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Variables
 
 ### new Game_Variables ()
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 変数の内容の配列 |
 
@@ -26,7 +28,8 @@
 値を初期化。
 
 
-#### initialize () オブジェクト生成時の初期化。
+#### initialize ()
+ オブジェクト生成時の初期化。
 
 
 #### onChange ()
@@ -53,5 +56,6 @@
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `variableId` | [Number](Number.md) | 変数ID |
-
+
+
 

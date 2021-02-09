@@ -193,9 +193,9 @@ namespace JsExtensions
 
 ### スイッチ・変数
 
-* ※[Game_Switches](Game_Switches.md)([$gameSwitches](global.md#gameswitches-game_switches))
-* ※[Game_SelfSwitches](Game_SelfSwitches.md)([$gameSelfSwitches](global.md#gameselfswitches-game_selfswitches))
-* ※[Game_Variables](Game_Variables.md)([$gameVariables](global.md#gamevariables-game_variables))
+* [Game_Switches](Game_Switches.md)([$gameSwitches](global.md#gameswitches-game_switches))
+* [Game_SelfSwitches](Game_SelfSwitches.md)([$gameSelfSwitches](global.md#gameselfswitches-game_selfswitches))
+* [Game_Variables](Game_Variables.md)([$gameVariables](global.md#gamevariables-game_variables))
 
 ### マップキャラクタ
 

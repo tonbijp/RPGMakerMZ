@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Switches
 
 ### new Game_Switches ()
@@ -15,7 +17,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | [Array](Array.md).&lt;Boolean&gt; | 真偽値の配列 |
 

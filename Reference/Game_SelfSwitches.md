@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_SelfSwitches
 
 ### new Game_SelfSwitches ()
@@ -13,7 +15,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_data` | Object | {key: Array, …} の形 |
 
