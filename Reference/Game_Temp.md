@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Game_Temp
 
 ### new Game_Temp ()
@@ -8,44 +10,85 @@
 
 ゲームの一時データを保持しておくクラス。
 
+
 関連クラス: [Game_CommonEvent](Game_CommonEvent.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_isPlaytest` | Boolean |  |
-| `_commonEventId` | [Number](Number.md) |  |
-| `_destinationX` | [Number](Number.md) |  |
-| `_destinationY` | [Number](Number.md) |  |
+| `_isPlaytest` | Boolean | テストプレイか |
+| `_destinationX` | [Number](Number.md) | 目的地のx座標 |
+| `_destinationY` | [Number](Number.md) | 目的地のy座標 |
+| `_touchTarget` | Object | **@MZ** タッチの目標 |
+| `_touchState` | [String](String.md) | **@MZ** タッチの状態 |
+| `_needsBattleRefresh` | Boolean | **@MZ** 戦闘の再設定が必要か |
+| `_commonEventQueue` | [Array](Array.md) | **@MZ** コモンイベントキュー |
+| `_animationQueue` | [Array](Array.md) | **@MZ** アニメーションキュー |
+| `_balloonQueue` | [Array](Array.md) | **@MZ** フキダシキュー |
+| `_lastActionData` | [Array](Array.md) | **@MZ** 最後の行動データ |
+
+
+### 廃止MVプロパティ
+`_commonEventId`
 
 
 ### メソッド
 
+#### clearBattleRefreshRequest () 
+**@MZ** 戦闘の再設定の要請を解除。
+
+
 #### clearCommonEvent ()
-一時保存の[コモンイベント]を消去。
+一時保存の[コモンイベント]を消去。
+
 
 #### clearDestination ()
-プレイヤーの移動目標データを消去。
+プレイヤーの移動目標データを消去。
+
+
+#### clearTouchState ()
+**@MZ** タッチ状態を解除。
+
 
 #### destinationX () → {[Number](Number.md)}
-移動目標の x座標を返す。
+移動目標の x座標を返す。
+
 
 #### destinationY () → {[Number](Number.md)}
-移動目標の y座標を返す。
+移動目標の y座標を返す。
+
 
 #### initialize ()
- オブジェクト生成時の初期化。
+ オブジェクト生成時の初期化。
+
+
+#### isBattleRefreshRequested () → {Boolean}
+**@MZ** 戦闘の再設定が要請されているか。
+
 
 #### isCommonEventReserved () → {Boolean}
-[コモンイベント]が保存されているか。
+[コモンイベント]が保存されているか。
+
 
 #### isDestinationValid () → {Boolean}
-目標位置が正しいデータか。
+目標位置が正しいデータか。
+
 
 #### isPlaytest () → {Boolean}
-テストモードか。
+テストモードか。
+
+
+#### lastActionData (type) → {Object}
+**@MZ** 指定タイプの最後のアクションを返す。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `type` | [String](String.md)  | アクションタイプ 
+
 
 #### reserveCommonEvent (commonEventId)
 指定[コモンイベント]を、あとで処理するために保持。
@@ -57,8 +100,44 @@
 | `commonEventId` | [Number](Number.md) | コモンイベントID |
 
 
-#### reservedCommonEvent () → {*}
-一時保存された[コモンイベント]を返す。
+#### requestBattleRefresh () 
+**@MZ** 戦闘の再設定を要請。
+
+
+#### requestAnimation (targets, animationId, mirror opt)
+**@MZ** アニメーションを要請。
+
+##### 引数
+
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `targets` | [Array](Array.md) | | 目標 |
+| `animationId` | [Number](Number.md) | | アニメーションID |
+| `mirror` | Boolean | &lt;optional&gt;  | 反転するか(規定値:false) |
+
+
+#### requestBalloon (target, balloonId)
+**@MZ** アニメーションを要請。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `target` | Object | 目標 |
+| `balloonId` | [Number](Number.md) | フキダシID |
+
+
+#### retrieveAnimation () → {Object}
+**@MZ** 登録したアニメーション設定を返す。
+
+
+#### retrieveBalloon () → {[Number](Number.md)}
+**@MZ** 登録したフキダシ設定を返す。|
+
+
+#### retrieveCommonEvent () → {[Number](Number.md)}
+**@MZ** 登録したコモンイベントIDを返す。|
+
 
 #### setDestination (x, y)
 移動目標の座標を設定。
@@ -69,4 +148,97 @@
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x座標(タイル数) |
 | `y` | [Number](Number.md) | y座標(タイル数) |
-
+
+
+#### setLastActionData (type, value)
+**@MZ** 最後のアクションデータを設定。
+0:スキル, 1:アイテム, 2:行動したアクター, 3:行動した敵, 4:対象となったアクター, 5:対象となった敵,
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `type` | [Number](Number.md)  | アクションタイプ |
+| `value` | Object | アクションデータ |
+
+
+#### setLastSubjectActorId (actorID)
+**@MZ** 最後に行動したアクターを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `actorID` | [Number](Number.md) | アクターID |
+
+
+#### setLastSubjectEnemyIndex (enemyIndex)
+**@MZ** 最後に行動した敵番号を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `enemyIndex` | [Number](Number.md) | 敵番号 |
+
+
+#### setLastTargetActorId (actorID)
+**@MZ** 最後に対象となったアクターを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `actorID` | [Number](Number.md) | アクターID |
+
+
+#### setLastTargetEnemyIndex (enemyIndex)
+**@MZ** 最後に対象となった敵番号を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `enemyIndex` | [Number](Number.md) | 敵番号 |
+
+
+#### setLastUsedSkillId (skillID)
+**@MZ** 最後に使ったスキルを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `skillID` | [Number](Number.md) | スキルID |
+
+
+#### setLastUsedItemId (itemID)
+**@MZ** 最後に使ったアイテムを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `itemID` | [Number](Number.md) | アイテムID |
+
+
+#### setTouchState (target, state)
+**@MZ** タッチ状態を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `target` | Object | 目標 |
+| `state` | [String](String.md) | タッチ状態 |
+
+
+#### touchTarget () → {Object}
+**@MZ** タッチ目標を返す。
+
+
+#### touchState () → {[String](String.md)}
+**@MZ** タッチ状態を返す。
+
+### 廃止MVメソッド
+reservedCommonEvent () 
