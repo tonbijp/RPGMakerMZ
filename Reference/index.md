@@ -245,8 +245,8 @@ namespace JsExtensions
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
-    * ※[PIXI.DisplayObject](PIXI.DisplayObject.md)
-        * ※[PIXI.Container](PIXI.Container.md) → [継承](index.md#コンテナpixicontainer)
+    * [PIXI.DisplayObject](PIXI.DisplayObject.md)
+        * [PIXI.Container](PIXI.Container.md) → [継承](index.md#コンテナpixicontainer)
 
 ### レンダラ
 

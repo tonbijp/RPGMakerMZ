@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: PIXI.Sprite
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
