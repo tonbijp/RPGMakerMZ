@@ -35,12 +35,35 @@
 # プラグインファイルの設定
 プラグインファイルのコメント( /\*: \*/ )に書かれるプラグインの設定。<br />
 頭の方に言語コード( 日本語の場合 /\*:ja )を書くと、言語ごとに別の設定が用意できる。<br />
-以下で説明する @ではじまる宣言はディレクティブとも呼ばれる。
+以下で説明する @ではじまる宣言は公式にはアノテーションと呼ばれる。ディレクティブと呼ばれることもある。
 
-※ @があるとディレクティブと判断されてしまうため、全ての設定値に@は使用できない。
+※ @があるとアノテーションと判断されてしまうため、全ての設定値に@は使用できない。
 
+[公式プラグイン講座 アノテーションに関する解説](https://tkool.jp/mz/plugin/make/annotation.html) 参照。
 
 ## プラグイン全体の設定
+
+#### @target
+**@MZ** 対象となるツクール名。<br />
+『RPGツクールMZ』のプラグインにはとにかく書いておく。
+
+##### 例
+```
+ * @target MZ
+```
+
+#### @base
+**@MZ** プラグインを使うのに必要とされるプラグイン名。<br />
+依存するプラグインが設定されていない場合に、[プラグイン管理]ウィンドウに警告が表示されます。
+
+
+#### @orderAfter
+**@MZ** [プラグイン管理]ウィンドウで、このプラグインの上に置く必要のあるプラグイン名。
+
+
+#### @orderAfter
+**@MZ** [プラグイン管理]ウィンドウで、このプラグインの下に置く必要のあるプラグイン名。
+
 
 #### @plugindesc
 [説明]に表示される文字列。
@@ -49,18 +72,56 @@
 [作者]に表示される文字列。
 
 #### @help
-[ヘルプ]に表示される文字列。次の行から別のディレクティブが書かれるまで記述可能。
+[ヘルプ]に表示される文字列。次の行から別のアノテーションが書かれるまで記述可能。
+
+#### @url
+**@MZ** プラグインのあるURL。プラグインファイル直接のURLを想定しているようだ。<br />
+ただ、ダウンロード前に規約などを読んでもらいたい場合は、そちらのページをリンクしてもいいようだ。
+
+
+## [未使用ファイルを含まない]対応
+デプロイメントを実行するときに[未使用ファイルを含まない]にチェックしていた場合。<br />
+削除されては困るファイルを指定するのに使うアノテーション。
 
 #### @requiredAssets
-デプロイメントを実行するときに[未使用ファイルを含まない]にチェックしていた場合。<br />
 これでファイルを指定すれば削除されない。
 
-##### Example
+##### 例
 ```
  * @requiredAssets img/example/image_1
 ```
 
-## パラメータ毎の設定
+[メモ]のメタタグの値としてファイルを使う場合、そのファイルは固定されていない。<br />
+その場合は以下のタグを指定すれば削除されない。
+
+#### @noteParam
+メモ欄に書かれたタグ名
+
+#### @noteDir
+ファイルがあるディレクトリ
+
+#### @noteType
+fileしかないのでfileと書く (animationは廃止)
+
+#### @noteData
+メモを利用するデータベースを maps, events, actors, classes, skills, items, weapons, armors, enemies, states, tilesets から指定
+
+ ##### Example
+アイテムのメモの内容が
+```
+<sampleImage:img1>
+```
+の場合。
+
+```
+ * @noteParam sampleImage
+ * @noteDir img/sample/
+ * @noteType file
+ * @noteData items
+```
+
+
+## プラグインパラメータの設定
 
 #### @param
 パラメータ識別子。省略不可。パラメータ毎の設定の先頭に置くこと。<br />
@@ -90,15 +151,41 @@
  * @parent group
 ```
 
-#### @type (ver1.5.0 以降)
-パラメータの型(詳細は後述)<br />
-入力時のUIが型に合わせて変わるが、プラグインに渡される値は全て文字列。
+
+## プラグインコマンドの設定
+
+### @command
+**@MZ** プラグインコマンド識別子。<br />
+MZではプラグインコマンドの仕組みが変わり、まずプラグインを選択してコマンドを選ぶようになった。<br />
+MVの時は識別子が衝突しないように`TF_`などの短い開発者ごとの接頭辞をつける作法があったが、MZではコマンドに関しては気にする必要がなくなった。<br />
+この @command で指定するのは識別子であって、『RPGツクールMZ』のエディタで表示される名前は別に @text で設定できる。
 
 
+### @arg
+**@MZ** プラグインコマンド引数。<br />
+プラグインパラメータと同じように値の型に応じた入力インタフェースが用意されるようになった。<br />
+@arg の後に、パラメータ同様の書式で引数の型情報を記述。
 
-## @type
+##### Example
+```
+* @command COMMAND_IDENTIFIER
+* @text コマンドの表示名
+* @desc コマンドの説明
+*
+* @arg arg_identifier
+* @text 引数の表示名
+* @desc 引数の説明
+```
 
-### @type string 
+
+## パラメータ・コマンド引数の型設定
+
+#### @type
+パラメータ・引数の型を指定するアノテーション。<br />
+入力時のUIが型に合わせて変わるが、プラグインに渡される値は全て文字列。<br />
+以下指定する型ごとに説明する。
+
+#### @type string 
 文字列。規定値なので指定する必要はないが、明示しておいた方が誤解がなくて良い。
 
 ##### Example
@@ -109,6 +196,9 @@
  * @type string
  * @default こんにちは
 ```
+
+#### @type multiline_string
+**@MZ** 複数行の文字列。
 
 ### @type number
 数値。数個から選ぶ場合は `@type select` を使った方が良いかもしれない。<br />
@@ -133,7 +223,7 @@
  * @default 10.0
 ```
 
-### @type boolean
+#### @type boolean
 真偽値。
 
 | Name | Description |
@@ -152,7 +242,7 @@
  * @default false
 ```
 
-### @type \*[]
+#### @type \*[]
 配列( \* の部分に任意のタイプを書く )  プラグイン側は [JsonEx.parse()](JsonEx.md#static-parse-json--object) で解析する。<br />
 ちなみに[プラグイン管理]上で各項目はドラッグで入れ替え可能。
 
@@ -165,7 +255,7 @@
  * @default ["甲", "乙", "丙"]
 ```
 
-### @type struct&lt;\*&gt;
+#### @type struct&lt;\*&gt;
 データ構造( \* の部分に構造名を書く ) プラグイン側は [JsonEx.parse()](JsonEx.md#static-parse-json--object) で解析する。<br />
 構造の内容は別に以下のような記述をしておく。通常の型と同じ記述が可能。<br />
 多言語対応をする場合、例えば `構造名_ja` というように言語ごとに異なる構造名にして、言語に合わせた構造を指定する。<br />
@@ -192,7 +282,7 @@
  */
 ```
  
-### @type struct&lt;\*&gt;[]
+#### @type struct&lt;\*&gt;[]
 データ構造の配列。
 
 ##### Example
@@ -204,7 +294,7 @@
  * @default [{ "x":"10", "y":"20" }, { "x":"0", "y":"0" }]
 ```
  
-### @type file
+#### @type file
 img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 `@default `にはフォルダだけの指定、あるいはファイルだけ、または両方を指定できる。<br />
 なお指定できるフォルダは2階層まで。
@@ -212,7 +302,6 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 | Name | Description |
 | --- | --- |
 | `@dir` | 参照フォルダ( 前後の/は不要 ) 値としては返らない |
-| `@require` | 1 を設定するとデプロイメントの際[未使用ファイルを含まない]のチェックされた時も、選択したファイルを削除しない |
 
 ##### Example
 ```
@@ -221,11 +310,10 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc ファイルの説明(規定値: Actor2)
  * @type file
  * @dir img/characters
- * @require 1
  * @default Actor2
 ```
 
-### @type select
+#### @type select
 セレクトボックスの選択肢から選択。<br />
 `@default` には `@value` の設定がある場合は `@value` の値を指定。ない場合は `@option` の値を指定する。
 
@@ -247,13 +335,13 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 4
 ```
 
-### @type combo
-コンボボックス。文字列の入力、または選択肢から選択。<br />
- `@type select` と異なり `@value` の指定はできない。
+#### @type combo
+コンボボックス。文字列の入力、または選択肢から選択。
 
 | Name | Description |
 | --- | --- |
 | `@option` | 選択肢(必要な数並べる) |
+| `@value` | **@MZ** @option選択時にプラグインに渡す値(規定値 : @optionそのまま) |
 
 ##### Example
 ```
@@ -262,11 +350,13 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc 編集可能オプションの説明(規定値: red)
  * @type combo
  * @option red
+ * @value #FF0000
  * @option blue
+ * @value #0000FF
  * @default red
 ```
 
-### @type note
+#### @type note
 複数行の文字列が記入できる形式。改行もできる。<br />
 プラグインにはJSON文字列化(具体的には &quot; や \\のエスケープ、改行の \\n への変換)して渡される。<br />
 改行が必要なデータ、JSON形式のデータを直接書く場合などに利用する。<br />
@@ -281,7 +371,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default "一行目\n二行目"
 ```
 
-### @type variable
+#### @type variable
 変数([Game_Variables](Game_Variables.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -293,7 +383,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 1
 ```
 
-### @type switch
+#### @type switch
 スイッチ([Game_Switches](Game_Switches.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -305,7 +395,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 1
 ```
 
-### @type actor
+#### @type actor
 アクター([RPG.Actor](RPG.Actor.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -317,7 +407,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type class
+#### @type class
 職業([RPG.Class](RPG.Class.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -329,7 +419,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type skill
+#### @type skill
 スキル([RPG.Skill](RPG.Skill.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -341,7 +431,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type item
+#### @type item
 アイテム([RPG.Item](RPG.Item.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -353,7 +443,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type weapon
+#### @type weapon
 武器([RPG.Weapon](RPG.Weapon.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -365,7 +455,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type armor
+#### @type armor
 防具([RPG.Armor](RPG.Armor.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -377,7 +467,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type enemy
+#### @type enemy
 敵キャラ([RPG.Enemy](RPG.Enemy.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -389,7 +479,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type troop
+#### @type troop
 敵グループ([RPG.Troop](RPG.Troop.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -401,7 +491,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type state
+#### @type state
 ステート([RPG.State](RPG.State.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -413,12 +503,8 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type animation
+#### @type animation
 アニメーション([RPG.Animation](RPG.Animation.md))のID( なし: 0 または 空文字列 )
-
-| Name | Description |
-| --- | --- |
-| `@require` | 1 を設定すると、選択したファイルを削除しない |
 
 ##### Example
 ```
@@ -426,11 +512,10 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @text アニメーションID
  * @desc アニメーションの説明(規定値: 0)
  * @type animation
- * @require 1
  * @default 0
 ```
 
-### @type tileset
+#### @type tileset
 タイルセット([RPG.Tileset](RPG.Tileset.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -442,7 +527,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @default 0
 ```
 
-### @type common_event
+#### @type common_event
 コモンイベント([RPG.CommonEvent](RPG.CommonEvent.md))のID( なし: 0 または 空文字列 )
 
 ##### Example
@@ -455,32 +540,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 ```
 
 
-## ファイルを扱うメモタグの設定
-[メモ]のメタタグの値としてファイルを使う場合、そのファイルが。
-デプロイメントを実行するときに[未使用ファイルを含まない]にチェックしていた場合。<br />
-以下のタグを指定すれば削除されない。
 
-| Name | Description |
-| --- | --- |
-| `@noteParam` | タグ名 |
-| `@noteRequire` | 1 を設定するとデプロイメントの際[未使用ファイルを含まない]のチェックされた時も、選択したファイルを削除しない |
-| `@noteDir` | ファイルがあるディレクトリ |
-| `@noteType` | データに合わせて、file か animation を指定 |
-| `@noteData` | メモを利用するオブジェクトを maps, events, actors, classes, skills, items, weapons, armors, enemies, states, tilesets から指定 |
 
- 
-##### Example
-アイテムのメモの内容が
-```
-<sampleImage:img1>
-```
-の場合。
-
-```
- * @noteParam sampleImage
- * @noteRequire 1
- * @noteDir img/sample/
- * @noteType file
- * @noteData items
-```
-
+### 廃止MVアノテーション
+`@noteRequire` 、`@require`
