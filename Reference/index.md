@@ -241,7 +241,7 @@ namespace JsExtensions
     * [Rectangle](Rectangle.md)
 * [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html) ( PIXI.extras.PictureTilingSprite から変更 )
     * [TilingSprite](TilingSprite.md)
-        * ※[Sprite_Battleback](Sprite_Battleback.md) **@MZ**
+        * [Sprite_Battleback](Sprite_Battleback.md) **@MZ**
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)

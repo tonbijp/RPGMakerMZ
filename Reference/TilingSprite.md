@@ -15,6 +15,10 @@
 | --- | --- | --- |
 | `bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
 
+### サブクラス
+
+* [Sprite_Battleback](Sprite_Battleback.md) 
+
 
 ### プロパティ
 
