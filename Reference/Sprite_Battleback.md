@@ -36,6 +36,18 @@
 `visibility` 
 
 
+### スーパークラスから継承されたメソッド
+
+#### [TilingSprite](TilingSprite.md)
+
+* [destroy ()](TilingSprite.md#destroy-)
+* [initialize (bitmap)](TilingSprite.md#initialize-bitmap)
+* [move (x, y, width, height)](TilingSprite.md#move-x-y-width-height)
+* [setFrame (x, y, width, height)](TilingSprite.md#setframe-x-y-width-height)
+* [update ()](TilingSprite.md#update-)
+* [updateTransform ()](TilingSprite.md#updatetransform-)
+
+
 ### メソッド
 
 #### adjustPosition ()
