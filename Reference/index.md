@@ -252,7 +252,7 @@ namespace JsExtensions
 
 * [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
-        * ※[Tilemap.Render](Tilemap.Render.md)  **@MZ**
+        * [Tilemap.Render](Tilemap.Render.md)  **@MZ**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
 * EventEmitter

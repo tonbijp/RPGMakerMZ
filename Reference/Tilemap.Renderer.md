@@ -2,7 +2,7 @@
 
 # クラス: [Tilemap](Tilemap.md).Renderer
 
-## 継承元: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
+## スーパークラス: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
 
 ### new Tilemap.Renderer ()
 レンダラ。
@@ -19,7 +19,7 @@
 | `_clearBuffer` | [Uint8Array](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) | バッファ |
 
 
-### 継承されたメソッド
+### スーパークラスから継承されたメソッド
 
 #### [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
 
@@ -46,6 +46,16 @@ VAOの生成。
 内部テクスチャの破棄。
 
 
+### bindTextures (renderer)
+テクスチャを結びつける。
+
+##### 引数:
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` |  [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+
+
 #### destroy ()
 オーバーライド: [PIXI.ObjectRenderer](http://pixijs.download/release/docs/PIXI.ObjectRenderer.html#destroy)
 
@@ -70,13 +80,3 @@ VAOの生成。
 | --- | --- | --- |
 | `renderer` |  [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
 | `images` | [Array](Array.md)&lt;[Bitmap](Bitmap.md)&gt; |  画像の配列 |
-
-
-### bindTextures (renderer)
-テクスチャを結びつける。
-
-##### 引数:
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `renderer` |  [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |

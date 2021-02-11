@@ -15,8 +15,8 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `MAX_GL_TEXTURES` | [Number](Number.md) | [static] 最大テクスチャ(3) |
-| `VERTEX_STRIDE` | [Number](Number.md) | [static] 頂点ストライド(36) |
+| `MAX_GL_TEXTURES` | [Number](Number.md) | [static] 最大テクスチャ(規定値:3) |
+| `VERTEX_STRIDE` | [Number](Number.md) | [static] 頂点ストライド(規定値:36) |
 | `_elements` | [Array](Array.md).&lt;[MV.TileRect](MV.TileRect.md)&gt;  | タイル描画に使われる矩形データの配列 |
 | `_images` | [Array](Array.md).&lt;[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)&gt;  | 画像データの配列 |
 | `_vao` | [PIXI.Geometry](http://pixijs.download/release/docs/PIXI.Geometry.html) | ジオメトリ |
