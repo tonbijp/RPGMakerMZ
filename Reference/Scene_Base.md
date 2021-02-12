@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Base
 
 ## スーパークラス: [Stage](Stage.md)
@@ -18,14 +20,26 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
+| `_started` | Boolean | **@MZ** 開始されているか |
 | `_active` | Boolean |  アクティブか |
-| `_fadeSign` | [Number](Number.md) | フェードの状態(  -1:OUT, 0:なし, 1:IN ) |
-| `_fadeDuration` | [Number](Number.md) |  フェードにかける時間 |
-| `_fadeSprite` | [ScreenSprite](ScreenSprite.md) |  フェードに使うスプライト |
-| `_imageReservationId` | [Number](Number.md) | [ImageManager](ImageManager.md) で使う画像ID |
+| `_fadeSign` | [Number](Number.md) | [フェードの状態](#フェードの状態) |
+| `_fadeDuration` | [Number](Number.md) | フェードにかける時間 |
 | `_windowLayer` | [WindowLayer](WindowLayer.md) |  ウィンドウレイヤ |
+| `_fadeWhite` | [Number](Number.md) | **@MZ** フェードにかける時間 |
+| `_fadeOpacity` | [Number](Number.md) | **@MZ** フェードにかける時間 |
+
+#### フェードの状態
+
+| 数字 | 説明 |
+| --- | --- |
+| -1 | フェードアウト |
+| 0 | なし |
+| 1 | フェードイン |
+
+### 廃止MVプロパティ
+`_fadeSprite`, `_imageReservationId`
 
 
 ### スーパークラスから継承されたメソッド
@@ -63,6 +77,10 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
+
 
 ### メソッド
 
@@ -80,16 +98,53 @@
 キューに予約を追加。
 
 
+#### buttonAreaBottom () → {[Number](Number.md)}
+**@MZ** ボタン領域の下面位置を返す。
+
+
+#### buttonAreaHeight () → {[Number](Number.md)}
+**@MZ** ボタン領域の高さ(規定値:52)を返す。
+
+
+#### buttonAreaTop () → {[Number](Number.md)}
+**@MZ** ボタン領域の上面位置を返す。
+
+
+#### buttonY () → {[Number](Number.md)}
+**@MZ** ボタンのy位置を返す。
+
+
+#### calcWindowHeight (numLines, selectable) → {[Number](Number.md)}
+**@MZ** 指定行数とタイプで計算されるウィンドウの高さを返す。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `numLines` | [Number](Number.md) |  行数 |
+| `selectable` | Boolean |  選択可能か |
+
+
 #### checkGameover ()
 ゲームオーバー状態か検査。
+
+
+#### centerSprite (sprite)
+**@MZ** スプライトを画面中央に配置。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `sprite` | [Sprite](Sprite.md) |  対象のスプライト |
 
 
 #### create ()
 シーンの生成。
 
 
-#### createFadeSprite ()
-フェード用のスプライトを生成。
+#### createColorFilter ()
+**@MZ** 色フィルタの生成。
 
 
 #### createWindowLayer ()
@@ -98,6 +153,10 @@
 
 #### detachReservation ()
 キューから予約を削除。
+
+
+#### executeAutosave ()
+**@MZ** オートセーブを実行。
 
 
 #### fadeOutAll ()
@@ -116,6 +175,18 @@
 シーンがアクティブか。
 
 
+#### isAutosaveEnabled () → {Boolean}
+**@MZ** オートセーブ可能な状態か。
+
+
+#### isBottomButtonMode () → {Boolean}
+**@MZ** ボタン位置が下か(規定値:false)。
+
+
+#### isBottomHelpMode () → {Boolean}
+**@MZ** ヘルプ位置が下か(規定値:true)。
+
+
 #### isBusy () → {Boolean}
 フェード動作中か。
 
@@ -124,8 +195,40 @@
 シーンの準備ができているか。
 
 
+#### isRightInputMode () → {Boolean}
+**@MZ** 右手入力モードか(規定値:true)。
+
+
+#### mainCommandWidth () → {[Number](Number.md)}
+**@MZ** メインコマンドの幅を返す(規定値:240)。
+
+
+#### onAutosaveFailure ()
+**@MZ** オートセーブが失敗した時のハンドラ。<br />
+コアスクリプトは空で、プラグイン用に予約してあるもの。
+
+
+#### onAutosaveSuccess ()
+**@MZ** オートセーブが成功した時のハンドラ。<br />
+コアスクリプトは空で、プラグイン用に予約してあるもの。
+
+
 #### popScene ()
 シーンを引き出す(pop)。
+
+
+#### requestAutosave ()
+**@MZ** オートセーブを要求。
+
+
+#### scaleSprite (sprite)
+**@MZ** スプライトを画面サイズに拡大。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `sprite` | [Sprite](Sprite.md) |  対象のスプライト |
 
 
 #### slowFadeSpeed () → {[Number](Number.md)}
@@ -141,7 +244,7 @@
 
 ##### 引数
 
-| Name | Type | Attributes | Default | Description |
+| 名前 | 型 | 特性 | 規定値 | 説明 |
 | --- | --- | --- | --- | --- |
 | `duration` | [Number](Number.md) | &lt;optional&gt; | 30 |  フェードインにかける時間 |
 | `white` | Boolean | &lt;optional&gt; | false |  白で[フェード]するか(falseだと黒) |
@@ -152,7 +255,7 @@
 
 ##### 引数
 
-| Name | Type | Attributes | Default | Description |
+| 名前 | 型 | 特性 | 規定値 | 説明 |
 | --- | --- | --- | --- | --- |
 | `duration` | [Number](Number.md) | &lt;optional&gt; | 30 |  フェードアウトにかける時間 |
 | `white` | Boolean | &lt;optional&gt; | false |  白で[フェード]するか(falseだと黒) |
@@ -174,5 +277,13 @@
 子オブジェクトのアップデート。
 
 
+#### updateColorFilter ()
+**@MZ** 色フィルタのアップデート。
+
+
 #### updateFade ()
 フェードのアップデート。
+
+
+### 廃止MVメソッド
+createFadeSprite ()
