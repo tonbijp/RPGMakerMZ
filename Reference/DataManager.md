@@ -13,7 +13,7 @@ $XXXで大域変数に設定されているものや、セーブデータの管�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_globalInfo` | Object | **@MZ** [static] セーブされるシステム情報  |
+| `_globalInfo` | Object | [static] セーブされるシステム情報  |
 | `_errors` | [Array](Array.md) | **@MZ**[static] エラーの配列 |
 | `_databaseFiles` | [Array](Array.md).&lt;[MV.DatabaseFile](MV.DatabaseFile.md)&gt; | [static] 読み込むデータファイル情報 |
 
@@ -182,8 +182,8 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 
 
 #### (static) loadGlobalInfo ()
-セーブファイル情報の配列を読み込む。<br />
-返り値は廃止され、`_globalInfo`に書き込むように変更。
+セーブファイル("global")の情報を読み込む。<br />
+情報は`_globalInfo`に保存される。
 
 
 #### (static) loadMapData (mapId)
