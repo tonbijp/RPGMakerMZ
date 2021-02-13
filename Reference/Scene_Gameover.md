@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Gameover
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
@@ -5,12 +7,12 @@
 ### new Scene_Gameover ()
 ゲームオーバーのシーン。
 
-関連クラス: [BattleManager](BattleManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
-関連シーン: [Scene_Title](Scene_Title.md), [Scene_Base](Scene_Base.md), [Scene_Battle](Scene_Battle.md)
+関連クラス: [SceneManager](SceneManager.md), [BattleManager](BattleManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
+関連シーン: [Scene_Title](Scene_Title.md), [Scene_Battle](Scene_Battle.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_backSprite` | [Sprite](Sprite.md) | 背景画像 |
 
@@ -34,7 +36,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -49,6 +50,10 @@
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
+
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
 
 #### [Scene_Base](Scene_Base.md)
 
@@ -72,6 +77,10 @@
 
 
 ### メソッド
+
+#### adjustBackground ()
+**@MZ** 背景画像を合わせる。
+
 
 #### create ()
 オーバーライド: [Scene_Base](Scene_Base.md#create-)
@@ -111,5 +120,3 @@
 
 #### update ()
 オーバーライド: [Scene_Base](Scene_Base.md#update-)
-
-

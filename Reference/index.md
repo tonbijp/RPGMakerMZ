@@ -324,7 +324,7 @@ namespace JsExtensions
 ### [シーン(Scene_Base)](Scene_Base.md)
 
 * [Scene_Boot](Scene_Boot.md)
-* ※[Scene_Gameover](Scene_Gameover.md)
+* [Scene_Gameover](Scene_Gameover.md)
 * ※[Scene_Title](Scene_Title.md)
 * ※[Scene_Message](Scene_Message.md) **@MZ**
     * ※[Scene_Battle](Scene_Battle.md) (継承位置変更)
