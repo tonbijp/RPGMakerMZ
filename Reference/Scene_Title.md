@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Title
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
@@ -5,13 +7,13 @@
 ### new Scene_Title ()
 タイトルのシーン。
 
-関連クラス: [Game_Interpreter](Game_Interpreter.md)<br />
+関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Options](Scene_Options.md), [Scene_Boot](Scene_Boot.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Scene_GameEnd](Scene_GameEnd.md), [Scene_Gameover](Scene_Gameover.md)
 
    
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_TitleCommand](Window_TitleCommand.md) | コマンドウィンドウ |
 | `_backSprite1` | [Sprite](Sprite.md) | 背景1 |
@@ -38,7 +40,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -53,6 +54,10 @@
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
+
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
 
 #### [Scene_Base](Scene_Base.md)
 
@@ -79,6 +84,10 @@
 
 ### メソッド
 
+#### adjustBackground ()
+**@MZ** 背景画像を合わせる。
+
+
 #### commandContinue ()
 [コンティニュー]の実行ハンドラ。
 
@@ -89,6 +98,10 @@
 
 #### commandOptions ()
 [オプション]の実行ハンドラ。
+
+
+#### commandWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** コマンドウィンドウの矩形範囲を返す。
 
 
 #### create ()
@@ -133,3 +146,7 @@
 
 #### update ()
 オーバーライド: [Scene_Base](Scene_Base.md#update-)
+
+
+### 廃止MVメソッド
+centerSprite()
