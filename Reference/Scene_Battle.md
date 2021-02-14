@@ -178,6 +178,7 @@ MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene
 #### createButtons ()
 **@MZ** ボタンを生成。
 
+
 #### createCancelButton ()
 **@MZ** キャンセルボタンを生成。
 

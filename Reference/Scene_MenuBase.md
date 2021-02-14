@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_MenuBase
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
@@ -21,11 +23,15 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_actor` | [Game_Actor](Game_Actor.md) |  選択されているアクター |
 | `_backgroundSprite` | [Sprite](Sprite.md) |  シーンの背景となるスプライト |
 | `_helpWindow` | [Window_Help](Window_Help.md) |  シーンに付加されるヘルプウィンドウ |
+| `_backgroundFilter` | PIXI.filters.BlurFilter |  **@MZ** シーンの背景用のフィルタ |
+| `_cancelButton` | [Sprite_Button](Sprite_Button.md) |  **@MZ** キャンセルボタン |
+| `_pageupButton` | [Sprite_Button](Sprite_Button.md) |  **@MZ** ページアップボタン |
+| `_pagedownButton` | [Sprite_Button](Sprite_Button.md) |  **@MZ** ページダウンボタン |
 
 
 ### スーパークラスから継承されたメソッド
@@ -47,7 +53,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -62,6 +67,10 @@
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
+
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
 
 #### [Scene_Base](Scene_Base.md)
 
@@ -83,7 +92,6 @@
 * [start ()](Scene_Base.md#start-)
 * [stop ()](Scene_Base.md#stop-)
 * [terminate ()](Scene_Base.md#terminate-)
-* [update ()](Scene_Base.md#update-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
 
@@ -94,12 +102,56 @@
 現在のアクターを返す。
 
 
+#### arePageButtonsEnabled () → {Boolean}
+**@MZ** ページボタンが利用可能か。
+
+
 #### create ()
 オーバーライド: [Scene_Base](Scene_Base.md#create-)
 
 
+#### createButtons ()
+**@MZ** ボタンを生成。
+
+
+#### createCancelButton ()
+**@MZ** キャンセルボタンを生成
+
+
+#### createPageButtons ()
+**@MZ** ページボタンを生成
+
+
 #### createHelpWindow ()
 ヘルプウィンドウを生成。
+
+
+#### helpAreaTop() → {[Number](Number.md)}
+**@MZ** [ヘルプ]領域の上辺座標を返す。
+
+
+#### helpAreaBottom() → {[Number](Number.md)}
+**@MZ** [ヘルプ]領域の下辺座標を返す。
+
+
+#### helpAreaHeight() → {[Number](Number.md)}
+**@MZ** [ヘルプ]領域の高さを返す。
+
+
+#### mainAreaTop() → {[Number](Number.md)}
+**@MZ** メイン領域の上辺座標を返す。
+
+
+#### mainAreaBottom() → {[Number](Number.md)}
+**@MZ** メイン領域の下辺座標を返す。
+
+
+#### mainAreaHeight() → {[Number](Number.md)}
+**@MZ** メイン領域の高さを返す。
+
+
+#### helpWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す
 
 
 #### initialize ()
@@ -110,12 +162,28 @@
 パーティの次のアクターに切り替える。
 
 
+#### needsCancelButton () → {Boolean}
+**@MZ** キャンセルボタンが必要か。
+
+
+#### needsPageButtons () → {Boolean}
+**@MZ** ページボタンが必要か。
+
+
 #### onActorChange ()
 アクターが切り替わった時に呼ばれるハンドラ。
 
 
 #### previousActor ()
 パーティの前のアクターに切り替える。
+
+
+#### update ()
+**@MZ** オーバーライド: [Scene_Base](Scene_Base.md#update-)
+
+
+#### updatePageButtons ()
+**@MZ** ページボタンをアップデート。
 
 
 #### setBackgroundOpacity (opacity)
