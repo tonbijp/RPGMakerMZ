@@ -229,19 +229,15 @@ MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene
 
 
 #### helpAreaTop() → {[Number](Number.md)}
-**@MZ** [ヘルプ]ウィンドウの上辺座標(規定値:0)を返す。
+**@MZ** [ヘルプ]領域の上辺座標を返す。
 
 
 #### helpAreaBottom() → {[Number](Number.md)}
-**@MZ** [ヘルプ]ウィンドウの下辺座標を返す。
+**@MZ** [ヘルプ]領域の下辺座標を返す。
 
 
 #### helpAreaHeight() → {[Number](Number.md)}
-**@MZ** [ヘルプ]ウィンドウの高さを返す。
-
-
-#### helpAreaTop() → {[Number](Number.md)}
-**@MZ** [ヘルプ]ウィンドウの上辺座標(規定値:0)を返す。
+**@MZ** [ヘルプ]領域の高さを返す。
 
 
 #### helpWindowRect () → {[Rectangle](Rectangle.md)}
