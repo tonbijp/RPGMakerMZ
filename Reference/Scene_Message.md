@@ -126,11 +126,11 @@
 スクロールテキストウィンドウの生成。
 
 
-####  eventItemWindowRect() → {[Rectangle](Rectangle.md)}
+#### eventItemWindowRect() → {[Rectangle](Rectangle.md)}
 イベントアイテムウィンドウの矩形範囲を返す。
 
 
-####  goldWindowRect() → {[Rectangle](Rectangle.md)}
+#### goldWindowRect() → {[Rectangle](Rectangle.md)}
 所持金ウィンドウの矩形範囲を返す。
 
 
@@ -142,9 +142,9 @@
 オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
-####  messageWindowRect() → {[Rectangle](Rectangle.md)}
+#### messageWindowRect() → {[Rectangle](Rectangle.md)}
 メッセージウィンドウの矩形範囲を返す。
 
 
-####  scrollTextWindowRect() → {[Rectangle](Rectangle.md)}
+#### scrollTextWindowRect() → {[Rectangle](Rectangle.md)}
 スクロールテキストウィンドウの矩形範囲を返す。
