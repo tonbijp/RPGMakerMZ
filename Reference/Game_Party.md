@@ -73,19 +73,19 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `actorId` | [Number](Number.md) | アクターID |
 
 
-#### allItems () → {[Array](Array.md).<[RPG.BaseItem](RPG.BaseItem.md)>}
+#### allItems () → {[Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt;}
 パーティが持つ全アイテムを配列で返す。
 
 
-#### allMembers () → {[Array](Array.md).<[Game_Actor](Game_Actor.md)>}
+#### allMembers () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
 パーティの全アクターを配列で返す。
 
 
-#### armors () → {[Array](Array.md).<[RPG.Armor](RPG.Armor.md)>}
+#### armors () → {[Array](Array.md).&lt;[RPG.Armor](RPG.Armor.md)&gt;}
 パーティが持つ全防具を配列で返す。
 
 
-#### battleMembers () → {[Array](Array.md).<[Game_Actor](Game_Actor.md)>}
+#### battleMembers () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
 戦闘に参加する全アクターを配列で返す。
 
 
@@ -103,7 +103,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
-#### charactersForSavefile () → {[Array](Array.md).<[Array](Array.md).<*>>}
+#### charactersForSavefile () → {[Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt;}
 セーブファイルに記録されているキャラ画像情報を配列で返す。<br />
 [ "ファイル名", キャラ番号 ] という2値の配列がキャラ数ぶん入った配列。
 
@@ -129,14 +129,14 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `amount` | [Number](Number.md) | 数 |
 
 
-#### equipItems () → {[Array](Array.md).<[RPG.EquipItem](RPG.EquipItem.md)>}
+#### equipItems () → {[Array](Array.md).&lt;[RPG.EquipItem](RPG.EquipItem.md)&gt;}
 パーティが持つ全装備可能アイテムを配列で返す。
 
 
 #### exists () → {Boolean}
 パーティが存在する(少なくとも一人いる)か。
 
-#### facesForSavefile () → {[Array](Array.md).<[Array](Array.md).<*>>}
+#### facesForSavefile () → {[Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt;}
 セーブファイルに記録されている顔画像情報を配列で返す。<br />
 [ "ファイル名", 顔番号 ] という2値の配列がキャラ数ぶん入った配列。
 
@@ -246,7 +246,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 パーティメンパーが0人か。
 
 
-#### itemContainer (item) → {[Array](Array.md).<[RPG.BaseItem](RPG.BaseItem.md)>}
+#### itemContainer (item) → {[Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt;}
 指定アイテムが含まれるカテゴリ全体を配列で返す。<br />
 [アイテム][武器][防具]のいずれかのカテゴリ。
 
@@ -257,7 +257,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
-#### items () → {[Array](Array.md).<[RPG.Item](RPG.Item.md)>}
+#### items () → {[Array](Array.md).&lt;[RPG.Item](RPG.Item.md)&gt;}
 アイテム(武器・防具を含まない)を配列で返す。
 
 
@@ -317,7 +317,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | `item` | [RPG.BaseItem](RPG.BaseItem.md) | アイテム |
 
 
-#### members () → {[Array](Array.md).<[Game_Actor](Game_Actor.md)>}
+#### members () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
 オーバーライド:[Game_Unit](Game_Unit.md#members---arraygame_battler)
 
 
@@ -481,7 +481,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 対象アクターを返す。
 
 
-#### weapons () → {[Array](Array.md).<[RPG.Weapon](RPG.Weapon.md)>}
+#### weapons () → {[Array](Array.md).&lt;[RPG.Weapon](RPG.Weapon.md)&gt;}
 パーティが持つ全武器を配列で返す。
 
 
