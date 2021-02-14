@@ -1,16 +1,20 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Map
 
-## スーパークラス: [Scene_Base](Scene_Base.md)
+## スーパークラス: [Scene_Message](Scene_Message.md)
 
 ### new Scene_Map ()
 マップ表示シーン。
 
-関連クラス: [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md), [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md)<br />
+MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene_Message](Scene_Message.md) に変更されている。
+
+関連クラス:  [SceneManager](SceneManager.md), [Tilemap](Tilemap.md),  [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Boot](Scene_Boot.md), [Scene_ItemBase](Scene_ItemBase.md), [Scene_Battle](Scene_Battle.md), [Scene_Load](Scene_Load.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `menuCalling` | Boolean | メニューが呼ばれているか |
 | `_waitCount` | [Number](Number.md) | 待ちカウント |
@@ -20,8 +24,9 @@
 | `_transfer` | Boolean | 遷移中か |
 | `_spriteset` | [Spriteset_Map](Spriteset_Map.md) | スプライトセット |
 | `_mapNameWindow` | [Window_MapName](Window_MapName.md) | マップ名表示ウィンドウ |
-| `_scrollTextWindow` | [Window_ScrollText](Window_ScrollText.md) | スクロール表示ウィンドウ |
-| `_messageWindow` | [Window_Message](Window_Message.md) | メッセージウィンドウ |
+
+### 廃止MVプロパティ
+`_scrollTextWindow`, `_messageWindow` 
 
 
 ### スーパークラスから継承されたメソッド
@@ -43,7 +48,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -59,6 +63,10 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
+
 #### [Scene_Base](Scene_Base.md)
 
 * [addWindow (Window)](Scene_Base.md#addwindow-window)
@@ -70,17 +78,28 @@
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
 * [isActive () ](Scene_Base.md#isactive---boolean)
-* [isBusy ()](Scene_Base.md#isbusy---boolean)
-* [isReady ()](Scene_Base.md#isready---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
 * [slowFadeSpeed ()](Scene_Base.md#slowfadespeed---number)
-* [start ()](Scene_Base.md#start-)
 * [startFadeIn (duration opt, white opt)](Scene_Base.md#startfadein-duration-opt-white-opt)
 * [startFadeOut (duration opt, white opt)](Scene_Base.md#startfadeout-duration-opt-white-opt)
-* [stop ()](Scene_Base.md#stop-)
-* [terminate ()](Scene_Base.md#terminate-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
+
+#### [Scene_Message](Scene_Message.md)
+* [associateWindows ()](Scene_Message.md#associatewindows-)
+* [createAllWindows ()](Scene_Message.md#createallwindows-)
+* [createChoiceListWindow ()](Scene_Message.md#createchoicelistwindow-)
+* [createEventItemWindow ()](Scene_Message.md#createeventitemwindow-)
+* [createGoldWindow ()](Scene_Message.md#creategoldwindow-)
+* [createMessageWindow ()](Scene_Message.md#createmessagewindow-)
+* [createNameBoxWindow ()](Scene_Message.md#createnameboxwindow-)
+* [createNumberInputWindow ()](Scene_Message.md#createnumberinputwindow-)
+* [createScrollTextWindow ()](Scene_Message.md#createscrolltextwindow-)
+* [eventItemWindowRect()](Scene_Message.md#eventitemwindowrect--rectangle)
+* [goldWindowRect()](Scene_Message.md#goldwindowrect--rectangle)
+* [isMessageWindowClosing ()](Scene_Message.md#ismessagewindowclosing---boolean)
+* [messageWindowRect()](Scene_Message.md#messagewindowrect--rectangle)
+* [scrollTextWindowRect()](Scene_Message.md#scrolltextwindowrect--rectangle)
 
 
 ### メソッド
@@ -97,20 +116,20 @@
  ウィンドウを生成。
 
 
+#### createButtons ()
+**@MZ** ボタンを生成。
+
+
+#### createMenuButton ()
+**@MZ** メニューのボタンを生成。
+
+
 #### createDisplayObjects ()
  シーンに必要な全表示オブジェクトを生成。
 
 
 #### createMapNameWindow ()
  マップ名表示ウィンドウ生成。
-
-
-#### createMessageWindow ()
- メッセージウィンドウ生成。
-
-
-#### createScrollTextWindow ()
- スクロールテキストウィンドウの生成。
 
 
 #### createSpriteset ()
@@ -127,10 +146,14 @@
 
 #### fadeOutForTransfer ()
  遷移時のフェードアウト。
+
+
+#### hideMenuButton ()
+**@MZ** メニューのボタンを隠す。
  
 
 #### initialize ()
-オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
+オーバーライド: [Scene_Message](Scene_Message.md#initialize-)
 
 
 #### isBusy () → {Boolean}
@@ -149,12 +172,20 @@
  タッチ移動が可能か。
 
 
+#### isAnyButtonPressed () → {Boolean}
+**@MZ** いずれかのボタンか押されているか。
+
+
 #### isMenuCalled () → {Boolean}
  メニューが呼ばれているか。
 
 
 #### isMenuEnabled () → {Boolean}
  メニュー使用可か。
+
+
+#### isPlayerActive () → {Boolean}
+**@MZ** プレイヤーが操作できる状態か。
 
 
 #### isReady () → {Boolean}
@@ -169,6 +200,10 @@
  戦闘シーンの開始。
 
 
+#### mapNameWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** マップ名ウィンドウの矩形範囲を返す。
+
+
 #### needsFadeIn () → {Boolean}
  フェードインするか。
 
@@ -178,11 +213,23 @@
 
 
 #### onMapLoaded ()
- シーンの読み込みが完了した時に呼ばれるハンドラ。
+ シーンの読み込みが完了した時のハンドラ。
+
+
+#### onTransfer ()
+**@MZ** マップ遷移開始時のハンドラ。
+
+
+#### onTransferEnd ()
+**@MZ** マップ遷移終了時のハンドラ。
 
 
 #### processMapTouch ()
  タッチをキャラクタの移動に変換。
+
+
+#### shouldAutosave () → {Boolean}
+**@MZ** オートセーブする必要があるか。
 
 
 #### snapForBattleBackground ()
@@ -251,6 +298,14 @@
  メインをアップデート。早送りモードだと2度アップデート。
 
 
+#### updateMapNameWindow ()
+**@MZ** マップ名ウィンドウをアップデート。
+
+
+#### updateMenuButton ()
+**@MZ** メニューのボタンをアップデート。
+
+
 #### updateScene ()
  シーンのアップデート。
 
@@ -262,4 +317,5 @@
 #### updateWaitCount () → {Boolean}
  待ちカウントをアップデート。
  
- 
+ ### 廃止MVメソッド
+ createMessageWindow (), createScrollTextWindow ()
