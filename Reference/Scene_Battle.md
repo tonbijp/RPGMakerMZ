@@ -26,9 +26,9 @@ MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene
 | `_enemyWindow` | [Window_BattleEnemy](Window_BattleEnemy.md) | [敵キャラ]選択ウィンドウ |
 | `_logWindow` | [Window_BattleLog](Window_BattleLog.md) | ログウィンドウ |
 | `_helpWindow` | [Window_Help](Window_Help.md) | ヘルプウィンドウ |
-| `_messageWindow` | [Window_Message](Window_Message.md) | メッセージウィンドウ |
-| `_scrollTextWindow` | [Window_ScrollText](Window_ScrollText.md) | スクロールテキストウィンドウ |
 
+### 廃止MVプロパティ
+`_scrollTextWindow`, `_messageWindow` 
 
 ### スーパークラスから継承されたメソッド
 
