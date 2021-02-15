@@ -1,16 +1,18 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Menu
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
 ### new Scene_Menu ()
-The scene class of the menu screen.
+[メニュー]のシーン。
 
-関連クラス: [Game_Interpreter](Game_Interpreter.md)<br />
+関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md), [Scene_Item](Scene_Item.md), [Scene_Skill](Scene_Skill.md), [Scene_Equip](Scene_Equip.md), [Scene_Status](Scene_Status.md), [Scene_Options](Scene_Options.md), [Scene_Save](Scene_Save.md), [Scene_GameEnd](Scene_GameEnd.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_MenuCommand](Window_MenuCommand.md) | コマンド選択ウィンドウ |
 | `_statusWindow` | [Window_MenuStatus](Window_MenuStatus.md) | ステータス表示・選択ウィンドウ |
@@ -35,7 +37,6 @@ The scene class of the menu screen.
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -51,6 +52,10 @@ The scene class of the menu screen.
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
+
 #### [Scene_Base](Scene_Base.md)
 
 * [addWindow (Window)](Scene_Base.md#addwindow-window)
@@ -61,7 +66,7 @@ The scene class of the menu screen.
 * [detachReservation ()](Scene_Base.md#detachreservation-)
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
-* [isActive () ](Scene_Base.md#isactive---boolean)
+* [isActive ()](Scene_Base.md#isactive---boolean)
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
@@ -70,19 +75,32 @@ The scene class of the menu screen.
 * [startFadeOut (duration opt, white opt)](Scene_Base.md#startfadeout-duration-opt-white-opt)
 * [stop ()](Scene_Base.md#stop-)
 * [terminate ()](Scene_Base.md#terminate-)
-* [update ()](Scene_Base.md#update-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 #### [Scene_MenuBase](Scene_MenuBase.md)
 
 * [actor ()](Scene_MenuBase.md#actor---game_actor)
+* [arePageButtonsEnabled ()](Scene_MenuBase.md#arepagebuttonsenabled---boolean)
+* [createButtons ()](Scene_MenuBase.md#createbuttons-)
+* [createCancelButton ()](Scene_MenuBase.md#createcancelbutton-)
 * [createHelpWindow ()](Scene_MenuBase.md#createhelpwindow-)
+* [createPageButtons ()](Scene_MenuBase.md#createpagebuttons-)
+* [helpAreaBottom()](Scene_MenuBase.md#helpareabottom--number)
+* [helpAreaTop() ](Scene_MenuBase.md#mainareatop--number)
+* [helpWindowRect ()](Scene_MenuBase.md#helpwindowrect---rectangle)
+* [mainAreaBottom()](Scene_MenuBase.md#mainareabottom--number)
+* [mainAreaHeight()](Scene_MenuBase.md#mainareaheight--number)
+* [mainAreaTop()](Scene_MenuBase.md#mainareatop--number)
+* [needsCancelButton ()](Scene_MenuBase.md#needscancelbutton---boolean)
+* [needsPageButtons ()](Scene_MenuBase.md#needspagebuttons---boolean)
 * [nextActor ()](Scene_MenuBase.md#nextactor-)
 * [onActorChange ()](Scene_MenuBase.md#onactorchange-)
 * [previousActor ()](Scene_MenuBase.md#previousactor-)
 * [setBackgroundOpacity (opacity)](Scene_MenuBase.md#setbackgroundopacity-opacity)
+* [update ()](Scene_MenuBase.md#update-)
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
+* [updatePageButtons ()](Scene_MenuBase.md#updatepagebuttons-)
 
 
 ### メソッド
@@ -111,6 +129,10 @@ The scene class of the menu screen.
 [セーブ]コマンドの実行。
 
 
+#### commandWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** コマンドウィンドウの矩形範囲を返す
+
+
 #### create ()
 オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#create-)
 
@@ -124,7 +146,16 @@ The scene class of the menu screen.
 
 
 #### createStatusWindow ()
-ステータスウィンドウを生成。
+ステータスウィンドウを生成。
+
+
+#### goldWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** 所持金ウィンドウの矩形範囲を返す。
+
+
+#### helpAreaHeight () → {[Number](Number.md)}
+**@MZ** オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#helpareaheight--number)
+
 
 #### initialize ()
 オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)
@@ -149,4 +180,8 @@ The scene class of the menu screen.
 #### start ()
 オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
-
+
+#### statusWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** [ステータス]ウィンドウの矩形範囲を返す。
+
+
