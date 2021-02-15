@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_GameEnd
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
@@ -9,7 +11,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_commandWindow` | [Window_GameEnd](Window_GameEnd.md) | [ゲーム終了]選択ウィンドウ |
 
@@ -33,7 +35,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -48,6 +49,10 @@
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
+
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
 
 #### [Scene_Base](Scene_Base.md)
 
@@ -74,19 +79,37 @@
 #### [Scene_MenuBase](Scene_MenuBase.md)
 
 * [actor ()](Scene_MenuBase.md#actor---game_actor)
+* [arePageButtonsEnabled ()](Scene_MenuBase.md#arepagebuttonsenabled---boolean)
+* [createButtons ()](Scene_MenuBase.md#createbuttons-)
+* [createCancelButton ()](Scene_MenuBase.md#createcancelbutton-)
 * [createHelpWindow ()](Scene_MenuBase.md#createhelpwindow-)
+* [createPageButtons ()](Scene_MenuBase.md#createpagebuttons-)
+* [helpAreaBottom()](Scene_MenuBase.md#helpareabottom--number)
+* [helpAreaHeight() ](Scene_MenuBase.md#helpareaheight--number)
+* [helpAreaTop() ](Scene_MenuBase.md#mainareatop--number)
+* [helpWindowRect ()](Scene_MenuBase.md#helpwindowrect---rectangle)
+* [mainAreaBottom()](Scene_MenuBase.md#mainareabottom--number)
+* [mainAreaHeight()](Scene_MenuBase.md#mainareaheight--number)
+* [mainAreaTop()](Scene_MenuBase.md#mainareatop--number)
+* [needsCancelButton ()](Scene_MenuBase.md#needscancelbutton---boolean)
+* [needsPageButtons ()](Scene_MenuBase.md#needspagebuttons---boolean)
 * [nextActor ()](Scene_MenuBase.md#nextactor-)
 * [onActorChange ()](Scene_MenuBase.md#onactorchange-)
 * [previousActor ()](Scene_MenuBase.md#previousactor-)
 * [setBackgroundOpacity (opacity)](Scene_MenuBase.md#setbackgroundopacity-opacity)
-* [start ()](Scene_Base.md#start-)
+* [update ()](Scene_MenuBase.md#update-)
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
+* [updatePageButtons ()](Scene_MenuBase.md#updatepagebuttons-)
 
 
 ### メソッド
 
 #### commandToTitle ()
 [タイトルへ]コマンドの実行。
+
+
+#### commandWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** コマンド選択ウィンドウの矩形範囲を返す。
 
 
 #### create ()
@@ -98,7 +121,8 @@
 
 
 #### createCommandWindow ()
-コマンド選択ウィンドウの生成。
+コマンド選択ウィンドウの生成。
+
 
 #### initialize ()
 オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#initialize-)

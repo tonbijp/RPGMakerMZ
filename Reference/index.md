@@ -332,7 +332,7 @@ namespace JsExtensions
 * [Scene_MenuBase](Scene_MenuBase.md)
     * [Scene_Debug](Scene_Debug.md)
     * [Scene_Equip](Scene_Equip.md)
-    * ※[Scene_GameEnd](Scene_GameEnd.md)
+    * [Scene_GameEnd](Scene_GameEnd.md)
     * ※[Scene_Menu](Scene_Menu.md)
     * ※[Scene_Name](Scene_Name.md)
     * ※[Scene_Options](Scene_Options.md)
