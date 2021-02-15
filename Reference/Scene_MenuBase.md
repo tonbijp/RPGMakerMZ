@@ -118,16 +118,12 @@
 **@MZ** キャンセルボタンを生成
 
 
-#### createPageButtons ()
-**@MZ** ページボタンを生成
-
-
 #### createHelpWindow ()
 ヘルプウィンドウを生成。
 
 
-#### helpAreaTop() → {[Number](Number.md)}
-**@MZ** [ヘルプ]領域の上辺座標を返す。
+#### createPageButtons ()
+**@MZ** ページボタンを生成
 
 
 #### helpAreaBottom() → {[Number](Number.md)}
@@ -138,8 +134,12 @@
 **@MZ** [ヘルプ]領域の高さを返す。
 
 
-#### mainAreaTop() → {[Number](Number.md)}
-**@MZ** メイン領域の上辺座標を返す。
+#### helpAreaTop() → {[Number](Number.md)}
+**@MZ** [ヘルプ]領域の上辺座標を返す。
+
+
+#### helpWindowRect () → {[Rectangle](Rectangle.md)}
+**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す
 
 
 #### mainAreaBottom() → {[Number](Number.md)}
@@ -150,8 +150,8 @@
 **@MZ** メイン領域の高さを返す。
 
 
-#### helpWindowRect () → {[Rectangle](Rectangle.md)}
-**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す
+#### mainAreaTop() → {[Number](Number.md)}
+**@MZ** メイン領域の上辺座標を返す。
 
 
 #### initialize ()
