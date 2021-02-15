@@ -55,7 +55,6 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
-
 #### [Stage](Stage.md)
 
 * [destroy ()](Stage.md#destroy-)
