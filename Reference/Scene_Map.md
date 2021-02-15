@@ -77,7 +77,7 @@ MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene
 * [detachReservation ()](Scene_Base.md#detachreservation-)
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
-* [isActive () ](Scene_Base.md#isactive---boolean)
+* [isActive ()](Scene_Base.md#isactive---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
 * [slowFadeSpeed ()](Scene_Base.md#slowfadespeed---number)
 * [startFadeIn (duration opt, white opt)](Scene_Base.md#startfadein-duration-opt-white-opt)

@@ -65,7 +65,7 @@
 * [detachReservation ()](Scene_Base.md#detachreservation-)
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
-* [isActive () ](Scene_Base.md#isactive---boolean)
+* [isActive ()](Scene_Base.md#isactive---boolean)
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
