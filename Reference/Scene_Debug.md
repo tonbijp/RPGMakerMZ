@@ -7,6 +7,7 @@
 ### new Scene_Debug ()
 F9キーで開かれる、スイッチ・変数を編集するデバッグスクリーン用のクラス。
 
+関連クラス: [SceneManager](SceneManager.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md)
 
 
