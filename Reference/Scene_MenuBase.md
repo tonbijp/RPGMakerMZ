@@ -123,7 +123,7 @@
 
 
 #### createPageButtons ()
-**@MZ** ページボタンを生成
+**@MZ** ページボタンを生成。
 
 
 #### helpAreaBottom() → {[Number](Number.md)}
@@ -139,7 +139,7 @@
 
 
 #### helpWindowRect () → {[Rectangle](Rectangle.md)}
-**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す
+**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す。
 
 
 #### mainAreaBottom() → {[Number](Number.md)}
