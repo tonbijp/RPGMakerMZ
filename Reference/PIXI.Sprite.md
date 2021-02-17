@@ -21,15 +21,15 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html) \| [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) | [static] シェーダ |
 | `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値:0xFFFFFF) |
 | `_tintedCanvas` | HTMLCanvasElement | 着色された canvas |
-| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) |座標の基点 (ex: 左上{0, 0} / 右下{1, 1} ) |
-| `blendMode` | [Number](Number.md) | [合成方法]\(0: 通常, 1: 加算, 2: 乗算, 3: スクリーン)<br/>See:[PIXI.BLEND_MODES](PIXI.BLEND_MODES) |
+| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) |座標の基点 (例: 左上{0, 0} / 右下{1, 1} ) |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値:0) |
 | `isSprite` | Boolean | スプライトか |
-| `pluginName` | [String](String.md) | プラグイン名(Default: 'batch') |
+| `pluginName` | [String](String.md) | プラグイン名(規定値: "batch") |
 | `roundPixels` | Boolean | ピクセル補完するか |
 | `texture` | [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html) | スプライトに設定された画像 |
 | `tint` | [Number](Number.md) | 着色する色(規定値:0xFFFFFF の場合処理しない) |

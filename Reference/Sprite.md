@@ -51,10 +51,10 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | `opacity` | [Number](Number.md) | 不透明度 (0 〜 255) |
 | `visible` | Boolean |  表示中か |
 | `z` | [Number](Number.md) | [重なりの優先度](Sprite.md#重なりの優先度) |
-| `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値:0)|
 | `_bitmap` | |  |
 | `_blendColor` | [Array](Array.md) | ブレンドカラー [r, g, b, g]|
-| `_blendMode` | | ブレンドモード(規定値:PIXI.BLEND_MODES.NORMAL) |
+| `_blendMode` | | |
 | `_colorFilter` | | 色フィルタ |
 | `_colorTone` | [Array](Array.md) | 色調 [r, g, b, a]|
 | `_frame` | [Rectangle](Rectangle.md) | 枠 |
