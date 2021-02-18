@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Shop
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
@@ -5,12 +7,12 @@
 ### new Scene_Shop ()
 [ショップの処理]のシーン。
 
-関連クラス: [Game_Interpreter](Game_Interpreter.md)
+関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_goods` | [Array](Array.md).&lt;[Array](Array.md).&lt;*&gt;&gt; | 商品の配列 |
 | `_purchaseOnly` | Boolean | [購入のみ]か |
@@ -23,7 +25,6 @@
 | `_buyWindow` | [Window_ShopBuy](Window_ShopBuy.md) | 購入ウィンドウ |
 | `_categoryWindow` | [Window_ItemCategory](Window_ItemCategory.md) | カテゴリウィンドウ |
 | `_sellWindow` | [Window_ShopSell](Window_ShopSell.md) | 売却ウィンドウ |
-| `_helpWindow` | [Window_Help](Window_Help.md) | ヘルプウィンドウ |
 
 
 ### スーパークラスから継承されたメソッド
@@ -45,7 +46,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -61,6 +61,10 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
+
 #### [Scene_Base](Scene_Base.md)
 
 * [addWindow (Window)](Scene_Base.md#addwindow-window)
@@ -71,29 +75,43 @@
 * [detachReservation ()](Scene_Base.md#detachreservation-)
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
-* [isActive () ](Scene_Base.md#isactive---boolean)
+* [isActive ()](Scene_Base.md#isactive---boolean)
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
 * [slowFadeSpeed ()](Scene_Base.md#slowfadespeed---number)
 * [startFadeIn (duration opt, white opt)](Scene_Base.md#startfadein-duration-opt-white-opt)
 * [startFadeOut (duration opt, white opt)](Scene_Base.md#startfadeout-duration-opt-white-opt)
+* [start ()](Scene_Base.md#start-)
 * [stop ()](Scene_Base.md#stop-)
 * [terminate ()](Scene_Base.md#terminate-)
-* [update ()](Scene_Base.md#update-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 #### [Scene_MenuBase](Scene_MenuBase.md)
 
 * [actor ()](Scene_MenuBase.md#actor---game_actor)
+* [arePageButtonsEnabled ()](Scene_MenuBase.md#arepagebuttonsenabled---boolean)
+* [createButtons ()](Scene_MenuBase.md#createbuttons-)
+* [createCancelButton ()](Scene_MenuBase.md#createcancelbutton-)
 * [createHelpWindow ()](Scene_MenuBase.md#createhelpwindow-)
+* [createPageButtons ()](Scene_MenuBase.md#createpagebuttons-)
+* [helpAreaBottom()](Scene_MenuBase.md#helpareabottom--number)
+* [helpAreaHeight() ](Scene_MenuBase.md#helpareaheight--number)
+* [helpAreaTop() ](Scene_MenuBase.md#mainareatop--number)
+* [helpWindowRect ()](Scene_MenuBase.md#helpwindowrect---rectangle)
+* [mainAreaBottom()](Scene_MenuBase.md#mainareabottom--number)
+* [mainAreaHeight()](Scene_MenuBase.md#mainareaheight--number)
+* [mainAreaTop()](Scene_MenuBase.md#mainareatop--number)
+* [needsCancelButton ()](Scene_MenuBase.md#needscancelbutton---boolean)
+* [needsPageButtons ()](Scene_MenuBase.md#needspagebuttons---boolean)
 * [nextActor ()](Scene_MenuBase.md#nextactor-)
 * [onActorChange ()](Scene_MenuBase.md#onactorchange-)
 * [previousActor ()](Scene_MenuBase.md#previousactor-)
 * [setBackgroundOpacity (opacity)](Scene_MenuBase.md#setbackgroundopacity-opacity)
-* [start ()](Scene_Base.md#start-)
+* [update ()](Scene_MenuBase.md#update-)
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
+* [updatePageButtons ()](Scene_MenuBase.md#updatepagebuttons-)
 
 
 ### メソッド
@@ -108,13 +126,26 @@
 
 #### buyingPrice () → {[Number](Number.md)}
 選択中のアイテムの購入金額を返す。
-
+
+
+#### buyWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** 購入ウィンドウの矩形範囲を返す。
+
+
+#### categoryWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** カテゴリウィンドウの矩形範囲を返す。
+
+
 #### commandBuy ()
 [購入する]を実行。
 
 
 #### commandSell ()
 [売却する]を実行。
+
+
+#### commandWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** コマンドウィンドウの矩形範囲を返す。
 
 
 #### create ()
@@ -138,20 +169,24 @@
 
 
 #### createGoldWindow ()
-所持金ウィンドウを生成。
+所持金ウィンドウを生成。
+
 
 #### createNumberWindow ()
-数量ウィンドウを生成。
+数量ウィンドウを生成。
+
 
 #### createSellWindow ()
 売却ウィンドウを生成。
 
 
 #### createStatusWindow ()
-ステータスウィンドウを生成。
+ステータスウィンドウを生成。
+
 
 #### currencyUnit () → {[String](String.md)}
-通貨単位を返す。
+通貨単位を返す。
+
 
 #### doBuy (number)
 指定個数の購入を実行。
@@ -173,8 +208,16 @@
 | `number` | [Number](Number.md) | 個数 |
 
 
+#### dummyWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** ダミーウィンドウの矩形範囲を返す。
+
+
 #### endNumberInput ()
 個数の入力を終了。
+
+
+#### goldWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** 所持金ウィンドウの矩形範囲を返す。
 
 
 #### initialize ()
@@ -182,18 +225,28 @@
 
 
 #### maxBuy () → {[Number](Number.md)}
-最大購入個数を返す。
+最大購入個数を返す。
+
 
 #### maxSell () → {[Number](Number.md)}
-最大売却個数を返す。
+最大売却個数を返す。
+
 
 #### money () → {[Number](Number.md)}
 所持金を返す。
-#### onBuyCancel ()
-購入がキャンセルされた時に呼ばれるハンドラ。
+
+
+#### numberWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** 数量ウィンドウの矩形範囲を返す。
+
+
+#### onBuyCancel ()
+購入がキャンセルされた時に呼ばれるハンドラ。
+
 
 #### onBuyOk ()
-購入が決定された時に呼ばれるハンドラ。
+購入が決定された時に呼ばれるハンドラ。
+
 
 #### onCategoryCancel ()
 カテゴリがキャンセルされた時に呼ばれるハンドラ。
@@ -231,4 +284,13 @@
 
 
 #### sellingPrice () → {[Number](Number.md)}
-現在のアイテムの売却金額を返す。
+現在のアイテムの売却金額を返す。
+
+
+#### sellWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** 売却ウィンドウの矩形範囲を返す。
+
+
+#### statusWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** ステータスウィンドウの矩形範囲を返す。
+
