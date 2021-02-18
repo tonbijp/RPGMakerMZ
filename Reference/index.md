@@ -338,7 +338,7 @@ namespace JsExtensions
     * [Scene_Options](Scene_Options.md)
     * [Scene_Shop](Scene_Shop.md)
     * [Scene_Status](Scene_Status.md)
-    * ※[Scene_File](Scene_File.md)
+    * [Scene_File](Scene_File.md)
         * ※[Scene_Load](Scene_Load.md)
         * ※[Scene_Save](Scene_Save.md)
     * ※[Scene_ItemBase](Scene_ItemBase.md)
