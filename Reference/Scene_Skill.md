@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Scene_Skill
 
 ## スーパークラス: [Scene_ItemBase](Scene_ItemBase.md)
@@ -5,13 +7,13 @@
 ### new Scene_Skill ()
 [スキル]のシーン。
 
-関連クラス: [Window_SkillList](Window_SkillList.md),  [Window_SkillStatus](Window_SkillStatus.md) <br />
+関連クラス: [SceneManager](SceneManager.md), [Window_SkillList](Window_SkillList.md),  [Window_SkillStatus](Window_SkillStatus.md) <br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_skillTypeWindow` | [Window_SkillType](Window_SkillType.md) | スキルタイプ選択ウィンドウ |
 
@@ -35,7 +37,6 @@
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -51,6 +52,10 @@
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
+#### [Stage](Stage.md)
+
+* [destroy ()](Stage.md#destroy-)
+
 #### [Scene_Base](Scene_Base.md)
 
 * [addWindow (Window)](Scene_Base.md#addwindow-window)
@@ -61,48 +66,66 @@
 * [detachReservation ()](Scene_Base.md#detachreservation-)
 * [fadeOutAll ()](Scene_Base.md#fadeoutall-)
 * [fadeSpeed ()](Scene_Base.md#fadespeed---number)
-* [isActive () ](Scene_Base.md#isactive---boolean)
+* [isActive ()](Scene_Base.md#isactive---boolean)
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [popScene ()](Scene_Base.md#popscene-)
 * [slowFadeSpeed ()](Scene_Base.md#slowfadespeed---number)
 * [startFadeIn (duration opt, white opt)](Scene_Base.md#startfadein-duration-opt-white-opt)
 * [startFadeOut (duration opt, white opt)](Scene_Base.md#startfadeout-duration-opt-white-opt)
+* [start ()](Scene_Base.md#start-)
 * [stop ()](Scene_Base.md#stop-)
 * [terminate ()](Scene_Base.md#terminate-)
-* [update ()](Scene_Base.md#update-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateFade ()](Scene_Base.md#updatefade-)
 
 #### [Scene_MenuBase](Scene_MenuBase.md)
 
 * [actor ()](Scene_MenuBase.md#actor---game_actor)
+* [createButtons ()](Scene_MenuBase.md#createbuttons-)
+* [createCancelButton ()](Scene_MenuBase.md#createcancelbutton-)
 * [createHelpWindow ()](Scene_MenuBase.md#createhelpwindow-)
+* [createPageButtons ()](Scene_MenuBase.md#createpagebuttons-)
+* [helpAreaBottom()](Scene_MenuBase.md#helpareabottom--number)
+* [helpAreaHeight() ](Scene_MenuBase.md#helpareaheight--number)
+* [helpAreaTop() ](Scene_MenuBase.md#mainareatop--number)
+* [helpWindowRect ()](Scene_MenuBase.md#helpwindowrect---rectangle)
+* [mainAreaBottom()](Scene_MenuBase.md#mainareabottom--number)
+* [mainAreaHeight()](Scene_MenuBase.md#mainareaheight--number)
+* [mainAreaTop()](Scene_MenuBase.md#mainareatop--number)
+* [needsCancelButton ()](Scene_MenuBase.md#needscancelbutton---boolean)
 * [nextActor ()](Scene_MenuBase.md#nextactor-)
+* [onActorChange ()](Scene_MenuBase.md#onactorchange-)
 * [previousActor ()](Scene_MenuBase.md#previousactor-)
 * [setBackgroundOpacity (opacity)](Scene_MenuBase.md#setbackgroundopacity-opacity)
+* [update ()](Scene_MenuBase.md#update-)
 * [updateActor ()](Scene_MenuBase.md#updateactor-)
+* [updatePageButtons ()](Scene_MenuBase.md#updatepagebuttons-)
 
 #### [Scene_ItemBase](Scene_ItemBase.md)
 
 * [activateItemWindow ()](Scene_ItemBase.md#activateitemwindow-)
+* [actorWindowRect ()](Scene_ItemBase.md#actorwindowrect--rectangle)
 * [applyItem ()](Scene_ItemBase.md#applyitem-)
 * [canUse ()](Scene_ItemBase.md#canuse---boolean)
 * [checkCommonEvent ()](Scene_ItemBase.md#checkcommonevent-)
 * [createActorWindow ()](Scene_ItemBase.md#createactorwindow-)
-* [create ()](Scene_ItemBase.md#create-)
 * [determineItem ()](Scene_ItemBase.md#determineitem-)
-* [hideSubWindow (window)](Scene_ItemBase.md#hidesubwindow-window)
+* [hideActorWindow ()](Scene_ItemBase.md#hideactorwindow-)
 * [isCursorLeft ()](Scene_ItemBase.md#iscursorleft---boolean)
 * [isItemEffectsValid ()](Scene_ItemBase.md#isitemeffectsvalid---boolean)
 * [item ()](Scene_ItemBase.md#item---rpgbusableitem)
 * [itemTargetActors ()](Scene_ItemBase.md#itemtargetactors---game_actor)
 * [onActorCancel ()](Scene_ItemBase.md#onactorcancel-)
 * [onActorOk ()](Scene_ItemBase.md#onactorok-)
-* [showSubWindow (window)](Scene_ItemBase.md#showsubwindow-window)
+* [showActorWindow ()](Scene_ItemBase.md#showactorwindow-)
 
 
 ### メソッド
+
+#### arePageButtonsEnabled ()
+**@MZ** オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#arepagebuttonsenabled---boolean)
+
 
 #### commandSkill ()
 スキル選択を開始。
@@ -117,14 +140,27 @@
 
 
 #### createSkillTypeWindow ()
-スキルタイプのウィンドウを生成。
+スキルタイプ選択ウィンドウを生成。
 
 
 #### createStatusWindow ()
-ステータスウィンドウを生成。
+ステータスウィンドウを生成。
+
 
 #### initialize ()
 オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#initialize-)
+
+
+#### itemWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** アイテムウィンドウの矩形範囲を返す。
+
+
+#### needsPageButtons ()
+**@MZ** オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#needspagebuttons---boolean)
+
+
+#### onActorChange ()
+オーバーライド: [Scene_MenuBase](Scene_MenuBase.md#onactorchange-)
 
 
 #### onActorChange ()
@@ -136,7 +172,8 @@
 
 
 #### onItemOk ()
-スキル項目を決定した時に呼ばれるハンドラ。
+スキル項目を決定した時に呼ばれるハンドラ。
+
 
 #### playSeForItem ()
 [スキル使用]に設定された音を再生。
@@ -146,8 +183,16 @@
 アクターの再描画。
 
 
+#### skillTypeWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** スキルタイプ選択ウィンドウの矩形範囲を返す。
+
+
 #### start ()
 オーバーライド: [Scene_Base](Scene_Base.md#start-)
+
+
+#### statusWindowRect() → {[Rectangle](Rectangle.md)}
+**@MZ** ステータスウィンドウの矩形範囲を返す。
 
 
 #### useItem ()
@@ -157,4 +202,5 @@
 #### user () → {[Game_Actor](Game_Actor.md)}
 オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
 
-
+
+

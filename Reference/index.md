@@ -342,8 +342,8 @@ namespace JsExtensions
         * [Scene_Load](Scene_Load.md)
         * [Scene_Save](Scene_Save.md)
     * [Scene_ItemBase](Scene_ItemBase.md)
-        * ※[Scene_Item](Scene_Item.md)
-        * ※[Scene_Skill](Scene_Skill.md)
+        * [Scene_Item](Scene_Item.md)
+        * [Scene_Skill](Scene_Skill.md)
 
 
 ## ウィンドウ
