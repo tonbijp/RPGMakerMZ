@@ -297,7 +297,7 @@ namespace JsExtensions
 
 ### [スプライト(Sprite)](Sprite.md)
 
-* ※[Sprite_Animation](Sprite_Animation.md)
+* [Sprite_Animation](Sprite_Animation.md)
 * ※[Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
 * ※[Sprite_Button](Sprite_Button.md)
 * ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**

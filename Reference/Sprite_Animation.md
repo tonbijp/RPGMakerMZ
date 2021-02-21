@@ -1,9 +1,10 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Animation
 
 ## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Animation ()
-
 | データベース| JSONデータ | 大域変数 |
 | --- | --- | --- |
 | [アニメーション] | [RPG.Animation](RPG.Animation.md), [RPG.Animation.Timing](RPG.Animation.Timing.md) | [$dataAnimations](global.md#dataanimations-arrayrpganimation)(配列) |
@@ -11,33 +12,37 @@
 [アニメーション]を表示するスプライト。主に戦闘シーンで使用される。<br />
 [アニメーションの表示]スクリプトコマンドからも実行される。
 
+[重なりの優先度](Sprite.md#重なりの優先度) `z` プロパティの値は 8。
+
+名前は同じだが本クラスは [Effekseer](https://effekseer.github.io/jp/) 用に新たに作られたクラスで、MVの時のクラスは [Sprite_AnimationMV](Sprite_AnimationMV.md) に名称変更されている。<br />
+なのでプロパティ・メソッドに **@MZ** 表記はつけず、新規クラスとして記述する。<br />
+内容についてはカンでテキトーに書いているので信用しないでください。他のところもそうですけど、ここは特に何もわからずに書いてます(笑)
+
+
 v1.1.0 で変更あり。
 
-関連クラス: [Sprite_Base](Sprite_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
+関連クラス: [EffectManager](EffectManager.md), [Spriteset_Base](Spriteset_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_checker1` | Object | [static] すでに生成済みかチェック用オブジェクト {key: [RPG.Animation](RPG.Animation.md)} |
-| `_checker2` | Object | [static] すでに生成済みかチェック用オブジェクト {key: [RPG.Animation](RPG.Animation.md)} |
-| `_target` | [Sprite_Base](Sprite_Base.md) | 対象 |
+| `_targets` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; | 対象 |
 | `_animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
 | `_mirror` | Boolean | 左右反転するか |
 | `_delay` | [Number](Number.md) | 表示時間 |
-| `_rate` | [Number](Number.md) | 表示レート |
-| `_duration` | [Number](Number.md) | 継続時間 |
+| `_previous` | [Sprite_Animation](Sprite_Animation.md) | 直前のアニメーションクラス |
+| `_effect` |  EffekseerEffect | Effekseerエフェクト |
+| `_handle` | EffekseerHandle | Effekseerハンドル(位置・回転・拡大率・速度のデータを持ったクラス) |
+| `_playing` | Boolean | アニメーション再生(準備中も含む)中か |
+| `_started` | Boolean | アニメーション開始されているか |
+| `_frameIndex` | [Number](Number.md) | フレーム番号 |
+| `_maxTimingFrames` | [Number](Number.md) | 最大フレーム |
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
 | `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/15秒単位) |
-| `_screenFlashDuration` | [Number](Number.md) | [画面]のフラッシュの継続時間 |
-| `_hidingDuration` | [Number](Number.md) | [対象消去]の継続時間 |
-| `_bitmap1` | [Bitmap](Bitmap.md) | [画像]1 |
-| `_bitmap2` | [Bitmap](Bitmap.md) | [画像]2 |
-| `_cellSprites` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; | アニメ用スプライトの配列 |
-| `_screenFlashSprite` | [ScreenSprite](ScreenSprite.md) | 画面フラッシュ用スプライト |
-| `_duplicated` | Boolean | 複製か |
-| `_reduceArtifacts` | Boolean | 減らすか |
+| `_viewportSize` | [Number](Number.md) | ビューポートサイズ(規定値:4096) |
+| `_originalViewport` | Array](Array.md).&lt;[Number](Number.md)&gt; | ビューポート[ x, y, 幅, 高さ ] |
 
 
 ### スーパークラスから継承されたメソッド
@@ -68,6 +73,7 @@ v1.1.0 で変更あり。
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -81,53 +87,46 @@ v1.1.0 で変更あり。
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
 * [getBlendColor ()](Sprite.md#getblendcolor---array)
 * [getColorTone ()](Sprite.md#getcolortone---array)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 
 ### メソッド
 
-#### absoluteX () → {[Number](Number.md)}
-x座標の絶対値を返す。
+
+#### _render (renderer) 
+レンダリング実行。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
 
 
-#### absoluteY () → {[Number](Number.md)}
-y座標の絶対値を返す。
+#### canStart () → {Boolean}
+開始可能か。
 
 
-#### createCellSprites ()
-セル用のスプライトを生成。
+#### checkEnd ()
+アニメーションが終わっていたら終了状態にする。
 
 
-#### createScreenFlashSprite ()
-画面に対するフラッシュ用のスプライトを生成。
-
-
-#### createSprites ()
-アニメーション用のスプライトのセットを生成。
-
-
-#### currentFrameIndex () → {[Number](Number.md)}
-現在のフレーム番号を返す。
+#### destroy ()
+オーバーライド:[Sprite](Sprite.md#destroy-)
 
 
 #### initialize ()
@@ -142,126 +141,146 @@ y座標の絶対値を返す。
 アニメーションが再生中か。
 
 
-#### isReady () → {Boolean}
-アニメーションの準備ができているか。
-
-
-#### loadBitmaps ()
-アニメーション用の画像の読み込み。
-
-
-#### processTimingData (timing)
-[SEとフラッシュのタイミング]データの実行。
+#### onAfterRender (renderer)
+レンダリング終了後のハンドラ。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `timing` | [RPG.Animation.Timing](RPG.Animation.Timing.md) | [SEとフラッシュのタイミング] |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
 
 
-#### remove ()
-アニメーションを取り除く。
+#### onBeforeRender (renderer)
+レンダリング開始前のハンドラ。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
 
 
-#### setup (target, animation, mirror, delay)
+#### processFlashTimings ()
+[SEとフラッシュのタイミング]データのフラッシュを実行。
+
+
+#### processSoundTimings ()
+[SEとフラッシュのタイミング]データのSEを実行。
+
+
+#### resetViewport (renderer)
+ビューポートを(_originalViewportに)再設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+
+
+#### saveViewport (renderer)
+ビューポートを(_originalViewportに)保存。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+
+
+#### setCameraMatrix (renderer) 
+レンダラにカメラ行列を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ(未使用) |
+
+
+#### setProjectionMatrix (renderer) 
+レンダラにプロジェクション行列を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+
+
+#### setRotation (x, y, z)
+ハンドルに回転を設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `x` |  [Number](Number.md) | x回転 |
+| `y` |  [Number](Number.md) | y回転 |
+| `z` |  [Number](Number.md) | z回転 |
+
+
+#### setViewport (renderer) 
+レンダラにビューポートを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+
+
+#### setup (targets, animation, mirror, delay, previous)
 アニメーションの準備。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `target` | [Sprite_Base](Sprite_Base.md) | 対象 |
+| `targets` | [Array](Array.md).&lt; [Sprite](Sprite.md)&gt; | 対象 |
 | `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
 | `mirror` | Boolean | 左右反転するか |
 | `delay` | [Number](Number.md) | 表示時間 |
+| `_previous` | [Sprite_Animation](Sprite_Animation.md) | 直前のアニメーションクラス |
 
 
-#### setupDuration ()
-継続時間の設定。
+#### shouldWaitForPrevious () → {Boolean}
+直前のアニメーションを待つ必要があるか。
 
 
-#### setupRate ()
-表示レート(フレーム)の設定(規定値:4)
-
-
-#### startFlash (color, duration)
-フラッシュの開始。
+#### targetPosition (renderer) → {[Point](Point.md)}
+レンダラの対象位置を返す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `color` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 色の配列 [ 赤, 緑, 青, 強さ ] |
-| `duration` | [Number](Number.md) | 継続時間 |
+| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
 
 
-#### startHiding (duration)
-対象を隠す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `duration` | [Number](Number.md) | 継続時間 |
-
-
-#### startScreenFlash (color, duration)
-画面のフラッシュの開始。
+#### targetSpritePosition (sprite) → {[Point](Point.md)}
+対象スプライトの位置を返す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `color` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 色の配列 [ 赤, 緑, 青, 強さ ] |
-| `duration` | [Number](Number.md) | 継続時間 |
+| `sprite` | [Sprite](Sprite.md) | 対象スプライト |
 
 
 #### update ()
 オーバーライド:[Sprite](Sprite.md#update-)
 
 
-#### updateAllCellSprites (frame)
-全セルスプライトのアップデート。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `frame` | [Array](Array.md).&lt;[Array](Array.md).&lt;[Number](Number.md)&gt;&gt; | [フレーム情報](RPG.Animation.md#フレーム情報)のセル番号以降 |
-
-
-#### updateCellSprite (sprite, cell)
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `sprite` | [Sprite](Sprite.md) |  |
-| `cell` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
+#### updateEffectGeometry ()
+エフェクトジオメトリのアップデート。
 
 
 #### updateFlash ()
 フラッシュのアップデート。
 
 
-#### updateFrame ()
-フレームのアップデート。
-
-
-#### updateHiding ()
-対象消去のアップデート。
-
-
 #### updateMain ()
 主要なアップデート。
-
-
-#### updatePosition ()
-位置のアップデート。
-
-
-#### updateScreenFlash ()
-画面のフラッシュのアップデート。
-
 

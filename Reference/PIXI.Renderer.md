@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: PIXI.Renderer
 
 ## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
@@ -17,7 +19,7 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 | --- | --- | --- |
 | `options ` | Object | 詳細は以下の表を参照 |
 
-##### options:
+##### 引数
 
 全ての値は任意(optional)です。
 
@@ -44,7 +46,7 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- | 
 | `_activeRenderTarget` | [PIXI.RenderTarget](http://pixijs.download/release/docs/PIXI.RenderTarget.html) | ターゲット |
 | `_fillStyle` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | 塗りの形式 |
@@ -240,7 +242,7 @@ PIXI.CanvasRenderer と PIXI.WebGLRenderer
 
 options に Object として指定する内容
 
-| Name | Type | Default | Description |
+| 識別子 | 型 | 規定値 | 説明 |
 | --- | --- | --- | --- |
 | `children` | Boolean | false | opt. 子も破棄するか|
 | `texture` | Boolean | false | opt. children と texture が true だと子のテクスチャを破棄する |

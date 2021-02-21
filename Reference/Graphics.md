@@ -24,7 +24,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `BLEND_MULTIPLY` | [Number](Number.md) | [static] 乗算 |
 | `BLEND_SCREEN` | [Number](Number.md) | [static] スクリーン |
 | `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static][read-only] PIXIアプリケーション |
-| `effekseer` | [EffekseerContext](EffekseerContext.md)  | **@MZ**[static][read-only] Effekseerコンテキスト |
+| `effekseer` | EffekseerContext  | **@MZ**[static][read-only] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
 | `height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
@@ -98,7 +98,7 @@ canvas の生成。
 
 
 #### (static) _createEffekseerContext ()
-**@MZ** _effekseer の生成。
+**@MZ** Effekseerコンテキストの生成。
 
 
 #### (static) _createErrorPrinter ()

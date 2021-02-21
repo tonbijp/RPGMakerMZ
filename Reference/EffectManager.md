@@ -7,13 +7,13 @@ MZではエフェクトに [Effekseer](https://effekseer.github.io/jp/) が採�
 
 v1.1.0 で変更あり。
 
-関連クラス: [Graphics](Graphics.md), [EffekseerContext](EffekseerContext.md), [RPG.Effect](RPG.Effect.md)
+関連クラス: [Graphics](Graphics.md),  [RPG.Effect](RPG.Effect.md), [Sprite_Animation](Sprite_Animation.md)
 
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_cache` | Object.&lt;[RPG.Effect](RPG.Effect.md)&gt; | [static] URLをキーとしたエフェクトのリスト |
+| `_cache` | Object.&lt;EffekseerEffect&gt; | [static] URLをキーとしたEffekseerエフェクトのリスト |
 | `_errorUrls` | [Array](Array.md) .&lt;[String](String.md)&gt; | [static] エラーの配列 |
 
 
@@ -27,11 +27,11 @@ v1.1.0 で変更あり。
 キャッシュを消去。
 
 
-#### (static) isReady ()→ {String}
+#### (static) isReady () → {[String](String.md)}
 準備が完了しているか。
 
 
-#### (static) load (filename)
+#### (static) load (filename) → {EffekseerEffect}
 指定ファイルからエフェクト情報を読み込む。
 
 ##### 引数
@@ -41,7 +41,7 @@ v1.1.0 で変更あり。
 | `filename` | [String](String.md) | ファイル名 |
 
 
-#### (static) makeUrl (filename)→ {String}
+#### (static) makeUrl (filename) → {[String](String.md)}
 指定ファイル名からURLを生成して返す。<br />
 具体的には "effects/ファイル名.efkefc"
 
