@@ -1,20 +1,27 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Damage
 
 ## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Damage ()
-ダメージをポップアップさせるスプライト。
+ダメージ数値をポップアップさせるスプライト。
+
+MVでは画像で数値を表示していたが、MZではフォントを利用。
 
 関連クラス: [Sprite_Animation](Sprite_Animation.md), [Sprite_Battler](Sprite_Battler.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
+| `_colorType` | [Number](Number.md) |  **@MZ** ダメージタイプ (0:HP↓, 1:HP↑, 2:MP↓, 2:MP↑) |
 | `_duration` | [Number](Number.md) | 継続時間 |
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
 | `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/15秒単位) |
-| `_damageBitmap` | [Bitmap](Bitmap.md) | ダメージ画像( img/system/Damage.png ) |
+
+### 廃止MVプロパティ
+`_damageBitmap` 
 
 
 ### スーパークラスから継承されたメソッド
@@ -45,6 +52,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -58,43 +66,56 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
 * [getBlendColor ()](Sprite.md#getblendcolor---array)
 * [getColorTone ()](Sprite.md#getcolortone---array)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
+
 
 
 ### メソッド
 
-#### createChildSprite () → {[Sprite](Sprite.md)}
-ダメージ画像スプライトを生成して子に追加して返す。
-
-
-#### createDigits (baseRow, value)
-指定行位置に数値スプライトを生成。
+#### createBitmap (width, height) → {[Bitmap](Bitmap.md)}
+**@MZ** ビットマップを生成して返す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `baseRow` | [Number](Number.md) | 行位置 |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
+
+
+#### createChildSprite (width, height) → {[Sprite](Sprite.md)}
+ダメージ画像スプライトを生成して子に追加して返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
+
+
+#### createDigits (value)
+指定行位置に数値スプライトを生成。<br />
+MVの `baseRow` 引数は廃止。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
 | `value` | [Number](Number.md) | 数値 |
 
 
@@ -102,12 +123,21 @@
 ミスのスプライトを生成。
 
 
-#### digitHeight () → {[Number](Number.md)}
-数値の高さ(ピクセル)を返す。
+#### damageColor () → {[MV.CssColor](MV.CssColor.md)}
+**@MZ** ダメージ数値の色を返す。
 
 
-#### digitWidth () → {[Number](Number.md)}
-数値の幅(ピクセル)を返す。
+#### destroy ()
+**@MZ** オーバーライド:[Sprite](Sprite.md#destroy-)
+
+
+#### fontFace () → {[String](String.md)}
+**@MZ** 数字フォント名を , で連結した文字列を返す。
+
+
+#### fontSize () → {[Number](Number.md)}
+**@MZ** 数字フォントサイズを返す。
+
 
 #### initialize ()
 オーバーライド:[Sprite](Sprite.md#initialize-)
@@ -115,6 +145,14 @@
 
 #### isPlaying () → {Boolean}
 再生されているか。
+
+
+#### outlineColor () → {[MV.CssColor](MV.CssColor.md)}
+**@MZ** ダメージ数値の輪郭色(規定値: "rgba(0, 0, 0, 0.7)")を返す。
+
+
+#### outlineWidth () → {[Number](Number.md)}
+**@MZ** ダメージ数値の輪郭幅(規定値: 4)を返す。
 
 
 #### setup (target)
@@ -151,4 +189,8 @@
 
 #### updateOpacity ()
 不透明度をアップデート。
-
+
+
+
+### 廃止MVメソッド
+digitHeight (), digitWidth ()

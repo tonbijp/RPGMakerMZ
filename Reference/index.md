@@ -301,7 +301,7 @@ namespace JsExtensions
 * [Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
 * [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
 * [Sprite_Character](Sprite_Character.md) (継承位置変更)
-* ※[Sprite_Damage](Sprite_Damage.md)
+* [Sprite_Damage](Sprite_Damage.md)
 * ※[Sprite_Destination](Sprite_Destination.md)
 * ※[Sprite_Gauge](Sprite_Gauge.md) **@MZ**
 * ※[Sprite_Name](Sprite_Name.md) **@MZ**
