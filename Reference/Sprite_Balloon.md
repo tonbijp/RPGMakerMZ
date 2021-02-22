@@ -1,9 +1,13 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Balloon
 
-## スーパークラス: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Balloon ()
 フキダシアイコン(img/system/Balloon.png)のスプライト。
+
+MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
 
 関連クラス: [Sprite_Character](Sprite_Character.md)
 
@@ -13,6 +17,7 @@
 | --- | --- | --- |
 | `_balloonId` | [Number](Number.md) | フキダシID |
 | `_duration` | [Number](Number.md) | 継続時間(フレーム) |
+| `_target` | [Sprite](Sprite.md) | **@MZ** 対象スプライト |
 
 
 ### スーパークラスから継承されたメソッド
@@ -43,6 +48,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -56,36 +62,22 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
-* [getColorTone ()](Sprite.md#getcolortone---mvtone)
+* [destroy ()](Sprite.md#destroy-)
+* [getBlendColor ()](Sprite.md#getblendcolor---array)
+* [getColorTone ()](Sprite.md#getcolortone---array)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
-
-#### [Sprite_Base](Sprite_Base.md)
-
-* [hide ()](Sprite_Base.md#hide-)
-* [isAnimationPlaying ()](Sprite_Base.md#isanimationplaying---boolean)
-* [show ()](Sprite_Base.md#show-)
-* [startAnimation (animation, mirror, delay)](Sprite_Base.md#startanimation-animation-mirror-delay)
-* [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
-* [updateVisibility ()](Sprite_Base.md#updatevisibility-)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 
 ### メソッド
@@ -110,13 +102,14 @@
 画像の読み込み。
 
 
-#### setup (balloonId)
+#### setup (targetSprite, balloonId)
 準備。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
+| `targetSprite` | [Sprite](Sprite.md) | **@MZ** 対象スプライト |
 | `balloonId` | [Number](Number.md) | フキダシID |
 
 
@@ -132,6 +125,11 @@
 画像のアップデート。
 
 
+#### updatePosition ()
+**@MZ** 位置のアップデート。
+
+
 #### waitTime () → {[Number](Number.md)}
 アニメーション後の待ち時間(規定値:12フレーム)を返す。
-
+
+

@@ -299,7 +299,9 @@ namespace JsExtensions
 
 * [Sprite_Animation](Sprite_Animation.md)
 * [Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
+* [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
 * ※[Sprite_Button](Sprite_Button.md)
+* ※[Sprite_Character](Sprite_Character.md) (継承位置変更)
 * ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**
 * ※[Sprite_Damage](Sprite_Damage.md)
 * ※[Sprite_Destination](Sprite_Destination.md)
@@ -307,11 +309,8 @@ namespace JsExtensions
 * ※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_Picture](Sprite_Picture.md)
 * ※[Sprite_StateIcon](Sprite_StateIcon.md)
-* ※[Sprite_Timer](Sprite_Timer.md)
-* ~~Sprite_Base~~ (廃止)
-* ※[Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
-* ※[Sprite_Character](Sprite_Character.md) (継承位置変更)
 * ※[Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
+* ※[Sprite_Timer](Sprite_Timer.md)
 * ※[Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
 * ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
     * ※[Sprite_Actor](Sprite_Actor.md)
@@ -319,6 +318,7 @@ namespace JsExtensions
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)
     * ※[Spriteset_Map](Spriteset_Map.md)
+* ~~Sprite_Base~~ (廃止)
 
 
 ### [シーン(Scene_Base)](Scene_Base.md)
