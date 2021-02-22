@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Character
 
 ## スーパークラス: [Sprite](Sprite.md)
