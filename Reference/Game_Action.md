@@ -11,7 +11,7 @@
 
 #### 引数
 
-| 識別子 | 型 | 説明 |
+| 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `subject` | [Game_Battler](Game_Battler.md) | 行動主体 |
 | `forcing` | Boolean | 強制行動か |
@@ -19,11 +19,11 @@
 
 ### プロパティ
 
-* EFFECT\_ から始まる定数は、[[使用効果](RPG.Effect.md#code)] を指定するのに使う。
-* SPECIAL\_EFFECT\_ESCAPE は、[[使用効果 - その他 - 特殊効果](RPG.Effect.md#その他)] の dataId を指定するのに使う。
-* HITTYPE\_から始まる定数は、[[命中タイプ](RPG.UsableItem.md#命中タイプ)] を指定するのに使う。
+* EFFECT\_ から始まる定数は、\[[使用効果](RPG.Effect.md#code)\] を指定するのに使う。
+* SPECIAL\_EFFECT\_ESCAPE は、\[[使用効果 - その他 - 特殊効果](RPG.Effect.md#その他)\] の dataId を指定するのに使う。
+* HITTYPE\_から始まる定数は、\[[命中タイプ](RPG.UsableItem.md#命中タイプ)\] を指定するのに使う。
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `EFFECT_RECOVER_HP` | [Number](Number.md) | [static] HP回復 |
 | `EFFECT_RECOVER_MP` | [Number](Number.md) | [static] MP回復 |
