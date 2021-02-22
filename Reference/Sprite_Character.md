@@ -1,6 +1,6 @@
 # クラス: Sprite_Character
 
-## スーパークラス: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Character (character)
 
@@ -15,6 +15,8 @@
 
 マップ上のキャラクタを表示するスプライト。
 
+MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
+
 関連クラス: [Scene_Map](Scene_Map.md), [Spriteset_Map](Spriteset_Map.md),[Sprite_Actor](Sprite_Actor.md)
 
 #### 引数
@@ -26,7 +28,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_character` | [Game_Character](Game_Character.md) | キャラクタデータ |
 | `_balloonDuration` | [Number](Number.md) | フキダシの継続時間 |
@@ -51,7 +53,6 @@
 * [toGlobal (position, point, skipUpdate)](PIXI.DisplayObject.md#toglobal-position-point-skipupdate--pixipoint)
 * [toLocal (position, from, point, skipUpdate)](PIXI.DisplayObject.md#tolocal-position-from-point-skipupdate--pixipoint)
 
-
 #### [PIXI.Container](PIXI.Container.md)
 
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
@@ -66,11 +67,11 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
-
 
 #### [PIXI.Sprite](PIXI.Sprite.md)
 
@@ -80,39 +81,36 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
-
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
+* [destroy ()](Sprite.md#destroy-)
 * [getBlendColor ()](Sprite.md#getblendcolor---array)
 * [getColorTone ()](Sprite.md#getcolortone---array)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
-#### [Sprite_Base](Sprite_Base.md)
-
-* [hide ()](Sprite_Base.md#hide-)
-* [isAnimationPlaying ()](Sprite_Base.md#isanimationplaying---boolean)
-* [show ()](Sprite_Base.md#show-)
-* [startAnimation (animation, mirror, delay)](Sprite_Base.md#startanimation-animation-mirror-delay)
-* [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
 
 
 ### メソッド
+
+#### checkCharacter (character)→ {boolean}
+**@MZ** 指定キャラクタが設定されているか。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `character` | [Game_Character](Game_Character.md) | キャラクタ |
+
 
 #### characterBlockX () → {[Number](Number.md)}
 ブロックの x座標を返す。
@@ -134,10 +132,6 @@
 半分のスプライトを生成。
 
 
-#### endBalloon ()
-フキダシを削除。
-
-
 #### initialize (character)
 オーバーライド: [Sprite_Base](Sprite_Base.md#initialize-)
 
@@ -152,12 +146,16 @@
 メンバ変数の初期化。
 
 
-#### isBalloonPlaying () → {boolean}
-フキダシが動作しているか。
+#### isEmptyCharacter () → {Boolean}
+**@MZ** キャラクタ画像が未設定か
 
 
 #### isImageChanged () → {Boolean}
 画像が切り替わったか。
+
+
+#### isObjectCharacter ()→ {boolean}
+**@MZ** オブジェクトキャラクタ(characters フォルダ以下)の画像か。
 
 
 #### isTile () → {boolean}
@@ -179,7 +177,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `character` | [Game_Character](Game_Character.md) |  |
+| `character` | [Game_Character](Game_Character.md) | キャラクタ |
 
 
 #### setCharacterBitmap ()
@@ -188,18 +186,6 @@
 
 #### setTileBitmap ()
 タイル画像を設定。
-
-
-#### setupAnimation ()
-アニメーションを設定。
-
-
-#### setupBalloon ()
-フキダシの設定。
-
-
-#### startBalloon ()
-フキダシの表示を開始。
 
 
 #### tilesetBitmap (tileId) → {[Bitmap](Bitmap.md)}
@@ -214,14 +200,6 @@
 
 #### update ()
 オーバーライド: [Sprite_Base](Sprite_Base.md#update-)
-
-
-#### updateAnimation ()
-アニメーションをアップデート。
-
-
-#### updateBalloon ()
-フキダシをアップデート。
 
 
 #### updateBitmap ()
@@ -253,5 +231,10 @@
 
 
 #### updateVisibility ()
-オーバーライド: [Sprite_Base](Sprite_Base.md#updateVisibility-)
+オーバーライド: [Sprite](Sprite.md#updateVisibility-)
+
+
+
+### 廃止MVメソッド
+endBalloon (), isBalloonPlaying (), setupAnimation (), setupBalloon (), startBalloon (), updateAnimation (), updateBalloon ()
 
