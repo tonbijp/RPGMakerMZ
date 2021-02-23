@@ -128,7 +128,7 @@ MVの `baseRow` 引数は廃止。
 
 
 #### destroy ()
-**@MZ** オーバーライド:[Sprite](Sprite.md#destroy-)
+**@MZ** オーバーライド: [Sprite](Sprite.md#destroy-)
 
 
 #### fontFace () → {[String](String.md)}
@@ -140,7 +140,7 @@ MVの `baseRow` 引数は廃止。
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド: [Sprite](Sprite.md#initialize-)
 
 
 #### isPlaying () → {Boolean}
@@ -170,7 +170,7 @@ MVの `baseRow` 引数は廃止。
 
 
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド: [Sprite](Sprite.md#update-)
 
 
 #### updateChild (sprite)

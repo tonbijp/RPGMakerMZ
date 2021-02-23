@@ -126,11 +126,11 @@ v1.1.0 で変更あり。
 
 
 #### destroy ()
-オーバーライド:[Sprite](Sprite.md#destroy-)
+オーバーライド: [Sprite](Sprite.md#destroy-)
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド: [Sprite](Sprite.md#initialize-)
 
  
 #### initMembers ()
@@ -270,7 +270,7 @@ v1.1.0 で変更あり。
 
 
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド: [Sprite](Sprite.md#update-)
 
 
 #### updateEffectGeometry ()

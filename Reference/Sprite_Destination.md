@@ -82,15 +82,15 @@
 
 
 #### destroy ()
-オーバーライド:[Sprite](Sprite.md#destroy-)
+オーバーライド: [Sprite](Sprite.md#destroy-)
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド: [Sprite](Sprite.md#initialize-)
 
 
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド: [Sprite](Sprite.md#update-)
 
 
 #### updateAnimation ()
@@ -99,6 +99,4 @@
 
 #### updatePosition ()
 位置のアップデート。
-
-
 

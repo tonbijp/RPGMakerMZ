@@ -132,7 +132,7 @@ y座標の絶対値を返す。
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド: [Sprite](Sprite.md#initialize-)
 
  
 #### initMembers ()
@@ -220,7 +220,7 @@ MVではtarget単体だったのが、複数になっている。
 
 
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド: [Sprite](Sprite.md#update-)
 
 
 #### updateAllCellSprites (frame)
