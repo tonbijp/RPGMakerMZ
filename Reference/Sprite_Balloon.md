@@ -87,7 +87,7 @@ MV で継承元(スーパークラス)だった Sprite_Base は廃止されて�
 
 
 #### initialize ()
-オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### initMembers ()
