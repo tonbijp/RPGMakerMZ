@@ -9,7 +9,6 @@
 
 PRGツクールMZでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
 
-
 #### 引数
 
 | 名前 | 型 | 説明 |
@@ -30,7 +29,6 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 * [Sprite_Destination](Sprite_Destination.md)
 * [Sprite_Gauge](Sprite_Gauge.md) **@MZ**
 * [Sprite_Name](Sprite_Name.md) **@MZ**
-* [Sprite_Picture](Sprite_Picture.md)
 * [Sprite_StateIcon](Sprite_StateIcon.md)
 * [Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
 * [Sprite_Timer](Sprite_Timer.md)
