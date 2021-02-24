@@ -22,7 +22,9 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 * [Sprite_Animation](Sprite_Animation.md)
 * [Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
-* [Sprite_Button](Sprite_Button.md)
+* [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
+* [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
+* [Sprite_Character](Sprite_Character.md) (継承位置変更)
 * [Sprite_Clickable](Sprite_Clickable.md) **@MZ**
 * [Sprite_Damage](Sprite_Damage.md)
 * [Sprite_Destination](Sprite_Destination.md)
@@ -30,14 +32,11 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 * [Sprite_Name](Sprite_Name.md) **@MZ**
 * [Sprite_Picture](Sprite_Picture.md)
 * [Sprite_StateIcon](Sprite_StateIcon.md)
-* [Sprite_Timer](Sprite_Timer.md)
 * [Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
+* [Sprite_Timer](Sprite_Timer.md)
+* [Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
 * [Spriteset_Base](Spriteset_Base.md)
 * ~~Sprite_Base~~ (廃止)
-* [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
-* [Sprite_Character](Sprite_Character.md) (継承位置変更)
-* [Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
-* [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
 
 
 ### プロパティ

@@ -81,9 +81,9 @@ namespace JsExtensions
 ## ユーティリティ
 
 * [JsonEx](JsonEx.md)
-* ~~ResourceHandler~~ (廃止)
 * [Utils](Utils.md)
 * [Video](Video.md) **@MZ**
+* ~~ResourceHandler~~ (廃止)
 
 ## 入力
 
@@ -276,7 +276,6 @@ namespace JsExtensions
 ### [コンテナ(PIXI.Container)](PIXI.Container.md)
 
 * [ScreenSprite](ScreenSprite.md)
-* ~~ToneSprite~~ (廃止)
 * [Weather](Weather.md)
 * [WindowLayer](WindowLayer.md)
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
@@ -293,6 +292,7 @@ namespace JsExtensions
     * [Scene_Base](Scene_Base.md) → [継承](#シーンscene_base)
 * [Window](Window.md)
     * ※[Window_Base](Window_Base.md) → [継承](#ウィンドウwindow_base)
+* ~~ToneSprite~~ (廃止)
 
 
 ### [スプライト(Sprite)](Sprite.md)
@@ -304,7 +304,7 @@ namespace JsExtensions
 * [Sprite_Damage](Sprite_Damage.md)
 * [Sprite_Destination](Sprite_Destination.md)
 * [Sprite_Gauge](Sprite_Gauge.md) **@MZ**
-* ※[Sprite_Name](Sprite_Name.md) **@MZ**
+*※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_Picture](Sprite_Picture.md)
 * ※[Sprite_StateIcon](Sprite_StateIcon.md)
 * ※[Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
@@ -313,11 +313,11 @@ namespace JsExtensions
 * ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
     * ※[Sprite_Actor](Sprite_Actor.md)
     * ※[Sprite_Enemy](Sprite_Enemy.md)
+* ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**
+    * ※[Sprite_Button](Sprite_Button.md) (継承位置変更)
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)
     * ※[Spriteset_Map](Spriteset_Map.md)
-* ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**
-    * ※[Sprite_Button](Sprite_Button.md) (継承位置変更)
 * ~~Sprite_Base~~ (廃止)
 
 
