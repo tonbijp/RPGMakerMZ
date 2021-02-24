@@ -11,7 +11,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_battler` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `_name` | [Number](Number.md) | 名前 |
