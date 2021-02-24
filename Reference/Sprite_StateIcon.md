@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_StateIcon
 
 ## スーパークラス: [Sprite](Sprite.md)
@@ -10,17 +12,19 @@
 
 ステートアイコン( img/system/IconSet.png )表示用スプライト。
 
+関連クラス: [ImageManager](ImageManager.md)
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_iconWidth` | [Number](Number.md) | [static] アイコンの幅(規定値:32ピクセル) |
-| `_iconHeight` | [Number](Number.md) | [static] アイコンの高さ(規定値:32ピクセル) |
 | `_battler` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 | `_iconIndex` | [Number](Number.md) | [アイコン]番号 |
 | `_animationCount` | [Number](Number.md) | アニメーションカウント |
 | `_animationIndex` | [Number](Number.md) | アニメーション番号 |
+
+### 廃止MVプロパティ
+`_iconWidth`, `_iconHeight`
 
 
 ### スーパークラスから継承されたメソッド
@@ -51,6 +55,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -64,27 +69,22 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [destroy ()](Sprite.md#destroy-)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 
 ### メソッド
@@ -115,6 +115,10 @@
 | `battler` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
+#### shouldDisplay () → {Boolean}
+**@MZ** 表示の必要があるか。
+
+
 #### update ()
 オーバーライド:[Sprite](Sprite.md#update-)
 
@@ -124,4 +128,5 @@
 
 
 #### updateIcon ()
-アイコンのアップデート。
+アイコンのアップデート。
+
