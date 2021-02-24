@@ -303,7 +303,7 @@ namespace JsExtensions
 * [Sprite_Character](Sprite_Character.md) (継承位置変更)
 * [Sprite_Damage](Sprite_Damage.md)
 * [Sprite_Destination](Sprite_Destination.md)
-* ※[Sprite_Gauge](Sprite_Gauge.md) **@MZ**
+* [Sprite_Gauge](Sprite_Gauge.md) **@MZ**
 * ※[Sprite_Name](Sprite_Name.md) **@MZ**
 * ※[Sprite_Picture](Sprite_Picture.md)
 * ※[Sprite_StateIcon](Sprite_StateIcon.md)
