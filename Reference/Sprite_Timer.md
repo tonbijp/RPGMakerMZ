@@ -1,8 +1,11 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Timer
 
 ## スーパークラス: [Sprite](Sprite.md)
 
 ### new Sprite_Timer ()
+タイマーのスプライト。
 
 | イベントコマンド | オブジェクト |
 | --- | --- |
@@ -46,6 +49,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -59,27 +63,21 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 
 ### メソッド
@@ -88,13 +86,26 @@
 画像の生成。
 
 
+#### destroy ()
+**@MZ** オーバーライド:[Sprite](Sprite.md#destroy-)
+
+
+#### fontFace () → {[String](String.md)}
+**@MZ** フォント名を返す。
+
+
+#### fontSize () → {[Number](Number.md)}
+**@MZ** フォントサイズを返す。
+
+
 #### initialize ()
 オーバーライド:[Sprite](Sprite.md#initialize-)
 
 
 #### redraw ()
 再描画。
-
+
+
 #### timerText () → {[String](String.md)}
 タイマーを文字列で返す。
 
@@ -105,10 +116,14 @@
 
 #### updateBitmap ()
 画像のアップデート。
-
+
+
 #### updatePosition ()
 位置のアップデート。
-
+
+
 #### updateVisibility ()
 表示・非表示のアップデート。
-
+
+
+
