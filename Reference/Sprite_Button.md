@@ -1,20 +1,48 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Button
 
-## スーパークラス: [Sprite](Sprite.md)
+## スーパークラス: [Sprite_Clickable](Sprite_Clickable.md)
 
-### new Sprite_Button ()
+### new Sprite_Button (buttonType)
 ボタン表示用スプライト。
+
+MVでは [Sprite](Sprite.md) のサブクラスだったが、MZでは  [Sprite_Clickable](Sprite_Clickable.md) を継承している。
 
 関連クラス: [Window_ShopNumber](Window_ShopNumber.md), [Window_NumberInput](Window_NumberInput.md)
 
-### プロパティ
+#### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `_touching` | Boolean | タッチ・クリック対応か |
+| `buttonType` | [String](String.md) | **@MZ** [ボタンの種類](#ボタンの種類) |
+
+
+### プロパティ
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `_buttonType` | [String](String.md)  | **@MZ** [ボタンの種類](#ボタンの種類) |
 | `_coldFrame` | [Rectangle](Rectangle.md) | 表示枠 |
 | `_hotFrame` | [Rectangle](Rectangle.md) | タッチ・クリック反応枠 |
 | `_clickHandler` | Function | タッチ・クリック時に呼ばれるハンドラ |
+
+### ボタンの種類
+
+| 文字列 | 説明 |
+| --- | --- |
+| "cancel" | キャンセル |
+| "pageup" | ページアップ |
+| "pagedown" | ページダウン |
+| "down" | ダウン |
+| "up" | アップ |
+| "down2" | ダウン2 |
+| "up2" | アップ2 |
+| "ok" | 決定 |
+| "menu" | メニュー |
+
+### 廃止MVプロパティ
+`_touching`
 
 
 ### スーパークラスから継承されたメソッド
@@ -45,6 +73,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -58,69 +87,63 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [destroy ()](Sprite.md#destroy-)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
+
+#### [Sprite_Clickable](Sprite_Clickable.md)
+
+* [hitTest (x, y)](Sprite_Clickable.md#hittest-x-y--boolean)
+* [isBeingTouched ()](Sprite_Clickable.md#isbeingtouched---boolean)
+* [isClickEnabled ()](Sprite_Clickable.md#isclickenabled---boolean)
+* [isPressed ()](Sprite_Clickable.md#ispressed---boolean)
+* [onMouseEnter ()](Sprite_Clickable.md#onmouseenter-)
+* [onMouseExit ()](Sprite_Clickable.md#onmouseexit-)
+* [onPress ()](Sprite_Clickable.md#onpress-)
+* [processTouch ()](Sprite_Clickable.md#processtouch-)
 
 
 ### メソッド
 
-#### callClickHandler ()
-クリックハンドラがあれば呼び出す。
+#### blockHeight () → {number}
+**@MZ** ブロックの高さ(規定値:48ピクセル)を返す。
 
 
-#### canvasToLocalX (x) → {number}
-canvas の x座標をローカル x座標に変換して返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | canvas の x座標(ピクセル) |
+#### blockWidth () → {number}
+**@MZ** ブロックの幅(規定値:48ピクセル)を返す。
 
 
-#### canvasToLocalY (y) → {number}
-canvas の y座標をローカル x座標に変換して返す。
+#### buttonData () → {Object}
+**@MZ** ボタンの種類に応じたデータ { x: x位置. w: 幅 }(ブロック単位)を返す。
 
-##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `y` | [Number](Number.md) | canvas の y座標(ピクセル) |
+#### checkBitmap ()
+**@MZ** 画像をチェックしてサイズが小さすぎるならエラーを発生させる。
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#initialize-)
 
 
-#### isActive () → {boolean}
-ボタンがアクティブか。
+#### loadButtonImage ()
+**@MZ** ボタン画像を読み込む。
 
 
-#### isButtonTouched () → {boolean}
-ボタンがタッチされたか。
-
-
-#### processTouch ()
-タッチの処理。
+#### onClick ()
+**@MZ** オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#onclick-)
 
 
 #### setClickHandler (method)
@@ -159,12 +182,21 @@ canvas の y座標をローカル x座標に変換して返す。
 | `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
+#### setupFrames ()
+**@MZ** フレームの準備。
+
+
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#update-)
 
 
 #### updateFrame ()
 ボタン枠のアップテート。
-
 
 
+#### updateOpacity ()
+**@MZ** 不透明度のアップテート。
+
+
+### 廃止MVメソッド
+callClickHandler (), canvasToLocalX (x),  canvasToLocalY (y), isActive (), isButtonTouched (), processTouch ()
