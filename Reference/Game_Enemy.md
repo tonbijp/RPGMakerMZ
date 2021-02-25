@@ -333,7 +333,7 @@
 オーバーライド:[Game_Battler](Game_Battler.md#makeactions-)
 
 
-#### makeDropItems () → {[Array](Array.md).<[RPG.BaseItem](RPG.BaseItem.md)>}
+#### makeDropItems () → {[Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt;}
 ドロップアイテムを生成して返す。
 
 
@@ -461,7 +461,7 @@ Overrides [Game_Battler](Game_Battler.md#performactionstart-action)
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `actionList` | [Array](Array.md).<[RPG.Enemy.Action](RPG.Enemy.Action.md)> | [行動パターン]の配列 |
+| `actionList` | [Array](Array.md).&lt;[RPG.Enemy.Action](RPG.Enemy.Action.md)&gt; | [行動パターン]の配列 |
 | `ratingZero` | [Number](Number.md) | ゼロのレーティング |
 
 
@@ -472,7 +472,7 @@ Overrides [Game_Battler](Game_Battler.md#performactionstart-action)
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `actionList` | [Array](Array.md).<[RPG.Enemy.Action](RPG.Enemy.Action.md)> | [行動パターン]の配列 |
+| `actionList` | [Array](Array.md).&lt;[RPG.Enemy.Action](RPG.Enemy.Action.md)&gt; | [行動パターン]の配列 |
 
 
 #### setLetter (letter)
@@ -507,8 +507,8 @@ Overrides [Game_Battler](Game_Battler.md#performactionstart-action)
 | `y` | [Number](Number.md) | y座標 |
 
 
-#### traitObjects () → {[Array](Array.md).<[RPG.State](RPG.State.md)>}
-オーバーライド:[Game_Battler](Game_Battler.mdr#traitobjects)</a>
+#### traitObjects () → {[Array](Array.md).&lt;[RPG.State](RPG.State.md)&gt;}
+オーバーライド:[Game_Battler](Game_Battler.mdr#traitobjects)
 
 
 #### transform (enemyId)
