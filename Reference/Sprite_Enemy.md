@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Enemy
 
 ##  Extends: [Sprite_Battler](Sprite_Battler.md)
@@ -8,7 +10,7 @@
 | --- | --- | --- |
 | [敵キャラ] | [RPG.Enemy](RPG.Enemy.md) | [Game_Enemy](Game_Enemy.md) |
 
-[敵キャラ]表示用のスプライトクラス
+[敵キャラ]表示用のスプライト。
 
 v1.0.2 で変更あり。
 
@@ -23,7 +25,7 @@ v1.0.2 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_enemy` | [Game_Enemy](Game_Enemy.md) | [敵キャラ]のデータ |
 | `_appeared` | Boolean | 出現しているか |
@@ -49,7 +51,6 @@ v1.0.2 で変更あり。
 * [toGlobal (position, point, skipUpdate)](PIXI.DisplayObject.md#toglobal-position-point-skipupdate--pixipoint)
 * [toLocal (position, from, point, skipUpdate)](PIXI.DisplayObject.md#tolocal-position-from-point-skipupdate--pixipoint)
 
-
 #### [PIXI.Container](PIXI.Container.md)
 
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
@@ -64,11 +65,11 @@ v1.0.2 で変更あり。
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
-
 
 #### [PIXI.Sprite](PIXI.Sprite.md)
 
@@ -78,66 +79,68 @@ v1.0.2 で変更あり。
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
-
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [destroy ()](Sprite.md#destroy-)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [show ()](Sprite.md#show-)
 
-#### [Sprite_Base](Sprite_Base.md)
+#### [Sprite_Clickable](Sprite_Clickable.md)
 
-* [hide ()](Sprite_Base.md#hide-)
-* [isAnimationPlaying ()](Sprite_Base.md#isanimationplaying---boolean)
-* [show ()](Sprite_Base.md#show-)
-* [startAnimation (animation, mirror, delay)](Sprite_Base.md#startanimation-animation-mirror-delay)
-* [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
+* [hitTest (x, y)](Sprite_Clickable.md#hittest-x-y--boolean)
+* [isBeingTouched ()](Sprite_Clickable.md#isbeingtouched---boolean)
+* [isClickEnabled ()](Sprite_Clickable.md#isclickenabled---boolean)
+* [isPressed ()](Sprite_Clickable.md#ispressed---boolean)
+* [onMouseExit ()](Sprite_Clickable.md#onmouseexit-)
+* [processTouch ()](Sprite_Clickable.md#processtouch-)
 
 ####  [Sprite_Battler](Sprite_Battler.md)
 
-* [inHomePosition () ](Sprite_Battler.md#inhomeposition---boolean)
+* [checkBattler (battler)](Sprite_Battler.md#checkbattler-battler--boolean)
+* [createDamageSprite ()](Sprite_Battler.md#createdamagesprite-)
+* [destroyDamageSprite ()](Sprite_Battler.md#destroydamagesprite-)
+* [inHomePosition ()](Sprite_Battler.md#inhomeposition---boolean)
 * [isMoving ()](Sprite_Battler.md#ismoving---boolean)
+* [mainSprite ()](Sprite_Battler.md#mainsprite---sprite_battler)
+* [onClick ()](Sprite_Battler.md#onclick-)
+* [onMouseEnter ()](Sprite_Battler.md#onmouseenter-)
 * [onMoveEnd ()](Sprite_Battler.md#onmoveend-)
+* [onPress ()](Sprite_Battler.md#onpress-)
 * [setHome (x, y)](Sprite_Battler.md#sethome-x-y)
-* [setupAnimation ()](Sprite_Battler.md#setupanimation-)
 * [setupDamagePopup ()](Sprite_Battler.md#setupdamagepopup-)
 * [startMove (x, y, duration)](Sprite_Battler.md#startmove-x-y-duration)
-* [updateAnimation ()](Sprite_Battler.md#updateanimation-)
 * [updateDamagePopup ()](Sprite_Battler.md#updatedamagepopup-)
-* [updateMain ()](Sprite_Battler.md#updatemain-)
-* [updateMove ()](Sprite_Battler.md#updatemove-)
+* [updateMain ()](Sprite_Battler.md#updateMain-)
+* [updateMove ()](Sprite_Battler.md#updateMove-)
 * [updateSelectionEffect ()](Sprite_Battler.md#updateselectioneffect-)
 * [updateVisibility ()](Sprite_Battler.md#updatevisibility-)
 
-### メソッド
 
+
+### メソッド
 
 #### createStateIconSprite ()
 
+
 #### damageOffsetX () → {[Number](Number.md)}
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#damageoffsetx---number)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#damageoffsetx---number)
+
 
 #### damageOffsetY () → {[Number](Number.md)}
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#damageoffsety---number)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#damageoffsety---number)
+
 
 #### initialize (battler)
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#initialize-)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#initialize-)
 
 ##### 引数
 
@@ -147,7 +150,7 @@ v1.0.2 で変更あり。
 
 
 #### initMembers ()
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#initmembers-)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#initmembers-)
 
 
 #### initVisibility ()
@@ -155,7 +158,7 @@ v1.0.2 で変更あり。
 
 
 #### isEffecting () → {Boolean}
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#iseffecting---boolean)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#iseffecting---boolean)
 
 
 #### loadBitmap (name, hue)
@@ -174,7 +177,11 @@ v1.0.2 で変更あり。
 
 
 #### setBattler (battler)
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#setbattler-battler)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#setbattler-battler)
+
+
+#### setHue (hue)
+**@MZ** オーバーライド: [Sprite](Sprite.md#sethue-hue)
 
 
 #### setupEffect ()
@@ -222,7 +229,7 @@ v1.0.2 で変更あり。
 
 
 #### update ()
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#update-)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#update-)
 
 
 #### updateAppear ()
@@ -230,7 +237,7 @@ v1.0.2 で変更あり。
 
 
 #### updateBitmap ()
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#updatebitmap-)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#updatebitmap-)
 
 
 #### updateBlink ()
@@ -254,7 +261,7 @@ v1.0.2 で変更あり。
 
 
 #### updateFrame ()
-オーバーライド:[Sprite_Battler](Sprite_Battler.md#updateframe-)
+オーバーライド: [Sprite_Battler](Sprite_Battler.md#updateframe-)
 
 
 #### updateInstantCollapse ()
@@ -262,7 +269,7 @@ v1.0.2 で変更あり。
 
 
 #### updatePosition ()
-オーバーライド:[updatePosition ()](Sprite_Battler.md#updateposition-)
+オーバーライド: [updatePosition ()](Sprite_Battler.md#updateposition-)
 
 
 #### updateStateSprite ()
