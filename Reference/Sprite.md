@@ -22,7 +22,6 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 * [Sprite_Animation](Sprite_Animation.md)
 * [Sprite_AnimationMV](Sprite_AnimationMV.md) **@MZ**
 * [Sprite_Balloon](Sprite_Balloon.md) (継承位置変更)
-* [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
 * [Sprite_Character](Sprite_Character.md) (継承位置変更)
 * [Sprite_Clickable](Sprite_Clickable.md) **@MZ**
 * [Sprite_Damage](Sprite_Damage.md)

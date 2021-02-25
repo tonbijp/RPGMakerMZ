@@ -309,12 +309,12 @@ namespace JsExtensions
 * [Sprite_StateOverlay](Sprite_StateOverlay.md) (継承位置変更)
 * [Sprite_Timer](Sprite_Timer.md)
 * [Sprite_Weapon](Sprite_Weapon.md) (継承位置変更)
-* ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
-    * ※[Sprite_Actor](Sprite_Actor.md)
-    * ※[Sprite_Enemy](Sprite_Enemy.md)
-* ※[Sprite_Clickable](Sprite_Clickable.md) **@MZ**
+* [Sprite_Clickable](Sprite_Clickable.md) **@MZ**
     * ※[Sprite_Button](Sprite_Button.md) (継承位置変更)
     * ※[Sprite_Picture](Sprite_Picture.md) (継承位置変更)
+    * ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
+        * ※[Sprite_Actor](Sprite_Actor.md)
+        * ※[Sprite_Enemy](Sprite_Enemy.md)
 * ※[Spriteset_Base](Spriteset_Base.md)
     * ※[Spriteset_Battle](Spriteset_Battle.md)
     * ※[Spriteset_Map](Spriteset_Map.md)
