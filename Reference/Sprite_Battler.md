@@ -1,9 +1,13 @@
+[クラスツリー](index.md)
+
 # クラス: Sprite_Battler
 
-## スーパークラス: [Sprite_Base](Sprite_Base.md)
+## スーパークラス: [Sprite_Clickable](Sprite_Clickable.md)
 
 ### new Sprite_Battler (battler opt)
 戦闘シーンで表示されるキャラ画像。
+
+MV で継承元(スーパークラス)だった Sprite_Base から [Sprite_Clickable](Sprite_Clickable.md) に変更されている。
 
 #### 引数
 
@@ -20,7 +24,7 @@
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_battler` | [Game_Battler](Game_Battler.md) | バトラー |
 | `_damages` | [Array](Array.md).&lt;[Sprite_Damage](Sprite_Damage.md)&gt; | ダメージポップアップ用 |
@@ -48,7 +52,6 @@
 * [toGlobal (position, point, skipUpdate)](PIXI.DisplayObject.md#toglobal-position-point-skipupdate--pixipoint)
 * [toLocal (position, from, point, skipUpdate)](PIXI.DisplayObject.md#tolocal-position-from-point-skipupdate--pixipoint)
 
-
 #### [PIXI.Container](PIXI.Container.md)
 
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
@@ -63,11 +66,11 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
-
 
 #### [PIXI.Sprite](PIXI.Sprite.md)
 
@@ -77,39 +80,47 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
-
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [destroy ()](Sprite.md#destroy-)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
 
-#### [Sprite_Base](Sprite_Base.md)
+#### [Sprite_Clickable](Sprite_Clickable.md)
 
-* [hide ()](Sprite_Base.md#hide-)
-* [isAnimationPlaying ()](Sprite_Base.md#isanimationplaying---boolean)
-* [show ()](Sprite_Base.md#show-)
-* [startAnimation (animation, mirror, delay)](Sprite_Base.md#startanimation-animation-mirror-delay)
-* [updateAnimationSprites ()](Sprite_Base.md#updateanimationsprites-)
+* [hitTest (x, y)](Sprite_Clickable.md#hittest-x-y--boolean)
+* [isBeingTouched ()](Sprite_Clickable.md#isbeingtouched---boolean)
+* [isClickEnabled ()](Sprite_Clickable.md#isclickenabled---boolean)
+* [isPressed ()](Sprite_Clickable.md#ispressed---boolean)
+* [onMouseExit ()](Sprite_Clickable.md#onmouseexit-)
+* [processTouch ()](Sprite_Clickable.md#processtouch-)
 
 
 ### メソッド
+
+#### checkBattler (battler) → {Boolean}
+**@MZ** 指定バトラーと同じものか。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `battler` | [Game_Battler](Game_Battler.md) | バトラー |
+
+
+#### createDamageSprite ()
+**@MZ** ダメージスプライトを生成。
+
 
 #### damageOffsetX () → {[Number](Number.md)}
 ダメージの xオフセットを返す。
@@ -119,12 +130,16 @@
 ダメージの yオフセットを返す。
 
 
+#### destroyDamageSprite ()
+**@MZ** ダメージスプライトを消去。
+
+
 #### inHomePosition () → {Boolean}
 基点にいるか。
 
 
 #### initialize ()
-オーバーライド:[Sprite_Base](Sprite_Base.md#initialize-)
+オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#initialize-)
 
 
 #### initMembers ()
@@ -139,8 +154,24 @@
 移動中か。
 
 
+#### mainSprite () → {[Sprite_Battler](Sprite_Battler.md)}
+**@MZ** スプライトへの参照(規定値:this)を返す。
+
+
+#### onClick ()
+**@MZ** オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#onclick-)
+
+
+#### onMouseEnter ()
+**@MZ** オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#onmouseenter-)
+
+
 #### onMoveEnd ()
-移動が終わった時に呼ばれるハンドラ。
+移動が終わった時のハンドラ。
+
+
+#### onPress ()
+**@MZ** オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#onpress-)
 
 
 #### setBattler (battler)
@@ -164,10 +195,6 @@
 | `y` | [Number](Number.md) | 基点の y座標 |
 
 
-#### setupAnimation ()
-アニメーションの準備。
-
-
 #### setupDamagePopup ()
 ダメージポップアップの準備。
 
@@ -185,11 +212,7 @@
 
 
 #### update ()
-オーバーライド:[Sprite_Base](Sprite_Base.md#update-)
-
-
-#### updateAnimation ()
-アニメーションのアップデート。
+オーバーライド:[Sprite_Clickable](Sprite_Clickable.md#update-)
 
 
 #### updateBitmap ()
@@ -221,7 +244,8 @@
 
 
 #### updateVisibility ()
-オーバーライド:[Sprite_Base](Sprite_Base.md#updateVisibility-)
+オーバーライド:[Sprite](Sprite.md#updateVisibility-)
 
 
-
+### 廃止MVメソッド
+updateAnimation (), setupAnimation ()

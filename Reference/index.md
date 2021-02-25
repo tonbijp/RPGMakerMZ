@@ -312,7 +312,7 @@ namespace JsExtensions
 * [Sprite_Clickable](Sprite_Clickable.md) **@MZ**
     * ※[Sprite_Button](Sprite_Button.md) (継承位置変更)
     * ※[Sprite_Picture](Sprite_Picture.md) (継承位置変更)
-    * ※[Sprite_Battler](Sprite_Battler.md) (継承位置変更)
+    * [Sprite_Battler](Sprite_Battler.md) (継承位置変更)
         * ※[Sprite_Actor](Sprite_Actor.md)
         * ※[Sprite_Enemy](Sprite_Enemy.md)
 * ※[Spriteset_Base](Spriteset_Base.md)
