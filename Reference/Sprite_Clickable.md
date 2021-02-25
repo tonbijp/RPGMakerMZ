@@ -136,15 +136,3 @@
 オーバーライド:[Sprite](Sprite.md#update-)
 
 
-#### updateFrame ()
-画像のアップデート。
-
-
-#### updatePosition ()
-**@MZ** 位置のアップデート。
-
-
-#### waitTime () → {[Number](Number.md)}
-アニメーション後の待ち時間(規定値:12フレーム)を返す。
-
-
