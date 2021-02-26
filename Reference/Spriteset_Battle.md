@@ -1,25 +1,30 @@
+[クラスツリー](index.md)
+
 # クラス: Spriteset_Battle
 
-##  Extends: [Spriteset_Base](Spriteset_Base.md)
+## スーパークラス: [Spriteset_Base](Spriteset_Base.md)
 
 ### new Spriteset_Battle ()
-戦闘シーン用のスプライトセット。[背景][アクター][敵キャラ]を含む。
+戦闘シーン用のスプライトセット。[アクター][敵キャラ]を含む。
+
+MZで[背景]に関しては、[Sprite_Battleback](Sprite_Battleback.md)に機能が分離された。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_battlebackLocated` | Boolean | 背景画像が表示されているか |
 | `_backgroundSprite` | [Sprite](Sprite.md) | [背景]スプライト |
 | `_battleField` | [Sprite](Sprite.md) | 戦闘フィールド |
-| `_back1Sprite` | [TilingSprite](TilingSprite.md) | 背景1スプライト |
-| `_back2Sprite` | [TilingSprite](TilingSprite.md) | 背景2スプライト |
+| `_back1Sprite` | [Sprite_Battleback](Sprite_Battleback.md) | 背景1スプライト |
+| `_back2Sprite` | [Sprite_Battleback](Sprite_Battleback.md) | 背景2スプライト |
 | `_enemySprites` | [Array](Array.md).&lt;[Sprite_Enemy](Sprite_Enemy.md)&gt; | [敵キャラ]スプライトの配列 |
 | `_actorSprites` | [Array](Array.md).&lt;[Sprite_Actor](Sprite_Actor.md)&gt; | [アクター]スプライトの配列 |
 
+`_back1Sprite`, `_back2Sprite`の型はMVでは [TilingSprite](TilingSprite.md) だったが、MZで [Sprite_Battleback](Sprite_Battleback.md) に変更されている。
 
 ### スーパークラスから継承されたメソッド
 
@@ -49,6 +54,7 @@
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -62,43 +68,52 @@
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 #### [Spriteset_Base](Spriteset_Base.md)
 
+* [animationBaseDelay ()](Spriteset_Base.md#animationbasedelay---number)
+* [animationNextDelay ()](Spriteset_Base.md#animationnextdelay---number)
+* [animationShouldMirror (target)](Spriteset_Base.md#animationshouldmirror-target--boolean)
+* [createAnimation (request)](Spriteset_Base.md#createanimation-request)
+* [createAnimationSprite (targets, animation, mirror, delay)](Spriteset_Base.md#createanimationsprite-targets-animation-mirror-delay)
+* [createBaseFilters ()](Spriteset_Base.md#createbasefilters-)
 * [createBaseSprite ()](Spriteset_Base.md#createbasesprite-)
 * [createCanvasToneChanger ()](Spriteset_Base.md#createcanvastonechanger-)
+* [createLowerLayer ()](Spriteset_Base.md#createlowerlayer-)
+* [createOverallFilters ()](Spriteset_Base.md#createoverallfilters-)
 * [createPictures ()](Spriteset_Base.md#createpictures-)
-* [createScreenSprites ()](Spriteset_Base.md#createscreensprites-)
 * [createTimer ()](Spriteset_Base.md#createtimer-)
-* [createToneChanger ()](Spriteset_Base.md#createtonechanger-)
 * [createUpperLayer ()](Spriteset_Base.md#createupperlayer-)
-* [createWebGLToneChanger ()](Spriteset_Base.md#createwebgltonechanger-)
-* [updateCanvasToneChanger ()](Spriteset_Base.md#updatecanvastonechanger-)
+* [destroy ()](Spriteset_Base.md#destroy-)
+* [isAnimationForEach (animation)](Spriteset_Base.md#isanimationforeach-animation--boolean)
+* [isAnimationPlaying ()](Spriteset_Base.md#isanimationplaying-)
+* [isMVAnimation (animation)](Spriteset_Base.md#ismvanimation-animation--boolean)
+* [lastAnimationSprite ()](Spriteset_Base.md#lastanimationsprite---sprite)
+* [makeTargetSprites (targets)](Spriteset_Base.md#maketargetsprites-targets--arraysprite)
+* [pictureContainerRect ()](Spriteset_Base.md#picturecontainerrect---rectangle)
+* [processAnimationRequests ()](Spriteset_Base.md#processanimationrequests-)
+* [removeAllAnimations ()](Spriteset_Base.md#removeallanimations-)
+* [removeAnimation (sprite)](Spriteset_Base.md#removeanimation-sprite)
+* [update ()](Spriteset_Base.md#update-)
+* [updateAnimations ()](Spriteset_Base.md#updateanimations-)
+* [updateBaseFilters ()](Spriteset_Base.md#updatebasefilters-)
+* [updateOverallFilters ()](Spriteset_Base.md#updateoverallfilters-)
 * [updatePosition ()](Spriteset_Base.md#updateposition-)
-* [updateScreenSprites ()](Spriteset_Base.md#updatescreensprites-)
-* [updateToneChanger ()](Spriteset_Base.md#updatetonechanger-)
-* [updateWebGLToneChanger ()](Spriteset_Base.md#updatewebgltonechanger-)
 
 
 ### メソッド
@@ -113,24 +128,11 @@
 | `z` | [Number](Number.md) | レイヤー |
 
 
-
-#### battleback1Bitmap () → {[Bitmap](Bitmap.md)}
-背景1のビットマップを返す。
-
-
-#### battleback1Name () → {[String](String.md)}
-背景1のファイル名を返す。
+#### battleFieldOffsetY () → {[Number](Number.md)}
+**@MZ** y軸のオフセット(規定値:24ピクセル)を返す。
 
 
-#### battleback2Bitmap () → {[Bitmap](Bitmap.md)}
-背景2のビットマップを返す。
-
-
-#### battleback2Name () → {[String](String.md)}
-背景2のファイル名を返す。
-
-
-#### battlerSprites () → {[Array](Array.md).<[Sprite_Battler](Sprite_Battler.md)>}
+#### battlerSprites () → {[Array](Array.md).&lt;[Sprite_Battler](Sprite_Battler.md)&gt;}
 バトラー([アクター] + [敵キャラ])の配列を返す。
 
 
@@ -170,16 +172,12 @@
 オーバーライド: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 
 
-#### defaultBattleback1Name () → {[String](String.md)}
-規定値の背景1のファイル名を返す。
+#### findTargetSprite ()
+オーバーライド: [Spriteset_Base](Spriteset_Base.md#findtargetsprite-target--sprite)
 
 
-#### defaultBattleback2Name () → {[String](String.md)}
-規定値の背景2のファイル名を返す。
-
-
-#### isAnimationPlaying () → {Boolean}
-アニメーション再生中か。
+#### initialize ()
+オーバーライド: [Spriteset_Base](Spriteset_Base.md#initialize-)
 
 
 #### isAnyoneMoving () → {Boolean}
@@ -194,52 +192,8 @@
 エフェクト中か。
 
 
-#### locateBattleback ()
-[背景]を配置。
-
-
-#### normalBattleback1Name () → {[String](String.md)}
-通常の背景1のファイル名。
-
-
-#### normalBattleback2Name () → {[String](String.md)}
-通常の背景2のファイル名。
-
-
-#### overworldBattleback1Name () → {[String](String.md)}
-[タイルセット]の[モード]が[フィールドタイプ]の場合の背景1のファイル名。
-
-
-#### overworldBattleback2Name () → {[String](String.md)}
-[タイルセット]の[モード]が[フィールドタイプ]の場合の背景2のファイル名。
-
-
-#### shipBattleback1Name () → {[String](String.md)}
-船の場合の背景1のファイル名。
-
-
-#### shipBattleback2Name () → {[String](String.md)}
-船の場合の背景2のファイル名。
-
-
-#### terrainBattleback1Name (type) → {[String](String.md)}
-指定した地形に応じた背景1のファイル名。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `type` | [Number](Number.md) | 地形タイプ(autotileTypeの返り値) |
-
-
-#### terrainBattleback2Name (type) → {[String](String.md)}
-指定した地形に応じた背景1のファイル名。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `type` | [Number](Number.md) | 地形タイプ(autotileTypeの返り値) |
+#### loadSystemImages ()
+オーバーライド: [Spriteset_Base](Spriteset_Base.md#loadsystemimages-)
 
 
 #### updateActors ()
@@ -250,3 +204,5 @@
 [背景]のアップデート。
 
 
+### 廃止MVメソッド
+battleback1Bitmap (), battleback1Name () , battleback2Bitmap (), battleback2Name (), defaultBattleback1Name (),  defaultBattleback2Name (),  isAnimationPlaying (), locateBattleback (), normalBattleback1Name () , normalBattleback2Name (), overworldBattleback1Name () , overworldBattleback2Name (), shipBattleback1Name (), shipBattleback2Name (), terrainBattleback1Name (type), terrainBattleback2Name (type)
