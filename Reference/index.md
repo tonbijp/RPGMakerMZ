@@ -317,7 +317,7 @@ namespace JsExtensions
         * [Sprite_Enemy](Sprite_Enemy.md)
 * [Spriteset_Base](Spriteset_Base.md)
     * [Spriteset_Battle](Spriteset_Battle.md)
-    * ※[Spriteset_Map](Spriteset_Map.md)
+    * [Spriteset_Map](Spriteset_Map.md)
 * ~~Sprite_Base~~ (廃止)
 
 

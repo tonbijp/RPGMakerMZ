@@ -172,7 +172,7 @@ MZで[背景]に関しては、[Sprite_Battleback](Sprite_Battleback.md)に機�
 オーバーライド: [Spriteset_Base](Spriteset_Base.md#createLowerLayer-)
 
 
-#### findTargetSprite ()
+#### findTargetSprite (target)
 オーバーライド: [Spriteset_Base](Spriteset_Base.md#findtargetsprite-target--sprite)
 
 

@@ -1,6 +1,8 @@
+[クラスツリー](index.md)
+
 # クラス: Spriteset_Map
 
-##  Extends: [Spriteset_Base](Spriteset_Base.md)
+## スーパークラス: [Spriteset_Base](Spriteset_Base.md)
 
 ### new Spriteset_Map ()
 
@@ -17,16 +19,19 @@ v1.1.1 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_parallax` | [TilingSprite](TilingSprite.md) | [遠景]スプライト |
-| `_tilemap` | [Tilemap](Tilemap.md) \| [ShaderTilemap](ShaderTilemap.md) | マップ画像本体 |
-| `_tileset` | [RPG.Tileset](RPG.Tileset.md) | [タイルセット] |
+| `_balloonSprites` | [Array](Array.md).&lt;[Sprite_Balloon](Sprite_Balloon.md)&gt; | **@MZ** [フキダシ]のスプライト |
 | `_characterSprites` | [Array](Array.md).&lt;[Sprite_Character](Sprite_Character.md)&gt; | [アクター][イベント]のスプライト |
-| `_shadowSprite` | [Sprite](Sprite.md) |  影スプライト |
 | `_destinationSprite` | [Sprite_Destination](Sprite_Destination.md) |  タッチ位置スプライト |
-| `_weather` | [Weather](Weather.md) |  天候 |
+| `_effectsContainer` | [Tilemap](Tilemap.md)&gt; | **@MZ** コンテナ |
+| `_parallax` | [TilingSprite](TilingSprite.md) | [遠景]スプライト |
 | `_parallaxName` | [String](String.md) | [遠景]画像ファイル名 |
+| `_tilemap` | [Tilemap](Tilemap.md) | マップ画像本体 |
+| `_tileset` | [RPG.Tileset](RPG.Tileset.md) | [タイルセット] |
+| `_shadowSprite` | [Sprite](Sprite.md) |  影スプライト |
+| `_weather` | [Weather](Weather.md) |  天候 |
+
 
 
 ### スーパークラスから継承されたメソッド
@@ -57,6 +62,7 @@ v1.1.1 で変更あり。
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
@@ -70,46 +76,69 @@ v1.1.1 で変更あり。
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
 
 #### [Spriteset_Base](Spriteset_Base.md)
 
+* [animationBaseDelay ()](Spriteset_Base.md#animationbasedelay---number)
+* [animationNextDelay ()](Spriteset_Base.md#animationnextdelay---number)
+* [animationShouldMirror (target)](Spriteset_Base.md#animationshouldmirror-target--boolean)
+* [createAnimation (request)](Spriteset_Base.md#createanimation-request)
+* [createAnimationSprite (targets, animation, mirror, delay)](Spriteset_Base.md#createanimationsprite-targets-animation-mirror-delay)
+* [createBaseFilters ()](Spriteset_Base.md#createbasefilters-)
 * [createBaseSprite ()](Spriteset_Base.md#createbasesprite-)
 * [createCanvasToneChanger ()](Spriteset_Base.md#createcanvastonechanger-)
+* [createLowerLayer ()](Spriteset_Base.md#createlowerlayer-)
+* [createOverallFilters ()](Spriteset_Base.md#createoverallfilters-)
 * [createPictures ()](Spriteset_Base.md#createpictures-)
-* [createScreenSprites ()](Spriteset_Base.md#createscreensprites-)
 * [createTimer ()](Spriteset_Base.md#createtimer-)
-* [createToneChanger ()](Spriteset_Base.md#createtonechanger-)
 * [createUpperLayer ()](Spriteset_Base.md#createupperlayer-)
-* [createWebGLToneChanger ()](Spriteset_Base.md#createwebgltonechanger-)
-* [updateCanvasToneChanger ()](Spriteset_Base.md#updatecanvastonechanger-)
+* [isAnimationForEach (animation)](Spriteset_Base.md#isanimationforeach-animation--boolean)
+* [isAnimationPlaying ()](Spriteset_Base.md#isanimationplaying-)
+* [isMVAnimation (animation)](Spriteset_Base.md#ismvanimation-animation--boolean)
+* [lastAnimationSprite ()](Spriteset_Base.md#lastanimationsprite---sprite)
+* [makeTargetSprites (targets)](Spriteset_Base.md#maketargetsprites-targets--arraysprite)
+* [pictureContainerRect ()](Spriteset_Base.md#picturecontainerrect---rectangle)
+* [processAnimationRequests ()](Spriteset_Base.md#processanimationrequests-)
+* [removeAllAnimations ()](Spriteset_Base.md#removeallanimations-)
+* [removeAnimation (sprite)](Spriteset_Base.md#removeanimation-sprite)
+* [update ()](Spriteset_Base.md#update-)
+* [updateAnimations ()](Spriteset_Base.md#updateanimations-)
+* [updateBaseFilters ()](Spriteset_Base.md#updatebasefilters-)
+* [updateOverallFilters ()](Spriteset_Base.md#updateoverallfilters-)
 * [updatePosition ()](Spriteset_Base.md#updateposition-)
-* [updateScreenSprites ()](Spriteset_Base.md#updatescreensprites-)
-* [updateToneChanger ()](Spriteset_Base.md#updatetonechanger-)
-* [updateWebGLToneChanger ()](Spriteset_Base.md#updatewebgltonechanger-)
+
 
 
 ### メソッド
+
+#### animationBaseDelay ()
+**@MZ** アニメーションの基本遅延時間(規定値:0)を返す。
+
+
+#### createBalloon (request)
+**@MZ** [フキダシ]スプライト の生成を要請。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `request` | [BalloonRequest](MV.BalloonRequest.md)  | [フキダシ]パラメータ |
+
 
 #### createCharacters ()
 キャラクタスプライト([Sprite_Character](Sprite_Character.md))の生成。
@@ -141,20 +170,54 @@ v1.1.1 で変更あり。
 天候スプライト([Weather](Weather.md))の生成。
 
 
+#### destroy ()
+**@MZ** [Spriteset_Base](Spriteset_Base.md#destroy-)
+
+
 #### hideCharacters ()
 キャラクタスプライトを隠す。
 
 
+#### findTargetSprite (target)
+オーバーライド: [Spriteset_Base](Spriteset_Base.md#findtargetsprite-target--sprite)
+
+
 #### initialize ()
-オーバーライド:[Spriteset](Spriteset.md#initialize-)
+オーバーライド:[Spriteset_Base](Spriteset_Base.md#initialize-)
+
+
+#### loadSystemImages ()
+**@MZ** オーバーライド:[Spriteset_Base](Spriteset_Base.md#loadsystemimages-)
 
 
 #### loadTileset ()
 タイルセット([RPG.Tileset](RPG.Tileset.md))の読み込み。
 
 
+#### processBalloonRequests ()
+**@MZ** 要請していた[フキダシ]の描画実行。
+
+
+#### removeAllBalloons ()
+**@MZ** 全[フキダシ]の削除。
+
+
+#### removeBalloon (sprite)
+**@MZ** [フキダシ]の削除。
+
+##### 引数
+
+| 名前 | 型 |  説明 |
+| --- | --- | --- |
+| `sprite` | [Sprite_Balloon](Sprite_Balloon.md) | [フキダシ]スプライト |
+
+
 #### update ()
-オーバーライド:[Spriteset.](Spriteset.md#update-)
+オーバーライド:[Spriteset_Base](Spriteset_Base.md#update-)
+
+
+#### updateBalloons ()
+**@MZ** [フキダシ]のアップデート。
 
 
 #### updateParallax ()
@@ -177,3 +240,5 @@ v1.1.1 で変更あり。
 天候のアップデート。
 
 
+### 廃止MVメソッド
+_canvasReAddParallax ()

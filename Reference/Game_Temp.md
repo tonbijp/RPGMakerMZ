@@ -10,8 +10,7 @@
 
 ゲームの一時データを保持しておくクラス。
 
-
-関連クラス: [Game_CommonEvent](Game_CommonEvent.md)
+関連クラス: [Game_CommonEvent](Game_CommonEvent.md), [Spriteset_Base](Spriteset_Base.md), [Spriteset_Map](Spriteset_Map.md)
 
 
 ### プロパティ
@@ -24,9 +23,9 @@
 | `_touchTarget` | Object | **@MZ** タッチの目標 |
 | `_touchState` | [String](String.md) | **@MZ** タッチの状態 |
 | `_needsBattleRefresh` | Boolean | **@MZ** 戦闘の再設定が必要か |
-| `_commonEventQueue` | [Array](Array.md) | **@MZ** コモンイベントキュー |
+| `_commonEventQueue` | [Array](Array.md)&lt;[Number](Number.md)&gt; | **@MZ** コモンイベントキュー |
 | `_animationQueue` | [Array](Array.md).&lt;[MV.AnimationRequest](MV.AnimationRequest.md)&gt; | **@MZ** アニメーションキュー |
-| `_balloonQueue` | [Array](Array.md) | **@MZ** フキダシキュー |
+| `_balloonQueue` | [Array](Array.md).&lt;[MV.BalloonRequest](MV.BalloonRequest.md)&gt; | **@MZ** フキダシキュー |
 | `_lastActionData` | [Array](Array.md) | **@MZ** 最後の行動データ |
 
 
@@ -123,7 +122,7 @@
 
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
-| `target` | Object | 目標 |
+| `target` | [Game_Character](Game_Character.md) | 対象 |
 | `balloonId` | [Number](Number.md) | フキダシID |
 
 
@@ -131,8 +130,8 @@
 **@MZ** 登録したアニメーション設定を返す。
 
 
-#### retrieveBalloon () → {[Number](Number.md)}
-**@MZ** 登録したフキダシ設定を返す。|
+#### retrieveBalloon () → {[MV.BalloonRequest](MV.BalloonRequest.md)}
+**@MZ** 登録したフキダシ設定を返す。
 
 
 #### retrieveCommonEvent () → {[Number](Number.md)}
