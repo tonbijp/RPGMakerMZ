@@ -25,7 +25,7 @@
 | `_touchState` | [String](String.md) | **@MZ** タッチの状態 |
 | `_needsBattleRefresh` | Boolean | **@MZ** 戦闘の再設定が必要か |
 | `_commonEventQueue` | [Array](Array.md) | **@MZ** コモンイベントキュー |
-| `_animationQueue` | [Array](Array.md) | **@MZ** アニメーションキュー |
+| `_animationQueue` | [Array](Array.md).&lt;[MV.AnimationRequest](MV.AnimationRequest.md)&gt; | **@MZ** アニメーションキュー |
 | `_balloonQueue` | [Array](Array.md) | **@MZ** フキダシキュー |
 | `_lastActionData` | [Array](Array.md) | **@MZ** 最後の行動データ |
 
@@ -87,7 +87,7 @@
 
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
-| `type` | [String](String.md)  | アクションタイプ 
+| `type` | [String](String.md)  | アクションタイプ |
 
 
 #### reserveCommonEvent (commonEventId)
@@ -111,13 +111,13 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `targets` | [Array](Array.md) | | 目標 |
+| `targets` | [Array](Array.md).&lt;[Game_Character](Game_Character.md)&gt; | | 対象 |
 | `animationId` | [Number](Number.md) | | アニメーションID |
 | `mirror` | Boolean | &lt;optional&gt;  | 反転するか(規定値:false) |
 
 
 #### requestBalloon (target, balloonId)
-**@MZ** アニメーションを要請。
+**@MZ** フキダシの出力を要請。
 
 ##### 引数
 
@@ -127,7 +127,7 @@
 | `balloonId` | [Number](Number.md) | フキダシID |
 
 
-#### retrieveAnimation () → {Object}
+#### retrieveAnimation () → {[MV.AnimationRequest](MV.AnimationRequest.md)}
 **@MZ** 登録したアニメーション設定を返す。
 
 

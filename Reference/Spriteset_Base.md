@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # クラス: Spriteset_Base
 
 ## スーパークラス: [Sprite](Sprite.md)
@@ -9,26 +11,22 @@ v1.1.1 で変更あり。
 
 関連クラス: [Sprite_Picture](Sprite_Picture.md)
 
-
 ### サブクラス
 
 * [Spriteset_Map](Spriteset_Map.md)
 * [Spriteset_Battle](Spriteset_Battle.md)
 
-
 ### プロパティ
-
-| 名前 | 型 | 説明 |
+花粉症
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_tone` | [MV.Tone](MV.Tone.md) | [色調] |
 | `_baseSprite` | [Sprite](Sprite.md) | 基本スプライト |
 | `_blackScreen` | [ScreenSprite](ScreenSprite.md) | 黒背景 |
-| `_toneFilter` | [ToneFilter](ToneFilter.md) | トーンフィルタ |
-| `_toneSprite` | [ToneSprite](ToneSprite.md) | トーンスプライト |
 | `_pictureContainer` | [Sprite](Sprite.md) | ピクチャコンテナ |
 | `_timerSprite` | [Sprite_Timer](Sprite_Timer.md) | タイマースプライト |
-| `_flashSprite` | [ScreenSprite](ScreenSprite.md) | フラッシュスプライト |
-| `_fadeSprite` | [ScreenSprite](ScreenSprite.md) | フェードスプライト |
+
+### 廃止MVプロパティ
+`_flashSprite`, `_fadeSprite`, `_tone`,`_toneFilter`, `_toneSprite`
 
 
 ### スーパークラスから継承されたメソッド
@@ -45,7 +43,6 @@ v1.1.1 で変更あり。
 * [toGlobal (position, point, skipUpdate)](PIXI.DisplayObject.md#toglobal-position-point-skipupdate--pixipoint)
 * [toLocal (position, from, point, skipUpdate)](PIXI.DisplayObject.md#tolocal-position-from-point-skipupdate--pixipoint)
 
-
 #### [PIXI.Container](PIXI.Container.md)
 
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
@@ -60,11 +57,11 @@ v1.1.1 で変更あり。
 * [removeChildren (beginIndex, endIndex)](PIXI.Container.md#removechildren-beginindex-endindex--arraypixidisplayobject)
 * [render (renderer)](PIXI.Container.md#render-renderer)
 * [renderAdvanced (renderer)](PIXI.Container.md#renderadvanced-renderer)
+* [_renderCanvas (renderer)](PIXI.Container.md#_rendercanvas-renderer)
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
-
 
 #### [PIXI.Sprite](PIXI.Sprite.md)
 
@@ -74,31 +71,72 @@ v1.1.1 で変更あり。
 * [calculateTrimmedVertices ()](PIXI.Sprite.md#calculatetrimmedvertices-)
 * [calculateVertices ()](PIXI.Sprite.md#calculatevertices-)
 * [containsPoint (point)](PIXI.Sprite.md#containspoint-point--boolean)
-* [destroy (options)](PIXI.Sprite.md#destroy-options)
 * [getLocalBounds (rect)](PIXI.Sprite.md#getlocalbounds-rect--pixirectangle)
 * [renderCanvas (renderer)](PIXI.Sprite.md#rendercanvas-renderer)
 
-
 #### [Sprite](Sprite.md)
 
-* [\_createTinter (w, h)](Sprite.md#_createtinter-w-h)
-* [\_executeTint (x, y, w, h)](Sprite.md#_executetint-x-y-w-h)
-* [\_isInBitmapRect (x, y, w, h)](Sprite.md#_isinbitmaprect-x-y-w-h--boolean)
-* [\_needsTint ()](Sprite.md#_needstint---boolean)
-* [\_onBitmapLoad ()](Sprite.md#_onbitmapload-)
-* [\_refresh ()](Sprite.md#_refresh-)
-* [\_renderCanvas (renderer)](Sprite.md#_rendercanvas-renderer)
-* [\_renderWebGL (renderer)](Sprite.md#_renderwebgl-renderer)
-* [\_speedUpCustomBlendModes (renderer)](Sprite.md#_speedupcustomblendmodes-renderer)
-* [getBlendColor ()](Sprite.md#getblendcolor---array)
-* [getColorTone ()](Sprite.md#getcolortone---array)
+* [getBlendColor ()](Sprite.md#getblendcolor---mvcolor)
+* [getColorTone ()](Sprite.md#getcolortone---mvcolor)
+* [hide ()](Sprite.md#hide-)
 * [move (x, y)](Sprite.md#Sprite.md#move-x-y)
 * [setBlendColor (color)](Sprite.md#setblendcolor-color)
 * [setColorTone (tone)](Sprite.md#setcolortone-tone)
 * [setFrame (x, y, width, height)](Sprite.md#setframe-x-y-width-height)
+* [setHue (hue)](Sprite.md#sethue-hue)
+* [show ()](Sprite.md#show-)
+* [updateVisibility ()](Sprite.md#updatevisibility-)
+
 
 
 ### メソッド
+
+
+#### animationBaseDelay () → {[Number](Number.md)}
+**@MZ** 基本遅延時間(規定値:8)を返す。
+
+
+#### animationNextDelay () → {[Number](Number.md)}
+**@MZ** 次の遅延時間(規定値:12)を返す。
+
+
+#### animationShouldMirror (target) → {Boolean}
+**@MZ** アニメーション反転の必要があるか。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `target` | [Game_Character](Game_Character.md) | キャラクタ |
+
+
+#### createAnimation (request)
+**@MZ** アニメーションを生成。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `request` | [MV.AnimationRequest](MV.AnimationRequest.md) | アニメーション設定 |
+
+
+#### createAnimationSprite (targets, animation, mirror, delay)
+**@MZ** アニメーションを生成。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `_animationSprites` | [Array](Array.md).&lt;[Sprite](Sprite.md)&gt; | **@MZ** アニメーションスプライト |
+| `targets` | [Array](Array.md).&lt;[Game_Character](Game_Character.md)&gt; | 対象 |
+| `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
+| `mirror` | Boolean | 反転するか |
+| `delay` | [Number](Number.md) | 継続時間 |
+
+
+#### createBaseFilters ()
+**@MZ** 基本フィルタを生成。
+
 
 #### createBaseSprite ()
  基本スプライトを生成。
@@ -112,54 +150,125 @@ canvas [色調]変更を生成。
  基本スプライトを含む下レイヤを生成。
 
 
+#### createOverallFilters ()
+**@MZ** 全体のフィルタを生成。
+
+
 #### createPictures ()
- 画像スプライトを生成。
-
-
-#### createScreenSprites ()
- 画面スプライトを生成。
+画像スプライトを生成。
 
 
 #### createTimer ()
- タイマースプライトを生成。
-
-
-#### createToneChanger ()
- [色調]補正スプライトを生成。
+タイマースプライトを生成。
 
 
 #### createUpperLayer ()
- 画像, タイマー, スクリーンスプライトを含む上レイヤを生成。
+画像、タイマー、スクリーンスプライトを含む上レイヤを生成。
 
 
-#### createWebGLToneChanger ()
-WebGL [色調]変更を生成。
+#### destroy ()
+**@MZ** オーバーライド: [Sprite](Sprite.md#destroy-)
+
+
+#### findTargetSprite (target) → {[Sprite](Sprite.md)}
+**@MZ** 指定キャラクタが設定されているスプライトを検索して返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `target` | [Game_Character](Game_Character.md) | キャラクタ |
 
 
 #### initialize ()
-オーバーライド:[Sprite](Sprite.md#initialize-)
+オーバーライド: [Sprite](Sprite.md#initialize-)
+
+
+#### isAnimationForEach (animation) → {Boolean}
+**@MZ** 指定アニメーションデータが個別対象か。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
+
+
+#### isAnimationPlaying ()
+**@MZ** アニメーションが再生中か。
+
+
+#### isMVAnimation (animation) → {Boolean}
+**@MZ** 指定アニメーションデータがMVアニメーションか。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
+
+
+#### lastAnimationSprite () → {[Sprite](Sprite.md)}
+**@MZ** 最後のアニメーションスプライトを返す。<br />
+[Sprite_Animation](Sprite_Animation.md) もしくは [Sprite_AnimationMV](Sprite_AnimationMV.md)
+
+
+#### loadSystemImages ()
+**@MZ** システム画像を読み込む。
+
+
+#### makeTargetSprites (targets) → {[Array](Array.md).&lt;[Sprite](Sprite.md)&gt;}
+**@MZ** 指定のスプライトを検索して返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `targets` | [Array](Array.md).&lt;[Game_Character](Game_Character.md)&gt; | 対象 |
+
+
+#### pictureContainerRect () → {[Rectangle](Rectangle.md)}
+**@MZ** 描画領域の矩形を返す。
+
+
+#### processAnimationRequests ()
+**@MZ** 要請されたアニメーションを実行。
+
+
+#### removeAllAnimations ()
+**@MZ** 全てのアニメーションスプライトを削除。
+
+
+#### removeAnimation (sprite)
+**@MZ** 指定アニメーションスプライトを削除。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `sprite` | [Sprite](Sprite.md) | 削除対象 |
 
 
 #### update ()
-オーバーライド:[Sprite](Sprite.md#update-)
+オーバーライド: [Sprite](Sprite.md#update-)
 
 
-#### updateCanvasToneChanger ()
-canvas [色調]変更をアップデート。
+#### updateAnimations ()
+**@MZ** アニメーションをアップデート。
+
+
+#### updateBaseFilters ()
+**@MZ** 基本フィルタをアップデート。
+
+
+#### updateOverallFilters ()
+**@MZ** 全体のフィルタをアップデート。
 
 
 #### updatePosition ()
- 位置をアップデート。
+位置をアップデート。
 
 
-#### updateScreenSprites ()
- 画面スプライトをアップデート。
 
-
-#### updateToneChanger ()
- [色調]変更をアップデート。
-
-
-#### updateWebGLToneChanger ()
-WebGL [色調]変更をアップデート。
-
+### 廃止MVメソッド
+createScreenSprites (), createToneChanger (), createWebGLToneChanger (), updateCanvasToneChanger (), updateScreenSprites (), updateToneChanger (), updateWebGLToneChanger ()

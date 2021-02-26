@@ -242,7 +242,7 @@ v1.1.0 で変更あり。
 | `animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
 | `mirror` | Boolean | 左右反転するか |
 | `delay` | [Number](Number.md) | 表示時間 |
-| `_previous` | [Sprite_Animation](Sprite_Animation.md) | 直前のアニメーションクラス |
+| `previous` | [Sprite_Animation](Sprite_Animation.md) | 直前のアニメーションクラス |
 
 
 #### shouldWaitForPrevious () → {Boolean}

@@ -10,6 +10,7 @@ MV は Multi Value の略とでも思ってください。プリーズ。
 
 ### オブジェクト(Object)
 
+* [AnimationRequest](MV.AnimationRequest.md)
 * [AudioParameters](MV.AudioParameters.md)
 * [BattleLogMethod](MV.BattleLogMethod.md)
 * [BattlerAnimation](MV.BattlerAnimation.md)
