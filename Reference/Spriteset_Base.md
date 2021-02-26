@@ -13,11 +13,11 @@ v1.1.1 で変更あり。
 
 ### サブクラス
 
-* [Spriteset_Map](Spriteset_Map.md)
 * [Spriteset_Battle](Spriteset_Battle.md)
+* [Spriteset_Map](Spriteset_Map.md)
 
 ### プロパティ
-花粉症
+
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_baseSprite` | [Sprite](Sprite.md) | 基本スプライト |
