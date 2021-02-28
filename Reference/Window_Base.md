@@ -1,23 +1,26 @@
+[クラスツリー](index.md)
+
 # クラス: Window_Base
 
 ## スーパークラス: [Window](Window.md)
 
-### new Window_Base (x, y, width, height )
-メッセージやステータスなどを描くためのメソッドを多く持つ、ウィンドウオブジェクト。<br />
-多くは、`contents` に対して[Bitmap](Bitmap.md) のメソッドを使う機能。
+### new Window_Base (rect)
+メッセージや画像を描くためのメソッドを多く持つ、ウィンドウオブジェクト。<br />
+多くは `contents` に対して [Bitmap](Bitmap.md) のメソッドを使う機能。
+
+MZで色関連は [ColorManager](ColorManager.md)に、ステータス描画は[Window_StatusBase](Window_StatusBase.md) に移動。<br />
+また、個々の要素の描画は [Sprite_Gauge](Sprite_Gauge.md)、[Sprite_StateIcon](Sprite_StateIcon.md) 、[Sprite_Name](Sprite_Name.md) といったスプライトに機能分解されている。
 
 v1.1.1 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 
 #### 引数
+MVでは引数が x, y, width, height だった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | ウィンドウ幅(ピクセル) |
-| `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
 
 
 ### サブクラス
@@ -36,16 +39,14 @@ v1.1.1 で変更あり。
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_iconWidth` | [Number](Number.md) | [static] 基本のアイコン幅 (規定値 : 32) |
-| `_iconHeight` | [Number](Number.md) | [static] 基本のアイコン高さ (規定値 : 32) |
-| `_faceWidth` | [Number](Number.md) | [static] 基本の顔画像の幅 (規定値 : 144) |
-| `_faceHeight` | [Number](Number.md) | [static] 基本の顔画像の高さ (規定値 : 144) |
 | `_opening` | Boolean | ウィンドウが開いている途中か |
 | `_closing` | Boolean | ウィンドウが閉じている途中か |
 | `_dimmerSprite ` | [Sprite](Sprite.md) | [暗くする]背景 |
 
+### 廃止MVプロパティ
+`_iconHeight`, `_iconWidth`, `_faceHeight`, `_faceWidth`
 
 ### スーパークラスから継承されたメソッド
 
@@ -61,13 +62,11 @@ v1.1.1 で変更あり。
 * [toGlobal (position, point, skipUpdate)](PIXI.DisplayObject.md#toglobal-position-point-skipupdate--pixipoint)
 * [toLocal (position, from, point, skipUpdate)](PIXI.DisplayObject.md#tolocal-position-from-point-skipupdate--pixipoint)
 
-
 #### [PIXI.Container](PIXI.Container.md)
 
 * [addChild (child) ](PIXI.Container.md#addchild-child--pixidisplayobject)
 * [addChildAt (child, index)](PIXI.Container.md#addchildat-child-index--pixidisplayobject)
 * [calculateBounds ()](PIXI.Container.md#calculatebounds-)
-* [destroy ()](PIXI.Container.md#destroy-)
 * [getChildAt (index)](PIXI.Container.md#getchildat-index--pixidisplayobject)
 * [getChildByName (name)](PIXI.Container.md#getchildbyname-name--pixidisplayobject)
 * [getChildIndex (child)](PIXI.Container.md#getchildindex-child--pixidisplayobject)
@@ -85,13 +84,16 @@ v1.1.1 で変更あり。
 #### [Window](Window.md)
 
 * [addChildToBack (child)](Window.md#addchildtoback-child--object)
+* [addInnerChild (child)](Window.md#addinnerchild-child--object)
+* [drawShape (graphics)](Window.md#drawshape-graphics)
 * [isClosed ()](Window.md#isclosed---boolean)
 * [isOpen ()](Window.md#isopen---boolean)
 * [move (x, y, width, height)](Window.md#move-x-y-width-height)
+* [moveCursorBy (x, y)](Window.md#movecursorby-x-y)
+* [moveInnerChildrenBy (x, y)](Window.md#moveinnerchildrenby-x-y)
 * [setCursorRect (x, y, width, height)](Window.md#setcursorrect-x-y-width-height)
 * [setTone (r, g, b)](Window.md#settone-r-g-b)
 * [updateTransform ()](Window.md#updatetransform-)
-
 
 ### メソッド
 
@@ -109,35 +111,29 @@ v1.1.1 で変更あり。
 | `actorIndex` | [Number](Number.md) | アクターの番号(1から始まる) |
 
 
-#### calcTextHeight (textState, all) → {[Number](Number.md)}
+#### baseTextRect (actorIndex) → {[Rectangle](Rectangle.md)}
+**@MZ** 基本の矩形範囲を返す。
+
+
+#### calcTextHeight (textState) → {[Number](Number.md)}
 指定したテキストの表示時の高さ(ピクセル)を計算して返す。
 
 ##### 引数
+MZで `all` 引数は廃止。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 計算するテキストの情報 |
-| `all` | Boolean | 複数行を加算するか |
 
 
-#### canvasToLocalX (x) → {[Number](Number.md)}
-指定したCanvas の x座標を、ゲーム画面のローカルx座標に変換して返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | Canvas の x座標 |
-
-
-#### canvasToLocalY (y) → {[Number](Number.md)}
-指定したCanvas の y座標を、ゲーム画面のローカルy座標に変換して返す。
+#### changeOutlineColor (color)
+**@MZ** 輪郭の色を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `y` | [Number](Number.md) | Canvas の y座標 |
+| `color` | [MV.CssColor](MV.CssColor.md) | 色(CSS文字列) |
 
 
 #### changePaintOpacity (enabled)
@@ -159,6 +155,16 @@ v1.1.1 で変更あり。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `color` | [MV.CssColor](MV.CssColor.md) | 色(CSS文字列) |
+
+
+#### checkRectObject (rect)
+**@MZ** 引数が Rectangle か調べ、違っていたらエラーを出す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
 
 
 #### close ()
@@ -183,156 +189,54 @@ v1.1.1 で変更あり。
 | `text` | [String](String.md) | 変換元の文字列 |
 
 
+#### createDimmerSprite () 
+**@MZ** 暗くする背景を生成。
+
+
+#### createTextBuffer (rtl) → {[String](String.md)}
+**@MZ** 指定文字方向に合わせた文字列を返す。
+
+##### 引数
+rtl は RIGHT-TO-LEFT の略。
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `rtl` | Boolean | 左から右(アラビア語など)の文字列か |
+
+
 #### createContents ()
 テキストなどを表示するコンテンツ領域を生成。
+
+
+#### createTextState (text, x, y, width) → {[MV.TextState](MV.TextState.md)}
+**@MZ** テキストステートを生成して返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `text` | [String](String.md) | 文字列 |
+| `x` | [Number](Number.md) | x座標(ピクセル) |
+| `y` | [Number](Number.md) | y座標(ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
 
 
 #### deactivate ()
 非アクティブにする。
 
 
-#### drawActorCharacter (actor, x, y)
-指定した[アクター]のキャラクタを指定位置に描画。<br />
-詳細は [drawCharacter()](Window_Base.md#drawcharacter-charactername-characterindex-x-y) を参照。
+#### destroy (options)
+**@MZ** オーバーライド: [Window](Window.md#destroy-)
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | 足元のx座標(ピクセル) |
-| `y` | [Number](Number.md) | 足元のy座標(ピクセル) |
+| `options` | Object |  { children: 真偽値, texture: 真偽値 }(ただし未使用) |
 
 
-#### drawActorClass (actor, x, y, width)
-指定した[アクター]の[クラス]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorFace (actor, x, y, width, height)
-指定した[アクター]の顔画像を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-| `height` | [Number](Number.md) | 描画領域の高さ(ピクセル) |
-
-
-#### drawActorHp (actor, x, y, width)
-指定した[アクター]の[HP]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorIcons (actor, x, y, width)
-指定した[アクター]のアイコンを指定位置に描画。
-
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorLevel (actor, x, y)
-指定した[アクター]の[レベル]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-
-
-#### drawActorMp (actor, x, y, width)
-指定した[アクター]の[MP]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorName (actor, x, y, width)
-指定した[アクター]の[名前]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorNickname (actor, x, y, width)
-指定した[アクター]の[二つ名]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorSimpleStatus (actor, x, y, width)
-指定した[アクター]の簡易ステータスを指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-
-
-#### drawActorTp (actor, x, y, width)
-指定した[アクター]の[TP]を指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `actor` | [Game_Actor](Game_Actor.md) | 対象の[アクター] |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
+#### destroyContents ()
+**@MZ** コンテンツを破棄。
 
 
 #### drawCharacter (characterName, characterIndex, x, y)
@@ -364,22 +268,6 @@ v1.1.1 で変更あり。
 | `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
 
 
-#### drawCurrentAndMax (current, max, x, y, width, color1, color2)
-現在値と最大値の組み合わせを指定位置に描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `current` | [Number](Number.md) | 現在値 |
-| `max` | [Number](Number.md) | 最大値 |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-| `color1` | [MV.CssColor](MV.CssColor.md) | 現在値色 |
-| `color2` | [MV.CssColor](MV.CssColor.md) | 最大値色 |
-
-
 #### drawFace (faceName, faceIndex, x, y, width opt, height opt)
 指定した'img/faces/'フォルダのファイル名とキャラクタ番号で、指定位置に顔画像を描画。<br />
 キャラクタ番号は左上から始まり右へ進み、2段目に移る。
@@ -394,21 +282,6 @@ v1.1.1 で変更あり。
 | `y` | [Number](Number.md) |  | y座標(ピクセル) |
 | `width` | [Number](Number.md) | &lt;optional&gt; | 幅(ピクセル) |
 | `height` | [Number](Number.md) | &lt;optional&gt; | 高さ(ピクセル) |
-
-
-#### drawGauge (x, y, width, rate, color1, color2)
-指定位置にゲージを描画。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 幅(ピクセル) |
-| `rate` | [Number](Number.md) | 比率(0 〜 1) |
-| `color1` | [MV.CssColor](MV.CssColor.md) | ゲージ色1 |
-| `color2` | [MV.CssColor](MV.CssColor.md) | ゲージ色2 |
 
 
 #### drawIcon (iconIndex, x, y)
@@ -436,6 +309,19 @@ v1.1.1 で変更あり。
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
 | `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
+
+
+#### drawRect ( x, y, width, height )
+**@MZ** 矩形を描画。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `x` | [Number](Number.md) | x座標(ピクセル) |
+| `y` | [Number](Number.md) | y座標(ピクセル) |
+| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
+| `height` | [Number](Number.md) | 描画領域の幅(ピクセル) |
 
 
 #### drawText (text, x, y, maxWidth, align)
@@ -475,6 +361,16 @@ v1.1.1 で変更あり。
 | `numLines` | [Number](Number.md) | 行数 |
 
 
+#### flushTextState (textState)
+**@MZ** 文字の流れ(アラビア語の右左の表示対応を含む)処理。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
+
+
 #### hide ()
 ウィンドウを非表示(閉じるわけではない)。
 
@@ -483,18 +379,15 @@ v1.1.1 で変更あり。
  [暗くする]背景を非表示。
 
 
-#### initialize (x, y, width, height)
+#### initialize (rect)
 オーバーライド: [Window](Window.md#initialize-)
 
 ##### 引数
+MVでは引数が x, y, width, height だった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `width` | [Number](Number.md) | 描画領域の幅(ピクセル) |
-| `height` | [Number](Number.md) | 描画領域の高さ(ピクセル) |
-
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
 
 
 #### isClosing () → {Boolean}
@@ -505,8 +398,20 @@ v1.1.1 で変更あり。
 ウィンドウが開いている途中か。
 
 
+#### itemPadding () → {[Number](Number.md)}
+**@MZ** 項目パディング幅(規定値:8ピクセル)を返す。
+
+
+#### itemHeight () → {[Number](Number.md)}
+**@MZ** 項目高さを返す。
+
+
+#### itemWidth () → {[Number](Number.md)}
+**@MZ** 項目幅を返す。
+
+
 #### lineHeight () → {[Number](Number.md)}
-行の高さ(ピクセル)を返す。規定値: 36
+行の高さ(規定値: 36ピクセル)を返す。
 
 
 #### loadWindowskin ()
@@ -517,11 +422,21 @@ v1.1.1 で変更あり。
 フォントサイズを12大きくする。
 
 
-#### makeFontSmaller ()
+#### makeFontSmaller (line)
 フォントサイズを12小さくする。
 
 
-#### obtainEscapeCode (textState)
+#### maxFontSizeInLine (line) → {[Number](Number.md)}
+**@MZ** 指定行で最も大きなフォントサイズを返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `line` | [String](String.md) | 制御文字を含んだ文字列 |
+
+
+#### obtainEscapeCode (textState) → {[String](String.md)}
 textStateのindex以降に含まれる制御文字本体を大文字で返す。<br />
 indexは取り出した文字の数だけ進む。
 
@@ -558,8 +473,30 @@ indexは取り出した文字の数だけ進む。<br />
 | `partyMemberIndex` | [Number](Number.md) | パーティーメンバー番号(1から開始される) |
 
 
+#### playBuzzerSound ()
+**@MZ** [ブザー]を再生。
+
+
+#### playCursorSound ()
+**@MZ** [カーソル]を再生。
+
+
+#### playOkSound ()
+**@MZ** [決定]を再生。
+
+
+#### processAllText (textState)
+**@MZ** 全ての文字の処理。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
+
+
 #### processCharacter (textState)
-改行・改ページ・エスケープ文字などを含む文字を処理する。<br />
+改行・改ページ・エスケープ文字などを含む文字を処理。<br />
 処理した文字列の分だけindexは進む。
 
 ##### 引数
@@ -567,6 +504,27 @@ indexは取り出した文字の数だけ進む。<br />
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
+
+
+#### processColorChange (colorIndex)
+**@MZ** 指定文字色に変更。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `colorIndex` | [Number](Number.md) | 色番号 |
+
+
+#### processControlCharacter (textState, c)
+**@MZ** コントロール文字を処理。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
+| `c` | [String](String.md) | コントロール文字 |
 
 
 #### processDrawIcon (iconIndex, textState)
@@ -584,13 +542,13 @@ indexは取り出した文字の数だけ進む。<br />
 
 #### processEscapeCharacter (code, textState)
 制御文字の処理。<br />
-処理した文字列の分だけindexは進む。
+処理した文字列の分だけ index は進む。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `code` | [String](String.md) | 制御文字(C I \{ \}) |
+| `code` | [String](String.md) | 制御文字(C I PX PY FS \{ \}) |
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
 
@@ -605,34 +563,8 @@ indexは取り出した文字の数だけ進む。<br />
 | `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
 
 
-#### processNewPage (textState)
-改ページの処理。<br />
-処理した文字列の分だけindexは進む。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
-
-
-#### processNormalCharacter (textState)
-通常文字の処理。<br />
-処理した文字列の分だけindexは進む。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | 処理する状態つき文字列 |
-
-
 #### refreshDimmerBitmap ()
  [暗くする]背景を再描画。
-
-
-#### reserveFaceImages ()
-全パーティーメンバーの顔画像をキャッシュする。
 
 
 #### resetFontSettings ()
@@ -661,25 +593,12 @@ indexは取り出した文字の数だけ進む。<br />
  [暗くする]背景を表示。
 
 
-#### standardBackOpacity () → {[Number](Number.md)}
-標準の背景の不透明度(規定値:192)を返す。
+#### systemColor () → {[MV.CssColor](MV.CssColor.md)}
+システム色を返す。
 
 
-#### standardFontFace () → {[String](String.md)}
-標準のフォント名を返す。
-
-
-#### standardFontSize () → {[Number](Number.md)}
-標準のフォントサイズ(規定値:28)を返す。
-
-
-#### standardPadding () → {[Number](Number.md)}
-標準のパディング幅(規定値:18)を返す。
-
-
-
-#### textPadding () → {[Number](Number.md)}
-文字パディング幅(規定値:6)を返す。
+#### textSizeEx (text) → {[Number](Number.md)}
+**@MZ** 制御文字の変更後のテキストサイズを返す。
 
 
 #### textWidth (text) → {[Number](Number.md)}
@@ -725,5 +644,8 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 ### 廃止MVメソッド
-コレらのメソッドは [ColorManager](ColorManager.md) に移っている。<br />
-textColor (n),normalColor (), mpColor (actor), mpCostColor (), mpGaugeColor1 (), mpGaugeColor2 (), systemColor (), tpColor (actor), tpCostColor (), tpGaugeColor1 (), tpGaugeColor2 (), crisisColor (), deathColor (), dimColor1 (), dimColor2 (), gaugeBackColor (), hpColor (actor), hpGaugeColor1 (), hpGaugeColor2 (),paramchangeTextColor (change), pendingColor (), powerDownColor (),powerUpColor ()
+textColor (n),normalColor (), mpColor (actor), mpCostColor (), mpGaugeColor1 (), mpGaugeColor2 (), tpColor (actor), tpCostColor (), tpGaugeColor1 (), tpGaugeColor2 (), crisisColor (), deathColor (), dimColor1 (), dimColor2 (), gaugeBackColor (), hpColor (actor), hpGaugeColor1 (), hpGaugeColor2 (),paramchangeTextColor (change), pendingColor (), powerDownColor (),powerUpColor (),
+canvasToLocalX (x), canvasToLocalY (y) ,
+drawActorCharacter (actor, x, y), drawActorClass (actor, x, y, width), drawActorHp (actor, x, y, width), drawActorFace (actor, x, y, width, height), drawActorIcons (actor, x, y, width), drawActorLevel (actor, x, y), drawActorMp (actor, x, y, width), drawActorName (actor, x, y, width),drawActorNickname (actor, x, y, width), drawActorSimpleStatus (actor, x, y, width), drawActorTp (actor, x, y, width),
+drawCurrentAndMax (current, max, x, y, width, color1, color2), drawGauge (x, y, width, rate, color1, color2),
+processNewPage (textState), processNormalCharacter (textState), reserveFaceImages (), standardBackOpacity (), standardFontFace (), standardFontSize (), standardPadding (), textPadding ()

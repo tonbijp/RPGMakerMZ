@@ -291,7 +291,7 @@ namespace JsExtensions
 * [Stage](Stage.md)
     * [Scene_Base](Scene_Base.md) → [継承](#シーンscene_base)
 * [Window](Window.md)
-    * ※[Window_Base](Window_Base.md) → [継承](#ウィンドウwindow_base)
+    * [Window_Base](Window_Base.md) → [継承](#ウィンドウwindow_base)
 * ~~ToneSprite~~ (廃止)
 
 

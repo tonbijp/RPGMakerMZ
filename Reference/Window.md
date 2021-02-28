@@ -73,7 +73,7 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 | `_backSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ背景 |
 | `_cursorSprite` | [Sprite](Sprite.md) | **@MZ** コマンド選択カーソル |
 | `_frameSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ枠 |
-| `_clientArea` |  [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** [ 内容( `contents` を含む ) |
+| `_clientArea` |  [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** 内容( `contents` を含む ) |
 | `_contentsBackSprite` | [Sprite](Sprite.md) | **@MZ** 内容の背景 |
 | `_contentsSprite` | [Sprite](Sprite.md) | **@MZ** 内容 |
 | `_pauseSignSprite` | [Sprite](Sprite.md) | **@MZ** ポーズサイン |
