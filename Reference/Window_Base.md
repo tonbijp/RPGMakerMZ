@@ -172,15 +172,15 @@ MZで `all` 引数は廃止。
 
 
 #### contentsHeight () → {[Number](Number.md)}
-ウィンドウに含まれるコンテンツの高さを返す。
+**@MZ** ウィンドウに含まれるコンテンツの高さを返す。
 
 
 #### contentsWidth () → {[Number](Number.md)}
-ウィンドウに含まれるコンテンツの幅を返す。
+**@MZ** ウィンドウに含まれるコンテンツの幅を返す。
 
 
 #### convertEscapeCharacters (text) → {[String](String.md)}
-エスケープ文字を変換して返す。
+**@MZ** エスケープ文字を変換して返す。
 
 ##### 引数
 
@@ -398,12 +398,12 @@ MVでは引数が x, y, width, height だった。
 ウィンドウが開いている途中か。
 
 
-#### itemPadding () → {[Number](Number.md)}
-**@MZ** 項目パディング幅(規定値:8ピクセル)を返す。
-
-
 #### itemHeight () → {[Number](Number.md)}
 **@MZ** 項目高さを返す。
+
+
+#### itemPadding () → {[Number](Number.md)}
+**@MZ** 項目パディング幅(規定値:8ピクセル)を返す。
 
 
 #### itemWidth () → {[Number](Number.md)}
@@ -422,7 +422,7 @@ MVでは引数が x, y, width, height だった。
 フォントサイズを12大きくする。
 
 
-#### makeFontSmaller (line)
+#### makeFontSmaller ()
 フォントサイズを12小さくする。
 
 
