@@ -350,7 +350,7 @@ namespace JsExtensions
 
 ### [ウィンドウ(Window_Base)](Window_Base.md)
 
-* ※[Window_EquipStatus](Window_EquipStatus.md)
+* [Window_EquipStatus](Window_EquipStatus.md)
 * ※[Window_Gold](Window_Gold.md)
 * ※[Window_Help](Window_Help.md)
 * ※[Window_MapName](Window_MapName.md)
