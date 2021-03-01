@@ -100,7 +100,6 @@
 * [flushTextState (textState)](Window_Base.md#flushtextstate-textstate)
 * [hide ()](Window_Base.md#hide-)
 * [hideBackgroundDimmer ()](Window_Base.md#hidebackgrounddimmer-)
-* [initialize (rect)](Window_Base.md#initialize-rect)
 * [isClosing ()](Window_Base.md#isclosing---boolean)
 * [isOpening ()](Window_Base.md#isopening---boolean)
 * [itemHeight ()](Window_Base.md#itemheight---number)
