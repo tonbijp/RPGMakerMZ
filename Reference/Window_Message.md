@@ -1,20 +1,29 @@
+[クラスツリー](index.md)
+
 # クラス: Window_Message
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_Message ()
+### new Window_Message (rect)
 [文章の表示]をするウィンドウ。
 
 表示する文は Window\_Message ではなく [$gameMessage](global.md#gamemessage-game_message) を経由して設定するため、単に文を表示するだけならばこのクラスを操作する必要はない。<br />
-また、Window\_Message は選択肢関連のサブウィンドウの起動も行う。<br />
+また、Window\_Message は選択肢関連のサブウィンドウの起動も行う。シーンに近い役割を持ったクラス。<br />
 新規に文字を表示するウィンドウが必要ならば、[WIndow_Help](WIndow_Help.md) を使うか、Window\_Base を継承して新たにクラスを作る方が良い。
 
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
+#### 引数
+MVでは引数がなかった。
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
+
 
 ### プロパティ
 
-| 名前 | 型 | 説明 |
+| 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_background` | [Number](Number.md) | [背景]のタイプ |
 | `_positionType` | [Number](Number.md) | [ウィンドウ位置] |
@@ -24,9 +33,14 @@
 | `_showFast` | Boolean | 一括表示するか |
 | `_lineShowFast` | Boolean | 行を一括表示するか |
 | `_goldWindow` | [Window_Gold](Window_Gold.md) | [所持金]ウィンドウ |
-| `_choiceWindow` | [Window_ChoiceList](Window_ChoiceList.md) | [選択肢の表示]ウィンドウ |
-| `_numberWindow` | [Window_NumberInput](Window_NumberInput.md) | [数値入力の処理]ウィンドウ |
-| `_itemWindow` | [Window_EventItem](Window_EventItem.md) | [アイテム選択の処理]ウィンドウ |
+| `_nameBoxWindow` | [Window_NameBox](Window_NameBox.md) | **@MZ** [名前]ウィンドウ |
+| `_choiceListWindow` | [Window_ChoiceList](Window_ChoiceList.md) | **@MZ** [選択肢の表示]ウィンドウ |
+| `_numberInputWindow` | [Window_NumberInput](Window_NumberInput.md) | **@MZ** [数値入力の処理]ウィンドウ |
+| `_eventItemWindow` | [Window_EventItem](Window_EventItem.md) | **@MZ** [アイテム選択の処理]ウィンドウ |
+
+
+### 廃止MVプロパティ
+`_choiceWindow`, `_imageReservationId`, `_itemWindow`, `_numberWindow`
 
 
 ### スーパークラスから継承されたメソッド
@@ -77,90 +91,67 @@
 
 * [activate ()](Window_Base.md#activate-)
 * [actorName (actorIndex)](Window_Base.md#actorname-actorindex--string)
+* [baseTextRect (actorIndex)](Window_Base.md#basetextrect-actorindex--rectangle)
 * [calcTextHeight (textState, all)](Window_Base.md#calctextheight-textstate-all--number)
-* [canvasToLocalX (x)](Window_Base.md#canvastolocalx-x--number)
-* [canvasToLocalY (y)](Window_Base.md#canvastolocaly-y--number)
+* [changeOutlineColor (color)](Window_Base.md#changeoutlinecolor-color)
 * [changePaintOpacity (enabled)](Window_Base.md#changepaintopacity-enabled)
 * [changeTextColor (color)](Window_Base.md#changetextcolor-color)
+* [checkRectObject (rect)](Window_Base.md#checkrectobject-rect)
 * [close ()](Window_Base.md#close-)
 * [contentsHeight ()](Window_Base.md#contentsheight---number)
 * [contentsWidth ()](Window_Base.md#contentswidth---number)
 * [convertEscapeCharacters (text)](Window_Base.md#convertescapecharacters-text--string)
 * [createContents ()](Window_Base.md#createcontents-)
-* [crisisColor ()](Window_Base.md#crisiscolor---mvcsscolor)
+* [createDimmerSprite () ](Window_Base.md#createdimmersprite-)
+* [createTextBuffer (rtl)](Window_Base.md#createtextbuffer-rtl--string)
+* [createTextState (text, x, y, width)](Window_Base.md#createtextstate-text-x-y-width--mvtextstate)
 * [deactivate ()](Window_Base.md#deactivate-)
-* [deathColor ()](Window_Base.md#deathcolor---mvcsscolor)
-* [dimColor1 ()](Window_Base.md#dimcolor1---mvcsscolor)
-* [dimColor2 ()](Window_Base.md#dimcolor2---mvcsscolor)
-* [drawActorCharacter (actor, x, y)](Window_Base.md#drawactorcharacter-actor-x-y)
-* [drawActorClass (actor, x, y, width)](Window_Base.md#drawactorclass-actor-x-y-width)
-* [drawActorFace (actor, x, y, width, height)](Window_Base.md#drawactorface-actor-x-y-width-height)
-* [drawActorHp (actor, x, y, width)](Window_Base.md#drawactorhp-actor-x-y-width)
-* [drawActorIcons (actor, x, y, width)](Window_Base.md#drawactoricons-actor-x-y-width)
-* [drawActorLevel (actor, x, y)](Window_Base.md#drawactorlevel-actor-x-y)
-* [drawActorMp (actor, x, y, width)](Window_Base.md#drawactormp-actor-x-y-width)
-* [drawActorName (actor, x, y, width)](Window_Base.md#drawactorname-actor-x-y-width)
-* [drawActorNickname (actor, x, y, width)](Window_Base.md#drawactornickname-actor-x-y-width)
-* [drawActorSimpleStatus (actor, x, y, width)](Window_Base.md#drawactorsimplestatus-actor-x-y-width)
-* [drawActorTp (actor, x, y, width)](Window_Base.md#drawactortp-actor-x-y-width)
+* [destroy (options)](Window_Base.md#destroy-options)
+* [destroyContents ()](Window_Base.md#destroycontents-)
 * [drawCharacter (characterName, characterIndex, x, y)](Window_Base.md#drawcharacter-charactername-characterindex-x-y)
 * [drawCurrencyValue (value, unit, x, y, width)](Window_Base.md#drawcurrencyvalue-value-unit-x-y-width)
-* [drawCurrentAndMax (current, max, x, y, width, color1, color2)](Window_Base.md#md#drawcurrentandmax-current-max-x-y-width-color1-color2)
 * [drawFace (faceName, faceIndex, x, y, width opt, height opt)](Window_Base.md#drawface-facename-faceindex-x-y-width-opt-height-opt)
-* [drawGauge (x, y, width, rate, color1, color2)](Window_Base.md#drawgauge-x-y-width-rate-color1-color2)
 * [drawIcon (iconIndex, x, y)](Window_Base.md#drawicon-iconindex-x-y)
 * [drawItemName (item, x, y, width)](Window_Base.md#drawitemname-item-x-y-width)
+* [drawRect ( x, y, width, height )](Window_Base.md#drawrect--x-y-width-height-)
 * [drawText (text, x, y, maxWidth, align)](Window_Base.md#drawtext-text-x-y-maxwidth-align)
 * [drawTextEx (text, x, y)](Window_Base.md#drawtextex-text-x-y--number)
 * [fittingHeight (numLines)](Window_Base.md#fittingheight-numlines--number)
-* [gaugeBackColor ()](Window_Base.md#gaugebackcolor---mvcsscolor)
+* [flushTextState (textState)](Window_Base.md#flushtextstate-textstate)
 * [hide ()](Window_Base.md#hide-)
 * [hideBackgroundDimmer ()](Window_Base.md#hidebackgrounddimmer-)
-* [hpColor (actor)](Window_Base.md#hpcolor-actor--mvcsscolor)
-* [hpGaugeColor1 ()](Window_Base.md#hpgaugecolor1---mvcsscolor)
-* [hpGaugeColor2 ()](Window_Base.md#hpgaugecolor2---mvcsscolor)
+* [initialize (rect)](Window_Base.md#initialize-rect)
 * [isClosing ()](Window_Base.md#isclosing---boolean)
 * [isOpening ()](Window_Base.md#isopening---boolean)
+* [itemHeight ()](Window_Base.md#itemheight---number)
+* [itemPadding ()](Window_Base.md#itempadding---number)
+* [itemWidth ()](Window_Base.md#itemwidth---number)
 * [lineHeight ()](Window_Base.md#lineheight---number)
 * [loadWindowskin ()](Window_Base.md#loadwindowskin-)
 * [makeFontBigger ()](Window_Base.md#makefontbigger-)
 * [makeFontSmaller ()](Window_Base.md#makefontsmaller-)
-* [mpColor (actor)](Window_Base.md#mpcolor-actor--mvcsscolor)
-* [mpCostColor ()](Window_Base.md#mpcostcolor---mvcsscolor)
-* [mpGaugeColor1 ()](Window_Base.md#mpgaugecolor1---mvcsscolor)
-* [mpGaugeColor2 ()](Window_Base.md#mpgaugecolor2---mvcsscolor)
-* [normalColor ()](Window_Base.md#normalcolor---mvcsscolor)
+* [maxFontSizeInLine (line)](Window_Base.md#maxfontsizeinline-line--number)
 * [obtainEscapeCode (textState)](Window_Base.md#obtainescapecode-textstate)
 * [obtainEscapeParam (textState)](Window_Base.md#obtainescapeparam-textstate--numberstring)
 * [open ()](Window_Base.md#open-)
-* [paramchangeTextColor (change)](Window_Base.md#paramchangetextcolor-change--mvcsscolor)
 * [partyMemberName (partyMemberIndex)](Window_Base.md#partymembername-partymemberindex--string)
-* [pendingColor ()](Window_Base.md#pendingcolor---mvcsscolor)
-* [powerDownColor ()](Window_Base.md#powerdowncolor---mvcsscolor)
-* [powerUpColor ()](Window_Base.md#powerupcolor---mvcsscolor)
+* [playBuzzerSound ()](Window_Base.md#playbuzzersound-)
+* [playCursorSound ()](Window_Base.md#playcursorsound-)
+* [playOkSound ()](Window_Base.md#playoksound-)
+* [processAllText (textState)](Window_Base.md#processalltext-textstate)
 * [processCharacter (textState)](Window_Base.md#processcharacter-textstate)
+* [processColorChange (colorIndex)](Window_Base.md#processcolorchange-colorindex)
 * [processDrawIcon (iconIndex, textState)](Window_Base.md#processdrawicon-iconindex-textstate)
 * [processEscapeCharacter (code, textState)](Window_Base.md#processescapecharacter-code-textstate)
-* [processNormalCharacter (textState)](Window_Base.md#processnormalcharacter-textstate)
 * [refreshDimmerBitmap ()](Window_Base.md#refreshdimmerbitmap-)
-* [reserveFaceImages ()](Window_Base.md#reservefaceimages-)
 * [resetFontSettings ()](Window_Base.md#resetfontsettings-)
 * [resetTextColor ()](Window_Base.md#resettextcolor-)
 * [setBackgroundType (type)](Window_Base.md#setbackgroundtype-type)
 * [show ()](Window_Base.md#show-)
 * [showBackgroundDimmer ()](Window_Base.md#showbackgrounddimmer-)
-* [standardBackOpacity ()](Window_Base.md#standardbackopacity---number)
-* [standardFontFace ()](Window_Base.md#standardfontface---string)
-* [standardFontSize ()](Window_Base.md#standardfontsize---number)
-* [standardPadding ()](Window_Base.md#standardpadding---number)
 * [systemColor ()](Window_Base.md#systemcolor---mvcsscolor)
-* [textColor (n)](Window_Base.md#textcolor-n--mvcsscolor)
-* [textPadding ()](Window_Base.md#textpadding---number)
+* [textSizeEx (text)](Window_Base.md#textsizeex-text--number)
 * [textWidth (text)](Window_Base.md#textwidth-text--number)
-* [tpColor (actor)](Window_Base.md#tpcolor-actor--mvcsscolor)
-* [tpCostColor ()](Window_Base.md#tpcostcolor---mvcsscolor)
-* [tpGaugeColor1 ()](Window_Base.md#tpgaugecolor1---mvcsscolor)
-* [tpGaugeColor2 ()](Window_Base.md#tpgaugecolor2---mvcsscolor)
 * [translucentOpacity ()](Window_Base.md#translucentopacity---number)
 * [updateBackgroundDimmer ()](Window_Base.md#updatebackgrounddimmer-)
 * [updateBackOpacity ()](Window_Base.md#updatebackopacity-)
@@ -170,10 +161,21 @@
 * [updateTone ()](Window_Base.md#updatetone-)
 
 
+
 ### メソッド
 
 #### areSettingsChanged () → {Boolean}
 ウィンドウの設定が変更されたか。
+
+
+#### canBreakHere (textState) → {Boolean}
+**@MZ** 一時停止が可能か。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
 
 
 #### canStart () → {Boolean}
@@ -186,10 +188,6 @@
 
 #### clearFlags ()
 フラグを消去。
-
-
-#### createSubWindows ()
-サブウィンドウを生成。
 
 
 #### doesContinue () → {Boolean}
@@ -236,8 +234,15 @@
 | `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
 
 
-#### newLineX () → {[Number](Number.md)}
+#### newLineX (textState) → {[Number](Number.md)}
 [顔]表示の有無に応じて、新たな行の表示開始位置を返す。
+
+##### 引数
+MVでは引数はなかったが、アラビア語対応で必要になった。
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
 
 
 #### newPage (textState)
@@ -250,12 +255,12 @@
 | `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
 
 
-#### numVisibleRows () → {[Number](Number.md)}
-表示される行数を返す。
-
-
 #### onEndOfText ()
 メッセージを全て表示した時に呼ばれるハンドラ。
+
+
+#### processControlCharacter (textState, c)
+オーバーライド: [Window_Base](Window_Base.md#processcontrolcharacter-textstate-c)
 
 
 #### processNewLine (textState)
@@ -264,6 +269,66 @@
 
 #### processNewPage (textState)
 オーバーライド: [Window_Base](Window_Base.md#processnewpage-textstate)
+
+
+#### setChoiceListWindow(choiceListWindow) 
+**@MZ** [選択肢の表示]ウィンドウを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `choiceListWindow` | [Window_ChoiceList](Window_ChoiceList.md)  | [選択肢の表示]ウィンドウ |
+
+
+#### setEventItemWindow(eventItemWindow) 
+**@MZ** [アイテム選択の処理]ウィンドウを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `eventItemWindow` | [Window_EventItem](Window_EventItem.md)  | [アイテム選択の処理]ウィンドウ |
+
+
+#### setGoldWindow(goldWindow) 
+**@MZ** [所持金]ウィンドウを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `goldWindow` | [Window_Gold](Window_Gold.md)  | [所持金]ウィンドウ |
+
+
+#### setNameBoxWindow(nameBoxWindow) 
+**@MZ** [名前]ウィンドウを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `nameBoxWindow` | [Window_NameBox](Window_NameBox.md)  | [名前]ウィンドウ |
+
+
+#### setNumberInputWindow(numberInputWindow) 
+**@MZ** [数値入力の処理]ウィンドウを設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `numberInputWindow` | [Window_NumberInput](Window_NameBox.md)  | [数値入力の処理]ウィンドウ |
+
+
+#### shouldBreakHere (textState) → {Boolean}
+**@MZ** 一時停止の必要があるか。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
 
 
 #### startInput () → {Boolean}
@@ -289,8 +354,8 @@
 | `count` | [Number](Number.md) | 待ち時間(フレーム) |
 
 
-#### subWindows () → {[Array](Array.md).<[Window_Base](Window_Base.md)>}
-サブウィンドウの配列を返す。
+#### synchronizeNameBox ()
+**@MZ** 名前ウィンドウの開閉状態をメッセージウィンドウと合わせる。
 
 
 #### terminateMessage ()
@@ -325,14 +390,14 @@
 メッセージ速度のアップデート。
 
 
+#### updateSpeakerName ()
+**@MZ** 話者の名前をアップデート。
+
+
 #### updateWait () → {Boolean}
 待機状態のアップデート。
 
 
-#### windowHeight () → {[Number](Number.md)}
-ウィンドウの高さを返す。
 
-
-#### windowWidth () → {[Number](Number.md)}
-ウィンドウの幅を返す。
-
+### 廃止MVメソッド
+createSubWindows (), numVisibleRows (), subWindows (), windowHeight (), windowWidth () 
