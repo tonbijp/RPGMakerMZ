@@ -355,7 +355,7 @@ namespace JsExtensions
 * [Window_Help](Window_Help.md)
 * [Window_MapName](Window_MapName.md)
 * [Window_Message](Window_Message.md)
-* ※[Window_NameBox](Window_NameBox.md) **@MZ**
+* [Window_NameBox](Window_NameBox.md) **@MZ**
 * ※[Window_NameEdit](Window_NameEdit.md)
 * ※[Window_ScrollText](Window_ScrollText.md)
 * ※[Window_ShopStatus](Window_ShopStatus.md)
