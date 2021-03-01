@@ -1,18 +1,20 @@
+[クラスツリー](index.md)
+
 # クラス: Window_Gold
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_Gold (x, y)
+### new Window_Gold (rect)
 [所持金]を表示するウィンドウ。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
 #### 引数
+MVでは引数が x, y  だった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
 
 
 ### スーパークラスから継承されたメソッド
@@ -160,17 +162,15 @@
 
 ### メソッド
 
+#### colSpacing () → {[Number](Number.md)}
+**@MZ** 列の間隔(規定値:0ピクセル)を返す。
+
 #### currencyUnit () → {[String](String.md)}
 通貨単位を返す。
 
 
-#### initialize (x, y)
-オーバーライド: [Window_Base](Window_Base.md#initialize-x-y-width-height)
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
+#### initialize (rect)
+オーバーライド: [Window_Base](Window_Base.md#initialize-rect)
 
 
 #### open ()
@@ -185,9 +185,6 @@
 [$gameParty](global.md#gameparty-game_party).gold を数値で返す。
 
 
-#### windowHeight () → {[Number](Number.md)}
-ウィンドウの高さ(ピクセル)を返す。
 
-
-#### windowWidth () → {[Number](Number.md)}
-ウィンドウの幅(ピクセル)を返す。
+#### 廃止MVメソッド
+windowHeight (), windowWidth ()
