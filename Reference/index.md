@@ -42,8 +42,8 @@
 
 * [ウィンドウ(Window)](#ウィンドウwindow)
 	* [選択ウィンドウ(Window_Selectable)](#選択ウィンドウwindow_selectable)
-        * [項目表示ウィンドウ](#項目表示ウィンドウwindow_itemlist)
-        *  [ステータス表示ウィンドウ](#ステータス表示ウィンドウwindow_statusbase)
+        * [項目表示ウィンドウ(Window_ItemList)](#項目表示ウィンドウwindow_itemlist)
+        *  [ステータス表示ウィンドウ(Window_StatusBase)](#ステータス表示ウィンドウwindow_statusbase)
 		* [コマンドウィンドウ(Window_Command)](#コマンドウィンドウwindow_command)
 
 ### 注釈
@@ -363,7 +363,7 @@ namespace JsExtensions
 
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
 
-* ※[Window_BattleEnemy](Window_BattleEnemy.md)
+* [Window_BattleEnemy](Window_BattleEnemy.md)
 * ※[Window_BattleLog](Window_BattleLog.md)
 * ※[Window_DebugEdit](Window_DebugEdit.md)
 * ※[Window_DebugRange](Window_DebugRange.md)
