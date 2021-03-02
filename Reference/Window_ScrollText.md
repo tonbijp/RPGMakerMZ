@@ -85,7 +85,6 @@ MVでは引数はなかった。
 * [changeTextColor (color)](Window_Base.md#changetextcolor-color)
 * [checkRectObject (rect)](Window_Base.md#checkrectobject-rect)
 * [close ()](Window_Base.md#close-)
-* [contentsHeight ()](Window_Base.md#contentsheight---number)
 * [contentsWidth ()](Window_Base.md#contentswidth---number)
 * [convertEscapeCharacters (text)](Window_Base.md#convertescapecharacters-text--string)
 * [createContents ()](Window_Base.md#createcontents-)
@@ -107,7 +106,6 @@ MVでは引数はなかった。
 * [flushTextState (textState)](Window_Base.md#flushtextstate-textstate)
 * [hide ()](Window_Base.md#hide-)
 * [hideBackgroundDimmer ()](Window_Base.md#hidebackgrounddimmer-)
-* [initialize (rect)](Window_Base.md#initialize-rect)
 * [isClosing ()](Window_Base.md#isclosing---boolean)
 * [isOpening ()](Window_Base.md#isopening---boolean)
 * [itemHeight ()](Window_Base.md#itemheight---number)
@@ -142,7 +140,6 @@ MVでは引数はなかった。
 * [textSizeEx (text)](Window_Base.md#textsizeex-text--number)
 * [textWidth (text)](Window_Base.md#textwidth-text--number)
 * [translucentOpacity ()](Window_Base.md#translucentopacity---number)
-* [update ()](Window_Base.md#update-)
 * [updateBackgroundDimmer ()](Window_Base.md#updatebackgrounddimmer-)
 * [updateBackOpacity ()](Window_Base.md#updatebackopacity-)
 * [updateClose ()](Window_Base.md#updateclose-)
@@ -155,15 +152,15 @@ MVでは引数はなかった。
 ### メソッド
 
 #### contentsHeight ()
-オーバーライド: [Window_Base](Window_Base#contentsHeight)
+オーバーライド: [Window_Base](Window_Base.md#contentsheight---number)
 
 
 #### fastForwardRate () → {[Number](Number.md)}
 早送りの速度。
 
 
-#### initialize ()
-オーバーライド: [Window_Base](Window_Base.md#initialize)
+#### initialize (rect)
+オーバーライド: [Window_Base](Window_Base.md#initialize-rect)
 
 
 #### isFastForward () → {Boolean}
@@ -187,7 +184,7 @@ MVでは引数はなかった。
 
 
 #### update ()
-オーバーライド: [Window_Base](Window_Base.md#update)
+オーバーライド: [Window_Base](Window_Base.md#update-)
 
 
 #### updateMessage ()
