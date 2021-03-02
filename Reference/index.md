@@ -357,7 +357,7 @@ namespace JsExtensions
 * [Window_Message](Window_Message.md)
 * [Window_NameBox](Window_NameBox.md) **@MZ**
 * [Window_NameEdit](Window_NameEdit.md)
-* ※[Window_ScrollText](Window_ScrollText.md)
+* [Window_ScrollText](Window_ScrollText.md)
 * ※[Window_ShopStatus](Window_ShopStatus.md)
 * ※[Window_SkillStatus](Window_SkillStatus.md)
 * ※[Window_Scrollable](Window_Scrollable.md) **@MZ**
