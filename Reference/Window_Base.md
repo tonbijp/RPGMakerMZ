@@ -31,7 +31,6 @@ MVでは引数が x, y, width, height だった。
 * [Window_NameBox](Window_NameBox.md)
 * [Window_ScrollText](Window_ScrollText.md)
 * [Window_Scrollable](Window_Scrollable.md)
-* [Window_Selectable](Window_Selectable.md)
 * [Window_StatusBase](Window_StatusBase.md)
 
 ### プロパティ

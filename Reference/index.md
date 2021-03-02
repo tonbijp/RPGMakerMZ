@@ -355,8 +355,8 @@ namespace JsExtensions
 * [Window_Message](Window_Message.md)
 * [Window_NameBox](Window_NameBox.md) **@MZ**
 * [Window_ScrollText](Window_ScrollText.md)
-* ※[Window_Scrollable](Window_Scrollable.md) **@MZ**
-* ※[Window_Selectable](Window_Selectable.md) → [継承](#選択ウィンドウwindow_selectable)
+* [Window_Scrollable](Window_Scrollable.md) **@MZ**
+    * ※[Window_Selectable](Window_Selectable.md) → [継承](#選択ウィンドウwindow_selectable) (継承位置変更)
 * ※[Window_StatusBase](Window_StatusBase.md) **@MZ**
     * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
     * ※[Window_NameEdit](Window_NameEdit.md)
