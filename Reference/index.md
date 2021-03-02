@@ -40,8 +40,10 @@
 
 ### ウィンドウ
 
-* [ウィンドウ(Window_Base)](#ウィンドウwindow_base)
+* [ウィンドウ(Window)](#ウィンドウwindow)
 	* [選択ウィンドウ(Window_Selectable)](#選択ウィンドウwindow_selectable)
+        * [項目表示ウィンドウ](#項目表示ウィンドウwindow_itemlist)
+        *  [ステータス表示ウィンドウ](#ステータス表示ウィンドウwindow_statusbase)
 		* [コマンドウィンドウ(Window_Command)](#コマンドウィンドウwindow_command)
 
 ### 注釈
@@ -290,8 +292,7 @@ namespace JsExtensions
     * [Sprite](Sprite.md) → [継承](#スプライトsprite)
 * [Stage](Stage.md)
     * [Scene_Base](Scene_Base.md) → [継承](#シーンscene_base)
-* [Window](Window.md)
-    * [Window_Base](Window_Base.md) → [継承](#ウィンドウwindow_base)
+* [Window](Window.md) → [継承](#ウィンドウwindow)
 * ~~ToneSprite~~ (廃止)
 
 
@@ -348,20 +349,16 @@ namespace JsExtensions
 
 ## ウィンドウ
 
-### [ウィンドウ(Window_Base)](Window_Base.md)
+### [ウィンドウ(Window)](Window.md)
 
-* [Window_Help](Window_Help.md)
-* [Window_MapName](Window_MapName.md)
-* [Window_Message](Window_Message.md)
-* [Window_NameBox](Window_NameBox.md) **@MZ**
-* [Window_ScrollText](Window_ScrollText.md)
-* [Window_Scrollable](Window_Scrollable.md) **@MZ**
-    * ※[Window_Selectable](Window_Selectable.md) → [継承](#選択ウィンドウwindow_selectable) (継承位置変更)
-* ※[Window_StatusBase](Window_StatusBase.md) **@MZ**
-    * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
-    * ※[Window_NameEdit](Window_NameEdit.md)
-    * ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
-    * ※[Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
+ * [Window_Base](Window_Base.md)
+    * [Window_Help](Window_Help.md)
+    * [Window_MapName](Window_MapName.md)
+    * [Window_Message](Window_Message.md)
+    * [Window_NameBox](Window_NameBox.md) **@MZ**
+    * [Window_ScrollText](Window_ScrollText.md)
+    * [Window_Scrollable](Window_Scrollable.md) **@MZ**
+        * [Window_Selectable](Window_Selectable.md) → [継承](#選択ウィンドウwindow_selectable) (継承位置変更)
 
 
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
@@ -384,15 +381,25 @@ namespace JsExtensions
     * ※[Window_MenuActor](Window_MenuActor.md)
 * ※[Window_SkillList](Window_SkillList.md)
     * ※[Window_BattleSkill](Window_BattleSkill.md)
-* ※[Window_ItemList](Window_ItemList.md)
-    * ※[Window_BattleItem](Window_BattleItem.md)
-    * ※[Window_EquipItem](Window_EquipItem.md)
-    * ※[Window_EventItem](Window_EventItem.md)
-    * ※[Window_ShopSell](Window_ShopSell.md)
-* ※[Window_StatusBase](Window_StatusBase.md) **@MZ**
-    * ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
-    * ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
+* ※[Window_ItemList](Window_ItemList.md) → [継承](#項目表示ウィンドウwindow_itemlist)
+* ※[Window_StatusBase](Window_StatusBase.md) **@MZ** → [継承](#ステータス表示ウィンドウwindow_statusbase)
 * ※[Window_Command](Window_Command.md) → [継承](#コマンドウィンドウwindow_command)
+
+
+### [項目表示ウィンドウ(Window_ItemList)](Window_ItemList.md)
+* ※[Window_BattleItem](Window_BattleItem.md)
+* ※[Window_EquipItem](Window_EquipItem.md)
+* ※[Window_EventItem](Window_EventItem.md)
+* ※[Window_ShopSell](Window_ShopSell.md)
+
+
+### [ステータス表示ウィンドウ(Window_StatusBase)](Window_StatusBase.md)
+* ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
+* ※[Window_NameEdit](Window_NameEdit.md) (継承位置変更)
+* ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
+* ※[Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
+* ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
+* ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
 
 
 ### [コマンドウィンドウ(Window_Command)](Window_Command.md)
