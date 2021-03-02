@@ -9,7 +9,7 @@
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_Scrollable](Window_Scrollable.md) に変更されている。
 
-関連クラス: [Input](Input.md)
+関連クラス: [Input](Input.md), [TouchInput](TouchInput.md)
 
 #### 引数
 MVでは引数が x, y, width, height だった。
@@ -336,7 +336,7 @@ OKのハンドラを呼ぶ。
 
 
 #### drawBackgroundRect (rect)
-指定範囲に背景を描画。
+**@MZ** 指定範囲に背景を描画。
 
 ##### 引数
 
@@ -369,6 +369,7 @@ OKのハンドラを呼ぶ。
 選択カーソルを表示。
 
 ##### 引数
+MVでは引数なし。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -505,11 +506,11 @@ OKが起動されたか。
 
 
 #### maxCols () → {[Number](Number.md)}
-ウィンドウが持つ最大列(カラム)数を返す。
+**@MZ** ウィンドウが持つ最大列(カラム)数を返す。
 
 
 #### maxItems () → {[Number](Number.md)}
-ウィンドウが持つ最大項目数を返す。
+**@MZ** ウィンドウが持つ最大項目数を返す。
 
 
 #### maxPageItems () → {[Number](Number.md)}
@@ -681,6 +682,7 @@ OKの処理。
 
 #### setHelpWindow (helpWindow)
 ヘルプウィンドウを設定。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
