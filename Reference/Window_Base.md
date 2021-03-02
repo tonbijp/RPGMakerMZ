@@ -25,17 +25,14 @@ MVでは引数が x, y, width, height だった。
 
 ### サブクラス
 
-* [Window_EquipStatus](Window_EquipStatus.md)
-* [Window_Gold](Window_Gold.md)
 * [Window_Help](Window_Help.md)
 * [Window_MapName](Window_MapName.md)
 * [Window_Message](Window_Message.md)
-* [Window_NameEdit](Window_NameEdit.md)
+* [Window_NameBox](Window_NameBox.md)
 * [Window_ScrollText](Window_ScrollText.md)
-* [Window_ShopStatus](Window_ShopStatus.md)
-* [Window_SkillStatus](Window_SkillStatus.md)
+* [Window_Scrollable](Window_Scrollable.md)
 * [Window_Selectable](Window_Selectable.md)
-
+* [Window_StatusBase](Window_StatusBase.md)
 
 ### プロパティ
 
