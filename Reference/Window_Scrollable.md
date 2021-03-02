@@ -212,7 +212,7 @@
 
 
 #### paint ()
-描画
+描画。
 
 
 #### processTouchScroll ()
@@ -269,18 +269,19 @@ y方向スクロール量を返す。
 | `y` | [Number](Number.md) | y加速 |
 
 
-#### smoothScrollDown (n)
-下に滑らかにスクロール。
+#### smoothScrollBy (x, y)
+指定移動量で滑らかにスクロール。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `n` | [Number](Number.md) | スクロール行数 |
+| `x` | [Number](Number.md) | x移動量 |
+| `y` | [Number](Number.md) | y移動量 |
 
 
-#### smoothScrollUp (n)
-上に滑らかにスクロール。
+#### smoothScrollDown (n)
+下に滑らかにスクロール。
 
 ##### 引数
 
@@ -300,27 +301,26 @@ y方向スクロール量を返す。
 | `y` | [Number](Number.md) | y位置 |
 
 
-#### smoothScrollBy (x, y)
-指定量に滑らかにスクロール。
+#### smoothScrollUp (n)
+上に滑らかにスクロール。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | x移動量 |
-| `y` | [Number](Number.md) | y移動量 |
+| `n` | [Number](Number.md) | スクロール行数 |
 
 
 #### update ()
 オーバーライド: [Window_Base](Window_Base.md#update-)
 
 
-#### updateOrigin ()
-原点をアップデート。
-
-
 #### updateArrows ()
 矢印をアップデート。
+
+
+#### updateOrigin ()
+原点をアップデート。
 
 
 #### updateScrollAccel ()
