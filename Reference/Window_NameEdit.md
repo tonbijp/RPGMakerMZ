@@ -2,10 +2,12 @@
 
 # クラス: Window_NameEdit
 
-## スーパークラス: [Window_Base](Window_Base.md)
+## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
 ### new Window_NameEdit (rect)
 [名前入力の処理]で、アクターの名前を編集するウィンドウ。
+
+MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
 関連クラス: [Scene_Name](Scene_Name.md)
 

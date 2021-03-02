@@ -350,18 +350,18 @@ namespace JsExtensions
 
 ### [ウィンドウ(Window_Base)](Window_Base.md)
 
-* [Window_EquipStatus](Window_EquipStatus.md)
-* [Window_Gold](Window_Gold.md)
 * [Window_Help](Window_Help.md)
 * [Window_MapName](Window_MapName.md)
 * [Window_Message](Window_Message.md)
 * [Window_NameBox](Window_NameBox.md) **@MZ**
-* [Window_NameEdit](Window_NameEdit.md)
 * [Window_ScrollText](Window_ScrollText.md)
-* ※[Window_ShopStatus](Window_ShopStatus.md)
-* ※[Window_SkillStatus](Window_SkillStatus.md)
 * ※[Window_Scrollable](Window_Scrollable.md) **@MZ**
 * ※[Window_Selectable](Window_Selectable.md) → [継承](#選択ウィンドウwindow_selectable)
+* ※[Window_StatusBase](Window_StatusBase.md) **@MZ**
+    * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
+    * ※[Window_NameEdit](Window_NameEdit.md)
+    * ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
+    * ※[Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
 
 
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
@@ -371,6 +371,7 @@ namespace JsExtensions
 * ※[Window_DebugEdit](Window_DebugEdit.md)
 * ※[Window_DebugRange](Window_DebugRange.md)
 * ※[Window_EquipSlot](Window_EquipSlot.md)
+* ※[Window_Gold](Window_Gold.md) (継承位置変更)
 * ※[Window_NameInput](Window_NameInput.md)
 * ※[Window_NumberInput](Window_NumberInput.md)
 * ※[Window_SavefileList](Window_SavefileList.md)
