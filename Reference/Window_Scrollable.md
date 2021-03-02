@@ -159,9 +159,12 @@
 
 ### メソッド
 
-
 #### clearScrollStatus ()
 スクロール状態を初期化。
+
+
+#### initialize (rect)
+オーバーライド: [Window_Base](Window_Base.md#initialize-rect)
 
 
 #### isScrollEnabled () → {Boolean}
@@ -208,6 +211,10 @@
 全体の幅を返す。
 
 
+#### paint ()
+描画
+
+
 #### processTouchScroll ()
 タッチによるスクロールを実行。
 
@@ -232,26 +239,6 @@ y方向スクロール起点 を返す。
 スクロール単位の幅を返す。
 
 
-#### scrollX () → {[Number](Number.md)}
-x方向スクロール量を返す。
-
-
-#### scrollY () → {[Number](Number.md)}
-y方向スクロール量を返す。
-
-
-#### currencyUnit () → {[String](String.md)}
-通貨単位を返す。
-
-
-#### initialize (rect)
-オーバーライド: [Window_Base](Window_Base.md#initialize-rect)
-
-
-#### paint ()
-描画
-
-
 #### scrollTo (x, y)
 指定位置にスクロール。
 
@@ -261,6 +248,14 @@ y方向スクロール量を返す。
 | --- | --- | --- |
 | `x` | [Number](Number.md) | x位置 |
 | `y` | [Number](Number.md) | y位置 |
+
+
+#### scrollX () → {[Number](Number.md)}
+x方向スクロール量を返す。
+
+
+#### scrollY () → {[Number](Number.md)}
+y方向スクロール量を返す。
 
 
 #### setScrollAccel (x, y)
