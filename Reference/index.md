@@ -370,7 +370,7 @@ namespace JsExtensions
 * [Window_Gold](Window_Gold.md) (継承位置変更)
 * [Window_NameInput](Window_NameInput.md)
 * [Window_NumberInput](Window_NumberInput.md)
-* ※[Window_SavefileList](Window_SavefileList.md)
+* [Window_SavefileList](Window_SavefileList.md)
 * ※[Window_ShopBuy](Window_ShopBuy.md)
 * ※[Window_ShopNumber](Window_ShopNumber.md)
 * ※[Window_Status](Window_Status.md)
