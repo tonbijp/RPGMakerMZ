@@ -506,11 +506,11 @@ OKが起動されたか。
 
 
 #### maxCols () → {[Number](Number.md)}
-**@MZ** ウィンドウが持つ最大列(カラム)数を返す。
+ウィンドウが持つ最大列(カラム)数を返す。
 
 
 #### maxItems () → {[Number](Number.md)}
-**@MZ** ウィンドウが持つ最大項目数を返す。
+ウィンドウが持つ最大項目数を返す。
 
 
 #### maxPageItems () → {[Number](Number.md)}
