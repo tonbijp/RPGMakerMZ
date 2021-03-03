@@ -9,6 +9,7 @@
 
 関連クラス: [Scene_Name](Scene_Name.md)
 
+#### 引数
 MVでは引数が editWindow  だった。
 
 | 名前 | 型 | 説明 |
@@ -189,13 +190,7 @@ MVでは引数が editWindow  だった。
 * [colSpacing ()](Window_Selectable.md#colspacing---number)
 * [contentsHeight ()](Window_Selectable.md#contentsheight---number)
 * [cursorAll ()](Window_Selectable.md#cursorall---boolean)
-* [cursorDown (wrap)](Window_Selectable.md#cursordown-wrap)
 * [cursorFixed ()](Window_Selectable.md#cursorfixed---boolean)
-* [cursorLeft (wrap)](Window_Selectable.md#cursorleft-wrap)
-* [cursorPagedown ()](Window_Selectable.md#cursorpagedown-)
-* [cursorPageup ()](Window_Selectable.md#cursorpageup-)
-* [cursorRight (wrap)](Window_Selectable.md#cursorright-wrap)
-* [cursorUp (wrap)](Window_Selectable.md#cursorup-wrap)
 * [deactivate ()](Window_Selectable.md#deactivate-)
 * [deselect ()](Window_Selectable.md#deselect-)
 * [drawAllItems ()](Window_Selectable.md#drawallitems-)
@@ -207,10 +202,8 @@ MVでは引数が editWindow  だった。
 * [hitIndex ()](Window_Selectable.md#hitindex---number)
 * [hitTest (x, y)](Window_Selectable.md#hittest-x-y--number)
 * [index ()](Window_Selectable.md#index---number)
-* [isCancelEnabled ()](Window_Selectable.md#iscancelenabled---boolean)
 * [isCancelTriggered ()](Window_Selectable.md#iscanceltriggered---boolean)
 * [isCurrentItemEnabled ()](Window_Selectable.md#iscurrentitemenabled---boolean)
-* [isCursorMovable ()](Window_Selectable.md#iscursormovable---boolean)
 * [isHandled (symbol)](Window_Selectable.md#ishandled-symbol--boolean)
 * [isHorizontal ()](Window_Selectable.md#ishorizontal---boolean)
 * [isHoverEnabled ()](Window_Selectable.md#ishoverenabled---boolean)
@@ -221,11 +214,7 @@ MVでは引数が editWindow  だった。
 * [isTouchOkEnabled ()](Window_Selectable.md#istouchokenabled---boolean)
 * [itemHeight ()](Window_Selectable.md#itemheight---number)
 * [itemLineRect (index)](Window_Selectable.md#itemlinerect-index--rectangle)
-* [itemRect (index)](Window_Selectable.md#itemrect-index--rectangle)
 * [itemRectWithPadding (index)](Window_Selectable.md#itemrectwithpadding-index--rectangle)
-* [itemWidth ()](Window_Selectable.md#itemwidth---number)
-* [maxCols ()](Window_Selectable.md#maxcols---number)
-* [maxItems ()](Window_Selectable.md#maxitems---number)
 * [maxPageItems ()](Window_Selectable.md#maxpageitems---number)
 * [maxPageRows ()](Window_Selectable.md#maxpagerows---number)
 * [maxRows ()](Window_Selectable.md#maxrows---number)
@@ -236,10 +225,6 @@ MVでは引数が editWindow  だった。
 * [onTouchSelect (trigger)](Window_Selectable.md#ontouchselect-trigger)
 * [overallHeight ()](Window_Selectable.md#overallheight---number)
 * [paint ()](Window_Selectable.md#paint-)
-* [processCancel ()](Window_Selectable.md#processcancel-)
-* [processCursorMove ()](Window_Selectable.md#processcursormove-)
-* [processHandling ()](Window_Selectable.md#processhandling-)
-* [processOk ()](Window_Selectable.md#processok-)
 * [processPagedown ()](Window_Selectable.md#processpagedown-)
 * [processPageup ()](Window_Selectable.md#processpageup-)
 * [processTouch ()](Window_Selectable.md#processtouch-)
@@ -381,7 +366,7 @@ OKに移動。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `_editWindow` | [Window_NameEdit](Window_NameEdit.md) | 編集ウィンドウ |
+| `editWindow` | [Window_NameEdit](Window_NameEdit.md) | 編集ウィンドウ |
 
 
 #### table () → {[Array](Array.md).&lt;[Array](Array.md).&lt;[String](String.md)&gt;&gt;}
