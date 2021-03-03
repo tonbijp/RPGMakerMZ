@@ -452,8 +452,8 @@ OKが起動されたか。
 ウィンドウが開いてアクティブか。
 
 
-#### isScrollEnabled ()
-**@MZ** オーバーライド: [Window_Scrollable](Window_Scrollable.md#isscrollenabled---boolean-)
+#### isScrollEnabled () → {Boolean}
+**@MZ** オーバーライド: [Window_Scrollable](Window_Scrollable.md#isscrollenabled---boolean)
 
 
 #### isTouchOkEnabled () → {Boolean}

@@ -211,7 +211,7 @@ MVでは引数が x, y だった。
 * [isOkEnabled ()](Window_Selectable.md#isokenabled---boolean)
 * [isOkTriggered ()](Window_Selectable.md#isoktriggered---boolean)
 * [isOpenAndActive ()](Window_Selectable.md#isopenandactive---boolean)
-* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled-)
+* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled---boolean)
 * [isTouchOkEnabled ()](Window_Selectable.md#istouchokenabled---boolean)
 * [itemHeight ()](Window_Selectable.md#itemheight---number)
 * [itemLineRect (index)](Window_Selectable.md#itemlinerect-index--rectangle)

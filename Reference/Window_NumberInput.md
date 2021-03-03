@@ -207,7 +207,7 @@ MVでは引数が messageWindow  だったがなくなった。
 * [isHoverEnabled ()](Window_Selectable.md#ishoverenabled---boolean)
 * [isOkTriggered ()](Window_Selectable.md#isoktriggered---boolean)
 * [isOpenAndActive ()](Window_Selectable.md#isopenandactive---boolean)
-* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled-)
+* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled---boolean)
 * [itemHeight ()](Window_Selectable.md#itemheight---number)
 * [itemLineRect (index)](Window_Selectable.md#itemlinerect-index--rectangle)
 * [itemRect (index)](Window_Selectable.md#itemrect-index--rectangle)

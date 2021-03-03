@@ -325,8 +325,8 @@ MVでは引数が x, y, height   だった。
 オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-rect)
 
 
-#### isScrollEnabled ()
-**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#isscrollenabled-)
+#### isScrollEnabled () → {Boolean}
+**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#isscrollenabled---boolean)
 
 
 #### itemNameY () → {[Number](Number.md)}
@@ -427,9 +427,6 @@ OKが選択された時に呼ばれるハンドラ。
 オーバーライド: [Window_Selectable](Window_Selectable.md#update-)
 
 
-#### windowWidth () → {[Number](Number.md)}
-ウィンドウ幅(ピクセル)を返す。
-
 
 ### 廃止MVメソッド
-isOkTriggered (), itemY (), priceY (), updateButtonsVisiblity (), updateCursor (), showButtons ()
+isOkTriggered (), itemY (), priceY (), updateButtonsVisiblity (), updateCursor (), showButtons (), windowWidth () 
