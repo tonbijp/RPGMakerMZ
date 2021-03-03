@@ -372,7 +372,7 @@ namespace JsExtensions
 * [Window_NumberInput](Window_NumberInput.md)
 * [Window_SavefileList](Window_SavefileList.md)
 * [Window_ShopBuy](Window_ShopBuy.md)
-* ※[Window_ShopNumber](Window_ShopNumber.md)
+* [Window_ShopNumber](Window_ShopNumber.md)
 * ※[Window_SkillList](Window_SkillList.md)
     * ※[Window_BattleSkill](Window_BattleSkill.md)
 * ※[Window_ItemList](Window_ItemList.md) → [継承](#項目表示ウィンドウwindow_itemlist)
