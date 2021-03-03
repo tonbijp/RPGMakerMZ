@@ -367,8 +367,7 @@ namespace JsExtensions
 * [Window_BattleEnemy](Window_BattleEnemy.md)
 * [Window_DebugEdit](Window_DebugEdit.md)
 * [Window_DebugRange](Window_DebugRange.md)
-* ※[Window_EquipSlot](Window_EquipSlot.md)
-* ※[Window_Gold](Window_Gold.md) (継承位置変更)
+* [Window_Gold](Window_Gold.md) (継承位置変更)
 * ※[Window_NameInput](Window_NameInput.md)
 * ※[Window_NumberInput](Window_NumberInput.md)
 * ※[Window_SavefileList](Window_SavefileList.md)
@@ -394,6 +393,7 @@ namespace JsExtensions
 
 
 ### [ステータス表示ウィンドウ(Window_StatusBase)](Window_StatusBase.md)
+* ※[Window_EquipSlot](Window_EquipSlot.md) (継承位置変更)
 * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
 * ※[Window_NameEdit](Window_NameEdit.md) (継承位置変更)
 * ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
