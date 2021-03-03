@@ -365,7 +365,7 @@ namespace JsExtensions
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
 
 * [Window_BattleEnemy](Window_BattleEnemy.md)
-* ※[Window_DebugEdit](Window_DebugEdit.md)
+* [Window_DebugEdit](Window_DebugEdit.md)
 * ※[Window_DebugRange](Window_DebugRange.md)
 * ※[Window_EquipSlot](Window_EquipSlot.md)
 * ※[Window_Gold](Window_Gold.md) (継承位置変更)
