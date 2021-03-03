@@ -369,12 +369,11 @@ namespace JsExtensions
 * [Window_DebugRange](Window_DebugRange.md)
 * [Window_Gold](Window_Gold.md) (継承位置変更)
 * [Window_NameInput](Window_NameInput.md)
-* ※[Window_NumberInput](Window_NumberInput.md)
+* [Window_NumberInput](Window_NumberInput.md)
 * ※[Window_SavefileList](Window_SavefileList.md)
 * ※[Window_ShopBuy](Window_ShopBuy.md)
 * ※[Window_ShopNumber](Window_ShopNumber.md)
 * ※[Window_Status](Window_Status.md)
-* ※[Window_BattleStatus](Window_BattleStatus.md)
     * ※[Window_BattleActor](Window_BattleActor.md)
 * ※[Window_MenuStatus](Window_MenuStatus.md)
     * ※[Window_MenuActor](Window_MenuActor.md)
@@ -386,6 +385,7 @@ namespace JsExtensions
 
 
 ### [項目表示ウィンドウ(Window_ItemList)](Window_ItemList.md)
+
 * ※[Window_BattleItem](Window_BattleItem.md)
 * ※[Window_EquipItem](Window_EquipItem.md)
 * ※[Window_EventItem](Window_EventItem.md)
@@ -393,6 +393,8 @@ namespace JsExtensions
 
 
 ### [ステータス表示ウィンドウ(Window_StatusBase)](Window_StatusBase.md)
+
+* ※[Window_BattleStatus](Window_BattleStatus.md)
 * ※[Window_EquipSlot](Window_EquipSlot.md) (継承位置変更)
 * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
 * ※[Window_NameEdit](Window_NameEdit.md) (継承位置変更)
