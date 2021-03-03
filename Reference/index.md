@@ -352,6 +352,7 @@ namespace JsExtensions
 ### [ウィンドウ(Window)](Window.md)
 
  * [Window_Base](Window_Base.md)
+    * [Window_BattleLog](Window_BattleLog.md) (継承位置変更)
     * [Window_Help](Window_Help.md)
     * [Window_MapName](Window_MapName.md)
     * [Window_Message](Window_Message.md)
@@ -364,7 +365,6 @@ namespace JsExtensions
 ### [選択ウィンドウ(Window_Selectable)](Window_Selectable.md)
 
 * [Window_BattleEnemy](Window_BattleEnemy.md)
-* ※[Window_BattleLog](Window_BattleLog.md)
 * ※[Window_DebugEdit](Window_DebugEdit.md)
 * ※[Window_DebugRange](Window_DebugRange.md)
 * ※[Window_EquipSlot](Window_EquipSlot.md)

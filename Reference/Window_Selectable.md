@@ -22,7 +22,6 @@ MVでは引数が x, y, width, height だった。
 ### サブクラス
 
 * [Window_BattleEnemy](Window_BattleEnemy.md)
-* [Window_BattleLog](Window_BattleLog.md)
 * [Window_BattleStatus](Window_BattleStatus.md)
 * [Window_Command](Window_Command.md)
 * [Window_DebugEdit](Window_DebugEdit.md)
