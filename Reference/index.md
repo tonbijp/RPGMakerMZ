@@ -368,7 +368,7 @@ namespace JsExtensions
 * [Window_DebugEdit](Window_DebugEdit.md)
 * [Window_DebugRange](Window_DebugRange.md)
 * [Window_Gold](Window_Gold.md) (継承位置変更)
-* ※[Window_NameInput](Window_NameInput.md)
+* [Window_NameInput](Window_NameInput.md)
 * ※[Window_NumberInput](Window_NumberInput.md)
 * ※[Window_SavefileList](Window_SavefileList.md)
 * ※[Window_ShopBuy](Window_ShopBuy.md)
