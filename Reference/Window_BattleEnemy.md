@@ -232,7 +232,6 @@ MVでは引数が x, y  だった。
 * [processOk ()](Window_Selectable.md#processok-)
 * [processPagedown ()](Window_Selectable.md#processpagedown-)
 * [processPageup ()](Window_Selectable.md#processpageup-)
-* [processTouch ()](Window_Selectable.md#processtouch-)
 * [processWheel ()](Window_Selectable.md#processwheel-)
 * [redrawCurrentItem ()](Window_Selectable.md#redrawcurrentitem-)
 * [redrawItem (index)](Window_Selectable.md#redrawitem-index)
@@ -293,8 +292,8 @@ MVでは引数が x, y  だった。
 オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
 
 
-#### numVisibleRows () → {[Number](Number.md)}
-表示行数を返す。
+#### processTouch ()
+**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#processtouch-)
 
 
 #### refresh ()
@@ -309,10 +308,6 @@ MVでは引数が x, y  だった。
 オーバーライド: [Window_Base](Window_Base.md#show-)
 
 
-#### windowHeight () → {[Number](Number.md)}
-ウィンドウの高さ(ピクセル)を返す。
-
-
-#### windowWidth () → {[Number](Number.md)}
-ウィンドウの幅(ピクセル)を返す。
+### 廃止MVメソッド
+numVisibleRows (), windowHeight (), windowWidth ()
 
