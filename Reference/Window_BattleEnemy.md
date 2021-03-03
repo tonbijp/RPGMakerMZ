@@ -276,13 +276,6 @@ MVでは引数が x, y  だった。
 #### initialize (rect)
 オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-rect)
 
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-
 
 #### maxCols () → {[Number](Number.md)}
 オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
