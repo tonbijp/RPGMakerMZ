@@ -108,7 +108,6 @@ MVでは引数が editWindow  だった。
 * [hideBackgroundDimmer ()](Window_Base.md#hidebackgrounddimmer-)
 * [isClosing ()](Window_Base.md#isclosing---boolean)
 * [isOpening ()](Window_Base.md#isopening---boolean)
-* [itemHeight ()](Window_Base.md#itemheight---number)
 * [itemPadding ()](Window_Base.md#itempadding---number)
 * [lineHeight ()](Window_Base.md#lineheight---number)
 * [loadWindowskin ()](Window_Base.md#loadwindowskin-)

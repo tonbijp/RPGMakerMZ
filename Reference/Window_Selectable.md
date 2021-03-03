@@ -146,7 +146,6 @@ RPGツクールMZの主要な入力ハンドラ。<br />
 * [hideBackgroundDimmer ()](Window_Base.md#hidebackgrounddimmer-)
 * [isClosing ()](Window_Base.md#isclosing---boolean)
 * [isOpening ()](Window_Base.md#isopening---boolean)
-* [itemHeight ()](Window_Base.md#itemheight---number)
 * [itemPadding ()](Window_Base.md#itempadding---number)
 * [lineHeight ()](Window_Base.md#lineheight---number)
 * [loadWindowskin ()](Window_Base.md#loadwindowskin-)
@@ -235,7 +234,7 @@ RPGツクールMZの主要な入力ハンドラ。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
+| `symbol` | [String](String.md) | [入力ハンドラ名](#入力ハンドラ名) |
 
 
 #### callOkHandler ()
@@ -433,7 +432,7 @@ MVでは引数なし。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
+| `symbol` | [String](String.md) | [入力ハンドラ名](#入力ハンドラ名) |
 
 
 #### isHorizontal () → {Boolean}
@@ -465,7 +464,7 @@ OKが起動されたか。
 
 
 #### itemHeight () → {[Number](Number.md)}
-項目の高さ(ピクセル)を返す。
+オーバーライド: [Window_Base](Window_Base.md#itemheight---number)
 
 
 #### itemLineRect (index) → {[Rectangle](Rectangle.md)}
@@ -673,7 +672,7 @@ OKの処理。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `symbol` | [String](String.md) | [入力ハンドラ名](Window_Selectable.md#symbol) |
+| `symbol` | [String](String.md) | [入力ハンドラ名](#入力ハンドラ名) |
 | `method` | Function | ハンドラ関数 |
 
 
