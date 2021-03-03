@@ -373,10 +373,6 @@ namespace JsExtensions
 * [Window_SavefileList](Window_SavefileList.md)
 * ※[Window_ShopBuy](Window_ShopBuy.md)
 * ※[Window_ShopNumber](Window_ShopNumber.md)
-* ※[Window_Status](Window_Status.md)
-    * ※[Window_BattleActor](Window_BattleActor.md)
-* ※[Window_MenuStatus](Window_MenuStatus.md)
-    * ※[Window_MenuActor](Window_MenuActor.md)
 * ※[Window_SkillList](Window_SkillList.md)
     * ※[Window_BattleSkill](Window_BattleSkill.md)
 * ※[Window_ItemList](Window_ItemList.md) → [継承](#項目表示ウィンドウwindow_itemlist)
@@ -397,9 +393,13 @@ namespace JsExtensions
 * ※[Window_BattleStatus](Window_BattleStatus.md)
 * ※[Window_EquipSlot](Window_EquipSlot.md) (継承位置変更)
 * ※[Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
+* ※[Window_MenuStatus](Window_MenuStatus.md) (継承位置変更)
+    * ※[Window_MenuActor](Window_MenuActor.md)
 * ※[Window_NameEdit](Window_NameEdit.md) (継承位置変更)
 * ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
 * ※[Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
+* ※[Window_Status](Window_Status.md) (継承位置変更)
+    * ※[Window_BattleActor](Window_BattleActor.md)
 * ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
 * ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
 

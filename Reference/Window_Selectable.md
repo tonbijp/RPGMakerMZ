@@ -25,16 +25,13 @@ MVでは引数が x, y, width, height だった。
 * [Window_Command](Window_Command.md)
 * [Window_DebugEdit](Window_DebugEdit.md)
 * [Window_DebugRange](Window_DebugRange.md)
-* [Window_EquipSlot](Window_EquipSlot.md)
 * [Window_ItemList](Window_ItemList.md)
-* [Window_MenuStatus](Window_MenuStatus.md)
 * [Window_NameInput](Window_NameInput.md)
 * [Window_NumberInput](Window_NumberInput.md)
 * [Window_SavefileList](Window_SavefileList.md)
 * [Window_ShopBuy](Window_ShopBuy.md)
 * [Window_ShopNumber](Window_ShopNumber.md)
 * [Window_SkillList](Window_SkillList.md)
-* [Window_Status](Window_Status.md)
 * [Window_StatusBase](Window_StatusBase.md)
 
 
