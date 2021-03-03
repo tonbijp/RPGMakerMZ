@@ -316,7 +316,7 @@ OKを選択中か。
 
 
 #### itemWidth () → {[Number](Number.md)}
-**@MZ** オーバーライド: [Window_Base](Window_Base.md#itemwidth---number)
+**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#itemwidth---number)
 
 
 #### maxCols () → {[Number](Number.md)}

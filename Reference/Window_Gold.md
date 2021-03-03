@@ -97,7 +97,6 @@ MVでは引数が x, y  だった。
 * [isOpening ()](Window_Base.md#isopening---boolean)
 * [itemHeight ()](Window_Base.md#itemheight---number)
 * [itemPadding ()](Window_Base.md#itempadding---number)
-* [itemWidth ()](Window_Base.md#itemwidth---number)
 * [lineHeight ()](Window_Base.md#lineheight---number)
 * [loadWindowskin ()](Window_Base.md#loadwindowskin-)
 * [makeFontBigger ()](Window_Base.md#makefontbigger-)

@@ -22,7 +22,6 @@ MVでは引数が x, y, width, height だった。
 ### サブクラス
 
 * [Window_BattleEnemy](Window_BattleEnemy.md)
-* [Window_BattleStatus](Window_BattleStatus.md)
 * [Window_Command](Window_Command.md)
 * [Window_DebugEdit](Window_DebugEdit.md)
 * [Window_DebugRange](Window_DebugRange.md)
@@ -149,7 +148,6 @@ RPGツクールMZの主要な入力ハンドラ。<br />
 * [isOpening ()](Window_Base.md#isopening---boolean)
 * [itemHeight ()](Window_Base.md#itemheight---number)
 * [itemPadding ()](Window_Base.md#itempadding---number)
-* [itemWidth ()](Window_Base.md#itemwidth---number)
 * [lineHeight ()](Window_Base.md#lineheight---number)
 * [loadWindowskin ()](Window_Base.md#loadwindowskin-)
 * [makeFontBigger ()](Window_Base.md#makefontbigger-)
@@ -501,7 +499,7 @@ OKが起動されたか。
 
 
 #### itemWidth () → {[Number](Number.md)}
-項目の幅(ピクセル)を返す。
+オーバーライド: [Window_Base](Window_Base.md#itemwidth---number)
 
 
 #### maxCols () → {[Number](Number.md)}
