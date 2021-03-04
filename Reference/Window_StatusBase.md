@@ -392,10 +392,6 @@
 ゲージの線の高さ(規定値24ピクセル)を返す。
 
 
-#### loadFaceImages ()
-顔画像を読み込む。
-
-
 #### hideAdditionalSprites ()
 追加スプライトを隠す。
 
@@ -404,8 +400,8 @@
 オーバーライド: [Window_Selectable](Window_Selectable.md#initialize-rect)
 
 
-#### refresh ()
-オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
+#### loadFaceImages ()
+顔画像を読み込む。
 
 
 #### placeActorName (actor, x, y)
@@ -467,6 +463,10 @@ HP・MP・TPの基本ゲージを配置。
 | `actor` | [Game_Actor](Game_Actor.md)  | アクター |
 | `x` | [Number](Number.md)  | x座標(ピクセル) |
 | `y` | [Number](Number.md)  | y座標(ピクセル) |
+
+
+#### refresh ()
+オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
 
 
 #### setName (name)
