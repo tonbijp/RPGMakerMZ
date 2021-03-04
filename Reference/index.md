@@ -377,7 +377,7 @@ namespace JsExtensions
     * ※[Window_BattleSkill](Window_BattleSkill.md)
 * [Window_ItemList](Window_ItemList.md) → [継承](#項目表示ウィンドウwindow_itemlist)
 * [Window_StatusBase](Window_StatusBase.md) **@MZ** → [継承](#ステータス表示ウィンドウwindow_statusbase)
-* ※[Window_Command](Window_Command.md) → [継承](#コマンドウィンドウwindow_command)
+* [Window_Command](Window_Command.md) → [継承](#コマンドウィンドウwindow_command)
 
 
 ### [項目表示ウィンドウ(Window_ItemList)](Window_ItemList.md)
