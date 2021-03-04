@@ -12,31 +12,31 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 
 ### Members
 
-#### $dataActors :[Array](Array.md).<[RPG.Actor](RPG.Actor.md)>
+#### $dataActors :[Array](Array.md).&lt;[RPG.Actor](RPG.Actor.md)&gt;
 [アクター]用JSON( Actors.json )。
 
 
-#### $dataAnimations :[Array](Array.md).<[RPG.Animation](RPG.Animation.md)>
+#### $dataAnimations :[Array](Array.md).&lt;[RPG.Animation](RPG.Animation.md)&gt;
 [アニメーション]用JSON( Animations.json )。
 
 
-#### $dataArmors :[Array](Array.md).<[RPG.Armor](RPG.Armor.md)>
+#### $dataArmors :[Array](Array.md).&lt;[RPG.Armor](RPG.Armor.md)&gt;
 [防具]用JSON( Armors.json )。
 
 
-#### $dataClasses :[Array](Array.md).<[RPG.Class](RPG.Class.md)>
+#### $dataClasses :[Array](Array.md).&lt;[RPG.Class](RPG.Class.md)&gt;
 [職業]用JSON( Classes.json )。
 
 
-#### $dataCommonEvents :[Array](Array.md).<[RPG.CommonEvent](RPG.CommonEvent.md)>
+#### $dataCommonEvents :[Array](Array.md).&lt;[RPG.CommonEvent](RPG.CommonEvent.md)&gt;
 [コモンイベント]用JSON( CommonEvents.json )。
 
 
-#### $dataEnemies :[Array](Array.md).<[RPG.Enemy](RPG.Enemy.md)>
+#### $dataEnemies :[Array](Array.md).&lt;[RPG.Enemy](RPG.Enemy.md)&gt;
 [敵キャラ]用JSON( Enemies.json )。
 
 
-#### $dataItems :[Array](Array.md).<[RPG.Item](RPG.Item.md)>
+#### $dataItems :[Array](Array.md).&lt;[RPG.Item](RPG.Item.md)&gt;
 [アイテム]用JSON( Items.json )。
 
 
@@ -44,15 +44,15 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 現在のマップ用JSON( MapXXX.json( XXX は3桁の数値) )。
 
 
-#### $dataMapInfos :[Array](Array.md).<[RPG.MapInfo](RPG.MapInfo.md)>
+#### $dataMapInfos :[Array](Array.md).&lt;[RPG.MapInfo](RPG.MapInfo.md)&gt;
 マップ一覧用JSON( MapInfo.json )。
 
 
-#### $dataSkills :[Array](Array.md).<[RPG.Skill](RPG.Skill.md)>
+#### $dataSkills :[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;
 [スキル]用JSON( Skills.json )。
 
 
-#### $dataStates :[Array](Array.md).<[RPG.State](RPG.State.md)>
+#### $dataStates :[Array](Array.md).&lt;[RPG.State](RPG.State.md)&gt;
 [ステート]用JSON( States.json )。
 
 
@@ -60,15 +60,15 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 [システム]用JSON( System.json )。
 
 
-#### $dataTilesets :[Array](Array.md).<[RPG.Tileset](RPG.Tileset.md)>
+#### $dataTilesets :[Array](Array.md).&lt;[RPG.Tileset](RPG.Tileset.md)&gt;
 [タイルセット]用JSON( Tilesets.json )。
 
 
-#### $dataTroops :[Array](Array.md).<[RPG.Troop](RPG.Troop.md)>
+#### $dataTroops :[Array](Array.md).&lt;[RPG.Troop](RPG.Troop.md)&gt;
 [敵グループ]用JSON( Troops.json )。
 
 
-#### $dataWeapons :[Array](Array.md).<[RPG.Weapon](RPG.Weapon.md)>
+#### $dataWeapons :[Array](Array.md).&lt;[RPG.Weapon](RPG.Weapon.md)&gt;
 [武器]用JSON( Weapons.json )。
 
 
@@ -130,11 +130,11 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 <hr>
 
 
-#### $plugins :[Array](Array.md).<[MV.PluginSettings](MV.PluginSettings.md)>
+#### $plugins :[Array](Array.md).&lt;[MV.PluginSettings](MV.PluginSettings.md)&gt;
 RPGツクールMV プラグイン設定( js/plugins.js )。
 
 
-#### $testEvent :[Array](Array.md).<[RPG.EventCommand](RPG.EventCommand.md)>
+#### $testEvent :[Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;
 [テスト]を実行した場合に渡される[イベント]。
 
 
