@@ -244,13 +244,13 @@ MVでは引数が x, y, width, height だった。
 
 #### [Window_ItemList](Window_ItemList.md)
 
-* [colSpacing ()]()
+* [colSpacing ()](Window_ItemList.md#colspacing---number)
 * [drawItem (index)](Window_ItemList.md#drawitem-index)
 * [drawItemNumber (item, x, y, width)](Window_ItemList.md#drawitemnumber-item-x-y-width)
 * [isCurrentItemEnabled ()](Window_ItemList.md#iscurrentitemenabled---boolean)
 * [isEnabled (item)](Window_ItemList.md#isenabled-item--boolean)
 * [item ()](Window_ItemList.md#item---rpgbaseitem)
-* [itemAt (index)]()
+* [itemAt (index)](Window_ItemList.md#itemat-index--rpgbaseitem)
 * [makeItemList ()](Window_ItemList.md#makeitemlist-)
 * [maxCols ()](Window_ItemList.md#maxcols---number)
 * [maxItems ()](Window_ItemList.md#maxitems---number)
@@ -266,7 +266,7 @@ MVでは引数が x, y, width, height だった。
 ### メソッド
 
 #### initialize (rect)
-オーバーライド: [Window_Selectable](Window_ItemList.md#initialize-rect)
+オーバーライド: [Window_ItemList](Window_ItemList.md#initialize-rect)
 
 
 #### includes (item)
