@@ -7,7 +7,7 @@
 ### new Window_StatusBase (rect)
 **@MZ** ステータス表示するウィンドウの基礎クラス。
 
-関連クラス: [Sprite_Gauge](Sprite_Gauge.md)
+関連クラス: [Sprite_Gauge](Sprite_Gauge.md), [Sprite_Name](Sprite_Name.md),  [Sprite_StateIcon](Sprite_StateIcon.md)
 
 #### 引数
 
