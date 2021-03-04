@@ -383,7 +383,7 @@ namespace JsExtensions
 ### [項目表示ウィンドウ(Window_ItemList)](Window_ItemList.md)
 
 * [Window_BattleItem](Window_BattleItem.md)
-* ※[Window_EquipItem](Window_EquipItem.md)
+* [Window_EquipItem](Window_EquipItem.md)
 * ※[Window_EventItem](Window_EventItem.md)
 * ※[Window_ShopSell](Window_ShopSell.md)
 
