@@ -322,7 +322,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### itemAt (index) → {[RPG.Skill](RPG.Skill.md)}
-指定項目番号のスキルを返す。
+**@MZ** 指定項目番号のスキルを返す。
 
 ##### 引数
 
@@ -332,7 +332,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### makeItemList ()
-項目のリストを作成。
+スキルの配列を作成。
 
 
 #### maxCols () → {[Number](Number.md)}
@@ -348,7 +348,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### selectLast ()
-前に選択したものを選択。
+前に選択した項目を選択。
 
 
 #### setActor (actor)
@@ -368,7 +368,7 @@ MVでは引数が x, y, width, height だった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `stypeId` | [Number](Number.md) | スキルタイプID |
+| `stypeId` | [Number](Number.md) | [スキルタイプID](RPG.Skill.md#スキルタイプid) |
 
 
 #### updateHelp ()
