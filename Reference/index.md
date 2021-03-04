@@ -374,7 +374,7 @@ namespace JsExtensions
 * [Window_ShopBuy](Window_ShopBuy.md)
 * [Window_ShopNumber](Window_ShopNumber.md)
 * [Window_SkillList](Window_SkillList.md)
-    * ※[Window_BattleSkill](Window_BattleSkill.md)
+    * [Window_BattleSkill](Window_BattleSkill.md)
 * [Window_ItemList](Window_ItemList.md) → [継承](#項目表示ウィンドウwindow_itemlist)
 * [Window_StatusBase](Window_StatusBase.md) **@MZ** → [継承](#ステータス表示ウィンドウwindow_statusbase)
 * [Window_Command](Window_Command.md) → [継承](#コマンドウィンドウwindow_command)
