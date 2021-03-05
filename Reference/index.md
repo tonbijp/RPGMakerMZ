@@ -401,7 +401,7 @@ namespace JsExtensions
 * [Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
 * [Window_Status](Window_Status.md) (継承位置変更)
 * [Window_StatusParams](Window_StatusParams.md) **@MZ**
-* ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
+* [Window_StatusEquip](Window_StatusEquip.md) **@MZ**
 
 
 ### [コマンドウィンドウ(Window_Command)](Window_Command.md)
