@@ -292,7 +292,7 @@ MVでは引数が messageWindow だったが、なくなった。
 オーバーライド: [Window_Command](Window_Command.md#drawitem-index)
 
 
-#### initialize (rect)
+#### initialize ()
 オーバーライド: [Window_Command](Window_Command.md#initialize-rect)
 
 
