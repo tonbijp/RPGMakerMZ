@@ -406,7 +406,7 @@ namespace JsExtensions
 
 ### [コマンドウィンドウ(Window_Command)](Window_Command.md)
 
-* ※[Window_ActorCommand](Window_ActorCommand.md)
+* [Window_ActorCommand](Window_ActorCommand.md)
 * ※[Window_ChoiceList](Window_ChoiceList.md)
 * ※[Window_GameEnd](Window_GameEnd.md)
 * ※[Window_MenuCommand](Window_MenuCommand.md)
