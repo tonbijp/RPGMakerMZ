@@ -216,7 +216,7 @@ MVでは引数が x, y, width, height  だった。
 * [isOkEnabled ()](Window_Selectable.md#isokenabled---boolean)
 * [isOkTriggered ()](Window_Selectable.md#isoktriggered---boolean)
 * [isOpenAndActive ()](Window_Selectable.md#isopenandactive---boolean)
-* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled-)
+* [isScrollEnabled ()](Window_Selectable.md#isscrollenabled---boolean)
 * [isTouchOkEnabled ()](Window_Selectable.md#istouchokenabled---boolean)
 * [itemLineRect (index)](Window_Selectable.md#itemlinerect-index--rectangle)
 * [itemRect (index)](Window_Selectable.md#itemrect-index--rectangle)
@@ -336,6 +336,7 @@ MVにあったvalid引数は廃止。
 
 #### isEnabled (savefileId) → {Boolean}
 **@MZ** 指定セーブファイルIDのセーブ・ロードが可能か。
+
 ##### 引数
 
 | 名前 | 型 | 説明 |
