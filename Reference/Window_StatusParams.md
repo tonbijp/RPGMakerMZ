@@ -15,6 +15,12 @@
 | --- | --- | --- |
 | `rect` | [Rectangle](Rectangle.md) | 矩形範囲(ピクセル) |
 
+#### プロパティ
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `_actor` | [Game_Actor](Game_Actor.md) | アクター |
+
 
 ### スーパークラスから継承されたメソッド
 
@@ -184,7 +190,6 @@
 * [deselect ()](Window_Selectable.md#deselect-)
 * [drawAllItems ()](Window_Selectable.md#drawallitems-)
 * [drawBackgroundRect (rect)](Window_Selectable.md#drawbackgroundrect-rect)
-* [drawItemBackground (index)](Window_Selectable.md#drawitembackground-index)
 * [ensureCursorVisible (smooth)](Window_Selectable.md#ensurecursorvisible-smooth)
 * [forceSelect (index)](Window_Selectable.md#forceselect-index)
 * [hideHelpWindow ()](Window_Selectable.md#hidehelpwindow-)
@@ -278,6 +283,18 @@
 オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
 
 
+#### drawItemBackground (index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitembackground-index)
+
+
+#### itemHeight () → {[Number](Number.md)}
+オーバーライド: [Window_Selectable](Window_Selectable.md#itemheight---number)
+
+
+#### maxItems () → {[Number](Number.md)}
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
+
+
 #### initialize (rect)
 オーバーライド: [Window_StatusBase](Window_StatusBase.md#initialize-rect)
 
@@ -290,12 +307,4 @@
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md)  | 対象アクター |
-
-
-#### maxItems () → {[Number](Number.md)}
-オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
-
-
-#### itemHeight () → {[Number](Number.md)}
-オーバーライド: [Window_Selectable](Window_Selectable.md#itemheight---number)
 
