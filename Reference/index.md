@@ -413,7 +413,7 @@ namespace JsExtensions
 * [Window_Options](Window_Options.md)
 * [Window_PartyCommand](Window_PartyCommand.md)
 * [Window_SkillType](Window_SkillType.md)
-* ※[Window_TitleCommand](Window_TitleCommand.md)
+* [Window_TitleCommand](Window_TitleCommand.md)
 * ※[Window_HorzCommand](Window_HorzCommand.md)
     * ※[Window_EquipCommand](Window_EquipCommand.md)
     * ※[Window_ItemCategory](Window_ItemCategory.md)
