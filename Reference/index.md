@@ -400,7 +400,7 @@ namespace JsExtensions
 * [Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
 * [Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
 * [Window_Status](Window_Status.md) (継承位置変更)
-* ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
+* [Window_StatusParams](Window_StatusParams.md) **@MZ**
 * ※[Window_StatusEquip](Window_StatusEquip.md) **@MZ**
 
 
