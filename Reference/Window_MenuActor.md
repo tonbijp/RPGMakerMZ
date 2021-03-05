@@ -70,7 +70,6 @@ MVでは引数がなかった。
 * [changeTextColor (color)](Window_Base.md#changetextcolor-color)
 * [checkRectObject (rect)](Window_Base.md#checkrectobject-rect)
 * [close ()](Window_Base.md#close-)
-* [contentsHeight ()](Window_Base.md#contentsheight---number)
 * [contentsWidth ()](Window_Base.md#contentswidth---number)
 * [convertEscapeCharacters (text)](Window_Base.md#convertescapecharacters-text--string)
 * [createContents ()](Window_Base.md#createcontents-)
