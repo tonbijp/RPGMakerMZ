@@ -12,6 +12,7 @@ MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectabl
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 #### 引数
+MVでは引数がなかった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
