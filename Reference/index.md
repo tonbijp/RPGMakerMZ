@@ -391,7 +391,7 @@ namespace JsExtensions
 ### [ステータス表示ウィンドウ(Window_StatusBase)](Window_StatusBase.md)
 
 * [Window_BattleStatus](Window_BattleStatus.md) (継承位置変更)
-    * ※[Window_BattleActor](Window_BattleActor.md)
+    * [Window_BattleActor](Window_BattleActor.md)
 * [Window_EquipSlot](Window_EquipSlot.md) (継承位置変更)
 * [Window_EquipStatus](Window_EquipStatus.md) (継承位置変更)
 * [Window_MenuStatus](Window_MenuStatus.md) (継承位置変更)

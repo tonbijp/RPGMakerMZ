@@ -288,48 +288,6 @@ MVでは引数がなかった。
 | `index` | [Number](Number.md) | アクター番号 |
 
 
-#### faceRect (index) → {[Rectangle](Rectangle.md)}
-**@MZ** 指定番号のアクターの顔表示矩形範囲を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `index` | [Number](Number.md) | アクター番号 |
-
-
-#### drawItem (index)
-オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
-
-
-#### drawItemImage (index)
-**@MZ** 指定番号のアクター画像を描画。
-
-
-#### drawItemStatus (index)
-**@MZ** 指定番号のアクターのステータスを描画。
-
-
-#### extraHeight () → {[Number](Number.md)}
-**@MZ** 高さ(規定値:10)を返す。
-
-
-#### initialize (rect)
-オーバーライド: [Window_StatusBase](Window_StatusBase.md#initialize-rect)
-
-
-#### itemHeight () → {[Number](Number.md)}
-**@MZ** 項目の高さを返す。
-
-
-#### maxCols () → {[Number](Number.md)}
-**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
-
-
-#### maxItems () → {[Number](Number.md)}
-オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
-
-
 #### basicGaugesX (rect) → {[Number](Number.md)}
 **@MZ** 指定範囲の中でゲージを描くx位置を返す。
 
@@ -350,6 +308,48 @@ MVでは引数がなかった。
 | `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
 
 
+#### drawItem (index)
+オーバーライド: [Window_Selectable](Window_Selectable.md#drawitem-index)
+
+
+#### drawItemImage (index)
+**@MZ** 指定番号のアクター画像を描画。
+
+
+#### drawItemStatus (index)
+**@MZ** 指定番号のアクターのステータスを描画。
+
+
+#### extraHeight () → {[Number](Number.md)}
+**@MZ** 高さ(規定値:10)を返す。
+
+
+#### faceRect (index) → {[Rectangle](Rectangle.md)}
+**@MZ** 指定番号のアクターの顔表示矩形範囲を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `index` | [Number](Number.md) | アクター番号 |
+
+
+#### initialize (rect)
+オーバーライド: [Window_StatusBase](Window_StatusBase.md#initialize-rect)
+
+
+#### itemHeight () → {[Number](Number.md)}
+**@MZ** 項目の高さを返す。
+
+
+#### maxCols () → {[Number](Number.md)}
+**@MZ** オーバーライド: [Window_Selectable](Window_Selectable.md#maxcols---number)
+
+
+#### maxItems () → {[Number](Number.md)}
+オーバーライド: [Window_Selectable](Window_Selectable.md#maxitems---number)
+
+
 #### nameX (rect) → {[Number](Number.md)}
 **@MZ** 指定範囲の中で名前を描くx位置を返す。
 
@@ -362,26 +362,6 @@ MVでは引数がなかった。
 
 #### nameY (rect) → {[Number](Number.md)}
 **@MZ** 指定範囲の中で名前を描くy位置を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
-
-
-#### stateIconX (rect) → {[Number](Number.md)}
-**@MZ** 指定範囲の中で状態アイコンを描くx位置を返す。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
-
-
-#### stateIconY (rect) → {[Number](Number.md)}
-**@MZ** 指定範囲の中で状態アイコンを描くy位置を返す。
 
 ##### 引数
 
@@ -410,6 +390,26 @@ MVでは引数がなかった。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actor` | [Game_Actor](Game_Actor.md) | アクター |
+
+
+#### stateIconX (rect) → {[Number](Number.md)}
+**@MZ** 指定範囲の中で状態アイコンを描くx位置を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
+
+
+#### stateIconY (rect) → {[Number](Number.md)}
+**@MZ** 指定範囲の中で状態アイコンを描くy位置を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `rect` | [Rectangle](Rectangle.md) | 矩形範囲 |
 
 
 #### update ()
