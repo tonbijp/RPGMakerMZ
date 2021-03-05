@@ -397,7 +397,7 @@ namespace JsExtensions
 * [Window_MenuStatus](Window_MenuStatus.md) (継承位置変更)
     * ※[Window_MenuActor](Window_MenuActor.md)
 * [Window_NameEdit](Window_NameEdit.md) (継承位置変更)
-* ※[Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
+* [Window_ShopStatus](Window_ShopStatus.md) (継承位置変更)
 * ※[Window_SkillStatus](Window_SkillStatus.md) (継承位置変更)
 * ※[Window_Status](Window_Status.md) (継承位置変更)
 * ※[Window_StatusParams](Window_StatusParams.md) **@MZ**
