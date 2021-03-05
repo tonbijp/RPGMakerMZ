@@ -416,5 +416,5 @@ namespace JsExtensions
 * [Window_TitleCommand](Window_TitleCommand.md)
 * [Window_HorzCommand](Window_HorzCommand.md)
     * [Window_EquipCommand](Window_EquipCommand.md)
-    * ※[Window_ItemCategory](Window_ItemCategory.md)
+    * [Window_ItemCategory](Window_ItemCategory.md)
     * ※[Window_ShopCommand](Window_ShopCommand.md)
