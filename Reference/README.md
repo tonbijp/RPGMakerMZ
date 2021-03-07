@@ -20,9 +20,20 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 
 
 ## 類似のサイトなど
+
 * [RPGツクールMZ プラグイン講座](https://tkool.jp/mz/plugin/) 公式
 * [RPGツクールMZ Core API](https://tkool.jp/mz/rmmz_api/) 公式
 * [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=270496334) トリアコンタン
 * [ツクールMZスクリプトリファレンスwiki](http://www.rpgmaker-script-wiki.xyz/mzscriptwiki.php) 村人A
-* [RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) このリファレンスのMZ版です。
-* [RPGツクールMZ プラグイン置き場](https://github.com/tonbijp/RPGMakerMZ/) 
+* [Visual Studio Code による RPG ツクール MZ のデバッグ](http://dragonflare.blue/dcave/articles.php?la=ja) 蒼竜 
+* [RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) (このリファレンスのMZ版)
+* [RPGツクールMZ プラグイン置き場](https://github.com/tonbijp/RPGMakerMZ/) (とんび@鳶嶋工房 作のプラグイン)
+
+※敬称略
+
+## 『RPGツクールMZ』で使われている NW.js のバージョン
+
+| RPGツクールMZ | NW.js |
+| --- | --- |
+| 1.0.0 〜 | 0.44.5 |
+| 1.2.0 〜 | 0.51.0 |
