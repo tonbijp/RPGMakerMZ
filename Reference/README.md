@@ -42,6 +42,6 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [Visual Studio Code による RPG ツクール MZ のデバッグ](http://dragonflare.blue/dcave/articles.php?la=ja) 蒼竜 
 * [VScode用インテリセンス定義ファイル 解説(英語フォーラム)](https://forums.rpgmakerweb.com/index.php?threads/lunasense-rpgmakermv-mz-intellisense.126646/) LunaTechsDev
     * [定義ファイル ダウンロード(Github)](https://github.com/LunaTechsDev/LunaLite/tree/master/dist)
-
+* [Insider.NET 全記事一覧](https://www.atmarkit.co.jp/ait/subtop/features/dotnet/all.html) @IT (VScode や JS の記事を探して読むと良いかと)
 
 ※敬称略
