@@ -11,7 +11,7 @@
 MZで色関連は [ColorManager](ColorManager.md)に、ステータス描画は[Window_StatusBase](Window_StatusBase.md) に移動。<br />
 また、個々の要素の描画は [Sprite_Gauge](Sprite_Gauge.md)、[Sprite_StateIcon](Sprite_StateIcon.md) 、[Sprite_Name](Sprite_Name.md) といったスプライトに機能分解されている。
 
-v1.1.1 で変更あり。
+v1.1.1、v1.2.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 

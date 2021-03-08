@@ -12,7 +12,7 @@
 
 アクターのパラメータの取得、画像の設定、戦闘の処理とサイドビュー時の画像処理を行うクラス。
 
-v1.1.0 で変更あり。
+v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Party](Game_Party.md), [Game_Troop](Game_Troop.md), [Game_Enemy](Game_Enemy.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md)
 

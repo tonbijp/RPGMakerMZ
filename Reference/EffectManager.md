@@ -5,7 +5,7 @@
 
 MZではエフェクトに [Effekseer](https://effekseer.github.io/jp/) が採用されたので、そのファイルが扱えるように用意された。
 
-v1.1.0 で変更あり。
+v1.1.0、v1.2.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md),  [RPG.Effect](RPG.Effect.md), [Sprite_Animation](Sprite_Animation.md)
 

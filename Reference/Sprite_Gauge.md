@@ -7,7 +7,7 @@
 ### new Sprite_Gauge ()
 **@MZ** ゲージ表示用のスプライト。ラベル・ゲージ・数値で構成される。
 
-v1.1.0 で変更あり。
+v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md)
 
@@ -220,6 +220,10 @@ v1.1.0 で変更あり。
 
 #### labelY () → {[Number](Number.md)}
 ラベルのy座標(規定値:3)を返す。
+
+
+#### measureLabelWidth () → {[Number](Number.md)}
+**@MZ1.2.0** ラベルの幅を返す。
 
 
 #### redraw ()

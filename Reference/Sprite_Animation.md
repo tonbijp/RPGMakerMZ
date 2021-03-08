@@ -18,8 +18,7 @@
 なのでプロパティ・メソッドに **@MZ** 表記はつけず、新規クラスとして記述する。<br />
 内容についてはカンでテキトーに書いているので信用しないでください。他のところもそうですけど、ここは特に何もわからずに書いてます(笑)
 
-
-v1.1.0 で変更あり。
+v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [EffectManager](EffectManager.md), [Spriteset_Base](Spriteset_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 

@@ -28,6 +28,8 @@
 
 opacity系のプロパティは、対象スプライトの alpha プロパティを読み書きしているだけ。
 
+v1.2.0 で変更あり。
+
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md)
 
 ### サブクラス
