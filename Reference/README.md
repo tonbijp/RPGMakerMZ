@@ -27,6 +27,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [RPGツクールMZ Core API](https://tkool.jp/mz/rmmz_api/) 公式
 * [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=270496334) トリアコンタン
 * [ツクールMZスクリプトリファレンスwiki](http://www.rpgmaker-script-wiki.xyz/mzscriptwiki.php) 村人A
+* [RPGツクールプラグイン制作過程紹介](https://note.com/nz_prism/n/n179edce51d4b) んーぞー
 * [RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) (リファレンスのMV版)
 
 
