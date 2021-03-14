@@ -197,7 +197,7 @@ rtl は RIGHT-TO-LEFT の略。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `rtl` | Boolean | 左から右(アラビア語など)の文字列か |
+| `rtl` | Boolean | 右から左(アラビア語など)の文字列か |
 
 
 #### createContents ()
