@@ -174,12 +174,12 @@
  * @orderAfter PluginCommonBase
  * 
  * @param BillboardPriority
+ * @text 奥行き優先度
  * @type select
  * @option 手前
  * @value front
  * @option 奥(規定値)
  * @value back
- * @text 奥行き優先度
  * @desc  書き割りの奥・手前配置の設定
  * @default back
  * 
@@ -188,20 +188,20 @@
  * @text オートタイル
  *
  * @param UseLayeredCounter
- * @type boolean
  * @text カウンター回り込み
+ * @type boolean
  * @on 回り込み
  * @off 通常(規定値)
- * @desc A2のカウンターの後ろに回り込めるようにするか
+ * @desc A2のカウンターの後ろに回り込めるか
  * (HalfMove.js が必要)
  * @default false
  * @parent Autotile
  * 
  * @param IsA2FullCollision
+ * @text タイル全体を通行不可
  * @type boolean
  * @on 通行止め(規定値)
  * @off 閉じて内側は通行可
- * @text タイル全体を通行不可にするか
  * @desc A2(地面)のタイル全体を通行不可にするか
  * @default true
  * @parent Autotile
@@ -559,25 +559,7 @@
     };
 
     /*---- Tilemap ----*/
-    /**
-     * タイルセットの画像を設定する。
-     * マップ開始時に呼ばれる。
-     */
-    const _Tilemap_refreshTileset = Tilemap.prototype.refreshTileset;
-    Tilemap.prototype.refreshTileset = function() {
-        _Tilemap_refreshTileset.call( this );
-
-        // BitmapをPIXI.Textureにコンバート
-        const bitmaps = this.bitmaps.map( function( x ) {
-            return x._baseTexture ? new PIXI.Texture( x._baseTexture ) : x;
-        } );
-
-        // 書き割りのタイルセットの画像をアップデート
-        for( let curItem of this.TF_billboards ) {
-            curItem.children[ 0 ].setBitmaps( bitmaps );
-        }
-    };
-
+    const LAYER_MIDDLE = 3;
     /**
      * 書き割りレイヤーの生成と追加。
      */
@@ -587,8 +569,7 @@
 
         // 書き割り風オブジェクトを生成
         // +3 はスクロールの際にはみ出す部分と2・3階用
-        const th = this._tileHeight;
-        const tileRows = Math.ceil( this._height / th ) + 3;
+        const tileRows = Math.ceil( this._height / this._tileHeight ) + 3;
 
         if( !this.hasOwnProperty( "TF_billboards" ) ) {
             this.TF_billboards = [];
@@ -596,7 +577,7 @@
 
         for( let i = 0; i < tileRows; i++ ) {
             const billboard = new Tilemap.Layer();
-            billboard.z = 3;
+            billboard.z = LAYER_MIDDLE;
             billboard.spriteId = TF_BillboardPriority;
             this.addChild( billboard );
             this.TF_billboards.push( billboard );
@@ -623,16 +604,16 @@
      * @param {Number} y 相対 y座標(タイル数)
      */
     Tilemap.prototype._addSpot = function( startX, startY, x, y ) {
-        const mx = startX + x;
-        const my = startY + y;
-        const dx = x * this._tileWidth;
-        const dy = y * this._tileHeight;
-        const tileId0 = this._readMapData( mx, my, 0 );
-        const tileId1 = this._readMapData( mx, my, 1 );
-        const tileId2 = this._readMapData( mx, my, 2 );
-        const tileId3 = this._readMapData( mx, my, 3 );
-        const shadowBits = this._readMapData( mx, my, 4 );
-        const upperTileId1 = this._readMapData( mx, my - 1, 1 );
+        const mx = startX + x; //  描画対象のマップ x座標(タイル数)
+        const my = startY + y; //  描画対象のマップ y座標(タイル数)
+        const dx = x * this._tileWidth; //  描画位置の x座標(ピクセル)
+        const dy = y * this._tileHeight; //  描画位置の y座標(ピクセル)
+        const tileId0 = this._readMapData( mx, my, 0 ); // 低層タイルA
+        const tileId1 = this._readMapData( mx, my, 1 ); // 低層タイルA2右側など
+        const tileId2 = this._readMapData( mx, my, 2 ); // B 〜 E タイル
+        const tileId3 = this._readMapData( mx, my, 3 ); // B 〜 E タイル
+        const shadowBits = this._readMapData( mx, my, 4 ); // 影ペン
+        const upperTileId1 = this._readMapData( mx, my - 1, 1 ); // 北位置の低層タイルA
 
         this.TF_addSpotTile( tileId0, dx, dy, mx, my );
         this.TF_addSpotTile( tileId1, dx, dy, mx, my );
@@ -660,7 +641,6 @@
      * @param {Number} my 目標 x座標(タイル数)
      */
     Tilemap.prototype.TF_addSpotTile = function( tileId, dx, dy, mx, my ) {
-
         if( !this._isHigherTile( tileId )
             || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_FULL
             || ( this.flags[ tileId ] & MASK_UPPER_DIR ) === FLOOR1_N_HALF
@@ -687,7 +667,7 @@
         };
 
         /**
-         * 優先階(priorityFloor)を得る
+         * 優先階(priorityFloor)を得る。
          * @param {Number} tileId タイルID
          */
         const getPriorityFloor = ( tileId ) => {
@@ -697,7 +677,7 @@
         };
 
         /**
-         * 表示階(floorNumber)を得る
+         * 表示階(floorNumber)を得る。
          * @param {Number} priorityFloor 優先階
          */
         const getFloorNumber = ( priorityFloor ) => {
@@ -1232,7 +1212,7 @@
     /*---- Game_CharacterBase ----*/
     /**
      * レイヤー位置を返す。
-     * @returns {Number} z位置(立体交差上:5、低層:3)
+     * @returns {Number} z位置(立体交差上:5、中層:3)
      */
     const _Game_CharacterBase_screenZ = Game_CharacterBase.prototype.screenZ;
     Game_CharacterBase.prototype.screenZ = function() {
