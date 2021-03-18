@@ -40,6 +40,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 
 ## Visual Studio Code 関連
 
+* [『RPGツクールMZ』のJavaScript開発環境構築](https://zenn.dev/tonbi/articles/f9e2a51bda7a92) とんび@鳶嶋工房
 * [Visual Studio Code による RPG ツクール MZ のデバッグ](http://dragonflare.blue/dcave/articles.php?la=ja) 蒼竜 
 * [VScode用インテリセンス定義ファイル 解説(英語フォーラム)](https://forums.rpgmakerweb.com/index.php?threads/lunasense-rpgmakermv-mz-intellisense.126646/) LunaTechsDev
     * [定義ファイル ダウンロード(Github)](https://github.com/LunaTechsDev/LunaLite/tree/master/dist)
