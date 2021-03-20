@@ -152,7 +152,7 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 
 #### gainItem (item, amount, includeEquip)
-指定アイテムを返す。
+指定アイテムを増やす。
 
 ##### 引数
 
