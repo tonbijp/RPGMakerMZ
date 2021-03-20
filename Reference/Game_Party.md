@@ -318,7 +318,8 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 
 #### members () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
-オーバーライド:[Game_Unit](Game_Unit.md#members---arraygame_battler)
+オーバーライド:[Game_Unit](Game_Unit.md#members---arraygame_battler)<br />
+戦闘中なら `battleMembers()` その他なら `allMembers()` の返り値となる。
 
 
 #### menuActor () → {[Game_Actor](Game_Actor.md)}

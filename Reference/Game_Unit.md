@@ -5,6 +5,8 @@
 ### new Game_Unit ()
 戦闘時のグループを扱うクラス。
 
+返り値が [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; のメンバー取得系のメソッドは、例えば `$gameParty.members[0]` と書きそうになるが、`$gameParty.members()[0]` のようにまず `()` でメソッドを起動し、帰ってきた配列から選択する手順を踏む。<br />
+また、添字が `0` から始まることにも注意。
 
 ### サブクラス
 
@@ -25,7 +27,7 @@
 ユニットの素早さを返す。
 
 
-#### aliveMembers () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### aliveMembers () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 生存しているバトラーを配列で返す。
 
 
@@ -37,7 +39,7 @@
 アクションの結果を取り消す。
 
 
-#### deadMembers () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### deadMembers () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 死亡しているバトラーを配列で返す。
 
 
@@ -57,11 +59,11 @@
 戦闘行動を作成する。
 
 
-#### members () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### members () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 戦闘中のバトラー生死問わず全て配列で返す。
 
 
-#### movableMembers () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### movableMembers () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 動ける(死亡や麻痺などでない)バトラーを配列で返す。
 
 
