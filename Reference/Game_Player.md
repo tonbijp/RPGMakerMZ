@@ -14,7 +14,7 @@
 
 v1.1.0、v1.2.0  で変更あり。
 
-関連クラス: [Game_Vehicle](Game_Vehicle.md)
+関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md)
 
 ### プロパティ
 
@@ -210,7 +210,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
+| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 
 
 #### checkEventTriggerThere (triggers)
@@ -220,7 +220,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
+| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 
 
 #### checkEventTriggerTouch (x, y) → {Boolean}
@@ -442,7 +442,7 @@ v1.1.0、v1.2.0  で変更あり。
 | --- | --- | --- |
 | `x` | [Number](Number.md) |  タイル数 |
 | `y` | [Number](Number.md) |  タイル数 |
-| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  |
+| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 | `normal` | Boolean |  |
 
 

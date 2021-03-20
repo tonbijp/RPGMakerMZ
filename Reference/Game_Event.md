@@ -246,10 +246,10 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `triggers` | [Array](Array.md).<[Number](Number.md)> | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
+| `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 
 
-#### list () → {[Array](Array.md).<[RPG.EventCommand](RPG.EventCommand.md)>}
+#### list () → {[Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;}
  現在の[[EVページ]](RPG.EventPage)の[イベントコマンド]の配列を返す。
 
 
