@@ -103,8 +103,8 @@ gamepadMapper に設定されている。以下のキー名称は規定値。
 | 1 | cancel | B |
 | 2 | shift | X |
 | 3 | menu | Y |
-| 4 | pageup | LB(パンパー) |
-| 5 | pagedown | RB(パンパー) |
+| 4 | pageup | LB(バンパー) |
+| 5 | pagedown | RB(バンパー) |
 | 6 |  | LT(トリガー) |
 | 7 |  | RT(トリガー) |
 | 8 |  | back |
