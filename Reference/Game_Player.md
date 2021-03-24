@@ -57,7 +57,6 @@ v1.1.0、v1.2.0  で変更あり。
 * [endBalloon ()](Game_CharacterBase.md#endballoon-)
 * [hasStepAnime ()](Game_CharacterBase.md#hasstepanime---boolean)
 * [hasWalkAnime ()](Game_CharacterBase.md#haswalkanime---boolean)
-* [increaseSteps ()](Game_CharacterBase.md#increasesteps-)
 * [isAnimationPlaying ()](Game_CharacterBase.md#isanimationplaying---boolean)
 * [isBalloonPlaying ()](Game_CharacterBase.md#isballoonplaying---boolean)
 * [isCollidedWithCharacters (x, y)](Game_CharacterBase.md#iscollidedwithcharacters-x-y--boolean)
