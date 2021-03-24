@@ -48,7 +48,6 @@ v1.1.0、v1.2.0  で変更あり。
 * [canPassDiagonally (x, y, horz, vert)](Game_CharacterBase.md#canpassdiagonally-x-y-horz-vert--boolean)
 * [characterIndex ()](Game_CharacterBase.md#characterindex---number)
 * [characterName ()](Game_CharacterBase.md#charactername---string)
-* [checkEventTriggerTouch (x, y)](Game_CharacterBase.md#checkeventtriggertouch-x-y--boolean)
 * [checkEventTriggerTouchFront (d)](Game_CharacterBase.md#checkeventtriggertouchfront-d)
 * [checkStop (threshold)](Game_CharacterBase.md#checkstop-threshold--boolean)
 * [copyPosition (character)](Game_CharacterBase.md#copyposition-character)
