@@ -17,13 +17,13 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `id` | [Number](Number.md) | [ステートID](RPG.State.md#ステートid) |
+| `id` | [Number](Number.md) | [ステートID](#ステートid) |
 | `name` | [String](String.md) | [名前] |
-| `restriction` | [Number](Number.md) | [[行動制約]](RPG.State.md#行動制約)) |
+| `restriction` | [Number](Number.md) | [\[行動制約\]](#行動制約)) |
 | `priority` | [Number](Number.md) | [優先度] \(0~100) |
 | `removeAtBattleEnd` | Boolean | [戦闘終了時に解除] |
 | `removeByRestriction` | Boolean | [行動制約によって解除] |
-| `autoRemovalTiming` | [Number](Number.md) | [[自動解除のタイミング]](RPG.State.md#自動解除のタイミング)  |
+| `autoRemovalTiming` | [Number](Number.md) | [\[自動解除のタイミング\]](#[自動解除のタイミング])  |
 | `minTurns` | [Number](Number.md) | [継続ターン数]の下限 |
 | `maxTurns` | [Number](Number.md) | [継続ターン数]の上限 |
 | `removeByDamage` | Boolean | [ダメージで解除] |
@@ -36,13 +36,14 @@
 | `message3` | [String](String.md) | [この状態が継続しているとき] |
 | `message4` | [String](String.md) | [この状態が解除されたとき] |
 | `motion` | [Number](Number.md) | [[SV]モーション] |
-| `overlay` | [Number](Number.md) |  [[SV]重ね合わせ] |
+| `overlay` | [Number](Number.md) | [\[\[SV\]重ね合わせ\]](#[SV]重ね合わせ) |
 | `traits` | [Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt; | [特徴]の配列 |
 
 #### ステートID
-以下ID 0 は固定、他は規定値。ID 1 はHPが 0 になった時に自動的に付加されるステート。
+ID 1 はHPが 0 になった時に自動的に付加されるステート。<br />
+以下ID 0 は固定、他は規定値。
 
-| ID | [ステート] |
+| ID | 説明 |
 | --- | --- |
 | 0 | 通常 |
 | 1 | 戦闘不能 |
@@ -58,7 +59,7 @@
 
 #### [行動制約]
 
-| 番号 | [行動制約] |
+| 番号 | 説明 |
 | --- | --- |
 | 0 | なし |
 | 1 | 敵に攻撃 |
@@ -68,10 +69,28 @@
 
 #### [自動解除のタイミング]
 
-| 番号 | [自動解除のタイミング] |
+| 番号 | 説明 |
 | --- | --- |
 | 0 | なし |
 | 1 | 行動終了時 |
-| 2 | 誰ターン終了時 |
+| 2 | ターン終了時 |
 
 
+#### [SV]重ね合わせ
+img/system/States.png に含まれる画像を指定する番号。<br />
+規定では説明に対応する画像が入っているが、必ずしもその意味で使う必要はない。<br />
+ただし、エディタ上の表記および数は変更不能。
+
+| 番号 | 説明 |
+| --- | --- |
+| 0 | なし |
+| 1 | 毒 |
+| 2 | 暗闇 |
+| 3 | 沈黙 |
+| 4 | 激昂 |
+| 5 | 混乱 |
+| 6 | 魅了 |
+| 7 | 睡眠 |
+| 8 | 麻痺 |
+| 9 | 呪い |
+| 10 | 恐怖 |
