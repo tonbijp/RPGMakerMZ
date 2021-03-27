@@ -19,11 +19,11 @@
 | --- | --- | --- |
 | `id` | [Number](Number.md) | [ステートID](#ステートid) |
 | `name` | [String](String.md) | [名前] |
-| `restriction` | [Number](Number.md) | [\[行動制約\]](#行動制約)) |
+| `restriction` | [Number](Number.md) | [\[行動制約\]](#行動制約) |
 | `priority` | [Number](Number.md) | [優先度] \(0~100) |
 | `removeAtBattleEnd` | Boolean | [戦闘終了時に解除] |
 | `removeByRestriction` | Boolean | [行動制約によって解除] |
-| `autoRemovalTiming` | [Number](Number.md) | [\[自動解除のタイミング\]](#[自動解除のタイミング])  |
+| `autoRemovalTiming` | [Number](Number.md) | [\[自動解除のタイミング\]](#自動解除のタイミング)  |
 | `minTurns` | [Number](Number.md) | [継続ターン数]の下限 |
 | `maxTurns` | [Number](Number.md) | [継続ターン数]の上限 |
 | `removeByDamage` | Boolean | [ダメージで解除] |
@@ -36,7 +36,7 @@
 | `message3` | [String](String.md) | [この状態が継続しているとき] |
 | `message4` | [String](String.md) | [この状態が解除されたとき] |
 | `motion` | [Number](Number.md) | [[SV]モーション] |
-| `overlay` | [Number](Number.md) | [\[\[SV\]重ね合わせ\]](#[SV]重ね合わせ) |
+| `overlay` | [Number](Number.md) | [\[\[SV\]重ね合わせ\]](#sv重ね合わせ) |
 | `traits` | [Array](Array.md).&lt;[RPG.Trait](RPG.Trait.md)&gt; | [特徴]の配列 |
 
 #### ステートID
