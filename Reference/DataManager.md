@@ -50,7 +50,7 @@ $game から始まる大域変数に、対応したオブジェクトを生成�
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `array` | [Array](Array.md)&gt;[RPG.MetaData](RPG.MetaData.md)&lt;  | データの配列 |
+| `array` | [Array](Array.md)&lt;[RPG.MetaData](RPG.MetaData.md)&gt;  | データの配列 |
 
 
 #### (static) extractMetadata (data)
