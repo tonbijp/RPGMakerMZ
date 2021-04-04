@@ -255,8 +255,8 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `x` | [Number](Number.md) | <optional> |  |
-| `y` | [Number](Number.md) | <optional> |  |
+| `x` | [Number](Number.md) | &lt;optional&gt; |  |
+| `y` | [Number](Number.md) | &lt;optional&gt; |  |
 
 
 #### isMoving () → {Boolean}
