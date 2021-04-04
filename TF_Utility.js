@@ -1,6 +1,6 @@
 //========================================
 // TF_Utility.js
-// Version :0.0.0.0
+// Version :0.0.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -17,8 +17,8 @@
  * 
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
+ * @base PluginBaseFunction
  * @base TF_CharEx
- * @orderAfter TF_CharEx
  * 
  * @help
  * 移動の前後の処理をカプセル化。
@@ -227,7 +227,6 @@
 	 */
 	PluginManagerEx.registerCommand( document.currentScript, COM_AFTER_MOVE,
 		function() {
-			console.log( "COM_AFTER_MOVE" );
 			this.setupChild( [
 				{ code: CHANGE_PLAYER_FOLLOWERS, parameters: [ FLAG_OFF ] },
 				{ code: FADEIN_SCREEN },
