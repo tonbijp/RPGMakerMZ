@@ -1,9 +1,9 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.2.0
+// Version :0.0.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020
+// Copyright : Tobishima-Factory 2020-2021
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -153,7 +153,7 @@
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
  * 
  * 
- * @command route
+ * @command route @================================================
  * @text 移動ルートの一括設定
  * @desc [移動ルートの設定]コマンドの文字列指定版
  *
@@ -168,33 +168,33 @@
  * @arg routeCode
  * @text ルート設定文字列
  * @desc
- * 例: ↑4⤵︎5→3
+ * 例: ↑4⤵︎5→3 
  * 専用コマンド文字の詳細はヘルプを参照。
  * @type string
  *
  * @arg repeat
  * @text 動作を繰り返す
- * @desc
- * ON: 繰り返し | OFF: 一回のみ(規定値:OFF)
+ * @on 繰り返し
+ * @off 一回のみ(規定値)
  * @type boolean
  * @default false
  *
  * @arg skippable
  * @text 移動できない場合は飛ばす
- * @desc
- * ON: 飛ばす | OFF: 停止(規定値:ON)
+ * @on 飛ばす(規定値)
+ * @off 停止
  * @type boolean
  * @default true
  *
- * @arg wait
+ * @arg isWait
  * @text 完了までウェイト
- * @desc
- * ON: 完了まで単独実行 | OFF: 完了を待たず並列実行(規定値:ON)
+ * @on 完了まで単独実行(規定値)
+ * @off 完了を待たず並列実行
  * @type boolean
  * @default true
  *
  * 
- * @command patternAnime
+ * @command patternAnime @================================================
  * @text キャラパターン指定アニメ
  * @desc
  * 一定順のパターン表示によるアニメ
@@ -259,7 +259,7 @@
  * @default 0
  * 
  *
- * @command setCharPattern
+ * @command setCharPattern @================================================
  * @text キャラパターンを指定
  * @desc 
  *
@@ -326,7 +326,7 @@
  * @value 2
  *
  *
- * @command goXY
+ * @command goXY @================================================
  * @text イベントを指定座標に移動
  * @desc 障害物などで移動できないこともある。
  *
@@ -359,13 +359,13 @@
  *
  * @arg isWait
  * @text 完了までウェイト
- * @desc
- * ON:移動終了まで待つ OFF:待たない (規定値:ON)
+ * @on 完了まで単独実行(規定値)
+ * @off 完了を待たず並列実行
  * @type boolean
  * @default true
  * 
- *
- * @command goEv
+ * 
+ * @command goEv @================================================
  * @text イベントを別のイベント位置に移動
  * @desc 障害物などで移動できないこともある。
  *
@@ -417,13 +417,13 @@
  *
  * @arg isWait
  * @text 完了までウェイト
- * @desc
- * ON:移動終了まで待つ OFF:待たない (規定値:ON)
+ * @on 完了まで単独実行(規定値)
+ * @off 完了を待たず並列実行
  * @type boolean
  * @default true
  *
  *
- * @command locateXY
+ * @command locateXY @================================================
  * @text イベントを指定座標に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
@@ -487,7 +487,7 @@
  * @value 2
  *
  *
- * @command locateEV
+ * @command locateEV @================================================
  * @text イベントを別のイベント位置に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
@@ -569,7 +569,7 @@
  * @value 2
  * 
  *
- * @command follow
+ * @command follow @================================================
  * @text 隊列メンバーの追跡設定
  * @desc 前のメンバーを追うか指定する。
  * 
@@ -585,12 +585,13 @@
  *
  * @arg isFollow
  * @text 追跡するか
- * @desc ON:追跡する OFF:追跡しない (規定値:ON)
+ * @on 追跡する(規定値)
+ * @off 追跡しない
  * @type boolean
  * @default true
  *
  *
- * @command anime
+ * @command anime @================================================
  * @text アニメの指定
  * @desc アニメモード(移動アニメ停止・[すり抜け]ON)になるので、
  * [アニメの終了]を実行しておくこと。
@@ -670,7 +671,7 @@
  * @option ↓
  * @value 2
  *
- * @command endAnime
+ * @command endAnime @================================================
  * @text アニメの終了
  * @desc [アニメの指定]をするとアニメモード(移動アニメ停止・[すり抜け]ON)になるのでアニメ終了時に実行すること。
  *
@@ -747,7 +748,7 @@
 	function parseIntStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
 		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
+		if( isNaN( result ) ) throw Error( `[${value}] is not a number.` );
 		return result;
 	}
 
@@ -759,7 +760,7 @@
 	function parseFloatStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return value;
 		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
+		if( isNaN( result ) ) throw Error( `[${value}] is not a number.` );
 		return result;
 	}
 
@@ -823,7 +824,7 @@
 			const eventId = event._eventId;
 			return $dataMap.events[ eventId ].name === value;
 		} );
-		if( i === -1 ) throw Error( `指定したイベント[${value}]がありません。` );
+		if( i === -1 ) throw Error( `I can't find the event '${name}'` );
 		return i;
 	}
 
@@ -875,7 +876,8 @@
 	/**
 	 * パラメータを受け取る
 	 */
-	const pluginParams = PluginManager.parameters( "TF_CharEx" );
+	// const pluginParams = PluginManager.parameters( "TF_CharEx" );
+	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 	const TF_moveUnit = parseFloatStrict( pluginParams.moveUnit );
 
 
@@ -903,40 +905,45 @@
 	/**
 	 * プラグインコマンドの登録
 	 */
+	// [移動ルートの一括設定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_ROUTE, moveRoute );
+
+	// [ キャラパターン指定アニメ ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_PATTERN_ANIME, patternAnime );
+
+	// [ キャラパターンを指定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_CHAR_PATTERN, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		setCharPattern( targetEvent, args.fileName, args.characterNumber, args.patternNumber, args.d );
 	} );
 
-	// COM_GO_XY
+	// [ イベントを指定座標に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		goXY( targetEvent, args.x, args.y, args.isWait );
 	} );
 
-	// COM_GO_EV
+	// [ イベントを別のイベント位置に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
 		goEv( targetEvent, destinationEvent, args.dx, args.dy, args.isWait );
 	} );
 
-	// COM_LOCATE_XY
+	// [ イベントを指定座標に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		locateXY( targetEvent, args.x, args.y, args.patternNumber, args.d );
 	} );
 
-	// COM_LOCATE_EV
+	// [ イベントを別のイベント位置に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
 		locateEv( targetEvent, destinationEvent, args.dx, args.dy, args.patternNumber, args.d );
 	} );
 
-	// COM_FOLLOW
+	// [ 隊列メンバーの追跡設定 ] COM_FOLLOW
 	PluginManagerEx.registerCommand( document.currentScript, COM_FOLLOW, function( args ) {
 		if( args.eventId === "all" ) {
 			const followers = $gamePlayer.followers();
@@ -949,13 +956,13 @@
 		}
 	} );
 
-	// COM_ANIME
+	// [ アニメの指定 ] COM_ANIME
 	PluginManagerEx.registerCommand( document.currentScript, COM_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		anime( targetEvent, args.x, args.y, args.wait, args.characterNumber, args.patternNumber, args.d );
 	} );
 
-	// COM_END_ANIME
+	// [ アニメの終了 ] COM_END_ANIME
 	PluginManagerEx.registerCommand( document.currentScript, COM_END_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		animeMode( targetEvent, false );
@@ -1017,7 +1024,7 @@
 
 
 	/**
-	 * TF_FILE_CHAR および SET_CHAR の実行。
+	 * [ キャラパターンを指定 ]
 	 *
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
 	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下) (規定値: targetEventの指定)
@@ -1083,10 +1090,7 @@
 	}
 
 	/**
-	 * COM_GO_XY  の実行。
-	 * 類似プラグイン
-	 * 　移動ルート＋(https://w.atwiki.jp/pokotan/pages/3.html)
-	 * 　移動ルート簡易記述関数プラグイン(https://ci-en.dlsite.com/creator/2449/article/122390)
+	 * [ イベントを指定座標に移動 ]
 	 *
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
 	 * @param {String} x x座標(タイル数)
@@ -1168,25 +1172,23 @@
 	// ROUTE_SCRIPT
 
 	/**
-	 * route
+	 * [移動ルートの一括設定]
+	 * 以下 param は実際は args のプロパティ
 	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
 	 * @param {String} routeCode 移動ルートの文字列
-	 * @param {String} isRepeat 繰り返すか(規定値:false)
-	 * @param {String} skippable 移動できない場合とばすか(規定値:true)
-	 * @param {String} isWait 待つか(規定値:true)
+	 * @param {Boolean} isRepeat 繰り返すか(規定値:false)
+	 * @param {Boolean} skippable 移動できない場合とばすか(規定値:true)
+	 * @param {Boolean} isWait 待つか(規定値:true)
 	 */
 	function moveRoute( args ) {
 		const eventId = stringToEventId( args.eventId );
 		const targetEvent = getEventById( this, eventId );
 		const routeCodeArray = args.routeCode.match( /[^0-9.,-]+[0-9.,-]+/ig );
-		const repeat = parseBooleanStrict( args.repeat );
-		const skippable = ( args.skippable === undefined ) ? true : parseBooleanStrict( args.skippable );
-		const wait = ( args.isWait === undefined ) ? true : parseBooleanStrict( args.wait );
 		let movementList = [];
 		let moveSpeed = targetEvent.moveSpeed();
 		routeCodeArray.forEach( code => {
-			const opcode = code.match( /[^0-9.,-]+/ )[ 0 ];
-			const opland = code.match( /[0-9.,-]+/ )[ 0 ];
+			const opcode = code.match( /[^0-9.,-]+/ )[ 0 ];	// コマンド部分
+			const opland = code.match( /[0-9.,-]+/ )[ 0 ];	// データ部分
 			const paramNo = parseInt( opland, 10 );
 			const d = stringToDirection( opcode );
 			if( d !== undefined ) {
@@ -1363,7 +1365,7 @@
 		} );
 
 		movementList.push( { code: gc.ROUTE_END } );
-		this.command205( [ eventId, { repeat: repeat, skippable: skippable, wait: wait, list: movementList } ] );	// SET_MOVEMENT_ROUTE
+		this.command205( [ eventId, { repeat: args.repeat, skippable: args.skippable, wait: args.isWait, list: movementList } ] );	// SET_MOVEMENT_ROUTE
 	}
 
 
@@ -1436,12 +1438,12 @@
 	}
 
 	/**
-	 * patternAnime  の実行。
+	 * [ キャラパターン指定アニメ ]の実行。
 	 *
 	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
 	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下)
 	 * @param {String} characterNumber キャラクタ番号( 1~8 )
-	 * @param {String} animePattern パターン番号( 0~2 )
+	 * @param {String} animePattern パターン番号( 0:[] 1:[] 2:[] 3:[] )
 	 * @param {String} waitFrames 待ちフレーム数
 	 *  
 	 */
