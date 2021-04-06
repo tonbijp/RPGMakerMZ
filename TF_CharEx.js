@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.3.0
+// Version :0.0.3.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -17,16 +17,12 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
- * @param moveUnit
- * @desc [アニメの終了]時の配置単位(規定値: 通常(1タイル))
- * @default 1
- * @type select
- * @option 通常(1タイル)
- * @value 1
- * @option 半歩(0.5タイル)
- * @value 0.5
- * @option なし(アナログ)
- * @value 0
+ * @param moveUnit @text [アニメの終了]時の配置単位
+ * @desc 規定値: 通常(1タイル)
+ * @type select @default 1
+ * @option 通常(1タイル) @value 1
+ * @option 半歩(0.5タイル) @value 0.5
+ * @option なし(アナログ) @value 0
  * 
  * @help
  * 主な機能とイベントコマンドにない利点。
@@ -152,541 +148,333 @@
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
  * 
- * 
- * @command route @================================================
- * @text 移動ルートの一括設定
+ * @================================================
+ * @command route @text 移動ルートの一括設定
  * @desc [移動ルートの設定]コマンドの文字列指定版
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  このイベント: this,self、プレイヤー: player
- * @type string
- * @default this
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  * 
- * @arg routeCode
- * @text ルート設定文字列
+ * @arg routeCode @text ルート設定文字列
  * @desc
- * 例: ↑4⤵︎5→3 
+ * 例: ↑4⤵︎5→3
  * 専用コマンド文字の詳細はヘルプを参照。
- * @type string
+ * @type string  @default ↑1↓1←1→1
  *
- * @arg repeat
- * @text 動作を繰り返す
- * @on 繰り返し
- * @off 一回のみ(規定値)
- * @type boolean
- * @default false
+ * @arg repeat @text 動作を繰り返す
+ * @on 繰り返し @off 一回のみ(規定値)
+ * @type boolean @default false
  *
- * @arg skippable
- * @text 移動できない場合は飛ばす
- * @on 飛ばす(規定値)
- * @off 停止
- * @type boolean
- * @default true
+ * @arg skippable @text 移動できない場合は飛ばす
+ * @on 飛ばす(規定値) @off 停止
+ * @type boolean @default true
  *
- * @arg isWait
- * @text 完了までウェイト
- * @on 完了まで単独実行(規定値)
- * @off 完了を待たず並列実行
- * @type boolean
- * @default true
+ * @arg isWait @text 完了までウェイト
+ * @on 待つ(規定値) @off 完了を待たず並列実行
+ * @type boolean @default true
  *
- * 
- * @command patternAnime @================================================
- * @text キャラパターン指定アニメ
+ * @================================================
+ * @command patternAnime @text キャラパターン指定アニメ
  * @desc
  * 一定順のパターン表示によるアニメ
  * 宝箱・扉を開くなどに使う
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  このイベント: this, self、プレイヤー: player
- * @type string
- * @default this
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg filename
- * @text 画像ファイル名
+ * @arg filename @text 画像ファイル名
  * @desc
  * .pngを除いた img/characters/ フォルダのファイル名
  * 指定なしだと、イベントに指定されている画像を使う
- * @type file
+ * @type file @default
  *
- * @arg characterNumber
- * @text キャラクター番号
+ * @arg characterNumber @text キャラクター番号
  * @desc
  * [1234]
  * [5678] 0は現在値
- * @type number
- * @default 0
- * @min 0
- * @max 8
+ * @type number @default 0
+ * @min 0 @max 8
  *
- * @arg animePattern
- * @text パターン
+ * @arg animePattern @text パターン
  * @desc
  *  パターンの列(規定値:現在値)
- * @type select
- * @default -1
- * @option 現在値
- * @value -1
- * @option ↓・・ 左列
- * @value 0
- * @option ・↓・ 中央列
- * @value 1
- * @option ・・↓ 右列
- * @value 2
- * @option ↑・・ 左列
- * @value 3
- * @option ・↑・ 中央列
- * @value 4
- * @option ・・↑ 右列
- * @value 5
- * @option ┬│↓ 左列から順に全て
- * @value 6
- * @option ↑│┴ 右列から順に全て
- * @value 7
+ * @type select @default -1
+ * @option 現在値 @value -1
+ * @option ↓・・ 左列 @value 0
+ * @option ・↓・ 中央列 @value 1
+ * @option ・・↓ 右列 @value 2
+ * @option ↑・・ 左列 @value 3
+ * @option ・↑・ 中央列 @value 4
+ * @option ・・↑ 右列 @value 5
+ * @option ┬│↓ 左列から順に全て @value 6
+ * @option ↑│┴ 右列から順に全て @value 7
  *
- * @arg waitFrames
- * @text ウエイト
+ * @arg waitFrames @text ウェイト
  * @desc
  * 1パターンの表示時間(フレーム数)(0:[移動速度]より算出)
- * @type number
+ * @type number @default 0
  * @min 0
- * @default 0
  * 
- *
- * @command setCharPattern @================================================
- * @text キャラパターンを指定
+ * @================================================
+ * @command setCharPattern  @text キャラパターンを指定
  * @desc 
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg fileName
- * @text 画像ファイル名
+ * @arg fileName @text 画像ファイル名
  * @desc
  * .pngを除いた img/characters/ フォルダのファイル名
  *  (規定値:そのまま)
  * @type file
  * @dir img/characters/
  *
- * @arg characterNumber
- * @text キャラクター番号
+ * @arg characterNumber @text キャラクター番号
  * @desc
  * [1234]
  * [5678] (規定値:0 そのまま)
- * @type number
- * @default 0
- * @min 0
- * @max 8
+ * @type number @default 0
+ * @min 0 @max 8
  *
- * @arg patternNumber
- * @text 歩行パターン
+ * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
- * @type select
- * @default -1
- * @option そのまま
- * @value -1
- * @option ↓・・ 左列
- * @value 0
- * @option ・↓・ 中央列
- * @value 1
- * @option ・・↓ 右列
- * @value 2
+ * @type select @default -1
+ * @option そのまま @value -1
+ * @option ↓・・ 左列 @value 0
+ * @option ・↓・ 中央列 @value 1
+ * @option ・・↓ 右列 @value 2
  *
- * @arg d
- * @text キャラの向き
+ * @arg d @text キャラの向き
  * @desc (規定値: そのまま)
- * @type select
- * @default 0
- * @option そのまま
- * @value 0
- * @option ↑
- * @value 8
- * @option ←
- * @value 4
- * @option →
- * @value 6
- * @option ↓
- * @value 2
+ * @type select @default 0
+ * @option そのまま @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
  *
- *
- * @command goXY @================================================
- * @text イベントを指定座標に移動
+ * @================================================
+ * @command goXY @text イベントを指定座標に移動
  * @desc 障害物などで移動できないこともある。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg x
- * @text 移動先x座標
+ * @arg x @text 移動先x座標
  * @desc
  * タイル数
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg y
- * @text 移動先y座標
+ * @arg y @text 移動先y座標
  * @desc
  * タイル数
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg isWait
- * @text 完了までウェイト
- * @on 完了まで単独実行(規定値)
- * @off 完了を待たず並列実行
- * @type boolean
- * @default true
+ * @arg isWait @text 完了までウェイト
+ * @on 待つ(規定値) @off 完了を待たず並列実行
+ * @type boolean @default true
  * 
- * 
- * @command goEv @================================================
- * @text イベントを別のイベント位置に移動
+ * @================================================
+ * @command goEv @text イベントを別のイベント位置に移動
  * @desc 障害物などで移動できないこともある。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg destinationId
- * @text 目標イベントID
+ * @arg destinationId @text 目標イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @type combo
- * @default 0
- * @option このイベント
- * @value 0
- * @option プレイヤー
- * @value -1
- * @option 隊列メンバー0
- * @value -2
- * @option 隊列メンバー1
- * @value -3
- * @option 隊列メンバー2
- * @value -4
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg dx
- * @text 相対x座標
+ * @arg dx @text 相対x座標
  * @desc
  * 目標イベントからの相対x座標(タイル数)
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg dy
- * @text 相対y座標
+ * @arg dy @text 相対y座標
  * @desc
  * 目標イベントからの相対y座標(タイル数)
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg isWait
- * @text 完了までウェイト
- * @on 完了まで単独実行(規定値)
- * @off 完了を待たず並列実行
- * @type boolean
- * @default true
+ * @arg isWait @text 完了までウェイト
+ * @on 待つ(規定値) @off 完了を待たず並列実行
+ * @type boolean @default true
  *
- *
- * @command locateXY @================================================
- * @text イベントを指定座標に配置
+ * @================================================
+ * @command locateXY @text イベントを指定座標に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
- *
- * @arg x
- * @text 移動先x座標
- * @desc
- * タイル数
- * @type number
- * @default 0
- *
- * @arg y
- * @text 移動先y座標
- * @desc
- * タイル数
- * @type number
- * @default 0
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  * 
- * @arg patternNumber
- * @text 歩行パターン
+ * @arg x @text 移動先x座標
+ * @desc
+ * タイル数
+ * @type number @default 0
+ *
+ * @arg y @text 移動先y座標
+ * @desc
+ * タイル数
+ * @type number @default 0
+ * 
+ * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
- * @type select
- * @default -1
- * @option そのまま
- * @value -1
- * @option ↓・・ 左列
- * @value 0
- * @option ・↓・ 中央列
- * @value 1
- * @option ・・↓ 右列
- * @value 2
+ * @type select @default -1
+ * @option そのまま @value -1
+ * @option ↓・・ 左列 @value 0
+ * @option ・↓・ 中央列 @value 1
+ * @option ・・↓ 右列 @value 2
  *
- * @arg d
- * @text キャラの向き
+ * @arg d @text キャラの向き
  * @desc (規定値: そのまま)
- * @type select
- * @default 0
- * @option そのまま
- * @value 0
- * @option ↑
- * @value 8
- * @option ←
- * @value 4
- * @option →
- * @value 6
- * @option ↓
- * @value 2
+ * @type select @default 0
+ * @option そのまま @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
  *
- *
- * @command locateEV @================================================
- * @text イベントを別のイベント位置に配置
+ * @================================================
+ * @command locateEV @text イベントを別のイベント位置に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg destinationId
- * @text 目標イベントID
+ * @arg destinationId @text 目標イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option このイベント
- * @value 0
- * @option プレイヤー
- * @value -1
- * @option 隊列メンバー0
- * @value -2
- * @option 隊列メンバー1
- * @value -3
- * @option 隊列メンバー2
- * @value -4
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg dx
- * @text 相対x座標
+ * @arg dx @text 相対x座標
  * @desc
  * 目標イベントからの相対x座標(タイル数)
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg dy
- * @text 相対y座標
+ * @arg dy @text 相対y座標
  * @desc
  * 目標イベントからの相対y座標(タイル数)
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg patternNumber
- * @text 歩行パターン
+ * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
- * @type select
- * @default -1
- * @option そのまま
- * @value -1
- * @option ↓・・ 左列
- * @value 0
- * @option ・↓・ 中央列
- * @value 1
- * @option ・・↓ 右列
- * @value 2
+ * @type select @default -1
+ * @option そのまま @value -1
+ * @option ↓・・ 左列 @value 0
+ * @option ・↓・ 中央列 @value 1
+ * @option ・・↓ 右列 @value 2
  *
- * @arg d
- * @text キャラの向き
+ * @arg d @text キャラの向き
  * @desc (規定値: そのまま)
- * @type select
- * @default 0
- * @option そのまま
- * @value 0
- * @option ↑
- * @value 8
- * @option ←
- * @value 4
- * @option →
- * @value 6
- * @option ↓
- * @value 2
+ * @type select @default 0
+ * @option そのまま @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
  * 
- *
- * @command follow @================================================
- * @text 隊列メンバーの追跡設定
+ * @================================================
+ * @command follow @text 隊列メンバーの追跡設定
  * @desc 前のメンバーを追うか指定する。
  * 
- * @arg eventId
- * @text 隊列メンバーID
+ * @arg eventId @text 隊列メンバーID
  * @desc 指定隊列メンバー(規定値:all)
- * @type select
- * @default all
- * @option all
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type select @default all
+ * @option all @option follower0 @option follower1 @option follower2
  *
- * @arg isFollow
- * @text 追跡するか
- * @on 追跡する(規定値)
- * @off 追跡しない
- * @type boolean
- * @default true
+ * @arg isFollow @text 追跡するか
+ * @on 追跡する(規定値) @off 追跡しない
+ * @type boolean @default true
  *
- *
- * @command anime @================================================
- * @text アニメの指定
+ * @================================================
+ * @command anime @text アニメの指定
  * @desc アニメモード(移動アニメ停止・[すり抜け]ON)になるので、
  * [アニメの終了]を実行しておくこと。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg x
- * @text x移動距離
+ * @arg x @text x移動距離
  * @desc
  * ピクセル数
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg y
- * @text y移動距離
+ * @arg y @text y移動距離
  * @desc
  * ピクセル数
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg wait
- * @text ウェイト
+ * @arg wait @text ウェイト
  * @desc
  * 待ちフレーム(1/60秒)(規定値:0)
- * @type number
- * @default 0
+ * @type number @default 0
  *
- * @arg characterNumber
- * @text キャラクター番号
+ * @arg characterNumber @text キャラクター番号
  * @desc
  * [1234]
  * [5678] (規定値:0 そのまま)
- * @type number
- * @default 0
- * @min 0
- * @max 8
+ * @type number @default 0
+ * @min 0 @max 8
  *
- * @arg patternNumber
- * @text 歩行パターン
+ * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
- * @type select
- * @default -1
- * @option そのまま
- * @value -1
- * @option ↓・・ 左列
- * @value 0
- * @option ・↓・ 中央列
- * @value 1
- * @option ・・↓ 右列
- * @value 2
+ * @type select @default -1
+ * @option そのまま @value -1
+ * @option ↓・・ 左列 @value 0
+ * @option ・↓・ 中央列 @value 1
+ * @option ・・↓ 右列 @value 2
  *
- * @arg d
- * @text キャラの向き
+ * @arg d @text キャラの向き
  * @desc (規定値: そのまま)
- * @type select
- * @default 0
- * @option そのまま
- * @value 0
- * @option ↑
- * @value 8
- * @option ←
- * @value 4
- * @option →
- * @value 6
- * @option ↓
- * @value 2
- *
- * @command endAnime @================================================
+ * @type select @default 0
+ * @option そのまま @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
+ * 
+ * @================================================
+ * @command endAnime
  * @text アニメの終了
  * @desc [アニメの指定]をするとアニメモード(移動アニメ停止・[すり抜け]ON)になるのでアニメ終了時に実行すること。
  *
- * @arg eventId
- * @text イベントID
+ * @arg eventId @text イベントID
  * @desc
  * イベントID(数値)かイベントの名前
- *  または選択(規定値: 0)
- * @type combo
- * @default 0
- * @option this
- * @option player
- * @option follower0
- * @option follower1
- * @option follower2
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
  * 
  */
 
@@ -900,6 +688,14 @@
 	Game_Interpreter.prototype.setupChild = function( list, eventId ) {
 		list.forEach( e => { if( e.indent === undefined ) e.indent = 0; } );// indent未設定なら0を設定する
 		_Game_Interpreter_setupChild.apply( this, arguments );
+	};
+
+	// -2, -3, -4 で隊列メンバーの取得する機能を追加。
+	const _Game_Interpreter_character = Game_Interpreter.prototype.character;
+	Game_Interpreter.prototype.character = function( param ) {
+		if( -2 < param ) return _Game_Interpreter_character.apply( this, arguments );
+		if( $gameParty.inBattle() ) return null;
+		return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
 	};
 
 	/**
