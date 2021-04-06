@@ -5,7 +5,7 @@
 ## スーパークラス: [RPG.MetaData](RPG.MetaData.md) 
 
 | データベース| オブジェクト | スプライト |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- |
 | [イベント] | [Game_Event](Game_Event.md) | [Sprite_Character](Sprite_Character.md) |
  
 
