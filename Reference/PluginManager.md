@@ -3,6 +3,8 @@
 # クラス: PluginManager
  プラグインを管理する静的クラス。
 
+ 公式プラグイン PluginCommonBase.js によって追加される[PluginManagerEx](PluginManagerEx.md) は、このクラスの強化版。
+
 関連クラス: [JsonEx](JsonEx.md)
 
 

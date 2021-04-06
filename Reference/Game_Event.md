@@ -13,6 +13,8 @@
 マップに配置する[イベント]を定義したオブジェクト。
  
  [RPG.Event](RPG.Event.md) を返す [Game_Event.event ()](Game_Event.md#event---rpgevent) メソッドなどを含む。
+ 
+なお、公式プラグイン PluginCommonBase.js によって追加されるメソッドも書いている。
 
 
 ### プロパティ
@@ -194,6 +196,17 @@
 
 #### findProperPageIndex () → {[Number](Number.md)}
 [出現条件]に合ったイベントのページ番号(-1: 見つからない)を返す。
+
+
+#### (static) findMeta (metaNames) → {*}
+**@MZ PluginCommonBase.js**
+このイベントのメモ欄のメタデータの値を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `metaNames ` | [Array](Array.md).&lt;[String](String.md)&gt; \| [String](String.md) | タグ名(の配列) |
 
 
 #### forceMoveRoute (moveRoute)

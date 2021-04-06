@@ -74,6 +74,7 @@ namespace JsExtensions
 * [FontManager](FontManager.md) **@MZ**
 * [ImageManager](ImageManager.md)
 * [PluginManager](PluginManager.md) ([プラグインファイルの設定](MV.PluginSettings.md#プラグインファイルの設定))
+* [PluginManagerEx](PluginManagerEx.md) **@MZ PluginCommonBase.js** 
 * [SceneManager](SceneManager.md)
 * [SoundManager](SoundManager.md)
 * [StorageManager](StorageManager.md)

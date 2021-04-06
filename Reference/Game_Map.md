@@ -12,7 +12,8 @@
 
 A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilemap](Tilemap.md) で定義されている定数を参照。
 
-v1.1.0、v1.2.0  で変更あり。
+v1.1.0、v1.2.0  で変更あり。<br />
+なお、公式プラグイン PluginCommonBase.js によって追加されるプロパティ・メソッドも書いている。
 
 関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md)
 
@@ -44,6 +45,8 @@ v1.1.0、v1.2.0  で変更あり。
 | `_battleback1Name` | [String](String.md) | レイヤー奥の戦闘背景画像1(地面)のファイル名 |
 | `_battleback2Name` | [String](String.md) | レイヤー手前の戦闘背景画像2(壁)のファイル名 |
 | `_needsRefresh` | Boolean | [requestRefresh()](Game_Map.md#requestrefresh-mapid)などで更新予約がされているか |
+| `_dynamicEvents` | [Array](Array.md).&lt;[Game_Interpreter](Game_Interpreter.md)&gt; | **@MZ PluginCommonBase.js**  |
+
 
 
 ### メソッド
@@ -340,8 +343,12 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
  マップの[高さ]\(タイル数)を返す。
 
 
+#### initDynamicEvents ()
+**@MZ PluginCommonBase.js**  動的イベントの初期化。
+
+
 #### initialize ()
- オブジェクト生成時の初期化。
+オブジェクト生成時の初期化。
 
 
 #### isAirshipLandOk (x, y) → {Boolean}
@@ -409,6 +416,16 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 #### isEventRunning () → {Boolean}
  イベント実行中か。
+
+
+#### isInterpreterOf (interpreter) → {Boolean}
+**@MZ PluginCommonBase.js** 指定インタプリタが、現在のマップのインタプリタと同一か。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `interpreter` | [Game_Interpreter](Game_Interpreter.md) | 比較するインタプリタ |
 
 
 #### isLadder (x, y) → {Boolean}
@@ -645,7 +662,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### setup (mapId)
- マップ移動などで新たなマップを表示する場合の初期化。
+ マップ移動などで新たなマップを表示する場合の準備。
 
 ##### 引数
 
@@ -659,19 +676,39 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### setupBattleback ()
- 戦闘背景の初期化。
+ 戦闘背景の準備。
+
+
+#### setupDynamicCommon (id)
+**@MZ PluginCommonBase.js** 動的コモンイベントの準備。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `id` | [Number](Number.md) | コモンイベントID |
+
+
+#### setupDynamicInterpreter (list)
+**@MZ PluginCommonBase.js** 動的インタプリタの準備。
+
+##### 引数
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `list` | [Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;  | コマンドのリスト |
 
 
 #### setupEvents ()
-[イベント]の初期化。
+[イベント]の準備。
 
 
 #### setupParallax ()
-[遠景]の初期化。
+[遠景]の準備。
 
 
 #### setupScroll ()
- スクロールの初期化。
+ スクロールの準備。
 
 
 #### setupStartingEvent () → {Boolean}

@@ -120,7 +120,7 @@ v1.1.1、v1.2.0  で変更あり。
 #### fadeSpeed () → {[Number](Number.md)}
 フェード速度を返す。
 
-See: [command221](Game_Interpreter.md#command221---boolean)、[command222](Game_Interpreter.md#command222---boolean)
+参照: [command221](Game_Interpreter.md#command221---boolean)、[command222](Game_Interpreter.md#command222---boolean)
 
 
 #### gameDataOperand (type, param1, param2) → {[Number](Number.md)}
@@ -278,21 +278,21 @@ Game_Interpreter.prototype.pluginCommand = function ( command, args ){
 ```
 
 
-#### setup (list, eventId)
+#### setup (list, eventId opt)
 インタプリタの準備。
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `list` | [Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt; | コマンドのリスト |
-| `eventId` | [Number](Number.md) | イベントID |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `list` | [Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;  | | コマンドのリスト |
+| `eventId` | [Number](Number.md)  | &lt;optional&gt; | イベントID(規定値:0) |
 
 
 #### setupChild (list, eventId)
 [コモンイベント]用の子インタプリタの準備。
 
-See: [command117](Game_Interpreter.md#command117---boolean)
+参照: [command117](Game_Interpreter.md#command117---boolean)
 
 ##### 引数
 
