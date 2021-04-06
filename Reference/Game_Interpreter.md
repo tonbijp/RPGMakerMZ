@@ -40,7 +40,7 @@ v1.1.1、v1.2.0  で変更あり。
 | `_waitCount` | [Number](Number.md) | [ウェイト]用のカウンタ |
 | `_waitMode` | [String](String.md) | [ウエイトモード](Game_Interpreter#ウエイトモード) |
 | `_comments` | [Array](Array.md) | コメント行の一時保存 |
-| `_character` | [Game_Event](Game_Event.md) | コマンド対象イベント |
+| `_characterId` | [Number](Number.md) | **@MZ** コマンド対象イベントID |
 | `_childInterpreter` | [Game_Interpreter](Game_Interpreter.md) | 子インタプリタ |
 
 #### ウエイトモード
@@ -59,7 +59,7 @@ v1.1.1、v1.2.0  で変更あり。
 | "image" | 画像表示が終わるまで待つ |
 
 ### 廃止MVプロパティ
-`_params`
+`_character`, `_params`
 
 
 ### メソッド
