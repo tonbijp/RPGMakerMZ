@@ -1,3 +1,5 @@
+[クラスツリー](index.md)
+
 # Global
 
 大域(グローバル)変数の一覧。[DataManager](DataManager.md) で生成・管理されている。
