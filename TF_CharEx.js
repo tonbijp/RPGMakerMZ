@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.0.3.2
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -1417,15 +1417,6 @@
 		return this.pattern() === this._originalPattern;
 	};
 
-	/**
-	 * _isFollow が false か、TF_isAnime フラグが true の時は
-	 * プレイヤーを追わない。
-	 */
-	const _Game_Follower_chaseCharacter = Game_Follower.prototype.chaseCharacter;
-	Game_Follower.prototype.chaseCharacter = function( character ) {
-		if( !this.isFollow() || this.TF_isAnime ) return false;
-		_Game_Follower_chaseCharacter.apply( this, arguments );
-	};
 
 	/**
 	 * 隊列メンバーはプレイヤーのデータをコピーしているが、
@@ -1441,10 +1432,12 @@
 	};
 
 	/**
+	 * _isFollow が false か、TF_isAnime フラグが true の時は
+	 * プレイヤーを追わない。
 	 * @returns Boolean 前のキャラを追うか
 	 */
 	Game_Follower.prototype.isFollow = function() {
-		return ( this._isFollow || this._isFollow === undefined );
+		return ( this._isFollow || this._isFollow === undefined ) && !this.TF_isAnime;
 	};
 
 
@@ -1459,10 +1452,23 @@
 
 		for( var i = 0; i < this._data.length; i++ ) {
 			const follower = this._data[ i ];
-			if( !follower.isFollow() || follower.TF_isAnime ) continue;
+			if( !follower.isFollow() ) continue;
 			const sx = $gamePlayer.deltaXFrom( follower.x );
 			const sy = $gamePlayer.deltaYFrom( follower.y );
 			follower.jump( sx, sy );
+		}
+	};
+
+	/**
+	 * _isFollow が false か、TF_isAnime フラグが true の時は
+	 * プレイヤーを追わない。
+	 */
+	const _Game_Followers_updateMove = Game_Followers.prototype.updateMove;
+	Game_Followers.prototype.updateMove = function() {
+		const currentFollowers = this._data.filter( e => e.isFollow() );
+		for( let i = currentFollowers.length - 1; i >= 0; i-- ) {
+			const precedingCharacter = i > 0 ? currentFollowers[ i - 1 ] : $gamePlayer;
+			currentFollowers[ i ].chaseCharacter( precedingCharacter );
 		}
 	};
 
