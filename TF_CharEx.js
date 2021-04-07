@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.1.0.0
+// Version :0.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -492,12 +492,12 @@
 	const TYPE_STRING = "string";
 	/**
 	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
-	 * @param {String} value 変換元の文字列( v[n]形式を含む )
+	 * @param {String} value 変換元の文字列( \V[n]形式を含む )
 	 * @return {String} 変換後の文字列
 	 */
 	function treatValue( value ) {
 		if( value === undefined || value === "" ) return "0";
-		const result = value.match( /v\[(.+)\]/i );
+		const result = value.match( /\x1bV\[(.+)\]/i );
 		if( result === null ) return value;
 		const id = parseInt( result[ 1 ], 10 );
 		if( isNaN( id ) ) {
@@ -510,14 +510,14 @@
 	/*--- Game_Variables ---*/
 	/**
 	 * 変数を文字列で指定し、値を返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
 	 */
 	Game_Variables.prototype.valueByName = function( name ) {
 		return this.value( stringToVariableId( name ) );
 	};
 	/**
 	 * 指定された変数のIDを返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
 	 */
 	function stringToVariableId( name ) {
 		name = treatValue( name );
