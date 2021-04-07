@@ -800,7 +800,7 @@ TPへのダメージのメッセージを生成。
 
 #### waitForMovement ()
 動作を待つ。<br />
-S参照ee: [MV.BattleLogMethod](MV.BattleLogMethod.md)
+参照: [MV.BattleLogMethod](MV.BattleLogMethod.md)
 
 
 #### waitForNewLine ()
