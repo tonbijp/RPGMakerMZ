@@ -466,8 +466,7 @@
  * @option ↓ @value 2
  * 
  * @================================================
- * @command endAnime
- * @text アニメの終了
+ * @command endAnime @text アニメの終了
  * @desc [アニメの指定]をするとアニメモード(移動アニメ停止・[すり抜け]ON)になるのでアニメ終了時に実行すること。
  *
  * @arg eventId @text イベントID
