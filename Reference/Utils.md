@@ -3,7 +3,7 @@
 # クラス: Utils
 便利なメソッドを集めた静的クラス。主に利用環境のチェックを行う。
 
-関連クラス: [Graphics](Graphics.md), [Video](Video.md), 
+関連クラス: [Graphics](Graphics.md), [Video](Video.md)
 
 ### プロパティ
 
