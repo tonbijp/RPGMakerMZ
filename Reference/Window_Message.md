@@ -11,6 +11,8 @@
 また、Window\_Message は選択肢関連のサブウィンドウの起動も行う。シーンに近い役割を持ったクラス。<br />
 新規に文字を表示するウィンドウが必要ならば、[WIndow_Help](WIndow_Help.md) を使うか、Window\_Base を継承して新たにクラスを作る方が良い。
 
+V1.2.1で変更あり。
+
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
 #### 引数
@@ -218,6 +220,10 @@ MVでは引数がなかった。
 
 #### isTriggered () → {Boolean}
 決定・キャンセルなどのトリガが起動されたか。
+
+
+#### isWaiting () → {Boolean}
+**@MZ1.2.1** ウエイト中か。
 
 
 #### loadMessageFace ()

@@ -12,6 +12,8 @@
 
 サイドビューのアクター表示用のスプライト。
 
+V1.2.1で変更あり。
+
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md)
 
 #### 引数

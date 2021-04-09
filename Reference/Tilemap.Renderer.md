@@ -7,6 +7,8 @@
 ### new Tilemap.Renderer ()
 レンダラ。
 
+V1.2.1で変更あり。
+
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md), [Tilemap.Layer](Tilemap.Layer.md)
 
 ### プロパティ

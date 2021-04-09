@@ -10,6 +10,8 @@
  規定値は[はい][いいえ]。
 
 MVでは引数が messageWindow だったが、なくなった。
+
+V1.2.1で変更あり。
   
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
