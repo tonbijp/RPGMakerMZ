@@ -24,6 +24,7 @@ MV は Multi Value の略とでも思ってください。プリーズ。
 * [PluginSettings](MV.PluginSettings.md)
 * [SaveContents](MV.SaveContents.md)
 * [SaveFileInfo](MV.SaveFileInfo.md)
+* [Size](MV.Size.md)
 * [TextState](MV.TextState.md)
 * [TouchInputEvents](MV.TouchInputEvents.md)
 

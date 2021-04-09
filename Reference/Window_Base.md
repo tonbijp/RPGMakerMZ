@@ -593,8 +593,8 @@ indexは取り出した文字の数だけ進む。<br />
 システム色を返す。
 
 
-#### textSizeEx (text) → {[Number](Number.md)}
-**@MZ** 制御文字の変更後のテキストサイズを返す。
+#### textSizeEx (text) → {[MV.Size](MV.Size.md)}
+**@MZ** 制御文字の変更後のテキストのサイズを返す。
 
 
 #### textWidth (text) → {[Number](Number.md)}

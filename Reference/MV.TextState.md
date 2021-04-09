@@ -12,9 +12,17 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
+| `buffer` | [String](String.md) | バッファ |
+| `drawing` | Boolean | 描画中か |
 | `index` | [Number](Number.md) | 処理中の文字の位置 |
+| `left` | [Number](Number.md) | 残り |
+| `height` | [Number](Number.md) | 高さ |
+| `width` | [Number](Number.md) | 幅 |
+| `outputHeight` | [Number](Number.md) | 出力高さ |
+| `outputWidth` | [Number](Number.md) | 出力幅 |
+| `rtl` | Boolean | 右から左(アラビア語など)の文字列か |
+| `startX` | [Number](Number.md) | 開始x座標 |
+| `startY` | [Number](Number.md) | 開始y座標 |
+| `text` | [String](String.md) | 文字列 |
 | `x` | [Number](Number.md) | x座標 |
 | `y` | [Number](Number.md) | y座標 |
-| `left` | [Number](Number.md) | 残り |
-| `text` | [String](String.md) | 文字列 |
-| `height` | [Number](Number.md) | 行高さ |
