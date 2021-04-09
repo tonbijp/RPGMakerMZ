@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.0.2.0
+// Version :0.1.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -127,7 +127,7 @@
 	const LINE_HEIGHT = pluginParams.lineHeight / 100;
 	const MESSAGE_LINES = pluginParams.messageLines;
 	const DROP_SHADOW = pluginParams.dropShadow;
-
+	const NAME_FONT_SIZE = 20;
 
 	/**
 	 * プラグインコマンドの登録
@@ -194,15 +194,6 @@
 		}
 		drawWindow.call( this, bitmap.context, path2d );
 	};
-	function windowHeight( target ) {
-		const currentPreset = pluginParams.preset[ target.TF_windowType ];
-		const height = target.contents.height + ( currentPreset.padding + currentPreset.borderWidth ) * 2;
-		if( target.TF_shape !== SHAPE_BALLOON || target._positionType === POSITION_MIDDLE ) {
-			return height;
-		} else {
-			return height + TF_TAIL_HEIGHT;
-		}
-	}
 
 	// _refreshFrameは機能しない。
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
@@ -233,6 +224,11 @@
 	Window_Message.prototype.numVisibleRows = () => MESSAGE_LINES;
 	Window_Message.prototype.textPadding = () => ( MESSAGE_FONT_SIZE * LINE_HEIGHT - MESSAGE_FONT_SIZE ) / 2;
 	Window_Message.prototype.lineHeight = () => Math.ceil( MESSAGE_FONT_SIZE * LINE_HEIGHT );
+
+	Window_Message.prototype.resetFontSettings = function() {
+		Window_Base.prototype.resetFontSettings.call( this );
+		this.contents.fontSize = MESSAGE_FONT_SIZE;
+	};
 
 	/**
 	 * メッセージウィンドウに限りフキダシ表示を可能にする
@@ -306,7 +302,41 @@
 		}
 	};
 
+	/**
+	 * 顔表示に文字表示を追記
+	 */
+	const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
+	Window_Message.prototype.drawMessageFace = function() {
+		// 顔描画
+		const faceName = $gameMessage.faceName();
+		const faceIndex = $gameMessage.faceIndex();
+		const faceWidth = ImageManager.faceWidth;
+		const faceHeight = ImageManager.faceHeight;
+		const faceAtLeft = true;
+		const faceX = faceAtLeft ? 4 : this.innerWidth - faceWidth - 4;
+		this.drawFace( faceName, faceIndex, faceX, 0, faceWidth, faceHeight );
+		// 名前描画
+		const speakerName = `\x1bFS[${NAME_FONT_SIZE}]${$gameMessage.speakerName()}`;
+		const textSize = this.textSizeEx( speakerName );
+		const x = faceX + ( faceWidth - textSize.width ) / 2;
+		const y = faceHeight;
+		this.drawTextEx( speakerName, x, y, textSize.width );
+		this.resetFontSettings();
+	};
+	Window_Message.prototype.updateSpeakerName = function() {
+		this._nameBoxWindow.setName( "" );
+	};
 
+	/*--- Scene_Message ---*/
+	/**
+	 * メッセージウィンドウの矩形範囲を設定
+	 */
+	const _Scene_Message_messageWindowRect = Scene_Message.prototype.messageWindowRect;
+	Scene_Message.prototype.messageWindowRect = function() {
+		const rect = _Scene_Message_messageWindowRect.call( this );
+		rect.height = ImageManager.faceHeight + NAME_FONT_SIZE + 48;
+		return rect;
+	};
 	/*--- 関数 ---*/
 	/**
 	 * ウィンドウの数値設定。
