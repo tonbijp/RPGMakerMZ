@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.0.1.0
+// Version :0.0.2.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -45,13 +45,13 @@
  * 
  * [ウィンドウの準備]
  * 
- * [プリセット番号] : preset プラグインパラメータで設定した番号
+ * [プリセット番号] : preset 
  *
  * @================================================
  * @command setWindow @text ウィンドウの準備
- * @desc [移動ルートの設定]コマンドの文字列指定版
  *
  * @arg windowType @text ウィンドウタイプ
+ * @desc プラグインパラメータで設定した番号か名前
  * @type string @default thought
  */
 /*~struct~WindowParam:ja
@@ -115,6 +115,7 @@
 	const PARAM_TRUE = "true";
 	const PARAM_ON = "on";
 	const TYPE_NUMBER = "number";
+	const TYPE_STRING = "string";
 
 	/**
 	 * パラメータを受け取る
@@ -127,50 +128,7 @@
 	const MESSAGE_LINES = pluginParams.messageLines;
 	const DROP_SHADOW = pluginParams.dropShadow;
 
-	/*---- パラメータパース関数 ----*/
-	/**
-	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
-	 * @param {String} value 変換元の文字列( \v[n]形式を含む )
-	 * @return {String} 変換後の文字列
-	 */
-	function treatValue( value ) {
-		if( value === undefined || value === "" ) return "0";
-		const result = value.match( /\x1bV\[(.+)\]/i );
-		if( result === null ) return value;
-		const id = parseInt( result[ 1 ], 10 );
-		if( isNaN( id ) ) {
-			return $gameVariables.valueByName( result[ 1 ] );
-		} else {
-			return $gameVariables.value( id );
-		}
-	}
 
-	/**
-	 * 文字列を整数に変換して返す。
-	 * @param {String|Number} value
-	 * @return {Number} 数値に変換した結果
-	 */
-	function parseIntStrict( value ) {
-		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
-		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( `Value '${value}' is not a number.` );
-		return result;
-	}
-
-	/**
-	 * 文字列を実数に変換して返す。
-	 * @param {String|Number} value
-	 * @return {Number} 数値に変換した結果
-	 */
-	function parseFloatStrict( value ) {
-		if( typeof value === TYPE_NUMBER ) return value;
-		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( `Value '${value}' is not a number.` );
-		return result;
-	}
-
-
-	/*---- Game_Interpreter ----*/
 	/**
 	 * プラグインコマンドの登録
 	 */
@@ -180,19 +138,18 @@
 		if( !messageWindow ) return;
 
 		const newWindowType = getWindowType( args.windowType );
-		if( newWindowType !== -1 && newWindowType !== messageWindow.TF_windowType ) {
-			messageWindow.TF_refleshWindow = true;
-			messageWindow.TF_windowType = newWindowType;
-		}
+		if( newWindowType === -1 || newWindowType === messageWindow.TF_windowType ) return;
+
+		setWindowParam( messageWindow, newWindowType );
 	} );
 
 	/**
 	 * ウィンドウタイプ番号を返す。
-	 * @param {String} windowType ウィンドウタイプの番号か名前の文字列
+	 * @param {String|Number} windowType ウィンドウタイプの番号か名前の文字列
 	 * @returns {Number} ウィンドウタイプ番号
 	 */
 	function getWindowType( windowType ) {
-		if( typeof windowType === "string" ) {
+		if( typeof windowType === TYPE_STRING ) {
 			return pluginParams.preset.findIndex( ( e ) => e.name === windowType );	// 名前から数値を得る
 		} else {
 			return windowType - 1;
@@ -211,14 +168,6 @@
 		this._margin = pluginParams.preset[ this.TF_windowType ].margin;
 	};
 
-	// _refreshFrameは機能しない。
-	const _Window__refreshFrame = Window.prototype._refreshFrame;
-	Window.prototype._refreshFrame = function() {
-		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
-		if( this._data && this._data.WindowSkin ) {
-			_Window__refreshFrame.call( this );
-		}
-	};
 
 	// _colorTone を反映させるため、_refreshBack の方で描画。
 	const _Window__refreshBack = Window.prototype._refreshBack;
@@ -232,18 +181,36 @@
 
 		const m = this.margin;
 		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
-		const bitmap = new Bitmap( this._width, this._height + 4 );// +4 はdrop shadow用
+		const bitmap = new Bitmap( this.width, this.height + 4 );// +4 はdrop shadow用
 
 		this._frameSprite.bitmap = bitmap;
-		this._frameSprite.setFrame( 0, 0, this._width, this._height + 12 );
+		this._frameSprite.setFrame( 0, 0, this.width, this.height + 12 );
 
 		let path2d;
 		switch( this.TF_shape ) {
-			case SHAPE_ROUNDRECT: path2d = drawRoundrect( m, this._width, this._height, r ); break;
-			case SHAPE_OCTAGON: path2d = drawOctagon( m, this._width, this._height, r ); break;
-			case SHAPE_SPIKE: path2d = drawSpike( m, this._width, this._height, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
+			case SHAPE_ROUNDRECT: path2d = drawRoundrect( m, this.width, this.height, r ); break;
+			case SHAPE_OCTAGON: path2d = drawOctagon( m, this.width, this.height, r ); break;
+			case SHAPE_SPIKE: path2d = drawSpike( m, this.width, this.height, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
 		}
 		drawWindow.call( this, bitmap.context, path2d );
+	};
+	function windowHeight( target ) {
+		const currentPreset = pluginParams.preset[ target.TF_windowType ];
+		const height = target.contents.height + ( currentPreset.padding + currentPreset.borderWidth ) * 2;
+		if( target.TF_shape !== SHAPE_BALLOON || target._positionType === POSITION_MIDDLE ) {
+			return height;
+		} else {
+			return height + TF_TAIL_HEIGHT;
+		}
+	}
+
+	// _refreshFrameは機能しない。
+	const _Window__refreshFrame = Window.prototype._refreshFrame;
+	Window.prototype._refreshFrame = function() {
+		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
+		if( this._data && this._data.WindowSkin ) {
+			_Window__refreshFrame.call( this );
+		}
 	};
 
 
@@ -281,7 +248,7 @@
 	Window_Message.prototype.startMessage = function() {
 		if( this.TF_refleshWindow ) {
 			this.TF_refleshWindow = false;
-			refreshWindowFrame( this );
+			this._refreshAllParts();
 		}
 		_Window_Message_startMessage.call( this );
 	};
@@ -291,8 +258,7 @@
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
 		if( this.TF_windowType !== 0 ) {
-			this.TF_windowType = 0;
-			this.TF_refleshWindow = true;
+			setWindowParam( this, 0 );
 		}
 	};
 
@@ -318,7 +284,7 @@
 	Window_Message.prototype.updatePlacement = function() {
 		const isChange = ( this._positionType !== $gameMessage.positionType() );
 		this._positionType = $gameMessage.positionType();
-		//this._height = this.windowHeight();
+		// this._height = windowHeight( this );
 
 		_Window_Message_updatePlacement.call( this );
 
@@ -339,30 +305,27 @@
 			this._contentsSprite.move( this.padding, this.padding );
 		}
 	};
-	// const _Window_Message_windowHeight = Window_Message.prototype.windowHeight;
-	// Window_Message.prototype.windowHeight = function() {
-	// 	if( this.TF_shape !== SHAPE_BALLOON || this._positionType === POSITION_MIDDLE ) {
-	// 		return _Window_Message_windowHeight.call( this );
-	// 	} else {
-	// 		return _Window_Message_windowHeight.call( this ) + TF_TAIL_HEIGHT;
-	// 	}
-	// };
 
 
 	/*--- 関数 ---*/
 	/**
-	 * ウィンドウ枠の再描画。
+	 * ウィンドウの数値設定。
 	 * @param {Window_Message} targetWindow 対象ウィンドウ
+	 * @param {Number} windowType プリセットのウィンドウタイプ
 	 */
-	function refreshWindowFrame( targetWindow ) {
-		const preset = pluginParams.preset[ targetWindow.TF_windowType ];
+	function setWindowParam( targetWindow, windowType ) {
+		targetWindow.TF_refleshWindow = true;
+		targetWindow.TF_windowType = windowType;
+		const preset = pluginParams.preset[ windowType ];
 		targetWindow.TF_shape = preset.shape;
-		targetWindow._margin = preset.margin;
 		// RPGツクールMVの padding は CSS と違い「box の一番外から contents までの距離」なので変換
+		targetWindow._height = targetWindow.innerHeight + ( preset.padding + preset.margin ) * 2;
 		targetWindow._padding = preset.padding + preset.margin;
-		//targetWindow._height = targetWindow.windowHeight();
-		targetWindow._refreshAllParts();
+		targetWindow._margin = preset.margin;
 	}
+
+
+
 	/**
 	 * 配列からCSS color文字列を返す。
 	 * @param {Array} colorList [ r, g, b, a ] の配列
@@ -549,6 +512,7 @@
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
 	 * @param {Number} r トゲの(おおよその)横幅
+	 * @param {Number} bw 線の幅
 	 */
 	function drawSpike( m, w, h, r, bw ) {
 
