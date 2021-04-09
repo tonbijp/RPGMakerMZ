@@ -14,8 +14,8 @@
 * `_clientArea` クライアントエリア
 	* `_contentsSprite` 内容
 		*  `contents` ( _contentsSprite.bitmap )
-	* `_cursorSprite` カーソル
-		* Sprite × 9 カーソルを構成する9スライスのパーツ
+	* `_cursorSprite` コマンド選択カーソル
+		* Sprite × 9 カーソル枠を構成する9スライスのパーツ
 	* `_contentsBackSprite` 内容の背景
 		* `contentsBack`  ( _contentsBackSprite.bitmap )
 * `_container` ウィンドウ
@@ -64,7 +64,7 @@ v1.2.0 で変更あり。
 | `_windowskin` | [Bitmap](Bitmap.md) | |
 | `_width` | [Number](Number.md) |  |
 | `_height` | [Number](Number.md) |  |
-| `_innerChildren` | [Array](Array.md) | **@MZ** クライアントエリアの子オブジェクトの配列 |
+| `_innerChildren` | [Array](Array.md).&lt;Object&gt; | **@MZ** クライアントエリアの子オブジェクトの配列 |
 | `_cursorRect` | [Rectangle](Rectangle.md) | コマンド選択カーソルの矩形範囲 |
 | `_openness` | [Number](Number.md) |  |
 | `_animationCount` | [Number](Number.md) | アニメーションカウント |
@@ -199,16 +199,17 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 
 ####  _setRectPartsGeometry (sprite, srect, drect, m)
-**@MZ** 指定スプライトに枠を設定。
+**@MZ** 指定スプライトに枠を設定。<br />
+`sprite`は具体的にはプロパティ `_cursorSprite`か `_frameSprite`。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `sprite` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 枠を設定するスプライト |
-| `srect` | Object | スキンから切り取る矩形範囲 { x: , y: , width: , height:  } |
+| `sprite` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 9スライス枠用スプライト |
+| `srect` | Object | スキン画像から切り取る矩形範囲 { x: , y: , width: , height:  } |
 | `drect` | Object | 配置する矩形範囲 { x: , y: , width: , height:  } |
-| `m` | [Number](Number.md) | マージン(ピクセル) |
+| `m` | [Number](Number.md) | 枠画像の幅(ピクセル) |
 
 
 ####  _updateArrows ()
