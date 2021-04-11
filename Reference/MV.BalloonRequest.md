@@ -3,7 +3,8 @@
 # クラス: [MV](MV.md).BalloonRequest
 
 ## 型: Object
-フキダシのパラメータ。
+フキダシ表示を要求する際のパラメータ。<br />
+`target`は [Sprite_Balloon](Sprite_Balloon.md) ではなく、[[Game_Character](Game_Character.md) なのに注意。
 
 関連クラス: [Game_Temp](Game_Temp.md), [Spriteset_Map](Spriteset_Map.md), [Sprite_Balloon](Sprite_Balloon.md)
 
