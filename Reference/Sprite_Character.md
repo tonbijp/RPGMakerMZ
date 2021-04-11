@@ -7,7 +7,7 @@
 ### new Sprite_Character (character)
 
 | データベース | JSONデータ | オブジェクト |
-| --- | --- | --- | --- |
+| --- | --- | --- 
 |||[Game_Character](Game_Character.md) |
 | [アクター] | [RPG.Actor](RPG.Actor.md) | [Game_Actor](Game_Actor.md) |
 | [プレイヤー] | 〃 | [Game_Player](Game_Player.md) |
