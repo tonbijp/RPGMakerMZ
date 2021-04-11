@@ -370,11 +370,11 @@ Game_Interpreter.prototype.pluginCommand = function ( command, args ){
 
 
 #### updateWaitMode () → {Boolean}
-[ウエイトモード](Game_Interpreter#ウエイトモード)をアップデート
+[ウエイトモード](Game_Interpreter#ウエイトモード)をアップデートしたのち、待ち状態か。
 
 
 #### videoFileExt () → {[String](String.md)}
-ビデオの拡張子 '.webm' か '.mp4' を返す。
+ビデオの拡張子 ".webm" か ".mp4" を返す。
 
 
 #### wait (duration)
