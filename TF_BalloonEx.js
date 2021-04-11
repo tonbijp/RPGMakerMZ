@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.0.0.0
+// Version :0.1.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -14,7 +14,7 @@
  * @plugindesc [Display balloon icon] extension
  * @author Tobishima-Factory
  *
- * @param preset
+ * @param balloonParamList
  * @desc The presets of balloon animation.
  * @type struct<BalloonParam>[]
  * @default ["{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"12\"}"]
@@ -162,7 +162,7 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
- * @param preset @text アニメーション設定
+ * @param balloonParamList @text アニメーション設定
  * @type struct<BalloonParam>[]
  * @default ["{\"name\":\"びっくり\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"7\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"4\",\"waitTime\":\"24\"}","{\"name\":\"はてな\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"4\",\"waitTime\":\"24\"}","{\"name\":\"音符\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"4\",\"waitTime\":\"12\"}","{\"name\":\"ハート\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"4\",\"loopPatterns\":\"4\",\"endPatterns\":\"0\",\"loops\":\"3\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"怒り\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"汗\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"32\"}","{\"name\":\"くしゃくしゃ\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"3\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"沈黙\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"12\",\"waitTime\":\"48\"}","{\"name\":\"電球\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"Zzz\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"10\",\"waitTime\":\"12\"}","{\"name\":\"星\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"はてな複数\",\"dx\":\"18\",\"dy\":\"15\",\"startPatterns\":\"5\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"音符複数\",\"dx\":\"20\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"ハート複数\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"ユゲダシ\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"汗複数\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"3\",\"endPatterns\":\"1\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"がやがや\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"3\",\"endPatterns\":\"2\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"きゃっきゃ\",\"dx\":\"20\",\"dy\":\"5\",\"startPatterns\":\"3\",\"loopPatterns\":\"2\",\"endPatterns\":\"3\",\"loops\":\"40\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"ヒットマーク\",\"dx\":\"0\",\"dy\":\"40\",\"startPatterns\":\"5\",\"loopPatterns\":\"1\",\"endPatterns\":\"2\",\"loops\":\"5\",\"speed\":\"1\",\"waitTime\":\"0\"}","{\"name\":\"カウントダウン\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"5\",\"loopPatterns\":\"0\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"60\",\"waitTime\":\"0\"}"]
  * 
@@ -243,7 +243,8 @@
  *
  * @arg balloonId @text フキダシID
  * @desc
- * フキダシID(数値)かフキダシの名前
+ * [アニメーション設定]で設定した名前か
+ * フキダシID(数値)を入力します。
  * @type combo @default びっくり
  * @option びっくり @option はてな @option 音符 @option ハート @option 怒り
  * @option 汗 @option くしゃくしゃ @option 沈黙 @option 電球 @option 沈黙 @option Zzz
@@ -253,11 +254,17 @@
  * @on 待つ @off 待たない(規定)
  *
  * @arg dx @text 表示位置X差分
- * @type number @default 0
+ * @desc
+ * [テキスト]で空に設定すると[アニメーション設定]で
+ * フキダシID毎に設定された値が使われます。
+ * @type number @default
  * @min -1000000
  * 
  * @arg dy @text 表示位置Y差分
- * @type number @default 0
+ * @desc
+ * [テキスト]で空に設定すると[アニメーション設定]で
+ * フキダシID毎に設定された値が使われます。
+ * @type number @default
  * @min -1000000
  * 
  */
@@ -332,12 +339,16 @@
 	const BALLOON_PHASE_LOOP = "loop";
 	const BALLOON_PHASE_END = "end";
 	const BALLOON_PHASE_WAIT = "wait";
+	const TYPE_BOOLEAN = "boolean";
+	const TYPE_NUMBER = "number";
+	const TYPE_STRING = "string";
 
 	/**
 	 * パラメータを受け取る
 	 */
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
-	const TF_baseDy = pluginParams.baseDy;
+	const baseDy = pluginParams.baseDy;
+	const balloonParamList = pluginParams.balloonParamList;
 
 	/**
 	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
@@ -448,7 +459,7 @@
 		const result = parseInt( treatValue( value ), 10 );
 		if( !isNaN( result ) ) return result;
 
-		const i = pluginParams.preset.findIndex( e => e.name === value );
+		const i = balloonParamList.findIndex( e => e.name === value );
 		if( i === -1 ) throw Error( `指定したフキダシ[${value}]がありません。` );
 		return i + 1;
 	}
@@ -469,7 +480,7 @@
 
 		character.TF_balloon = {
 			dx: parseIntStrict( dx ),
-			dy: parseIntStrict( dy ) + TF_baseDy,
+			dy: parseIntStrict( dy ) + baseDy,
 			startPatterns: ( pattern - 1 ),
 			loopPatterns: 1,
 			endPatterns: 0,
@@ -506,19 +517,15 @@
 
 	/**
 	 * 
-	 * @param {Game_CharacterBase} target 対象となるキャラ・イベント
+	 * @param {Sprite_Balloon} spriteBalloon フキダシスプライト
 	 * @param {Number} dx x差分
 	 * @param {Number} dy y差分
 	 */
-	function locateBalloon( target, dx, dy ) {
-		if( target.TF_balloon ) {
-			if( dx !== undefined ) {
-				target.TF_balloon.dx = parseIntStrict( dx );
-			}
-			if( dy !== undefined ) {
-				target.TF_balloon.dy = parseIntStrict( dy ) + TF_baseDy;
-			}
-		}
+	function locateBalloon( spriteBalloon, dx, dy ) {
+		const gameCharacter = spriteBalloon._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
+		const balloonParam = balloonParamList[ spriteBalloon._balloonId ];
+		gameCharacter.TF_balloonDx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
+		gameCharacter.TF_balloonDy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
 	}
 
 	/**
@@ -529,9 +536,9 @@
 	function stopBalloon( target, showFinish ) {
 		if( target.TF_balloon ) {
 			if( !showFinish ) {
-				target.TF_balloon._duration = 0;
+				target._duration = 0;
 			}
-			target.TF_balloon.finishTrigger = true;
+			target.finishTrigger = true;
 		}
 	}
 
@@ -540,18 +547,18 @@
 	/**
 	 * プラグインコマンドの登録
 	 */
-	// [移動ルートの一括設定]
+	// [フキダシ表示の開始]
 	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
-		this._character = getEventById( this, stringToEventId( args.eventId ) );
-		if( !this._character ) return;
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		if( !targetEvent ) return;
 
-		// this._character.TF_balloon = null;
-
-		$gameTemp.requestBalloon( this._character, stringToBalloonId( args.balloonId ) );
+		targetEvent.TF_balloonDx = args.dx;
+		targetEvent.TF_balloonDy = args.dy;
+		$gameTemp.requestBalloon( targetEvent, stringToBalloonId( args.balloonId ) );
 		if( args.isWait ) {
 			this.setWaitMode( WAIT_BALLOON );
 		}
-		// locateBalloon( this._character, args.dx, args.dy );
+
 	} );
 
 	const _Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
@@ -599,13 +606,13 @@
 	};
 	/*--- Game_CharacterBase ---*/
 	const _Game_CharacterBase_requestBalloon = Game_CharacterBase.prototype.requestBalloon;
-	Game_CharacterBase.prototype.requestBalloon = function( balloonId ) {
-		if( !this.TF_balloon ) {
-			this.TF_balloon = Object.assign( {}, pluginParams.preset[ balloonId - 1 ] );// 参照渡しでなくコピー渡し
-			this.TF_balloon.finishTrigger = false;
-		}
-		_Game_CharacterBase_requestBalloon.call( this, balloonId );
-	};
+	// Game_CharacterBase.prototype.requestBalloon = function( balloonId ) {
+	// 	if( !this.TF_balloon ) {
+	// 		this.TF_balloon = Object.assign( {}, pluginParams.preset[ balloonId - 1 ] );// 参照渡しでなくコピー渡し
+	// 		this.TF_balloon.finishTrigger = false;
+	// 	}
+	// 	_Game_CharacterBase_requestBalloon.call( this, balloonId );
+	// };
 	/*--- [移動ルートの設定]用のメソッド ---*/
 	// EventEffects.js の機能を上書きして、dx, dy を追加
 	// Game_CharacterBase.prototype.balloon = function( balloonId, wait, dx, dy ) {
@@ -683,29 +690,54 @@
 	// 	this._balloonSprite._duration = TFb._duration;	// speedを反映させたので上書き
 	// };
 
+
+	const _Sprite_Balloon_initialize = Sprite_Balloon.prototype.initialize;
+	Sprite_Balloon.prototype.initialize = function() {
+		_Sprite_Balloon_initialize.apply( this, arguments );
+	};
+
+	const _Sprite_Balloon_setup = Sprite_Balloon.prototype.setup;
+	Sprite_Balloon.prototype.setup = function( targetSprite, balloonId ) {
+		_Sprite_Balloon_setup.apply( this, arguments );
+
+		locateBalloon( this, targetSprite._character.TF_balloonDx, targetSprite._character.TF_balloonDy );
+	};
 	/**
-	 * フキダシアイコンのアップデート。
+	 * 現在の表示パターンを返す。
 	 */
-	const _Sprite_Character_updateBalloon = Sprite_Character.prototype.updateBalloon;
-	// Sprite_Character.prototype.updateBalloon = function() {
-	// 	_Sprite_Character_updateBalloon.call( this );
-	// 	const bs = this._balloonSprite;
-	// 	if( !bs ) return;
-
-	// 	const TFb = this._character.TF_balloon;
-	// 	bs.x += TFb.dx;
-	// 	bs.y += TFb.dy;
-	// 	if( !TFb.finishTrigger ) return;
-
-	// 	TFb.finishTrigger = false;
-	// 	if( TFb._duration < TFb.loopEndDuration ) {
-	// 		bs._duration = TFb._duration;	// 即終了の場合 TFb._duration : 0 に設定してある
-	// 		TFb.phase = BALLOON_PHASE_WAIT;
-	// 	} else {
-	// 		bs._duration = TFb.loopEndDuration;
-	// 		TFb.phase = BALLOON_PHASE_END;
+	// const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
+	// Sprite_Balloon.prototype.frameIndex = function() {
+	// 	const balloonParam = balloonParamList[ this._balloonId ];
+	// 	if( this._duration < balloonParam.endDuration ) {
+	// 		return balloonParam.startPatterns + balloonParam.loopPatterns + balloonParam.endPatterns - 1;
 	// 	}
+	// 	return _Sprite_Balloon_frameIndex.call( this );
 	// };
+
+	/**
+	 * 表示位置に差分を追加する。
+	 */
+	const _Sprite_Balloon_updatePosition = Sprite_Balloon.prototype.updatePosition;
+	Sprite_Balloon.prototype.updatePosition = function() {
+		_Sprite_Balloon_updatePosition.call( this );
+
+		const gameCharacter = this._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
+		this.x += gameCharacter.TF_balloonDx;
+		this.y += gameCharacter.TF_balloonDy;
+	};
+
+	function updateBalloon() {
+		if( !balloonParam.finishTrigger ) return;
+
+		balloonParam.finishTrigger = false;
+		if( balloonParam._duration < balloonParam.loopEndDuration ) {
+			this._duration = balloonParam._duration;	// 即終了の場合 TFb._duration : 0 に設定してある
+			balloonParam.phase = BALLOON_PHASE_WAIT;
+		} else {
+			this._duration = balloonParam.loopEndDuration;
+			balloonParam.phase = BALLOON_PHASE_END;
+		}
+	};
 
 	/*--- Sprite_Balloon ---*/
 	const _Sprite_Balloon_update = Sprite_Balloon.prototype.update;
@@ -737,14 +769,6 @@
 	// 	_Sprite_Balloon_update.call( this );
 	// };
 
-	const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
-	// Sprite_Balloon.prototype.frameIndex = function() {
-	// 	const TFb = this.TF_balloon;
-	// 	if( this._duration < TFb.endDuration ) {
-	// 		return TFb.startPatterns + TFb.loopPatterns + TFb.endPatterns - 1;
-	// 	}
-	// 	return _Sprite_Balloon_frameIndex.call( this );
-	// };
 
 	/**
 	 * パターン表示の継続フレーム数を返す。
