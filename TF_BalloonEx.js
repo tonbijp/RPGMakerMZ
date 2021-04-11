@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.1.0.0
+// Version :0.2.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -330,15 +330,21 @@
 
 ( () => {
 	"use strict";
+	// プラグインコマンド
 	const COM_START_BALLOON = "startBalloon";
 	const TF_SET_BALLOON = "TF_SET_BALLOON";
 	const TF_LOCATE_BALLOON = "TF_LOCATE_BALLOON";
 	const TF_STOP_BALLOON = "TF_STOP_BALLOON";
 	const WAIT_BALLOON = "balloon";
 	const PARAM_TRUE = "true";
-	const BALLOON_PHASE_LOOP = "loop";
-	const BALLOON_PHASE_END = "end";
-	const BALLOON_PHASE_WAIT = "wait";
+
+	// アニメーション
+	const PATTERNS_IN_LINE = 8;	// フキダシ画像の横1行に含まれるパターン
+	const BALLOON_PHASE_LOOP = "loop"; // 開始からループ中まで
+	const BALLOON_PHASE_END = "end";	// 終了アニメーション
+	const BALLOON_PHASE_WAIT = "wait";	// アニメーション終了時の待ち時間
+
+	// typeof 型判定用定数
 	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
@@ -523,9 +529,9 @@
 	 */
 	function locateBalloon( spriteBalloon, dx, dy ) {
 		const gameCharacter = spriteBalloon._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
-		const balloonParam = balloonParamList[ spriteBalloon._balloonId ];
-		gameCharacter.TF_balloonDx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
-		gameCharacter.TF_balloonDy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
+		const balloonParam = balloonParamList[ spriteBalloon._balloonId - 1 ];
+		gameCharacter.balloonDx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
+		gameCharacter.balloonDy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
 	}
 
 	/**
@@ -552,13 +558,12 @@
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		if( !targetEvent ) return;
 
-		targetEvent.TF_balloonDx = args.dx;
-		targetEvent.TF_balloonDy = args.dy;
+		targetEvent.balloonDx = args.dx;
+		targetEvent.balloonDy = args.dy;
 		$gameTemp.requestBalloon( targetEvent, stringToBalloonId( args.balloonId ) );
 		if( args.isWait ) {
 			this.setWaitMode( WAIT_BALLOON );
 		}
-
 	} );
 
 	const _Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
@@ -595,15 +600,6 @@
 	// };
 
 
-	/*--- Game_Temp ---*/
-	const _Game_Temp_requestBalloon = Game_Temp.prototype.requestBalloon;
-	Game_Temp.prototype.requestBalloon = function( target, balloonId ) {
-		const request = { target: target, balloonId: balloonId };
-		this._balloonQueue.push( request );
-		if( target.startBalloon ) {
-			target.startBalloon();
-		}
-	};
 	/*--- Game_CharacterBase ---*/
 	const _Game_CharacterBase_requestBalloon = Game_CharacterBase.prototype.requestBalloon;
 	// Game_CharacterBase.prototype.requestBalloon = function( balloonId ) {
@@ -664,7 +660,6 @@
 	/**
 	 * フキダシアイコンの表示開始。
 	 */
-	const _Sprite_Character_startBalloon = Sprite_Character.prototype.startBalloon;
 	// Sprite_Character.prototype.startBalloon = function() {
 	// 	const TFb = this._character.TF_balloon;
 
@@ -677,13 +672,6 @@
 	// 		this.parent.addChild( this._balloonSprite );
 	// 	} else {
 	// 		// 生成
-	// 		_Sprite_Character_startBalloon.call( this );
-	// 		TFb._duration = 8 * TFb.speed + TFb.waitTime;
-	// 		TFb.loopStartDuration = TFb._duration - TFb.startPatterns * TFb.speed;
-	// 		TFb.loopEndDuration = TFb.loopStartDuration - TFb.loopPatterns * TFb.speed;
-	// 		TFb.endDuration = TFb.loopEndDuration - TFb.endPatterns * TFb.speed;
-	// 		TFb.phase = BALLOON_PHASE_LOOP;
-	// 		TFb._balloonId = this._character.balloonId();	//復帰用に保存
 	// 	}
 
 	// 	this._balloonSprite.TF_balloon = TFb;	// Game_CharacterBase のフキダシデータへの参照を渡す
@@ -691,28 +679,88 @@
 	// };
 
 
+
+	function updateBalloon() {
+		if( !balloonParam.finishTrigger ) return;
+
+		balloonParam.finishTrigger = false;
+		if( balloonParam._duration < balloonParam._loopEndDuration ) {
+			this._duration = balloonParam._duration;	// 即終了の場合 TFb._duration : 0 に設定してある
+			balloonParam._phase = BALLOON_PHASE_WAIT;
+		} else {
+			this._duration = balloonParam._loopEndDuration;
+			balloonParam._phase = BALLOON_PHASE_END;
+		}
+	};
+
+	/*--- Sprite_Balloon ---*/
+	/**
+	 * @class Sprite_Balloon
+	 * @property _duration 残り時間
+	 * @property _loopStartDuration	ループ開始時間
+	 * @property _loopEndDuration	ループ終了時間
+	 * @property _endDuration	完了時間
+	 * @property _phase	実行段階
+	 * @property _loops	残り繰り返し回数
+	 */
+	/**
+	 * アップデート。
+	 */
+	const _Sprite_Balloon_update = Sprite_Balloon.prototype.update;
+	Sprite_Balloon.prototype.update = function() {
+		Sprite.prototype.update.call( this );
+		_Sprite_Balloon_update.call( this );
+
+		// TODO:
+		if( this._phase !== BALLOON_PHASE_LOOP || this._loopEndDuration < this._duration ) return;
+		if( this._loops === 1 ) {
+			// ループ終了
+			this._phase = BALLOON_PHASE_END;
+		} else {
+			// ループ継続
+			if( 1 < this._loops ) {
+				this._loops--;
+			}
+			this._duration = this._loopStartDuration;
+		}
+	};
+
 	const _Sprite_Balloon_initialize = Sprite_Balloon.prototype.initialize;
 	Sprite_Balloon.prototype.initialize = function() {
 		_Sprite_Balloon_initialize.apply( this, arguments );
 	};
 
+	/**
+	 * @param targetSprite 
+	 */
 	const _Sprite_Balloon_setup = Sprite_Balloon.prototype.setup;
 	Sprite_Balloon.prototype.setup = function( targetSprite, balloonId ) {
 		_Sprite_Balloon_setup.apply( this, arguments );
 
-		locateBalloon( this, targetSprite._character.TF_balloonDx, targetSprite._character.TF_balloonDy );
+		const gameCharacter = targetSprite._character;// キャラクタスプライト -> キャラクタ
+		const balloonParam = balloonParamList[ balloonId - 1 ];
+		locateBalloon( this, gameCharacter.balloonDx, gameCharacter.balloonDy );
+		// balloonParam の startPatterns, loopPatterns, endPatterns, loops, speed, waitTime を元に初期化
+
+		this._duration = PATTERNS_IN_LINE * balloonParam.speed + balloonParam.waitTime;
+		this._loopStartDuration = this._duration - balloonParam.startPatterns * balloonParam.speed;
+		this._loopEndDuration = this._loopStartDuration - balloonParam.loopPatterns * balloonParam.speed;
+		this._endDuration = this._loopEndDuration - balloonParam.endPatterns * balloonParam.speed;
+		this._phase = BALLOON_PHASE_LOOP;
+		this._loops = balloonParam.loops;
 	};
+
 	/**
 	 * 現在の表示パターンを返す。
 	 */
-	// const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
-	// Sprite_Balloon.prototype.frameIndex = function() {
-	// 	const balloonParam = balloonParamList[ this._balloonId ];
-	// 	if( this._duration < balloonParam.endDuration ) {
-	// 		return balloonParam.startPatterns + balloonParam.loopPatterns + balloonParam.endPatterns - 1;
-	// 	}
-	// 	return _Sprite_Balloon_frameIndex.call( this );
-	// };
+	const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
+	Sprite_Balloon.prototype.frameIndex = function() {
+		const balloonParam = balloonParamList[ this._balloonId - 1 ];
+		if( this._duration < balloonParam._endDuration ) {
+			return balloonParam.startPatterns + balloonParam.loopPatterns + balloonParam.endPatterns - 1;
+		}
+		return _Sprite_Balloon_frameIndex.call( this );
+	};
 
 	/**
 	 * 表示位置に差分を追加する。
@@ -722,48 +770,17 @@
 		_Sprite_Balloon_updatePosition.call( this );
 
 		const gameCharacter = this._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
-		this.x += gameCharacter.TF_balloonDx;
-		this.y += gameCharacter.TF_balloonDy;
+		this.x += gameCharacter.balloonDx;
+		this.y += gameCharacter.balloonDy;
 	};
 
-	function updateBalloon() {
-		if( !balloonParam.finishTrigger ) return;
-
-		balloonParam.finishTrigger = false;
-		if( balloonParam._duration < balloonParam.loopEndDuration ) {
-			this._duration = balloonParam._duration;	// 即終了の場合 TFb._duration : 0 に設定してある
-			balloonParam.phase = BALLOON_PHASE_WAIT;
-		} else {
-			this._duration = balloonParam.loopEndDuration;
-			balloonParam.phase = BALLOON_PHASE_END;
-		}
-	};
-
-	/*--- Sprite_Balloon ---*/
-	const _Sprite_Balloon_update = Sprite_Balloon.prototype.update;
-	// Sprite_Balloon.prototype.update = function() {
-	// 	const TFb = this.TF_balloon;
-	// 	TFb._duration = this._duration;		// Game_CharacterBase への保存
-
-	// 	if( TFb.phase === BALLOON_PHASE_LOOP && this._duration <= TFb.loopEndDuration ) {
-	// 		if( TFb.loops === 1 ) {
-	// 			TFb.phase = BALLOON_PHASE_END;
-	// 		} else {
-	// 			// ループを行う
-	// 			if( 1 < TFb.loops ) {
-	// 				TFb.loops--;
-	// 			}
-	// 			this._duration = TFb.loopStartDuration;
-	// 		};
-	// 	}
-
-	// 	if( TFb.phase === BALLOON_PHASE_END && this._duration < TFb.endDuration ) {
+	// 	if( TFb._phase === BALLOON_PHASE_END && this._duration < TFb._endDuration ) {
 	// 		this._duration = this.waitTime();
-	// 		TFb.phase = BALLOON_PHASE_WAIT;
+	// 		TFb._phase = BALLOON_PHASE_WAIT;
 	// 	}
 
-	// 	if( TFb.phase === BALLOON_PHASE_WAIT && this._duration === 0 ) {
-	// 		TFb.phase = "";
+	// 	if( TFb._phase === BALLOON_PHASE_WAIT && this._duration === 0 ) {
+	// 		TFb._phase = "";
 	// 	}
 
 	// 	_Sprite_Balloon_update.call( this );
@@ -788,17 +805,5 @@
 	// 		return 12;	//すぐに上書きするので、これはダミー値
 	// 	}
 	// };
-
-
-	/*--- Scene_Base ---*/
-
-	// TODO: 画面の適当な位置に表示する
-	function addBalloonToScene() {
-		const balloon = new Sprite_Balloon();
-		balloon.x = 200;
-		balloon.y = 100;
-		balloon.z = 7;
-		SceneManager._scene.addChild( balloon );
-	}
 
 } )();
