@@ -9,6 +9,7 @@
 
 [移動ルートの設定]で[スクリプト]を使用した際の this はこのクラスになるので例えば <code>this.setPattern(0)</code> とすれば歩行パターンを指定できる。
 
+関連クラス: [Sprite_Balloon](Sprite_Balloon.md), [Sprite_Animation](Sprite_Animation.md)
 
 ### サブクラス
 

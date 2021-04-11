@@ -5,7 +5,7 @@
 ## 型: Object
 アニメーションのパラメータ。
 
-関連クラス: [Game_Temp](Game_Temp.md), [Spriteset_Base](Spriteset_Base.md)
+関連クラス: [Game_Temp](Game_Temp.md), [Spriteset_Base](Spriteset_Base.md), [Sprite_Animation](Sprite_Animation.md)
 
 
 ### プロパティ

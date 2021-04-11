@@ -5,7 +5,7 @@
 ## 型: Object
 フキダシのパラメータ。
 
-関連クラス: [Game_Temp](Game_Temp.md), [Spriteset_Map](Spriteset_Map.md)
+関連クラス: [Game_Temp](Game_Temp.md), [Spriteset_Map](Spriteset_Map.md), [Sprite_Balloon](Sprite_Balloon.md)
 
 
 ### プロパティ

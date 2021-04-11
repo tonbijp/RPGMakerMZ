@@ -5,7 +5,7 @@
 ## スーパークラス: [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html)
 
 ### new TilingSprite (bitmap)
-タイル画像用のスプライト。
+タイル(繰り返し表示)画像用のスプライト。[遠景]に使われる。
 
 関連クラス: [Spriteset_Map](Spriteset_Map.md)
 

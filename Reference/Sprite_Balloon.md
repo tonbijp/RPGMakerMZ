@@ -9,7 +9,7 @@
 
 MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
 
-関連クラス: [Sprite_Character](Sprite_Character.md)
+関連クラス: [Spriteset_Map](Spriteset_Map.md), [Sprite_Character](Sprite_Character.md), [Game_Temp](Game_Temp.md), [Game_CharacterBase](Game_CharacterBase.md), [MV.BalloonRequest](MV.BalloonRequest.md)
 
 ### プロパティ
 

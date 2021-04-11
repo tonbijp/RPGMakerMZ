@@ -12,7 +12,6 @@
 MZで新規にインナークラス Tilemap.Layer が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
 
 
-
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
 
 ### インナークラス

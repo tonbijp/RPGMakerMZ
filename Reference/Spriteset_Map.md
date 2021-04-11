@@ -24,7 +24,7 @@ v1.1.1、v1.2.0  で変更あり。
 | `_balloonSprites` | [Array](Array.md).&lt;[Sprite_Balloon](Sprite_Balloon.md)&gt; | **@MZ** [フキダシ]のスプライト |
 | `_characterSprites` | [Array](Array.md).&lt;[Sprite_Character](Sprite_Character.md)&gt; | [アクター][イベント]のスプライト |
 | `_destinationSprite` | [Sprite_Destination](Sprite_Destination.md) |  タッチ位置スプライト |
-| `_effectsContainer` | [Tilemap](Tilemap.md)&gt; | **@MZ** コンテナ |
+| `_effectsContainer` | [Tilemap](Tilemap.md) | **@MZ** フキダシ・エフェクト表示用コンテナ |
 | `_parallax` | [TilingSprite](TilingSprite.md) | [遠景]スプライト |
 | `_parallaxName` | [String](String.md) | [遠景]画像ファイル名 |
 | `_tilemap` | [Tilemap](Tilemap.md) | マップ画像本体 |
