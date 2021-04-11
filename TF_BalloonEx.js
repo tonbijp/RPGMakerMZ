@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.2.0.0
+// Version :0.2.1.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -523,15 +523,14 @@
 
 	/**
 	 * 
-	 * @param {Sprite_Balloon} spriteBalloon フキダシスプライト
+	 * @param {Game_Character} gameCharacter キャラ
 	 * @param {Number} dx x差分
 	 * @param {Number} dy y差分
 	 */
-	function locateBalloon( spriteBalloon, dx, dy ) {
-		const gameCharacter = spriteBalloon._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
-		const balloonParam = balloonParamList[ spriteBalloon._balloonId - 1 ];
-		gameCharacter.balloonDx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
-		gameCharacter.balloonDy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
+	function locateBalloon( gameCharacter, dx, dy ) {
+		const balloonParam = balloonParamList[ gameCharacter._balloonId - 1 ];
+		gameCharacter._balloon.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
+		gameCharacter._balloon.dy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
 	}
 
 	/**
@@ -558,9 +557,9 @@
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		if( !targetEvent ) return;
 
-		targetEvent.balloonDx = args.dx;
-		targetEvent.balloonDy = args.dy;
-		$gameTemp.requestBalloon( targetEvent, stringToBalloonId( args.balloonId ) );
+		const balloonId = stringToBalloonId( args.balloonId );
+		targetEvent._balloon = new Game_Balloon( balloonId, args.dx, args.dy );
+		$gameTemp.requestBalloon( targetEvent, balloonId );
 		if( args.isWait ) {
 			this.setWaitMode( WAIT_BALLOON );
 		}
@@ -635,26 +634,25 @@
 		stopBalloon( this, showFinish );
 	};
 
-
 	/*--- Sprite_Character ---*/
 	/**
 	 * 初期化時にフキダシデータがあったら復帰。
 	 */
 	const _Sprite_Character_initialize = Sprite_Character.prototype.initialize;
-	// Sprite_Character.prototype.initialize = function( character ) {
-	// 	_Sprite_Character_initialize.apply( this, arguments );
+	Sprite_Character.prototype.initialize = function( character ) {
+		_Sprite_Character_initialize.apply( this, arguments );
 
-	// 	if( this._character.TF_balloon ) {
-	// 		this._character.requestBalloon( this._character.TF_balloon._balloonId );
-	// 	}
-	// };
+		if( character._balloon ) {
+			$gameTemp.requestBalloon( this._character, character._balloon.balloonId );
+		}
+	};
 
-	const _Sprite_Character_endBalloon = Sprite_Character.prototype.endBalloon;
-	// Sprite_Character.prototype.endBalloon = function() {
-	// 	if( this._balloonSprite ) {
-	// 		this._character.TF_balloon = null;
+	// const _Spriteset_Map_removeBalloon = Spriteset_Map.prototype.removeBalloon;
+	// Spriteset_Map.prototype.removeBalloon = function( sprite ) {
+	// 	if( sprite._target._character._balloon ) {
+	// 		sprite._target._character._balloon = null;
 	// 	}
-	// 	_Sprite_Character_endBalloon.call( this );
+	// 	_Spriteset_Map_removeBalloon.apply( this, arguments );
 	// };
 
 	/**
@@ -693,16 +691,34 @@
 		}
 	};
 
-	/*--- Sprite_Balloon ---*/
 	/**
-	 * @class Sprite_Balloon
-	 * @property _duration 残り時間
-	 * @property _loopStartDuration	ループ開始時間
-	 * @property _loopEndDuration	ループ終了時間
-	 * @property _endDuration	完了時間
-	 * @property _phase	実行段階
-	 * @property _loops	残り繰り返し回数
+	 * @class Game_Balloon
+	 * @property duration 残り時間
+	 * @property loopStartDuration	ループ開始時間
+	 * @property loopEndDuration	ループ終了時間
+	 * @property endDuration	完了時間
+	 * @property phase	実行段階
+	 * @property loops	残り繰り返し回数
+	 *
 	 */
+	class Game_Balloon {
+		constructor( balloonId, dx, dy ) {
+			const balloonParam = balloonParamList[ balloonId - 1 ];
+			this.balloonId = balloonId;
+			this.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
+			this.dy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
+			this.duration = PATTERNS_IN_LINE * balloonParam.speed + balloonParam.waitTime;
+			this.loopStartDuration = this.duration - balloonParam.startPatterns * balloonParam.speed;
+			this.loopEndDuration = this.loopStartDuration - balloonParam.loopPatterns * balloonParam.speed;
+			this.endDuration = this.loopEndDuration - balloonParam.endPatterns * balloonParam.speed;
+			this.phase = BALLOON_PHASE_LOOP;
+			this.loops = balloonParam.loops;
+		}
+	}
+
+
+
+	/*--- Sprite_Balloon ---*/
 	/**
 	 * アップデート。
 	 */
@@ -712,42 +728,29 @@
 		_Sprite_Balloon_update.call( this );
 
 		// TODO:
-		if( this._phase !== BALLOON_PHASE_LOOP || this._loopEndDuration < this._duration ) return;
-		if( this._loops === 1 ) {
+		if( this._balloon.phase !== BALLOON_PHASE_LOOP || this._balloon.loopEndDuration < this._duration ) {
+			this._balloon.duration = this._duration;
+			return;
+		}
+		if( this._balloon.loops === 1 ) {
 			// ループ終了
-			this._phase = BALLOON_PHASE_END;
+			this._balloon.phase = BALLOON_PHASE_END;
 		} else {
 			// ループ継続
-			if( 1 < this._loops ) {
-				this._loops--;
+			if( 1 < this._balloon.loops ) {
+				this._balloon.loops--;
 			}
-			this._duration = this._loopStartDuration;
+			this._balloon.duration = this._duration = this._balloon.loopStartDuration;
 		}
 	};
 
-	const _Sprite_Balloon_initialize = Sprite_Balloon.prototype.initialize;
-	Sprite_Balloon.prototype.initialize = function() {
-		_Sprite_Balloon_initialize.apply( this, arguments );
-	};
-
-	/**
-	 * @param targetSprite 
-	 */
 	const _Sprite_Balloon_setup = Sprite_Balloon.prototype.setup;
 	Sprite_Balloon.prototype.setup = function( targetSprite, balloonId ) {
 		_Sprite_Balloon_setup.apply( this, arguments );
 
-		const gameCharacter = targetSprite._character;// キャラクタスプライト -> キャラクタ
-		const balloonParam = balloonParamList[ balloonId - 1 ];
-		locateBalloon( this, gameCharacter.balloonDx, gameCharacter.balloonDy );
-		// balloonParam の startPatterns, loopPatterns, endPatterns, loops, speed, waitTime を元に初期化
-
-		this._duration = PATTERNS_IN_LINE * balloonParam.speed + balloonParam.waitTime;
-		this._loopStartDuration = this._duration - balloonParam.startPatterns * balloonParam.speed;
-		this._loopEndDuration = this._loopStartDuration - balloonParam.loopPatterns * balloonParam.speed;
-		this._endDuration = this._loopEndDuration - balloonParam.endPatterns * balloonParam.speed;
-		this._phase = BALLOON_PHASE_LOOP;
-		this._loops = balloonParam.loops;
+		if( targetSprite._character._balloon ) {
+			this._balloon = targetSprite._character._balloon;
+		}
 	};
 
 	/**
@@ -756,7 +759,8 @@
 	const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
 	Sprite_Balloon.prototype.frameIndex = function() {
 		const balloonParam = balloonParamList[ this._balloonId - 1 ];
-		if( this._duration < balloonParam._endDuration ) {
+		if( this._duration < this._balloon.endDuration ) {
+			// 最終アニメ(wait用)パターン
 			return balloonParam.startPatterns + balloonParam.loopPatterns + balloonParam.endPatterns - 1;
 		}
 		return _Sprite_Balloon_frameIndex.call( this );
@@ -770,8 +774,8 @@
 		_Sprite_Balloon_updatePosition.call( this );
 
 		const gameCharacter = this._target._character;// フキダシスプライト -> キャラクタスプライト -> キャラクタ
-		this.x += gameCharacter.balloonDx;
-		this.y += gameCharacter.balloonDy;
+		this.x += gameCharacter._balloon.dx;
+		this.y += gameCharacter._balloon.dy;
 	};
 
 	// 	if( TFb._phase === BALLOON_PHASE_END && this._duration < TFb._endDuration ) {
