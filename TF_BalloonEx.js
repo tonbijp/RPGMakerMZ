@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.5.0.0
+// Version :0.6.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -173,15 +173,13 @@
  * @================================================
  * @help
  * ●基本的な使い方
- * 　プラグインパラメータの[アニメーション設定]に[フキダシ番号]毎に設定を書きます。
+ * 　プラグインパラメータの[アニメーション設定]に[フキダシ番号]毎に設定を書く。
  * 　・配置(dx,dy) ループ回数(loops) 速度(speed) 終了時間(waitTime)など設定。
- * 　・パターン数(startPatterns, loopPatterns,endPatterns)は計8以内。
- * 　・presetに設定する値について詳細は、それぞれのヘルプ文を参照ください。
+ * 　・パターン数(出現, ループ, 消滅)は計8以内。
+ * 　・値について詳細は、それぞれのヘルプ文などを参照。
  * 　通常の[フキダシアイコンの表示]イベントコマンドを実行すると、
  * 　[フキダシ番号]に応じた設定でアニメが再生されます。
- * 　トリアコンタンさんの BalloonPlaySe.js と組み合わせると音も鳴らせます。
  *
- * 
  * ●プラグインコマンド
  * [フキダシアニメ開始]
  * [単体フキダシ表示]
@@ -191,20 +189,18 @@
  * ● [移動ルートの設定]で使えるスクリプト
  * 
  * this.TF_startBalloon( [フキダシ番号], [完了までウエイト], [dx], [dy] );
- * 　TF_START_BALLOONの機能
+ * 　[フキダシアニメ開始]の機能
  * 　[完了までウエイト], [dx], [dy] は省略できます。
- * 　　規定値は TF_START_BALLOON に準拠します。
- * 　this.TF_startBalloon の代わりに this.balloon も使えます。
- * 　ただし EventEffects.js と併用の際は EventEffects.js を、このプラグインの上に配置してください。
+ * 　規定値は [フキダシアニメ開始] に準拠します。
  *------------------------------
  * this.TF_setBalloon( [フキダシ番号], [パターン番号], [表示フレーム数], [完了までウェイト], [dx], [dy] );
- * 　TF_SET_BALLOONの機能
+ * 　[単体フキダシ表示]の機能
  *------------------------------
  * this.TF_locateBalloon( [dx], [dy] );
- * 　TF_LOCATE_BALLOONの機能
+ * 　[フキダシ位置変更]の機能
  *------------------------------
  * this.TF_stopBalloon( [消滅アニメを表示] );
- * 　TF_STOP_BALLOON の機能
+ * 　[フキダシアニメ停止]の機能
  *------------------------------
  *
  *
@@ -610,6 +606,17 @@
 			this.setWaitMode( WAIT_BALLOON );
 		}
 	} );
+	// [フキダシアニメ開始] スクリプト
+	Game_CharacterBase.prototype.TF_startBalloon = function( balloonIndex, isWait, dx, dy ) {
+		this.requestBalloon( stringToBalloonIndex( balloonIndex ) );
+
+		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+		this._balloon = new Game_Balloon().setByBalloonIndex( balloonIndex, dx, dy );
+		$gameTemp.requestBalloon( this, balloonIndex );
+		if( isWait ) {
+			setWaitMode2Balloon( this );
+		}
+	};
 
 	// [単体フキダシ表示] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_BALLOON, function( args ) {
@@ -620,6 +627,15 @@
 			this.setWaitMode( WAIT_BALLOON );
 		}
 	} );
+	// [単体フキダシ表示] スクリプト
+	Game_CharacterBase.prototype.TF_setBalloon = function( balloonIndex, patternIndex, waitTime, isWait, dx, dy ) {
+		patternIndex = ( patternIndex ? parseIntStrict( patternIndex ) : 8 );
+		waitTime = ( waitTime ? parseIntStrict( waitTime ) : 64 );
+		setBalloon( this, balloonIndex, patternIndex, waitTime, dx, dy );
+		if( isWait ) {
+			setWaitMode2Balloon( this );
+		}
+	};
 
 	// [フキダシ位置変更] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_BALLOON, function( args ) {
@@ -628,33 +644,19 @@
 			locateBalloon( targetEvent, args.dx, args.dy );
 		}
 	} );
+	// [フキダシ位置変更] スクリプト
+	Game_CharacterBase.prototype.TF_locateBalloon = function( dx, dy ) {
+		if( this._balloon ) {
+			locateBalloon( this, dx, dy );
+		}
+	};
 
-	// [フキダシアニメ停止] コマンド TODO
+	// [フキダシアニメ停止] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_STOP_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		stopBalloon( targetEvent, args.showFinish );
 	} );
-
-
-	/*---- Game_CharacterBase ----*/
-	// [フキダシアニメ開始] スクリプト
-	Game_CharacterBase.prototype.TF_startBalloon = function( balloonIndex, wait, dx, dy ) {
-		this.requestBalloon( stringToBalloonIndex( balloonIndex ) );
-		if( wait ) setWaitMode2Balloon( this );
-		locateBalloon( this, dx, dy );
-	};
-	// TF_SET_BALLOON に対応したメソッド
-	Game_CharacterBase.prototype.TF_setBalloon = function( balloonIndex, pattern, waitTime, wait, dx, dy ) {
-		pattern = ( pattern ? parseIntStrict( pattern ) : 8 );
-		waitTime = ( waitTime ? parseIntStrict( waitTime ) : 64 );
-		setBalloon( this, balloonIndex, pattern, waitTime, dx, dy );
-		if( wait ) setWaitMode2Balloon( this );
-	};
-	// TF_LOCATE_BALLOON に対応したメソッド
-	Game_CharacterBase.prototype.TF_locateBalloon = function( dx, dy ) {
-		locateBalloon( this, dx, dy );
-	};
-	// TF_STOP_BALLOON に対応したメソッド
+	// [フキダシアニメ停止] スクリプト
 	Game_CharacterBase.prototype.TF_stopBalloon = function( showFinish ) {
 		stopBalloon( this, showFinish );
 	};
