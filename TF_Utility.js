@@ -3,7 +3,7 @@
 // Version :0.0.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020
+// Copyright : Tobishima-Factory 2020-2021
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
