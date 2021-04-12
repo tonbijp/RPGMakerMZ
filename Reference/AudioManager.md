@@ -24,7 +24,7 @@ BGM, BGS, ME, SE を扱う静的クラス。
 | `_seBuffers` | [Array](Array.md).&lt;Html5AudioStatic \| [WebAudio](WebAudio.md)&gt; | [static] SEバッファ |
 | `_staticBuffers ` | [Array](Array.md).&lt;Html5AudioStatic \| [WebAudio](WebAudio.md)&gt; | [static] 静的バッファ |
 | `_replayFadeTime` | [Number](Number.md) | [static] リプレイフェード時間 |
-| `_path` | [String](String.md) | [static] 音声フォルダのパス(規定値: 'audio/') |
+| `_path` | [String](String.md) | [static] 音声フォルダのパス(規定値: "audio/") |
 | | [String](String.md) | [static] URL |
 
 ### 廃止MVプロパティ
@@ -34,7 +34,7 @@ BGM, BGS, ME, SE を扱う静的クラス。
 ### メソッド
 
 #### (static) audioFileExt () → {[String](String.md)}
-音声ファイルの拡張子( '.ogg', '.m4a' )
+音声ファイルの拡張子( ".ogg", ".m4a" )
 
 
 #### (static) checkErrors ()
