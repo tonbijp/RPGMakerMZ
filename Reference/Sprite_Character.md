@@ -17,9 +17,10 @@
 
 マップ上のキャラクタを表示するスプライト。
 
-MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
+MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。<br />
+またフキダシ関連は [Spriteset_Map](Spriteset_Map.md) で管理するように変更されている。
 
-関連クラス: [Scene_Map](Scene_Map.md), [Spriteset_Map](Spriteset_Map.md),[Sprite_Actor](Sprite_Actor.md)
+関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md)
 
 #### 引数
 
@@ -33,13 +34,14 @@ MV で継承元(スーパークラス)だった Sprite_Base は廃止されて�
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_character` | [Game_Character](Game_Character.md) | キャラクタデータ |
-| `_balloonDuration` | [Number](Number.md) | フキダシの継続時間 |
+| `_balloonDuration` | [Number](Number.md) | フキダシの継続時間(未使用) |
 | `_tilesetId` | [Number](Number.md) | タイルセットID |
 | `_upperBody` | [Sprite](Sprite.md) | 上半身 |
 | `_lowerBody` | [Sprite](Sprite.md) | 下半身 |
 | `_bushDepth` | [Number](Number.md) | 茂みの深さ(ピクセル) |
-| `_balloonSprite` | [Sprite_Balloon](Sprite_Balloon.md) | 付随するフキダシスプライト |
 
+### 廃止MVプロパティ
+`_balloonSprite`
 
 ### スーパークラスから継承されたメソッド
 
@@ -234,7 +236,6 @@ MV で継承元(スーパークラス)だった Sprite_Base は廃止されて�
 
 #### updateVisibility ()
 オーバーライド: [Sprite](Sprite.md#updateVisibility-)
-
 
 
 ### 廃止MVメソッド
