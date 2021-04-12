@@ -663,7 +663,6 @@
 	/**
 	 * パラメータを受け取る
 	 */
-	// const pluginParams = PluginManager.parameters( "TF_CharEx" );
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 	const TF_moveUnit = parseFloatStrict( pluginParams.moveUnit );
 
