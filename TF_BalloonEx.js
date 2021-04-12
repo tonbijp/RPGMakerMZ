@@ -1,7 +1,7 @@
 //========================================
 // TF_BalloonEx.js
 // Version :0.6.0.0
-// For : RPGツクールMV (RPG Maker MV)
+// For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
 // Website : http://tonbi.jp

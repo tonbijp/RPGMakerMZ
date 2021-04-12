@@ -1,7 +1,7 @@
 //========================================
 // TF_VectorWindow.js
 // Version :0.2.0.1
-// For : RPGツクールMV (RPG Maker MV)
+// For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
 // Website : http://tonbi.jp
