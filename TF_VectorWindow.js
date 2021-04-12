@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.2.0.0
+// Version :0.2.0.1
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -17,7 +17,7 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  * 
- * @param preset
+ * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット(1が規定)
  * @type struct<WindowParam>[]
  * @default ["{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
