@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.4.0.0
+// Version :0.5.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -186,19 +186,7 @@
  * [フキダシアニメ開始]
  * [単体フキダシ表示]
  * [フキダシ位置変更]
- *------------------------------
- * TF_STOP_BALLOON [イベントID] [消滅アニメを表示]
- * 　フキダシのアニメーションを停止。
- * 　TF_START_BALLOON で[ループ回数] 0 の場合など、これを使って止める。
- * 　[消滅アニメを表示] 真偽値(true:消滅アニメを表示 false:即終了)(規定値:false)
- * 
- * 　例: TF_STOP_BALLOON 0 true
- *------------------------------
- * [イベントID][フキダシ番号][dx][dy]の数値は全てV[n]で変数を指定できます。
- * 
- * 例 : TF_LOCATE_BALLOON 0 V[1] V[2]
- *------------------------------
- *
+ * [フキダシアニメ停止]
  * 
  * ● [移動ルートの設定]で使えるスクリプト
  * 
@@ -318,7 +306,6 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- *
  * @arg dx @text 表示位置X差分
  * @desc
  * [テキスト]で空に設定すると[アニメーション設定]で
@@ -332,6 +319,24 @@
  * フキダシ番号毎に設定された値が使われます。
  * @type number @default
  * @min -1000000
+ *
+ * @================================================
+ * @command stopBalloon @text フキダシアニメ停止
+ * @desc
+ * [フキダシアニメ開始][単体フキダシ表示]で
+ * [ループ回数] 0 の場合、これを使って止める。
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ *
+ * @arg showFinish @text 消滅アニメ表示
+ * @desc
+ * 消滅アニメを表示してから消すか。
+ * @type boolean @default false
+ * @on 消滅アニメ表示(規定) @off 即時
  */
 
 /*~struct~BalloonParam:ja
@@ -390,20 +395,20 @@
 	const COM_START_BALLOON = "startBalloon";
 	const COM_SET_BALLOON = "setBalloon";
 	const COM_LOCATE_BALLOON = "locateBalloon";
-	const TF_STOP_BALLOON = "TF_STOP_BALLOON";
+	const COM_STOP_BALLOON = "stopBalloon";
+
+	// ウェイトモード
 	const WAIT_BALLOON = "balloon";
-	const PARAM_TRUE = "true";
 
 	// アニメーション
-	const PATTERNS_IN_LINE = 8;	// フキダシ画像の横1行に含まれるパターン
-	const BALLOON_PHASE_LOOP = "loop"; // 開始からループ中まで
-	const BALLOON_PHASE_END = "end";	// 終了アニメーション
-	const BALLOON_PHASE_WAIT = "wait";	// アニメーション終了時の待ち時間
+	const PATTERNS_IN_LINE = 8;	// フキダシ画像の横1行に含まれるパターン数
+	const PHASE_LOOP = "loop"; // 開始からループ中まで
+	const PHASE_END = "end";	// 終了アニメーション
+	const PHASE_FINISH = "finish";	// アニメーション即時終了
+	const PHASE_SHOW_FINISH = "showFinish";	// 消滅アニメーションののち終了
 
 	// typeof 型判定用定数
-	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
-	const TYPE_STRING = "string";
 
 	/**
 	 * パラメータを受け取る
@@ -579,24 +584,23 @@
 
 	/**
 	 * フキダシアイコン表示の停止
-	 * @param {Game_CharacterBase} target 対象となるキャラ・イベント
+	 * @param {Game_CharacterBase} targetEvent 対象となるキャラ・イベント
 	 * @param {Boolean} showFinish 消滅アニメを表示するか
 	 */
-	function stopBalloon( target, showFinish ) {
-		if( target.TF_balloon ) {
-			if( !showFinish ) {
-				target._duration = 0;
-			}
-			target.finishTrigger = true;
+	function stopBalloon( targetEvent, showFinish ) {
+		if( !targetEvent._balloon ) return;
+
+		if( showFinish ) {
+			targetEvent._balloon.phase = PHASE_SHOW_FINISH;
+		} else {
+			targetEvent._balloon.phase = PHASE_FINISH;
 		}
 	}
-
-	/*---- Game_Interpreter ----*/
 
 	/**
 	 * プラグインコマンドの登録
 	 */
-	// [フキダシアニメ開始]
+	// [フキダシアニメ開始] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
@@ -607,7 +611,7 @@
 		}
 	} );
 
-	// [単体フキダシ表示]
+	// [単体フキダシ表示] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
@@ -617,7 +621,7 @@
 		}
 	} );
 
-	// [フキダシ位置変更]
+	// [フキダシ位置変更] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		if( targetEvent._balloon ) {
@@ -625,19 +629,15 @@
 		}
 	} );
 
-	const _Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
-	Game_Interpreter.prototype.pluginCommand = function( command, args ) {
-		_Game_Interpreter_pluginCommand.apply( this, arguments );
+	// [フキダシアニメ停止] コマンド TODO
+	PluginManagerEx.registerCommand( document.currentScript, COM_STOP_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		stopBalloon( targetEvent, args.showFinish );
+	} );
 
-		const commandStr = command.toUpperCase();
-		if( commandStr === TF_STOP_BALLOON ) {
-			const target = getEventById( this, stringToEventId( args[ 0 ] ) );
-			const showFinish = ( args[ 1 ] && args[ 1 ].toLowerCase() === PARAM_TRUE );
-			stopBalloon( target, showFinish );
-		}
-	};
 
-	// [フキダシアニメ開始]
+	/*---- Game_CharacterBase ----*/
+	// [フキダシアニメ開始] スクリプト
 	Game_CharacterBase.prototype.TF_startBalloon = function( balloonIndex, wait, dx, dy ) {
 		this.requestBalloon( stringToBalloonIndex( balloonIndex ) );
 		if( wait ) setWaitMode2Balloon( this );
@@ -704,7 +704,7 @@
 			this.loopEndDuration = this.loopStartDuration - balloonParam.loopPatterns * this.speed;
 			this.endDuration = this.loopEndDuration - balloonParam.endPatterns * this.speed;
 			this.lastIndex = balloonParam.startPatterns + balloonParam.loopPatterns + balloonParam.endPatterns - 1;
-			this.phase = BALLOON_PHASE_LOOP;
+			this.phase = PHASE_LOOP;
 			this.loops = balloonParam.loops;
 			return this;
 		}
@@ -735,7 +735,7 @@
 			this.speed = 0;
 
 			this.endDuration = this.loopEndDuration = this.loopStartDuration = this.duration = this.waitTime;
-			this.phase = BALLOON_PHASE_LOOP;
+			this.phase = PHASE_LOOP;
 			return this;
 		};
 	}
@@ -762,13 +762,24 @@
 		Sprite.prototype.update.call( this );
 		_Sprite_Balloon_update.call( this );
 
-		if( this._balloon.phase !== BALLOON_PHASE_LOOP || this._balloon.loopEndDuration < this._duration ) {
+		// stopBalloonに対する処理
+		if( this._balloon.phase === PHASE_FINISH ) {
+			this._balloon.phase = PHASE_END;
+			this._duration = 0;
+		} else if( this._balloon.phase === PHASE_SHOW_FINISH ) {
+			this._balloon.phase = PHASE_END;
+			if( this._balloon.loopEndDuration < this._duration ) {
+				this._duration = this._balloon.loopEndDuration;
+			}
+		}
+
+		if( this._balloon.phase !== PHASE_LOOP || this._balloon.loopEndDuration < this._duration ) {
 			this._balloon.duration = this._duration;
 			return;
 		}
 		if( this._balloon.loops === 1 ) {
 			// ループ終了
-			this._balloon.phase = BALLOON_PHASE_END;
+			this._balloon.phase = PHASE_END;
 		} else {
 			// ループ継続
 			if( 1 < this._balloon.loops ) {
