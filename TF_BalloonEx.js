@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.3.0.0
+// Version :0.4.0.0
 // For : RPGツクールMV (RPG Maker MV)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -173,23 +173,19 @@
  * @================================================
  * @help
  * ●基本的な使い方
- * 　プラグインパラメータの[アニメーション設定]に[フキダシID]毎に設定を書きます。
+ * 　プラグインパラメータの[アニメーション設定]に[フキダシ番号]毎に設定を書きます。
  * 　・配置(dx,dy) ループ回数(loops) 速度(speed) 終了時間(waitTime)など設定。
  * 　・パターン数(startPatterns, loopPatterns,endPatterns)は計8以内。
  * 　・presetに設定する値について詳細は、それぞれのヘルプ文を参照ください。
  * 　通常の[フキダシアイコンの表示]イベントコマンドを実行すると、
- * 　[フキダシID]に応じた設定でアニメが再生されます。
+ * 　[フキダシ番号]に応じた設定でアニメが再生されます。
  * 　トリアコンタンさんの BalloonPlaySe.js と組み合わせると音も鳴らせます。
  *
  * 
  * ●プラグインコマンド
  * [フキダシアニメ開始]
  * [単体フキダシ表示]
- *------------------------------
- * TF_LOCATE_BALLOON [イベントID] [dx] [dy]
- * 　フキダシ表示位置を変更。フキダシ表示中のみ可能。
- * 
- * 　例: TF_LOCATE_BALLOON 15 0 10
+ * [フキダシ位置変更]
  *------------------------------
  * TF_STOP_BALLOON [イベントID] [消滅アニメを表示]
  * 　フキダシのアニメーションを停止。
@@ -198,7 +194,7 @@
  * 
  * 　例: TF_STOP_BALLOON 0 true
  *------------------------------
- * [イベントID][フキダシID][dx][dy]の数値は全てV[n]で変数を指定できます。
+ * [イベントID][フキダシ番号][dx][dy]の数値は全てV[n]で変数を指定できます。
  * 
  * 例 : TF_LOCATE_BALLOON 0 V[1] V[2]
  *------------------------------
@@ -206,14 +202,14 @@
  * 
  * ● [移動ルートの設定]で使えるスクリプト
  * 
- * this.TF_startBalloon( [フキダシID], [完了までウエイト], [dx], [dy] );
+ * this.TF_startBalloon( [フキダシ番号], [完了までウエイト], [dx], [dy] );
  * 　TF_START_BALLOONの機能
  * 　[完了までウエイト], [dx], [dy] は省略できます。
  * 　　規定値は TF_START_BALLOON に準拠します。
  * 　this.TF_startBalloon の代わりに this.balloon も使えます。
  * 　ただし EventEffects.js と併用の際は EventEffects.js を、このプラグインの上に配置してください。
  *------------------------------
- * this.TF_setBalloon( [フキダシID], [パターン番号], [表示フレーム数], [完了までウェイト], [dx], [dy] );
+ * this.TF_setBalloon( [フキダシ番号], [パターン番号], [表示フレーム数], [完了までウェイト], [dx], [dy] );
  * 　TF_SET_BALLOONの機能
  *------------------------------
  * this.TF_locateBalloon( [dx], [dy] );
@@ -236,10 +232,10 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg balloonId @text フキダシID
+ * @arg balloonIndex @text フキダシ番号
  * @desc
  * [アニメーション設定]で設定した名前か
- * フキダシID(数値)を入力します。
+ * フキダシ番号(数値)を入力します。
  * @type combo @default びっくり
  * @option びっくり @option はてな @option 音符 @option ハート @option 怒り
  * @option 汗 @option くしゃくしゃ @option 沈黙 @option 電球 @option 沈黙 @option Zzz
@@ -251,14 +247,14 @@
  * @arg dx @text 表示位置X差分
  * @desc
  * [テキスト]で空に設定すると[アニメーション設定]で
- * フキダシID毎に設定された値が使われます。
+ * フキダシ番号毎に設定された値が使われます。
  * @type number @default
  * @min -1000000
  * 
  * @arg dy @text 表示位置Y差分
  * @desc
  * [テキスト]で空に設定すると[アニメーション設定]で
- * フキダシID毎に設定された値が使われます。
+ * フキダシ番号毎に設定された値が使われます。
  * @type number @default
  * @min -1000000
  * 
@@ -272,10 +268,10 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg balloonId @text フキダシID
+ * @arg balloonIndex @text フキダシ番号
  * @desc
  * [アニメーション設定]で設定した名前か
- * フキダシID(数値)を入力します。
+ * フキダシ番号(数値)を入力します。
  * @type combo @default びっくり
  * @option びっくり @option はてな @option 音符 @option ハート @option 怒り
  * @option 汗 @option くしゃくしゃ @option 沈黙 @option 電球 @option 沈黙 @option Zzz
@@ -300,23 +296,48 @@
  * @arg dx @text 表示位置X差分
  * @desc
  * [テキスト]で空に設定すると[アニメーション設定]で
- * フキダシID毎に設定された値が使われます。
+ * フキダシ番号毎に設定された値が使われます。
  * @type number @default
  * @min -1000000
  *
  * @arg dy @text 表示位置Y差分
  * @desc
  * [テキスト]で空に設定すると[アニメーション設定]で
- * フキダシID毎に設定された値が使われます。
+ * フキダシ番号毎に設定された値が使われます。
  * @type number @default
  * @min -1000000
  *
+ * @================================================
+ * @command locateBalloon @text フキダシ位置変更
+ * @desc
+ * フキダシ表示中のみ可能。
+ * 
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ *
+ *
+ * @arg dx @text 表示位置X差分
+ * @desc
+ * [テキスト]で空に設定すると[アニメーション設定]で
+ * フキダシ番号毎に設定された値が使われます。
+ * @type number @default
+ * @min -1000000
+ *
+ * @arg dy @text 表示位置Y差分
+ * @desc
+ * [テキスト]で空に設定すると[アニメーション設定]で
+ * フキダシ番号毎に設定された値が使われます。
+ * @type number @default
+ * @min -1000000
  */
 
 /*~struct~BalloonParam:ja
  * *
  * @param name @text 名前
- * @desc  [フキダシID]に使用する名前
+ * @desc  [フキダシ番号]に使用する名前
  * @type String
  * 
  * @param dx @text x差分
@@ -368,7 +389,7 @@
 	// プラグインコマンド
 	const COM_START_BALLOON = "startBalloon";
 	const COM_SET_BALLOON = "setBalloon";
-	const TF_LOCATE_BALLOON = "TF_LOCATE_BALLOON";
+	const COM_LOCATE_BALLOON = "locateBalloon";
 	const TF_STOP_BALLOON = "TF_STOP_BALLOON";
 	const WAIT_BALLOON = "balloon";
 	const PARAM_TRUE = "true";
@@ -492,11 +513,11 @@
 	}
 
 	/**
-	 * 文字列をフキダシIDへ変換
-	 * @param {String} value フキダシIDの番号かnameプロパティ
-	 * @returns {Number} フキダシID
+	 * 文字列をフキダシ番号へ変換
+	 * @param {String} value フキダシ番号かnameプロパティ
+	 * @returns {Number} フキダシ番号
 	 */
-	function stringToBalloonId( value ) {
+	function stringToBalloonIndex( value ) {
 		const result = parseInt( treatValue( value ), 10 );
 		if( !isNaN( result ) ) return result;
 
@@ -508,15 +529,15 @@
 	/**
 	 * TF_SET_BALLOON
 	 * @param {Game_Character} character 
-	 * @param {Number} balloonId フキダシID
+	 * @param {Number} balloonIndex フキダシ番号
 	 * @param {Number} patternIndex パターン番号
 	 * @param {Number} waitTime 表示フレーム数
 	 * @param {Number} dx x差分
 	 * @param {Number} dy y差分
 	 */
-	function setBalloon( character, balloonId, patternIndex, waitTime, dx, dy ) {
-		character._balloon = new Game_Balloon().setSinglePattern( balloonId, patternIndex, waitTime, dx, dy );
-		$gameTemp.requestBalloon( character, balloonId );
+	function setBalloon( character, balloonIndex, patternIndex, waitTime, dx, dy ) {
+		character._balloon = new Game_Balloon().setSinglePattern( balloonIndex, patternIndex, waitTime, dx, dy );
+		$gameTemp.requestBalloon( character, balloonIndex );
 	}
 
 	/**
@@ -545,13 +566,13 @@
 	}
 
 	/**
-	 * 
+	 * フキダシ位置変更
 	 * @param {Game_Character} gameCharacter キャラ
 	 * @param {Number} dx x差分
 	 * @param {Number} dy y差分
 	 */
 	function locateBalloon( gameCharacter, dx, dy ) {
-		const balloonParam = balloonParamList[ gameCharacter._balloonId - 1 ];
+		const balloonParam = balloonParamList[ gameCharacter._balloon.balloonIndex - 1 ];
 		gameCharacter._balloon.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
 		gameCharacter._balloon.dy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
 	}
@@ -578,9 +599,9 @@
 	// [フキダシアニメ開始]
 	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const balloonId = stringToBalloonId( args.balloonId );
-		targetEvent._balloon = new Game_Balloon().setByBalloonId( balloonId, args.dx, args.dy );
-		$gameTemp.requestBalloon( targetEvent, balloonId );
+		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+		targetEvent._balloon = new Game_Balloon().setByBalloonIndex( balloonIndex, args.dx, args.dy );
+		$gameTemp.requestBalloon( targetEvent, balloonIndex );
 		if( args.isWait ) {
 			this.setWaitMode( WAIT_BALLOON );
 		}
@@ -589,10 +610,18 @@
 	// [単体フキダシ表示]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_BALLOON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const balloonId = stringToBalloonId( args.balloonId );
-		setBalloon( targetEvent, balloonId, args.patternIndex, args.waitTime, args.dx, args.dy );
+		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+		setBalloon( targetEvent, balloonIndex, args.patternIndex, args.waitTime, args.dx, args.dy );
 		if( args.isWait ) {
 			this.setWaitMode( WAIT_BALLOON );
+		}
+	} );
+
+	// [フキダシ位置変更]
+	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		if( targetEvent._balloon ) {
+			locateBalloon( targetEvent, args.dx, args.dy );
 		}
 	} );
 
@@ -601,11 +630,7 @@
 		_Game_Interpreter_pluginCommand.apply( this, arguments );
 
 		const commandStr = command.toUpperCase();
-		if( commandStr === TF_LOCATE_BALLOON ) {
-			const target = getEventById( this, stringToEventId( args[ 0 ] ) );
-			locateBalloon( target, args[ 1 ], args[ 2 ] );
-
-		} else if( commandStr === TF_STOP_BALLOON ) {
+		if( commandStr === TF_STOP_BALLOON ) {
 			const target = getEventById( this, stringToEventId( args[ 0 ] ) );
 			const showFinish = ( args[ 1 ] && args[ 1 ].toLowerCase() === PARAM_TRUE );
 			stopBalloon( target, showFinish );
@@ -613,16 +638,16 @@
 	};
 
 	// [フキダシアニメ開始]
-	Game_CharacterBase.prototype.TF_startBalloon = function( balloonId, wait, dx, dy ) {
-		this.requestBalloon( stringToBalloonId( balloonId ) );
+	Game_CharacterBase.prototype.TF_startBalloon = function( balloonIndex, wait, dx, dy ) {
+		this.requestBalloon( stringToBalloonIndex( balloonIndex ) );
 		if( wait ) setWaitMode2Balloon( this );
 		locateBalloon( this, dx, dy );
 	};
 	// TF_SET_BALLOON に対応したメソッド
-	Game_CharacterBase.prototype.TF_setBalloon = function( balloonId, pattern, waitTime, wait, dx, dy ) {
+	Game_CharacterBase.prototype.TF_setBalloon = function( balloonIndex, pattern, waitTime, wait, dx, dy ) {
 		pattern = ( pattern ? parseIntStrict( pattern ) : 8 );
 		waitTime = ( waitTime ? parseIntStrict( waitTime ) : 64 );
-		setBalloon( this, balloonId, pattern, waitTime, dx, dy );
+		setBalloon( this, balloonIndex, pattern, waitTime, dx, dy );
 		if( wait ) setWaitMode2Balloon( this );
 	};
 	// TF_LOCATE_BALLOON に対応したメソッド
@@ -643,7 +668,7 @@
 		_Sprite_Character_initialize.apply( this, arguments );
 
 		if( character._balloon ) {
-			$gameTemp.requestBalloon( this._character, character._balloon.balloonId );
+			$gameTemp.requestBalloon( this._character, character._balloon.balloonIndex );
 		}
 	};
 
@@ -662,14 +687,14 @@
 		}
 		/**
 		 * 
-		 * @param {number} balloonId フキダシID
+		 * @param {number} balloonIndex フキダシ番号
 		 * @param {number} dx 差分x
 		 * @param {number} dy 差分y
 		 * @returns {Game_Balloon}
 		 */
-		setByBalloonId( balloonId, dx, dy ) {
-			const balloonParam = balloonParamList[ balloonId - 1 ];
-			this.balloonId = balloonId;
+		setByBalloonIndex( balloonIndex, dx, dy ) {
+			const balloonParam = balloonParamList[ balloonIndex - 1 ];
+			this.balloonIndex = balloonIndex;
 			this.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
 			this.dy = ( ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy ) + baseDy;
 			this.waitTime = balloonParam.waitTime;
@@ -685,15 +710,15 @@
 		}
 		/**
 		 *
-		 * @param {number} balloonId フキダシID
+		 * @param {number} balloonIndex フキダシ番号
 		 * @param {number} patternIndex パターン番号
 		 * @param {number} waitTime 終了待ち時間
 		 * @param {number} dx 差分x
 		 * @param {number} dy 差分y
 		 * @returns {Game_Balloon}
 		 */
-		setSinglePattern( balloonId, patternIndex, waitTime, dx, dy ) {
-			const balloonParam = balloonParamList[ balloonId - 1 ];
+		setSinglePattern( balloonIndex, patternIndex, waitTime, dx, dy ) {
+			const balloonParam = balloonParamList[ balloonIndex - 1 ];
 			if( waitTime === 0 ) {
 				// waitTime:0 の場合は無限ループ
 				this.loops = 0;
@@ -703,7 +728,7 @@
 				this.waitTime = waitTime;
 			}
 
-			this.balloonId = balloonId;
+			this.balloonIndex = balloonIndex;
 			this.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
 			this.dy = ( ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy ) + baseDy;
 			this.lastIndex = patternIndex;
@@ -754,7 +779,7 @@
 	};
 
 	const _Sprite_Balloon_setup = Sprite_Balloon.prototype.setup;
-	Sprite_Balloon.prototype.setup = function( targetSprite, balloonId ) {
+	Sprite_Balloon.prototype.setup = function( targetSprite, balloonIndex ) {
 		this._balloon = targetSprite._character._balloon;
 		_Sprite_Balloon_setup.apply( this, arguments );
 	};
