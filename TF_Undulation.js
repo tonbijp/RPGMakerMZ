@@ -1,6 +1,6 @@
 //========================================
 // TF_Undulation.js
-// Version :0.0.0.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2019-2021
@@ -13,34 +13,31 @@
  * @target MZ
  * @plugindesc Can walk tiles of different height naturally, such as stairs.
  * @author Tonbi@Tobishima-Factory
+ * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Undulation.js
+ * @base PluginCommonBase
+ * @orderAfter PluginCommonBase
+ * @base HalfMove
+ * @orderAfter HalfMove
  * 
- * @param TerrainTag
+ * @param terrainTag
  * @desc Set condition with this number of terrain tag and 4 direction setting.
- * @type number
- * @min 0
- * @max 7
- * @default 1
+ * @type number @default 1
+ * @min 0 @max 7
  * 
- * @param TerrainTagSN
+ * @param terrainTagSN
  * @desc This tag is subject to north-south climb resistance.
- * @type number
- * @min 0
- * @max 7
- * @default 2
+ * @type number @default 2
+ * @min 0 @max 7
  * 
- * @param BaseBump
+ * @param baseBump
  * @desc Base unit of bump.
- * @type number
- * @min 1
- * @max 14
- * @default 6
+ * @type number @default 6
+ * @min 1 @max 14
  * 
- * @param ClimbResist
+ * @param climbResist
  * @desc Resistance to climb up and down.
- * @type number
- * @min 0
- * @max 6
- * @default 2
+ * @type number @default 2
+ * @min 0 @max 6
  * 
  * @help
  * CAUTION : This plugin needs HalfMove.js made by Triacontane.
@@ -87,39 +84,31 @@
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Undulation.js
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
+ * @base HalfMove
+ * @orderAfter HalfMove
  * 
- * @param TerrainTag
+ * @param terrainTag
  * @desc この地形タグ+通行設定(4方向)で詳細な段差設定を行う。
- * @type number
- * @min 0
- * @max 7
- * @default 1
+ * @type number @default 1
+ * @min 0 @max 7
  * 
- * @param TerrainTagSN
+ * @param terrainTagSN
  * @desc この地形タグは南北方向の階段に減速効果をつける。
- * @type number
- * @min 0
- * @max 7
- * @default 2
+ * @type number @default 2
+ * @min 0 @max 7
  * 
- * @param BaseBump
+ * @param baseBump
  * @desc 段差の基本単位。
- * @type number
- * @min 1
- * @max 14
- * @default 6
+ * @type number @default 6
+ * @min 1 @max 14
  * 
- * @param ClimbResist
+ * @param climbResist
  * @desc 登り降りの抵抗。
- * @type number
- * @min 0
- * @max 6
- * @default 2
+ * @type number @default 2
+ * @min 0 @max 6
  * 
  * @help
  * 注意 : トリアコンタンさんの HalfMove.js の利用を前提としています。
- * TF_Undulation.js の前に HalfMove.js を配置するようにしてください。
- * TF_LayeredMap.js と一緒の場合は、TF_LayeredMap.js が前です。
  * 
  * 地形タグと通行設定(4方向)の組み合わせで坂・階段を指定します。
  * 左右(←・→)に入力しておくだけで、自動で上下方向にも移動します。
@@ -154,30 +143,16 @@
  * 
  * 利用規約 : MITライセンス
  */
-( function() {
-    'use strict';
-    // HalfMove.js の確認
-    if( !PluginManager._scripts.contains( 'HalfMove' ) ) {
-        throw new Error( 'HalfMove.js is required to use TF_Undulation.js.' );
-    }
+( () => {
+    "use strict";
 
     // パラメータを受け取る
-    const pluginParams = PluginManager.parameters( 'TF_Undulation' );
+    const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
-    /**
-     * 指定したパラメータの数値を返す。
-     * @param {String} paramName パラメータ名
-     * @param {Number} defaultParam 規定値
-     * @returns {Number}
-     */
-    const getNumberParam = ( paramName, defaultParam ) => {
-        return parseInt( pluginParams[ paramName ] || defaultParam, 10 );
-    };
-
-    const _TerrainTag = getNumberParam( 'TerrainTag', 1 );    // 東西用の地形タグ規定値
-    const _TerrainTagSN = getNumberParam( 'TerrainTagSN', 2 );   // 南用の地形タグ規定値
-    const _BaseBump = getNumberParam( 'BaseBump', 6 );    // 段差の規定値
-    const _ClimbResist = getNumberParam( 'ClimbResist', 2 );    // 昇降抵抗の規定値
+    const terrainTag = pluginParams.terrainTag;    // 東西用の地形タグ規定値
+    const terrainTagSN = pluginParams.terrainTagSN;   // 南用の地形タグ規定値
+    const baseBump = pluginParams.baseBump;    // 段差の規定値
+    const climbResist = pluginParams.climbResist;    // 昇降抵抗の規定値
 
     // flag用定数
     const MASK_BUMP = 0x120; // 段差用マスク(梯子とダメージ床)
@@ -218,10 +193,10 @@
 
     // フラグから移動速度の調整比率を得るテーブル
     // Math.sqrt( Math.pow( ( 1 - resistA ), 2 ) + Math.pow( ( 1 - resistB ), 2) )
-    const resistA = [ 0.1, 0.14, 0.2, 0.3, 0.4, 0.5, 0.6 ][ _ClimbResist ];
-    const resistB = [ 0.55, 0.57, 0.6, 0.65, 0.7, 0.75, 0.8 ][ _ClimbResist ];
-    const resistC = [ 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22 ][ _ClimbResist ];
-    const resistD = [ 0.55, 0.56, 0.57, 0.58, 0.59, 0.6, 0.62 ][ _ClimbResist ];
+    const resistA = [ 0.1, 0.14, 0.2, 0.3, 0.4, 0.5, 0.6 ][ climbResist ];
+    const resistB = [ 0.55, 0.57, 0.6, 0.65, 0.7, 0.75, 0.8 ][ climbResist ];
+    const resistC = [ 0.1, 0.12, 0.14, 0.16, 0.18, 0.2, 0.22 ][ climbResist ];
+    const resistD = [ 0.55, 0.56, 0.57, 0.58, 0.59, 0.6, 0.62 ][ climbResist ];
     const FLAG2RATIO_W = { // 西(左)向き ↖ , ↙
         [ W45 ]: [ resistA, resistA ], [ E45 ]: [ resistA, -resistA ],
         [ W63 ]: [ resistB, resistA ], [ E63 ]: [ resistB, -resistA ],
@@ -830,7 +805,7 @@
      */
     const _Game_Map_isPassable = Game_Map.prototype.isPassable;
     Game_Map.prototype.isPassable = function( x, y, d ) {
-        if( this.terrainTag( x, y ) !== _TerrainTag ) return _Game_Map_isPassable.apply( this, arguments );
+        if( this.terrainTag( x, y ) !== terrainTag ) return _Game_Map_isPassable.apply( this, arguments );
 
         const undulation = getUndulation( x, y );
 
@@ -892,11 +867,11 @@
             const flag = flags[ tiles[ i ] ];
             const terrainTag = flag >> 12;
             if( terrainTag === 0 ) continue;
-            if( terrainTag === _TerrainTag ) {
+            if( terrainTag === terrainTag ) {
                 const bump = ( flag & MASK_BUMP );
                 if( bump ) return bump;
                 return flag & MASK_UNDULATION;
-            } else if( terrainTag === _TerrainTagSN ) {
+            } else if( terrainTag === terrainTagSN ) {
                 return -2;
             }
         }
@@ -997,7 +972,7 @@
      */
     function getBump( undulation ) {
         const bump = FLAG2BUMP[ undulation ];
-        return bump ? ( bump * _BaseBump ) : 0;
+        return bump ? ( bump * baseBump ) : 0;
     }
 
     /**
