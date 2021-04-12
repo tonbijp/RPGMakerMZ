@@ -12,4 +12,5 @@
 | [TF_CharEx.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_CharEx.js) | 歩行キャラの挙動制御 | β版 | |
 | [TF_Billboard.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_Billboard.js) | TF_LayeredMap簡易版 | β版 | |
 | [TF_VectorWindow.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_VectorWindow.js) | ウィンドウをベクトル描画 | β版 | |
+| [TF_BalloonEx.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_BalloonEx.js) | フキダシ機能強化 | β版 | |
 | [TF_LayeredMap.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
