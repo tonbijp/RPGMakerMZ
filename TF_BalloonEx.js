@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.6.0.0
+// Version :0.6.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -607,10 +607,9 @@
 		}
 	} );
 	// [フキダシアニメ開始] スクリプト
-	Game_CharacterBase.prototype.TF_startBalloon = function( balloonIndex, isWait, dx, dy ) {
-		this.requestBalloon( stringToBalloonIndex( balloonIndex ) );
-
-		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+	Game_CharacterBase.prototype.TF_startBalloon = function( index, isWait, dx, dy ) {
+		const balloonIndex = stringToBalloonIndex( index );
+		this.requestBalloon( balloonIndex );
 		this._balloon = new Game_Balloon().setByBalloonIndex( balloonIndex, dx, dy );
 		$gameTemp.requestBalloon( this, balloonIndex );
 		if( isWait ) {
