@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.1.1.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -10,154 +10,102 @@
 // http://opensource.org/licenses/mit-license.php
 //========================================
 /*:ja
+ * @target MZ
  * @plugindesc 各種画面サイズ設定と画面固定
  * @author とんび@鳶嶋工房
+ * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_ScreenUtil.js
+ * @base PluginCommonBase
+ * @orderAfter PluginCommonBase
  *
- * @param screenWidth
- * @desc ゲーム画面全体の幅(本体設定: 816ピクセル)
- * @type number
- * @default 1280
- *
- * @param screenHeight
- * @desc ゲーム画面全体の高さ(本体設定: 624ピクセル)
- * @type number
- * @default 720
- * 
- * @param boxWidth
- * @desc ウィンドウ表示部分の幅(本体設定: 816ピクセル)
- * @type number
- * @default 1080
- *
- * @param boxHeight
- * @desc ウィンドウ表示部分の高さ(本体設定: 624ピクセル)
- * @type number
- * @default 720
  *
  * @help
- * 多分、screenWidth・screenHeight と boxWidth・boxHeight の値が違っていると
- * レイアウトが崩れる箇所が[名前入力の処理]などに残ってると思います。
+ * マップ画面を2倍に拡大するとか。
  *
  * 【タグ】
  * [マップ]のメモにタグを書き込むと、そのマップはスクロールせず固定となります。
  * <TF_fixedMap:0 0>
  *
- * 【注意点】
- * 　プロジェクトフォルダの package.json の width, height のサイズを揃えておくと
- * 起動時のウィンドウのパタパタした挙動がなくなります。
- * 　また「RPGアツマール」などのサイトで公開する場合、
- * サイト側に画面サイズ設定を揃えておく必要があります。
- * 
  * TODO :
  * 固定のON/OFFするコマンド
  * 
  * 利用規約 : MITライセンス
+ * @================================================
 */
-( function() {
-	'use strict';
-	const PLUGIN_NAME = 'TF_ScreenUtil';
-	const PARAM_TRUE = 'true';
-	let _isMapFixed, _FixedX, _FixedY;
+( () => {
+	"use strict";
+	const PLUGIN_NAME = "TF_ScreenUtil";
+
+	// メタタグ
+	const TAG_FLEXED_MAP = "TF_fixedMap";
 
 	/**
 	 * パラメータを受け取る
 	 */
-	const TF = ( () => {
-		const parameters = PluginManager.parameters( PLUGIN_NAME );
-		return JSON.parse( JSON.stringify(
-			parameters,
-			( key, value ) => {
-				try { return JSON.parse( value ); } catch( e ) { }
-				return value;
-			}
-		) );
-	} )();
-
-	/**
-	 * @param {RPG.MetaData} object メタタグを持ったJSON
-	 * @param {String} tagName タグ名
-	 * @returns {String} タグの引数部分
-	 */
-	function getMetaValue( object, tagName ) {
-		return object.meta.hasOwnProperty( tagName ) ? object.meta[ tagName ] : undefined;
-	}
-
-	/**
-	 * 文字列の座標を数値配列にして返す。
-	 * @param {String} str スペース区切りの座標
-	 * @returns {Array<Number>} 座標 x, y の配列
-	 */
-	function string2pos( str ) {
-		const args = str.split( ' ' );
-		if( args.length !== 2 ) throw PLUGIN_NAME + ': no parameter';
-		const x = parseFloat( args[ 0 ] );
-		const y = parseFloat( args[ 1 ] );
-		if( isNaN( x ) || isNaN( y ) ) throw PLUGIN_NAME + ': NaN';
-		return [ x, y ];
-	}
-
+	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
 	/*---- Game_Player ----*/
+	// マップ固定
 	const _Game_Player_updateScroll = Game_Player.prototype.updateScroll;
 	Game_Player.prototype.updateScroll = function( lastScrolledX, lastScrolledY ) {
-		if( _isMapFixed ) return;
+		if( $gameMap.isMapFixed ) return;
 
 		_Game_Player_updateScroll.apply( this, arguments );
 	};
 
+	// 拡大時のスクロール開始x位置
+	const _Game_Player_centerX = Game_Player.prototype.centerX;
+	Game_Player.prototype.centerX = function() {
+		return _Game_Player_centerX.call( this ) / $gameScreen.zoomScale();
+	};
+
+	// 拡大時のスクロール開始y位置
+	const _Game_Player_centerY = Game_Player.prototype.centerY;
+	Game_Player.prototype.centerY = function() {
+		return _Game_Player_centerY.call( this ) / $gameScreen.zoomScale();
+	};
+
+	/*---- Game_Map ----*/
+	// マップ拡大時の画面端の処理
+	const _Game_Map_isValid = Game_Map.prototype.isValid;
+	Game_Map.prototype.isValid = function( x, y ) {
+		if( $gameMap.isMapFixed ) {
+			// 固定マップの端を考慮
+			const xLimit = Math.ceil( $gameMap.displayX() + Graphics.width / $gameMap.tileWidth() / $gameScreen.zoomScale() * 2 ) / 2;
+			const yLimit = Math.ceil( $gameMap.displayY() + Graphics.height / $gameMap.tileHeight() / $gameScreen.zoomScale() * 2 ) / 2;
+			return Math.floor( $gameMap.displayX() * 2 ) / 2 <= x && x < xLimit && Math.floor( $gameMap.displayY() * 2 ) / 2 <= y && y < yLimit;
+		} else if( $gameScreen.zoomScale() === 1 ) {
+			return _Game_Map_isValid.apply( this, arguments );
+		} else {
+			// 拡大時のマップはみ出し部分を考慮
+			const zoomScale = $gameScreen.zoomScale();
+			const outerWidth = Math.ceil( ( zoomScale - 1 ) * Graphics.width / $gameMap.tileWidth() / zoomScale );
+			const outerHeight = Math.ceil( ( zoomScale - 1 ) * Graphics.height / $gameMap.tileHeight() / zoomScale );
+			return 0 <= x && x < this.width() - outerWidth && 0 <= y && y < this.height() - outerHeight;
+		}
+	};
 
 	/*---- Scene_Map ----*/
+	//マップ拡大
+	const _Scene_Map_initialize = Scene_Map.prototype.initialize;
+	Scene_Map.prototype.initialize = function() {
+		_Scene_Map_initialize.call( this );
+		$gameScreen._zoomScale = 2;
+	};
+
+	// マップ固定位置の設定
 	const _Scene_Map_start = Scene_Map.prototype.start;
 	Scene_Map.prototype.start = function() {
 		_Scene_Map_start.call( this );
 
-
 		// マップメモ固定座標の指定メタタグの処理
-		// 例: <TF_fixedMap:0.84 0.2>
-		const fixedMapArgs = getMetaValue( $dataMap, 'TF_fixedMap' );
-		if( fixedMapArgs === undefined ) {
-			_isMapFixed = false;
-		} else {
-			[ _FixedX, _FixedY ] = string2pos( fixedMapArgs );
-			_isMapFixed = true;
-		}
-		if( _isMapFixed ) {
-			$gameMap.setDisplayPos( _FixedX, _FixedY );
-		}
-	};
+		// 例: <TF_fixedMap:0.84,0.2>
+		const fixedMapArgs = PluginManagerEx.findMetaValue( $dataMap, TAG_FLEXED_MAP );
+		$gameMap.isMapFixed = ( fixedMapArgs !== undefined );
+		if( !$gameMap.isMapFixed ) return;
 
-	/*==== 画面設定 ====*/
-	/*--- SceneManager ---*/
-	const _SceneManager_initialize = SceneManager.initialize;
-	SceneManager.initialize = function() {
-		this._screenWidth = TF.screenWidth;
-		this._screenHeight = TF.screenHeight;
-		this._boxWidth = TF.boxWidth;
-		this._boxHeight = TF.boxHeight;
-		_SceneManager_initialize.call( this );
-	};
-
-	/*--- WindowLayer ---*/
-	/**
-	 * コアスクリプトのバグ対応で、メソッドごと入れ替え
-	 */
-	WindowLayer.prototype._maskWindow = function( window, shift ) {
-		this._windowMask._currentBounds = null;
-		this._windowMask.boundsDirty = true;
-		var rect = this._windowRect;
-		rect.x = this.x + shift.x + window.x;
-		rect.y = this.y + shift.y + window.y + window.height / 2 * ( 1 - window._openness / 255 );// this.y が this.x になっていた
-		rect.width = window.width;
-		rect.height = window.height * window._openness / 255;
-	};
-
-	/*--- Spriteset_Base ---*/
-	/**
-	 * コアスクリプトのバグ対応
-	 */
-	const _Spriteset_Base_createPictures = Spriteset_Base.prototype.createPictures;
-	Spriteset_Base.prototype.createPictures = function() {
-		_Spriteset_Base_createPictures.call( this );
-		this._pictureContainer.setFrame( 0, 0, TF.screenWidth, TF.screenHeight );// 表示位置を原点に戻す
+		const args = fixedMapArgs.match( /([.0-9]+)[^.0-9]+([.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
+		$gameMap.setDisplayPos( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	};
 
 	/*--- Scene_Title ---*/
@@ -222,7 +170,7 @@
 		 * 背景画像の生成・読み込み
 		 */
 		createBitmap( bitmapName, type ) {
-			if( bitmapName === '' ) {
+			if( bitmapName === "" ) {
 				return new Bitmap( Graphics.width, Graphics.height );
 			} else if( type === TYPE_STAGE ) {
 				return ImageManager.loadBattleback1( bitmapName );
