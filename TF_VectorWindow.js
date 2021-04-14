@@ -343,7 +343,7 @@
 		const speakerName = `\x1bFS[${NAME_FONT_SIZE}]${$gameMessage.speakerName()}`;
 		const textSize = this.textSizeEx( speakerName );
 		const x = faceX + ( faceWidth - textSize.width ) / 2;
-		const y = faceHeight;
+		const y = ImageManager.faceHeight;
 		this.drawTextEx( speakerName, x, y, textSize.width );
 		this.resetFontSettings();
 	};
