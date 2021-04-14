@@ -27,9 +27,9 @@ v1.1.0、v1.2.0  で変更あり。
 | `_needsMapReload` | Boolean | マップの再読み込みが必要か |
 | `_transferring` | Boolean | マップの移動中か |
 | `_newMapId` | [Number](Number.md) | 移動先のマップID |
-| `_newX` | [Number](Number.md) | 移動先のx座標(タイル数) |
-| `_newY` | [Number](Number.md) | 移動先のy座標(タイル数) |
-| `_newDirection` | [Number](Number.md) | 移動先の向き(テンキー対応) |
+| `_newX` | [Number](Number.md) | 移動先のマップ上の x位置(タイル数) |
+| `_newY` | [Number](Number.md) | 移動先のマップ上の y位置(タイル数) |
+| `_newDirection` | [Number](Number.md) | 移動先での向き(テンキー対応) |
 | `_fadeType` | [Number](Number.md) | フェードの種類 |
 | `_followers` | [Game_Followers](Game_Followers.md) | 隊列メンバ |
 | `_encounterCount` | [Number](Number.md) | エンカウントのカウント |
@@ -416,9 +416,9 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `mapId` | [Number](Number.md) |  |  |
-| `x` | [Number](Number.md) |  |  タイル数 |
-| `y` | [Number](Number.md) |  |  タイル数 |
+| `mapId` | [Number](Number.md) |  | マップID |
+| `x` | [Number](Number.md) |  | マップ上のx位置(タイル数) |
+| `y` | [Number](Number.md) |  | マップ上のy位置(タイル数) |
 | `d` | [Number](Number.md) | &lt;optional&gt; |  向き(テンキー対応) |
 | `fadeType` | [Number](Number.md) | &lt;optional&gt; |  |
 

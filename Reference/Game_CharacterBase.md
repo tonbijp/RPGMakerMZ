@@ -9,7 +9,7 @@
 
 [移動ルートの設定]で[スクリプト]を使用した際の this はこのクラスになるので例えば <code>this.setPattern(0)</code> とすれば歩行パターンを指定できる。
 
-関連クラス: [Sprite_Balloon](Sprite_Balloon.md), [Sprite_Animation](Sprite_Animation.md)
+関連クラス: [Sprite_Balloon](Sprite_Balloon.md), [Sprite_Animation](Sprite_Animation.md), [Game_Map](Game_Map.md)
 
 ### サブクラス
 
@@ -22,10 +22,10 @@
 | --- | --- | --- |
 | `x` | [Number](Number.md) | [read-only] マップ上のX座標(タイル数) |
 | `y` | [Number](Number.md) | [read-only] マップ上のY座標(タイル数) |
-| `_x` | [Number](Number.md) | x と同じ |
-| `_y` | [Number](Number.md) | y と同じ |
-| `_realX` | [Number](Number.md) | 整数でない x |
-| `_realY` | [Number](Number.md) | 整数でない y |
+| `_x` | [Number](Number.md) | |
+| `_y` | [Number](Number.md) | |
+| `_realX` | [Number](Number.md) | 整数でない x(タイル数) |
+| `_realY` | [Number](Number.md) | 整数でない y(タイル数) |
 | `_moveSpeed` | [Number](Number.md) | 移動[速度] |
 | `_moveFrequency` | [Number](Number.md) | 移動[頻度] |
 | `_opacity` | [Number](Number.md) | 不透明度(0〜255) |
@@ -427,11 +427,11 @@
 
 
 #### screenX () → {[Number](Number.md)}
- 画面上の x座標(ピクセル数)を返す。
+画面内のキャラ x座標(ピクセル数)を返す。
 
 
 #### screenY () → {[Number](Number.md)}
- 画面上の y座標(ピクセル数)を返す。
+画面内のキャラ y座標(ピクセル数)を返す。
 
 
 #### screenZ () → {[Number](Number.md)}
@@ -440,27 +440,11 @@
 
 
 #### scrolledX () → {[Number](Number.md)}
-
-<dl>
-	<dt>To Do:</dt>
-	<dd>
-		<ul>
-			<li>この用語の意味が分かったら教えてください</li>
-		</ul>
-	</dd>
-</dl>
+画面内のキャラ x位置(タイル数)を返す。
 
 
 #### scrolledY () → {[Number](Number.md)}
-
-<dl>
-	<dt>To Do:</dt>
-	<dd>
-		<ul>
-			<li>この用語の意味が分かったら教えてください</li>
-		</ul>
-	</dd>
-</dl>
+画面内のキャラ y位置(タイル数)を返す。
 
 
 #### setBlendMode (blendMode)
