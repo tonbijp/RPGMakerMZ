@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.1.0.0
+// Version :0.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -52,49 +52,98 @@
 		_Game_Player_updateScroll.apply( this, arguments );
 	};
 
-	// 拡大時のスクロール開始x位置
-	const _Game_Player_centerX = Game_Player.prototype.centerX;
-	Game_Player.prototype.centerX = function() {
-		return _Game_Player_centerX.call( this ) / $gameScreen.zoomScale();
-	};
-
-	// 拡大時のスクロール開始y位置
-	const _Game_Player_centerY = Game_Player.prototype.centerY;
-	Game_Player.prototype.centerY = function() {
-		return _Game_Player_centerY.call( this ) / $gameScreen.zoomScale();
-	};
 
 	/*---- Game_Map ----*/
-	// マップ拡大時の画面端の処理
-	const _Game_Map_isValid = Game_Map.prototype.isValid;
-	Game_Map.prototype.isValid = function( x, y ) {
-		if( $gameMap.isMapFixed ) {
-			// 固定マップの端を考慮
-			const xLimit = Math.ceil( $gameMap.displayX() + Graphics.width / $gameMap.tileWidth() / $gameScreen.zoomScale() * 2 ) / 2;
-			const yLimit = Math.ceil( $gameMap.displayY() + Graphics.height / $gameMap.tileHeight() / $gameScreen.zoomScale() * 2 ) / 2;
-			return Math.floor( $gameMap.displayX() * 2 ) / 2 <= x && x < xLimit && Math.floor( $gameMap.displayY() * 2 ) / 2 <= y && y < yLimit;
-		} else if( $gameScreen.zoomScale() === 1 ) {
-			return _Game_Map_isValid.apply( this, arguments );
+	Game_Map.prototype.parallaxOx = function() {
+		if( this._parallaxZero ) {
+			return this._parallaxX * this.displayTileWidth();
+		} else if( this._parallaxLoopX ) {
+			return ( this._parallaxX * this.displayTileWidth() ) / 2;
 		} else {
-			// 拡大時のマップはみ出し部分を考慮
-			const zoomScale = $gameScreen.zoomScale();
-			const outerWidth = Math.ceil( ( zoomScale - 1 ) * Graphics.width / $gameMap.tileWidth() / zoomScale );
-			const outerHeight = Math.ceil( ( zoomScale - 1 ) * Graphics.height / $gameMap.tileHeight() / zoomScale );
-			return 0 <= x && x < this.width() - outerWidth && 0 <= y && y < this.height() - outerHeight;
+			return 0;
 		}
 	};
 
-	/*---- Scene_Map ----*/
-	//マップ拡大
-	const _Scene_Map_initialize = Scene_Map.prototype.initialize;
-	Scene_Map.prototype.initialize = function() {
-		_Scene_Map_initialize.call( this );
-		$gameScreen._zoomScale = 2;
+	Game_Map.prototype.parallaxOy = function() {
+		if( this._parallaxZero ) {
+			return this._parallaxY * this.displayTileHeight();
+		} else if( this._parallaxLoopY ) {
+			return ( this._parallaxY * this.displayTileHeight() ) / 2;
+		} else {
+			return 0;
+		}
 	};
 
-	// マップ固定位置の設定
+	// 画面内の x方向タイル数
+	Game_Map.prototype.screenTileX = function() {
+		return Math.round( ( Graphics.width / this.displayTileWidth() ) * 16 ) / 16;
+	};
+	// 画面内の y方向タイル数
+	Game_Map.prototype.screenTileY = function() {
+		return Math.round( ( Graphics.height / this.displayTileHeight() ) * 16 ) / 16;
+	};
+
+	Game_Map.prototype.canvasToMapX = function( x ) {
+		const tileWidth = this.displayTileWidth();
+		const originX = this._displayX * tileWidth;
+		const mapX = Math.floor( ( originX + x ) / tileWidth );
+		return this.roundX( mapX );
+	};
+
+	Game_Map.prototype.canvasToMapY = function( y ) {
+		const tileHeight = this.displayTileHeight();
+		const originY = this._displayY * tileHeight;
+		const mapY = Math.floor( ( originY + y ) / tileHeight );
+		return this.roundY( mapY );
+	};
+
+	Game_Map.prototype.updateParallax = function() {
+		if( this._parallaxLoopX ) {
+			this._parallaxX += this._parallaxSx / this.displayTileWidth() / 2;
+		}
+		if( this._parallaxLoopY ) {
+			this._parallaxY += this._parallaxSy / this.displayTileHeight() / 2;
+		}
+	};
+
+	// 画面表示されるタイルの大きさ(ピクセル数)
+	// tileWidth() は素材のタイルサイズとして残す。
+	Game_Map.prototype.displayTileWidth = function() {
+		return 48 * $gameScreen.zoomScale();
+	};
+
+	// 画面表示されるタイルの大きさ(ピクセル数)
+	// tileHeight() は素材のタイルサイズとして残す。
+	Game_Map.prototype.displayTileHeight = function() {
+		return 48 * $gameScreen.zoomScale();
+	};
+
+	Game_CharacterBase.prototype.isNearTheScreen = function() {
+		const gw = Graphics.width;
+		const gh = Graphics.height;
+		const tw = $gameMap.displayTileWidth();
+		const th = $gameMap.displayTileHeight();
+		const px = this.scrolledX() * tw + tw / 2 - gw / 2;
+		const py = this.scrolledY() * th + th / 2 - gh / 2;
+		return px >= -gw && px <= gw && py >= -gh && py <= gh;
+	};
+
+
+	Sprite_Destination.prototype.updatePosition = function() {
+		const tileWidth = $gameMap.displayTileWidth();
+		const tileHeight = $gameMap.displayTileHeight();
+		const x = $gameTemp.destinationX();
+		const y = $gameTemp.destinationY();
+		this.x = ( $gameMap.adjustX( x ) + 0.5 ) * tileWidth;
+		this.y = ( $gameMap.adjustY( y ) + 0.5 ) * tileHeight;
+	};
+
+	/*---- Scene_Map ----*/
 	const _Scene_Map_start = Scene_Map.prototype.start;
 	Scene_Map.prototype.start = function() {
+		//マップ拡大
+		$gameScreen.setZoom( $gamePlayer.screenX(), $gamePlayer.screenY() - 24, 2 );
+
 		_Scene_Map_start.call( this );
 
 		// マップメモ固定座標の指定メタタグの処理
@@ -145,18 +194,31 @@
 	}
 
 
+	/*--- Spriteset_Base ---*/
+	// 左上に角を合わせる(振動などに対応する必要はある)
+	const _Spriteset_Base_updatePosition = Spriteset_Base.prototype.updatePosition;
+	Spriteset_Base.prototype.updatePosition = function() {
+		_Spriteset_Base_updatePosition.call( this );
+		this.x = 0;
+		this.y = 0;
+
+		this.x += Math.round( $gameScreen.shake() );
+	};
+
 	/*--- Spriteset_Battle ---*/
 	const TYPE_STAGE = 1;	// ステージ(地面)背景
 	const TYPE_SET = 2;			// セット(建物)背景
+	const _Spriteset_Battle_createBattleback = Spriteset_Battle.prototype.createBattleback;
 	Spriteset_Battle.prototype.createBattleback = function() {
-		this._back1Sprite = new Sprite_Battleback( this.battleback1Name(), TYPE_STAGE );
-		this._back2Sprite = new Sprite_Battleback( this.battleback2Name(), TYPE_SET );
-		fitToScreen( this._back1Sprite );
-		fitToScreen( this._back2Sprite );
-		this._battleField.addChild( this._back1Sprite );
-		this._battleField.addChild( this._back2Sprite );
+		_Spriteset_Battle_createBattleback.call( this );
+		// this._back1Sprite = new Sprite_Battleback( gameMap.battleback1Name(), TYPE_STAGE );
+		// this._back2Sprite = new Sprite_Battleback( gameMap.battleback2Name(), TYPE_SET );
+		// fitToScreen( this._back1Sprite );
+		// fitToScreen( this._back2Sprite );
+		// this._battleField.addChild( this._back1Sprite );
+		// this._battleField.addChild( this._back2Sprite );
 	};
-	Spriteset_Battle.prototype.updateBattleback = function() { };
+	//Spriteset_Battle.prototype.updateBattleback = function() { };
 
 
 	/*--- Sprite_Battleback ---*/
@@ -187,19 +249,19 @@
 	/**
 	 * 敵位置をスクリーンサイズに合わせて調整
 	 */
-	const _Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
-	Sprite_Enemy.prototype.setBattler = function( battler ) {
-		_Sprite_Enemy_setBattler.call( this, battler );
+	// const _Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
+	// Sprite_Enemy.prototype.setBattler = function( battler ) {
+	// 	_Sprite_Enemy_setBattler.call( this, battler );
 
-		if( !this._enemy._alteredScreenY ) {
-			this._homeY += Math.floor( ( Graphics.height - DEFAULT_SCREEN_HEIGHT ) / 2 );
-			this._enemy._screenY = this._homeY;
-			this._enemy._alteredScreenY = true;
-		}
-		if( $gameSystem.isSideView() || this._enemy._alteredScreenX ) return;
+	// 	if( !this._enemy._alteredScreenY ) {
+	// 		this._homeY += Math.floor( ( Graphics.height - DEFAULT_SCREEN_HEIGHT ) / 2 );
+	// 		this._enemy._screenY = this._homeY;
+	// 		this._enemy._alteredScreenY = true;
+	// 	}
+	// 	if( $gameSystem.isSideView() || this._enemy._alteredScreenX ) return;
 
-		this._homeX += ( Graphics.width - DEFAULT_SCREEN_WIDTH ) / 2;
-		this._enemy._screenX = this._homeX;
-		this._enemy._alteredScreenX = true;
-	};
+	// 	this._homeX += ( Graphics.width - DEFAULT_SCREEN_WIDTH ) / 2;
+	// 	this._enemy._screenX = this._homeX;
+	// 	this._enemy._alteredScreenX = true;
+	// };
 } )();
