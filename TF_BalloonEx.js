@@ -1,6 +1,6 @@
 //========================================
 // TF_BalloonEx.js
-// Version :0.6.1.0
+// Version :0.6.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -762,6 +762,7 @@
 	Sprite_Balloon.prototype.update = function() {
 		Sprite.prototype.update.call( this );
 		_Sprite_Balloon_update.call( this );
+		if( !this._balloon ) return;
 
 		// stopBalloonに対する処理
 		if( this._balloon.phase === PHASE_FINISH ) {
@@ -801,11 +802,11 @@
 	 */
 	const _Sprite_Balloon_frameIndex = Sprite_Balloon.prototype.frameIndex;
 	Sprite_Balloon.prototype.frameIndex = function() {
-		if( this._duration < this._balloon.endDuration ) {
-			// 最終アニメ(wait用)パターン
-			return this._balloon.lastIndex;
+		if( this._balloon && this._duration < this._balloon.endDuration ) {
+			return this._balloon.lastIndex;// 最終アニメ(wait用)パターン
+		} else {
+			return _Sprite_Balloon_frameIndex.call( this );
 		}
-		return _Sprite_Balloon_frameIndex.call( this );
 	};
 
 	/**
@@ -815,15 +816,27 @@
 	Sprite_Balloon.prototype.updatePosition = function() {
 		_Sprite_Balloon_updatePosition.call( this );
 
-		this.x += this._balloon.dx;
-		this.y += this._balloon.dy;
+		if( this._balloon ) {
+			this.x += this._balloon.dx;
+			this.y += this._balloon.dy;
+		}
 	};
 
+	const _Sprite_Balloon_speed = Sprite_Balloon.prototype.speed;
 	Sprite_Balloon.prototype.speed = function() {
-		return this._balloon.speed;
+		if( this._balloon ) {
+			return this._balloon.speed;
+		} else {
+			return _Sprite_Balloon_speed.call( this );
+		}
 	};
 
+	const _Sprite_Balloon_waitTime = Sprite_Balloon.prototype.waitTime;
 	Sprite_Balloon.prototype.waitTime = function() {
-		return this._balloon.waitTime;
+		if( this._balloon ) {
+			return this._balloon.waitTime;
+		} else {
+			return _Sprite_Balloon_waitTime.call( this );
+		}
 	};
 } )();
