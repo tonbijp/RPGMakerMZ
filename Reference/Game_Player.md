@@ -14,7 +14,7 @@
 
 v1.1.0、v1.2.0  で変更あり。
 
-関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md)
+関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md),  [Game_Map](Game_Map.md)
 
 ### プロパティ
 

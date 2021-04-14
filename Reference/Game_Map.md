@@ -15,7 +15,7 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 v1.1.0、v1.2.0  で変更あり。<br />
 なお、公式プラグイン PluginCommonBase.js によって追加されるプロパティ・メソッドも書いている。
 
-関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md)
+関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md), [Game_Player](Game_Player.md)
 
 
 ### プロパティ
@@ -28,8 +28,8 @@ v1.1.0、v1.2.0  で変更あり。<br />
 | `_events` | [Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt; | [イベント]の配列 |
 | `_commonEvents` | [Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt; | [コモンイベント]の配列 |
 | `_vehicles` | [Array](Array.md).&lt;[Game_Vehicle](Game_Vehicle.md)&gt; | [乗り物]の配列 |
-| `_displayX` | [Number](Number.md) | マップ表示の x座標 |
-| `_displayY` | [Number](Number.md) | マップ表示の y座標 |
+| `_displayX` | [Number](Number.md) | マップ表示の x座標(タイル数) |
+| `_displayY` | [Number](Number.md) | マップ表示の y座標(タイル数) |
 | `_nameDisplay` | Boolean | マップの[名前]を表示するか |
 | `_scrollDirection` | [Number](Number.md) | スクロール方向(テンキー対応) |
 | `_scrollRest` | [Number](Number.md) | スクロールの残り距離 |
@@ -40,8 +40,8 @@ v1.1.0、v1.2.0  で変更あり。<br />
 | `_parallaxLoopY` | Boolean | [縦方向にループする] |
 | `_parallaxSx` | [Number](Number.md) | 遠景 x[スクロール]量(ピクセル) |
 | `_parallaxSy` | [Number](Number.md) | 遠景 y[スクロール]量(ピクセル) |
-| `_parallaxX` | [Number](Number.md) | 遠景 x位置(ピクセル) |
-| `_parallaxY` | [Number](Number.md) | 遠景 y位置(ピクセル) |
+| `_parallaxX` | [Number](Number.md) | 遠景 x位置(タイル数) |
+| `_parallaxY` | [Number](Number.md) | 遠景 y位置(タイル数) |
 | `_battleback1Name` | [String](String.md) | レイヤー奥の戦闘背景画像1(地面)のファイル名 |
 | `_battleback2Name` | [String](String.md) | レイヤー手前の戦闘背景画像2(壁)のファイル名 |
 | `_needsRefresh` | Boolean | [requestRefresh()](Game_Map.md#requestrefresh-mapid)などで更新予約がされているか |
@@ -52,7 +52,7 @@ v1.1.0、v1.2.0  で変更あり。<br />
 ### メソッド
 
 #### adjustX (x) → {[Number](Number.md)}
-指定されたマップ右 x座標に対応する、正の値に調整されたマップ左の x位置(タイル数)を返す。
+指定されたマップの全体での x位置を、画面左からの x位置(タイル数)に変換して返す。
 
 ##### 引数
 
@@ -62,7 +62,7 @@ v1.1.0、v1.2.0  で変更あり。<br />
 
 
 #### adjustY (y) → {[Number](Number.md)}
-指定されたマップ下 y座標に対応する、正の値に調整されたマップ上の y位置(タイル数)を返す。
+指定されたマップの全体での y位置を、画面上からの y位置(タイル数)に変換して返す。
 
 ##### 引数
 
