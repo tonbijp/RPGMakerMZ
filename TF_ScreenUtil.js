@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.2.2.0
+// Version :0.2.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -168,7 +168,7 @@
 		$gameMap.isMapFixed = ( fixedMapArgs !== undefined );
 		if( !$gameMap.isMapFixed ) return;
 
-		const args = fixedMapArgs.match( /([.-0-9]+)[^.-0-9]+([.-0-9]+)/ );
+		const args = fixedMapArgs.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
 		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
 		$gameMap.setDisplayPos( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	};
