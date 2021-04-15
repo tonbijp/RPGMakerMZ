@@ -417,8 +417,8 @@ v1.1.0、v1.2.0  で変更あり。
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `mapId` | [Number](Number.md) |  | マップID |
-| `x` | [Number](Number.md) |  | マップ上のx位置(タイル数) |
-| `y` | [Number](Number.md) |  | マップ上のy位置(タイル数) |
+| `x` | [Number](Number.md) |  | マップ上の x位置(タイル数) |
+| `y` | [Number](Number.md) |  | マップ上の y位置(タイル数) |
 | `d` | [Number](Number.md) | &lt;optional&gt; |  向き(テンキー対応) |
 | `fadeType` | [Number](Number.md) | &lt;optional&gt; |  |
 
@@ -438,8 +438,8 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) |  タイル数 |
-| `y` | [Number](Number.md) |  タイル数 |
+| `x` | [Number](Number.md) |  | マップ上の x位置(タイル数) |
+| `y` | [Number](Number.md) |  | マップ上の y位置(タイル数) |
 | `triggers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [[トリガー]](RPG.EventPage.md#トリガー)の配列 |
 | `normal` | Boolean |  |
 
