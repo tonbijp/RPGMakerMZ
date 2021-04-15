@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.2.0.0
+// Version :0.2.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -43,6 +43,16 @@
 	 */
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
+
+	// ソフトフォーカスかけない設定
+	// 個別に設定できるようにしたほうがいいと思う。
+	// 少なくともプラグインパラメータに用意しておいたほうがいいね。
+	const _Bitmap_initialize = Bitmap.prototype.initialize;
+	Bitmap.prototype.initialize = function( width, height ) {
+		_Bitmap_initialize.apply( this, arguments );
+		this._smooth = false;
+	};
+
 	/*---- Game_Player ----*/
 	// マップ固定
 	const _Game_Player_updateScroll = Game_Player.prototype.updateScroll;
@@ -50,6 +60,14 @@
 		if( $gameMap.isMapFixed ) return;
 
 		_Game_Player_updateScroll.apply( this, arguments );
+	};
+
+	Game_Player.prototype.centerX = function() {
+		return ( Graphics.width / $gameMap.displayTileWidth() - 1 ) / 2.0;
+	};
+
+	Game_Player.prototype.centerY = function() {
+		return ( Graphics.height / $gameMap.displayTileHeight() - 1 ) / 2.0;
 	};
 
 
@@ -139,12 +157,13 @@
 	};
 
 	/*---- Scene_Map ----*/
-	const _Scene_Map_start = Scene_Map.prototype.start;
-	Scene_Map.prototype.start = function() {
-		//マップ拡大
-		$gameScreen.setZoom( $gamePlayer.screenX(), $gamePlayer.screenY() - 24, 2 );
 
-		_Scene_Map_start.call( this );
+	const _Scene_Map_onMapLoaded = Scene_Map.prototype.onMapLoaded;
+	Scene_Map.prototype.onMapLoaded = function() {
+		//マップ拡大
+		$gameScreen._zoomScale = 2;
+
+		_Scene_Map_onMapLoaded.call( this );
 
 		// マップメモ固定座標の指定メタタグの処理
 		// 例: <TF_fixedMap:0.84,0.2>
