@@ -10,7 +10,7 @@
 
 ゲームの一時データを保持しておくクラス。
 
-関連クラス: [Game_CommonEvent](Game_CommonEvent.md), [Spriteset_Base](Spriteset_Base.md), [Spriteset_Map](Spriteset_Map.md)
+関連クラス: [Game_CommonEvent](Game_CommonEvent.md), [Spriteset_Base](Spriteset_Base.md), [Spriteset_Map](Spriteset_Map.md), [Sprite_Destination](Sprite_Destination.md),
 
 
 ### プロパティ
@@ -18,8 +18,8 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_isPlaytest` | Boolean | テストプレイか |
-| `_destinationX` | [Number](Number.md) | 目的地のx座標 |
-| `_destinationY` | [Number](Number.md) | 目的地のy座標 |
+| `_destinationX` | [Number](Number.md) | タッチ移動目標の x位置(タイル数) |
+| `_destinationY` | [Number](Number.md) | タッチ移動目標の y位置(タイル数) |
 | `_touchTarget` | Object | **@MZ** タッチの目標 |
 | `_touchState` | [String](String.md) | **@MZ** タッチの状態 |
 | `_needsBattleRefresh` | Boolean | **@MZ** 戦闘の再設定が必要か |
@@ -44,7 +44,7 @@
 
 
 #### clearDestination ()
-プレイヤーの移動目標データを消去。
+プレイヤーのタッチ移動目標データを消去。
 
 
 #### clearTouchState ()
@@ -52,11 +52,11 @@
 
 
 #### destinationX () → {[Number](Number.md)}
-移動目標の x座標を返す。
+タッチ移動目標の x位置(タイル数)を返す。
 
 
 #### destinationY () → {[Number](Number.md)}
-移動目標の y座標を返す。
+タッチ移動目標の y位置(タイル数)を返す。
 
 
 #### initialize ()
@@ -72,7 +72,7 @@
 
 
 #### isDestinationValid () → {Boolean}
-目標位置が正しいデータか。
+タッチ移動目標を表示するか。
 
 
 #### isPlaytest () → {Boolean}
@@ -139,14 +139,14 @@
 
 
 #### setDestination (x, y)
-移動目標の座標を設定。
+タッチ移動目標の位置を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md) | x座標(タイル数) |
-| `y` | [Number](Number.md) | y座標(タイル数) |
+| `x` | [Number](Number.md) | x位置(タイル数) |
+| `y` | [Number](Number.md) | y位置(タイル数) |
 
 
 #### setLastActionData (type, value)
