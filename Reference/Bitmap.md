@@ -37,7 +37,7 @@ v1.1.1、v1.2.0 で変更あり。
 | `width` | [Number](Number.md) | [read-only] 画像の幅(ピクセル) |
 | `height` | [Number](Number.md) | [read-only] 画像の高さ(ピクセル) |
 | `rect` | [Rectangle](Rectangle.md) | [read-only] 画像の矩形範囲 |
-| `smooth` | Boolean | スムーススケーリングを適用するか |
+| `smooth` | Boolean | スムーススケーリング(ぼかし)を適用するか |
 | `paintOpacity` | [Number](Number.md) | 不透明度(0 〜 255) |
 | `_loadingState` | [String](String.md) | [読み込みの状態](Bitmap.md#読み込みの状態) |
 | `_loadListeners` | [Array](Array.md).&lt;Function&gt; | ロードリスナの配列 |
@@ -77,9 +77,6 @@ v1.1.1、v1.2.0 で変更あり。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `url` | [String](String.md) | 画像ファイルのURL |
-
-
-#### (static)~~request (url)~~ (廃止)
 
 
 #### (static) snap (stage) → {[Bitmap](Bitmap.md)}
@@ -124,9 +121,6 @@ v1.1.1、v1.2.0 で変更あり。
 
 ####  _onError ()
 エラーの時に呼ばれるハンドラ。
-
-
-#### ~~_setDirty ()~~ (廃止)
 
 
 ####  _callLoadListeners ()
@@ -444,5 +438,6 @@ v1.1.1、v1.2.0 で変更あり。
 | `color` | [MV.CssColor](MV.CssColor.md) | 色 |
 
 
-### MV廃止メソッド
-touch ()
+### 廃止MVメソッド
+[static] request (url)<br />
+_setDirty (), touch ()
