@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.2.1.0
+// Version :0.2.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -19,14 +19,21 @@
  *
  *
  * @help
- * マップ画面を2倍に拡大するとか。
+ * マップ画面を拡大するとか画面周りのプラグイン。
  *
- * 【タグ】
- * [マップ]のメモにタグを書き込むと、そのマップはスクロールせず固定となります。
- * <TF_fixedMap:0 0>
+ * ●メタタグ
+ * [マップ]のメモ欄にメタタグを書き込むと、そのマップはスクロールせず固定となります。
+ * 書式: <TF_fixedMap:[画面左座標][区切り文字][画面上座標]>
+ * [画面左座標] マイナスや小数点以下も含む数値。
+ * [区切り文字] 数値以外の文字、複数も可(推奨: ", ") 他のプラグインで慣れてるやつでもいいです。
+ * [画面上座標] マイナスや小数点以下も含む数値。
+ * 
+ * 例: <TF_fixedMap:-2, 0.8>
  *
  * TODO :
+ * HalfMove.js の判定位置が下にずれるのを修正。
  * 固定のON/OFFするコマンド
+ * 的画像位置の調整ON/OFFパラメータ
  * 
  * 利用規約 : MITライセンス
  * @================================================
@@ -92,11 +99,10 @@
 		}
 	};
 
-	// 画面内の x方向タイル数
+
 	Game_Map.prototype.screenTileX = function() {
 		return Math.round( ( Graphics.width / this.displayTileWidth() ) * 16 ) / 16;
 	};
-	// 画面内の y方向タイル数
 	Game_Map.prototype.screenTileY = function() {
 		return Math.round( ( Graphics.height / this.displayTileHeight() ) * 16 ) / 16;
 	};
@@ -146,18 +152,9 @@
 		return px >= -gw && px <= gw && py >= -gh && py <= gh;
 	};
 
-
-	Sprite_Destination.prototype.updatePosition = function() {
-		const tileWidth = $gameMap.displayTileWidth();
-		const tileHeight = $gameMap.displayTileHeight();
-		const x = $gameTemp.destinationX();
-		const y = $gameTemp.destinationY();
-		this.x = ( $gameMap.adjustX( x ) + 0.5 ) * tileWidth;
-		this.y = ( $gameMap.adjustY( y ) + 0.5 ) * tileHeight;
-	};
-
 	/*---- Scene_Map ----*/
 
+	// startではタイミングが遅いのでこのハンドラを使う
 	const _Scene_Map_onMapLoaded = Scene_Map.prototype.onMapLoaded;
 	Scene_Map.prototype.onMapLoaded = function() {
 		//マップ拡大
@@ -171,7 +168,7 @@
 		$gameMap.isMapFixed = ( fixedMapArgs !== undefined );
 		if( !$gameMap.isMapFixed ) return;
 
-		const args = fixedMapArgs.match( /([.0-9]+)[^.0-9]+([.0-9]+)/ );
+		const args = fixedMapArgs.match( /([.-0-9]+)[^.-0-9]+([.-0-9]+)/ );
 		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
 		$gameMap.setDisplayPos( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	};
@@ -223,6 +220,7 @@
 
 		this.x += Math.round( $gameScreen.shake() );
 	};
+
 
 	/*--- Spriteset_Battle ---*/
 	const TYPE_STAGE = 1;	// ステージ(地面)背景
