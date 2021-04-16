@@ -10,7 +10,7 @@
 
 プラグイン管理用のパラメータ。plugins.js は dataフォルダではなく jsフォルダにある。
 
-プラグインに書かれるパラメータ設定の解説もここに書く。
+プラグインに書かれる設定(アノテーション)の解説もここに書く。
 
 関連クラス: [PluginManager](PluginManager.md)
 
@@ -21,7 +21,7 @@
 | `name` | [String](String.md) | プラグインの[名前]\(拡張子を含まない) |
 | `status` | [String](String.md) | ON/OFF の[状態] |
 | `description` | [String](String.md) | [説明] |
-| `parameters` | Object |  [[パラメータ]](MV.PluginSettings.md#パラメータ)([PluginManager.parameters()](PluginManager.md) の返り値になる) |
+| `parameters` | Object |  [[パラメータ]](MV.PluginSettings.md#パラメータ)([PluginManager.parameters()](PluginManager.md#static-parameters-name--object) の返り値になる) |
 
 ####  [パラメータ]
 
@@ -39,7 +39,8 @@
 
 * @があるとアノテーションと判断されてしまうため、全ての設定値に@は使用できない。
 * アノテーションは改行ではなく@で分割されているので、1行に複数の設定を書ける(もちろん1行1設定でも良い)
-* @の後に続くアノテーション文字列が設定外のものだと無視されるので、コメントとして利用できる。
+* @の後に続くアノテーション文字列が定義外のものだと無視されるので、コメントとして利用できる。
+* なお **@MZ** とあるのは『RPGツクールMZ』になって追加されたものという意味でアノテーションではないので、悪しからず。
 
 [公式プラグイン講座 アノテーションに関する解説](https://tkool.jp/mz/plugin/make/annotation.html) 参照。
 
