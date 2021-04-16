@@ -12,7 +12,7 @@
 
 プラグインに書かれるパラメータ設定の解説もここに書く。
 
-関連クラス: [PluginManager](PluginManager.md),  [JsonEx](JsonEx.md)
+関連クラス: [PluginManager](PluginManager.md)
 
 ### プロパティ
 
