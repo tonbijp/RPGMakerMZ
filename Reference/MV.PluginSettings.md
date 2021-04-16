@@ -37,7 +37,9 @@
 頭の方に言語タグ( 日本語の場合 /\*:ja )を書くと、言語ごとに別の設定が用意できる。<br />
 以下で説明する @ではじまる宣言は公式にはアノテーションと呼ばれる。ディレクティブと呼ばれることもある。
 
-※ @があるとアノテーションと判断されてしまうため、全ての設定値に@は使用できない。
+* @があるとアノテーションと判断されてしまうため、全ての設定値に@は使用できない。
+* アノテーションは改行ではなく@で分割されているので、1行に複数の設定を書ける(もちろん1行1設定でも良い)
+* @の後に続くアノテーション文字列が設定外のものだと無視されるので、コメントとして利用できる。
 
 [公式プラグイン講座 アノテーションに関する解説](https://tkool.jp/mz/plugin/make/annotation.html) 参照。
 
@@ -102,7 +104,7 @@ MV MZ両対応の場合(MV側に機能的意味はないが)例のようにス�
 ファイルがあるディレクトリ
 
 #### @noteType
-fileしかないのでfileと書く (animationは廃止)
+fileしかないのでfileと書く (MVで使えた animation は廃止)
 
 #### @noteData
 メモを利用するデータベースを maps, events, actors, classes, skills, items, weapons, armors, enemies, states, tilesets から指定
@@ -132,7 +134,8 @@ fileしかないのでfileと書く (animationは廃止)
 パラメータの[名前]\(規定値: `@param` の値) 大体は `@param` の日本語名。
 
 #### @desc 
-パラメータの[説明]に表示される文字列(規定値: 空文字列) 複数行書ける。規定値など書いておくと良い。
+パラメータの[説明]に表示される文字列(規定値: 空文字列)で、2行書ける。<br />
+`@text`と同じ説明を書く必要はないので、規定値など付加情報だけ書くと良い。
 
 #### @default
 規定値(デフォルト)(規定値: 空文字列)
@@ -169,12 +172,10 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
-* @command COMMAND_IDENTIFIER
-* @text コマンドの表示名
+* @command COMMAND_IDENTIFIER @text コマンドの表示名
 * @desc コマンドの説明
 *
-* @arg arg_identifier
-* @text 引数の表示名
+* @arg arg_identifier @text 引数の表示名
 * @desc 引数の説明
 ```
 
@@ -191,11 +192,9 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param stringData
- * @text 文字列型
+ * @param stringData @text 文字列型
  * @desc パラメータ文字列の説明(規定値: こんにちは)
- * @type string
- * @default こんにちは
+ * @type string @default こんにちは
 ```
 
 #### @type multiline_string
@@ -217,14 +216,11 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param numberData
- * @text 数値型
+ * @param numberData @text 数値型
  * @desc パラメータ数値の説明(規定値: 10.0)
- * @type number
- * @min -100
- * @max 100
+ * @type number @default 10.0
+ * @min -100 @max 100
  * @decimals 1
- * @default 10.0
 ```
 
 #### @type boolean
@@ -237,13 +233,10 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param booleanData
- * @text 論理型
- * @desc パラメータ真偽値の説明(規定値: 無視)
- * @type boolean
- * @on 実行する
- * @off 無視
- * @default false
+ * @param booleanData @text 論理型
+ * @desc パラメータ真偽値の説明
+ * @type boolean @default false
+ * @on 実行する @off 無視(規定)
 ```
 
 #### @type \*[]
@@ -252,11 +245,9 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param arrayData
- * @text 配列型
+ * @param arrayData @text 配列型
  * @desc パラメータ配列の説明(規定値: ["甲", "乙", "丙"])
- * @type string[]
- * @default ["甲", "乙", "丙"]
+ * @type string[] @default ["甲", "乙", "丙"]
 ```
 
 #### @type struct&lt;\*&gt;
@@ -268,21 +259,17 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param struct
- * @text 構造型
+ * @param struct @text 構造型
  * @desc パラメータ構造の説明(規定値: x:10, y:20)
- * @type struct<coordinateStruct>
- * @default { "x":"10", "y":"20" }
+ * @type struct<coordinateStruct> @default { "x":"10", "y":"20" }
 ```
 ```
 /*~struct~coordinateStruct:ja
  * @param x
- * @type number
- * @default 0
+ * @type number @default 0
  * 
  * @param y
- * @type number
- * @default 0
+ * @type number @default 0
  */
 ```
  
@@ -291,8 +278,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 ##### Example
 ```
- * @param struct
- * @text 構造型
+ * @param struct @text 構造型
  * @desc パラメータ配列・構造の説明。
  * @type struct<coordinateStruct>[]
  * @default [{ "x":"10", "y":"20" }, { "x":"0", "y":"0" }]
@@ -309,12 +295,10 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param file
- * @text ファイル
+ * @param file @text ファイル
  * @desc ファイルの説明(規定値: Actor2)
- * @type file
+ * @type file @default Actor2
  * @dir img/characters
- * @default Actor2
 ```
 
 #### @type select
@@ -328,15 +312,11 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param selectBox
- * @text セレクトボックス
+ * @param selectBox @text セレクトボックス
  * @desc オプションの説明(規定値: 左方向)
- * @type select
- * @option 左方向
- * @value 4
- * @option 右方向
- * @value 6
- * @default 4
+ * @type select @default 4
+ * @option 左方向 @value 4
+ * @option 右方向 @value 6
 ```
 
 #### @type combo
@@ -345,19 +325,15 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 | Name | Description |
 | --- | --- |
 | `@option` | 選択肢(必要な数並べる) |
-| `@value` | **@MZ** @option選択時にプラグインに渡す値(規定値 : @optionそのまま) |
+| `@value` | **@MZ** @option選択時にプラグインに渡す値(規定値: @optionそのまま) |
 
 ##### Example
 ```
- * @param combo
- * @text コンボボックス
+ * @param combo @text コンボボックス
  * @desc 編集可能オプションの説明(規定値: red)
- * @type combo
- * @option red
- * @value #FF0000
- * @option blue
- * @value #0000FF
- * @default red
+ * @type combo @default red
+ * @option red @value #FF0000
+ * @option blue @value #0000FF
 ```
 
 #### @type note
@@ -368,11 +344,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param note
- * @text ノート
+ * @param note @text ノート
  * @desc メモの説明。
- * @type note
- * @default "一行目\n二行目"
+ * @type note @default "一行目\n二行目"
 ```
 
 #### @type variable
@@ -380,11 +354,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param variableId
- * @text 変数ID
+ * @param variableId @text 変数ID
  * @desc 変数の説明(規定値: 1)
- * @type variable
- * @default 1
+ * @type variable @default 1
 ```
 
 #### @type switch
@@ -392,11 +364,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param switchId
- * @text スイッチID
+ * @param switchId @text スイッチID
  * @desc スイッチの説明(規定値: 1)
- * @type switch
- * @default 1
+ * @type switch @default 1
 ```
 
 #### @type actor
@@ -404,11 +374,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param actorId
- * @text アクターID
+ * @param actorId @text アクターID
  * @desc アクターの説明(規定値: 0)
- * @type actor
- * @default 0
+ * @type actor @default 0
 ```
 
 #### @type class
@@ -416,11 +384,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param classId
- * @text クラスID
+ * @param classId @text クラスID
  * @desc クラスの説明(規定値: 0)
- * @type class
- * @default 0
+ * @type class @default 0
 ```
 
 #### @type skill
@@ -428,11 +394,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param skillId
- * @text スキルID
+ * @param skillId @text スキルID
  * @desc スキルの説明(規定値: 0)
- * @type skill
- * @default 0
+ * @type skill @default 0
 ```
 
 #### @type item
@@ -440,11 +404,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param itemId
- * @text アイテムID
+ * @param itemId @text アイテムID
  * @desc アイテムの説明(規定値: 0)
- * @type item
- * @default 0
+ * @type item @default 0
 ```
 
 #### @type weapon
@@ -452,11 +414,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param weaponId
- * @text 武器 ID
+ * @param weaponId @text 武器ID
  * @desc 武器の説明(規定値: 0)
- * @type weapon
- * @default 0
+ * @type weapon @default 0
 ```
 
 #### @type armor
@@ -464,11 +424,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param armorId
- * @text 防具ID
+ * @param armorId @text 防具ID
  * @desc 防具の説明(規定値: 0)
- * @type armor
- * @default 0
+ * @type armor @default 0
 ```
 
 #### @type enemy
@@ -476,11 +434,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param enemyId
- * @text 敵キャラID
+ * @param enemyId @text 敵キャラID
  * @desc 敵キャラの説明(規定値: 0)
- * @type enemy
- * @default 0
+ * @type enemy @default 0
 ```
 
 #### @type troop
@@ -488,11 +444,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param troopId
- * @text 敵グループID
+ * @param troopId @text 敵グループID
  * @desc 敵グループの説明(規定値: 0)
- * @type troop
- * @default 0
+ * @type troop @default 0
 ```
 
 #### @type state
@@ -500,11 +454,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param stateId
- * @text ステートID
+ * @param stateId @text ステートID
  * @desc ステートの説明(規定値: 0)
- * @type state
- * @default 0
+ * @type state @default 0
 ```
 
 #### @type animation
@@ -512,11 +464,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param animationId
- * @text アニメーションID
+ * @param animationId @text アニメーションID
  * @desc アニメーションの説明(規定値: 0)
- * @type animation
- * @default 0
+ * @type animation @default 0
 ```
 
 #### @type tileset
@@ -524,11 +474,9 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param tilesetId
- * @text タイルセットID
+ * @param tilesetId @text タイルセットID
  * @desc タイルセットの説明(規定値: 0)
- * @type tileset
- * @default 0
+ * @type tileset @default 0
 ```
 
 #### @type common_event
@@ -536,14 +484,10 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 
 ##### Example
 ```
- * @param commonEventId
- * @type common_event
- * @text コモンイベントID
+ * @param commonEventId @text コモンイベントID
  * @desc コモンイベントの説明(規定値: 0)
- * @default 0
+ * @type common_event @default 0
 ```
-
-
 
 
 ### 廃止MVアノテーション
