@@ -56,6 +56,7 @@ MV MZ両対応の場合(MV側に機能的意味はないが)例のようにス�
  * @target MV MZ
 ```
 
+
 #### @base
 **@MZ** プラグインを使うのに必要とされるプラグイン名。<br />
 依存するプラグインが設定されていない場合に、[プラグイン管理]ウィンドウに警告が表示されます。
@@ -65,18 +66,22 @@ MV MZ両対応の場合(MV側に機能的意味はないが)例のようにス�
 **@MZ** [プラグイン管理]ウィンドウで、このプラグインの上に置く必要のあるプラグイン名。
 
 
-#### @orderAfter
+#### @orderBefore
 **@MZ** [プラグイン管理]ウィンドウで、このプラグインの下に置く必要のあるプラグイン名。
 
 
 #### @plugindesc
 [説明]に表示される文字列。
 
+
 #### @author
 [作者]に表示される文字列。
 
+
 #### @help
-[ヘルプ]に表示される文字列。次の行から別のアノテーションが書かれるまで記述可能。
+[ヘルプ]に表示される文字列。直後から別のアノテーションが書かれるまで記述可能。<br />
+改行は自由で行頭の * は無視される。
+
 
 #### @url
 **@MZ** プラグインのあるURL。プラグインファイル直接のURLを想定しているようだ。<br />
@@ -86,6 +91,7 @@ MV MZ両対応の場合(MV側に機能的意味はないが)例のようにス�
 ## [未使用ファイルを含まない]対応
 デプロイメントを実行するときに[未使用ファイルを含まない]にチェックしていた場合。<br />
 削除されては困るファイルを指定するのに使うアノテーション。
+
 
 #### @requiredAssets
 これでファイルを指定すれば削除されない。
@@ -98,19 +104,23 @@ MV MZ両対応の場合(MV側に機能的意味はないが)例のようにス�
 [メモ]のメタタグの値としてファイルを使う場合、そのファイルは固定されていない。<br />
 その場合は以下のタグを指定すれば削除されない。
 
+
 #### @noteParam
 メモ欄に書かれたタグ名
+
 
 #### @noteDir
 ファイルがあるディレクトリ
 
+
 #### @noteType
 fileしかないのでfileと書く (MVで使えた animation は廃止)
+
 
 #### @noteData
 メモを利用するデータベースを maps, events, actors, classes, skills, items, weapons, armors, enemies, states, tilesets から指定
 
- ##### Example
+##### Example
 アイテムのメモの内容が
 ```
 <sampleImage:img1>
@@ -131,15 +141,19 @@ fileしかないのでfileと書く (MVで使えた animation は廃止)
 パラメータ識別子。省略不可。パラメータ毎の設定の先頭に置くこと。<br />
 空白文字も使えるが、プラグイン側で値を取り出す時に <code>parameters["param with space "]</code> 形式しか使えず <code>parameters.param with space</code> と書いても正しく認識されないことに注意。
 
+
 #### @text
 パラメータの[名前]\(規定値: `@param` の値) 大体は `@param` の日本語名。
+
 
 #### @desc 
 パラメータの[説明]に表示される文字列(規定値: 空文字列)で、2行書ける。<br />
 `@text`と同じ説明を書く必要はないので、規定値など付加情報だけ書くと良い。
 
+
 #### @default
 規定値(デフォルト)(規定値: 空文字列)
+
 
 #### @parent
 パラメータをグループ分けする際に小パラメータから親を `@param` の識別子で指定。<br />
@@ -188,6 +202,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 入力時のUIが型に合わせて変わるが、プラグインに渡される値は全て文字列。<br />
 以下指定する型ごとに説明する。
 
+
 #### @type string 
 文字列。規定値なので指定する必要はないが、明示しておいた方が誤解がなくて良い。
 
@@ -198,8 +213,10 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  * @type string @default こんにちは
 ```
 
+
 #### @type multiline_string
 **@MZ** 複数行の文字列。
+
 
 #### @type number
 数値。数個から選ぶ場合は `@type select` を使った方が良いかもしれない。<br />
@@ -224,6 +241,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  * @decimals 1
 ```
 
+
 #### @type boolean
 真偽値。
 
@@ -240,6 +258,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  * @on 実行する @off 無視(規定)
 ```
 
+
 #### @type \*[]
 配列( \* の部分に任意のタイプを書く )  プラグイン側は [JsonEx.parse()](JsonEx.md#static-parse-json--object) で解析する。<br />
 ちなみに[プラグイン管理]上で各項目はドラッグで入れ替え可能。
@@ -250,6 +269,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  * @desc パラメータ配列の説明(規定値: ["甲", "乙", "丙"])
  * @type string[] @default ["甲", "乙", "丙"]
 ```
+
 
 #### @type struct&lt;\*&gt;
 データ構造( \* の部分に構造名を書く ) プラグイン側は [JsonEx.parse()](JsonEx.md#static-parse-json--object) で解析する。<br />
@@ -274,6 +294,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  */
 ```
  
+ 
 #### @type struct&lt;\*&gt;[]
 データ構造の配列。
 
@@ -284,6 +305,7 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
  * @type struct<coordinateStruct>[]
  * @default [{ "x":"10", "y":"20" }, { "x":"0", "y":"0" }]
 ```
+ 
  
 #### @type file
 img か audio フォルダ以下のファイル(拡張子を含まない)<br />
@@ -301,6 +323,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type file @default Actor2
  * @dir img/characters
 ```
+
 
 #### @type select
 セレクトボックスの選択肢から選択。<br />
@@ -320,6 +343,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @option 右方向 @value 6
 ```
 
+
 #### @type combo
 コンボボックス。文字列の入力、または選択肢から選択。
 
@@ -337,6 +361,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @option blue @value #0000FF
 ```
 
+
 #### @type note
 複数行の文字列が記入できる形式。改行もできる。<br />
 プラグインにはJSON文字列化(具体的には &quot; や \\のエスケープ、改行の \\n への変換)して渡される。<br />
@@ -350,6 +375,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type note @default "一行目\n二行目"
 ```
 
+
 #### @type variable
 変数([Game_Variables](Game_Variables.md))のID( なし: 0 または 空文字列 )
 
@@ -359,6 +385,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc 変数の説明(規定値: 1)
  * @type variable @default 1
 ```
+
 
 #### @type switch
 スイッチ([Game_Switches](Game_Switches.md))のID( なし: 0 または 空文字列 )
@@ -370,6 +397,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type switch @default 1
 ```
 
+
 #### @type actor
 アクター([RPG.Actor](RPG.Actor.md))のID( なし: 0 または 空文字列 )
 
@@ -379,6 +407,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc アクターの説明(規定値: 0)
  * @type actor @default 0
 ```
+
 
 #### @type class
 職業([RPG.Class](RPG.Class.md))のID( なし: 0 または 空文字列 )
@@ -390,6 +419,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type class @default 0
 ```
 
+
 #### @type skill
 スキル([RPG.Skill](RPG.Skill.md))のID( なし: 0 または 空文字列 )
 
@@ -399,6 +429,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc スキルの説明(規定値: 0)
  * @type skill @default 0
 ```
+
 
 #### @type item
 アイテム([RPG.Item](RPG.Item.md))のID( なし: 0 または 空文字列 )
@@ -410,6 +441,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type item @default 0
 ```
 
+
 #### @type weapon
 武器([RPG.Weapon](RPG.Weapon.md))のID( なし: 0 または 空文字列 )
 
@@ -419,6 +451,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc 武器の説明(規定値: 0)
  * @type weapon @default 0
 ```
+
 
 #### @type armor
 防具([RPG.Armor](RPG.Armor.md))のID( なし: 0 または 空文字列 )
@@ -430,6 +463,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type armor @default 0
 ```
 
+
 #### @type enemy
 敵キャラ([RPG.Enemy](RPG.Enemy.md))のID( なし: 0 または 空文字列 )
 
@@ -439,6 +473,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc 敵キャラの説明(規定値: 0)
  * @type enemy @default 0
 ```
+
 
 #### @type troop
 敵グループ([RPG.Troop](RPG.Troop.md))のID( なし: 0 または 空文字列 )
@@ -450,6 +485,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type troop @default 0
 ```
 
+
 #### @type state
 ステート([RPG.State](RPG.State.md))のID( なし: 0 または 空文字列 )
 
@@ -459,6 +495,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc ステートの説明(規定値: 0)
  * @type state @default 0
 ```
+
 
 #### @type animation
 アニメーション([RPG.Animation](RPG.Animation.md))のID( なし: 0 または 空文字列 )
@@ -470,6 +507,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type animation @default 0
 ```
 
+
 #### @type tileset
 タイルセット([RPG.Tileset](RPG.Tileset.md))のID( なし: 0 または 空文字列 )
 
@@ -479,6 +517,7 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @desc タイルセットの説明(規定値: 0)
  * @type tileset @default 0
 ```
+
 
 #### @type common_event
 コモンイベント([RPG.CommonEvent](RPG.CommonEvent.md))のID( なし: 0 または 空文字列 )
