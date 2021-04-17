@@ -17,7 +17,7 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_data` | Object | {key: Array, …} の形 |
+| `_data` | Object | { [MV.SelfSwutch](MV.SelfSwutch.md): Boolean, …} の形 |
 
 
 ### メソッド
@@ -31,31 +31,29 @@
 
 
 #### onChange ()
-スイッチの変更時に呼ばれるハンドラ。
+スイッチの変更時に呼ばれるハンドラ。<br />
 (マップの書き換えを予約)
 
 
 #### setValue (key, value)
-指定した[セルフスイッチ]に値を設定。<br />
-タイプは A,B,C,D いずれかの文字。
+指定した[セルフスイッチ]に値を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `key` | [Array](Array.md).&lt;*&gt; | [ マップID, イベントID, タイプ ] の配列 |
+| `key` | [MV.SelfSwutch](MV.SelfSwutch.md)  | [セルフスイッチ]の指定キー |
 | `value` | Boolean | スイッチがONか |
 
 
 #### value (key) → {Boolean}
-指定キーの値がONか。<br />
-タイプは A,B,C,D いずれかの文字。
+指定キーの値がONか。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `key` | [Array](Array.md).&lt;*&gt;  |  [ マップID, イベントID, タイプ ] の配列 |
+| `key` | [MV.SelfSwutch](MV.SelfSwutch.md)  | [セルフスイッチ]の指定キー |
 
 
 

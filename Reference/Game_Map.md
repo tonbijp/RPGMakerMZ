@@ -12,6 +12,8 @@
 
 A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilemap](Tilemap.md) で定義されている定数を参照。
 
+[セルフスイッチ]は[イベント]とは別に [Game_SelfSwitches](Game_SelfSwitches.md) が管理している。
+
 v1.1.0、v1.2.0  で変更あり。<br />
 なお、公式プラグイン PluginCommonBase.js によって追加されるプロパティ・メソッドも書いている。
 
