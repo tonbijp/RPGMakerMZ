@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.0.0.0
+// Version :0.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -10,69 +10,106 @@
 // http://opensource.org/licenses/mit-license.php
 //========================================
 /*:ja
+ * @target MZ
  * @plugindesc 条件判定関連のスクリプト
  * @author とんび﹫鳶嶋工房(tonbi.jp)
+ * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Condition.js
+ * @base PluginCommonBase
+ * @orderAfter PluginCommonBase
  *
- * @param temporaryVariable
- * @desc 各種値を返す変数(it)のID(規定値:1)
- * @type number
- * @min 1
- * @default 1
- * 
- * @param temporarySwitch
+ * @param temporarySwitch @text 一時スイッチ it のID
  * @desc 各種値を返すスイッチ(it)のID(規定値:1)
- * @type number
- * @min 1
- * @default 1
- * 
- * @help
+ * @type switch @default 1
+ *
+ * @param temporaryVariable @text 一時変数 it のID
+ * @desc 各種値を返す変数(it)のID(規定値:1)
+ * @type variable @default 1
+ *
+ * @================================================
+ * @help 
  * 変数・スイッチ・セルフスイッチをIDだけでなく[名前]で設定できる。
  * そのため、制作途中でIDを変えても[名前]が同じなら大丈夫。
+ * 
  * プレイヤー位置・前方のイベントなどの判定ができる。
  * 
- *------------------------------
- * TF_VAR [変数ID] [変数への設定値]
- * 　変数の値を設定。
- * 　[変数ID] 変数を ID、名前、変数V[n] のいずれかで指定
- * 　[変数への設定値] 設定値を 数値・文字列、変数V[n]のいずれかで指定( + か - の符号をつけた場合、加算、減算がされる)
+ * 一時変数・一時スイッチの名前に it をつけることを推奨しています。
+ * 一時変数・一時スイッチの規定値として it を使っているためです。
  *
- * 例: TF_VAR シーン 10
- *------------------------------
- * [スクリプト] $gameVariables.setValueByName( [変数ID], [変数への設定値] )
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
+ *
+ * ●イベントコマンド
+ * [変数の操作]
  * 
- *------------------------------
- * TF_VAR [変数ID]
- * 　変数の値を、指定ID(規定値:1)の変数に設定。
- *
- * 例: TF_VAR 石を叩いた回数
- *------------------------------
- * [スクリプト] $gameVariables.valueByName( [変数ID] )
- *
- *------------------------------
- * TF_SW [スイッチID] [スイッチ状態]
- * 　スイッチを設定。
- * 　[スイッチID] スイッチを ID、名前、変数V[n] のいずれかで指定
- * 　[スイッチ状態] true/false または ON/OFF 、変数S[n]のいずれかで指定。! 記号で真偽状態が反転する。
- *
- * 例: TF_SW 賢者に会った ON
- *------------------------------
- * [スクリプト] $gameSwitches.setValueByName( [スイッチID], [スイッチ状態(真偽値)] )
+ * ●スクリプト
+ * $gameVariables.setValueByName( [変数名], [変数への設定値] )
+ * $gameVariables.valueByName( [変数名] )
+ * $gameSwitches.setValueByName( [スイッチ名], [スイッチ状態(真偽値)] )
+ * $gameSwitches.valueByName( [スイッチ名] )
+ * $gameSwitches.multipleAnd( [スイッチ名], [スイッチ名]... )
  * 
- *------------------------------
- * TF_SW [スイッチID]
- * 　スイッチの値を、指定ID(規定値:1)のスイッチに設定。
- *
- * 例: TF_SW クイーンビーを倒した
- *------------------------------
- * [スクリプト] $gameSwitches.valueByName( [スイッチID] )
+ * 利用規約 : MITライセンス
  * 
+ * @================================================
+ * @command switch @text スイッチの操作
+ * @desc
+ *
+ * @arg name @text スイッチ名
+ * @desc スイッチを名前で指定
+ * @type string @default it
+ *
+ * @arg value @text 真偽値
+ * @type boolean @default true
+ * @on ON(規定) @off OFF
+ * 
+ * @================================================
+ * @command variable @text 変数の操作
+ * @desc
+ *
+ * @arg name @text 変数名
+ * @desc 変数を名前で指定
+ * @type string @default it
+ *
+ * @arg operator @text 操作(演算子)
+ * @desc 加算に関しては文字列の連結も可能(規定値:代入 =)
+ * @type select @default =
+ * @option 代入 = @value =
+ * @option 加算 + @value +
+ * @option 減算 - @value -
+ * @option 乗算 * @value *
+ * @option 除算 / @value /
+ *
+ * @arg value @text オペランド(値)
+ * @desc
+ * 変数に設定する、数値・文字列
+ * @type string
+ *
+ * @================================================
+ * @command notSwitch @text スイッチの反転
+ * @desc
+ * スイッチに記録されている値が、
+ *  true なら falseに、false なら true に反転する。
+ * @arg name @text スイッチ名
+ * @desc スイッチを名前で指定
+ * @type string @default it
+ * 
+ * @================================================
+ * @command multipleAnd @text 複数スイッチ&結合
+ * @desc
+ * 複数のスイッチの値の論理積(AND)の結果を、
+ * 指定ID(規定値:1)のスイッチに設定。
+ * 
+ * @arg nameList @text スイッチ名リスト
+ * @desc スイッチを名前で指定
+ * @type string[] @default ["it", "done"]
+ */
+/*
+ * 
+ * TODO: MZプラグインコマンドに変更
  *------------------------------
  * TF_SW_AND [スイッチID]...
- * 　複数のスイッチの値の論理積(AND)の結果を、指定ID(規定値:1)のスイッチに設定。
  * 
  * 例: TF_SW_AND 森の妖精 岩場の妖精 湖の妖精 丘の妖精
  *------------------------------
- * [スクリプト]  $gameSwitches.multipleAnd( [スイッチID]... )
  * 
  *------------------------------
  * TF_SELF_SW [マップID] [イベントID] [スイッチタイプ] [スイッチ状態]
@@ -196,31 +233,32 @@
  * TF_STAY_IF [数値] [~] [数値] [~] [数値]
  * 
  * 例: TF_STAY_IF 10 ~ V[1] ~ 15
+ *
  */
 
 ( function() {
-	'use strict';
-	const PLUGIN_NAME = document.currentScript.src.match( /\/([^\/]*)\.js$/ )[ 1 ];
-	const OPE_AND = 'and';
-	const OPE_OR = 'or';
-	const OPE_AND_MARK = '&';
-	const OPE_OR_MARK = '|';
-	const OPE_EQUAL = '=';
-	const CHAR_SPACE = ' ';
-	const IDENTIFIER_IT = 'it';
+	"use strict";
+
+	const OPE_AND = "and";
+	const OPE_OR = "or";
+	const OPE_AND_MARK = "&";
+	const OPE_OR_MARK = "|";
+	const OPE_EQUAL = "=";
+	const CHAR_SPACE = " ";
+	const IDENTIFIER_IT = "it";
 
 	/*---- パラメータパース関数 ----*/
-	const PARAM_TRUE = 'true';
-	const PARAM_ON = 'on';
-	const TYPE_BOOLEAN = 'boolean';
-	const TYPE_NUMBER = 'number';
+	const PARAM_TRUE = "true";
+	const PARAM_ON = "on";
+	const TYPE_BOOLEAN = "boolean";
+	const TYPE_NUMBER = "number";
 	/**
 	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
 	 * @param {String} value 変換元の文字列( v[n]、s[n]形式を含む )
 	 * @return {String} 変換後の文字列
 	 */
 	function treatValue( value ) {
-		if( value === undefined || value === '' ) return '0';
+		if( value === undefined || value === "" ) return "0";
 
 		const varResult = value.match( /^v\[(.+)\]$/i );
 		if( varResult !== null ) {
@@ -253,7 +291,7 @@
 	function parseIntStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
 		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( '指定した値[' + value + ']が数値ではありません。' );
+		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
 		return result;
 	}
 
@@ -265,7 +303,7 @@
 	function parseFloatStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return value;
 		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( '指定した値[' + value + ']が数値ではありません。' );
+		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
 		return result;
 	}
 
@@ -276,8 +314,8 @@
 	 */
 	function parseBooleanStrict( value ) {
 		if( typeof value === TYPE_BOOLEAN ) return value;
-		if( value === undefined || value === '' ) return false;
-		if( value === IDENTIFIER_IT ) return $gameSwitches.value( TF_swIt );
+		if( value === undefined || value === "" ) return false;
+		if( value === IDENTIFIER_IT ) return $gameSwitches.value( switchIt );
 
 		const result = value.match( /s\[(.+)\]/i );
 		if( result === null ) {
@@ -323,13 +361,11 @@
 		}
 	}
 
-	const EVENT_THIS = 'this';
-	const EVENT_SELF = 'self';
-	const EVENT_HERE = 'here';
-	const EVENT_PLAYER = 'player';
-	const EVENT_FOLLOWER0 = 'follower0';
-	const EVENT_FOLLOWER1 = 'follower1';
-	const EVENT_FOLLOWER2 = 'follower2';
+	const EVENT_THIS = "this";
+	const EVENT_PLAYER = "player";
+	const EVENT_FOLLOWER0 = "follower0";
+	const EVENT_FOLLOWER1 = "follower1";
+	const EVENT_FOLLOWER2 = "follower2";
 	/**
 	 * 文字列をイベントIDへ変換。
 	 * @param {String} value イベントIDの番号か識別子
@@ -342,8 +378,7 @@
 
 		const lowValue = value.toLowerCase();
 		switch( lowValue ) {
-			case EVENT_THIS:
-			case EVENT_SELF: return 0;
+			case EVENT_THIS: return 0;
 			case EVENT_PLAYER: return -1;
 			case EVENT_FOLLOWER0: return -2;
 			case EVENT_FOLLOWER1: return -3;
@@ -370,7 +405,7 @@
 		value = treatValue( value );
 
 		const label = value.toLowerCase();
-		if( label === EVENT_THIS || label === EVENT_HERE ) return $gameMap.mapId();
+		if( label === EVENT_THIS ) return $gameMap.mapId();
 
 		const i = $dataMapInfos.findIndex( e => {
 			if( !e ) return false;
@@ -383,14 +418,14 @@
 	}
 
 	const DIRECTION_MAP = [
-		{ in: [ '↙︎', 'dl', 'sw', 'downleft', 'southwest' ], out: 1 },
-		{ in: [ '↓', 'd', 's', 'down', 'south' ], out: 2 },
-		{ in: [ '↘︎', 'dr', 'se', 'downright', 'southeast' ], out: 3 },
-		{ in: [ '←', 'l', 'w', 'left', 'west' ], out: 4 },
-		{ in: [ '→', 'r', 'e', 'right', 'east' ], out: 6 },
-		{ in: [ '↖︎', 'ul', 'nw', 'upleft', 'northwest' ], out: 7 },
-		{ in: [ '↑', 'u', 'n', 'up', 'north' ], out: 8 },
-		{ in: [ '↗︎', 'ur', 'ne', 'upright', 'northeast' ], out: 9 }
+		{ in: [ "↙︎", "dl", "sw", "downleft", "southwest" ], out: 1 },
+		{ in: [ "↓", "d", "s", "down", "south" ], out: 2 },
+		{ in: [ "↘︎", "dr", "se", "downright", "southeast" ], out: 3 },
+		{ in: [ "←", "l", "w", "left", "west" ], out: 4 },
+		{ in: [ "→", "r", "e", "right", "east" ], out: 6 },
+		{ in: [ "↖︎", "ul", "nw", "upleft", "northwest" ], out: 7 },
+		{ in: [ "↑", "u", "n", "up", "north" ], out: 8 },
+		{ in: [ "↗︎", "ur", "ne", "upright", "northeast" ], out: 9 }
 	];
 	/**
 		 * 方向文字列をテンキー方向の数値に変換して返す。
@@ -413,27 +448,62 @@
 
 
 	// HalfMove.js の確認
-	const hasHalfMove = PluginManager._scripts.contains( 'HalfMove' );
+	const hasHalfMove = PluginManager._scripts.contains( "HalfMove" );
 
-	/**
-	 * パラメータを受け取る
-	 */
-	const pluginParams = PluginManager.parameters( PLUGIN_NAME );;
-	const TF_varIt = parseFloatStrict( pluginParams.temporaryVariable );
-	const TF_swIt = parseFloatStrict( pluginParams.temporarySwitch );
+	// プラグインパラメータを受け取る
+	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
+	const varIt = pluginParams.temporaryVariable;
+	const switchIt = pluginParams.temporarySwitch;
 
+
+	/*---- プラグインコマンド識別子 ----*/
+	const COM_SWITCH = "switch";
+	const COM_VARIABLE = "variable";
+	const COM_NOT_SWITCH = "notSwitch";
+	const COM_MULTIPLE_AND = "multipleAnd";
+	const TF_SELF_SW = "TF_SELF_SW";
+	const TF_SW_AND = "TF_SW_AND";
+	const TF_CHECK_LOCATION = "TF_CHECK_LOCATION";
+	const TF_FRONT_EVENT = "TF_FRONT_EVENT";
+	const TF_HERE_EVENT = "TF_HERE_EVENT";
+	const TF_COMPARE = "TF_COMPARE";
+	const TF_STAY_IF = "TF_STAY_IF";
+
+	// [スイッチの操作]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, args => {
+		$gameSwitches.setValueByName( args.name, args.value );
+	} );
+	// [変数の操作]
+	PluginManagerEx.registerCommand( document.currentScript, COM_VARIABLE, args => {
+		switch( args.operator ) {
+			case "=":
+				$gameVariables.setValueByName( args.name, args.value );
+				break;
+			case "+":
+				$gameVariables.setValueByName( args.name, $gameVariables.valueByName( args.name ) + args.value );
+				break;
+			case "-":
+				$gameVariables.setValueByName( args.name, $gameVariables.valueByName( args.name ) - args.value );
+				break;
+			case "*":
+				$gameVariables.setValueByName( args.name, $gameVariables.valueByName( args.name ) * args.value );
+				break;
+			case "/":
+				$gameVariables.setValueByName( args.name, $gameVariables.valueByName( args.name ) / args.value );
+				break;
+		}
+	} );
+	// [スイッチの反転]
+	PluginManagerEx.registerCommand( document.currentScript, COM_NOT_SWITCH, args => {
+		$gameSwitches.setValueByName( args.name, !$gameSwitches.valueByName( args.name ) );
+	} );
+	// [複数スイッチ&結合]
+	PluginManagerEx.registerCommand( document.currentScript, COM_MULTIPLE_AND, args => {
+		$gameSwitches.setValue( switchIt, $gameSwitches.multipleAnd( ...args.nameList ) );
+	} );
+	// TODO
 
 	/*---- Game_Interpreter ----*/
-	const TF_VAR = 'TF_VAR';
-	const TF_SW = 'TF_SW';
-	const TF_SELF_SW = 'TF_SELF_SW';
-	const TF_SW_AND = 'TF_SW_AND';
-	const TF_CHECK_LOCATION = 'TF_CHECK_LOCATION';
-	const TF_FRONT_EVENT = 'TF_FRONT_EVENT';
-	const TF_HERE_EVENT = 'TF_HERE_EVENT';
-	const TF_COMPARE = 'TF_COMPARE';
-	const TF_STAY_IF = 'TF_STAY_IF';
-
 	/**
 	 * プラグインコマンドの実行
 	 */
@@ -444,61 +514,15 @@
 		const commandStr = command.toUpperCase();
 		switch( commandStr ) {
 			case TF_STAY_IF: break;// 無視することで出現条件判定を飛ばす(実際の判定は meetsConditions() で行う)
-			case TF_VAR: TF_var( args ); break;
-			case TF_SW: TF_sw( args ); break;
 			case TF_SELF_SW: setSelfSwitch( ...args ); break;
-			case TF_SW_AND: $gameSwitches.setValue( TF_swIt, $gameSwitches.multipleAnd( ...args ) ); break;
-			case TF_FRONT_EVENT: $gameSwitches.setValue( TF_swIt, this.TF_frontEvent( ...args ) ); break;
-			case TF_HERE_EVENT: $gameSwitches.setValue( TF_swIt, this.TF_hereEvent( ...args ) ); break;
-			case TF_CHECK_LOCATION: $gameSwitches.setValue( TF_swIt, this.TF_checkLocation( ...args ) ); break;
-			case TF_COMPARE: $gameSwitches.setValue( TF_swIt, compareValues( this.character( 0 ), args ) ); break;
+			case TF_FRONT_EVENT: $gameSwitches.setValue( switchIt, this.TF_frontEvent( ...args ) ); break;
+			case TF_HERE_EVENT: $gameSwitches.setValue( switchIt, this.TF_hereEvent( ...args ) ); break;
+			case TF_CHECK_LOCATION: $gameSwitches.setValue( switchIt, this.TF_checkLocation( ...args ) ); break;
+			case TF_COMPARE: $gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) ); break;
 
 		}
 	};
 
-	/**
-	 * TF_VARの実行。
-	 * @param {Array} args 引数
-	 */
-	function TF_var( args ) {
-		if( args[ 1 ] === undefined ) {
-			$gameVariables.setValue( TF_varIt, $gameVariables.valueByName( args[ 0 ] ) );
-			return;
-		}
-		const operator = args[ 1 ].charAt( 0 );
-		let val;
-
-		if( operator === '+' || operator === '-' ) {
-			const operand = args[ 1 ].slice( 1 );
-			const preval = $gameVariables.valueByName( args[ 0 ] );
-			val = parseIntStrict( operand );
-			if( operator === '+' ) {
-				val += preval;
-			} else if( operator === '-' ) {
-				val -= preval;
-			}
-		} else {
-			val = parseIntStrict( args[ 1 ] );
-		}
-		$gameVariables.setValueByName( args[ 0 ], val );
-	}
-
-	/**
-	 * TF_SW の実行。
-	 * @param {Array} args 引数
-	 */
-	function TF_sw( args ) {
-		if( args[ 1 ] === undefined ) {
-			$gameSwitches.setValue( TF_swIt, $gameSwitches.valueByName( args[ 0 ] ) );
-			return;
-		}
-
-		if( args[ 1 ] === '!' ) {
-			$gameSwitches.setValueByName( args[ 0 ], !$gameSwitches.valueByName( args[ 0 ] ) );
-		} else {
-			$gameSwitches.setValueByName( args[ 0 ], args[ 1 ] );
-		}
-	}
 
 	/**
 	 * TF_FRONT_EVENT の実行。
@@ -655,9 +679,9 @@
 		mapId = stringToMapId( mapId );
 		const numberId = stringToEventId( eventId );
 		if( numberId === undefined ) throw Error( `I can't find the event '${eventId}'` );
-		type = type ? type.toUpperCase() : 'A';
+		type = type ? type.toUpperCase() : "A";
 		if( isOn === undefined ) {
-			$gameSwitches.setValue( TF_swIt, $gameSelfSwitches.value( [ mapId, numberId, type ] ) );
+			$gameSwitches.setValue( switchIt, $gameSelfSwitches.value( [ mapId, numberId, type ] ) );
 		} else {
 			$gameSelfSwitches.setValue( [ mapId, numberId, type ], parseBooleanStrict( isOn ) );
 		}
@@ -668,7 +692,7 @@
 	 * 指定イベントページの出現条件判定を行う。
 	 * @param {RPG.EventPage} page 対象イベントページ
 	 */
-	const SELF_SWITCHES = [ 'A', 'B', 'C', 'D' ];
+	const SELF_SWITCHES = [ "A", "B", "C", "D" ];
 	const _Game_Event_meetsConditions = Game_Event.prototype.meetsConditions;
 	Game_Event.prototype.meetsConditions = function( page ) {
 		const doPage = _Game_Event_meetsConditions.apply( this, arguments );
