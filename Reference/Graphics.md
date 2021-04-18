@@ -20,10 +20,6 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `BLEND_ADD` | [Number](Number.md) | [static] 加算 |
-| `BLEND_NORMAL` | [Number](Number.md) | [static] 通常 |
-| `BLEND_MULTIPLY` | [Number](Number.md) | [static] 乗算 |
-| `BLEND_SCREEN` | [Number](Number.md) | [static] スクリーン |
 | `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static][read-only] PIXIアプリケーション |
 | `effekseer` | EffekseerContext  | **@MZ**[static][read-only] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
@@ -50,7 +46,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 ### 廃止MVプロパティ
 [static]
 `_cssFontLoading`,
-`_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`
+`_rendererType`, `_boxWidth`, `_boxHeight`, `_errorShowed`, `_video`, `_videoUnlocked`, `_videoLoading`, `_upperCanvas `, `_renderer`, `_fpsMeter`, `_modeBox`, `_skipCount`, `_maxSkip`, `_rendered`, `_loadingImage`, `_loadingCount`, `_fpsMeterToggled`, `_canUseDifferenceBlend`, `_canUseSaturationBlend`, `_hiddenCanvas`,`BLEND_ADD`,`BLEND_NORMAL` ,`BLEND_MULTIPLY`, `BLEND_SCREEN`
 
 ### メソッド
 

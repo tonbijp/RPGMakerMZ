@@ -74,14 +74,14 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | 0 | [Sprite](Sprite.md) | 低層タイル\[○\]・\[×\](レイヤー1・2 ・影ペン・3・4 ) |
 
 #### [合成方法]
-番号は [Graphics](Graphics.md) の静的クラス定数として定義されている。例えば Graphics.BLEND_ADD の形で使う。
+番号は [Graphics](Graphics.md) の静的クラス定数として定義されていたが、『RPGツクールMZ』では廃止されて、[PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES) の定数を使うようになっている。
 
 | 番号 | 定数 | [合成方法] |
 | --- | --- | --- |
-| 0 | BLEND_NORMAL | 通常 |
-| 1 | BLEND_ADD | 加算 |
-| 2 | BLEND_MULTIPLY | 乗算 |
-| 3 | BLEND_SCREEN | スクリーン |
+| 0 | PIXI.BLEND_MODES.NORMAL | 通常 |
+| 1 | PIXI.BLEND_MODES.ADD | 加算 |
+| 2 | PIXI.BLEND_MODES.MULTIPLY | 乗算 |
+| 3 | PIXI.BLEND_MODES.SCREEN | スクリーン |
 
 
 ### 廃止MVプロパティ

@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | `batches` | [Array](Array.md).&lt;Object&gt; | バッチ |
 | `batchTint` | [Number](Number.md) | (規定値: -1) |
-| `blendMode` | [Number](Number.md) | ブレンドモード(規定値: [PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES).NORMAL) |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: [PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES).NORMAL) |
 | `currentPath` | [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) | 現在のパス |
 | `fill` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | [read-only] 塗りの形式 |
 | `geometry` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | ジオメトリ |
