@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.8.0.0
+// Version :0.9.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -296,7 +296,7 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command compareVariables @text 数値比較
+ * @command compareNumbers @text 数値比較
  * @desc
  * 一時変数と比較した結果を一時スイッチに設定。
  * 
@@ -304,9 +304,9 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 一時変数と同じ == @value ==
- * @option 一時変数以上 <= @value <=
+ * @option 一時変数以上 ≦ @value ≦
  * @option 一時変数より上 < @value <
- * @option 一時変数以下 >= @value >=
+ * @option 一時変数以下 ≧ @value ≧
  * @option 一時変数より下 > @value >
  * 
  * @arg name @text 変数名
@@ -326,18 +326,6 @@
  * 
  * TODO: MZプラグインコマンドに変更
  * 
- * ---- ↓引数2 ----
- * TF_COMPARE [真偽値] [真偽値]
- * 　スイッチと真偽値、スイッチとスイッチが両辺で同じか判定。
- * 　　[真偽値] true、false、ON、OFF
- *　　　 S[番号]、S[識別子]、it、A、B、C、D、 のいずれか
- * 
- * 例: TF_COMPARE A OFF
- * ---- ↓引数3 ----
- * TF_COMPARE [数値] [条件式] [数値]
- * 　変数と数値、変数と変数を比較する。
- * 　　[数値] V[番号]、 \V[変数名]、it、数値 のいずれか
- * 　　[条件式] =、 = 以外なら全て =<(小なりイコール)とする
  * 
  * 例: TF_COMPARE V[0] ≦ V[3]
  * ---- ↓引数4 ----
@@ -644,7 +632,7 @@
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
 	const COM_CHECK_HERE_EVENT = "checkHereEvent";
 	const COM_JS_FUNCTION = "jsFunction";
-	const COM_COMPARE_VARIABLES = "compareVariables";
+	const COM_COMPARE_VARIABLES = "compareNumbers";
 	const TF_STAY_IF = "TF_STAY_IF";
 
 	// [スイッチの操作]
@@ -742,12 +730,16 @@
 	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE_VARIABLES, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 
-		const lastValue = $gameVariables.valueByName( valueIt );
+		const leftSide = $gameVariables.value( variableItId );
+		const rightSide = $gameVariables.valueByName( args.name );
 		let value;
 		switch( args.compare ) {
-			case "==": value = $gameVariables.setValueByName( args.name, value + args.value ); break;
+			case "==": value = leftSide === rightSide; break;
+			case "≦": value = leftSide <= rightSide; break;
+			case "<": value = leftSide < rightSide; break;
+			case "≧": value = leftSide >= rightSide; break;
+			case ">": value = leftSide > rightSide; break;
 		}
-		parseBooleanStrict( args.value ) === args.booleanValue;
 		setItTo( value, args.operate );
 	} );
 
@@ -764,15 +756,6 @@
 			parseBooleanStrict( swId );
 		const l = args.length;
 		switch( l ) {
-			case 2:
-			//  
-			case 3:
-				// 論理演算判定
-				// [変数] [演算子] [数値]
-				// 実際は2数値の判定で、演算子の左辺か右辺か以外に引数の処理に差はない
-				const leftSide = parseFloatStrict( args[ 0 ] );
-				const rightSide = parseFloatStrict( args[ 2 ] );
-				return ( args[ 1 ] === OPE_EQUAL ) ? ( leftSide === rightSide ) : ( leftSide <= rightSide );
 			case 4:
 				// セルフスイッチ判定
 				const mapId = stringToMapId( args[ 0 ] );
