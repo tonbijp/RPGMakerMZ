@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.6.0.0
+// Version :0.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -176,6 +176,9 @@
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  *
+ * @command ───── 位置 ──────
+ * @desc これは区切り線なので選択しても何も起きないぞ!
+ * 
  * @================================================
  * @command checkLocation @text プレイヤー位置判定
  * @desc
@@ -188,7 +191,8 @@
  * @type string @default this
  *
  * @arg position @text 位置(タイル数)
- * @desc マップ上の位置 x, y
+ * @desc マップ上の位置
+ *  x, y 座標2つの数値を区切って入力。
  * @type string @default 0, 0
  *
  * @arg d @text 向き(テンキー対応)
@@ -263,37 +267,25 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * 
+ * @command ───── 比較 ──────
+ * @desc これは区切り線なので選択しても何も起きないぞ!
+ * 
+ * @================================================
+ * @command jsFunction @text JavaScript判定
+ * @desc
+ * このイベントを this とした JavaScript実行し、
+ * return で返った結果を一時スイッチに設定。
+ *
+ * @arg script @text JavaScript
+ * @desc 真偽値を返すJavaScriptを書く。
+ * @type note @default "// 実行結果を returnで返す\nreturn true;"
+ *
  */
 /*
  * 
  * TODO: MZプラグインコマンドに変更
  * 
- *------------------------------
- * TF_HERE_EVENT [マップID] [イベントID] [向き] [論理演算子]
- * 　プレイヤー位置の指定のイベントとプレイヤーの向きをチェックして、
- * 　結果を指定ID(規定値:1)のスイッチに設定。
- * 　[向き] プレイヤーの向き(テンキー対応 | 方向文字列)
- * 　　上: 8, up, u, north, n, ↑
- * 　　左: 4, left, l, west, w, ←
- * 　　右: 6, right, r, east, e, →
- * 　　下: 2, down, d, south, s, ↓
- * 　　※[向き]は大文字小文字の区別をしません。
- * [指定位置の情報取得]
- *------------------------------
- * 　結果は返り値として返る。
- *
- *------------------------------
- *
- *------------------------------
- * TF_COMPARE
- * 　引数の数によって比較を行い結果を、指定ID(規定値:1)のスイッチに設定。
- * ---- ↓引数1 ----
- * TF_COMPARE [JavaScript]
- * 　JavaScriptを実行した結果を判定に使う。
- * 　this は Interpreter ではなく Game_Event(実行したイベント自身) になる。
- * 　　[JavaScript] 真偽値を返すJavaScript を空白を入れずに書く
- *
- * 例: TF_COMPARE $gameTimer.isWorking()&&$gameTimer.seconds ()<=100
  * ---- ↓引数2 ----
  * TF_COMPARE [真偽値] [真偽値]
  * 　スイッチと真偽値、スイッチとスイッチが両辺で同じか判定。
@@ -304,7 +296,7 @@
  * ---- ↓引数3 ----
  * TF_COMPARE [数値] [条件式] [数値]
  * 　変数と数値、変数と変数を比較する。
- * 　　[数値] V[番号]、 V[変数名]、it、数値 のいずれか
+ * 　　[数値] V[番号]、 \V[変数名]、it、数値 のいずれか
  * 　　[条件式] =、 = 以外なら全て =<(小なりイコール)とする
  * 
  * 例: TF_COMPARE V[0] ≦ V[3]
@@ -372,13 +364,13 @@
 	const TYPE_NUMBER = "number";
 	/**
 	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
-	 * @param {String} value 変換元の文字列( v[n]、s[n]形式を含む )
+	 * @param {String} value 変換元の文字列( \v[n]、s[n]形式を含む )
 	 * @return {String} 変換後の文字列
 	 */
 	function treatValue( value ) {
 		if( value === undefined || value === "" ) return "0";
 
-		const varResult = value.match( /^v\[(.+)\]$/i );
+		const varResult = value.match( /^\x1bv\[(.+)\]$/i );
 		if( varResult !== null ) {
 			const id = parseInt( varResult[ 1 ], 10 );
 			if( isNaN( id ) ) {
@@ -388,7 +380,7 @@
 			}
 		}
 
-		const swResult = value.match( /^s\[(.+)\]$/i );
+		const swResult = value.match( /^\x1bs\[(.+)\]$/i );
 		if( swResult !== null ) {
 			const id = parseInt( swResult[ 1 ], 10 );
 			if( isNaN( id ) ) {
@@ -602,9 +594,8 @@
 	const COM_CHECK_LOCATION = "checkLocation";
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
 	const COM_CHECK_HERE_EVENT = "checkHereEvent";
-
-	const TF_HERE_EVENT = "TF_HERE_EVENT";
-	const TF_COMPARE = "TF_COMPARE";
+	const COM_JS_FUNCTION = "jsFunction";
+	const COM_COMPARE = "TF_COMPARE";
 	const TF_STAY_IF = "TF_STAY_IF";
 
 	// [スイッチの操作]
@@ -686,25 +677,21 @@
 		$gameSwitches.setValue( switchIt, this.TF_checkHereEvent( args.mapId, args.d, args.eventId, args.operate ) );
 	} );
 
+	// [JavaScript判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_JS_FUNCTION, function( args ) {
+		const code = JSON.parse( args.script );
+		const result = ( new Function( code ) ).call( this.character( 0 ) );
+		$gameSwitches.setValue( switchIt, result );
+	} );
+
+	// [JavaScript関数実行]
+	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE, function( args ) {
+		$gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) );
+	} );
 
 	// TODO
 
 	/*---- Game_Interpreter ----*/
-	/**
-	 * プラグインコマンドの実行
-	 */
-	const _Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
-	Game_Interpreter.prototype.pluginCommand = function( command, args ) {
-		_Game_Interpreter_pluginCommand.apply( this, arguments );
-
-		const commandStr = command.toUpperCase();
-		switch( commandStr ) {
-			case TF_STAY_IF: break;// 無視することで出現条件判定を飛ばす(実際の判定は meetsConditions() で行う)
-			case TF_COMPARE: $gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) ); break;
-
-		}
-	};
-
 
 	/**
 	 * プレイヤー前方に指定イベントの判定があるか。
@@ -787,7 +774,7 @@
 	/*--- Game_Variables ---*/
 	/**
 	 * 変数を文字列で指定し、値を返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
 	 */
 	Game_Variables.prototype.valueByName = function( name ) {
 		return this.value( stringToVariableId( name ) );
@@ -807,7 +794,7 @@
 
 	/**
 	 * 指定された変数のIDを返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
 	 */
 	function stringToVariableId( name ) {
 		if( typeof name === TYPE_NUMBER ) return name;
@@ -918,8 +905,6 @@
 		const l = args.length;
 		switch( l ) {
 			case 1:
-				// JavaScript判定
-				return ( new Function( `return ${args[ 0 ]}` ) ).call( gameEvent );
 			case 2:
 				//  スイッチ判定
 				// [スイッチID] [真偽値]
