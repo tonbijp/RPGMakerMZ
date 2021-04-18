@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.3.0.0
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -38,7 +38,26 @@
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
  * ●イベントコマンド
+ * [スイッチの操作]
  * [変数の操作]
+ * [セルフスイッチの操作]
+ * [複数スイッチ&結合]
+ * [プレイヤー位置判定]
+ * ------------------------------
+ * 引数の[操作]の選択肢のうち get そして and と or は、
+ * 判定を連続して行いたい場合に使います。
+ * 指定したスイッチの内容は変更されません。
+ *
+ * ・ [一時スイッチに代入 get]
+ * 　指定スイッチの値を一時スイッチに
+ *
+ * ・ [一時スイッチとの論理積 and]
+ * 　一時スイッチと指定スイッチが両方ともONだとON
+ * 　それ以外だとOFFという結果を一時スイッチに代入します。
+ * 
+ * ・ [一時スイッチとの論理和 or]
+ * 　一時スイッチと指定スイッチのどちらかがONだとON
+ * 　それ以外だとOFFという結果を一時スイッチに代入します。
  * 
  * ●スクリプト
  * $gameVariables.setValueByName( [変数名], [変数への設定値] )
@@ -70,21 +89,30 @@
  * 
  * @================================================
  * @command variable @text 変数の操作
- * @desc
+ * @desc 数値は小数値も扱う
  *
  * @arg name @text 変数名
  * @desc 変数を名前で指定
  * @type string @default it
  *
  * @arg operate @text 操作
- * @desc 加算に関しては文字列の連結も可能(規定値:代入 =)
+ * @desc 加算に関しては文字列の連結も可能
+ * 規定値: 代入 =
  * @type select @default =
  * @option 代入 = @value =
- * @option 加算 + @value +
- * @option 減算 - @value -
- * @option 乗算 * @value *
- * @option 除算 / @value /
- * @option 一時変数に代入 @value get
+ * @option 足し算 += @value +=
+ * @option 引き算 -= @value -=
+ * @option 掛け算 *= @value *=
+ * @option 割り算 /= @value /=
+ * @option 割り算の余り %= @value %=
+ * @option 割り算の商 //= @value //=
+ * @option 一時変数に代入 get @value get
+ * @option 足し算して一時変数に代入 + @value +
+ * @option 引き算して一時変数に代入 - @value -
+ * @option 掛け算して一時変数に代入 * @value *
+ * @option 割り算して一時変数に代入 / @value /
+ * @option 割り算の余りを一時変数に代入 % @value %
+ * @option 割り算の商を一時変数に代入 // @value //
  *
  * @arg value @text オペランド(値)
  * @desc
@@ -133,9 +161,16 @@
  * @arg nameList @text スイッチ名リスト
  * @desc スイッチを名前で指定
  * @type string[] @default ["it", "done"]
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
  * 
  * @================================================
- * @command checkLocation @text プレイヤー場所情報判定
+ * @command checkLocation @text プレイヤー位置判定
  * @desc
  * プレイヤーの座標位置と向きをチェックして、
  * 全て合致していたか結果を一時スイッチに設定。
@@ -145,27 +180,28 @@
  * 規定値:this(現在のマップ)
  * @type string @default this
  *
- * @arg x @text x位置(タイル数)
- * @desc マップ上のx位置
- * @type string @default 0
- *
- * @arg y @text y位置(タイル数)
- * @desc マップ上のy位置
- * @type string @default 0
+ * @arg position @text 位置(タイル数)
+ * @desc マップ上の位置 x, y
+ * @type string @default 0, 0
  *
  * @arg d @text 向き(テンキー対応)
  * @desc プレイヤーの向き
  * 規定値:0 (向きを問わない)
- * @type number @default 0
+ * @type select @default 0
+ * @option ・0 @value 0
+ * @option ↑ 8 @value 8
+ * @option → 6 @value 6
+ * @option ←  4 @value 4
+ * @option ↓ 2 @value 2
  *
  * @arg operate @text 操作
- * @desc 結果の扱い(規定値:ON)
- * @type select @default true
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * 
- *------------------------------
+ *
  */
 /*
  * 
@@ -270,6 +306,9 @@
 
 	const OPE_AND = "and";
 	const OPE_OR = "or";
+	const OPE_NOT = "not";
+	const OPE_GET = "get";
+
 	const OPE_AND_MARK = "&";
 	const OPE_OR_MARK = "|";
 	const OPE_EQUAL = "=";
@@ -320,7 +359,7 @@
 	function parseIntStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
 		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: '${value}' is not a number.` );
 		return result;
 	}
 
@@ -332,7 +371,7 @@
 	function parseFloatStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return value;
 		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( `指定した値[${value}]が数値ではありません。` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: '${value}' is not a number.` );
 		return result;
 	}
 
@@ -363,16 +402,16 @@
 	/**
 	 * ショートサーキット判定。
 	 * @param {String} logope
-	 * @returns {Boolean} ショートサーキット成立した場合に、その値S[ 1 ]を返す
+	 * @returns {Boolean} ショートサーキット成立した場合に、一時スイッチを返す。成立してない場合は undefined;
 	 */
 	function shortCircuit( logope ) {
 		if( logope === undefined ) return;
 
 		logope = logope.toLowerCase();
 		if( logope === OPE_AND_MARK || logope === OPE_AND ) {
-			if( !$gameSwitches.value( 1 ) ) return false;
+			if( !$gameSwitches.value( switchIt ) ) return false;
 		} else if( logope === OPE_OR_MARK || logope === OPE_OR ) {
-			if( $gameSwitches.value( 1 ) ) return true;
+			if( $gameSwitches.value( switchIt ) ) return true;
 		}
 	}
 
@@ -427,7 +466,7 @@
 
 	/**
 	 * 文字列をマップIDへ変換。
-	 * @param {String} value マップIDの番号か識別子( here か this で現在のマップ)
+	 * @param {String} value マップIDの番号か識別子(this で現在のマップ)
 	 * @returns {Number} マップID
 	 */
 	function stringToMapId( value ) {
@@ -456,6 +495,7 @@
 		{ in: [ "↑", "u", "n", "up", "north" ], out: 8 },
 		{ in: [ "↗︎", "ur", "ne", "upright", "northeast" ], out: 9 }
 	];
+
 	/**
 		 * 方向文字列をテンキー方向の数値に変換して返す。
 		 * @param {String} value 方向た文字列
@@ -470,6 +510,17 @@
 		const index = DIRECTION_MAP.findIndex( e => e.in.includes( value ) );
 		if( index === -1 ) return;
 		return DIRECTION_MAP[ index ].out;
+	}
+
+	/**
+	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
+	 * @param {String} positionString "x, y" 形式の文字列
+	 * @returns {Array} [x,y]形式の配列
+	 */
+	function position2xy( positionString ) {
+		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
+		return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
 	}
 
 	// イベントコマンドの番号
@@ -497,48 +548,72 @@
 	const TF_STAY_IF = "TF_STAY_IF";
 
 	// [スイッチの操作]
-	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, args => {
+	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, function( args ) {
+		if( typeof args.operate === TYPE_BOOLEAN ) {
+			$gameSwitches.setValueByName( args.name, args.operate );
+			return;
+		}
+
+		const value = $gameSwitches.valueByName( args.name );
 		switch( args.operate ) {
-			case "not": $gameSwitches.setValueByName( args.name, !$gameSwitches.valueByName( args.name ) ); break;
-			case "get": $gameSwitches.setValueByName( switchIt, $gameSwitches.valueByName( args.name ) ); break;
-			default: $gameSwitches.setValueByName( args.name, args.operate );
+			case OPE_NOT: $gameSwitches.setValueByName( args.name, !value ); break;
+			case OPE_GET: $gameSwitches.setValueByName( switchIt, value ); break;
+			case OPE_AND: $gameSwitches.setValueByName( switchIt, value && $gameSwitches.valueByName( switchIt ) ); break;
+			case OPE_OR: $gameSwitches.setValueByName( switchIt, value || $gameSwitches.valueByName( switchIt ) ); break;
 		}
 	} );
 
 	// [変数の操作]
-	PluginManagerEx.registerCommand( document.currentScript, COM_VARIABLE, args => {
+	PluginManagerEx.registerCommand( document.currentScript, COM_VARIABLE, function( args ) {
 		if( args.operate === "=" ) {
 			$gameVariables.setValueByName( args.name, args.value );
 			return;
 		}
 		const value = $gameVariables.valueByName( args.name );
 		switch( args.operate ) {
-			case "+": $gameVariables.setValueByName( args.name, value + args.value ); break;
-			case "-": $gameVariables.setValueByName( args.name, value - args.value ); break;
-			case "*": $gameVariables.setValueByName( args.name, value * args.value ); break;
-			case "/": $gameVariables.setValueByName( args.name, value / args.value ); break;
-			case "%": $gameVariables.setValueByName( args.name, value % args.value ); break;
+			case "+=": $gameVariables.setValueByName( args.name, value + args.value ); break;
+			case "-=": $gameVariables.setValueByName( args.name, value - args.value ); break;
+			case "*=": $gameVariables.setValueByName( args.name, value * args.value ); break;
+			case "/=": $gameVariables.setValueByName( args.name, value / args.value ); break;
+			case "%=": $gameVariables.setValueByName( args.name, value % args.value ); break;
+			case "//=": $gameVariables.setValueByName( args.name, Mathi.floor( value / args.value ) ); break;
 			case "get": $gameVariables.setValueByName( variableIt, value ); break;
+			case "+": $gameVariables.setValueByName( variableIt, value + args.value ); break;
+			case "-": $gameVariables.setValueByName( variableIt, value - args.value ); break;
+			case "*": $gameVariables.setValueByName( variableIt, value * args.value ); break;
+			case "/": $gameVariables.setValueByName( variableIt, value / args.value ); break;
+			case "%": $gameVariables.setValueByName( variableIt, value % args.value ); break;
+			case "//": $gameVariables.setValueByName( variableIt, Mathi.floor( value / args.value ) ); break;
 		}
 	} );
 
 	// [セルフスイッチ操作]
-	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, args => {
+	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
+		if( typeof args.operate === TYPE_BOOLEAN ) {
+			setSelfSwitch( args.mapId, args.eventId, args.type, args.value );
+			return;
+		}
+		const value = getSelfSwitch( args.mapId, args.eventId, args.type, args.value );
 		switch( args.operate ) {
-			case "not": setSelfSwitch( args.mapId, args.eventId, args.type, !getSelfSwitch( args.mapId, args.eventId, args.type, args.value ) ); break;
-			case "get": $gameSwitches.setValueByName( switchIt, getSelfSwitch( args.mapId, args.eventId, args.type, args.value ) ); break;
-			default: setSelfSwitch( args.mapId, args.eventId, args.type, args.value );
+			case OPE_NOT: setSelfSwitch( args.mapId, args.eventId, args.type, !value ); break;
+			case OPE_GET: $gameSwitches.setValueByName( switchIt, value ); break;
+			case OPE_AND: $gameSwitches.setValueByName( switchIt, value && $gameSwitches.valueByName( switchIt ) ); break;
+			case OPE_OR: $gameSwitches.setValueByName( switchIt, value || $gameSwitches.valueByName( switchIt ) ); break;
 		}
 	} );
 
 	// [複数スイッチ&結合]
-	PluginManagerEx.registerCommand( document.currentScript, COM_MULTIPLE_AND, args => {
+	PluginManagerEx.registerCommand( document.currentScript, COM_MULTIPLE_AND, function( args ) {
+		const sc = shortCircuit( args.operate );
+		if( sc !== undefined ) return sc;	// ショートサーキット
+
 		$gameSwitches.setValue( switchIt, $gameSwitches.multipleAnd( ...args.nameList ) );
 	} );
 
-	// [場所をチェック]
-	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, args => {
-		$gameSwitches.setValue( switchIt, this.TF_checkLocation( ...args ) );
+	// [プレイヤー位置判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, function( args ) {
+		const [ x, y ] = position2xy( args.position );
+		$gameSwitches.setValue( switchIt, this.TF_checkLocation( args.mapId, x, y, args.d, args.operate ) );
 	} );
 	// TODO
 
@@ -576,7 +651,7 @@
 	/**
 	 * TF_HERE_EVENT の実行。
 	 * プレイヤー位置に指定イベントの判定があるか。
-	 * @param {String} mapId マップID | マップ名 | here | this
+	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {String} eventId 対象イベント
 	 * @param {String} d プレイヤーの向き(テンキー対応 | 方向文字列)
 	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
@@ -614,12 +689,12 @@
 	/**
 	 * プレイヤーの座標位置と向きをチェックして合致しているか。
 	 * 半歩移動を使っている場合は0.5を考慮する必要がある
-	 * @param {String} mapId マップID | マップ名 | self | this
+	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {String} x 対象x座標(タイル数)
 	 * @param {String} y 対象y座標(タイル数)
 	 * @param {String} d プレイヤーの向き(テンキー対応 | 方向文字列)
-	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
-	 * @returns {Boolean} 指定座標と向きか
+	 * @param {String} logope 一時スイッチとの論理演算子( logical operator )による接続( & | | | and | or )
+	 * @returns {Boolean} 指定座標と向きがプレイヤーと合致しているか
 	 */
 	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d, logope ) {
 		const sc = shortCircuit( logope );
@@ -628,11 +703,8 @@
 		mapId = stringToMapId( mapId );
 		if( mapId !== $gameMap.mapId() ) return false;
 
-		x = parseFloatStrict( x );
-		y = parseFloatStrict( y );
-		d = stringToDirection( d );
-		if( d === undefined ) {
-			return ( x === $gamePlayer.x && y === $gamePlayer.y );
+		if( d === 0 ) {
+			return ( x === $gamePlayer.x && y === $gamePlayer.y );	// 向きを問わない
 		} else {
 			return ( x === $gamePlayer.x && y === $gamePlayer.y && d === $gamePlayer.direction() );
 		}
@@ -669,7 +741,7 @@
 		let i = $dataSystem.variables.findIndex( i => i === name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
-		if( isNaN( i ) ) throw Error( `I can't find the variable '${name}'` );
+		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the variable '${name}'` );
 		return i;
 	}
 
@@ -700,7 +772,7 @@
 		let i = $dataSystem.switches.findIndex( i => i === name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
-		if( isNaN( i ) ) throw Error( `I can't find the switch '${name}'` );
+		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the switch '${name}'` );
 		return i;
 	}
 
@@ -719,7 +791,7 @@
 	function setSelfSwitch( mapId, eventId, type, value ) {
 		const mapIdNumber = stringToMapId( mapId );
 		const eventIdNumber = stringToEventId( eventId );
-		if( eventIdNumber === undefined ) throw Error( `I can't find the event '${eventId}'` );
+		if( eventIdNumber === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${eventId}'` );
 		$gameSelfSwitches.setValue( [ mapIdNumber, eventIdNumber, type ], parseBooleanStrict( value ) );
 	}
 	/**
@@ -731,7 +803,7 @@
 	function getSelfSwitch( mapId, eventId, type ) {
 		const mapIdNumber = stringToMapId( mapId );
 		const eventIdNumber = stringToEventId( eventId );
-		if( eventIdNumber === undefined ) throw Error( `I can't find the event '${eventId}'` );
+		if( eventIdNumber === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${eventId}'` );
 		return $gameSelfSwitches.value( [ mapIdNumber, eventIdNumber, type ] );
 	}
 
@@ -790,7 +862,7 @@
 				// セルフスイッチ判定
 				const mapId = stringToMapId( args[ 0 ] );
 				const numberId = stringToEventId( args[ 1 ] );// 現在のマップが用意される前に判定が走るので、識別子で指定できない
-				if( numberId === undefined ) throw Error( `I can't find the event '${args[ 1 ]}'` );
+				if( numberId === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${args[ 1 ]}'` );
 				const type = args[ 2 ].toUpperCase();
 				return $gameSelfSwitches.value( [ mapId, numberId, type ] ) === getSwitchValue( args[ 3 ] );
 			case 5:
@@ -798,7 +870,7 @@
 				const centerVal = parseFloatStrict( args[ 2 ] );
 				return ( parseFloatStrict( args[ 0 ] ) <= centerVal && centerVal <= parseFloatStrict( args[ 4 ] ) );
 			default:
-				throw Error( `${l} length of arguments are wrong.` );
+				throw Error( `${PLUGIN_NAME}: ${l} length of arguments are wrong.` );
 		}
 	}
 
