@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.7.0.0
+// Version :0.8.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -70,9 +70,9 @@
  * $gameSwitches.setValueByName( [スイッチ名], [スイッチ状態(真偽値)] )
  * $gameSwitches.valueByName( [スイッチ名] )
  * $gameSwitches.multipleAnd( [スイッチ名], [スイッチ名]... )
- * this.TF_checkLocation( [マップID], [x], [y], [向き], [論理演算子] )
- * this.TF_checkFrontEvent( [マップID], [イベントID], [論理演算子] )
- * this.TF_checkHereEvent( [マップID], [向き], [イベントID], [論理演算子] )
+ * this.TF_checkLocation( [マップID], [x], [y], [向き] )
+ * this.TF_checkFrontEvent( [マップID], [イベントID] )
+ * this.TF_checkHereEvent( [マップID], [向き], [イベントID] )
  * 
  * 利用規約 : MITライセンス
  * 
@@ -93,6 +93,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  * 
  * @================================================
  * @command variable @text 変数の操作
@@ -158,6 +159,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
  * @command multipleAnd @text 複数スイッチ&結合
@@ -175,6 +177,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  *
  * @command ───── 位置 ──────
  * @desc これは区切り線なので選択しても何も起きないぞ!
@@ -211,6 +214,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
  * @command checkFrontEvent @text プレイヤー前方イベント判定
@@ -234,6 +238,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
  * @command checkHereEvent @text プレイヤー位置イベント判定
@@ -267,10 +272,11 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  * 
  * @command ───── 比較 ──────
  * @desc これは区切り線なので選択しても何も起きないぞ!
- * 
+ *
  * @================================================
  * @command jsFunction @text JavaScript判定
  * @desc
@@ -281,8 +287,42 @@
  * @desc 真偽値を返すJavaScriptを書く。
  * @type note @default "// 実行結果を returnで返す\nreturn true;"
  *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ *
+ * @================================================
+ * @command compareVariables @text 数値比較
+ * @desc
+ * 一時変数と比較した結果を一時スイッチに設定。
+ * 
+ * @arg compare @text 比較演算子
+ * @desc (規定値: ==)
+ * @type select @default ==
+ * @option 一時変数と同じ == @value ==
+ * @option 一時変数以上 <= @value <=
+ * @option 一時変数より上 < @value <
+ * @option 一時変数以下 >= @value >=
+ * @option 一時変数より下 > @value >
+ * 
+ * @arg name @text 変数名
+ * @desc 変数を名前で指定
+ * @type string @default
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
  */
 /*
+ *
  * 
  * TODO: MZプラグインコマンドに変更
  * 
@@ -350,6 +390,7 @@
 	const OPE_OR = "or";
 	const OPE_NOT = "not";
 	const OPE_GET = "get";
+	const OPE_COMPARE = "==";
 
 	const OPE_AND_MARK = "&";
 	const OPE_OR_MARK = "|";
@@ -425,7 +466,7 @@
 	function parseBooleanStrict( value ) {
 		if( typeof value === TYPE_BOOLEAN ) return value;
 		if( value === undefined || value === "" ) return false;
-		if( value === IDENTIFIER_IT ) return $gameSwitches.value( switchIt );
+		if( value === IDENTIFIER_IT ) return $gameSwitches.value( switchItId );
 
 		const result = value.match( /s\[(.+)\]/i );
 		if( result === null ) {
@@ -442,19 +483,27 @@
 	}
 
 	/**
-	 * ショートサーキット判定。
+	 * ショートサーキットなら結果をItに代入。
 	 * @param {String} logope
-	 * @returns {Boolean} ショートサーキット成立した場合に、一時スイッチを返す。成立してない場合は undefined;
+	 * @returns {Boolean} ショートサーキットが成立したか
 	 */
 	function shortCircuit( logope ) {
-		if( logope === undefined ) return;
-
 		logope = logope.toLowerCase();
 		if( logope === OPE_AND_MARK || logope === OPE_AND ) {
-			if( !$gameSwitches.value( switchIt ) ) return false;
+			if( !$gameSwitches.value( switchItId ) ) return true;
 		} else if( logope === OPE_OR_MARK || logope === OPE_OR ) {
-			if( $gameSwitches.value( switchIt ) ) return true;
+			if( $gameSwitches.value( switchItId ) ) return true;
 		}
+		return false;
+	}
+
+	// ショートサーキット処理が済んでいる場合の代入処理
+	function setItTo( value, logope ) {
+		if( logope === OPE_COMPARE ) {
+			value = value === $gameSwitches.valueByName( switchItId );
+		}
+		// OPE_GET, OPE_AND, OPE_OR のいずれか
+		$gameSwitches.setValueByName( switchItId, value );
 	}
 
 	/**
@@ -582,8 +631,8 @@
 
 	// プラグインパラメータを受け取る
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
-	const variableIt = pluginParams.temporaryVariable;
-	const switchIt = pluginParams.temporarySwitch;
+	const variableItId = pluginParams.temporaryVariable;
+	const switchItId = pluginParams.temporarySwitch;
 
 
 	/*---- プラグインコマンド識別子 ----*/
@@ -595,22 +644,21 @@
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
 	const COM_CHECK_HERE_EVENT = "checkHereEvent";
 	const COM_JS_FUNCTION = "jsFunction";
-	const COM_COMPARE = "TF_COMPARE";
+	const COM_COMPARE_VARIABLES = "compareVariables";
 	const TF_STAY_IF = "TF_STAY_IF";
 
 	// [スイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
 		if( typeof args.operate === TYPE_BOOLEAN ) {
 			$gameSwitches.setValueByName( args.name, args.operate );
 			return;
 		}
-
 		const value = $gameSwitches.valueByName( args.name );
-		switch( args.operate ) {
-			case OPE_NOT: $gameSwitches.setValueByName( args.name, !value ); break;
-			case OPE_GET: $gameSwitches.setValueByName( switchIt, value ); break;
-			case OPE_AND: $gameSwitches.setValueByName( switchIt, value && $gameSwitches.valueByName( switchIt ) ); break;
-			case OPE_OR: $gameSwitches.setValueByName( switchIt, value || $gameSwitches.valueByName( switchIt ) ); break;
+		if( args.operate === OPE_NOT ) {
+			$gameSwitches.setValueByName( args.name, !value );
+		} else {
+			setItTo( value, args.operate );
 		}
 	} );
 
@@ -628,68 +676,118 @@
 			case "/=": $gameVariables.setValueByName( args.name, value / args.value ); break;
 			case "%=": $gameVariables.setValueByName( args.name, value % args.value ); break;
 			case "//=": $gameVariables.setValueByName( args.name, Mathi.floor( value / args.value ) ); break;
-			case "get": $gameVariables.setValueByName( variableIt, value ); break;
-			case "+": $gameVariables.setValueByName( variableIt, value + args.value ); break;
-			case "-": $gameVariables.setValueByName( variableIt, value - args.value ); break;
-			case "*": $gameVariables.setValueByName( variableIt, value * args.value ); break;
-			case "/": $gameVariables.setValueByName( variableIt, value / args.value ); break;
-			case "%": $gameVariables.setValueByName( variableIt, value % args.value ); break;
-			case "//": $gameVariables.setValueByName( variableIt, Mathi.floor( value / args.value ) ); break;
+			case "get": $gameVariables.setValueByName( variableItId, value ); break;
+			case "+": $gameVariables.setValueByName( variableItId, value + args.value ); break;
+			case "-": $gameVariables.setValueByName( variableItId, value - args.value ); break;
+			case "*": $gameVariables.setValueByName( variableItId, value * args.value ); break;
+			case "/": $gameVariables.setValueByName( variableItId, value / args.value ); break;
+			case "%": $gameVariables.setValueByName( variableItId, value % args.value ); break;
+			case "//": $gameVariables.setValueByName( variableItId, Mathi.floor( value / args.value ) ); break;
 		}
 	} );
 
 	// [セルフスイッチ操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
 		if( typeof args.operate === TYPE_BOOLEAN ) {
 			setSelfSwitch( args.mapId, args.eventId, args.type, args.value );
 			return;
 		}
 		const value = getSelfSwitch( args.mapId, args.eventId, args.type, args.value );
-		switch( args.operate ) {
-			case OPE_NOT: setSelfSwitch( args.mapId, args.eventId, args.type, !value ); break;
-			case OPE_GET: $gameSwitches.setValueByName( switchIt, value ); break;
-			case OPE_AND: $gameSwitches.setValueByName( switchIt, value && $gameSwitches.valueByName( switchIt ) ); break;
-			case OPE_OR: $gameSwitches.setValueByName( switchIt, value || $gameSwitches.valueByName( switchIt ) ); break;
+		if( args.operate === OPE_NOT ) {
+			setSelfSwitch( args.mapId, args.eventId, args.type, !value );
+		} else {
+			setItTo( value, args.operate );
 		}
 	} );
 
 	// [複数スイッチ&結合]
 	PluginManagerEx.registerCommand( document.currentScript, COM_MULTIPLE_AND, function( args ) {
-		const sc = shortCircuit( args.operate );
-		if( sc !== undefined ) return sc;	// ショートサーキット
-
-		$gameSwitches.setValue( switchIt, $gameSwitches.multipleAnd( ...args.nameList ) );
+		if( shortCircuit( args.operate ) ) return;
+		const value = $gameSwitches.multipleAnd( ...args.nameList );
+		setItTo( value, args.operate );
 	} );
 
 	// [プレイヤー位置判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
 		const [ x, y ] = position2xy( args.position );
-		$gameSwitches.setValue( switchIt, this.TF_checkLocation( args.mapId, x, y, args.d, args.operate ) );
+		const value = this.TF_checkLocation( args.mapId, x, y, args.d );
+		setItTo( value, args.operate );
 	} );
 
 	// [プレイヤー前方イベント判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_FRONT_EVENT, function( args ) {
-		$gameSwitches.setValue( switchIt, this.TF_checkFrontEvent( args.mapId, args.eventId, args.operate ) );
+		if( shortCircuit( args.operate ) ) return;
+		const value = this.TF_checkFrontEvent( args.mapId, args.eventId );
+		setItTo( value, args.operate );
 	} );
 
 	// [プレイヤー位置イベント判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_HERE_EVENT, function( args ) {
-		$gameSwitches.setValue( switchIt, this.TF_checkHereEvent( args.mapId, args.d, args.eventId, args.operate ) );
+		if( shortCircuit( args.operate ) ) return;
+		const value = this.TF_checkHereEvent( args.mapId, args.d, args.eventId );
+		setItTo( value, args.operate );
 	} );
 
 	// [JavaScript判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_JS_FUNCTION, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
 		const code = JSON.parse( args.script );
-		const result = ( new Function( code ) ).call( this.character( 0 ) );
-		$gameSwitches.setValue( switchIt, result );
+		const value = ( new Function( code ) ).call( this.character( 0 ) );
+		setItTo( value, args.operate );
 	} );
 
-	// [JavaScript関数実行]
-	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE, function( args ) {
-		$gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) );
+	// [数値比較]
+	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE_VARIABLES, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
+
+		const lastValue = $gameVariables.valueByName( valueIt );
+		let value;
+		switch( args.compare ) {
+			case "==": value = $gameVariables.setValueByName( args.name, value + args.value ); break;
+		}
+		parseBooleanStrict( args.value ) === args.booleanValue;
+		setItTo( value, args.operate );
 	} );
 
 	// TODO
+	/**
+		* 引数によって判定を行う。
+		* @param { Game_Event; } gameEvent 対象のイベント
+		* @param { String; } args 引数の数で判定方法を変更する
+		* @returns { Boolean; } 判定結果
+	 */
+	function compareValues( gameEvent, args ) {
+		const getSwitchValue = swId => SELF_SWITCHES.includes( swId ) ?	// セルフスイッチ判定
+			$gameSelfSwitches.value( [ gameEvent._mapId, gameEvent._eventId, swId ] ) :
+			parseBooleanStrict( swId );
+		const l = args.length;
+		switch( l ) {
+			case 2:
+			//  
+			case 3:
+				// 論理演算判定
+				// [変数] [演算子] [数値]
+				// 実際は2数値の判定で、演算子の左辺か右辺か以外に引数の処理に差はない
+				const leftSide = parseFloatStrict( args[ 0 ] );
+				const rightSide = parseFloatStrict( args[ 2 ] );
+				return ( args[ 1 ] === OPE_EQUAL ) ? ( leftSide === rightSide ) : ( leftSide <= rightSide );
+			case 4:
+				// セルフスイッチ判定
+				const mapId = stringToMapId( args[ 0 ] );
+				const numberId = stringToEventId( args[ 1 ] );// 現在のマップが用意される前に判定が走るので、識別子で指定できない
+				if( numberId === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${args[ 1 ]}'` );
+				const type = args[ 2 ].toUpperCase();
+				return $gameSelfSwitches.value( [ mapId, numberId, type ] ) === getSwitchValue( args[ 3 ] );
+			case 5:
+				// 範囲判定
+				const centerVal = parseFloatStrict( args[ 2 ] );
+				return ( parseFloatStrict( args[ 0 ] ) <= centerVal && centerVal <= parseFloatStrict( args[ 4 ] ) );
+			default:
+				throw Error( `${PLUGIN_NAME}: ${l} length of arguments are wrong.` );
+		}
+	}
 
 	/*---- Game_Interpreter ----*/
 
@@ -697,10 +795,9 @@
 	 * プレイヤー前方に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | here | this
 	 * @param {String} eventId 対象イベント
-	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
-	Game_Interpreter.prototype.TF_checkFrontEvent = function( mapId, eventId, logope ) {
+	Game_Interpreter.prototype.TF_checkFrontEvent = function( mapId, eventId ) {
 		const d = $gamePlayer.direction();
 		let x, y;
 		if( hasHalfMove ) {//HalfMove.js を使っている場合
@@ -710,7 +807,7 @@
 			x = $gameMap.roundXWithDirection( $gamePlayer.x, d );
 			y = $gameMap.roundYWithDirection( $gamePlayer.y, d );
 		}
-		return collisionCheck( this, mapId, x, y, eventId, logope );
+		return collisionCheck( this, mapId, x, y, eventId );
 	};
 
 	/**
@@ -718,11 +815,10 @@
 	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {Number} d プレイヤーの向き(テンキー対応)
 	 * @param {String} eventId 対象イベント
-	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
-	Game_Interpreter.prototype.TF_checkHereEvent = function( mapId, d, eventId, logope ) {
-		return isMatchDirection( d ) && collisionCheck( this, mapId, $gamePlayer.x, $gamePlayer.y, eventId, logope );
+	Game_Interpreter.prototype.TF_checkHereEvent = function( mapId, d, eventId ) {
+		return isMatchDirection( d ) && collisionCheck( this, mapId, $gamePlayer.x, $gamePlayer.y, eventId );
 	};
 
 	/**
@@ -732,12 +828,9 @@
 	 * @param {Number*} x x位置(タイル数)
 	 * @param {Number} y y位置(タイル数)
 	 * @param {String} eventId 対象イベント
-	 * @param {*} logope 
 	 * @returns 
 	 */
-	function collisionCheck( interpreter, mapId, x, y, eventId, logope ) {
-		const sc = shortCircuit( logope );
-		if( sc !== undefined ) return sc;	// ショートサーキット
+	function collisionCheck( interpreter, mapId, x, y, eventId ) {
 		if( stringToMapId( mapId ) !== $gameMap.mapId() ) return false;
 
 		let events;
@@ -759,12 +852,9 @@
 	 * @param {String} x 対象x座標(タイル数)
 	 * @param {String} y 対象y座標(タイル数)
 	 * @param {String} d プレイヤーの向き(テンキー対応 | 方向文字列)
-	 * @param {String} logope 一時スイッチとの論理演算子( logical operator )による接続( & | | | and | or )
 	 * @returns {Boolean} 指定座標と向きがプレイヤーと合致しているか
 	 */
-	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d, logope ) {
-		const sc = shortCircuit( logope );
-		if( sc !== undefined ) return sc;	// ショートサーキット
+	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d ) {
 		if( !isMatchDirection( d ) ) return false;
 		if( stringToMapId( mapId ) !== $gameMap.mapId() ) return false;
 
@@ -892,45 +982,5 @@
 	};
 
 
-	/**
-	 * 引数によって判定を行う。
-	 * @param {Game_Event} gameEvent 対象のイベント
-	 * @param {String} args 引数の数で判定方法を変更する
-	 * @returns {Boolean} 判定結果
-	 */
-	function compareValues( gameEvent, args ) {
-		const getSwitchValue = swId => SELF_SWITCHES.includes( swId ) ?	// セルフスイッチ判定
-			$gameSelfSwitches.value( [ gameEvent._mapId, gameEvent._eventId, swId ] ) :
-			parseBooleanStrict( swId );
-		const l = args.length;
-		switch( l ) {
-			case 1:
-			case 2:
-				//  スイッチ判定
-				// [スイッチID] [真偽値]
-				// 実際は真偽値2つが同じかの判定で、引数の処理に差はない
-				return getSwitchValue( args[ 0 ] ) === getSwitchValue( args[ 1 ] );
-			case 3:
-				// 論理演算判定
-				// [変数] [演算子] [数値]
-				// 実際は2数値の判定で、演算子の左辺か右辺か以外に引数の処理に差はない
-				const leftSide = parseFloatStrict( args[ 0 ] );
-				const rightSide = parseFloatStrict( args[ 2 ] );
-				return ( args[ 1 ] === OPE_EQUAL ) ? ( leftSide === rightSide ) : ( leftSide <= rightSide );
-			case 4:
-				// セルフスイッチ判定
-				const mapId = stringToMapId( args[ 0 ] );
-				const numberId = stringToEventId( args[ 1 ] );// 現在のマップが用意される前に判定が走るので、識別子で指定できない
-				if( numberId === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${args[ 1 ]}'` );
-				const type = args[ 2 ].toUpperCase();
-				return $gameSelfSwitches.value( [ mapId, numberId, type ] ) === getSwitchValue( args[ 3 ] );
-			case 5:
-				// 範囲判定
-				const centerVal = parseFloatStrict( args[ 2 ] );
-				return ( parseFloatStrict( args[ 0 ] ) <= centerVal && centerVal <= parseFloatStrict( args[ 4 ] ) );
-			default:
-				throw Error( `${PLUGIN_NAME}: ${l} length of arguments are wrong.` );
-		}
-	}
 
 } )();
