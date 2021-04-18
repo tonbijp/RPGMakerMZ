@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.4.0.0
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -18,11 +18,11 @@
  * @orderAfter PluginCommonBase
  *
  * @param temporarySwitch @text 一時スイッチのID
- * @desc 各種値を返すスイッチ(it)のID(規定値:1)
+ * @desc 各種値を返すスイッチのID(規定値:1)
  * @type switch @default 1
  *
  * @param temporaryVariable @text 一時変数のID
- * @desc 各種値を返す変数(it)のID(規定値:1)
+ * @desc 各種値を返す変数のID(規定値:1)
  * @type variable @default 1
  *
  * @================================================
@@ -32,8 +32,11 @@
  * 
  * プレイヤー位置・前方のイベントなどの判定ができる。
  * 
- * 一時変数・一時スイッチの名前に it をつけることを推奨しています。
- * 一時変数・一時スイッチの規定値として it を使っているためです。
+ * 一時変数・一時スイッチについて
+ * ・名前に it をつけることを推奨。
+ * 　プラグインコマンドの規定値が it だからです。
+ * ・IDはプラグインパラメータで変更できますが 1 を推奨。
+ * 　イベントコマンドでの規定値が 1 だからです。
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -43,6 +46,7 @@
  * [セルフスイッチの操作]
  * [複数スイッチ&結合]
  * [プレイヤー位置判定]
+ * [プレイヤー前方イベント判定]
  * ------------------------------
  * 引数の[操作]の選択肢のうち get そして and と or は、
  * 判定を連続して行いたい場合に使います。
@@ -66,6 +70,7 @@
  * $gameSwitches.valueByName( [スイッチ名] )
  * $gameSwitches.multipleAnd( [スイッチ名], [スイッチ名]... )
  * this.TF_checkLocation( [マップID], [x], [y], [向き], [論理演算子] )
+ * this.TF_checkFrontEvent( [マップID], [イベントID], [論理演算子] )
  * 
  * 利用規約 : MITライセンス
  * 
@@ -168,7 +173,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
- * 
+ *
  * @================================================
  * @command checkLocation @text プレイヤー位置判定
  * @desc
@@ -201,21 +206,32 @@
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * 
+ * @================================================
+ * @command checkFrontEvent @text プレイヤー前方イベント判定
+ * @desc
+ * プレイヤーの前方に指定イベントがあるか、
+ * 判定した結果を一時スイッチに設定。
  *
+ * @arg mapId @text マップID
+ * @desc マップをIDまたは名前で指定
+ * 規定値:this(現在のマップ)
+ * @type string @default this
+ *
+ * @arg eventId @text イベントID
+ * @desc イベントをIDで指定
+ * 規定値:this(このイベント)
+ * @type string @default this
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
  */
 /*
  * 
  * TODO: MZプラグインコマンドに変更
- * 
- *------------------------------
- * TF_FRONT_EVENT [マップID] [イベントID] [論理演算子]
- * 　プレイヤー前方に指定のイベントがあるかをチェックして、
- * 　結果を指定ID(規定値:1)のスイッチに設定。
- * 　[論理演算子] 指定ID(規定値:1)のスイッチ と比較する
- * 　　論理演算子( logical operator )による接続( & | | | and | or )
- *------------------------------
- * [スクリプト] this.TF_frontEvent( [マップID], [イベントID], [論理演算子] )
- * 　結果は返り値として返る。
  * 
  *------------------------------
  * TF_HERE_EVENT [マップID] [イベントID] [向き] [論理演算子]
@@ -542,7 +558,7 @@
 	const COM_SELFSWITCH = "selfSwitch";
 	const COM_MULTIPLE_AND = "multipleAnd";
 	const COM_CHECK_LOCATION = "checkLocation";
-	const TF_FRONT_EVENT = "TF_FRONT_EVENT";
+	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
 	const TF_HERE_EVENT = "TF_HERE_EVENT";
 	const TF_COMPARE = "TF_COMPARE";
 	const TF_STAY_IF = "TF_STAY_IF";
@@ -615,6 +631,13 @@
 		const [ x, y ] = position2xy( args.position );
 		$gameSwitches.setValue( switchIt, this.TF_checkLocation( args.mapId, x, y, args.d, args.operate ) );
 	} );
+
+	// [プレイヤー前方イベント判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_FRONT_EVENT, function( args ) {
+		$gameSwitches.setValue( switchIt, collisionCheck( this, args.mapId, args.eventId, args.operate, $gamePlayer.direction() ) );
+	} );
+
+
 	// TODO
 
 	/*---- Game_Interpreter ----*/
@@ -628,7 +651,6 @@
 		const commandStr = command.toUpperCase();
 		switch( commandStr ) {
 			case TF_STAY_IF: break;// 無視することで出現条件判定を飛ばす(実際の判定は meetsConditions() で行う)
-			case TF_FRONT_EVENT: $gameSwitches.setValue( switchIt, this.TF_frontEvent( ...args ) ); break;
 			case TF_HERE_EVENT: $gameSwitches.setValue( switchIt, this.TF_hereEvent( ...args ) ); break;
 			case TF_COMPARE: $gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) ); break;
 
@@ -644,7 +666,7 @@
 	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
-	Game_Interpreter.prototype.TF_frontEvent = function( mapId, eventId, logope ) {
+	Game_Interpreter.prototype.TF_checkFrontEvent = function( mapId, eventId, logope ) {
 		return collisionCheck( this, mapId, eventId, logope, $gamePlayer.direction() );
 	};
 
