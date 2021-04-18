@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.5.0.0
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -47,6 +47,7 @@
  * [複数スイッチ&結合]
  * [プレイヤー位置判定]
  * [プレイヤー前方イベント判定]
+ * [プレイヤー位置イベント判定]
  * ------------------------------
  * 引数の[操作]の選択肢のうち get そして and と or は、
  * 判定を連続して行いたい場合に使います。
@@ -71,6 +72,7 @@
  * $gameSwitches.multipleAnd( [スイッチ名], [スイッチ名]... )
  * this.TF_checkLocation( [マップID], [x], [y], [向き], [論理演算子] )
  * this.TF_checkFrontEvent( [マップID], [イベントID], [論理演算子] )
+ * this.TF_checkHereEvent( [マップID], [向き], [イベントID], [論理演算子] )
  * 
  * 利用規約 : MITライセンス
  * 
@@ -205,7 +207,7 @@
  * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
- * 
+ *
  * @================================================
  * @command checkFrontEvent @text プレイヤー前方イベント判定
  * @desc
@@ -216,6 +218,39 @@
  * @desc マップをIDまたは名前で指定
  * 規定値:this(現在のマップ)
  * @type string @default this
+ *
+ * @arg eventId @text イベントID
+ * @desc イベントをIDで指定
+ * 規定値:this(このイベント)
+ * @type string @default this
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ *
+ * @================================================
+ * @command checkHereEvent @text プレイヤー位置イベント判定
+ * @desc
+ * プレイヤーと同じ場所に指定イベントがあるか、
+ * 判定した結果を一時スイッチに設定。
+ *
+ * @arg mapId @text マップID
+ * @desc マップをIDまたは名前で指定
+ * 規定値:this(現在のマップ)
+ * @type string @default this
+ *
+ * @arg d @text 向き(テンキー対応)
+ * @desc プレイヤーの向き
+ * 規定値:0 (向きを問わない)
+ * @type select @default 0
+ * @option ・0 @value 0
+ * @option ↑ 8 @value 8
+ * @option → 6 @value 6
+ * @option ←  4 @value 4
+ * @option ↓ 2 @value 2
  *
  * @arg eventId @text イベントID
  * @desc イベントをIDで指定
@@ -245,7 +280,6 @@
  * 　　※[向き]は大文字小文字の区別をしません。
  * [指定位置の情報取得]
  *------------------------------
- * [スクリプト] this.TF_hereEvent( [マップID], [イベントID],[向き], [論理演算子] )
  * 　結果は返り値として返る。
  *
  *------------------------------
@@ -527,6 +561,14 @@
 		if( index === -1 ) return;
 		return DIRECTION_MAP[ index ].out;
 	}
+	/**
+	 * 指定した方向をプレイヤーが向いているか。
+	 * @param {Number} d 判定する方向(テンキー対応)
+	 * @returns {Boolean} 方向が同じか
+	 */
+	function isMatchDirection( d ) {
+		return ( d === 0 ) ? true : ( d === $gamePlayer.direction() );
+	}
 
 	/**
 	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
@@ -559,6 +601,8 @@
 	const COM_MULTIPLE_AND = "multipleAnd";
 	const COM_CHECK_LOCATION = "checkLocation";
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
+	const COM_CHECK_HERE_EVENT = "checkHereEvent";
+
 	const TF_HERE_EVENT = "TF_HERE_EVENT";
 	const TF_COMPARE = "TF_COMPARE";
 	const TF_STAY_IF = "TF_STAY_IF";
@@ -634,7 +678,12 @@
 
 	// [プレイヤー前方イベント判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_FRONT_EVENT, function( args ) {
-		$gameSwitches.setValue( switchIt, collisionCheck( this, args.mapId, args.eventId, args.operate, $gamePlayer.direction() ) );
+		$gameSwitches.setValue( switchIt, this.TF_checkFrontEvent( args.mapId, args.eventId, args.operate ) );
+	} );
+
+	// [プレイヤー位置イベント判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_HERE_EVENT, function( args ) {
+		$gameSwitches.setValue( switchIt, this.TF_checkHereEvent( args.mapId, args.d, args.eventId, args.operate ) );
 	} );
 
 
@@ -651,7 +700,6 @@
 		const commandStr = command.toUpperCase();
 		switch( commandStr ) {
 			case TF_STAY_IF: break;// 無視することで出現条件判定を飛ばす(実際の判定は meetsConditions() で行う)
-			case TF_HERE_EVENT: $gameSwitches.setValue( switchIt, this.TF_hereEvent( ...args ) ); break;
 			case TF_COMPARE: $gameSwitches.setValue( switchIt, compareValues( this.character( 0 ), args ) ); break;
 
 		}
@@ -659,7 +707,6 @@
 
 
 	/**
-	 * TF_FRONT_EVENT の実行。
 	 * プレイヤー前方に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | here | this
 	 * @param {String} eventId 対象イベント
@@ -667,39 +714,49 @@
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
 	Game_Interpreter.prototype.TF_checkFrontEvent = function( mapId, eventId, logope ) {
-		return collisionCheck( this, mapId, eventId, logope, $gamePlayer.direction() );
+		const d = $gamePlayer.direction();
+		let x, y;
+		if( hasHalfMove ) {//HalfMove.js を使っている場合
+			x = $gameMap.roundHalfXWithDirection( $gamePlayer.x, d );
+			y = $gameMap.roundHalfYWithDirection( $gamePlayer.y, d );
+		} else {
+			x = $gameMap.roundXWithDirection( $gamePlayer.x, d );
+			y = $gameMap.roundYWithDirection( $gamePlayer.y, d );
+		}
+		return collisionCheck( this, mapId, x, y, eventId, logope );
 	};
 
 	/**
-	 * TF_HERE_EVENT の実行。
 	 * プレイヤー位置に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | this
+	 * @param {Number} d プレイヤーの向き(テンキー対応)
 	 * @param {String} eventId 対象イベント
-	 * @param {String} d プレイヤーの向き(テンキー対応 | 方向文字列)
 	 * @param {String} logope 前の結果との論理演算子( logical operator )による接続( & | | | and | or )
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
-	Game_Interpreter.prototype.TF_hereEvent = function( mapId, eventId, d, logope ) {
-		d = stringToDirection( d );
-		const resultD = d ? ( d === $gamePlayer.direction() ) : true;
-		return collisionCheck( this, mapId, eventId, logope ) && resultD;
+	Game_Interpreter.prototype.TF_checkHereEvent = function( mapId, d, eventId, logope ) {
+		return isMatchDirection( d ) && collisionCheck( this, mapId, $gamePlayer.x, $gamePlayer.y, eventId, logope );
 	};
 
-	function collisionCheck( interpreter, mapId, eventId, logope, d ) {
+	/**
+	 * 
+	 * @param {Game_Interpreter} interpreter
+	 * @param {String} mapId マップID | マップ名 | this
+	 * @param {Number*} x x位置(タイル数)
+	 * @param {Number} y y位置(タイル数)
+	 * @param {String} eventId 対象イベント
+	 * @param {*} logope 
+	 * @returns 
+	 */
+	function collisionCheck( interpreter, mapId, x, y, eventId, logope ) {
 		const sc = shortCircuit( logope );
 		if( sc !== undefined ) return sc;	// ショートサーキット
-
-		mapId = stringToMapId( mapId );
-		if( mapId !== $gameMap.mapId() ) return false;
+		if( stringToMapId( mapId ) !== $gameMap.mapId() ) return false;
 
 		let events;
 		if( hasHalfMove ) {//HalfMove.js を使っている場合
-			const x = d ? $gameMap.roundHalfXWithDirection( $gamePlayer.x, d ) : $gamePlayer.x;
-			const y = d ? $gameMap.roundHalfYWithDirection( $gamePlayer.y, d ) : $gamePlayer.y;
 			events = $gameMap.eventsXyUnitNt( x, y );
 		} else {
-			const x = d ? $gameMap.roundXWithDirection( $gamePlayer.x, d ) : $gamePlayer.x;
-			const y = d ? $gameMap.roundYWithDirection( $gamePlayer.y, d ) : $gamePlayer.y;
 			events = $gameMap.eventsXy( x, y );
 		}
 		const numberId = stringToEventId( eventId );
@@ -721,15 +778,10 @@
 	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d, logope ) {
 		const sc = shortCircuit( logope );
 		if( sc !== undefined ) return sc;	// ショートサーキット
+		if( !isMatchDirection( d ) ) return false;
+		if( stringToMapId( mapId ) !== $gameMap.mapId() ) return false;
 
-		mapId = stringToMapId( mapId );
-		if( mapId !== $gameMap.mapId() ) return false;
-
-		if( d === 0 ) {
-			return ( x === $gamePlayer.x && y === $gamePlayer.y );	// 向きを問わない
-		} else {
-			return ( x === $gamePlayer.x && y === $gamePlayer.y && d === $gamePlayer.direction() );
-		}
+		return ( x === $gamePlayer.x && y === $gamePlayer.y );
 	};
 
 	/*--- Game_Variables ---*/
