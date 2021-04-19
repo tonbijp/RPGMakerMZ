@@ -48,7 +48,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `params` | [Array](Array.md).&lt;[String](String.md)&gt; | コマンドに渡される引数 |
+| `params` | Object | コマンドに渡される引数(MVでは[Array](Array.md)だった) |
 
 ---
 
