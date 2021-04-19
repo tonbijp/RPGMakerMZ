@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.12.1.0
+// Version :0.12.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -96,7 +96,7 @@
  * @command switch @text スイッチの操作
  * @desc 指定スイッチへの代入。
  *
- * @arg specification @text スイッチの名前
+ * @arg name @text スイッチの名前
  * @desc 指定スイッチ
  * @type string @default it
  * 
@@ -167,7 +167,7 @@
  * 指定スイッチと一時スイッチを論理演算し、
  * 結果を一時スイッチに設定。
  *
- * @arg specification @text スイッチの名前
+ * @arg name @text スイッチの名前
  * @desc 指定スイッチ
  * @type string @default it
  *
