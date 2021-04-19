@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.12.2.0
+// Version :1.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -39,46 +39,40 @@
  * ・true、false は名前ではなく値と判断します。
  * 
  * 一時変数・一時スイッチについて
- * ・名前に it をつけることを推奨。
+ * ・名前に it をつけることを推奨します。
  * 　プラグインコマンドの規定値が it だからです。
- * ・IDはプラグインパラメータで変更できますが 1 を推奨。
- * 　イベントコマンドでの規定値が 1 だからです。
- * ・一時変数・一時スイッチ両方とも it が規定値です。
+ * 　一時変数・一時スイッチ両方とも it が規定値です。
+ * ・IDはプラグインパラメータで変更できますが 1 を推奨します。
+ * 　イベントコマンドの規定値が 1 だから入れ替える必要がありません。
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
  * ●イベントコマンド
- * 　[スイッチの操作]
- * 　[変数の操作]
- * 　[セルフスイッチの操作]
+ * 　[スイッチの操作][変数の操作][セルフスイッチの操作]
  * 判定
- * 　[スイッチ判定]
- * 　[セルフスイッチ判定]
- * 　[複数スイッチ&結合]
- * 　[JavaScript判定]
- * 位置
- * 　[プレイヤー位置]
- * 　[プレイヤー前方イベント]
- * 　[プレイヤー位置イベント]
+ * 　[スイッチ判定][セルフスイッチ判定]
+ * 　[複数スイッチ&結合][JavaScript判定]
  * 比較
- * 　[数値比較]
- * 　[数値範囲]
+ * 　[数値比較][数値範囲]
+ * 位置
+ * 　[座標位置][前方イベント][その場イベント]
+ * 出現条件:判定
+ * 　[スイッチ判定][セルフスイッチ判定][複数スイッチ&結合]
+ * 出現条件:比較
+ * 　[数値比較][数値範囲]
  * ------------------------------
  * 引数の[論理演算]の選択肢のうち get そして and、or、== は、
  * 判定を連続して行いたい場合に使います。
  * 論理演算の結果は一時スイッチに代入されます。
  *
- * ・ [一時スイッチに代入 get]
- * 　判定結果。
- *
- * ・ [一時スイッチとの論理積 and]
- * 　一時スイッチと判定結果が両方ともONだとON。
- *
- * ・ [一時スイッチとの論理和 or]
- * 　一時スイッチと判定結果のどちらかがONだとON。
- * 
- * ・ [一時スイッチと同じ ==]
- * 　一時スイッチと判定結果の値が同じだとON。
+ *  [一時スイッチに代入 get]
+ * 　　判定結果。
+ *  [一時スイッチとの論理積 and]
+ * 　　一時スイッチと判定結果が両方ともONだとON。
+ *  [一時スイッチとの論理和 or]
+ * 　　一時スイッチと判定結果のどちらかがONだとON。
+ *  [一時スイッチと同じ ==]
+ * 　　一時スイッチと判定結果の値が同じだとON。
  * 
  * ●スクリプト
  * $gameVariables.setValueByName( [変数名], [変数への設定値] )
@@ -158,11 +152,12 @@
  * (セルフスイッチの指定はできません)
  * @type string @default true
  *
- * @command ＿＿＿＿＿ 判定 ＿＿＿＿＿
- * @desc これは区切り線なので選択しても何も起きないぞ!
+ * @command rem1 @text ＿＿＿＿＿ 判定 ＿＿＿＿＿
+ * @desc [条件分岐]を行うため下準備的なものです。
+ * (なお、これは区切り線なので選択しても何も起きません)
  *
  * @================================================
- * @command checkSwitch @text スイッチ判定
+ * @command checkSwitch @text 判定:スイッチ
  * @desc
  * 指定スイッチと一時スイッチを論理演算し、
  * 結果を一時スイッチに設定。
@@ -181,7 +176,7 @@
  * @option 一時スイッチと同じ == @value ==
  * 
  * @================================================
- * @command checkSelfSwitch @text セルフスイッチ判定
+ * @command checkSelfSwitch @text 判定:セルフスイッチ
  * @desc
  * 指定スイッチと一時スイッチを論理演算し、
  * 結果を一時スイッチに設定。
@@ -212,7 +207,7 @@
  * @option 一時スイッチと同じ == @value ==
  * 
  * @================================================
- * @command multipleAnd @text 複数スイッチ&結合
+ * @command checkMultiple @text 判定:複数スイッチ
  * @desc
  * 複数のスイッチの論理積(and)の結果を、
  * 一時スイッチに設定。
@@ -230,14 +225,26 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command jsFunction @text JavaScript判定
+ * @command checkCompare @text 判定:数値比較
  * @desc
- * このイベントを this とした JavaScriptを実行し、
- * return で返った結果を一時スイッチに設定。
+ * 一時変数と比較した結果を一時スイッチに設定。
  *
- * @arg script @text JavaScript
- * @desc 真偽値を返すJavaScriptを書く。
- * @type note @default "// 実行結果を returnで返す\nreturn true;"
+ * @arg leftSide @text 左辺の数値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default it
+ * 
+ * @arg compare @text 比較演算子
+ * @desc (規定値: ==)
+ * @type select @default ==
+ * @option 同じ == @value ==
+ * @option 以上 ≦ @value ≦
+ * @option より上 < @value <
+ * @option 以下 ≧ @value ≧
+ * @option より下 > @value >
+ *
+ * @arg rightSide @text 右辺の数値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default it
  *
  * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
@@ -247,11 +254,38 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  *
- * @command ＿＿＿＿＿ 位置 ＿＿＿＿＿
- * @desc これは区切り線なので選択しても何も起きないぞ!
- * 
  * @================================================
- * @command checkLocation @text プレイヤー位置
+ * @command checkRange @text 判定:数値範囲
+ * @desc
+ * 指定変数が範囲内にあるか判定して、
+ * 結果を一時スイッチに設定。
+ *
+ * @arg min @text 最小値≦
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type number @default 0
+ *
+ * @arg center @text 中間値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default it
+ * 
+ * @arg max @text ≦最大値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type number @default 100
+ *
+ * @arg operate @text 論理演算
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ *
+ * @command rem2 @text ＿＿＿＿ 特殊判定 ＿＿＿＿
+ * @desc 標準にはついてない判定方式で[出現条件]では使えません。
+ * (なお、これは区切り線なので選択しても何も起きません)
+ *
+ * @================================================
+ * @command checkLocation @text 座標位置
  * @desc
  * プレイヤーの座標位置と向きをチェックして、
  * 全て合致していたか結果を一時スイッチに設定。
@@ -285,7 +319,7 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command checkFrontEvent @text プレイヤー前方イベント
+ * @command checkFrontEvent @text 前方イベント
  * @desc
  * プレイヤーの前方に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -309,7 +343,7 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command checkHereEvent @text プレイヤー位置イベント
+ * @command checkHereEvent @text その場イベント
  * @desc
  * プレイヤーと同じ場所に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -342,19 +376,79 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  * 
- * @command ＿＿＿＿＿ 比較 ＿＿＿＿＿
- * @desc ふたつ以上の数値を比べるものだぞ。
- * (なお、これは区切り線なので選択しても何も起きないぞ!)
+ * @================================================
+ * @command checkJs @text JavaScript
+ * @desc
+ * このイベントを this とした JavaScriptを実行し、
+ * return で返った結果を一時スイッチに設定。
+ *
+ * @arg script @text JavaScript
+ * @desc 真偽値を返すJavaScriptを書く。
+ * @type note @default "// 実行結果を returnで返す\nreturn true;"
+ *
+ * @arg operate @text 論理演算
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ *
+ * @=================== 【出現条件】 ===============================================================
+ *
+ * @command rem3 @text ＿＿＿＿ 出現条件 ＿＿＿＿
+ * @desc 出現条件は[実行内容]の上の方に並べて使います。
+ * (なお、これは区切り線なので選択しても何も起きません)
+ * 
+ * @================================================TODO: MZプラグインコマンドに変更
+ * @command conditionSwitch @text 出現条件:スイッチ
+ * @desc
+ *
+ * @arg name @text スイッチの名前
+ * @desc 指定スイッチ
+ * @type string @default it
  *
  * @================================================
- * @command compareNumbers @text 数値比較
+ * @command conditionSelfSwitch @text 出現条件:セルフスイッチ
+ * @desc
+ * 指定スイッチと一時スイッチを論理演算し、
+ * 結果を一時スイッチに設定。
+ *
+ * @arg mapId @text マップID
+ * @desc マップをIDまたは名前で指定
+ * 規定値:this(現在のマップ)
+ * @type string @default this
+ *
+ * @arg eventId @text イベントID
+ * @desc イベントをIDで指定(規定値:this(このイベント))
+ * マップ指定が this だとイベント名で指定できる。
+ * @type string @default this
+ *
+ * @arg type @text タイプ
+ * @desc 任意の文字列が指定できるが
+ * 通常のイベントコマンドでは使えない。
+ * @type combo @default A
+ * @option A @option B @option C @option D
+ *
+ * @================================================
+ * @command conditionMultiple @text 出現条件:複数スイッチ&結合
+ * @desc
+ * 複数のスイッチの論理積(and)の結果を、
+ * 一時スイッチに設定。
+ *
+ * @arg nameList @text スイッチ名リスト
+ * @desc スイッチを名前で指定
+ * @type string[] @default ["it", "done"]
+ * 
+ * @================================================
+ * @command conditionCompare @text 出現条件:数値比較
  * @desc
  * 一時変数と比較した結果を一時スイッチに設定。
  *
  * @arg leftSide @text 左辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
- * 
+ *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
  * @type select @default ==
@@ -368,16 +462,8 @@
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
  *
- * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
- * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
- *
  * @================================================
- * @command checkRange @text 数値範囲判定
+ * @command conditionRange @text 出現条件:数値範囲
  * @desc
  * 指定変数が範囲内にあるか判定して、
  * 結果を一時スイッチに設定。
@@ -389,74 +475,10 @@
  * @arg center @text 中間値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
- * 
+ *
  * @arg max @text ≦最大値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type number @default 100
- *
- * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
- * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
- * 
- * @command ＿＿＿＿ 出現条件 ＿＿＿＿
- * @desc 出現条件は[実行内容]の上の方に並べてくれ!
- * (なお、これは区切り線なので選択しても何も起きないぞ!)
- * 
- * @================================================
- * @command stayIfJs @text JavaScript出現条件
- * @desc
- * このイベントを this とした JavaScriptを実行し、
- * return で返った結果を出現条件とする。
- *
- * @arg script @text JavaScript
- * @desc 真偽値を返すJavaScriptを書く。
- * @type note @default "// 実行結果を returnで返す\nreturn true;"
- *
- * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:and)
- * @type select @default and
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
- */
-/*
- *
- * 
- * TODO: MZプラグインコマンドに変更
- * 
- *
- *------------------------------
- * TF_STAY_IF
- * 　ページの[出現条件]をさらに追加する。
- * 　引数の数によって異なる比較を行い、
- * 　条件に合わなかった場合次のページの出現条件判定へ。
- * 　引数の数と内容の対応はTF_COMPAREと同じ。
- * ---- ↓引数1 ----
- * TF_STAY_IF [JavaScript]
- * 
- * 例: TF_STAY_IF 1000<=$gameParty.gold()
- * ---- ↓引数2 ----
- * TF_STAY_IF [真偽値] [真偽値]
- * 
- * 例: TF_STAY_IF S[0] OFF
- * ---- ↓引数3 ----
- * TF_STAY_IF [数値] [条件式] [数値]
- *
- * 例: TF_STAY_IF 0 ~ v[変数名]
- * ---- ↓引数4 ----
- * TF_STAY_IF [マップID] [イベントID] [セルフスイッチ] [真偽値]
- * 　　[イベントID] は識別子では指定できないので、注意!!
- *
- * 例: TF_STAY_IF here 門番 C ON
- * ---- ↓引数5 ----
- * TF_STAY_IF [数値] [~] [数値] [~] [数値]
- * 
- * 例: TF_STAY_IF 10 ~ V[1] ~ 15
- *
  */
 
 ( function() {
@@ -587,8 +609,10 @@
 	}
 
 	// イベントコマンドの番号
-	const PLUGIN_COMMAND = 356;
-
+	const PLUGIN_COMMAND = 357;
+	const PLUGIN_PARAM = 657;
+	const COMMENT_LINE = 108;
+	const COMMENT_END = 408;
 
 	// HalfMove.js の確認
 	const hasHalfMove = PluginManager._scripts.contains( "HalfMove" );
@@ -603,18 +627,17 @@
 	const COM_SWITCH = "switch";
 	const COM_VARIABLE = "variable";
 	const COM_SELFSWITCH = "selfSwitch";
+
 	const COM_CHECK_SWITCH = "checkSwitch";
 	const COM_CHECK_SELFSWITCH = "checkselfSwitch";
+	const COM_CHECK_MULTIPLE = "checkMultiple";
+	const COM_CHECK_COMPARE = "checkCompare";
+	const COM_CHECK_RANGE = "checkRange";
 
-	const COM_MULTIPLE_AND = "multipleAnd";
 	const COM_CHECK_LOCATION = "checkLocation";
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
 	const COM_CHECK_HERE_EVENT = "checkHereEvent";
-	const COM_JS_FUNCTION = "jsFunction";
-	const COM_COMPARE_VARIABLES = "compareNumbers";
-	const COM_CHECK_RANGE = "checkRange";
-
-	const TF_STAY_IF = "TF_STAY_IF";
+	const COM_CHECK_JS = "checkJs";
 
 	// [スイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, function( args ) {
@@ -677,7 +700,7 @@
 	} );
 
 	// [複数スイッチ&結合]
-	PluginManagerEx.registerCommand( document.currentScript, COM_MULTIPLE_AND, function( args ) {
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_MULTIPLE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = $gameSwitches.multipleAnd( ...args.nameList );
 		setItTo( value, args.operate );
@@ -706,7 +729,7 @@
 	} );
 
 	// [JavaScript判定]
-	PluginManagerEx.registerCommand( document.currentScript, COM_JS_FUNCTION, function( args ) {
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_JS, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const code = JSON.parse( args.script );
 		const value = ( new Function( code ) ).call( this.character( 0 ) );
@@ -714,30 +737,35 @@
 	} );
 
 	// [数値比較]
-	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE_VARIABLES, function( args ) {
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_COMPARE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		const leftSide = stringToNumber( args.leftSide );
-		const rightSide = stringToNumber( args.rightSide );
-		let value;
-		switch( args.compare ) {
-			case "==": value = leftSide === rightSide; break;
-			case "≦": value = leftSide <= rightSide; break;
-			case "<": value = leftSide < rightSide; break;
-			case "≧": value = leftSide >= rightSide; break;
-			case ">": value = leftSide > rightSide; break;
-		}
+		const value = checkCompare( args );
 		setItTo( value, args.operate );
 	} );
+	function checkCompare( args ) {
+		const leftSide = stringToNumber( args.leftSide );
+		const rightSide = stringToNumber( args.rightSide );
+		switch( args.compare ) {
+			case "==": return leftSide === rightSide;
+			case "≦": return leftSide <= rightSide;
+			case "<": return leftSide < rightSide;
+			case "≧": return leftSide >= rightSide;
+			case ">": return leftSide > rightSide;
+		}
+	}
 
 	// [範囲判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_RANGE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
+		const value = checkRange( args );
+		setItTo( value, args.operate );
+	} );
+	function checkRange( args ) {
 		const minValue = stringToNumber( args.min );
 		const centerValue = stringToNumber( args.center );
 		const maxValue = stringToNumber( args.max );
-		const value = minValue <= centerValue && centerValue <= maxValue;
-		setItTo( value, args.operate );
-	} );
+		return minValue <= centerValue && centerValue <= maxValue;
+	}
 
 	function stringToNumber( value ) {
 		if( value === undefined || value === "" ) return 0;
@@ -920,12 +948,18 @@
 		return $gameSelfSwitches.value( [ mapIdNumber, eventIdNumber, type ] );
 	}
 
+
+
+	const CONDITION_SWITCH = "conditionSwitch";
+	const CONDITION_SELFSWITCH = "conditionselfSwitch";
+	const CONDITION_MULTIPLE = "conditionMultiple";
+	const CONDITION_COMPARE = "conditionCompare";
+	const CONDITION_RANGE = "conditionRange";
 	/*--- Game_Event ---*/
 	/**
 	 * 指定イベントページの出現条件判定を行う。
 	 * @param {RPG.EventPage} page 対象イベントページ
 	 */
-	const SELF_SWITCHES = [ "A", "B", "C", "D" ];
 	const _Game_Event_meetsConditions = Game_Event.prototype.meetsConditions;
 	Game_Event.prototype.meetsConditions = function( page ) {
 		const doPage = _Game_Event_meetsConditions.apply( this, arguments );
@@ -933,12 +967,33 @@
 
 		// 全て条件に合ったらtrueを返す(条件に合わないものがひとつでもあったらfalseを返す)
 		for( const command of page.list ) {
+			if( command.code === COMMENT_LINE || command.code === COMMENT_END || command.code === PLUGIN_PARAM ) continue;	// 注釈は無視
 			if( command.code !== PLUGIN_COMMAND ) return true;	// プラグインコマンド以外のイベントコマンド
+			if( command.parameters[ 0 ] !== PLUGIN_NAME ) return true;	// 他のプラグイン
 
-			const args = command.parameters[ 0 ].split( CHAR_SPACE );
-			const pluginCommand = args.shift();
-			if( pluginCommand !== TF_STAY_IF ) return true;	// TF_STAY_IF 以外のプラグインコマンド
-			if( !compareValues( this, args ) ) return false;
+			const pluginCommand = command.parameters[ 1 ];
+			const args = command.parameters[ 3 ];
+			if( pluginCommand === CONDITION_SWITCH ) {// [出現条件:スイッチ]
+				if( !$gameSwitches.valueByName( args.name ) ) return false;
+				continue;
+			}
+			if( pluginCommand === CONDITION_SELFSWITCH ) {// [出現条件:セルフスイッチ]
+				if( !getSelfSwitch( args.mapId, args.eventId, args.type ) ) return false;
+				continue;
+			}
+			if( pluginCommand === CONDITION_MULTIPLE ) {// [出現条件:複数スイッチ&結合]
+				if( !$gameSwitches.multipleAnd( ...args.nameList ) ) return false;
+				continue;
+			}
+			if( pluginCommand === CONDITION_COMPARE ) {// [出現条件:数値比較]
+				if( !checkCompare( args ) ) return false;
+				continue;
+			}
+			if( pluginCommand === CONDITION_RANGE ) {// [出現条件:数値範囲]
+				if( !checkRange( args ) ) return false;
+				continue;
+			}
+			return true;	// [出現条件] 以外のプラグインコマンド
 		}
 		return true;
 	};
