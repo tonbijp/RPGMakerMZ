@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.11.0.0
+// Version :0.12.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -461,11 +461,12 @@
 
 ( function() {
 	"use strict";
+	const PLUGIN_NAME = "TF_Condition";
 
+	// 論理演算子
+	const OPE_NOT = "not";
 	const OPE_AND = "and";
 	const OPE_OR = "or";
-	const OPE_NOT = "not";
-	const OPE_GET = "get";
 	const OPE_COMPARE = "==";
 
 	const OPE_AND_MARK = "&";
@@ -481,94 +482,14 @@
 	const TYPE_NUMBER = "number";
 
 	/**
-	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
-	 * @param {String} value 変換元の文字列( \v[n]、s[n]形式を含む )
-	 * @return {String} 変換後の文字列
-	 */
-	function treatValue( value ) {
-		if( value === undefined || value === "" ) return "0";
-
-		const varResult = value.match( /^\x1bv\[(.+)\]$/i );
-		if( varResult !== null ) {
-			const id = parseInt( varResult[ 1 ], 10 );
-			if( isNaN( id ) ) {
-				return $gameVariables.valueByName( varResult[ 1 ] );
-			} else {
-				return $gameVariables.value( id );
-			}
-		}
-
-		const swResult = value.match( /^\x1bs\[(.+)\]$/i );
-		if( swResult !== null ) {
-			const id = parseInt( swResult[ 1 ], 10 );
-			if( isNaN( id ) ) {
-				return $gameSwitches.valueByName( swResult[ 1 ] );
-			} else {
-				return $gameSwitches.value( id );
-			}
-		}
-
-		return value;
-	}
-
-	/**
-	 * 文字列を整数に変換して返す。
-	 * @param {String|Number} value
-	 * @return {Number} 数値に変換した結果
-	 */
-	function parseIntStrict( value ) {
-		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
-		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: '${value}' is not a number.` );
-		return result;
-	}
-
-	/**
-	 * 文字列を実数に変換して返す。
-	 * @param {String|Number} value
-	 * @return {Number} 数値に変換した結果
-	 */
-	function parseFloatStrict( value ) {
-		if( typeof value === TYPE_NUMBER ) return value;
-		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: '${value}' is not a number.` );
-		return result;
-	}
-
-	/**
-	 * 文字列を真偽値に変換して返す。
-	 * @param {String|Boolean} value 変換元文字列( it,S[n],S[name],ON,OFF,true,false)
-	 * @returns {Boolean} 
-	 */
-	function parseBooleanStrict( value ) {
-		if( typeof value === TYPE_BOOLEAN ) return value;
-		if( value === undefined || value === "" ) return false;
-		if( value === IDENTIFIER_IT ) return $gameSwitches.value( switchItId );
-
-		const result = value.match( /s\[(.+)\]/i );
-		if( result === null ) {
-			value = value.toLowerCase();
-			return ( value === PARAM_TRUE || value === PARAM_ON );
-		}
-
-		const id = parseInt( result[ 1 ], 10 );
-		if( isNaN( id ) ) {
-			return $gameSwitches.valueByName( id );
-		} else {
-			return $gameSwitches.value( id );
-		}
-	}
-
-	/**
-	 * ショートサーキットなら結果をItに代入。
+	 * ショートサーキットなら結果を一時スイッチに代入。
 	 * @param {String} logope
 	 * @returns {Boolean} ショートサーキットが成立したか
 	 */
 	function shortCircuit( logope ) {
-		logope = logope.toLowerCase();
-		if( logope === OPE_AND_MARK || logope === OPE_AND ) {
+		if( logope === OPE_AND ) {
 			if( !$gameSwitches.value( switchItId ) ) return true;
-		} else if( logope === OPE_OR_MARK || logope === OPE_OR ) {
+		} else if( logope === OPE_OR ) {
 			if( $gameSwitches.value( switchItId ) ) return true;
 		}
 		return false;
@@ -579,7 +500,6 @@
 		if( logope === OPE_COMPARE ) {
 			value = value === $gameSwitches.valueByName( switchItId );
 		}
-		// OPE_GET, OPE_AND, OPE_OR のいずれか
 		$gameSwitches.setValueByName( switchItId, value );
 	}
 
@@ -608,7 +528,6 @@
 	 * @returns {Number} 拡張イベントID(イベントが存在しない場合、undefinedを返す)
 	 */
 	function stringToEventId( value ) {
-		value = treatValue( value );
 		const result = parseInt( value, 10 );
 		if( !isNaN( result ) ) return result;
 
@@ -638,8 +557,6 @@
 	 * @returns {Number} マップID
 	 */
 	function stringToMapId( value ) {
-		value = treatValue( value );
-
 		const label = value.toLowerCase();
 		if( label === EVENT_THIS ) return $gameMap.mapId();
 
@@ -653,32 +570,6 @@
 		return result;
 	}
 
-	const DIRECTION_MAP = [
-		{ in: [ "↙︎", "dl", "sw", "downleft", "southwest" ], out: 1 },
-		{ in: [ "↓", "d", "s", "down", "south" ], out: 2 },
-		{ in: [ "↘︎", "dr", "se", "downright", "southeast" ], out: 3 },
-		{ in: [ "←", "l", "w", "left", "west" ], out: 4 },
-		{ in: [ "→", "r", "e", "right", "east" ], out: 6 },
-		{ in: [ "↖︎", "ul", "nw", "upleft", "northwest" ], out: 7 },
-		{ in: [ "↑", "u", "n", "up", "north" ], out: 8 },
-		{ in: [ "↗︎", "ur", "ne", "upright", "northeast" ], out: 9 }
-	];
-
-	/**
-		 * 方向文字列をテンキー方向の数値に変換して返す。
-		 * @param {String} value 方向た文字列
-		 * @returns {Number} テンキー方向の数値(変換できなかった場合:undefined)
-		 */
-	function stringToDirection( value ) {
-		value = treatValue( value );
-		const result = parseInt( value, 10 );
-		if( !isNaN( result ) ) return result;
-
-		value = value.toLowerCase();
-		const index = DIRECTION_MAP.findIndex( e => e.in.includes( value ) );
-		if( index === -1 ) return;
-		return DIRECTION_MAP[ index ].out;
-	}
 	/**
 	 * 指定した方向をプレイヤーが向いているか。
 	 * @param {Number} d 判定する方向(テンキー対応)
@@ -693,7 +584,7 @@
 	 * @param {String} positionString "x, y" 形式の文字列
 	 * @returns {Array} [x,y]形式の配列
 	 */
-	function position2xy( positionString ) {
+	function positionStringToArray( positionString ) {
 		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
 		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
 		return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
@@ -799,7 +690,7 @@
 	// [プレイヤー位置判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		const [ x, y ] = position2xy( args.position );
+		const [ x, y ] = positionStringToArray( args.position );
 		const value = this.TF_checkLocation( args.mapId, x, y, args.d );
 		setItTo( value, args.operate );
 	} );
@@ -865,33 +756,6 @@
 	}
 
 	// TODO
-	/**
-		* 引数によって判定を行う。
-		* @param { Game_Event; } gameEvent 対象のイベント
-		* @param { String; } args 引数の数で判定方法を変更する
-		* @returns { Boolean; } 判定結果
-	 */
-	function compareValues( gameEvent, args ) {
-		const getSwitchValue = swId => SELF_SWITCHES.includes( swId ) ?	// セルフスイッチ判定
-			$gameSelfSwitches.value( [ gameEvent._mapId, gameEvent._eventId, swId ] ) :
-			parseBooleanStrict( swId );
-		const l = args.length;
-		switch( l ) {
-			case 4:
-				// セルフスイッチ判定
-				const mapId = stringToMapId( args[ 0 ] );
-				const numberId = stringToEventId( args[ 1 ] );// 現在のマップが用意される前に判定が走るので、識別子で指定できない
-				if( numberId === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${args[ 1 ]}'` );
-				const type = args[ 2 ].toUpperCase();
-				return $gameSelfSwitches.value( [ mapId, numberId, type ] ) === getSwitchValue( args[ 3 ] );
-			case 5:
-				// 範囲判定
-				const centerVal = parseFloatStrict( args[ 2 ] );
-				return ( parseFloatStrict( args[ 0 ] ) <= centerVal && centerVal <= parseFloatStrict( args[ 4 ] ) );
-			default:
-				throw Error( `${PLUGIN_NAME}: ${l} length of arguments are wrong.` );
-		}
-	}
 
 	/*---- Game_Interpreter ----*/
 
@@ -968,14 +832,14 @@
 	/*--- Game_Variables ---*/
 	/**
 	 * 変数を文字列で指定し、値を返す。
-	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前による指定が可能)
 	 */
 	Game_Variables.prototype.valueByName = function( name ) {
 		return this.value( stringToVariableId( name ) );
 	};
 	/**
 	 * 変数を文字列で指定し、値を設定。小数値も設定可能。
-	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前による指定が可能)
 	 * @param {String|Number} value 設定する値
 	 */
 	Game_Variables.prototype.setValueByName = function( name, value ) {
@@ -988,11 +852,10 @@
 
 	/**
 	 * 指定された変数のIDを返す。
-	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name 変数(ID, 名前による指定が可能)
 	 */
 	function stringToVariableId( name ) {
 		if( typeof name === TYPE_NUMBER ) return name;
-		name = treatValue( name );
 		let i = $dataSystem.variables.findIndex( i => i === name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
@@ -1004,14 +867,14 @@
 	/*--- Game_Switches ---*/
 	/**
 	 * スイッチの内容を文字列で指定して返す
-	 * @param {String} name スイッチ(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name スイッチ(ID, 名前による指定が可能)
 	 */
 	Game_Switches.prototype.valueByName = function( name ) {
 		return this.value( stringToSwitchId( name ) );
 	};
 	/**
 	 * スイッチの内容を文字列で指定して設定
-	 * @param {String} name スイッチ(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name スイッチ(ID, 名前による指定が可能)
 	 * @param {String} value 設定する値
 	 */
 	Game_Switches.prototype.setValueByName = function( name, value ) {
@@ -1019,11 +882,10 @@
 	};
 	/**
 	 * 指定されたスイッチのIDを返す
-	 * @param {String} name スイッチ(ID, 名前, \V[n]による指定が可能)
+	 * @param {String} name スイッチ(ID, 名前による指定が可能)
 	 */
 	function stringToSwitchId( name ) {
 		if( typeof name === TYPE_NUMBER ) return name;
-		name = treatValue( name );
 		let i = $dataSystem.switches.findIndex( i => i === name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
@@ -1047,7 +909,7 @@
 		const mapIdNumber = stringToMapId( mapId );
 		const eventIdNumber = stringToEventId( eventId );
 		if( eventIdNumber === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${eventId}'` );
-		$gameSelfSwitches.setValue( [ mapIdNumber, eventIdNumber, type ], parseBooleanStrict( value ) );
+		$gameSelfSwitches.setValue( [ mapIdNumber, eventIdNumber, type ], stringToBoolean( value ) );
 	}
 	/**
 	 * [セルフスイッチ] の値を得て一時スイッチに返す
