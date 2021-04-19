@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.9.0.0
+// Version :0.10.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -32,37 +32,52 @@
  * 
  * プレイヤー位置・前方のイベントなどの判定ができる。
  * 
+ * 変数名・スイッチ名に指定できる値について
+ * ・基本は[名前]を指定します。
+ * ・PluginCommonBase 定義により \V[n] 指定が使えます。
+ * 　ただ、名前で指定するためのプラグインなので…
+ * ・数字は名前でなく数値と判断します。
+ * ・true、false は名前ではなく値と判断します。
+ * 
  * 一時変数・一時スイッチについて
  * ・名前に it をつけることを推奨。
  * 　プラグインコマンドの規定値が it だからです。
  * ・IDはプラグインパラメータで変更できますが 1 を推奨。
  * 　イベントコマンドでの規定値が 1 だからです。
+ * ・一時変数・一時スイッチ両方とも it が規定値です。
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
  * ●イベントコマンド
- * [スイッチの操作]
- * [変数の操作]
- * [セルフスイッチの操作]
- * [複数スイッチ&結合]
- * [プレイヤー位置判定]
- * [プレイヤー前方イベント判定]
- * [プレイヤー位置イベント判定]
+ * 　[スイッチの操作]
+ * 　[変数の操作]
+ * 　[セルフスイッチの操作]
+ * 　[複数スイッチ&結合]
+ * 　[JavaScript判定]
+ * 位置
+ * 　[プレイヤー位置判定]
+ * 　[プレイヤー前方イベント判定]
+ * 　[プレイヤー位置イベント判定]
+ * 比較
+ * 　[数値比較]
+ * 　[数値範囲判定]
  * ------------------------------
- * 引数の[操作]の選択肢のうち get そして and と or は、
+ * 引数の[操作]の選択肢のうち get そして and、or、== は、
  * 判定を連続して行いたい場合に使います。
- * 指定したスイッチの内容は変更されません。
+ * 指定スイッチの内容は変更されません。
+ * 結果は一時スイッチに代入されます。
  *
  * ・ [一時スイッチに代入 get]
- * 　指定スイッチの値を一時スイッチに
+ * 　指定スイッチの値。
  *
  * ・ [一時スイッチとの論理積 and]
- * 　一時スイッチと指定スイッチが両方ともONだとON
- * 　それ以外だとOFFという結果を一時スイッチに代入します。
- * 
+ * 　一時スイッチと指定スイッチが両方ともONだとON。
+ *
  * ・ [一時スイッチとの論理和 or]
- * 　一時スイッチと指定スイッチのどちらかがONだとON
- * 　それ以外だとOFFという結果を一時スイッチに代入します。
+ * 　一時スイッチと指定スイッチのどちらかがONだとON。
+ * 
+ * ・ [一時スイッチと同じ ==]
+ * 　一時スイッチと指定スイッチの値が同じだとON。
  * 
  * ●スクリプト
  * $gameVariables.setValueByName( [変数名], [変数への設定値] )
@@ -179,6 +194,24 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  *
+ * @================================================
+ * @command jsFunction @text JavaScript判定
+ * @desc
+ * このイベントを this とした JavaScriptを実行し、
+ * return で返った結果を一時スイッチに設定。
+ *
+ * @arg script @text JavaScript
+ * @desc 真偽値を返すJavaScriptを書く。
+ * @type note @default "// 実行結果を returnで返す\nreturn true;"
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ *
  * @command ───── 位置 ──────
  * @desc これは区切り線なので選択しても何も起きないぞ!
  * 
@@ -275,17 +308,26 @@
  * @option 一時スイッチと同じ == @value ==
  * 
  * @command ───── 比較 ──────
- * @desc これは区切り線なので選択しても何も起きないぞ!
+ * @desc ふたつ以上の数値を比べるものだぞ。
+ * (なお、これは区切り線なので選択しても何も起きないぞ!)
  *
  * @================================================
- * @command jsFunction @text JavaScript判定
+ * @command compareNumbers @text 数値比較
  * @desc
- * このイベントを this とした JavaScript実行し、
- * return で返った結果を一時スイッチに設定。
+ * 一時変数と比較した結果を一時スイッチに設定。
  *
- * @arg script @text JavaScript
- * @desc 真偽値を返すJavaScriptを書く。
- * @type note @default "// 実行結果を returnで返す\nreturn true;"
+ * @arg compare @text 比較演算子
+ * @desc (規定値: ==)
+ * @type select @default ==
+ * @option 一時変数と同じ == @value ==
+ * @option 一時変数以上 ≦ @value ≦
+ * @option 一時変数より上 < @value <
+ * @option 一時変数以下 ≧ @value ≧
+ * @option 一時変数より下 > @value >
+ *
+ * @arg name @text 変数名
+ * @desc 変数を名前で指定
+ * @type string @default
  *
  * @arg operate @text 操作
  * @desc 結果の扱い(規定値:get)
@@ -296,22 +338,44 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command compareNumbers @text 数値比較
+ * @command checkRange @text 数値範囲判定
  * @desc
- * 一時変数と比較した結果を一時スイッチに設定。
- * 
- * @arg compare @text 比較演算子
- * @desc (規定値: ==)
- * @type select @default ==
- * @option 一時変数と同じ == @value ==
- * @option 一時変数以上 ≦ @value ≦
- * @option 一時変数より上 < @value <
- * @option 一時変数以下 ≧ @value ≧
- * @option 一時変数より下 > @value >
- * 
- * @arg name @text 変数名
+ * 指定変数が範囲内にあるか判定して、
+ * 結果を一時スイッチに設定。
+ *
+ * @arg min @text 下限≦
+ * @desc 下限の数値
+ * @type number @default 0
+ *
+ * @arg center @text 変数名
  * @desc 変数を名前で指定
- * @type string @default
+ * @type string @default it
+ * 
+ * @arg max @text ≦上限
+ * @desc 上限の数値
+ * @type number @default 100
+ *
+ * @arg operate @text 操作
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ * 
+ * @command ──── 出現条件 ─────
+ * @desc 出現条件は[実行内容]の上の方に並べてくれ!
+ * (なお、これは区切り線なので選択しても何も起きないぞ!)
+ * 
+ * @================================================
+ * @command stayIfJs @text JavaScript出現条件
+ * @desc
+ * このイベントを this とした JavaScriptを実行し、
+ * return で返った結果を出現条件とする。
+ *
+ * @arg script @text JavaScript
+ * @desc 真偽値を返すJavaScriptを書く。
+ * @type note @default "// 実行結果を returnで返す\nreturn true;"
  *
  * @arg operate @text 操作
  * @desc 結果の扱い(規定値:get)
@@ -325,20 +389,6 @@
  *
  * 
  * TODO: MZプラグインコマンドに変更
- * 
- * 
- * 例: TF_COMPARE V[0] ≦ V[3]
- * ---- ↓引数4 ----
- * TF_COMPARE [マップID] [イベントID] [セルフスイッチ] [実行条件(真偽値)]
- * 　指定のイベントのセルフスイッチの状態を判定。
- * 　　[イベントID]は現在のマップでないと識別子では指定できないので注意!!
- *
- * 例: TF_COMPARE here 門番 C ON
- * ---- ↓引数5 ----
- * TF_COMPARE [数値] [~] [数値] [~] [数値]
- * 　　[~] 実際は全て =<(小なりイコール)として判定
- *
- * 例: TF_COMPARE 10 ~ it ~ 15
  * 
  *
  *------------------------------
@@ -633,6 +683,8 @@
 	const COM_CHECK_HERE_EVENT = "checkHereEvent";
 	const COM_JS_FUNCTION = "jsFunction";
 	const COM_COMPARE_VARIABLES = "compareNumbers";
+	const COM_CHECK_RANGE = "checkRange";
+
 	const TF_STAY_IF = "TF_STAY_IF";
 
 	// [スイッチの操作]
@@ -729,7 +781,6 @@
 	// [数値比較]
 	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE_VARIABLES, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-
 		const leftSide = $gameVariables.value( variableItId );
 		const rightSide = $gameVariables.valueByName( args.name );
 		let value;
@@ -740,6 +791,16 @@
 			case "≧": value = leftSide >= rightSide; break;
 			case ">": value = leftSide > rightSide; break;
 		}
+		setItTo( value, args.operate );
+	} );
+
+	// [範囲判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_RANGE, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
+		const minValue = $gameVariables.valueByName( args.min );
+		const centerValue = $gameVariables.valueByName( args.center );
+		const maxValue = $gameVariables.valueByName( args.max );
+		const value = minValue <= centerValue && centerValue <= maxValue;
 		setItTo( value, args.operate );
 	} );
 
