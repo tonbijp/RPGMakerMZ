@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.12.0.0
+// Version :0.12.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -64,22 +64,21 @@
  * 　[数値比較]
  * 　[数値範囲]
  * ------------------------------
- * 引数の[操作]の選択肢のうち get そして and、or、== は、
+ * 引数の[論理演算]の選択肢のうち get そして and、or、== は、
  * 判定を連続して行いたい場合に使います。
- * 指定スイッチの内容は変更されません。
- * 結果は一時スイッチに代入されます。
+ * 論理演算の結果は一時スイッチに代入されます。
  *
  * ・ [一時スイッチに代入 get]
- * 　指定スイッチの値。
+ * 　判定結果。
  *
  * ・ [一時スイッチとの論理積 and]
- * 　一時スイッチと指定スイッチが両方ともONだとON。
+ * 　一時スイッチと判定結果が両方ともONだとON。
  *
  * ・ [一時スイッチとの論理和 or]
- * 　一時スイッチと指定スイッチのどちらかがONだとON。
+ * 　一時スイッチと判定結果のどちらかがONだとON。
  * 
  * ・ [一時スイッチと同じ ==]
- * 　一時スイッチと指定スイッチの値が同じだとON。
+ * 　一時スイッチと判定結果の値が同じだとON。
  * 
  * ●スクリプト
  * $gameVariables.setValueByName( [変数名], [変数への設定値] )
@@ -173,9 +172,10 @@
  * @type string @default it
  *
  * @arg operate @text 論理演算
- * @desc 規定値: 一時スイッチとの論理積 and
+ * @desc (規定値: 一時スイッチとの論理積 and)
  * @type select @default and
  * @option 反転 not @value not
+ * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
@@ -203,9 +203,10 @@
  * @option A @option B @option C @option D
  *
  * @arg operate @text 論理演算
- * @desc 規定値: 一時スイッチとの論理積 and
+ * @desc (規定値: 一時スイッチとの論理積 and)
  * @type select @default and
  * @option 反転 not @value not
+ * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
@@ -220,7 +221,7 @@
  * @desc スイッチを名前で指定
  * @type string[] @default ["it", "done"]
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -238,7 +239,7 @@
  * @desc 真偽値を返すJavaScriptを書く。
  * @type note @default "// 実行結果を returnで返す\nreturn true;"
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -275,7 +276,7 @@
  * @option ←  4 @value 4
  * @option ↓ 2 @value 2
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -299,7 +300,7 @@
  * 規定値:this(このイベント)
  * @type string @default this
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -333,7 +334,7 @@
  * 規定値:this(このイベント)
  * @type string @default this
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -367,7 +368,7 @@
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -393,7 +394,7 @@
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type number @default 100
  *
- * @arg operate @text 操作
+ * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
  * @option 一時スイッチに代入 get @value get
@@ -415,10 +416,9 @@
  * @desc 真偽値を返すJavaScriptを書く。
  * @type note @default "// 実行結果を returnで返す\nreturn true;"
  *
- * @arg operate @text 操作
- * @desc 結果の扱い(規定値:get)
- * @type select @default get
- * @option 一時スイッチに代入 get @value get
+ * @arg operate @text 論理演算
+ * @desc 結果の扱い(規定値:and)
+ * @type select @default and
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
@@ -465,19 +465,15 @@
 
 	// 論理演算子
 	const OPE_NOT = "not";
+	const OPE_GET = "get"; // この定数は使われていないが予約
 	const OPE_AND = "and";
 	const OPE_OR = "or";
-	const OPE_COMPARE = "==";
+	const OPE_EQUAL = "==";
 
-	const OPE_AND_MARK = "&";
-	const OPE_OR_MARK = "|";
-	const OPE_EQUAL = "=";
 	const CHAR_SPACE = " ";
-	const IDENTIFIER_IT = "it";
 
 	/*---- パラメータパース関数 ----*/
 	const PARAM_TRUE = "true";
-	const PARAM_ON = "on";
 	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
 
@@ -497,10 +493,10 @@
 
 	// ショートサーキット処理が済んでいる場合の代入処理
 	function setItTo( value, logope ) {
-		if( logope === OPE_COMPARE ) {
-			value = value === $gameSwitches.valueByName( switchItId );
+		if( logope === OPE_EQUAL ) {
+			value = value === $gameSwitches.value( switchItId );
 		}
-		$gameSwitches.setValueByName( switchItId, value );
+		$gameSwitches.setValue( switchItId, value );
 	}
 
 	/**
