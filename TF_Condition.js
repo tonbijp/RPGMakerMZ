@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :0.10.0.0
+// Version :0.11.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -32,10 +32,9 @@
  * 
  * プレイヤー位置・前方のイベントなどの判定ができる。
  * 
- * 変数名・スイッチ名に指定できる値について
- * ・基本は[名前]を指定します。
- * ・PluginCommonBase 定義により \V[n] 指定が使えます。
- * 　ただ、名前で指定するためのプラグインなので…
+ * 数値・真偽値に指定できる値について
+ * ・基本は変数・スイッチの[名前]を指定します。
+ * ・PluginCommonBase 定義により \V[n] \S[n]が使えます。
  * ・数字は名前でなく数値と判断します。
  * ・true、false は名前ではなく値と判断します。
  * 
@@ -52,15 +51,18 @@
  * 　[スイッチの操作]
  * 　[変数の操作]
  * 　[セルフスイッチの操作]
+ * 判定
+ * 　[スイッチ判定]
+ * 　[セルフスイッチ判定]
  * 　[複数スイッチ&結合]
  * 　[JavaScript判定]
  * 位置
- * 　[プレイヤー位置判定]
- * 　[プレイヤー前方イベント判定]
- * 　[プレイヤー位置イベント判定]
+ * 　[プレイヤー位置]
+ * 　[プレイヤー前方イベント]
+ * 　[プレイヤー位置イベント]
  * 比較
  * 　[数値比較]
- * 　[数値範囲判定]
+ * 　[数値範囲]
  * ------------------------------
  * 引数の[操作]の選択肢のうち get そして and、or、== は、
  * 判定を連続して行いたい場合に使います。
@@ -90,64 +92,51 @@
  * this.TF_checkHereEvent( [マップID], [向き], [イベントID] )
  * 
  * 利用規約 : MITライセンス
- * 
+ *
  * @================================================
  * @command switch @text スイッチの操作
- * @desc
+ * @desc 指定スイッチへの代入。
  *
- * @arg name @text スイッチ名
- * @desc スイッチを名前で指定
+ * @arg specification @text スイッチの名前
+ * @desc 指定スイッチ
  * @type string @default it
- *
- * @arg operate @text 操作
- * @desc (規定値:ON)
- * @type select @default true
- * @option ON true @value true
- * @option OFF false @value false
- * @option 反転 not @value not
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * 
+ * @arg operand @text オペランド(値)
+ * @desc スイッチの名前、true、false、\S[n]いずれか
+ * @type string @default true
  * 
  * @================================================
  * @command variable @text 変数の操作
  * @desc 数値は小数値も扱う
  *
- * @arg name @text 変数名
- * @desc 変数を名前で指定
+ * @arg name @text 変数の名前
+ * @desc 指定変数
  * @type string @default it
  *
  * @arg operate @text 操作
- * @desc 加算に関しては文字列の連結も可能
- * 規定値: 代入 =
+ * @desc 規定値: 指定変数に代入 =
  * @type select @default =
- * @option 代入 = @value =
+ * @option 指定変数に代入 = @value =
  * @option 足し算 += @value +=
  * @option 引き算 -= @value -=
  * @option 掛け算 *= @value *=
  * @option 割り算 /= @value /=
  * @option 割り算の余り %= @value %=
  * @option 割り算の商 //= @value //=
- * @option 一時変数に代入 get @value get
- * @option 足し算して一時変数に代入 + @value +
- * @option 引き算して一時変数に代入 - @value -
- * @option 掛け算して一時変数に代入 * @value *
- * @option 割り算して一時変数に代入 / @value /
- * @option 割り算の余りを一時変数に代入 % @value %
- * @option 割り算の商を一時変数に代入 // @value //
+ * @option 足し算して一時変数に + @value +
+ * @option 引き算して一時変数に - @value -
+ * @option 掛け算して一時変数に * @value *
+ * @option 割り算して一時変数に / @value /
+ * @option 割り算の余りを一時変数に % @value %
+ * @option 割り算の商を一時変数に // @value //
  *
- * @arg value @text オペランド(値)
- * @desc
- * 変数に設定する、数値・文字列
- * [一時変数に代入]の場合無視されます。
- * @type string
+ * @arg operand @text オペランド(値)
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default 100
  *
  * @================================================
  * @command selfSwitch @text セルフスイッチの操作
- * @desc
- * 指定イベントのセルフスイッチを設定。
- * マップ指定が this だとイベント名で指定できる。
+ * @desc 指定イベントのセルフスイッチを設定。
  *
  * @arg mapId @text マップID
  * @desc マップをIDまたは名前で指定
@@ -155,8 +144,8 @@
  * @type string @default this
  *
  * @arg eventId @text イベントID
- * @desc イベントをIDで指定
- * 規定値:this(このイベント)
+ * @desc イベントをIDで指定(規定値:this(このイベント))
+ * マップ指定が this だとイベント名で指定できる。
  * @type string @default this
  *
  * @arg type @text タイプ
@@ -165,17 +154,62 @@
  * @type combo @default A
  * @option A @option B @option C @option D
  *
- * @arg operate @text 操作
- * @desc (規定値:ON)
- * @type select @default true
- * @option ON true @value true
- * @option OFF false @value false
+ * @arg operand @text オペランド(値)
+ * @desc スイッチの名前、true、false、\S[n]いずれか
+ * (セルフスイッチの指定はできません)
+ * @type string @default true
+ *
+ * @command ＿＿＿＿＿ 判定 ＿＿＿＿＿
+ * @desc これは区切り線なので選択しても何も起きないぞ!
+ *
+ * @================================================
+ * @command checkSwitch @text スイッチ判定
+ * @desc
+ * 指定スイッチと一時スイッチを論理演算し、
+ * 結果を一時スイッチに設定。
+ *
+ * @arg specification @text スイッチの名前
+ * @desc 指定スイッチ
+ * @type string @default it
+ *
+ * @arg operate @text 論理演算
+ * @desc 規定値: 一時スイッチとの論理積 and
+ * @type select @default and
  * @option 反転 not @value not
- * @option 一時スイッチに代入 get @value get
  * @option 一時スイッチとの論理積 and @value and
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
+ * 
+ * @================================================
+ * @command checkSelfSwitch @text セルフスイッチ判定
+ * @desc
+ * 指定スイッチと一時スイッチを論理演算し、
+ * 結果を一時スイッチに設定。
  *
+ * @arg mapId @text マップID
+ * @desc マップをIDまたは名前で指定
+ * 規定値:this(現在のマップ)
+ * @type string @default this
+ *
+ * @arg eventId @text イベントID
+ * @desc イベントをIDで指定(規定値:this(このイベント))
+ * マップ指定が this だとイベント名で指定できる。
+ * @type string @default this
+ *
+ * @arg type @text タイプ
+ * @desc 任意の文字列が指定できるが
+ * 通常のイベントコマンドでは使えない。
+ * @type combo @default A
+ * @option A @option B @option C @option D
+ *
+ * @arg operate @text 論理演算
+ * @desc 規定値: 一時スイッチとの論理積 and
+ * @type select @default and
+ * @option 反転 not @value not
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ * 
  * @================================================
  * @command multipleAnd @text 複数スイッチ&結合
  * @desc
@@ -212,11 +246,11 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  *
- * @command ───── 位置 ──────
+ * @command ＿＿＿＿＿ 位置 ＿＿＿＿＿
  * @desc これは区切り線なので選択しても何も起きないぞ!
  * 
  * @================================================
- * @command checkLocation @text プレイヤー位置判定
+ * @command checkLocation @text プレイヤー位置
  * @desc
  * プレイヤーの座標位置と向きをチェックして、
  * 全て合致していたか結果を一時スイッチに設定。
@@ -250,7 +284,7 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command checkFrontEvent @text プレイヤー前方イベント判定
+ * @command checkFrontEvent @text プレイヤー前方イベント
  * @desc
  * プレイヤーの前方に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -274,7 +308,7 @@
  * @option 一時スイッチと同じ == @value ==
  *
  * @================================================
- * @command checkHereEvent @text プレイヤー位置イベント判定
+ * @command checkHereEvent @text プレイヤー位置イベント
  * @desc
  * プレイヤーと同じ場所に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -307,7 +341,7 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  * 
- * @command ───── 比較 ──────
+ * @command ＿＿＿＿＿ 比較 ＿＿＿＿＿
  * @desc ふたつ以上の数値を比べるものだぞ。
  * (なお、これは区切り線なので選択しても何も起きないぞ!)
  *
@@ -316,18 +350,22 @@
  * @desc
  * 一時変数と比較した結果を一時スイッチに設定。
  *
+ * @arg leftSide @text 左辺の数値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default it
+ * 
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
  * @type select @default ==
- * @option 一時変数と同じ == @value ==
- * @option 一時変数以上 ≦ @value ≦
- * @option 一時変数より上 < @value <
- * @option 一時変数以下 ≧ @value ≧
- * @option 一時変数より下 > @value >
+ * @option 同じ == @value ==
+ * @option 以上 ≦ @value ≦
+ * @option より上 < @value <
+ * @option 以下 ≧ @value ≧
+ * @option より下 > @value >
  *
- * @arg name @text 変数名
- * @desc 変数を名前で指定
- * @type string @default
+ * @arg rightSide @text 右辺の数値
+ * @desc 変数の名前、数値、\V[n]いずれか
+ * @type string @default it
  *
  * @arg operate @text 操作
  * @desc 結果の扱い(規定値:get)
@@ -343,16 +381,16 @@
  * 指定変数が範囲内にあるか判定して、
  * 結果を一時スイッチに設定。
  *
- * @arg min @text 下限≦
- * @desc 下限の数値
+ * @arg min @text 最小値≦
+ * @desc 変数の名前、数値、\V[n]いずれか
  * @type number @default 0
  *
- * @arg center @text 変数名
- * @desc 変数を名前で指定
+ * @arg center @text 中間値
+ * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
  * 
- * @arg max @text ≦上限
- * @desc 上限の数値
+ * @arg max @text ≦最大値
+ * @desc 変数の名前、数値、\V[n]いずれか
  * @type number @default 100
  *
  * @arg operate @text 操作
@@ -363,7 +401,7 @@
  * @option 一時スイッチとの論理和 or @value or
  * @option 一時スイッチと同じ == @value ==
  * 
- * @command ──── 出現条件 ─────
+ * @command ＿＿＿＿ 出現条件 ＿＿＿＿
  * @desc 出現条件は[実行内容]の上の方に並べてくれ!
  * (なお、これは区切り線なので選択しても何も起きないぞ!)
  * 
@@ -441,6 +479,7 @@
 	const PARAM_ON = "on";
 	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
+
 	/**
 	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
 	 * @param {String} value 変換元の文字列( \v[n]、s[n]形式を含む )
@@ -677,6 +716,9 @@
 	const COM_SWITCH = "switch";
 	const COM_VARIABLE = "variable";
 	const COM_SELFSWITCH = "selfSwitch";
+	const COM_CHECK_SWITCH = "checkSwitch";
+	const COM_CHECK_SELFSWITCH = "checkselfSwitch";
+
 	const COM_MULTIPLE_AND = "multipleAnd";
 	const COM_CHECK_LOCATION = "checkLocation";
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
@@ -689,11 +731,45 @@
 
 	// [スイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, function( args ) {
-		if( shortCircuit( args.operate ) ) return;
-		if( typeof args.operate === TYPE_BOOLEAN ) {
-			$gameSwitches.setValueByName( args.name, args.operate );
+		$gameSwitches.setValueByName( args.name, stringToBoolean( args.operand ) );
+	} );
+
+
+	// [変数の操作]
+	PluginManagerEx.registerCommand( document.currentScript, COM_VARIABLE, function( args ) {
+		const operand = stringToNumber( args.operand );
+		if( args.operate === "=" ) {
+			$gameVariables.setValueByName( args.name, operand );
 			return;
 		}
+		const value = $gameVariables.valueByName( args.name );
+		switch( args.operate ) {
+			// 指定変数に代入
+			case "+=": $gameVariables.setValueByName( args.name, value + operand ); break;
+			case "-=": $gameVariables.setValueByName( args.name, value - operand ); break;
+			case "*=": $gameVariables.setValueByName( args.name, value * operand ); break;
+			case "/=": $gameVariables.setValueByName( args.name, value / operand ); break;
+			case "%=": $gameVariables.setValueByName( args.name, value % operand ); break;
+			case "//=": $gameVariables.setValueByName( args.name, Mathi.floor( value / operand ) ); break;
+			// 一時変数に代入
+			case "+": $gameVariables.setValueByName( variableItId, value + operand ); break;
+			case "-": $gameVariables.setValueByName( variableItId, value - operand ); break;
+			case "*": $gameVariables.setValueByName( variableItId, value * operand ); break;
+			case "/": $gameVariables.setValueByName( variableItId, value / operand ); break;
+			case "%": $gameVariables.setValueByName( variableItId, value % operand ); break;
+			case "//": $gameVariables.setValueByName( variableItId, Mathi.floor( value / operand ) ); break;
+		}
+	} );
+
+	// [セルフスイッチの操作]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
+		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( args.operand ) );
+	} );
+
+
+	// [スイッチ判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SWITCH, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
 		const value = $gameSwitches.valueByName( args.name );
 		if( args.operate === OPE_NOT ) {
 			$gameSwitches.setValueByName( args.name, !value );
@@ -702,38 +778,10 @@
 		}
 	} );
 
-	// [変数の操作]
-	PluginManagerEx.registerCommand( document.currentScript, COM_VARIABLE, function( args ) {
-		if( args.operate === "=" ) {
-			$gameVariables.setValueByName( args.name, args.value );
-			return;
-		}
-		const value = $gameVariables.valueByName( args.name );
-		switch( args.operate ) {
-			case "+=": $gameVariables.setValueByName( args.name, value + args.value ); break;
-			case "-=": $gameVariables.setValueByName( args.name, value - args.value ); break;
-			case "*=": $gameVariables.setValueByName( args.name, value * args.value ); break;
-			case "/=": $gameVariables.setValueByName( args.name, value / args.value ); break;
-			case "%=": $gameVariables.setValueByName( args.name, value % args.value ); break;
-			case "//=": $gameVariables.setValueByName( args.name, Mathi.floor( value / args.value ) ); break;
-			case "get": $gameVariables.setValueByName( variableItId, value ); break;
-			case "+": $gameVariables.setValueByName( variableItId, value + args.value ); break;
-			case "-": $gameVariables.setValueByName( variableItId, value - args.value ); break;
-			case "*": $gameVariables.setValueByName( variableItId, value * args.value ); break;
-			case "/": $gameVariables.setValueByName( variableItId, value / args.value ); break;
-			case "%": $gameVariables.setValueByName( variableItId, value % args.value ); break;
-			case "//": $gameVariables.setValueByName( variableItId, Mathi.floor( value / args.value ) ); break;
-		}
-	} );
-
-	// [セルフスイッチ操作]
-	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
+	// [セルフスイッチ判定]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SELFSWITCH, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		if( typeof args.operate === TYPE_BOOLEAN ) {
-			setSelfSwitch( args.mapId, args.eventId, args.type, args.value );
-			return;
-		}
-		const value = getSelfSwitch( args.mapId, args.eventId, args.type, args.value );
+		const value = getSelfSwitch( args.mapId, args.eventId, args.type );
 		if( args.operate === OPE_NOT ) {
 			setSelfSwitch( args.mapId, args.eventId, args.type, !value );
 		} else {
@@ -781,8 +829,8 @@
 	// [数値比較]
 	PluginManagerEx.registerCommand( document.currentScript, COM_COMPARE_VARIABLES, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		const leftSide = $gameVariables.value( variableItId );
-		const rightSide = $gameVariables.valueByName( args.name );
+		const leftSide = stringToNumber( args.leftSide );
+		const rightSide = stringToNumber( args.rightSide );
 		let value;
 		switch( args.compare ) {
 			case "==": value = leftSide === rightSide; break;
@@ -797,12 +845,24 @@
 	// [範囲判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_RANGE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		const minValue = $gameVariables.valueByName( args.min );
-		const centerValue = $gameVariables.valueByName( args.center );
-		const maxValue = $gameVariables.valueByName( args.max );
+		const minValue = stringToNumber( args.min );
+		const centerValue = stringToNumber( args.center );
+		const maxValue = stringToNumber( args.max );
 		const value = minValue <= centerValue && centerValue <= maxValue;
 		setItTo( value, args.operate );
 	} );
+
+	function stringToNumber( value ) {
+		if( value === undefined || value === "" ) return 0;
+		if( typeof value === TYPE_NUMBER ) return value;
+		return $gameVariables.valueByName( value );
+	}
+
+	function stringToBoolean( value ) {
+		if( value === undefined || value === "" ) return false;
+		if( typeof value === TYPE_BOOLEAN ) return value;
+		return $gameSwitches.valueByName( value );
+	}
 
 	// TODO
 	/**
