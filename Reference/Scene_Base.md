@@ -7,7 +7,8 @@
 ### new Scene_Base ()
 シーンの基礎オブジェクト。
 
-MV でサブクラスだった [Scene_Battle] と [Scene_Map](Scene_Map.md) は [Scene_Message](Scene_Message.md) のサブクラスになっている。
+MZ ではタップ操作用のボタン関連の機能が拡充されている。<br />
+MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](Scene_Map.md) は [Scene_Message](Scene_Message.md) のサブクラスになっている。
 
 関連クラス: [SceneManager](SceneManager.md)
 
@@ -127,10 +128,6 @@ MV でサブクラスだった [Scene_Battle] と [Scene_Map](Scene_Map.md) は 
 | `selectable` | Boolean |  選択可能か |
 
 
-#### checkGameover ()
-ゲームオーバー状態か検査。
-
-
 #### centerSprite (sprite)
 **@MZ** スプライトを画面中央に配置。
 
@@ -139,6 +136,10 @@ MV でサブクラスだった [Scene_Battle] と [Scene_Map](Scene_Map.md) は 
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md) |  対象のスプライト |
+
+
+#### checkGameover ()
+ゲームオーバー状態か検査。
 
 
 #### create ()
