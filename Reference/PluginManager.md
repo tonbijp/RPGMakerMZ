@@ -1,11 +1,10 @@
 [クラスツリー](index.md)
 
 # クラス: PluginManager
- プラグインを管理する静的クラス。
+プラグインを管理する静的クラス。<br />
+プラグインの設定(アノテーション)については [MV.PluginSettings](MV.PluginSettings.md) を参照。
 
  公式プラグイン PluginCommonBase.js によって追加される[PluginManagerEx](PluginManagerEx.md) は、このクラスの強化版。
-
-関連クラス: [JsonEx](JsonEx.md)
 
 
 ### プロパティ
@@ -14,7 +13,7 @@
 | --- | --- | --- |
 | `_scripts` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] プラグイン名の配列 |
 | `_errorUrls` | [Array](Array.md).&lt;[String](String.md)&gt; | [static] 読み込みエラーを記録した配列 |
-| `_parameters` | Object.&lt;[Parameters](MV.PluginSettings.md#parameters)&gt; | [static] プラグイン名をキーとするパラメータのリスト |
+| `_parameters` | Object.&lt;[Parameters](MV.PluginSettings.md#parameters)&gt; | [static] プラグイン名(小文字)をキーとするパラメータのリスト |
 | `_commands` | Object.&lt;Function&gt; | **@MZ** [static] "プラグイン名:コマンド名"をキーとする関数リスト |
 
 
@@ -22,7 +21,6 @@
 `_path`
 
 ### メソッド
-
 
 #### (static) callCommand (self, pluginName, commandName, args)
 **@MZ** コマンドを実行。
@@ -32,9 +30,9 @@
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `self` | Function |  this に設定するスコープとなる関数 |
-| `pluginName` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
-| `commandName` | [String](String.md) |  コマンド名(英字の大小を区別しない) |
-| `args` | [Array](Array.md) | コマンドに渡す引数 |
+| `pluginName` | [String](String.md) |  プラグイン名 |
+| `commandName` | [String](String.md) |  コマンド名 |
+| `args` | Object | コマンドに渡す引数 |
 
 
 #### (static) checkErrors ()
@@ -90,8 +88,8 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `pluginName` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
-| `commandName` | [String](String.md) |  コマンド名(英字の大小を区別しない) |
+| `pluginName` | [String](String.md) |  プラグイン名 |
+| `commandName` | [String](String.md) |  コマンド名 |
 | `func` | Function |  コマンドの関数 |
 
 

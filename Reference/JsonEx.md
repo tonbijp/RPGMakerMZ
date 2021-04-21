@@ -8,7 +8,7 @@ JSONファイルを扱う静的ビルトインクラス [JSON](https://developer
 
 Namespace [RPG](RPG.md) に分類しているのがJSONデータ。
 
-関連クラス: [PluginManager](PluginManager.md), [MV.PluginSettings](MV.PluginSettings.md), [DataManager](DataManager.md)
+関連クラス: [DataManager](DataManager.md)
 
 ### プロパティ
 
