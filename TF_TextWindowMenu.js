@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.2.0.0
+// Version :0.2.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -48,7 +48,7 @@
  * @type note
  * @default "\n\n\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\{"
  */
-( function() {
+( () => {
 	"use strict";
 	const HANDLER_OPEN_WINDOW = "handlerOpenWindow";
 
@@ -103,18 +103,18 @@
 
 		this._commandWindow.setHandler( HANDLER_OPEN_WINDOW, () => {
 			this._commandWindow.close();
-			SceneManager.push( TF_Scene_SingleInfo );
+			SceneManager.push( Scene_SingleInfo );
 		} );
 	};
 
 	// シーン
-	class TF_Scene_SingleInfo extends Scene_MenuBase {
+	class Scene_SingleInfo extends Scene_MenuBase {
 		create() {
 			super.create();
 
 			const wh = this.mainAreaHeight();
 			const rect = new Rectangle( 0, this.mainAreaTop(), Graphics.boxWidth, wh );
-			const infoWindow = new TF_Window_SingleInfo( rect );
+			const infoWindow = new Window_SingleInfo( rect );
 			infoWindow.setHandler( "ok", this.popScene.bind( this ) );
 			infoWindow.setHandler( "cancel", this.popScene.bind( this ) );
 			this.addWindow( infoWindow );
@@ -124,7 +124,7 @@
 	}
 
 	// 情報ウィンドウ
-	class TF_Window_SingleInfo extends Window_Selectable {
+	class Window_SingleInfo extends Window_Selectable {
 		initialize( rect ) {
 			super.initialize( rect );
 			this.setContents();
