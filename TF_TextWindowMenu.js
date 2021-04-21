@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.1.0.0
+// Version :0.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -20,8 +20,8 @@
  * @param windowParams
  * @desc メニューとウィンドウの設定。
  * @type struct<WindowParam>[]
- * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"\\\"\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\{\\\"\"}"]
- *
+ * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"\\\"\\\\n\\\\n\\\\\\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\\\\\\{\\\"\"}"]
+ * 
  * @help
  * タイトル画面への著作権情報や操作説明の追加を想定したプラグインです。
  * 
@@ -70,6 +70,7 @@
 		topRows = this.maxItems();
 		windowParams.forEach( e => this.addCommand( e.menuLabel, HANDLER_OPEN_WINDOW ) );
 	};
+
 	// 選択中の項目を記録
 	const _Window_TitleCommand_processOk = Window_TitleCommand.prototype.processOk;
 	Window_TitleCommand.prototype.processOk = function() {
@@ -112,7 +113,8 @@
 			super.create();
 
 			const wh = this.mainAreaHeight();
-			const infoWindow = new TF_Window_SingleInfo( new Rectangle( 0, this.mainAreaTop(), Graphics.boxWidth, wh ) );
+			const rect = new Rectangle( 0, this.mainAreaTop(), Graphics.boxWidth, wh );
+			const infoWindow = new TF_Window_SingleInfo( rect );
 			infoWindow.setHandler( "ok", this.popScene.bind( this ) );
 			infoWindow.setHandler( "cancel", this.popScene.bind( this ) );
 			this.addWindow( infoWindow );
@@ -121,19 +123,18 @@
 		helpAreaHeight() { return 0; };	//ヘルプの高さを0にすることでメインの高さを広げる
 	}
 
-	/*---- TF_Scene_SingleInfo ----*/
+	// 情報ウィンドウ
 	class TF_Window_SingleInfo extends Window_Selectable {
 		initialize( rect ) {
 			super.initialize( rect );
-
-			// contentsWindow.pause = true;
-			// if( pluginParams.isAnimate ) {
-			// 	contentsWindow.openness = 0;
-			// 	contentsWindow.open();
-			// }
 			this.setContents();
 			this.activate();
 		}
+
+		// 画面どこをタップしても反応するように
+		isOkTriggered() {
+			return super.isOkTriggered() || TouchInput.isTriggered();
+		};
 
 		setContents() {
 			this.contents.clear();
