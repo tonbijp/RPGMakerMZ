@@ -14,5 +14,6 @@
 | [TF_VectorWindow.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_VectorWindow.js) | ウィンドウをベクトル描画 | β版 | |
 | [TF_BalloonEx.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_BalloonEx.js) | フキダシ機能強化 | β版 | |
 | [TF_Condition.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_Condition.js) | 変数の名前指定など | β版 | |
+| [TF_TextWindowMenu.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_TextWindowMenu.js) | タイトルに著作権情報 | β版 | |
 | [TF_ScreenUtil.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_ScreenUtil.js) | マップ画面二倍拡大とか | α版 | |
 | [TF_LayeredMap.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
