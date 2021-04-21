@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.0.0.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -9,9 +9,6 @@
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 //========================================
-/**
- * 
- */
 /*:ja
  * @target MZ
  * @plugindesc タイトルにテキストウィンドウ表示メニューを追加。
@@ -23,13 +20,8 @@
  * @param windowParams
  * @desc メニューとウィンドウの設定。
  * @type struct<WindowParam>[]
- * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"\\\"\\\\\\\\}(c)KADOKAWA CORPORATION\\\\\\\\{\\\"\"}"]
+ * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"\\\"\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\{\\\"\"}"]
  *
- * @param isAnimate
- * @desc 開閉アニメーションをするか。
- * @type boolean
- * @default true
- * 
  * @help
  * タイトル画面への著作権情報や操作説明の追加を想定したプラグインです。
  * 
@@ -50,7 +42,7 @@
  * @desc タイトル画面でのメニュー名。
  * @type string
  * @default 著作・製作
- * *
+ *
  * @param contents
  * @desc ウィンドウに表示する内容(制御文字が使えます)
  * @type note
@@ -58,10 +50,7 @@
  */
 ( function() {
 	"use strict";
-	const PLUGIN_NAME = "TF_TextWindowMenu";
 	const HANDLER_OPEN_WINDOW = "handlerOpenWindow";
-	const TRIGGER_OK = "ok";
-	const TRIGGER_CANCEL = "cancel";
 
 	// プラグインパラメータを受け取る
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
