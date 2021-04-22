@@ -36,7 +36,7 @@
 | `_tileId` | [Number](Number.md) | 足元のタイルID |
 | `_characterName` | [String](String.md) | キャラクタのファイル名 |
 | `_characterIndex` | [Number](Number.md) | キャラクタ番号(0〜7) |
-| `_isObjectCharacter` | Boolean | オブジェクトか |
+| `_isObjectCharacter` | Boolean | オブジェクト(!がついたファイルかタイル)か |
 | `_walkAnime` | Boolean | [歩行アニメ] |
 | `_stepAnime` | Boolean | [足踏みアニメ] |
 | `_directionFix` | Boolean | [向き固定] |
@@ -62,12 +62,12 @@
 
 
 #### blendMode () → {[Number](Number.md)}
-[合成方法]を返す。
-0: 通常, 1: 加算, 2: 乗算, 3: スクリーン
+[[合成方法]](Sprite.md#合成方法)を返す。
 
 
 #### bushDepth () → {[Number](Number.md)}
-[茂み]の深さ(ピクセル数)を返す。
+[茂み]の深さ(ピクセル数)を返す。<br />
+茂みがある場合12ない場合は0が返る。
 
 
 #### canPass (x, y, d) → {Boolean}
@@ -273,7 +273,7 @@
 
 
 #### isObjectCharacter () → {Boolean}
- キャラクタ用(characters フォルダ以下)の画像か。
+ オブジェクト(!がついたファイルかタイル)の画像か。
 
 
 #### isOnBush () → {Boolean}
@@ -448,13 +448,13 @@
 
 
 #### setBlendMode (blendMode)
-[合成方法]の設定。
+[[合成方法]](Sprite.md#合成方法)の設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `blendMode` | [Number](Number.md) | 0: 通常, 1: 加算, 2: 乗算, 3: スクリーン |
+| `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 
 
 #### setDirection (d)
@@ -499,13 +499,13 @@
 
 
 #### setMovementSuccess (success)
- 移動可能かの設定。
+ 移動成功したか保存。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `success` | Boolean |  |
+| `success` | Boolean | 移動成功 |
 
 
 #### setMoveSpeed (moveSpeed)
@@ -610,8 +610,9 @@
 
 
 #### shiftY () → {[Number](Number.md)}
- 縦方向へのシフト量(ピクセル数)を返す。
-
+ 縦方向へのシフト量(ピクセル数)を返す。<br />
+ 通常は6、 オブジェクト(!がついたファイルかタイル)だと0が返る。
+ 
 
 #### startAnimation ()
 [アニメーション]表示開始。
