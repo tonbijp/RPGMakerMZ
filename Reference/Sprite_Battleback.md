@@ -16,26 +16,6 @@
 | `type` | [Number](Number.md) | タイプ(0:battlebacks1, 1:battlebacks2) |
 
 
-### プロパティ
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
-| `opacity` | [Number](Number.md) | 不透明度 (0 〜 255). |
-| `spriteId` | [Number](Number.md) | スプライトID |
-| `origin` | [Point](Point.md) | スクロールの原点 |
-| `x` | [Number](Number.md) | x座標(ピクセル数) |
-| `y` | [Number](Number.md) | y座標(ピクセル数) |
-| `_bitmap` | [Bitmap](Bitmap.md) | タイル用画像 |
-| `_width` | [Number](Number.md) | 幅 |
-| `_height` | [Number](Number.md) | 高さ |
-| `_frame` | [Rectangle](Rectangle.md) | 枠 |
-
-
-### 廃止MVプロパティ
-`visibility` 
-
-
 ### スーパークラスから継承されたメソッド
 
 #### [TilingSprite](TilingSprite.md)
