@@ -49,10 +49,10 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | `z` | [Number](Number.md) | [重なりの優先度](#重なりの優先度) |
 | `blendMode` | [Number](Number.md) | [\[合成方法\]](#合成方法) (規定値:0)|
 | `_bitmap` | | |
-| `_blendColor` | [Array](Array.md) | ブレンドカラー [r, g, b, g]|
+| `_blendColor` | [[MV.Tone](MV.Color.md) | ブレンドカラー |
 | `_blendMode` | | |
 | `_colorFilter` | | 色フィルタ |
-| `_colorTone` | [Array](Array.md) | 色調 [r, g, b, a]|
+| `_colorTone` | [MV.Tone](MV.Tone.md) | 色調 |
 | `_frame` | [Rectangle](Rectangle.md) | 枠 |
 | `_hidden` | Boolean | 隠されているか |
 | `_hue` | [Number](Number.md) | 色相 (-360 〜 360) | 
@@ -161,7 +161,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 
 #### getBlendColor () → {[MV.Color](MV.Color.md)}
- 合成される色(r, g, b)と不透明度(a)を[ r, g, b, a ] の配列として返す。
+ 合成される色を返す。
 
 
 #### getColorTone () → {[MV.Tone](MV.Tone.md)}
@@ -194,13 +194,13 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 
 #### setBlendColor (color)
- 合成される色(r, g, b)と不透明度(a)を設定。
+ 合成される色を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `color` | [MV.Color](MV.Color.md) | [r, g, b, a] の配列 |
+| `color` | [MV.Color](MV.Color.md) | 合成色 |
 
 
 #### setColorTone (tone)
