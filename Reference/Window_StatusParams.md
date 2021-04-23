@@ -69,7 +69,7 @@
 
 * [actorName (actorIndex)](Window_Base.md#actorname-actorindex--string)
 * [baseTextRect (actorIndex)](Window_Base.md#basetextrect-actorindex--rectangle)
-* [calcTextHeight (textState, all)](Window_Base.md#calctextheight-textstate-all--number)
+* [calcTextHeight (textState)](Window_Base.md#calctextheight-textstate--number)
 * [changeOutlineColor (color)](Window_Base.md#changeoutlinecolor-color)
 * [changePaintOpacity (enabled)](Window_Base.md#changepaintopacity-enabled)
 * [changeTextColor (color)](Window_Base.md#changetextcolor-color)
