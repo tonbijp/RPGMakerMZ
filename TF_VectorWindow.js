@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.3.0.0
+// Version :0.3.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -26,7 +26,7 @@
  * @type boolean @default true
  * @on 影あり(規定値) @off 影なし
  * 
- * @param lineHeight @text 行高さ
+ * @param lineHeightRatio @text 行高さ
  * @desc 標準文字サイズを100%とした比率
  * @type number @default 140
  * @min 100
@@ -140,7 +140,7 @@
 
 	// 全体設定
 	const messageFontSize = pluginParams.messageFontSize;
-	const lineHeight = pluginParams.lineHeight / 100;
+	const lineHeightRatio = pluginParams.lineHeightRatio / 100;
 	const messageLines = pluginParams.messageLines;
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
@@ -202,7 +202,7 @@
 
 		const m = this.margin;
 		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
-		const bitmap = new Bitmap( this.width, this.height + 4 );// +4 はdrop shadow用
+		const bitmap = new Bitmap( this.width, this.height );
 
 		this._frameSprite.bitmap = bitmap;
 		this._frameSprite.setFrame( 0, 0, this.width, this.height + 12 );
@@ -213,7 +213,7 @@
 			case SHAPE_OCTAGON: path2d = drawOctagon( m, this.width, this.height, r ); break;
 			case SHAPE_SPIKE: path2d = drawSpike( m, this.width, this.height, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
 		}
-		drawWindow.call( this, bitmap.context, path2d );
+		drawWindow( this, bitmap.context, path2d );
 	};
 
 	// _refreshFrameは機能しない。
@@ -227,24 +227,36 @@
 
 
 	/*--- Window_Base ---*/
-	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeight );
-	Window_Base.prototype.textPadding = () => ( $dataSystem.advanced.fontSize * lineHeight - $dataSystem.advanced.fontSize ) / 2;
+	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
+	Window_Base.prototype.textPadding = () => ( $dataSystem.advanced.fontSize * lineHeightRatio - $dataSystem.advanced.fontSize ) / 2;
 
-	const _Window_Base_calcTextHeight = Window_Base.prototype.calcTextHeight;
-	Window_Base.prototype.calcTextHeight = function( textState, all ) {
-		const baseLines = _Window_Base_calcTextHeight.apply( this, arguments );
-		const length = textState.text.slice( textState.index ).split( "\n" ).length;
-		const maxLines = all ? length : 1;
-		return baseLines + maxLines * ( this.textPadding() * 2 - 8 );// 8はコアスクリプトが固定で入れている数値
-	};
 
 	/*--- Window_Message ---*/
+	// フォントサイズが異なるので、オーバーライドして別計算
+	// const _Window_Message_calcTextHeight = Window_Message.prototype.calcTextHeight;
+	Window_Message.prototype.calcTextHeight = function( textState ) {
+		const lineSpacing = this.lineHeight() - messageFontSize;
+		const lastFontSize = this.contents.fontSize;
+		const lines = textState.text.slice( textState.index ).split( "\n" );
+		const textHeight = this.maxFontSizeInLine( lines[ 0 ] ) + lineSpacing;
+		this.contents.fontSize = lastFontSize;
+		return textHeight;
+	};
+
+	// 顔描画を新規のクラスに任せる
+	// const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
+	Window_Message.prototype.drawMessageFace = function() {
+		const facePicture = SceneManager._scene.TF_facePicture;
+		facePicture.moveOnMessageWindow( this );
+		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
+	};
+
 	const TF_TAIL_HEIGHT = 40;// フキダシのシッポの高さ
 	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
 	// $gameMessage.positionType() で上下位置は決まる
 	Window_Message.prototype.numVisibleRows = () => messageLines;
-	Window_Message.prototype.textPadding = () => ( messageFontSize * lineHeight - messageFontSize ) / 2;
-	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeight );
+	Window_Message.prototype.textPadding = () => ( messageFontSize * lineHeightRatio - messageFontSize ) / 2;
+	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeightRatio );
 
 	Window_Message.prototype.resetFontSettings = function() {
 		Window_Base.prototype.resetFontSettings.call( this );
@@ -320,7 +332,7 @@
 		this._frameSprite.bitmap = bitmap;
 		this._frameSprite.setFrame( 0, 0, this._width, this._height + 12 );
 		const path2d = drawBalloon( m, this._width, this._height, r, this._positionType );
-		drawWindow.call( this, bitmap.context, path2d );
+		drawWindow( this, bitmap.context, path2d );
 	};
 
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
@@ -348,18 +360,7 @@
 		}
 	};
 
-	/*--- Scene_Message ---*/
-	/**
-	 * メッセージウィンドウの矩形範囲を設定
-	 */
-	// const _Scene_Message_messageWindowRect = Scene_Message.prototype.messageWindowRect;
-	// Scene_Message.prototype.messageWindowRect = function() {
-	// 	const rect = _Scene_Message_messageWindowRect.call( this );
-	// 	if( nameWithFace ) {
-	// 		rect.height = ImageManager.faceHeight + nameFontSize + 48;
-	// 	}
-	// 	return rect;
-	// };
+
 	/*--- 関数 ---*/
 	/**
 	 * ウィンドウの数値設定。
@@ -400,17 +401,18 @@
 		return workCtx.getImageData( 0, 0, 1, 1 ).data;
 	}
 
-	function drawWindow( ctx, path2d ) {
-		let bgColor = pluginParams.preset[ this.TF_windowType ].bgColor;
+	// ウィンドウ描画
+	function drawWindow( targetWindow, ctx, path2d ) {
+		let bgColor = pluginParams.preset[ targetWindow.TF_windowType ].bgColor;
 
 		if( bgColor.length === 1 ) {
-			ctx.fillStyle = tintColor( bgColor[ 0 ], this._colorTone );
+			ctx.fillStyle = tintColor( bgColor[ 0 ], targetWindow._colorTone );
 		} else {
-			const grad = ctx.createLinearGradient( 0, 0, 0, this._height );
+			const grad = ctx.createLinearGradient( 0, 0, 0, targetWindow._height );
 			const l = bgColor.length;
 			const interval = 1.0 / ( l - 1 );
 			bgColor.forEach( ( e, i ) => {
-				grad.addColorStop( i * interval, tintColor( e, this._colorTone ) );
+				grad.addColorStop( i * interval, tintColor( e, targetWindow._colorTone ) );
 			} );
 			ctx.fillStyle = grad;
 		}
@@ -419,7 +421,7 @@
 		ctx.fill( path2d );// 'nonzero'  'evenodd'
 
 		if( !dropShadow ) setShadowParam( ctx );
-		setBorderParam( ctx, this.TF_windowType );
+		setBorderParam( ctx, targetWindow.TF_windowType );
 		ctx.stroke( path2d );
 	}
 
@@ -614,17 +616,9 @@
 
 
 	/*-------------------- 顔表示関連 -----------------------*/
-	/**
-	 * 顔表示に文字表示を追記
-	 */
-	const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
-	Window_Message.prototype.drawMessageFace = function() {
-		// 顔描画
-		const facePicture = SceneManager._scene.TF_facePicture;
-		facePicture.moveOnMessageWindow( this );
-		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
-	};
 
+
+	/*--- Window_NameBox ---*/
 	const _Window_NameBox_setName = Window_NameBox.prototype.setName;
 	Window_NameBox.prototype.setName = function( name ) {
 		name = `\x1bFS[${nameFontSize}]` + name;
@@ -643,7 +637,7 @@
 		_Window_NameBox_updatePlacement.call( this );
 		if( nameWithFace ) {
 			// const facePicture = SceneManager._scene.TF_facePicture;
-			this.y = this._messageWindow.y + ImageManager.faceHeight;
+			this.y = this._messageWindow.y + this._messageWindow.height - NAME_HEIGHT - this.padding;
 		};
 	};
 
@@ -653,17 +647,34 @@
 	};
 
 
+	/*--- Scene_Message ---*/
+	// 行数をウィンドウに反映
+	// TODO 適切な高さを得る
+	const _Scene_Message_messageWindowRect = Scene_Message.prototype.messageWindowRect;
+	Scene_Message.prototype.messageWindowRect = function() {
+		const rect = _Scene_Message_messageWindowRect.call( this );
+		// rect.height = Window_Message.prototype.fittingHeight( messageLines ) + 8;
+
+		const textPadding = ( messageFontSize * lineHeightRatio - messageFontSize );
+		const lineHeight = Math.ceil( messageFontSize * lineHeightRatio );
+
+		rect.height = ( lineHeight + textPadding ) * messageLines + textPadding + 8;
+		return rect;
+	};
+
+	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
 	Scene_Message.prototype.createAllWindows = function() {
 		_Scene_Message_createAllWindows.call( this );
 
-		// 顔表示スプライトを「シーンに」追加
 		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 0, 0 ) );
 		this.addChild( this.TF_facePicture );
 	};
 
+	/*--- Sprite_FacePicture ---*/
 	// 顔画像ピクチャ
 	const IMG_MARGIN = 4;
+	const NAME_HEIGHT = 56;
 	class Sprite_FacePicture extends Sprite {
 		initialize( bitmap ) {
 			super.initialize( bitmap );
@@ -673,7 +684,7 @@
 			const dx = Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 );
 			const dy = Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 );
 			this.x = dx + targetWindow.x + targetWindow.padding + IMG_MARGIN;
-			this.y = dy + targetWindow.y + targetWindow.padding;
+			this.y = dy + targetWindow.y + targetWindow.height - ImageManager.faceHeight - NAME_HEIGHT;
 		}
 		drawFace( bitmap, faceIndex ) {
 			const sw = ImageManager.faceWidth;
