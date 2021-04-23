@@ -400,7 +400,8 @@ v1.1.1、v1.2.0 で変更あり。
 
 
 #### resize (width, height)
-指定の大きさに画像をリサイズ。
+指定の大きさに画像をリサイズ。<br />
+[blt()](#blt-source-sx-sy-sw-sh-dx-dy-dw-opt-dh-opt)など各種描画メソッドの前に描画領域を確保しておく。
 
 ##### 引数
 
