@@ -242,9 +242,6 @@ namespace JsExtensions
     * [Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
     * [Rectangle](Rectangle.md)
-* [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html) ( PIXI.extras.PictureTilingSprite から変更 )
-    * [TilingSprite](TilingSprite.md)
-        * [Sprite_Battleback](Sprite_Battleback.md) **@MZ**
 * EventEmitter
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
@@ -291,6 +288,9 @@ namespace JsExtensions
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * [Sprite](Sprite.md) → [継承](#スプライトsprite)
+    * [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html)
+        * [TilingSprite](TilingSprite.md) (継承位置変更)
+            * [Sprite_Battleback](Sprite_Battleback.md) **@MZ**
 * [Stage](Stage.md)
     * [Scene_Base](Scene_Base.md) → [継承](#シーンscene_base)
 * [Window](Window.md) → [継承](#ウィンドウwindow)
