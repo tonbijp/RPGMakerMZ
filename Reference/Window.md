@@ -15,13 +15,14 @@
 	* `_contentsSprite` 内容
 		*  `contents` ( _contentsSprite.bitmap )
 	* `_cursorSprite` コマンド選択カーソル
-		* Sprite × 9 カーソル枠を構成する9スライスのパーツ
+		* [Sprite](Sprite.md) × 8 カーソル枠を構成する9スライスのパーツ
 	* `_contentsBackSprite` 内容の背景
 		* `contentsBack`  ( _contentsBackSprite.bitmap )
 * `_container` ウィンドウ
 	* `_frameSprite` ウィンドウ枠
-		* Sprite × 9  ウィンドウ枠を構成する9スライスのパーツ
+		* [Sprite](Sprite.md) × 8  ウィンドウ枠を構成する9スライスのパーツ
 	* `_backSprite` ウィンドウ背景
+		*  繰り返しパターン用  [TilingSprite](TilingSprite.md)
 
 このうち `contents ` を書き換えることで、メッセージやアイコンなどの表示内容を変更する。<br />
 『RPGツクールMV』と要素はほぼ同じだが、大きく構成が変わっている。
@@ -61,7 +62,7 @@ v1.2.0 で変更あり。
 | `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ |
 | `innerRect` | [Rectangle](Rectangle.md) | **@MZ** [read-only]クライアントエリアの矩形範囲 |
 | `_isWindow` | Boolean | ウィンドウか |
-| `_windowskin` | [Bitmap](Bitmap.md) | |
+| `_windowskin` | [Bitmap](Bitmap.md) | "img/system/Window.png"の画像 |
 | `_width` | [Number](Number.md) |  |
 | `_height` | [Number](Number.md) |  |
 | `_innerChildren` | [Array](Array.md).&lt;Object&gt; | **@MZ** クライアントエリアの子オブジェクトの配列 |
@@ -200,13 +201,14 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 ####  _setRectPartsGeometry (sprite, srect, drect, m)
 **@MZ** 指定スプライトに枠を設定。<br />
-`sprite`は具体的にはプロパティ `_cursorSprite`か `_frameSprite`。
+`sprite`は事前に`children`に8つの[Sprite](Sprite.md)  を用意したオブジェクトを指定する必要がある。<br />
+具体的にはプロパティ `_cursorSprite`か `_frameSprite`を指定する。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `sprite` | [PIXI.DisplayObject](PIXI.DisplayObject.md)  | 9スライス枠用スプライト |
+| `sprite` | [Sprite](Sprite.md)  | 9スライス枠用スプライト |
 | `srect` | Object | スキン画像から切り取る矩形範囲 { x: , y: , width: , height:  } |
 | `drect` | Object | 配置する矩形範囲 { x: , y: , width: , height:  } |
 | `m` | [Number](Number.md) | 枠画像の幅(ピクセル) |
