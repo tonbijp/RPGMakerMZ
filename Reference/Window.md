@@ -15,7 +15,7 @@
 	* `_contentsSprite` 内容
 		*  `contents` ( _contentsSprite.bitmap )
 	* `_cursorSprite` コマンド選択カーソル
-		* [Sprite](Sprite.md) × 8 カーソル枠を構成する9スライスのパーツ
+		* [Sprite](Sprite.md) × 9 カーソル枠を構成する9スライスのパーツ
 	* `_contentsBackSprite` 内容の背景
 		* `contentsBack`  ( _contentsBackSprite.bitmap )
 * `_container` ウィンドウ
