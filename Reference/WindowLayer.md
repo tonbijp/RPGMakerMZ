@@ -5,10 +5,11 @@
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new WindowLayer ()
-[Scene_Base](Scene_Base.md) に含まれ [Window_Base](Window_Base.md) を children に持つレイヤー。
+[Scene_Base](Scene_Base.md) に含まれ [Window_Base](Window_Base.md) を `children` に持つレイヤー。
 
-ウィンドウの重ね合わせの制御を行う。<br />
-そのような制御がないなら [Scene_Base](Scene_Base.md) に直接ウィンドウが追加される。
+ウィンドウの重ね合わせた場合のマスク処理を行う。<br />
+`children` のオブジェクトが持つ `_isWindow`プロパティが false の場合マスク処理は行われない。<br />
+マスク処理が必要ないなら [Scene_Base](Scene_Base.md) に直接ウィンドウを追加しても良い。
 
 MVでは、ここで処理されていたフィルタ機能など多くは [Window](Window.md) に移ってシンプルな作りになっている。
 
