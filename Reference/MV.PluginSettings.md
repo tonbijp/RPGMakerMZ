@@ -216,7 +216,32 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 
 
 #### @type multiline_string
-**@MZ** 複数行の文字列。
+**@MZ** 複数行の文字列。『RPGツクールMV』で複数行のデータには `@type note`が使われていた。<br />
+`@default` は冒頭の空白や空行を無視するので、空行のみを規定値とすることはできないようだ。何か文字を書いた後は改行を認識する。
+
+##### Example
+```
+ * @param multilineData @text 複数行データ
+ * @desc 複数行データの説明。
+ * @type multiline_string @default 一行目
+ * 二行目
+```
+
+
+#### @type note
+JSON文字列を書く。主に複数行の文字列を扱うためのもの。<br />
+『RPGツクールMV』との互換で残してあるが『RPGツクールMZ』で複数行を扱う場合は `@type multiline_string` を使う。<br />
+プラグインにはJSON文字列化(具体的には &quot; や \\のエスケープ、改行の \\n への変換)して渡される。<br />
+改行が必要なデータ、JSON形式のデータを直接書く場合などに利用する。<br />
+`@default` の指定は他と異なり、ダブルクォーテーション( &quot; )で囲う必要がある。<br />
+また受け取った後に `JSON.parse()` を通して解析を行う必要がある。
+
+##### Example
+```
+ * @param note @text ノート
+ * @desc ノートの説明。
+ * @type note @default "一行目\n二行目"
+```
 
 
 #### @type number
@@ -361,20 +386,6 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @type combo @default red
  * @option red @value #FF0000
  * @option blue @value #0000FF
-```
-
-
-#### @type note
-複数行の文字列が記入できる形式。改行もできる。<br />
-プラグインにはJSON文字列化(具体的には &quot; や \\のエスケープ、改行の \\n への変換)して渡される。<br />
-改行が必要なデータ、JSON形式のデータを直接書く場合などに利用する。<br />
-`@default` の指定は他と異なり、ダブルクォーテーション( &quot; )で囲う必要がある。
-
-##### Example
-```
- * @param note @text ノート
- * @desc メモの説明。
- * @type note @default "一行目\n二行目"
 ```
 
 
