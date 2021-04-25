@@ -13,16 +13,16 @@
 * `_downArrowSprite` 下向き矢印
 * `_clientArea` クライアントエリア
 	* `_contentsSprite` 内容
-		*  `contents` ( _contentsSprite.bitmap )
+		*  `contents` ( `_contentsSprite.bitmap` )
 	* `_cursorSprite` コマンド選択カーソル
-		* [Sprite](Sprite.md) × 9 カーソル枠を構成する9スライスのパーツ
+		* `_cursorSprite.children`( [Sprite](Sprite.md) × 9 ) カーソル枠を構成する9スライスのパーツ
 	* `_contentsBackSprite` 内容の背景
-		* `contentsBack`  ( _contentsBackSprite.bitmap )
+		* `contentsBack`  ( `_contentsBackSprite.bitmap` )
 * `_container` ウィンドウ
 	* `_frameSprite` ウィンドウ枠
-		* [Sprite](Sprite.md) × 8  ウィンドウ枠を構成する9スライスのパーツ
+		* `_frameSprite.children`( [Sprite](Sprite.md) × 8 ) ウィンドウ枠を構成する9スライスのパーツ
 	* `_backSprite` ウィンドウ背景
-		*  繰り返しパターン用  [TilingSprite](TilingSprite.md)
+		*  `_backSprite.children`( [TilingSprite](TilingSprite.md)×1 ) 繰り返しパターン用
 
 このうち `contents ` を書き換えることで、メッセージやアイコンなどの表示内容を変更する。<br />
 『RPGツクールMV』と要素はほぼ同じだが、大きく構成が変わっている。
@@ -51,15 +51,15 @@ v1.2.0 で変更あり。
 | `downArrowVisible` | Boolean | 下向きスクロールアローが表示中か|
 | `upArrowVisible` | Boolean | 上むきスクロールアローが表示中か |
 | `opacity` | [Number](Number.md) | ウィンドウ( `_container` ) の不透明度(0 〜 255) |
-| `backOpacity` | [Number](Number.md) | ウィンドウ背景( `_backSprite` ) の不透明度(0 〜 255) |
+| `backOpacity` | [Number](Number.md) | ウィンドウ背景( `_backSprite` ) の不透明度(0 〜 255)(規定値:192) |
 | `contentsOpacity` | [Number](Number.md) | 内容( `_contentsSprite` ) の不透明度(0 〜 255) |
 | `origin` | [Point](Point.md) | スクロールの際のウィンドウの原点 |
-| `margin` | [Number](Number.md) | 枠の幅(規定値:4ピクセル) |
-| `padding` | [Number](Number.md) | 枠とコンテンツの間のパディング幅(規定値:12ピクセル) |
-| `width` | [Number](Number.md) | 幅 |
-| `height` | [Number](Number.md) | 高さ |
-| `innerWidth` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの幅 |
-| `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ |
+| `margin` | [Number](Number.md) | ウィンドウ端から背景までの幅(規定値:4ピクセル) |
+| `padding` | [Number](Number.md) | ウィンドウ端からコンテンツまでの幅(規定値:12ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
+| `innerWidth` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの幅(width - padding * 2 ) |
+| `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ(height - padding * 2 ) |
 | `innerRect` | [Rectangle](Rectangle.md) | **@MZ** [read-only]クライアントエリアの矩形範囲 |
 | `_isWindow` | Boolean | ウィンドウか |
 | `_windowskin` | [Bitmap](Bitmap.md) | "img/system/Window.png"の画像 |
