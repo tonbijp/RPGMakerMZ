@@ -236,7 +236,7 @@ rtl は RIGHT-TO-LEFT の略。
 
 
 #### drawCharacter (characterName, characterIndex, x, y)
-指定した'img/characters/'フォルダのファイル名とキャラクタ番号で、指定位置にキャラクタを描画。<br />
+指定した"img/characters/"フォルダのファイル名とキャラクタ番号で、指定位置にキャラクタを描画。<br />
 キャラクタ番号は左上から始まり右へ進み、2段目に移る。$付きの場合は0のみ。表示されるのは下向き中央のパターン。<br />
 指定するのは足元の座標なので、左上を指定したい場合 x+24, y+48 としてずらす必要がある。
 
@@ -265,7 +265,7 @@ rtl は RIGHT-TO-LEFT の略。
 
 
 #### drawFace (faceName, faceIndex, x, y, width opt, height opt)
-指定した'img/faces/'フォルダのファイル名とキャラクタ番号で、指定位置に顔画像を描画。<br />
+指定した"img/faces/"フォルダのファイル名とキャラクタ番号で、指定位置に顔画像を描画。<br />
 キャラクタ番号は左上から始まり右へ進み、2段目に移る。
 
 ##### 引数
@@ -282,7 +282,7 @@ rtl は RIGHT-TO-LEFT の略。
 
 #### drawIcon (iconIndex, x, y)
 指定した番号のアイコンを指定位置に描画。<br />
-'img/system/IconSet.png'のファイルを16×20に分割した画像。
+"img/system/IconSet.png"のファイルを16×20に分割した画像。
 アイコン番号は左上から始まり右へ進み、端まで到達したら下へ進む。
 
 ##### 引数
@@ -411,7 +411,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### loadWindowskin ()
-'img/system/Window.png'から、ウィンドウのスキンを読み込む。
+"img/system/Window.png"から、ウィンドウのスキンを読み込む。
 
 
 #### makeFontBigger ()
@@ -525,7 +525,7 @@ indexは取り出した文字の数だけ進む。<br />
 
 #### processDrawIcon (iconIndex, textState)
 アイコン表示を処理。<br />
-制御文字'\I[n]'の対応。<br />
+制御文字"\I[n]"の対応。<br />
 処理した文字列の分だけindexは進む。
 
 ##### 引数
