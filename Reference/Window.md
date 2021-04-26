@@ -16,7 +16,7 @@
 		*  `contents` ( `_contentsSprite.bitmap` )
 	* `_cursorSprite` コマンド選択カーソル
 		* `_cursorSprite.children`( [Sprite](Sprite.md) × 9 ) カーソル枠を構成する9スライスのパーツ
-	* `_contentsBackSprite` 内容の背景
+	* `_contentsBackSprite` 項目の背景
 		* `contentsBack`  ( `_contentsBackSprite.bitmap` )
 * `_container` ウィンドウ
 	* `_frameSprite` ウィンドウ枠
@@ -24,8 +24,10 @@
 	* `_backSprite` ウィンドウ背景
 		*  `_backSprite.children`( [TilingSprite](TilingSprite.md)×1 ) 繰り返しパターン用
 
-このうち `contents ` を書き換えることで、メッセージやアイコンなどの表示内容を変更する。<br />
+このうち `contents` を書き換えることで、メッセージやアイコンなどの表示内容を変更する。<br />
 『RPGツクールMV』と要素はほぼ同じだが、大きく構成が変わっている。
+
+`contentsBack` はMZで追加されたもので、ウィンドウに表示されるコマンドやステータスといった項目の後ろに表示される背景。
 
 opacity系のプロパティは、対象スプライトの alpha プロパティを読み書きしているだけ。
 
@@ -45,8 +47,8 @@ v1.2.0 で変更あり。
 | `active` | Boolean | ウィンドウがアクティブか |
 | `openness` | [Number](Number.md) | `_container`の開放度(0 〜 255) |
 | `contents` | [Bitmap](Bitmap.md) | 内容( `_contentsSprite` )の画像 |
-| `contentsBack` | [Bitmap](Bitmap.md) | **@MZ** 背景( `_contentsBackSprite` )の画像 |
-| `windowskin` | [Bitmap](Bitmap.md) | ウィンドウのスキン画像(system/Window.png)  |
+| `contentsBack` | [Bitmap](Bitmap.md) | **@MZ** 項目の背景( `_contentsBackSprite` )の画像 |
+| `windowskin` | [Bitmap](Bitmap.md) | ウィンドウのスキン画像(img/system/Window.png)  |
 | `pause` | Boolean | ポーズサインが表示中か |
 | `downArrowVisible` | Boolean | 下向きスクロールアローが表示中か|
 | `upArrowVisible` | Boolean | 上むきスクロールアローが表示中か |
@@ -62,11 +64,11 @@ v1.2.0 で変更あり。
 | `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ(height - padding * 2 ) |
 | `innerRect` | [Rectangle](Rectangle.md) | **@MZ** [read-only]クライアントエリアの矩形範囲 |
 | `_isWindow` | Boolean | ウィンドウか |
-| `_windowskin` | [Bitmap](Bitmap.md) | "img/system/Window.png"の画像 |
+| `_windowskin` | [Bitmap](Bitmap.md) |  |
 | `_width` | [Number](Number.md) |  |
 | `_height` | [Number](Number.md) |  |
 | `_innerChildren` | [Array](Array.md).&lt;Object&gt; | **@MZ** クライアントエリアの子オブジェクトの配列 |
-| `_cursorRect` | [Rectangle](Rectangle.md) | コマンド選択カーソルの矩形範囲 |
+| `_cursorRect` | [Rectangle](Rectangle.md) | 項目選択カーソルの矩形範囲 |
 | `_openness` | [Number](Number.md) |  |
 | `_animationCount` | [Number](Number.md) | アニメーションカウント |
 | `_padding` | [Number](Number.md) |  |
@@ -77,7 +79,7 @@ v1.2.0 で変更あり。
 | `_cursorSprite` | [Sprite](Sprite.md) | **@MZ** コマンド選択カーソル |
 | `_frameSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ枠 |
 | `_clientArea` |  [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** 内容( `contents` を含む ) |
-| `_contentsBackSprite` | [Sprite](Sprite.md) | **@MZ** 内容の背景 |
+| `_contentsBackSprite` | [Sprite](Sprite.md) | **@MZ** 項目の背景 |
 | `_contentsSprite` | [Sprite](Sprite.md) | **@MZ** 内容 |
 | `_pauseSignSprite` | [Sprite](Sprite.md) | **@MZ** ポーズサイン |
 | `_downArrowSprite` | [Sprite](Sprite.md) | 下向き矢印 |
@@ -152,7 +154,7 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 
 ####  _createContentsBackSprite ()
-**@MZ** 内容の背景(_contentsBackSprite)を生成する。
+**@MZ** 項目の背景(_contentsBackSprite)を生成する。
 
 
 ####  _createCursorSprite ()
@@ -227,7 +229,7 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 
 ####  _updateContentsBack ()
-**@MZ** 内容の背景のアップデート。
+**@MZ** 項目の背景のアップデート。
 
 
 ####  _updateCursor ()

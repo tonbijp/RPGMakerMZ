@@ -157,13 +157,15 @@ MVで [Window_Base](Window_Base.md) にあった機能のうち色に関する�
 
 
 #### (static) outlineColor () → {[MV.CssColor](MV.CssColor.md)}
-**@MZ** 輪郭の色(規定値:"rgba(0, 0, 0, 0.6)")を返す。
+**@MZ** 文字の輪郭の色(規定値:"rgba(0, 0, 0, 0.6)")を返す。
 
 
 #### (static) itemBackColor1 () → {[MV.CssColor](MV.CssColor.md)}
-**@MZ** アイテムの背景色2(規定値:"rgba(32, 32, 32, 0.5)")を返す。
+**@MZ** アイテムの背景色1(規定値:"rgba(32, 32, 32, 0.5)")を返す。<br />
+[Window](Window.md) の`contentsBack`のグラデーション上および枠。
 
 
 #### (static) itemBackColor2 () → {[MV.CssColor](MV.CssColor.md)}
-**@MZ** アイテムの背景色2(規定値:"rgba(0, 0, 0, 0.5)")を返す。
+**@MZ** アイテムの背景色2(規定値:"rgba(0, 0, 0, 0.5)")を返す。<br />
+[Window](Window.md) の`contentsBack`のグラデーション下。
 
