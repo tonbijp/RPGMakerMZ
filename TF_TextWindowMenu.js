@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.2.0.1
+// Version :0.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -20,7 +20,7 @@
  * @param windowParams
  * @desc メニューとウィンドウの設定。
  * @type struct<WindowParam>[]
- * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"\\\"\\\\n\\\\n\\\\\\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\\\\\\{\\\"\"}"]
+ * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"©\\n\\n\\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\\{\"}"]
  * 
  * @help
  * タイトル画面への著作権情報や操作説明の追加を想定したプラグインです。
@@ -45,8 +45,11 @@
  *
  * @param contents
  * @desc ウィンドウに表示する内容(制御文字が使えます)
- * @type note
- * @default "\n\n\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\{"
+ * @type multiline_string
+ * @default
+ * ©
+ * 
+ * \}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\{
  */
 ( () => {
 	"use strict";
@@ -56,7 +59,7 @@
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 	let topRows = null;
 	let titleItemIndex = null;
-	pluginParams.windowParams.forEach( ( e ) => e.contents = JSON.parse( e.contents ) );
+	// pluginParams.windowParams.forEach( ( e ) => e.contents = JSON.parse( e.contents ) );
 	const windowParams = pluginParams.windowParams;
 
 	/*---- Window_TitleCommand ----*/
