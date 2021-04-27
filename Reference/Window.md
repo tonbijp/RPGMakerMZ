@@ -297,17 +297,17 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 つまり、openness === 255 であるか。
 
 
-#### move (x, y, width, height)
+#### move (x, y, width opt, height opt)
 指定した位置と大きさにウィンドウを変更。
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `x` | [Number](Number.md) | ウィンドウ x座標(ピクセル) |
-| `y` | [Number](Number.md) | ウィンドウ y座標(ピクセル) |
-| `width` | [Number](Number.md) | ウィンドウ幅(ピクセル) |
-| `height` | [Number](Number.md) | ウィンドウ高さ(ピクセル) |
+| 名前 | 型 | 特性 | 規定値 | 説明 |
+| --- | --- | --- | --- | --- |
+| `x` | [Number](Number.md) |  |  | ウィンドウ x座標(ピクセル) |
+| `y` | [Number](Number.md) |  |  | ウィンドウ y座標(ピクセル) |
+| `width` | [Number](Number.md) | &lt;optional&gt; | 0 | ウィンドウ幅(ピクセル) |
+| `height` | [Number](Number.md) | &lt;optional&gt; | 0 | ウィンドウ高さ(ピクセル) |
 
 
 #### moveCursorBy (x, y)
