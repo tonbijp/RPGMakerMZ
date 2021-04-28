@@ -84,7 +84,7 @@ MVでは引数が x, y, width, height だった。
 * [drawShape (graphics)](Window.md#drawshape-graphics)
 * [isClosed ()](Window.md#isclosed---boolean)
 * [isOpen ()](Window.md#isopen---boolean)
-* [move (x, y, width, height)](Window.md#move-x-y-width-height)
+* [move (x, y, width opt, height opt)](Window.md#move-x-y-width-opt-height-opt)
 * [moveCursorBy (x, y)](Window.md#movecursorby-x-y)
 * [moveInnerChildrenBy (x, y)](Window.md#moveinnerchildrenby-x-y)
 * [setCursorRect (x, y, width, height)](Window.md#setcursorrect-x-y-width-height)

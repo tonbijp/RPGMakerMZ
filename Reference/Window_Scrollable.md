@@ -75,7 +75,7 @@
 * [addChildToBack (child)](Window.md#addchildtoback-child--object)
 * [isClosed ()](Window.md#isclosed---boolean)
 * [isOpen ()](Window.md#isopen---boolean)
-* [move (x, y, width, height)](Window.md#move-x-y-width-height)
+* [move (x, y, width opt, height opt)](Window.md#move-x-y-width-opt-height-opt)
 * [setCursorRect (x, y, width, height)](Window.md#setcursorrect-x-y-width-height)
 * [setTone (r, g, b)](Window.md#settone-r-g-b)
 * [updateTransform ()](Window.md#updatetransform-)
