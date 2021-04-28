@@ -31,9 +31,9 @@ MVでは引数がなかった。
 | `_positionType` | [Number](Number.md) | [ウィンドウ位置] |
 | `_waitCount` | [Number](Number.md) | 待機カウント |
 | `_faceBitmap` | [Bitmap](Bitmap.md) | 顔の画像 |
-| `_pauseSkip` | Boolean | 入力待ちをとばすか |
-| `_showFast` | Boolean | 一括表示するか |
-| `_lineShowFast` | Boolean | 行を一括表示するか |
+| `_pauseSkip` | Boolean | 入力待ちをとばすか( 制御文字 \\^ の効果) |
+| `_showFast` | Boolean | 一括表示するか(入力によるスキップ) |
+| `_lineShowFast` | Boolean | 行を一括表示するか( 制御文字 \\&gt; の効果) |
 | `_goldWindow` | [Window_Gold](Window_Gold.md) | [所持金]ウィンドウ |
 | `_nameBoxWindow` | [Window_NameBox](Window_NameBox.md) | **@MZ** [名前]ウィンドウ |
 | `_choiceListWindow` | [Window_ChoiceList](Window_ChoiceList.md) | **@MZ** [選択肢の表示]ウィンドウ |
