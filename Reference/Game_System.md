@@ -8,7 +8,6 @@
 | --- | --- |
 | [$gameSystem](global.md#gamesystem-game_system) | 保存される |
 
-
 変化のあるシステムデータを扱うクラス。
 
 関連クラス: [RPG.System](RPG.System.md)
@@ -31,7 +30,7 @@
 | `_framesOnSave` | [Number](Number.md) | 保存累積フレーム数 |
 | `_bgmOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGM |
 | `_bgsOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGS |
-| `_windowTone` | [Array](Array.md).<[Number](Number.md)> | ウィンドウのトーン |
+| `_windowTone` | [Array](Array.md).&lt;[Number](Number.md)&gt; | ウィンドウのトーン |
 | `_battleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 戦闘] |
 | `_victoryMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 勝利] |
 | `_defeatMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 敗北] |
@@ -247,7 +246,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `value` | [Array](Array.md).<[Number](Number.md)> | [ r, g, b ] の配列(各-255〜255) |
+| `value` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [ r, g, b ] の配列(各-255〜255) |
 
 
 #### versionId () → {[Number](Number.md)}
@@ -263,11 +262,12 @@
 
 
 #### windowPadding () → {[Number](Number.md)}
-**@MZ** ウィンドウのパディング幅(規定値:12ピクセル)を返す。
+**@MZ** ウィンドウ端からコンテンツまでの幅(規定値:12ピクセル)を返す。
 
 
-#### windowTone () → {[Array](Array.md).<[Number](Number.md)>}
-[ウィンドウカラー] を返す。
+#### windowTone () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
+[ウィンドウカラー] を返す。<br />
+ [ r, g, b ] の配列(各-255〜255)
 
 
 
