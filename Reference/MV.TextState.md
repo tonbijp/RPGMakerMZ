@@ -3,7 +3,7 @@
 # クラス: [MV](MV.md).TextState
 
 ## 型: Object
-テキストの表示に使われるパラメータ。
+表示に使われるテキストの状態パラメータ群。テキスト状態。
 
 関連クラス: [Window_Base](Window_Base.md)
 
@@ -12,8 +12,8 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `buffer` | [String](String.md) | バッファ |
-| `drawing` | Boolean | 描画中か |
+| `buffer` | [String](String.md) | 次に描画する文字のバッファ |
+| `drawing` | Boolean | 描画するか |
 | `index` | [Number](Number.md) | 処理中の文字の位置 |
 | `left` | [Number](Number.md) | 残り |
 | `height` | [Number](Number.md) | 高さ |

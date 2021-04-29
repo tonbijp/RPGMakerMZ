@@ -177,7 +177,7 @@ MVでは引数がなかった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | テキスト状態 |
 
 
 #### canStart () → {Boolean}
@@ -189,11 +189,12 @@ MVでは引数がなかった。
 
 
 #### clearFlags ()
-フラグを消去。
+[文章の表示]で使うフラグを消去。
 
 
 #### doesContinue () → {Boolean}
-まだテキストがあり、かつ設定が変更されていないか。
+まだテキストがあり、かつ設定が変更されてい。
+つまり、文章を続ける必要があるか。
 
 
 #### initialize ()
@@ -209,13 +210,13 @@ MVでは引数がなかった。
 
 
 #### isEndOfText (textState) → {Boolean}
-指定したテキストの情報が最後にあるか。
+指定したテキスト状態が文末か。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキスト状態 |
 
 
 #### isTriggered () → {Boolean}
@@ -231,13 +232,13 @@ MVでは引数がなかった。
 
 
 #### needsNewPage (textState) → {Boolean}
-指定テキストの情報に次のページがあるか。
+指定テキスト状態が、次ページが必要な状態か。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキスト状態 |
 
 
 #### newLineX (textState) → {[Number](Number.md)}
@@ -248,21 +249,21 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | 調べるテキスト状態 |
 
 
 #### newPage (textState)
-指定したテキストの情報に従って新しいページを用意。
+指定したテキスト状態に従って新規ページ(ウィンドウ)を用意。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | テキスト状態 |
 
 
 #### onEndOfText ()
-メッセージを全て表示した時に呼ばれるハンドラ。
+文章を全て表示した時に呼ばれるハンドラ。
 
 
 #### processControlCharacter (textState, c)
@@ -328,13 +329,14 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### shouldBreakHere (textState) → {Boolean}
-**@MZ** 一時停止の必要があるか。
+**@MZ** [文章の表示]ループから抜ける必要があるか。<br />
+別の言い方だと、文字をひとつずつ表示するモードか。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `textState` | [MV.TextState](MV.TextState.md) | テキストの情報 |
+| `textState` | [MV.TextState](MV.TextState.md) | テキスト状態 |
 
 
 #### startInput () → {Boolean}
@@ -343,7 +345,7 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### startMessage ()
-メッセージ表示の開始。
+[文章の表示]の準備。
 
 
 #### startPause ()
@@ -361,11 +363,11 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### synchronizeNameBox ()
-**@MZ** 名前ウィンドウの開閉状態をメッセージウィンドウと合わせる。
+**@MZ** 名前ウィンドウの開閉状態を[文章の表示]ウィンドウと合わせる。
 
 
 #### terminateMessage ()
-メッセージを停止してウィンドウを閉じる。
+[文章の表示]を停止してウィンドウを閉じる。
 
 
 #### update ()
@@ -373,11 +375,11 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### updateBackground ()
-背景のアップデート。
+背景の更新。
 
 
 #### updateInput () → {Boolean}
-入力のアップデート。
+入力の更新。
 
 
 #### updateLoading ()
@@ -385,23 +387,23 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### updateMessage () → {Boolean}
-メッセージのアップデート。
+[文章の表示]の更新。
 
 
 #### updatePlacement ()
-ウィンドウの配置のアップデート。
+ウィンドウの配置の更新。
 
 
 #### updateShowFast ()
-メッセージ速度のアップデート。
+ボタン・クリック・タップによる早送りのチェック。
 
 
 #### updateSpeakerName ()
-**@MZ** 話者の名前をアップデート。
+**@MZ** 話者の名前を更新。
 
 
 #### updateWait () → {Boolean}
-待機状態のアップデート。
+待機状態の更新。
 
 
 
