@@ -108,7 +108,8 @@ MVでは引数が x, y, width, height だった。
 
 
 #### baseTextRect (actorIndex) → {[Rectangle](Rectangle.md)}
-**@MZ** 基本の矩形範囲を返す。
+**@MZ** 文字表示用の矩形範囲を返す。<br />
+[Window_Message](Window_Message.md) ではなく、[Window_NameBox](Window_NameBox.md) , [Window_Help](Window_Help.md) および [Window_ScrollText](Window_ScrollText.md) で使われる。
 
 
 #### calcTextHeight (textState) → {[Number](Number.md)}
@@ -123,7 +124,7 @@ MZで `all` 引数は廃止。
 
 
 #### changeOutlineColor (color)
-**@MZ** 輪郭の色を設定。
+**@MZ** 文字の輪郭色を設定。
 
 ##### 引数
 
@@ -358,7 +359,8 @@ rtl は RIGHT-TO-LEFT の略。
 
 
 #### flushTextState (textState)
-**@MZ** 文字の流れ(アラビア語の右左の表示対応を含む)処理。
+**@MZ** `textState.buffer`に溜まった文字を描画。<br />
+アラビア語などの右左の表示対応。
 
 ##### 引数
 
@@ -395,7 +397,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### itemHeight () → {[Number](Number.md)}
-**@MZ** 項目高さを返す。
+**@MZ** 項目の高さ(規定値: 36ピクセル)を返す。
 
 
 #### itemPadding () → {[Number](Number.md)}
@@ -403,7 +405,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### itemWidth () → {[Number](Number.md)}
-**@MZ** 項目幅を返す。
+**@MZ** 項目の幅を返す。
 
 
 #### lineHeight () → {[Number](Number.md)}
@@ -415,15 +417,15 @@ MVでは引数が x, y, width, height だった。
 
 
 #### makeFontBigger ()
-フォントサイズを12大きくする。
+フォントサイズを12大きくする。制御文字 \\\{ の処理。
 
 
 #### makeFontSmaller ()
-フォントサイズを12小さくする。
+フォントサイズを12小さくする。制御文字	\\\} の処理。
 
 
 #### maxFontSizeInLine (line) → {[Number](Number.md)}
-**@MZ** 指定行で最も大きなフォントサイズを返す。
+**@MZ** 指定行での最大フォントサイズを返す。
 
 ##### 引数
 
@@ -503,7 +505,7 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 #### processColorChange (colorIndex)
-**@MZ** 指定文字色に変更。
+**@MZ** 指定文字色に変更。制御文字 \\C[n] の処理。	
 
 ##### 引数
 
@@ -524,8 +526,7 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 #### processDrawIcon (iconIndex, textState)
-アイコン表示を処理。<br />
-制御文字"\I[n]"の対応。<br />
+アイコン表示。制御文字 \\I[n] の処理。<br />
 処理した文字列の分だけindexは進む。
 
 ##### 引数
@@ -594,11 +595,11 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 #### textSizeEx (text) → {[MV.Size](MV.Size.md)}
-**@MZ** 制御文字の変更後のテキストのサイズを返す。
+**@MZ** 制御文字による変更を加えた文字列サイズを返す。
 
 
 #### textWidth (text) → {[Number](Number.md)}
-指定文字列の幅(ピクセル)を返す。
+指定文字列を描画した場合の幅(ピクセル)を返す。
 
 ##### 引数
 
