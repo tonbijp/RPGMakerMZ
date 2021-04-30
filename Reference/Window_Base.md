@@ -9,7 +9,8 @@
 多くは `contents` に対して [Bitmap](Bitmap.md) のメソッドを使う機能。
 
 MZで色関連は [ColorManager](ColorManager.md)に、ステータス描画は[Window_StatusBase](Window_StatusBase.md) に移動。<br />
-また、個々の要素の描画は [Sprite_Gauge](Sprite_Gauge.md)、[Sprite_StateIcon](Sprite_StateIcon.md) 、[Sprite_Name](Sprite_Name.md) といったスプライトに機能分解されている。
+また、個々の要素の描画は [Sprite_Gauge](Sprite_Gauge.md)、[Sprite_StateIcon](Sprite_StateIcon.md) 、[Sprite_Name](Sprite_Name.md) といったスプライトに機能分解されている。<br />
+画像のサイズなどのプロパティは [ImageManager](ImageManager.md) に移っている。
 
 v1.1.1、v1.2.0 で変更あり。
 
@@ -595,7 +596,7 @@ indexは取り出した文字の数だけ進む。<br />
 
 
 #### textSizeEx (text) → {[MV.Size](MV.Size.md)}
-**@MZ** 制御文字による変更を加えた文字列サイズを返す。
+**@MZ** 制御文字による変更後の文字サイズを返す。
 
 
 #### textWidth (text) → {[Number](Number.md)}

@@ -8,6 +8,8 @@ MZになってキャッシュ方式が大幅に変更されたので、このク
 reserveXxxx()、reserveXxxx() 系統のメソッドは軒並み廃止されている。<br />
 また読み込み時の hue(色相)と smooth(スムージング)の指定はなくなった。
 
+また、プロパティは [Window_Base](Window_Base.md) から移ってきたものがいくつかある。
+
 関連クラス: [Bitmap](Bitmap.md), [Graphics](Graphics.md), [Game_Screen](Game_Screen.md)
 
 
