@@ -13,7 +13,7 @@
 
 V1.2.1で変更あり。
 
-関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
+関連クラス: [Scene_Message](Scene_Message.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
 #### 引数
 MVでは引数がなかった。
