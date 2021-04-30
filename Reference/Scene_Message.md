@@ -109,7 +109,7 @@
 ### メソッド
 
 #### associateWindows ()
-ウィンドウを結合。
+メッセージウィンドウに関連ウィンドウを結合。
 
 
 #### createAllWindows ()
@@ -145,11 +145,11 @@
 
 
 #### eventItemWindowRect() → {[Rectangle](Rectangle.md)}
-イベントアイテムウィンドウの矩形範囲を返す。
+イベントアイテムウィンドウ生成用の矩形範囲を返す。
 
 
 #### goldWindowRect() → {[Rectangle](Rectangle.md)}
-所持金ウィンドウの矩形範囲を返す。
+所持金ウィンドウ生成用の矩形範囲を返す。
 
 
 #### isMessageWindowClosing () → {Boolean}
@@ -161,8 +161,8 @@
 
 
 #### messageWindowRect() → {[Rectangle](Rectangle.md)}
-メッセージウィンドウの矩形範囲を返す。
+メッセージウィンドウ生成用の矩形範囲を返す。
 
 
 #### scrollTextWindowRect() → {[Rectangle](Rectangle.md)}
-スクロールテキストウィンドウの矩形範囲を返す。
+スクロールテキストウィンドウ生成用の矩形範囲を返す。
