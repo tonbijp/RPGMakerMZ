@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.3.2.0
+// Version :0.3.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -194,18 +194,14 @@
 	const _Window__refreshBack = Window.prototype._refreshBack;
 	Window.prototype._refreshBack = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
-		if( this._data && this._data.WindowSkin ) {
-			_Window__refreshBack.call( this );
-			return;
-		}
+		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
 		const m = this.margin;
 		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
-		const bitmap = new Bitmap( this.width, this.height );
 
-		this._frameSprite.bitmap = bitmap;
-		this._frameSprite.setFrame( 0, 0, this.width, this.height + 12 );
+		this._backSprite.bitmap = new Bitmap( this.width, this.height );
+		this._backSprite.setFrame( 0, 0, this.width, this.height );
 
 		let path2d;
 		switch( this.TF_shape ) {
@@ -213,22 +209,21 @@
 			case SHAPE_OCTAGON: path2d = drawOctagon( m, this.width, this.height, r ); break;
 			case SHAPE_SPIKE: path2d = drawSpike( m, this.width, this.height, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
 		}
-		drawWindow( this, bitmap.context, path2d );
+		drawWindow( this, this._backSprite.bitmap.context, path2d );
 	};
 
+	//_frameSprite
 	// _refreshFrameは機能しない。
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
 	Window.prototype._refreshFrame = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
-		if( this._data && this._data.WindowSkin ) {
-			_Window__refreshFrame.call( this );
-		}
+		if( this._data && this._data.WindowSkin ) _Window__refreshFrame.call( this );
 	};
 
 
 	/*--- Window_Base ---*/
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
-	Window_Base.prototype.textPadding = () => ( $dataSystem.advanced.fontSize * lineHeightRatio - $dataSystem.advanced.fontSize ) / 2;
+	Window_Base.prototype.textPadding = () => ( $dataSystem.advanced.fontSize * lineHeightRatio - $dataSystem.advanced.fontSize );
 
 
 	/*--- Window_Message ---*/
@@ -255,7 +250,7 @@
 	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
 	// $gameMessage.positionType() で上下位置は決まる
 	Window_Message.prototype.numVisibleRows = () => messageLines;
-	Window_Message.prototype.textPadding = () => ( messageFontSize * lineHeightRatio - messageFontSize ) / 2;
+	Window_Message.prototype.textPadding = () => ( messageFontSize * lineHeightRatio - messageFontSize );
 	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeightRatio );
 
 	Window_Message.prototype.resetFontSettings = function() {
@@ -619,19 +614,22 @@
 
 
 	/*--- Window_NameBox ---*/
-	const _Window_NameBox_setName = Window_NameBox.prototype.setName;
-	Window_NameBox.prototype.setName = function( name ) {
-		name = `\x1bFS[${nameFontSize}]` + name;
-		_Window_NameBox_setName.apply( this, arguments );
-	};
+	// const _Window_NameBox_setName = Window_NameBox.prototype.setName;
+	// Window_NameBox.prototype.setName = function( name ) {
+	// 	name = `\x1bFS[${nameFontSize}]` + name;
+	// 	_Window_NameBox_setName.apply( this, arguments );
+	// };
 
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
 		_Window_NameBox_initialize.call( this );
+		this.contents.fontSize = nameFontSize;
+		this.textWidthEx = 0;
 		if( nameWithFace ) {
 			this._isWindow = false;
 		};
 	};
+
 	const _Window_NameBox_updatePlacement = Window_NameBox.prototype.updatePlacement;
 	Window_NameBox.prototype.updatePlacement = function() {
 		_Window_NameBox_updatePlacement.call( this );
@@ -646,6 +644,34 @@
 		Window_Base.prototype._refreshAllParts();
 	};
 
+	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
+	Window_NameBox.prototype.windowWidth = function() {
+		if( nameWithFace ) {
+			if( this._name ) {
+				this.textWidthEx = this.textSizeEx( this._name ).width;
+				const padding = this.padding + this.itemPadding();
+				return ImageManager.faceWidth + padding * 2;
+			} else {
+				return 0;
+			}
+		} else {
+			return _Window_NameBox_windowWidth.call( this );
+		}
+	};
+
+	// TODO 名前を指定サイズで中央表示
+	const _Window_NameBox_refresh = Window_NameBox.prototype.refresh;
+	Window_NameBox.prototype.refresh = function() {
+		if( !nameWithFace ) return _Window_NameBox_refresh.call( this );
+
+		// const lastFontSize = this.contents.fontSize;
+		this.contents.fontSize = nameFontSize;
+		const rect = this.baseTextRect();
+		this.contents.clear();
+		const x = rect.x + Math.floor( ( rect.width - this.textWidthEx ) / 2 );
+		this.drawTextEx( this._name, x, rect.y, rect.width );
+		// this.contents.fontSize = lastFontSize;
+	};
 
 	/*--- Scene_Message ---*/
 	// 行数をウィンドウに反映
@@ -655,10 +681,8 @@
 		const rect = _Scene_Message_messageWindowRect.call( this );
 		// rect.height = Window_Message.prototype.fittingHeight( messageLines ) + 8;
 
-		const textPadding = ( messageFontSize * lineHeightRatio - messageFontSize );
 		const lineHeight = Math.ceil( messageFontSize * lineHeightRatio );
-
-		rect.height = ( lineHeight + textPadding ) * messageLines + textPadding + 8;
+		rect.height = lineHeight * messageLines + $gameSystem.windowPadding() * 2 + 8;
 		return rect;
 	};
 
