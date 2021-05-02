@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.4.0.0
+// Version :0.4.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -20,7 +20,7 @@
  * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット(1が規定)
  * @type struct<WindowParam>[]
- * @default ["{\"name\":\"base\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
+ * @default ["{\"name\":\"base\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
@@ -195,13 +195,6 @@
 	};
 
 
-	const _Window_Base_updatePadding = Window_Base.prototype.updatePadding;
-	Window_Base.prototype.updatePadding = function() {
-		if( this._data && this._data.WindowSkin ) {
-			_Window_Base_updatePadding.call( this );
-		}
-	};
-
 	// _colorTone を反映させるため、_refreshBack の方で描画。
 	const _Window__refreshBack = Window.prototype._refreshBack;
 	Window.prototype._refreshBack = function() {
@@ -239,6 +232,22 @@
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
 	Window_Base.prototype.textPadding = function() {
 		return this.lineHeight() - $dataSystem.advanced.fontSize;
+	};
+
+	// なぜかここで padding を上書きして設定した値が戻っているので無視
+	const _Window_Base_updatePadding = Window_Base.prototype.updatePadding;
+	Window_Base.prototype.updatePadding = function() {
+		if( this._data && this._data.WindowSkin ) {
+			_Window_Base_updatePadding.call( this );
+		}
+	};
+
+	// なぜかここで backOpacity を若干薄く(192)に設定しているので無視
+	const _Window_Base_updateBackOpacity = Window_Base.prototype.updateBackOpacity;
+	Window_Base.prototype.updateBackOpacity = function() {
+		if( this._data && this._data.WindowSkin ) {
+			_Window_Base_updateBackOpacity.call( this );
+		}
 	};
 
 	/*--- Window_Message ---*/
