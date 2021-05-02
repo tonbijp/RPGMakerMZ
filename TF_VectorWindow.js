@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.3.3.0
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -20,7 +20,7 @@
  * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット(1が規定)
  * @type struct<WindowParam>[]
- * @default ["{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
+ * @default ["{\"name\":\"base\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
@@ -62,6 +62,7 @@
  *
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
+ * 規定値では talk, thought, shout がある
  * @type string @default thought
  *
  * @arg isFaceLeft @text 顔位置が左か
@@ -81,7 +82,7 @@
  * @option 8角形 @value octagon
  * @option なし @value none
  * 
- * @param margin @text 枠外の間隔
+ * @param margin @text 端から枠までの間隔
  * @type number @default 8
  * @min 0
  * 
@@ -97,7 +98,7 @@
  * @type number @default 10
  * @min 0
  * 
- * @param padding @text 枠と文字の間隔
+ * @param padding @text 端から内容までの間隔
  * @type number @default 18
  * @min 0
  * 
@@ -112,6 +113,7 @@
 	const COM_SET_WINDOW = "setWindow";
 
 	// ウィンドウ描画関連
+	const ERROR_NUMBER = -1;
 	const WINDOW_TYPE_DEFAULT = 0; // ウィンドウタイプの規定値
 	const SHAPE_ROUNDRECT = "roundrect";
 	const SHAPE_SPIKE = "spike";
@@ -145,6 +147,7 @@
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
+
 	/**
 	 * プラグインコマンドの登録
 	 */
@@ -154,13 +157,16 @@
 		if( !messageWindow ) return;
 		const newWindowType = getWindowType( args.windowType );
 		const faceAlign = args.isFaceLeft ? POSITION_LEFT : POSITION_RIGHT;
-		if( newWindowType === -1 ||
-			(
-				newWindowType === messageWindow.TF_windowType
-				&& faceAlign === messageWindow.TF_faceAlign
-			)
+		if( newWindowType === ERROR_NUMBER ) {
+			throw new Error( `"${args.windowType}" is wrong window type.` );
+		}
+		if(
+			newWindowType === messageWindow.TF_windowType
+			&& faceAlign === messageWindow.TF_faceAlign
 		) return;
-		setWindowParam( messageWindow, newWindowType, faceAlign );
+		setWindowParam( messageWindow, newWindowType );
+		messageWindow.TF_faceAlign = faceAlign;
+		setMessageParam( messageWindow );
 	} );
 
 	/**
@@ -171,24 +177,30 @@
 	function getWindowType( windowType ) {
 		if( typeof windowType === TYPE_STRING ) {
 			return pluginParams.preset.findIndex( ( e ) => e.name === windowType );	// 名前から数値を得る
-		} else {
+		} else if( 0 < windowType && windowType <= pluginParams.preset.length ) {
 			return windowType - 1;
+		} else {
+			return ERROR_NUMBER;
 		}
 	};
 
 	/*--- Window ---*/
 	const _Window_initialize = Window.prototype.initialize;
 	Window.prototype.initialize = function() {
-		this.TF_refleshWindow = true;
-		this.TF_windowType = 0;
-		this.TF_faceAlign = POSITION_LEFT;
-		this.TF_shape = pluginParams.preset[ this.TF_windowType ].shape;
-
 		_Window_initialize.apply( this, arguments );
 
-		this._margin = pluginParams.preset[ this.TF_windowType ].margin;
+		// SceneCustomMenu.js のスキンの設定があれば、TF_VectorWindowの設定はしない。
+		if( this._data && this._data.WindowSkin ) return;
+		setWindowParam( this, WINDOW_TYPE_DEFAULT );
 	};
 
+
+	const _Window_Base_updatePadding = Window_Base.prototype.updatePadding;
+	Window_Base.prototype.updatePadding = function() {
+		if( this._data && this._data.WindowSkin ) {
+			_Window_Base_updatePadding.call( this );
+		}
+	};
 
 	// _colorTone を反映させるため、_refreshBack の方で描画。
 	const _Window__refreshBack = Window.prototype._refreshBack;
@@ -199,15 +211,17 @@
 
 		const m = this.margin;
 		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
+		const w = this.width;
+		const h = this.height;
 
-		this._backSprite.bitmap = new Bitmap( this.width, this.height );
-		this._backSprite.setFrame( 0, 0, this.width, this.height );
+		this._backSprite.bitmap = new Bitmap( w, h );
+		this._backSprite.setFrame( 0, 0, w, h );
 
 		let path2d;
 		switch( this.TF_shape ) {
-			case SHAPE_ROUNDRECT: path2d = drawRoundrect( m, this.width, this.height, r ); break;
-			case SHAPE_OCTAGON: path2d = drawOctagon( m, this.width, this.height, r ); break;
-			case SHAPE_SPIKE: path2d = drawSpike( m, this.width, this.height, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
+			case SHAPE_ROUNDRECT: path2d = drawRoundrect( m, w, h, r ); break;
+			case SHAPE_OCTAGON: path2d = drawOctagon( m, w, h, r ); break;
+			case SHAPE_SPIKE: path2d = drawSpike( m, w, h, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
 		}
 		drawWindow( this, this._backSprite.bitmap.context, path2d );
 	};
@@ -223,17 +237,18 @@
 
 	/*--- Window_Base ---*/
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
-	Window_Base.prototype.textPadding = () => ( $dataSystem.advanced.fontSize * lineHeightRatio - $dataSystem.advanced.fontSize );
-
+	Window_Base.prototype.textPadding = function() {
+		return this.lineHeight() - $dataSystem.advanced.fontSize;
+	};
 
 	/*--- Window_Message ---*/
 	// フォントサイズが異なるので、オーバーライドして別計算
 	// const _Window_Message_calcTextHeight = Window_Message.prototype.calcTextHeight;
 	Window_Message.prototype.calcTextHeight = function( textState ) {
-		const lineSpacing = this.lineHeight() - messageFontSize;
-		const lastFontSize = this.contents.fontSize;
+		const textPadding = this.textPadding();
 		const lines = textState.text.slice( textState.index ).split( "\n" );
-		const textHeight = this.maxFontSizeInLine( lines[ 0 ] ) + lineSpacing;
+		const lastFontSize = this.contents.fontSize;
+		const textHeight = this.maxFontSizeInLine( lines[ 0 ] ) + textPadding;
 		this.contents.fontSize = lastFontSize;
 		return textHeight;
 	};
@@ -250,7 +265,9 @@
 	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
 	// $gameMessage.positionType() で上下位置は決まる
 	Window_Message.prototype.numVisibleRows = () => messageLines;
-	Window_Message.prototype.textPadding = () => ( messageFontSize * lineHeightRatio - messageFontSize );
+	Window_Message.prototype.textPadding = function() {
+		return this.lineHeight() - messageFontSize;
+	};
 	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeightRatio );
 
 	Window_Message.prototype.resetFontSettings = function() {
@@ -263,18 +280,11 @@
 	 */
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
-		this._positionType = 2;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
+		// this._positionType = POSITION_DOWN;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
 		_Window_Message_initialize.apply( this, arguments );
-	};
 
-	// 表示前に COM_SET_WINDOW による変更があれば適用
-	const _Window_Message_startMessage = Window_Message.prototype.startMessage;
-	Window_Message.prototype.startMessage = function() {
-		if( this.TF_refleshWindow ) {
-			this.TF_refleshWindow = false;
-			this._refreshAllParts();
-		}
-		_Window_Message_startMessage.call( this );
+		this.TF_faceAlign = POSITION_LEFT;
+		setMessageParam( this );
 	};
 
 	// 閉じるときに顔を非表示に
@@ -298,17 +308,22 @@
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
-		setWindowParam( this, WINDOW_TYPE_DEFAULT, POSITION_LEFT );
+		setWindowParam( this, WINDOW_TYPE_DEFAULT );
+		this.TF_faceAlign = POSITION_LEFT;
+		setMessageParam( this );
 	};
 
 
-	// rtl属性を利用して顔の左右の配置位置に対応
+	// TODO:顔位置の細かい座標はプロパティで指定可能にする。
+	// rtl にも対応したい…が
 	const _Window_Message_newLineX = Window_Message.prototype.newLineX;
 	Window_Message.prototype.newLineX = function( textState ) {
-		if( this.TF_faceAlign === POSITION_LEFT ) {
-			return _Window_Message_newLineX.apply( this, arguments );
+		const faceExists = $gameMessage.faceName() !== "";
+		if( this.TF_faceAlign === POSITION_LEFT && faceExists ) {
+			const faceWidth = ImageManager.faceWidth;
+			return faceWidth + this.textPadding() * 2;
 		} else {
-			return 4;
+			return this.textPadding();
 		}
 	};
 
@@ -330,19 +345,7 @@
 		drawWindow( this, bitmap.context, path2d );
 	};
 
-	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
-	Window_Message.prototype.updatePlacement = function() {
-		const isChange = ( this._positionType !== $gameMessage.positionType() );
-		this._positionType = $gameMessage.positionType();
 
-		_Window_Message_updatePlacement.call( this );
-
-		if( !isChange ) return;
-		this._refreshAllParts();
-		if( this.TF_shape === SHAPE_BALLOON && this._positionType === POSITION_UP ) {
-			this._pauseSignSprite.y = this._height - TF_TAIL_HEIGHT;
-		}
-	};
 
 	/**
 	 * コンテンツ位置を、尻尾の高さに合わせて調整。
@@ -359,20 +362,24 @@
 	/*--- 関数 ---*/
 	/**
 	 * ウィンドウの数値設定。
-	 * @param {Window_Message} targetWindow 対象ウィンドウ
+	 * @param {Window} tw 対象ウィンドウ
 	 * @param {Number} windowType プリセットのウィンドウタイプ
+	 */
+	function setWindowParam( tw, windowType ) {
+		tw.TF_windowType = windowType;
+		const preset = pluginParams.preset[ windowType ];
+		tw.TF_shape = preset.shape;
+		tw._padding = preset.padding;
+		tw._margin = preset.margin;
+	}
+	/**
+	 * ウィンドウの数値設定。
+	 * @param {Window_Message} tw 対象ウィンドウ
 	 * @param {Number} faceAlign 顔表示位置
 	 */
-	function setWindowParam( targetWindow, windowType, faceAlign ) {
-		targetWindow.TF_faceAlign = faceAlign;
-		targetWindow.TF_refleshWindow = true;
-		targetWindow.TF_windowType = windowType;
-		const preset = pluginParams.preset[ windowType ];
-		targetWindow.TF_shape = preset.shape;
-		// RPGツクールMVの padding は CSS と違い「box の一番外から contents までの距離」なので変換
-		targetWindow._height = targetWindow.innerHeight + ( preset.padding + preset.margin ) * 2;
-		targetWindow._padding = preset.padding + preset.margin;
-		targetWindow._margin = preset.margin;
+	function setMessageParam( tw ) {
+		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
+		tw._clientArea.move( tw._padding, tw._padding );
 	}
 
 	/**
@@ -412,10 +419,10 @@
 			ctx.fillStyle = grad;
 		}
 
-		if( dropShadow ) setShadowParam( ctx );
+		// if( dropShadow ) setShadowParam( ctx );
 		ctx.fill( path2d );// 'nonzero'  'evenodd'
 
-		if( !dropShadow ) setShadowParam( ctx );
+		//if( !dropShadow ) setShadowParam( ctx );
 		setBorderParam( ctx, targetWindow.TF_windowType );
 		ctx.stroke( path2d );
 	}
@@ -614,15 +621,9 @@
 
 
 	/*--- Window_NameBox ---*/
-	// const _Window_NameBox_setName = Window_NameBox.prototype.setName;
-	// Window_NameBox.prototype.setName = function( name ) {
-	// 	name = `\x1bFS[${nameFontSize}]` + name;
-	// 	_Window_NameBox_setName.apply( this, arguments );
-	// };
-
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
-		_Window_NameBox_initialize.call( this );
+		_Window_NameBox_initialize.apply( this, arguments );
 		this.contents.fontSize = nameFontSize;
 		this.textWidthEx = 0;
 		if( nameWithFace ) {
@@ -634,7 +635,6 @@
 	Window_NameBox.prototype.updatePlacement = function() {
 		_Window_NameBox_updatePlacement.call( this );
 		if( nameWithFace ) {
-			// const facePicture = SceneManager._scene.TF_facePicture;
 			this.y = this._messageWindow.y + this._messageWindow.height - NAME_HEIGHT - this.padding;
 		};
 	};
@@ -673,18 +673,12 @@
 		// this.contents.fontSize = lastFontSize;
 	};
 
-	/*--- Scene_Message ---*/
-	// 行数をウィンドウに反映
-	// TODO 適切な高さを得る
-	const _Scene_Message_messageWindowRect = Scene_Message.prototype.messageWindowRect;
-	Scene_Message.prototype.messageWindowRect = function() {
-		const rect = _Scene_Message_messageWindowRect.call( this );
-		// rect.height = Window_Message.prototype.fittingHeight( messageLines ) + 8;
-
-		const lineHeight = Math.ceil( messageFontSize * lineHeightRatio );
-		rect.height = lineHeight * messageLines + $gameSystem.windowPadding() * 2 + 8;
-		return rect;
+	/*--- Game_System ---*/
+	// TODO:プラグイン
+	Game_System.prototype.windowPadding = function() {
+		return 12;
 	};
+
 
 	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
@@ -697,18 +691,18 @@
 
 	/*--- Sprite_FacePicture ---*/
 	// 顔画像ピクチャ
-	const IMG_MARGIN = 4;
+	const IMG_MARGIN = 4;	// TODO:プラグインの設定で変えられるようにする
 	const NAME_HEIGHT = 56;
 	class Sprite_FacePicture extends Sprite {
 		initialize( bitmap ) {
 			super.initialize( bitmap );
 			this.bitmap.resize( ImageManager.faceWidth, ImageManager.faceHeight );
 		}
-		moveOnMessageWindow( targetWindow ) {
+		moveOnMessageWindow( tw ) {
 			const dx = Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 );
 			const dy = Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 );
-			this.x = dx + targetWindow.x + targetWindow.padding + IMG_MARGIN;
-			this.y = dy + targetWindow.y + targetWindow.height - ImageManager.faceHeight - NAME_HEIGHT;
+			this.x = dx + tw.x + tw.padding + IMG_MARGIN;
+			this.y = dy + tw.y + tw.height - ImageManager.faceHeight - NAME_HEIGHT;
 		}
 		drawFace( bitmap, faceIndex ) {
 			const sw = ImageManager.faceWidth;
