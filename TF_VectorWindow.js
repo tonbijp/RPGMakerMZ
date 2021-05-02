@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.4.1.0
+// Version :0.4.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -20,7 +20,7 @@
  * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット(1が規定)
  * @type struct<WindowParam>[]
- * @default ["{\"name\":\"UI\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
+ * @default ["{\"name\":\"UI\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\",\\\"#000C\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
@@ -121,7 +121,7 @@
 	const SHAPE_OCTAGON = "octagon";
 	const SHAPE_BALLOON = "balloon";
 	const SHAPE_NONE = "none";
-	const workBitmap = new Bitmap();
+	const workBitmap = new Bitmap( 1, 1 );
 	const workCtx = workBitmap.context;
 
 	// $gameMessage.positionType()
@@ -421,18 +421,23 @@
 		return workCtx.getImageData( 0, 0, 1, 1 ).data;
 	}
 
-	// ウィンドウ描画
-	function drawWindow( targetWindow, ctx, path2d ) {
-		let bgColor = pluginParams.preset[ targetWindow.TF_windowType ].bgColor;
+	/**
+	 * ウィンドウ描画
+	 * @param {Window_Message} tw 対象ウィンドウ
+	 * @param {CanvasRenderingContext2D} ctx コンテクスト
+	 * @param {Path2D} path2d 描画するパス
+	 */
+	function drawWindow( tw, ctx, path2d ) {
+		let bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
 
 		if( bgColor.length === 1 ) {
-			ctx.fillStyle = tintColor( bgColor[ 0 ], targetWindow._colorTone );
+			ctx.fillStyle = tintColor( bgColor[ 0 ], tw._colorTone );
 		} else {
-			const grad = ctx.createLinearGradient( 0, 0, 0, targetWindow._height );
+			const grad = ctx.createLinearGradient( 0, 0, 0, tw._height );
 			const l = bgColor.length;
 			const interval = 1.0 / ( l - 1 );
 			bgColor.forEach( ( e, i ) => {
-				grad.addColorStop( i * interval, tintColor( e, targetWindow._colorTone ) );
+				grad.addColorStop( i * interval, tintColor( e, tw._colorTone ) );
 			} );
 			ctx.fillStyle = grad;
 		}
@@ -441,7 +446,7 @@
 		ctx.fill( path2d );// 'nonzero'  'evenodd'
 
 		//if( !dropShadow ) setShadowParam( ctx );
-		setBorderParam( ctx, targetWindow.TF_windowType );
+		setBorderParam( ctx, tw.TF_windowType );
 		ctx.stroke( path2d );
 	}
 
@@ -489,6 +494,7 @@
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
 	 * @param {Number} r 角丸の半径
+	 * @returns {Path2D} 生成したパス
 	 */
 	function drawBalloon( m, w, h, r, vPos ) {
 		const hPos = TF_TAIL_POSISION;
@@ -639,6 +645,7 @@
 
 
 	/*--- Window_NameBox ---*/
+	const NAME_HEIGHT = 40;//TODO:プロパティで設定できるように
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
 		_Window_NameBox_initialize.apply( this, arguments );
@@ -653,13 +660,21 @@
 	Window_NameBox.prototype.updatePlacement = function() {
 		_Window_NameBox_updatePlacement.call( this );
 		if( nameWithFace ) {
-			this.y = this._messageWindow.y + this._messageWindow.height - NAME_HEIGHT - this.padding;
+			const tw = this._messageWindow;
+			this.y = tw.y + tw.height - tw.padding - NAME_HEIGHT;
 		};
 	};
 
 	Window_NameBox.prototype._refreshAllParts = function() {
 		if( nameWithFace ) return;
 		Window_Base.prototype._refreshAllParts();
+	};
+
+
+	Window_NameBox.prototype.resetFontSettings = function() {
+		this.contents.fontFace = $gameSystem.mainFontFace();
+		this.contents.fontSize = nameFontSize;
+		this.resetTextColor();
 	};
 
 	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
@@ -677,26 +692,17 @@
 		}
 	};
 
-	// TODO 名前を指定サイズで中央表示
 	const _Window_NameBox_refresh = Window_NameBox.prototype.refresh;
 	Window_NameBox.prototype.refresh = function() {
 		if( !nameWithFace ) return _Window_NameBox_refresh.call( this );
 
-		// const lastFontSize = this.contents.fontSize;
-		this.contents.fontSize = nameFontSize;
 		const rect = this.baseTextRect();
 		this.contents.clear();
-		const x = rect.x + Math.floor( ( rect.width - this.textWidthEx ) / 2 );
+		const x = rect.x + Math.floor( ( rect.width - this.textWidthEx ) / 2 );//センタリング
 		this.drawTextEx( this._name, x, rect.y, rect.width );
-		// this.contents.fontSize = lastFontSize;
 	};
 
-	/*--- Game_System ---*/
-	// TODO:プラグイン
-	Game_System.prototype.windowPadding = function() {
-		return 12;
-	};
-
+	/*--- Scene_Message ---*/
 
 	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
@@ -710,7 +716,6 @@
 	/*--- Sprite_FacePicture ---*/
 	// 顔画像ピクチャ
 	const IMG_MARGIN = 4;	// TODO:プラグインの設定で変えられるようにする
-	const NAME_HEIGHT = 56;
 	class Sprite_FacePicture extends Sprite {
 		initialize( bitmap ) {
 			super.initialize( bitmap );
