@@ -20,7 +20,7 @@
  * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット(1が規定)
  * @type struct<WindowParam>[]
- * @default ["{\"name\":\"base\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"0\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
+ * @default ["{\"name\":\"UI\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
@@ -114,13 +114,14 @@
 
 	// ウィンドウ描画関連
 	const ERROR_NUMBER = -1;
-	const WINDOW_TYPE_DEFAULT = 0; // ウィンドウタイプの規定値
+	const WINDOW_TYPE_DEFAULT = 0; // UIタイプの規定値
+	const WINDOW_TYPE_TALK = 1; // [文章の表示]ウィンドウタイプの規定値
 	const SHAPE_ROUNDRECT = "roundrect";
 	const SHAPE_SPIKE = "spike";
 	const SHAPE_OCTAGON = "octagon";
 	const SHAPE_BALLOON = "balloon";
 	const SHAPE_NONE = "none";
-	const workBitmap = new Bitmap( 1, 1 );
+	const workBitmap = new Bitmap();
 	const workCtx = workBitmap.context;
 
 	// $gameMessage.positionType()
@@ -191,7 +192,12 @@
 
 		// SceneCustomMenu.js のスキンの設定があれば、TF_VectorWindowの設定はしない。
 		if( this._data && this._data.WindowSkin ) return;
-		setWindowParam( this, WINDOW_TYPE_DEFAULT );
+		// TF_windowTypeが設定されていないなら、規定値を設定
+		if( this.TF_windowType ) {
+			setWindowParam( this, this.TF_windowType );
+		} else {
+			setWindowParam( this, WINDOW_TYPE_DEFAULT );
+		}
 	};
 
 
@@ -219,12 +225,13 @@
 		drawWindow( this, this._backSprite.bitmap.context, path2d );
 	};
 
-	//_frameSprite
-	// _refreshFrameは機能しない。
+	// _refreshBack でウィンドウを描画しているので _refreshFrame は機能させない
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
 	Window.prototype._refreshFrame = function() {
-		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
-		if( this._data && this._data.WindowSkin ) _Window__refreshFrame.call( this );
+		// SceneCustomMenu.js のスキンの設定があれば通常の描画に渡す。
+		if( this._data && this._data.WindowSkin ) {
+			_Window__refreshFrame.call( this );
+		}
 	};
 
 
@@ -289,6 +296,7 @@
 	 */
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
+		this.TF_windowType = WINDOW_TYPE_TALK;
 		// this._positionType = POSITION_DOWN;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
 		_Window_Message_initialize.apply( this, arguments );
 
@@ -317,7 +325,7 @@
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
-		setWindowParam( this, WINDOW_TYPE_DEFAULT );
+		setWindowParam( this, WINDOW_TYPE_TALK );
 		this.TF_faceAlign = POSITION_LEFT;
 		setMessageParam( this );
 	};
@@ -341,7 +349,7 @@
 	 */
 	Window_Message.prototype._refreshBack = function() {
 		if( this.TF_shape !== SHAPE_BALLOON ) {
-			Window.prototype._refreshBack.call( this );
+			Window_Base.prototype._refreshBack.call( this );
 			return;
 		}
 
@@ -389,6 +397,7 @@
 	function setMessageParam( tw ) {
 		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
 		tw._clientArea.move( tw._padding, tw._padding );
+		tw._refreshAllParts();
 	}
 
 	/**
