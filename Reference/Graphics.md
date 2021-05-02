@@ -12,7 +12,7 @@
 
 v1.2.0 で変更あり。
 
-関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md)
+関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md), [RPG.System](RPG.System.md), [RPG.System.Advanced](RPG.System.Advanced.md)
 
 
 ### プロパティ
@@ -25,8 +25,8 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
 | `height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
-| `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 816) |
-| `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 624) |
+| `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 808) |
+| `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 616) |
 | `defaultScale` | [Number](Number.md) | [static] 拡大率(scaleの名称変更) |
 | `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] PIXIアプリケーション |
 | `_width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) |

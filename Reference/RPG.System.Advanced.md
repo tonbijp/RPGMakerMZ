@@ -3,6 +3,9 @@
 # クラス: [RPG](RPG.md).[System](RPG.System.md).Advanced
 **@MZ** [高度な設定]のJSONデータ。
 
+`uiAreaWidth` は [Graphics](Graphics.md) の `boxWidth` と同じではなく、`boxWidth`  が8ピクセル少ない。
+同様に  `boxHeight` = `uiAreaHeight` - 8 の関係。
+
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
