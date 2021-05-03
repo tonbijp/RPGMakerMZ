@@ -1,6 +1,6 @@
 //========================================
 // TF_Utility.js
-// Version :0.0.1.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -23,59 +23,41 @@
  * @help
  * 移動の前後の処理をカプセル化。
  *
- * @command beforeMove
- * @text 移動と前処理
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
+ * 
+ * @================================================
+ * @command beforeMove @text 移動と前処理
  * @desc 一歩前進してフェードアウトを行い、マップを移動する。
  *
- * @arg mapId
- * @text マップID
+ * @arg mapId @text マップID
  * @desc
  * マップID(数値)かマップの名前
- *  現在のマップ: self, this, here
- * @type string
- * @default this
+ *  現在のマップ: this
+ * @type string @default this
  * 
- * @arg x
- * @text x位置(タイル数)
+ * @arg location @text 異動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
- * @type number
- * @default 0
+ * @type string @default 0,0
  *
- * @arg y
- * @text y位置(タイル数)
- * @desc 移動先座標(小数点以下可)
- * @type number
- * @default 0
+ * @arg isMove @text 移動前に前進
+ * @type boolean @default true
+ * @on 一歩前進(規定) @off 前進なし
  *
- * @arg isMove
- * @text 移動前に前進
- * @desc ON: 一歩前進 | OFF:前進なし
- * @type boolean
- * @default true
- *
- * @arg pitch
- * @text 移動音の音程
+ * @arg pitch @text 移動音の音程
  * @desc 数が小さいほど低い音(規定値: 100)
  * @default 100
  *
- * @arg d
- * @text 移動後のキャラの向き
+ * @arg d @text 移動後のキャラの向き
  * @desc (規定値: 0 そのまま)
- * @type select
- * @default 0
- * @option そのまま
- * @value 0
- * @option ↑
- * @value 8
- * @option ←
- * @value 4
- * @option →
- * @value 6
- * @option ↓
- * @value 2
- * 
- * @command afterMove
- * @text 移動後の処理
+ * @type select @default 0
+ * @option そのまま @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
+ *
+ * @================================================
+ * @command afterMove @text 移動後の処理
  * @desc フェードインして一歩前進、イベントの一時消去。
  * 
  */
@@ -91,8 +73,6 @@
 
 	// イベント指定用の識別子
 	const EVENT_THIS = "this";
-	const EVENT_SELF = "self";
-	const EVENT_HERE = "here";
 
 	// イベントコマンドの番号
 	const COMMAND_END = 0;
@@ -123,7 +103,7 @@
 	 */
 	function stringToMapId( value ) {
 		const label = value.toLowerCase();
-		if( label === EVENT_THIS || label === EVENT_SELF || label === EVENT_HERE ) return $gameMap.mapId();
+		if( label === EVENT_THIS ) return $gameMap.mapId();
 
 		const mapObj = DataManager.searchDataItem( $dataMapInfos, "name", value );
 		if( mapObj !== 0 ) return mapObj.id;
@@ -133,45 +113,14 @@
 		return result;
 	}
 
-
-	/*--- Game_Variables ---*/
-	/**
-	 * 変数を文字列で指定し、値を返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
-	 */
-	Game_Variables.prototype.valueByName = function( name ) {
-		return this.value( stringToVariableId( name ) );
-	};
-	/**
-	 * 変数を文字列で指定し、値を設定。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
-	 * @param {String} value 設定する値
-	 */
-	Game_Variables.prototype.setValueByName = function( name, value ) {
-		this.setValue( stringToVariableId( name ), value );
-	};
-
-	/**
-	 * 指定された変数のIDを返す。
-	 * @param {String} name 変数(ID, 名前, V[n]による指定が可能)
-	 */
-	function stringToVariableId( name ) {
-		let i = $dataSystem.variables.findIndex( e => e === name );
-		if( 0 <= i ) return i;
-		i = parseInt( name, 10 );
-		if( isNaN( i ) ) throw Error( `I can't find the variable '${name}'` );
-		return i;
-	}
-
 	/**
 	 * プラグインコマンドの登録
 	 */
 	/**
 	 * beforeMove
 	 * マップ移動前の処理。
-	 * @param {String} mapId マップID | マップ名 | self | this
-	 * @param {Number} x x座標(タイル数)
-	 * @param {Number} y y座標(タイル数)
+	 * @param {String} mapId マップID | マップ名 | this
+	 * @param {String} location 座標(タイル数)
 	 * @param {Boolean} isMove 一歩前進するか
 	 * @param {Number} pitch 音程
 	 * @param {Number} d 向き(テンキー対応 | 方向文字列) (規定値: 現在の向き( 0 ))
@@ -179,7 +128,8 @@
 	 */
 	PluginManagerEx.registerCommand( document.currentScript, COM_BEFORE_MOVE,
 		function( args ) {
-			const eventCommands = getMoveMapCommands( args.mapId, args.x, args.y, args.d, args.pitch );
+			const [ x, y ] = position2xy( args.location );
+			const eventCommands = getMoveMapCommands( args.mapId, x, y, args.d, args.pitch );
 
 			if( args.isMove ) {
 				eventCommands.unshift( {
@@ -200,7 +150,7 @@
 
 	/**
 	 * マップ移動前の処理のコマンド配列を返す。
-	 * @param {String} mapId マップID | マップ名 | self | this
+	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {String} x x座標(タイル数)
 	 * @param {String} y y座標(タイル数)
 	 * @param {String} d 向き(テンキー対応 | 方向文字列) (規定値: 現在の向き( 0 ))
@@ -256,7 +206,7 @@
 
 	/*---- Scene_Battle ----*/
 	/**
-	 * パーティコマンドを飛ばす。
+	 * 戦闘シーンのパーティコマンドを飛ばす。
 	 */
 	const _Scene_Battle_changeInputWindow = Scene_Battle.prototype.changeInputWindow;
 	Scene_Battle.prototype.changeInputWindow = function() {
@@ -276,4 +226,16 @@
 	Input.keyMapper[ KEY_M ] = ACTION_MENU;
 	Input.keyMapper[ KEY_BS ] = ACTION_CANCEL;
 	Input.keyMapper[ KEY_DEL ] = ACTION_CANCEL;
+
+	/*--- ユーティリティ関数 ---*/
+	/**
+	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
+	 * @param {String} positionString "x, y" 形式の文字列
+	 * @returns {Array} [x,y]形式の配列
+	 */
+	function position2xy( positionString ) {
+		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
+		return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
+	}
 } )();
