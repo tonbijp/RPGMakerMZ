@@ -59,13 +59,13 @@
 
     /*--- ユーティリティ関数 ---*/
     /**
-     * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
+     * "2, 43" 形式の文字列をPointオブジェクトに変換して返す。
      * @param {String} positionString "x, y" 形式の文字列
-     * @returns {Array} [x,y]形式の配列
+     * @returns {Point} 
      */
-    function position2xy( positionString ) {
+    function stringToPoint( positionString ) {
         const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
         if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
-        return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
+        return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
     }
 } )();
