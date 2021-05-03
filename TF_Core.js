@@ -17,11 +17,11 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
+ * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help
  * プラグインで共通して使っている処理をメモ的にまとめたもの。
  * これをライブラリとして必要とするプラグインなどを作る予定はない。
  * 
- * ============= この長さに合わせるとヘルプではみ出ない ==============
  * 利用規約 : MITライセンス
  *
  * @command commandName
@@ -57,6 +57,7 @@
     };
 
 
+    /*--- ユーティリティ関数 ---*/
     /**
      * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
      * @param {String} positionString "x, y" 形式の文字列
@@ -64,8 +65,7 @@
      */
     function position2xy( positionString ) {
         const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-        if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
+        if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
         return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
     }
-
 } )();
