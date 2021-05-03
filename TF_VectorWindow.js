@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.4.2.0
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -42,10 +42,14 @@
  * @param nameWithFace @text 顔に名前表示
  * @type boolean @default true
  * @on 顔の下に表示(規定) @off 標準
- * 
+ *
  * @param messageLines @text メッセージに表示する行数
  * @type number @default 3
  * @min 1
+ *
+ * @param messageView @text メッセージウィンドウ表示範囲
+ * @desc 画面全体に対する x,y,幅,高さ の順の数値(ピクセル数)
+ * @type string @default 4,4,808,616
  * 
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
@@ -109,6 +113,8 @@
 
 ( () => {
 	"use strict";
+	const PLUGIN_NAME = "TF_VectorWindow";
+
 	// プラグインコマンド
 	const COM_SET_WINDOW = "setWindow";
 
@@ -123,6 +129,7 @@
 	const SHAPE_NONE = "none";
 	const workBitmap = new Bitmap( 1, 1 );
 	const workCtx = workBitmap.context;
+	const BOX_MARGIN = 4;	// boxWidth,boxHeight の外にある余白
 
 	// $gameMessage.positionType()
 	const POSITION_UP = 0;
@@ -148,6 +155,22 @@
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
+
+	//TODO:メッセージウィンドウの表示範囲を設定できるようにする
+	let messageView;
+
+	/*--- Scene_Boot ---*/
+	// 全体での大きさを_windowLayer からのサイズに変換
+	// Graphics のサイズがここで決まるので、その直後に処理
+	const _Scene_Boot_start = Scene_Boot.prototype.start;
+	Scene_Boot.prototype.start = function() {
+		_Scene_Boot_start.call( this );
+		messageView = ( rect => {
+			rect.x = rect.x - Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 ) - BOX_MARGIN;
+			rect.y = rect.y - Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 ) - BOX_MARGIN;
+			return rect;
+		} )( stringToRectangle( pluginParams.messageView ) );
+	};
 
 	/**
 	 * プラグインコマンドの登録
@@ -258,6 +281,26 @@
 	};
 
 	/*--- Window_Message ---*/
+	const _Window_Message_initialize = Window_Message.prototype.initialize;
+	Window_Message.prototype.initialize = function() {
+		this.TF_windowType = WINDOW_TYPE_TALK;
+		// this._positionType = POSITION_DOWN;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
+		_Window_Message_initialize.apply( this, arguments );
+
+		this.TF_faceAlign = POSITION_LEFT;
+		setMessageParam( this );
+	};
+
+	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
+	Window_Message.prototype.updatePlacement = function() {
+		const goldWindow = this._goldWindow;
+		this._positionType = $gameMessage.positionType();
+		this.y = messageView.y + ( this._positionType * ( messageView.height - this.height ) ) / 2;
+		if( goldWindow ) {
+			goldWindow.y = this.y > 0 ? 0 : Graphics.boxHeight - goldWindow.height;
+		}
+	};
+
 	// フォントサイズが異なるので、オーバーライドして別計算
 	// const _Window_Message_calcTextHeight = Window_Message.prototype.calcTextHeight;
 	Window_Message.prototype.calcTextHeight = function( textState ) {
@@ -269,14 +312,9 @@
 		return textHeight;
 	};
 
-	// 顔描画を新規のクラスに任せる
-	// const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
-	Window_Message.prototype.drawMessageFace = function() {
-		const facePicture = SceneManager._scene.TF_facePicture;
-		facePicture.moveOnMessageWindow( this );
-		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
-	};
-
+	/**
+	 * メッセージウィンドウに限りフキダシ表示を可能にする
+	 */
 	const TF_TAIL_HEIGHT = 40;// フキダシのシッポの高さ
 	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
 	// $gameMessage.positionType() で上下位置は決まる
@@ -291,17 +329,12 @@
 		this.contents.fontSize = messageFontSize;
 	};
 
-	/**
-	 * メッセージウィンドウに限りフキダシ表示を可能にする
-	 */
-	const _Window_Message_initialize = Window_Message.prototype.initialize;
-	Window_Message.prototype.initialize = function() {
-		this.TF_windowType = WINDOW_TYPE_TALK;
-		// this._positionType = POSITION_DOWN;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
-		_Window_Message_initialize.apply( this, arguments );
-
-		this.TF_faceAlign = POSITION_LEFT;
-		setMessageParam( this );
+	// 顔描画を新規のクラスに任せる
+	// const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
+	Window_Message.prototype.drawMessageFace = function() {
+		const facePicture = SceneManager._scene.TF_facePicture;
+		facePicture.moveOnMessageWindow( this );
+		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
 	};
 
 	// 閉じるときに顔を非表示に
@@ -395,6 +428,8 @@
 	 * @param {Number} faceAlign 顔表示位置
 	 */
 	function setMessageParam( tw ) {
+		tw.x = messageView.x;
+		tw.width = messageView.width;
 		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
 		tw._clientArea.move( tw._padding, tw._padding );
 		tw._refreshAllParts();
@@ -638,6 +673,18 @@
 
 		path.closePath();
 		return path;
+	}
+
+	/*--- ユーティリティ関数 ---*/
+	/**
+	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
+	 * @param {String} rectString "x, y" 形式の文字列
+	 * @returns {Array} [x,y]形式の配列
+	 */
+	function stringToRectangle( rectString ) {
+		const args = rectString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${rectString}"`;
+		return new Rectangle( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ), parseFloat( args[ 3 ] ), parseFloat( args[ 4 ] ) );
 	}
 
 
