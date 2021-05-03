@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.0.0
+// Version :0.5.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -18,7 +18,8 @@
  * @orderAfter PluginCommonBase
  * 
  * @param preset @text ウィンドウ設定
- * @desc ウィンドウ設定のプリセット(1が規定)
+ * @desc ウィンドウ設定のプリセット
+ * (1:UI用、2:メッセージ用、3〜 : メッセージ変更用)
  * @type struct<WindowParam>[]
  * @default ["{\"name\":\"UI\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\",\\\"#000C\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
@@ -66,11 +67,17 @@
  *
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
- * 規定値では talk, thought, shout がある
+ * 規定値では UI, talk, thought, shout がある
  * @type string @default thought
  *
  * @arg isFaceLeft @text 顔位置が左か
  * @type boolean @default true
+ * @on 左(規定値) @off 右
+ *
+ * @arg pos @text ウィンドウ位置
+ * @desc 画面左上からのウィンドウ位置
+ * x,y 形式の数値を入力し auto は自動
+ * @type string @default auto
  * @on 左(規定値) @off 右
  */
 /*~struct~WindowParam:ja
@@ -155,8 +162,6 @@
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
-
-	//TODO:メッセージウィンドウの表示範囲を設定できるようにする
 	let messageView;
 
 	/*--- Scene_Boot ---*/
@@ -194,7 +199,7 @@
 	} );
 
 	/**
-	 * ウィンドウタイプ番号を返す。
+	 * ウィンドウタイプ番号を返す
 	 * @param {String|Number} windowType ウィンドウタイプの番号か名前の文字列
 	 * @returns {Number} ウィンドウタイプ番号
 	 */
@@ -211,9 +216,9 @@
 	/*--- Window ---*/
 	const _Window_initialize = Window.prototype.initialize;
 	Window.prototype.initialize = function() {
-		_Window_initialize.apply( this, arguments );
+		_Window_initialize.call( this );
 
-		// SceneCustomMenu.js のスキンの設定があれば、TF_VectorWindowの設定はしない。
+		// SceneCustomMenu.js のスキンの設定があれば、TF_VectorWindowの設定はしない
 		if( this._data && this._data.WindowSkin ) return;
 		// TF_windowTypeが設定されていないなら、規定値を設定
 		if( this.TF_windowType ) {
@@ -223,11 +228,10 @@
 		}
 	};
 
-
-	// _colorTone を反映させるため、_refreshBack の方で描画。
+	// _colorTone を反映させるため、_refreshBack の方で描画
 	const _Window__refreshBack = Window.prototype._refreshBack;
 	Window.prototype._refreshBack = function() {
-		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す。
+		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
@@ -251,7 +255,7 @@
 	// _refreshBack でウィンドウを描画しているので _refreshFrame は機能させない
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
 	Window.prototype._refreshFrame = function() {
-		// SceneCustomMenu.js のスキンの設定があれば通常の描画に渡す。
+		// SceneCustomMenu.js のスキンの設定があれば通常の描画に渡す
 		if( this._data && this._data.WindowSkin ) {
 			_Window__refreshFrame.call( this );
 		}
@@ -354,7 +358,7 @@
 		facePicture.bitmap.clear();
 	}
 
-	// 終了時にウィンドウタイプを規定値(0)、顔を左に戻す。
+	// 終了時にウィンドウタイプを規定値(0)、顔を左に戻す
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
@@ -364,7 +368,7 @@
 	};
 
 
-	// TODO:顔位置の細かい座標はプロパティで指定可能にする。
+	// TODO:顔位置の細かい座標はプロパティで指定可能にする
 	// rtl にも対応したい…が
 	const _Window_Message_newLineX = Window_Message.prototype.newLineX;
 	Window_Message.prototype.newLineX = function( textState ) {
@@ -378,7 +382,7 @@
 	};
 
 	/**
-	 * フキダシ型(balloon)のみ、Window_Message に設定できる。
+	 * フキダシ型(balloon)のみ、Window_Message に設定できる
 	 */
 	Window_Message.prototype._refreshBack = function() {
 		if( this.TF_shape !== SHAPE_BALLOON ) {
@@ -398,7 +402,7 @@
 
 
 	/**
-	 * コンテンツ位置を、尻尾の高さに合わせて調整。
+	 * コンテンツ位置を、尻尾の高さに合わせて調整
 	 */
 	Window_Message.prototype._refreshContents = function() {
 		if( this.TF_shape === SHAPE_BALLOON && this._positionType === POSITION_DOWN ) {
@@ -411,7 +415,7 @@
 
 	/*--- 関数 ---*/
 	/**
-	 * ウィンドウの数値設定。
+	 * ウィンドウの数値設定
 	 * @param {Window} tw 対象ウィンドウ
 	 * @param {Number} windowType プリセットのウィンドウタイプ
 	 */
@@ -423,7 +427,7 @@
 		tw._margin = preset.margin;
 	}
 	/**
-	 * ウィンドウの数値設定。
+	 * ウィンドウの数値設定
 	 * @param {Window_Message} tw 対象ウィンドウ
 	 * @param {Number} faceAlign 顔表示位置
 	 */
@@ -436,7 +440,7 @@
 	}
 
 	/**
-	 * 配列からCSS color文字列を返す。
+	 * 配列からCSS color文字列を返す
 	 * @param {Array} colorList [ r, g, b, a ] の配列
 	 * @returns {String} 'rgb(r,g,b)' か 'rgba(r,g,b,a)'の文字列
 	 */
@@ -444,7 +448,7 @@
 		if( colorList.length === 3 ) {
 			return Utils.rgbToCssColor( ...colorList );
 		} else {
-			// Utils.rgbToCssColor( r, g, b ) は a を扱ってくれないので。
+			// Utils.rgbToCssColor( r, g, b ) は a を扱ってくれないので
 			return `rgba(${colorList[ 0 ]},${colorList[ 1 ]},${colorList[ 2 ]},${colorList[ 3 ] / 255})`;
 		}
 	}
@@ -677,9 +681,9 @@
 
 	/*--- ユーティリティ関数 ---*/
 	/**
-	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
-	 * @param {String} rectString "x, y" 形式の文字列
-	 * @returns {Array} [x,y]形式の配列
+	 * 文字列を Rectangle に変換して返す
+	 * @param {String} rectString "x,y,w,h" 形式で数値を書いた文字列
+	 * @returns {Rectangle}
 	 */
 	function stringToRectangle( rectString ) {
 		const args = rectString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
@@ -697,7 +701,6 @@
 	Window_NameBox.prototype.initialize = function() {
 		_Window_NameBox_initialize.apply( this, arguments );
 		this.contents.fontSize = nameFontSize;
-		this.textWidthEx = 0;
 		if( nameWithFace ) {
 			this._isWindow = false;
 		};
@@ -712,11 +715,11 @@
 		};
 	};
 
+	const _Window_NameBox__refreshAllParts = Window_NameBox.prototype._refreshAllParts;
 	Window_NameBox.prototype._refreshAllParts = function() {
 		if( nameWithFace ) return;
-		Window_Base.prototype._refreshAllParts();
+		_Window_NameBox__refreshAllParts.call( this );
 	};
-
 
 	Window_NameBox.prototype.resetFontSettings = function() {
 		this.contents.fontFace = $gameSystem.mainFontFace();
