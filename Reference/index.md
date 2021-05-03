@@ -4,6 +4,7 @@
 
 ## 目次
 
+* [メイン]](#メイン)
 * [JavaScript拡張](#javascript拡張)
 * [マネージャ](#マネージャ)
 * [ユーティリティ](#ユーティリティ)
@@ -51,12 +52,16 @@
 ### 注釈
 
 * **@MZ** は『RPGツクールMZ』で増えたクラス。
-* (廃止) は『RPGツクールMV』にあったが廃止されたクラス。
 * 以下で表われる「→ 継承」は継承先へのリンク。
 
-## JavaScript拡張
+## メイン
 
+* [Main](Main.md)
+
+
+## JavaScript拡張
 namespace JsExtensions
+
 * [Array](Array.md)
 * [Math](Math.md)
 * [Number](Number.md)
@@ -86,7 +91,7 @@ namespace JsExtensions
 * [JsonEx](JsonEx.md)
 * [Utils](Utils.md)
 * [Video](Video.md) **@MZ**
-* ~~ResourceHandler~~ (廃止)
+
 
 ## 入力
 
@@ -94,19 +99,9 @@ namespace JsExtensions
 * [TouchInput](TouchInput.md)
 
 
-## ファイル
-
-* ~~CacheEntry~~ (廃止)
-* ~~CacheMap~~ (廃止)
-* ~~ImageCache~~ (廃止)
-* ~~RequestQueue~~ (廃止)
-* ~~Decrypter~~ (廃止)
-
-
 ## 音声
 
 * [WebAudio](WebAudio.md)
-* ~~Html5Audio~~ (廃止)
 
 
 ## オブジェクト構造データ
@@ -114,7 +109,9 @@ namespace JsExtensions
 
 ### Objects
 
+* [AnimationRequest](MV.AnimationRequest.md)
 * [AudioParameters](MV.AudioParameters.md)
+* [BalloonRequest](MV.BalloonRequest.md)
 * [BattleLogMethod](MV.BattleLogMethod.md)
 * [BattlerAnimation](MV.BattlerAnimation.md)
 * [BattleRewards](MV.BattleRewards.md)
@@ -126,19 +123,21 @@ namespace JsExtensions
 * [PluginSettings](MV.PluginSettings.md)
 * [SaveContents](MV.SaveContents.md)
 * [SaveFileInfo](MV.SaveFileInfo.md)
+* [Size](MV.Size.md)
 * [TextState](MV.TextState.md)
 * [TouchInputEvents](MV.TouchInputEvents.md)
+
 
 ### Arrays
 
 * [Color](MV.Color.md)
+* [SelfSwutch](MV.SelfSwutch.md)
 * [TileRect](MV.TileRect.md)
 * [Tone](MV.Tone.md)
 
 ### Strings
 
 * [CssColor](MV.CssColor.md)
-
 
 
 ## データベース(JSON)
@@ -268,7 +267,6 @@ namespace JsExtensions
     * [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
         * [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
             * [ColorFilter](ColorFilter.md) **@MZ**
-            * ~~ToneFilter~~ (廃止)
         * PIXI.tilemap.TilemapShader
             * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
 
@@ -280,11 +278,9 @@ namespace JsExtensions
 * [WindowLayer](WindowLayer.md)
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
 * [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
-* ~~PIXI.tilemap.ZLayer~~ (廃止)
 * [PIXI.Graphics](PIXI.Graphics.md)
     * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 * [Tilemap](Tilemap.md)
-    * ~~ShaderTilemap~~ (廃止)
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * [Sprite](Sprite.md) → [継承](#スプライトsprite)
@@ -294,7 +290,6 @@ namespace JsExtensions
 * [Stage](Stage.md)
     * [Scene_Base](Scene_Base.md) → [継承](#シーンscene_base)
 * [Window](Window.md) → [継承](#ウィンドウwindow)
-* ~~ToneSprite~~ (廃止)
 
 
 ### [スプライト(Sprite)](Sprite.md)
@@ -320,8 +315,6 @@ namespace JsExtensions
 * [Spriteset_Base](Spriteset_Base.md)
     * [Spriteset_Battle](Spriteset_Battle.md)
     * [Spriteset_Map](Spriteset_Map.md)
-* ~~Sprite_Base~~ (廃止)
-
 
 ### [シーン(Scene_Base)](Scene_Base.md)
 
@@ -419,3 +412,7 @@ namespace JsExtensions
     * [Window_EquipCommand](Window_EquipCommand.md)
     * [Window_ItemCategory](Window_ItemCategory.md)
     * [Window_ShopCommand](Window_ShopCommand.md)
+
+
+## MV廃止クラス
+`CacheEntry`, `CacheMap`, `ImageCache`, `RequestQueue`, `Decrypter`, `Html5Audio`, `ResourceHandler`, `ToneFilter`, `PIXI.tilemap.ZLayer`, `ShaderTilemap`, `ToneSprite`, `Sprite_Base`

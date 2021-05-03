@@ -133,10 +133,23 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 
 
 #### $plugins :[Array](Array.md).&lt;[MV.PluginSettings](MV.PluginSettings.md)&gt;
-RPGツクールMV プラグイン設定( js/plugins.js )。
+『RPGツクールMZ』プラグイン設定( js/plugins.js )。
 
 
 #### $testEvent :[Array](Array.md).&lt;[RPG.EventCommand](RPG.EventCommand.md)&gt;
 [テスト]を実行した場合に渡される[イベント]。
 
+
+#### scriptUrls :[Array](Array.md).&lt;[String](String.md)&gt;
+**@MZ** コアスクリプトの JavaScript ファイルパスの配列。
+
+
+#### effekseerWasmUrl :[String](String.md)
+**@MZ** effekseer.wasm のファイルパス。
+
+
+#### main :[Main](Main.md)
+**@MZ** メインオブジェクト。
+
+その他、ライブラリごとに `effekseer` や `process` などの大域変数が用意されているが詳細は Effekseer や NW.js、Pixi.js の公式サイトなど参照。
 
