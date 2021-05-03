@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.3.0.0
+// Version :0.3.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -168,10 +168,8 @@
 		const fixedMapArgs = PluginManagerEx.findMetaValue( $dataMap, TAG_FLEXED_MAP );
 		$gameMap.isMapFixed = ( fixedMapArgs !== undefined );
 		if( !$gameMap.isMapFixed ) return;
-
-		const args = fixedMapArgs.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${fixedMapArgs}"`;
-		$gameMap.setDisplayPos( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
+		const [ x, y ] = position2xy( fixedMapArgs );
+		$gameMap.setDisplayPos( x, y );
 	};
 
 
@@ -217,4 +215,17 @@
 		this._enemy._screenX = this._homeX;
 		this._enemy._alteredScreenX = true;
 	};
+
+
+	/*--- ユーティリティ関数 ---*/
+	/**
+	 * "2, 43" 形式の文字列を配列 [2,43] に変換して返す。
+	 * @param {String} positionString "x, y" 形式の文字列
+	 * @returns {Array} [x,y]形式の配列
+	 */
+	function position2xy( positionString ) {
+		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
+		return [ parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) ];
+	}
 } )();
