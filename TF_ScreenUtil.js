@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.3.0.2
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -45,6 +45,11 @@
 
 	// メタタグ
 	const TAG_FLEXED_MAP = "TF_fixedMap";
+
+	// 定数
+	const DEFAULT_SCREEN_WIDTH = 816;
+	const DEFAULT_SCREEN_HEIGHT = 624;
+	const TF_zoomScale = 2;	// 自由にできそうに見えて二倍固定
 
 	/**
 	 * パラメータを受け取る
@@ -100,7 +105,6 @@
 		}
 	};
 
-
 	Game_Map.prototype.screenTileX = function() {
 		return Math.round( ( Graphics.width / this.displayTileWidth() ) * 16 ) / 16;
 	};
@@ -134,13 +138,13 @@
 	// 画面表示されるタイルの大きさ(ピクセル数)
 	// tileWidth() は素材のタイルサイズとして残す。
 	Game_Map.prototype.displayTileWidth = function() {
-		return 48 * $gameScreen.zoomScale();
+		return this.tileWidth() * $gameScreen.zoomScale();
 	};
 
 	// 画面表示されるタイルの大きさ(ピクセル数)
 	// tileHeight() は素材のタイルサイズとして残す。
 	Game_Map.prototype.displayTileHeight = function() {
-		return 48 * $gameScreen.zoomScale();
+		return this.tileWidth() * $gameScreen.zoomScale();
 	};
 
 	Game_CharacterBase.prototype.isNearTheScreen = function() {
@@ -159,7 +163,7 @@
 	const _Scene_Map_onMapLoaded = Scene_Map.prototype.onMapLoaded;
 	Scene_Map.prototype.onMapLoaded = function() {
 		//マップ拡大
-		$gameScreen._zoomScale = 2;
+		$gameScreen._zoomScale = TF_zoomScale;
 
 		_Scene_Map_onMapLoaded.call( this );
 
@@ -184,17 +188,19 @@
 		this.x += Math.round( $gameScreen.shake() );
 	};
 
-	const DEFAULT_SCREEN_WIDTH = 816;
-	const DEFAULT_SCREEN_HEIGHT = 624;
-
 	/*--- Sprite_Actor ---*/
 	// アクター位置をスクリーンサイズに合わせて調整
+	const PARTY_X = 600;
+	const PARTY_Y = 280;
+	const VERTICAL_DIFF = 48;
+	const HORIZONTAL_DIFF = 32;
+	const VERTICAL_DIFF = 48;
 	const _Sprite_Actor_setActorHome = Sprite_Actor.prototype.setActorHome;
 	Sprite_Actor.prototype.setActorHome = function( index ) {
 		_Sprite_Actor_setActorHome.apply( this, arguments );
 
-		const x = 600 + ( Graphics.boxWidth - DEFAULT_SCREEN_WIDTH ) + index * 32;
-		const y = 280 + ( Graphics.boxHeight - DEFAULT_SCREEN_HEIGHT ) + index * 48;
+		const x = PARTY_X + ( Graphics.boxWidth - DEFAULT_SCREEN_WIDTH ) + index * HORIZONTAL_DIFF;
+		const y = PARTY_Y + ( Graphics.boxHeight - DEFAULT_SCREEN_HEIGHT ) + index * VERTICAL_DIFF;
 		this.setHome( x, y );
 	};
 
@@ -216,10 +222,38 @@
 		this._enemy._alteredScreenX = true;
 	};
 
+	/*--- Scene_Map ---*/
+	// エンカウントアニメーションを拡大に合わせて修正
+	Scene_Map.prototype.updateEncounterEffect = function() {
+		if( 0 < this._encounterEffectDuration ) {
+			this._encounterEffectDuration--;
+			const speed = this.encounterEffectSpeed();
+			const n = speed - this._encounterEffectDuration;
+			const p = n / speed;
+			const q = ( ( p - 1 ) * 20 * p + 5 ) * p + 1;
+			const zoomX = $gamePlayer.screenX();
+			const zoomY = $gamePlayer.screenY() - ( $gameMap.tileHeight() / 2 );
+
+			if( n === 2 ) {
+				$gameScreen.setZoom( zoomX, zoomY, TF_zoomScale );
+				this.snapForBattleBackground();
+				this.startFlashForEncounter( speed / 2 );
+			}
+
+			$gameScreen.setZoom( zoomX, zoomY, ( q * TF_zoomScale ) );
+			if( n === Math.floor( speed / 6 ) ) {
+				this.startFlashForEncounter( speed / 2 );
+			}
+			if( n === Math.floor( speed / 2 ) ) {
+				BattleManager.playBattleBgm();
+				this.startFadeOut( this.fadeSpeed() );
+			}
+		}
+	};
 
 	/*--- ユーティリティ関数 ---*/
 	/**
-	 * "2, 43" 形式の文字列をPointオブジェクトに変換して返す。
+	 * 文字列をPointオブジェクトに変換して返す。
 	 * @param {String} positionString "x, y" 形式の文字列
 	 * @returns {Point} 
 	 */
