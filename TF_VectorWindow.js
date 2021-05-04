@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.1.0
+// Version :0.5.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -235,6 +235,7 @@
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
+		const inst = this instanceof Window_NameBox;
 		const m = this.margin;
 		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
 		const w = this.width;
@@ -715,11 +716,11 @@
 		};
 	};
 
-	const _Window_NameBox__refreshAllParts = Window_NameBox.prototype._refreshAllParts;
 	Window_NameBox.prototype._refreshAllParts = function() {
 		if( nameWithFace ) return;
-		_Window_NameBox__refreshAllParts.call( this );
+		Window_Base.prototype._refreshAllParts.call( this );
 	};
+
 
 	Window_NameBox.prototype.resetFontSettings = function() {
 		this.contents.fontFace = $gameSystem.mainFontFace();
