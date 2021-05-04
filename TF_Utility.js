@@ -35,7 +35,7 @@
  *  現在のマップ: this
  * @type string @default this
  * 
- * @arg location @text 移動先位置(タイル数)
+ * @arg pointStr @text 移動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
  * @type string @default 0,0
  *
@@ -120,7 +120,7 @@
 	 * beforeMove
 	 * マップ移動前の処理。
 	 * @param {String} mapId マップID | マップ名 | this
-	 * @param {String} location 座標(タイル数)
+	 * @param {String} pointStr 座標(タイル数)
 	 * @param {Boolean} isMove 一歩前進するか
 	 * @param {Number} pitch 音程
 	 * @param {Number} d 向き(テンキー対応 | 方向文字列) (規定値: 現在の向き( 0 ))
@@ -128,7 +128,7 @@
 	 */
 	PluginManagerEx.registerCommand( document.currentScript, COM_BEFORE_MOVE,
 		function( args ) {
-			const pos = stringToPoint( args.location );
+			const pos = stringToPoint( args.pointStr );
 			const eventCommands = getMoveMapCommands( args.mapId, pos.x, pos.y, args.d, args.pitch );
 
 			if( args.isMove ) {
@@ -229,13 +229,13 @@
 
 	/*--- ユーティリティ関数 ---*/
 	/**
-	 * "2, 43" 形式の文字列をPointオブジェクトに変換して返す。
-	 * @param {String} positionString "x, y" 形式の文字列
+	 * 文字列をPointオブジェクトに変換して返す。
+	 * @param {String} pointStr "x, y" 形式の文字列
 	 * @returns {Point} 
 	 */
-	function stringToPoint( positionString ) {
-		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
+	function stringToPoint( pointStr ) {
+		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
 		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	}
 } )();
