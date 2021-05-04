@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.4.0.0
+// Version :0.4.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -194,7 +194,7 @@
 	const PARTY_Y = 280;
 	const VERTICAL_DIFF = 48;
 	const HORIZONTAL_DIFF = 32;
-	const VERTICAL_DIFF = 48;
+
 	const _Sprite_Actor_setActorHome = Sprite_Actor.prototype.setActorHome;
 	Sprite_Actor.prototype.setActorHome = function( index ) {
 		_Sprite_Actor_setActorHome.apply( this, arguments );
