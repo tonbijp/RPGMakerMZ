@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.1.1.0
+// Version :0.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -147,7 +147,10 @@
  * 　COM_GO_XY( COM_GO_EV ) : go, @, 移
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
- * 
+ *
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
+ *
+ * 利用規約 : MITライセンス
  * @================================================
  * @command route @text 移動ルートの一括設定
  * @desc [移動ルートの設定]コマンドの文字列指定版
@@ -273,15 +276,9 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg x @text 移動先x座標
- * @desc
- * タイル数
- * @type number @default 0
- *
- * @arg y @text 移動先y座標
- * @desc
- * タイル数
- * @type number @default 0
+ * @arg pointStr @text 移動先位置(タイル数)
+ * @desc 移動先座標(小数点以下可)
+ * @type string @default 0,0
  *
  * @arg isWait @text 完了までウェイト
  * @on 待つ(規定値) @off 完了を待たず並列実行
@@ -303,15 +300,9 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg dx @text 相対x座標
- * @desc
- * 目標イベントからの相対x座標(タイル数)
- * @type number @default 0
- *
- * @arg dy @text 相対y座標
- * @desc
- * 目標イベントからの相対y座標(タイル数)
- * @type number @default 0
+ * @arg pointStr @text 移動先位置(タイル数)
+ * @desc 移動先座標(小数点以下可)
+ * @type string @default 0,0
  *
  * @arg isWait @text 完了までウェイト
  * @on 待つ(規定値) @off 完了を待たず並列実行
@@ -327,16 +318,10 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
- * 
- * @arg x @text 移動先x座標
- * @desc
- * タイル数
- * @type number @default 0
  *
- * @arg y @text 移動先y座標
- * @desc
- * タイル数
- * @type number @default 0
+ * @arg pointStr @text 移動先位置(タイル数)
+ * @desc 移動先座標(小数点以下可)
+ * @type string @default 0,0
  * 
  * @arg patternNumber @text 歩行パターン
  * @desc
@@ -373,16 +358,10 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg dx @text 相対x座標
- * @desc
- * 目標イベントからの相対x座標(タイル数)
- * @type number @default 0
- *
- * @arg dy @text 相対y座標
- * @desc
- * 目標イベントからの相対y座標(タイル数)
- * @type number @default 0
- *
+ * @arg pointStr @text 相対座標(タイル数)
+ * @desc 相対座標(小数点以下可)
+ * @type string @default 0,0
+ * 
  * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
@@ -425,15 +404,9 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @arg x @text x移動距離
- * @desc
- * ピクセル数
- * @type number @default 0
- *
- * @arg y @text y移動距離
- * @desc
- * ピクセル数
- * @type number @default 0
+ * @arg pointStr @text 移動距離(ピクセル数)
+ * @desc (小数点以下可)
+ * @type string @default 0,0
  *
  * @arg wait @text ウェイト
  * @desc
@@ -714,27 +687,31 @@
 	// [ イベントを指定座標に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		goXY( targetEvent, args.x, args.y, args.isWait );
+		const rect = stringToPoint( args.pointStr );
+		goXY( targetEvent, rect.x, rect.y, args.isWait );
 	} );
 
 	// [ イベントを別のイベント位置に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
-		goEv( targetEvent, destinationEvent, args.dx, args.dy, args.isWait );
+		const rect = stringToPoint( args.pointStr );
+		goEv( targetEvent, destinationEvent, rect.x, rect.y, args.isWait );
 	} );
 
 	// [ イベントを指定座標に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		locateXY( targetEvent, args.x, args.y, args.patternNumber, args.d );
+		const rect = stringToPoint( args.pointStr );
+		locateXY( targetEvent, rect.x, rect.y, args.patternNumber, args.d );
 	} );
 
 	// [ イベントを別のイベント位置に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
-		locateEv( targetEvent, destinationEvent, args.dx, args.dy, args.patternNumber, args.d );
+		const rect = stringToPoint( args.pointStr );
+		locateEv( targetEvent, destinationEvent, rect.x, rect.y, args.patternNumber, args.d );
 	} );
 
 	// [ 隊列メンバーの追跡設定 ] COM_FOLLOW
@@ -753,7 +730,8 @@
 	// [ アニメの指定 ] COM_ANIME
 	PluginManagerEx.registerCommand( document.currentScript, COM_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		anime( targetEvent, args.x, args.y, args.wait, args.characterNumber, args.patternNumber, args.d );
+		const rect = stringToPoint( args.pointStr );
+		anime( targetEvent, rect.x, rect.y, args.wait, args.characterNumber, args.patternNumber, args.d );
 	} );
 
 	// [ アニメの終了 ] COM_END_ANIME
@@ -1514,5 +1492,15 @@
 	function speedToFrames( speed ) {
 		// speed 1: 1 / 8倍速, 2: 1 / 4倍速, 3: 1 / 2倍速, 4: 通常速, 5: 2倍速, 6: 4倍速
 		return 128 >> speed;
+	}
+	/**
+	 * 文字列をPointオブジェクトに変換して返す。
+	 * @param {String} pointStr "x, y" 形式の文字列
+	 * @returns {Point} 
+	 */
+	function stringToPoint( pointStr ) {
+		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
+		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	}
 } )();
