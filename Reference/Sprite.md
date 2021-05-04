@@ -71,17 +71,20 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | 3 | [Sprite_Character](Sprite_Character.md) | プライオリティ[通常キャラと同じ] |
 | 2 | | 通常タイル(未使用) |
 | 1 | [Sprite_Character](Sprite_Character.md) | プライオリティ [通常キャラの下] |
-| 0 | [Sprite](Sprite.md) | 低層タイル\[○\]・\[×\](レイヤー1・2 ・影ペン・3・4 ) |
+| 0 | [Sprite](Sprite.md) | 低層タイル[○]・\[×\](レイヤー1・2 ・影ペン・3・4 ) |
 
 #### [合成方法]
 番号は [Graphics](Graphics.md) の静的クラス定数として定義されていたが、『RPGツクールMZ』では廃止されて、[PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES) の定数を使うようになっている。
 
+公式には 0-3まで使用可能となっているが、それ以外の合成方法で使えるものもある。ただし大抵は `NORMAL` と同じ合成方法が設定されているだけ。
+
 | 番号 | 定数 | [合成方法] |
 | --- | --- | --- |
-| 0 | PIXI.BLEND_MODES.NORMAL | 通常 |
-| 1 | PIXI.BLEND_MODES.ADD | 加算 |
-| 2 | PIXI.BLEND_MODES.MULTIPLY | 乗算 |
-| 3 | PIXI.BLEND_MODES.SCREEN | スクリーン |
+| 0 | `PIXI.BLEND_MODES.NORMAL` | 通常 |
+| 1 | `PIXI.BLEND_MODES.ADD` | 加算 |
+| 2 | `PIXI.BLEND_MODES.MULTIPLY` | 乗算 |
+| 3 | `PIXI.BLEND_MODES.SCREEN` | スクリーン |
+| 28 | `PIXI.BLEND_MODES.SUBTRACT` | 減算(非推奨) |
 
 
 ### 廃止MVプロパティ
