@@ -35,7 +35,7 @@
  *  現在のマップ: this
  * @type string @default this
  * 
- * @arg location @text 異動先位置(タイル数)
+ * @arg location @text 移動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
  * @type string @default 0,0
  *
