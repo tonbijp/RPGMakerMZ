@@ -1,6 +1,6 @@
 //========================================
 // TF_Core.js
-// Version :0.0.0.1
+// Version :0.0.0.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020
@@ -59,13 +59,13 @@
 
     /*--- ユーティリティ関数 ---*/
     /**
-     * "2, 43" 形式の文字列をPointオブジェクトに変換して返す。
-     * @param {String} positionString "x, y" 形式の文字列
+     * 文字列をPointオブジェクトに変換して返す。
+     * @param {String} pointStr "x, y" 形式の文字列
      * @returns {Point} 
      */
-    function stringToPoint( positionString ) {
-        const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-        if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
+    function stringToPoint( pointStr ) {
+        const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+        if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
         return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
     }
 } )();
