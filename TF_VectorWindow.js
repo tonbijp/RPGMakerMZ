@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.0.1
+// Version :0.5.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -235,32 +235,79 @@
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
-		const inst = this instanceof Window_NameBox;
-		const m = this.margin;
-		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
-		const w = this.width;
-		const h = this.height;
-
-		this._backSprite.bitmap = new Bitmap( w, h );
-		this._backSprite.setFrame( 0, 0, w, h );
-
-		let path2d;
-		switch( this.TF_shape ) {
-			case SHAPE_ROUNDRECT: path2d = drawRoundrect( m, w, h, r ); break;
-			case SHAPE_OCTAGON: path2d = drawOctagon( m, w, h, r ); break;
-			case SHAPE_SPIKE: path2d = drawSpike( m, w, h, r, pluginParams.preset[ this.TF_windowType ].borderWidth ); break;
-		}
-		drawWindow( this, this._backSprite.bitmap.context, path2d );
+		this._backSprite.bitmap = new Bitmap( this.width, this.height );
+		this._backSprite.setFrame( 0, 0, this.width, this.height );
+		const path2d = getWindowPath( this );
+		drawWindowBack( this, path2d );
 	};
+	/**
+	 * ウィンドウ背景描画
+	 * @param {Window_Message} tw 対象ウィンドウ
+	 * @param {Path2D} path2d 描画するパス
+	 */
+	function drawWindowBack( tw, path2d ) {
+		const ctx = tw._backSprite.bitmap.context;
+		let bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
+
+		if( bgColor.length === 1 ) {
+			ctx.fillStyle = tintColor( bgColor[ 0 ], tw._colorTone );
+		} else {
+			const grad = ctx.createLinearGradient( 0, 0, 0, tw._height );
+			const l = bgColor.length;
+			const interval = 1.0 / ( l - 1 );
+			bgColor.forEach( ( e, i ) => {
+				grad.addColorStop( i * interval, tintColor( e, tw._colorTone ) );
+			} );
+			ctx.fillStyle = grad;
+		}
+
+		// if( dropShadow ) setShadowParam( ctx );
+		ctx.fill( path2d );// 'nonzero'  'evenodd'
+
+		//if( !dropShadow ) setShadowParam( ctx );
+	}
 
 	// _refreshBack でウィンドウを描画しているので _refreshFrame は機能させない
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
 	Window.prototype._refreshFrame = function() {
-		// SceneCustomMenu.js のスキンの設定があれば通常の描画に渡す
-		if( this._data && this._data.WindowSkin ) {
-			_Window__refreshFrame.call( this );
-		}
+		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
+		if( this._data && this._data.WindowSkin ) return _Window__refreshFrame.call( this );
+		if( this.TF_shape === SHAPE_NONE ) return;
+
+		this._frameSprite.bitmap = new Bitmap( this.width, this.height );
+		this._frameSprite.setFrame( 0, 0, this.width, this.height );
+
+		const path2d = getWindowPath( this );
+		drawWindowFrame( this, path2d );
 	};
+	/**
+	 * ウィンドウ枠描画
+	 * @param {Window_Message} tw 対象ウィンドウ
+	 * @param {Path2D} path2d 描画するパス
+	 */
+	function drawWindowFrame( tw, path2d ) {
+		const ctx = tw._frameSprite.bitmap.context;
+		setBorderParam( ctx, tw.TF_windowType );
+		ctx.stroke( path2d );
+	}
+
+	/**
+	 * ウィンドウのパスを得る
+	 * @param {Window_Message} tw 対象ウィンドウ
+	 * @returns  {Path2D} 描画するパス
+	 */
+	function getWindowPath( tw ) {
+		const m = tw.margin;
+		const r = pluginParams.preset[ tw.TF_windowType ].decorSize;
+		const w = tw.width;
+		const h = tw.height;
+
+		switch( tw.TF_shape ) {
+			case SHAPE_ROUNDRECT: return drawRoundrect( m, w, h, r );
+			case SHAPE_OCTAGON: return drawOctagon( m, w, h, r );
+			case SHAPE_SPIKE: return drawSpike( m, w, h, r, pluginParams.preset[ tw.TF_windowType ].borderWidth );
+		}
+	}
 
 
 	/*--- Window_Base ---*/
@@ -459,35 +506,6 @@
 		workCtx.fillStyle = CssColor;
 		workCtx.fillRect( 0, 0, 1, 1 );
 		return workCtx.getImageData( 0, 0, 1, 1 ).data;
-	}
-
-	/**
-	 * ウィンドウ描画
-	 * @param {Window_Message} tw 対象ウィンドウ
-	 * @param {CanvasRenderingContext2D} ctx コンテクスト
-	 * @param {Path2D} path2d 描画するパス
-	 */
-	function drawWindow( tw, ctx, path2d ) {
-		let bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
-
-		if( bgColor.length === 1 ) {
-			ctx.fillStyle = tintColor( bgColor[ 0 ], tw._colorTone );
-		} else {
-			const grad = ctx.createLinearGradient( 0, 0, 0, tw._height );
-			const l = bgColor.length;
-			const interval = 1.0 / ( l - 1 );
-			bgColor.forEach( ( e, i ) => {
-				grad.addColorStop( i * interval, tintColor( e, tw._colorTone ) );
-			} );
-			ctx.fillStyle = grad;
-		}
-
-		// if( dropShadow ) setShadowParam( ctx );
-		ctx.fill( path2d );// 'nonzero'  'evenodd'
-
-		//if( !dropShadow ) setShadowParam( ctx );
-		setBorderParam( ctx, tw.TF_windowType );
-		ctx.stroke( path2d );
 	}
 
 	/**
