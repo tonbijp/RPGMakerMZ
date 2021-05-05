@@ -36,8 +36,7 @@
 | `bottom` | [Number](Number.md) | 矩形下の y座標 |
 | `left` | [Number](Number.md) | 矩形左の x座標( `x` と同じ) |
 | `right` | [Number](Number.md) | 矩形右の y座標 |
-| `type` | [Number](Number.md) | [read-only] タイプ(参照:[PIXI.SHAPES
-](http://pixijs.download/release/docs/PIXI.html#SHAPES)) |
+| `type` | [Number](Number.md) | [read-only] タイプ(参照:[PIXI.SHAPES](http://pixijs.download/release/docs/PIXI.html#SHAPES)) |
 
 
 ### 廃止MVプロパティ
