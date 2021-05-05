@@ -109,35 +109,36 @@ namespace JsExtensions
 
 ### Objects
 
-* [AnimationRequest](MV.AnimationRequest.md)
-* [AudioParameters](MV.AudioParameters.md)
-* [BalloonRequest](MV.BalloonRequest.md)
-* [BattleLogMethod](MV.BattleLogMethod.md)
-* [BattlerAnimation](MV.BattlerAnimation.md)
-* [BattleRewards](MV.BattleRewards.md)
-* [CommandItem](MV.CommandItem.md)
-* [ConfigData](MV.ConfigData.md)
-* [DatabaseFile](MV.DatabaseFile.md)
-* [Matrix](MV.Matrix.md)
-* [Motion](MV.Motion.md)
-* [PluginSettings](MV.PluginSettings.md)
-* [SaveContents](MV.SaveContents.md)
-* [SaveFileInfo](MV.SaveFileInfo.md)
-* [Size](MV.Size.md)
-* [TextState](MV.TextState.md)
-* [TouchInputEvents](MV.TouchInputEvents.md)
+* [MV.AnimationRequest](MV.AnimationRequest.md)
+* [MV.AudioParameters](MV.AudioParameters.md)
+* [MV.BalloonRequest](MV.BalloonRequest.md)
+* [MV.BattleLogMethod](MV.BattleLogMethod.md)
+* [MV.BattlerAnimation](MV.BattlerAnimation.md)
+* [MV.BattleRewards](MV.BattleRewards.md)
+* [MV.CommandItem](MV.CommandItem.md)
+* [MV.ConfigData](MV.ConfigData.md)
+* [MV.DatabaseFile](MV.DatabaseFile.md)
+* [MV.Matrix](MV.Matrix.md)
+* [MV.Motion](MV.Motion.md)
+* [MV.PluginSettings](MV.PluginSettings.md)
+* [MV.Rectangle](MV.Rectangle.md)
+* [MV.SaveContents](MV.SaveContents.md)
+* [MV.SaveFileInfo](MV.SaveFileInfo.md)
+* [MV.Size](MV.Size.md)
+* [MV.TextState](MV.TextState.md)
+* [MV.TouchInputEvents](MV.TouchInputEvents.md)
 
 
 ### Arrays
 
-* [Color](MV.Color.md)
-* [SelfSwutch](MV.SelfSwutch.md)
-* [TileRect](MV.TileRect.md)
-* [Tone](MV.Tone.md)
+* [MV.Color](MV.Color.md)
+* [MV.SelfSwutch](MV.SelfSwutch.md)
+* [MV.TileRect](MV.TileRect.md)
+* [MV.Tone](MV.Tone.md)
 
 ### Strings
 
-* [CssColor](MV.CssColor.md)
+* [MV.CssColor](MV.CssColor.md)
 
 
 ## データベース(JSON)

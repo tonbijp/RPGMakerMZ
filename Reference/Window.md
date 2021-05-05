@@ -211,8 +211,8 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `sprite` | [Sprite](Sprite.md)  | 9スライス枠用スプライト |
-| `srect` | Object | スキン画像から切り取る矩形範囲 { x: , y: , width: , height:  } |
-| `drect` | Object | 配置する矩形範囲 { x: , y: , width: , height:  } |
+| `srect` | [MV.Rectangle](MV.Rectangle.md) | スキン画像から切り取る矩形範囲 |
+| `drect` | [MV.Rectangle](MV.Rectangle.md) | 配置する矩形範囲 |
 | `m` | [Number](Number.md) | 枠画像の幅(ピクセル) |
 
 

@@ -27,7 +27,7 @@ MVでは引数はなかった。
 | --- | --- | --- |
 | `_allTextHeight` | [Number](Number.md) | 全体の文章の高さ |
 | `_text` | [String](String.md) | 表示する文章 |
-| `_reservedRect` | [Number](Number.md) | **@MZ** 保存された矩形範囲 |
+| `_reservedRect` | [Rectangle](Rectangle.md) | **@MZ** 保存された矩形範囲 |
 
 
 ### スーパークラスから継承されたメソッド

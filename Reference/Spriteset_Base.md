@@ -228,7 +228,7 @@ canvas [色調]変更を生成。
 
 
 #### pictureContainerRect () → {[Rectangle](Rectangle.md)}
-**@MZ** 描画領域の矩形を返す。
+**@MZ** 描画領域の矩形範囲を返す。
 
 
 #### processAnimationRequests ()
