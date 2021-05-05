@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.4.1.0
+// Version :0.4.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -177,17 +177,6 @@
 	};
 
 
-	/*--- Spriteset_Base ---*/
-	// 左上に角を合わせる(振動などに対応する必要はある)
-	const _Spriteset_Base_updatePosition = Spriteset_Base.prototype.updatePosition;
-	Spriteset_Base.prototype.updatePosition = function() {
-		_Spriteset_Base_updatePosition.call( this );
-		this.x = 0;
-		this.y = 0;
-
-		this.x += Math.round( $gameScreen.shake() );
-	};
-
 	/*--- Sprite_Actor ---*/
 	// アクター位置をスクリーンサイズに合わせて調整
 	const PARTY_X = 600;
@@ -222,32 +211,42 @@
 		this._enemy._alteredScreenX = true;
 	};
 
+	/*--- Spriteset_Base ---*/
+	const _Spriteset_Base_updatePosition = Spriteset_Base.prototype.updatePosition;
+	Spriteset_Base.prototype.updatePosition = function() {
+		_Spriteset_Base_updatePosition.call( this );
+
+		// 拡大分のズレを考慮
+		this.x -= Math.round( $gameScreen.zoomX() * ( 1 - TF_zoomScale ) );
+		this.y -= Math.round( $gameScreen.zoomY() * ( 1 - TF_zoomScale ) );
+	};
+
 	/*--- Scene_Map ---*/
-	// エンカウントアニメーションを拡大に合わせて修正
+	// 戦闘開始のエンカウントアニメーションを拡大に合わせて修正
 	Scene_Map.prototype.updateEncounterEffect = function() {
-		if( 0 < this._encounterEffectDuration ) {
-			this._encounterEffectDuration--;
-			const speed = this.encounterEffectSpeed();
-			const n = speed - this._encounterEffectDuration;
-			const p = n / speed;
-			const q = ( ( p - 1 ) * 20 * p + 5 ) * p + 1;
-			const zoomX = $gamePlayer.screenX();
-			const zoomY = $gamePlayer.screenY() - ( $gameMap.tileHeight() / 2 );
+		if( this._encounterEffectDuration <= 0 ) return;
 
-			if( n === 2 ) {
-				$gameScreen.setZoom( zoomX, zoomY, TF_zoomScale );
-				this.snapForBattleBackground();
-				this.startFlashForEncounter( speed / 2 );
-			}
+		this._encounterEffectDuration--;
+		const speed = this.encounterEffectSpeed();
+		const n = speed - this._encounterEffectDuration;
+		const p = n / speed;
+		const q = ( ( p - 1 ) * 20 * p + 5 ) * p + 1;
+		const zoomX = $gamePlayer.screenX();
+		const zoomY = $gamePlayer.screenY() - $gameMap.tileHeight() / 2;
 
-			$gameScreen.setZoom( zoomX, zoomY, ( q * TF_zoomScale ) );
-			if( n === Math.floor( speed / 6 ) ) {
-				this.startFlashForEncounter( speed / 2 );
-			}
-			if( n === Math.floor( speed / 2 ) ) {
-				BattleManager.playBattleBgm();
-				this.startFadeOut( this.fadeSpeed() );
-			}
+		if( n === 2 ) {
+			$gameScreen.setZoom( zoomX, zoomY, TF_zoomScale );
+			this.snapForBattleBackground();
+			this.startFlashForEncounter( speed / 2 );
+		}
+
+		$gameScreen.setZoom( zoomX, zoomY, ( q * TF_zoomScale ) );
+		if( n === Math.floor( speed / 6 ) ) {
+			this.startFlashForEncounter( speed / 2 );
+		}
+		if( n === Math.floor( speed / 2 ) ) {
+			BattleManager.playBattleBgm();
+			this.startFadeOut( this.fadeSpeed() );
 		}
 	};
 
