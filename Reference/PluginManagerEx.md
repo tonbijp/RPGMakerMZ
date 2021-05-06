@@ -78,7 +78,7 @@ PluginCommonBase.js には他に [PluginParam](PluginParam.md), [TextConverter](
 
 #### (static) findMetaValue (object, nameList) → {*}
 指定データベースのメモ欄のメタデータの値を返す。<br />
-`nameList `は多言語に対応することを想定して複数のタグ名を指定できるが、タグが一種類のみなら単独の文字列でよい。<br />
+`nameList` は多言語に対応することを想定して複数のタグ名を指定できるが、タグが一種類のみなら単独の文字列でよい。<br />
 先頭のタグから調べ、最初に見つかったタグの値のみ返す。
 
 ##### 例
@@ -91,7 +91,7 @@ const metaValue = PluginManagerEx.findMetaValue( $dataActors[1], [ "englishTag",
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `object` | [MetaData](RPG.MetaData.md) | メモ欄を持つデータベース |
-| `nameList ` | [Array](Array.md).&lt;[String](String.md)&gt; \| [String](String.md) | タグ名(の配列) |
+| `nameList` | [Array](Array.md).&lt;[String](String.md)&gt; \| [String](String.md) | タグ名(の配列) |
 
 
 #### (static) findMetaObject (object, nameList) → {[PluginParam](PluginParam.md)}
@@ -102,7 +102,7 @@ const metaValue = PluginManagerEx.findMetaValue( $dataActors[1], [ "englishTag",
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `object` | [MetaData](RPG.MetaData.md) | メモ欄を持つデータベース |
-| `nameList ` | [Array](Array.md).&lt;[String](String.md)&gt; \| [String](String.md) | タグ名(の配列) |
+| `nameList` | [Array](Array.md).&lt;[String](String.md)&gt; \| [String](String.md) | タグ名(の配列) |
 
 
 #### (static) findMetaProperty (object) → {Object}
