@@ -146,41 +146,56 @@ namespace JsExtensions
 
 ### イベントコマンド
 
-* [BattleEventPage](RPG.BattleEventPage.md) . [Conditions](RPG.BattleEventPage.Conditions.md)
-* [CommonEvent](RPG.CommonEvent.md)([$dataCommonEvents](global.md#datacommonevents-arrayrpgcommonevent))
-* [EventCommand](RPG.EventCommand.md)([$testEvent](global.md#testevent-arrayrpgeventcommand))
-* [EventPage](RPG.EventPage.md) . [Conditions](RPG.EventPage.Conditions.md) \| [Image](RPG.EventPage.Image.md)
-* [MoveCommand](RPG.MoveCommand.md)
-* [MoveRoute](RPG.MoveRoute.md)
+* [RPG.BattleEventPage](RPG.BattleEventPage.md) 
+* [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
+* [RPG.CommonEvent](RPG.CommonEvent.md)([$dataCommonEvents](global.md#datacommonevents-arrayrpgcommonevent))
+* [RPG.EventCommand](RPG.EventCommand.md)([$testEvent](global.md#testevent-arrayrpgeventcommand))
+* [RPG.EventPage](RPG.EventPage.md) 
+* [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md) 
+* [RPG.EventPage.Image](RPG.EventPage.Image.md)
+* [RPG.MoveCommand](RPG.MoveCommand.md)
+* [RPG.MoveRoute](RPG.MoveRoute.md)
 
 ### メモつきデータ(MetaData)
 
-* [MetaData](RPG.MetaData.md)
-	* [Actor](RPG.Actor.md)([$dataActors](global.md#dataactors-arrayrpgactor))
-	* [Class](RPG.Class.md)([$dataClasses](global.md#dataclasses-arrayrpgclass)) . [Learning](RPG.Class.Learning.md)
-	* [Enemy](RPG.Enemy.md)([$dataEnemies](global.md#dataenemies-arrayrpgenemy)) . [Action](RPG.Enemy.Action.md) \| [DropItem](RPG.Enemy.DropItem.md)
-	* [Event](RPG.Event.md)
-	* [Map](RPG.Map.md)([$dataMap](global.md#datamap-rpgmap)) . [Encounter](RPG.Map.Encounter.md)
-	* [State](RPG.State.md)([$dataStates](global.md#datastates-arrayrpgstate))
-	* [Tileset](RPG.Tileset.md)([$dataTilesets](global.md#datatilesets-arrayrpgtileset))
-	* [BaseItem](RPG.BaseItem.md)
-	    * [UsableItem](RPG.UsableItem.md)
-	        * [Item](RPG.Item.md)([$dataItems](global.md#dataitems-arrayrpgitem))
-	        * [Skill](RPG.Skill.md)([$dataSkills](global.md#dataskills-arrayrpgskill))
-	    * [EquipItem](RPG.EquipItem.md)
-	        * [Armor](RPG.Armor.md)([$dataArmors](global.md#dataarmors-arrayrpgarmor))
-	        * [Weapon](RPG.Weapon.md)([$dataWeapons](global.md#dataweapons-arrayrpgweapon))
+* [RPG.MetaData](RPG.MetaData.md)
+	* [RPG.Actor](RPG.Actor.md)([$dataActors](global.md#dataactors-arrayrpgactor))
+	* [RPG.Class](RPG.Class.md)([$dataClasses](global.md#dataclasses-arrayrpgclass))
+    * [RPG.Class.Learning](RPG.Class.Learning.md)
+	* [RPG.Enemy](RPG.Enemy.md)([$dataEnemies](global.md#dataenemies-arrayrpgenemy))
+    * [RPG.Enemy.Action](RPG.Enemy.Action.md)
+    * [RPG.Enemy.DropItem](RPG.Enemy.DropItem.md)
+	* [RPG.Event](RPG.Event.md)
+	* [RPG.Map](RPG.Map.md)([$dataMap](global.md#datamap-rpgmap))
+    * [RPG.Map.Encounter](RPG.Map.Encounter.md)
+	* [RPG.State](RPG.State.md)([$dataStates](global.md#datastates-arrayrpgstate))
+	* [RPG.Tileset](RPG.Tileset.md)([$dataTilesets](global.md#datatilesets-arrayrpgtileset))
+	* [RPG.BaseItem](RPG.BaseItem.md)
+	    * [RPG.UsableItem](RPG.UsableItem.md)
+	        * [RPG.Item](RPG.Item.md)([$dataItems](global.md#dataitems-arrayrpgitem))
+	        * [RPG.Skill](RPG.Skill.md)([$dataSkills](global.md#dataskills-arrayrpgskill))
+	    * [RPG.EquipItem](RPG.EquipItem.md)
+	        * [RPG.Armor](RPG.Armor.md)([$dataArmors](global.md#dataarmors-arrayrpgarmor))
+	        * [RPG.Weapon](RPG.Weapon.md)([$dataWeapons](global.md#dataweapons-arrayrpgweapon))
 
 ### その他データベース
 
-* [Animation](RPG.Animation.md)([$dataAnimations](global.md#dataanimations-arrayrpganimation)) . [Timing](RPG.Animation.Timing.md)
-* [AudioFile](RPG.AudioFile.md)
-* [MapInfo](RPG.MapInfo.md)([$dataMapInfos](global.md#datamapinfos-arrayrpgmapinfo))
-* [System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) . [Advanced](RPG.System.Advanced.md) **@MZ** \| [titleCommandWindow](RPG.System.titleCommandWindow.md) **@MZ** \| [AttackMotion](RPG.System.AttackMotion.md) \| [Terms](RPG.System.Terms.md) \| [TestBattler](RPG.System.TestBattler.md) \| [Vehicle](RPG.System.Vehicle.md)
-* [Troop](RPG.Troop.md)([$dataTroops](global.md#datatroops-arrayrpgtroop)) . [Member](RPG.Troop.Member.md)
-* [Damage](RPG.Damage.md)
-* [Effect](RPG.Effect.md)
-* [Trait](RPG.Trait.md)
+* [RPG.Animation](RPG.Animation.md)([$dataAnimations](global.md#dataanimations-arrayrpganimation))
+* [RPG.Animation.Timing](RPG.Animation.Timing.md)
+* [RPG.AudioFile](RPG.AudioFile.md)
+* [RPG.MapInfo](RPG.MapInfo.md)([$dataMapInfos](global.md#datamapinfos-arrayrpgmapinfo))
+* [RPG.System](RPG.System.md)([$dataSystem](global.md#datasystem-rpgsystem)) 
+* [RPG.System.Advanced](RPG.System.Advanced.md) **@MZ** 
+* [RPG.System.titleCommandWindow](RPG.System.titleCommandWindow.md) **@MZ** 
+* [RPG.System.AttackMotion](RPG.System.AttackMotion.md)
+* [RPG.System.Terms](RPG.System.Terms.md) 
+* [RPG.System.TestBattler](RPG.System.TestBattler.md)
+* [RPG.System.Vehicle](RPG.System.Vehicle.md)
+* [RPG.Troop](RPG.Troop.md)([$dataTroops](global.md#datatroops-arrayrpgtroop))
+* [RPG.Troop.Member](RPG.Troop.Member.md)
+* [RPG.Damage](RPG.Damage.md)
+* [RPG.Effect](RPG.Effect.md)
+* [RPG.Trait](RPG.Trait.md)
 
 
 ## オブジェクト
@@ -229,7 +244,6 @@ namespace JsExtensions
 * [Game_Message](Game_Message.md)([$gameMessage](global.md#gamemessage-game_message))
 * [Game_Picture](Game_Picture.md)
 * [Game_Screen](Game_Screen.md)([$gameScreen](global.md#gamescreen-game_screen))
-
 
 
 ## 画像
