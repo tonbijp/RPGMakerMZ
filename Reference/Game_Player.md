@@ -30,10 +30,17 @@ v1.1.0、v1.2.0  で変更あり。
 | `_newX` | [Number](Number.md) | 移動先のマップ上の x位置(タイル数) |
 | `_newY` | [Number](Number.md) | 移動先のマップ上の y位置(タイル数) |
 | `_newDirection` | [Number](Number.md) | 移動先での向き(テンキー対応) |
-| `_fadeType` | [Number](Number.md) | フェードの種類 |
+| `_fadeType` | [Number](Number.md) | [フェードの種類](#フェードの種類) |
 | `_followers` | [Game_Followers](Game_Followers.md) | 隊列メンバ |
 | `_encounterCount` | [Number](Number.md) | エンカウントのカウント |
 
+#### フェードの種類
+
+| 番号 | 説明 |
+| --- | --- |
+| 0 | 黒 |
+| 1 | 白 |
+| 2 | なし |
 
 ### スーパークラスから継承されたメソッド
 
@@ -249,7 +256,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### fadeType () → {[Number](Number.md)}
-[場所移動]時の[フェード]を返す。
+[場所移動]時の[フェードの種類](#フェードの種類)を返す。
 
 
 #### followers () → {[Game_Followers](Game_Followers.md)}
@@ -420,7 +427,7 @@ v1.1.0、v1.2.0  で変更あり。
 | `x` | [Number](Number.md) |  | マップ上の x位置(タイル数) |
 | `y` | [Number](Number.md) |  | マップ上の y位置(タイル数) |
 | `d` | [Number](Number.md) | &lt;optional&gt; |  向き(テンキー対応) |
-| `fadeType` | [Number](Number.md) | &lt;optional&gt; |  |
+| `fadeType` | [Number](Number.md) | &lt;optional&gt; | [フェードの種類](#フェードの種類) |
 
 
 #### setupForNewGame ()
