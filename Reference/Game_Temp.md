@@ -28,6 +28,16 @@
 | `_balloonQueue` | [Array](Array.md).&lt;[MV.BalloonRequest](MV.BalloonRequest.md)&gt; | **@MZ** フキダシキュー |
 | `_lastActionData` | [Array](Array.md) | **@MZ** 最後の行動データ |
 
+#### アクションタイプ
+
+| 番号 | 説明 |
+| --- | ---|
+| 0 | スキル |
+| 1 | アイテム |
+| 2 | 行動したアクター |
+| 3 | 行動した敵 |
+| 4 | 対象となったアクター |
+| 5 | 対象となった敵 |
 
 ### 廃止MVプロパティ
 `_commonEventId`
@@ -86,7 +96,7 @@
 
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
-| `type` | [String](String.md)  | アクションタイプ |
+| `type` | [String](String.md)  | [アクションタイプ](#アクションタイプ) |
 
 
 #### reserveCommonEvent (commonEventId)
@@ -151,13 +161,12 @@
 
 #### setLastActionData (type, value)
 **@MZ** 最後のアクションデータを設定。
-0:スキル, 1:アイテム, 2:行動したアクター, 3:行動した敵, 4:対象となったアクター, 5:対象となった敵,
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `type` | [Number](Number.md)  | アクションタイプ |
+| `type` | [Number](Number.md)  | [アクションタイプ](#アクションタイプ) |
 | `value` | Object | アクションデータ |
 
 
