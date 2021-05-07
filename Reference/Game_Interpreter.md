@@ -5,8 +5,6 @@
 ### new Game_Interpreter (depth)
 [実行内容]に書かれたイベントコマンドを実行するクラス。 
 
-このクラスはプラグインコマンドを処理する[pluginCommand](Game_Interpreter.md#plugincommand-command-args)を含む。
-
 イベントコマンドの[スクリプト]を実行する際は、このオブジェクトのインスタンスが this になるので、少々乱暴だが拡張コマンドをメソッドとして追加すると便利。
 
 実行箇所や [[トリガー]](RPG.EventPage.md#トリガー) が[並列実行]であるかによって、Game_Interpreter を保持しているオブジェクトは次の異なったものがある。<br />
@@ -257,8 +255,11 @@ param1, param2 は type によって意味が変わる引数で、例えば type
 
 
 #### pluginCommand (command, args)
- プラグインコマンドを受け取るメソッド。
+ プラグインコマンドを受け取るメソッド。<br />
  このメソッドにプラグイン毎の処理を追加。 Example のような書き方が定番。
+
+ 『RPGツクールMV』との互換のために残してあるが、通常利用しない。<br />
+ 『RPGツクールMZ』では、[PluginManager.registerCommand()](PluginManager.md#static-registercommand-pluginname-commandname-func) で行う。
 
 ##### 引数
 
