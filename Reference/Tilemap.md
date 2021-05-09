@@ -9,7 +9,7 @@
 
 静的メソッドを多く持つユーティリティクラスでもある。
 
-MZで新規にインナークラス Tilemap.Layer が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
+MZで新規にインナークラス [Tilemap.Layer](Tilemap.Layer.md) が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
 
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
@@ -56,13 +56,13 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 | `height` | [Number](Number.md) | 画面高さ(規定値:816 ピクセル) (参照:[Graphics.height](Graphics.md)) |
 | `horizontalWrap` | Boolean | 横方向にループするか |
 | `verticalWrap` | Boolean | 縦方向にループするか |
-| `_tileWidth` | [Number](Number.md) | タイル幅 |
-| `_tileHeight` | [Number](Number.md) | タイル高さ |
-| `_width` | [Number](Number.md) | 画面幅 |
-| `_height` | [Number](Number.md) | 画面高さ |
-| `_margin` | [Number](Number.md) | マージン |
-| `_mapWidth` | [Number](Number.md) | マップ幅 |
-| `_mapHeight` | [Number](Number.md) | マップ高さ |
+| `_tileWidth` | [Number](Number.md) |  |
+| `_tileHeight` | [Number](Number.md) |  |
+| `_width` | [Number](Number.md) |  |
+| `_height` | [Number](Number.md) |  |
+| `_margin` | [Number](Number.md) | マージン(規定値:20) |
+| `_mapWidth` | [Number](Number.md) | マップ幅(タイル数) |
+| `_mapHeight` | [Number](Number.md) | マップ高さ(タイル数) |
 | `_mapData` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 1次元配列によるマップのデータ(参照: [RPG.Map.data](RPG.Map.md#マップデータ)) |
 | `_bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列 |
 | `_upperLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 高層[☆]タイル( z = 4 ) |
