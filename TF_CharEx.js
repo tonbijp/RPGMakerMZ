@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.2.0.0
+// Version :0.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -199,16 +199,16 @@
  *
  * @arg characterNumber @text キャラクター番号
  * @desc
- * [1234]
- * [5678] 0は現在値
- * @type number @default 0
- * @min 0 @max 8
+ * [0123]
+ * [4567] (規定値:-1 そのまま)
+ * @type number @default -1
+ * @min -1 @max 7
  *
  * @arg animePattern @text パターン
  * @desc
- *  パターンの列(規定値:現在値)
+ *  パターンの列(規定値:↓現在列)
  * @type select @default -1
- * @option 現在値 @value -1
+ * @option ↓現在列 @value -1
  * @option ↓・・ 左列 @value 0
  * @option ・↓・ 中央列 @value 1
  * @option ・・↓ 右列 @value 2
@@ -243,16 +243,16 @@
  *
  * @arg characterNumber @text キャラクター番号
  * @desc
- * [1234]
- * [5678] (規定値:0 そのまま)
- * @type number @default 0
- * @min 0 @max 8
+ * [0123]
+ * [4567] (規定値:-1 そのまま)
+ * @type number @default -1
+ * @min -1 @max 7
  *
  * @arg patternNumber @text 歩行パターン
  * @desc
- *  パターンの列(規定値:そのまま)
+ *  パターンの列(規定値:↓現在列)
  * @type select @default -1
- * @option そのまま @value -1
+ * @option ↓現在列 @value -1
  * @option ↓・・ 左列 @value 0
  * @option ・↓・ 中央列 @value 1
  * @option ・・↓ 右列 @value 2
@@ -415,16 +415,16 @@
  *
  * @arg characterNumber @text キャラクター番号
  * @desc
- * [1234]
- * [5678] (規定値:0 そのまま)
- * @type number @default 0
- * @min 0 @max 8
+ * [0123]
+ * [4567] (規定値:-1 そのまま)
+ * @type number @default -1
+ * @min -1 @max 7
  *
  * @arg patternNumber @text 歩行パターン
  * @desc
- *  パターンの列(規定値:そのまま)
+ *  パターンの列(規定値:↓現在列)
  * @type select @default -1
- * @option そのまま @value -1
+ * @option ↓現在列 @value -1
  * @option ↓・・ 左列 @value 0
  * @option ・↓・ 中央列 @value 1
  * @option ・・↓ 右列 @value 2
@@ -800,7 +800,7 @@
 	 *
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
 	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下) (規定値: targetEventの指定)
-	 * @param {String} characterNumber キャラクタ番号( 0~7 )
+	 * @param {String} characterNumber キャラクタ番号( -1~7 )
 	 * @param {String} patternNumber パターン番号( 0~2 )
 	 * @param {String} d キャラの向き(テンキー対応)
 	 */
@@ -811,7 +811,7 @@
 		}
 
 		// キャラ番号
-		if( characterNumber === undefined || characterNumber === "" ) {
+		if( characterNumber === -1 || isNaN( characterNumber ) ) {
 			characterNumber = targetEvent.characterIndex();
 		}
 
@@ -1212,17 +1212,33 @@
 	/**
 	 * [ キャラパターン指定アニメ ]の実行。
 	 *
+	 * 実際は args の中身
 	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
 	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下)
-	 * @param {String} characterNumber キャラクタ番号( 1~8 )
-	 * @param {String} animePattern パターン番号( 0:[] 1:[] 2:[] 3:[] )
-	 * @param {String} waitFrames 待ちフレーム数
+	 * @param {Number} characterNumber キャラクタ番号( 1~8 )
+	 * @param {Number} animePattern アニメ再生パターン(-1〜8)
+	 * @param {Number} waitFrames 待ちフレーム数
 	 *  
 	 */
 	const VD_1LINE = 0;	// ↓
 	const VU_1LINE = 1;	// ↑
 	const VD_3LINE = 2;	// ┬│↓
 	const VU_3LINE = 3;	// ↑│┴
+
+	const LEFT_PATTERN = 0;
+	const CENTER_PATTERN = 1;
+	const RIGHT_PATTERN = 2;
+
+	// animePattern
+	const CURRENT_PATTERN = -1; // ↓現在列 @value -1
+	const LEFT_DOWN = 0; // ↓・・ 左列 @value 0
+	const CENTER_DOWN = 1; // ・↓・ 中央列 @value 1
+	const RIGHT_DOWN = 2; // ・・↓ 右列 @value 2
+	const LEFT_UP = 3; // ↑・・ 左列 @value 3
+	const CENTER_UP = 4; // ・↑・ 中央列 @value 4
+	const RIGHT_UP = 5; // ・・↑ 右列 @value 5
+	const ALL_DOWN = 6; // ┬│↓ 左列から順に全て @value 6
+	const ALL_UP = 7; // ↑│┴ 右列から順に全て @value 7
 	function patternAnime( args ) {
 		const eventId = stringToEventId( args.eventId );
 		const targetEvent = getEventById( this, eventId );
@@ -1231,26 +1247,26 @@
 			parseInt( args.waitFrames, 10 );
 
 		let animeType;
-		let animePattern;
-		if( args.animePattern === 0 ) {
-			animePattern = undefined;
+		let patternNumber;
+		if( args.animePattern === CURRENT_PATTERN ) {
+			patternNumber = undefined;
 			animeType = VD_1LINE;
-		} else if( args.animePattern < 3 ) {
-			animePattern = args.animePattern;
+		} else if( args.animePattern <= RIGHT_DOWN ) {
+			patternNumber = args.animePattern;
 			animeType = VD_1LINE;
-		} else if( args.animePattern < 6 ) {
-			animePattern = args.animePattern - 3;
+		} else if( args.animePattern <= RIGHT_UP ) {
+			patternNumber = args.animePattern - 3;
 			animeType = VU_1LINE;
-		} else if( args.animePattern === 6 ) {
-			animePattern = 0;
+		} else if( args.animePattern === ALL_DOWN ) {
+			patternNumber = LEFT_PATTERN;
 			animeType = VD_3LINE;
-		} else if( args.animePattern === 7 ) {
-			animePattern = 2;
+		} else if( args.animePattern === ALL_UP ) {
+			patternNumber = RIGHT_PATTERN;
 			animeType = VU_3LINE;
 		} else {
-			throw Error( `[${args.animePattern} is illegal animation pattern.` );
+			throw `[${args.animePattern} is illegal animation pattern.`;
 		}
-		setCharPattern( targetEvent, args.fileName, args.characterNumber, animePattern );
+		setCharPattern( targetEvent, args.fileName, args.characterNumber, patternNumber );
 		const tempDirectionFix = targetEvent.isDirectionFixed();
 		targetEvent.setDirectionFix( false );
 
