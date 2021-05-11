@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.2.0
+// Version :0.5.4.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -80,7 +80,6 @@
  * @desc 画面左上からのウィンドウ位置
  * x,y 形式の数値を入力し auto は自動
  * @type string @default auto
- * @on 左(規定値) @off 右
  */
 /*~struct~WindowParam:ja
  *
@@ -144,6 +143,7 @@
 	const POSITION_UP = 0;
 	const POSITION_MIDDLE = 1;
 	const POSITION_DOWN = 2;
+	const POSITION_FREE = 20;
 
 	const POSITION_LEFT = "left";
 	const POSITION_CENTER = "center";
@@ -182,6 +182,7 @@
 	/**
 	 * プラグインコマンドの登録
 	 */
+	const AUTO_SETTING = "auto";
 	//  [ウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, args => {
 		const messageWindow = SceneManager._scene._messageWindow;
@@ -191,13 +192,13 @@
 		if( newWindowType === ERROR_NUMBER ) {
 			throw new Error( `"${args.windowType}" is wrong window type.` );
 		}
-		if(
-			newWindowType === messageWindow.TF_windowType
-			&& faceAlign === messageWindow.TF_faceAlign
-		) return;
 		setWindowParam( messageWindow, newWindowType );
 		messageWindow.TF_faceAlign = faceAlign;
-		setMessageParam( messageWindow );
+		if( args.pos === AUTO_SETTING ) {
+			setMessageParam( messageWindow );
+		} else {
+			setMessageParam( messageWindow, stringToPoint( args.pos ) );
+		}
 	} );
 
 	/**
@@ -245,7 +246,7 @@
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
-		this._backSprite.bitmap = new Bitmap( this.width, this.height );
+		setupBitmap( this._backSprite, this.width, this.height );
 		this._backSprite.setFrame( 0, 0, this.width, this.height );
 		drawWindowBack( this );
 	};
@@ -282,7 +283,7 @@
 		if( this._data && this._data.WindowSkin ) return _Window__refreshFrame.call( this );
 		if( this.TF_shape === SHAPE_NONE ) return;
 
-		this._frameSprite.bitmap = new Bitmap( this.width, this.height );
+		setupBitmap( this._frameSprite, this.width, this.height );
 		this._frameSprite.setFrame( 0, 0, this.width, this.height );
 
 		drawWindowFrame( this );
@@ -296,6 +297,21 @@
 		const ctx = tw._frameSprite.bitmap.context;
 		setBorderParam( ctx, tw.TF_windowType );
 		ctx.stroke( path2d );
+	}
+
+	/**
+	 * スプライトに指定サイズのビットマップを設定する
+	 * @param {Sprite} sprite スプライト
+	 * @param {Number} width 幅
+	 * @param {Number} height 高さ
+	 */
+	function setupBitmap( sprite, width, height ) {
+		if( sprite.bitmap ) {
+			sprite.bitmap.clear();
+			sprite.bitmap.resize( width, height );
+		} else {
+			sprite.bitmap = new Bitmap( width, height );
+		}
 	}
 
 	/**
@@ -343,7 +359,7 @@
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
 		this.TF_windowType = WINDOW_TYPE_TALK;
-		// this._positionType = POSITION_DOWN;	// 先に位置を指定しておかないと、ウィンドウ生成時に形がおかしくなる
+
 		_Window_Message_initialize.apply( this, arguments );
 
 		this.TF_faceAlign = POSITION_LEFT;
@@ -353,8 +369,10 @@
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
 	Window_Message.prototype.updatePlacement = function() {
 		const goldWindow = this._goldWindow;
-		this._positionType = $gameMessage.positionType();
-		this.y = messageView.y + ( this._positionType * ( messageView.height - this.height ) ) / 2;
+		if( this._positionType !== POSITION_FREE ) {
+			this._positionType = $gameMessage.positionType();
+			this.y = messageView.y + ( this._positionType * ( messageView.height - this.height ) ) / 2;
+		}
 		if( goldWindow ) {
 			goldWindow.y = this.y > 0 ? 0 : Graphics.boxHeight - goldWindow.height;
 		}
@@ -484,11 +502,17 @@
 	/**
 	 * ウィンドウの数値設定
 	 * @param {Window_Message} tw 対象ウィンドウ
-	 * @param {Number} faceAlign 顔表示位置
+	 * @param {Point} pos 表示位置(省略可)
 	 */
-	function setMessageParam( tw ) {
-		tw.x = messageView.x;
-		tw.width = messageView.width;
+	function setMessageParam( tw, pos ) {
+		if( pos ) {
+			tw._positionType = POSITION_FREE;
+			tw.x = pos.x;
+			tw.y = pos.y;
+		} else {
+			tw.x = messageView.x;
+		}
+		tw._width = messageView.width;
 		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
 		tw._clientArea.move( tw._padding, tw._padding );
 		tw._refreshAllParts();
@@ -707,13 +731,23 @@
 
 	/*--- ユーティリティ関数 ---*/
 	/**
+	 * 文字列をPointオブジェクトに変換して返す。
+	 * @param {String} pointStr "x, y" 形式の文字列
+	 * @returns {Point} 
+	 */
+	function stringToPoint( pointStr ) {
+		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
+		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
+	}
+	/**
 	 * 文字列を Rectangle に変換して返す
-	 * @param {String} rectString "x,y,w,h" 形式で数値を書いた文字列
+	 * @param {String} rectStr "x,y,w,h" 形式で数値を書いた文字列
 	 * @returns {Rectangle}
 	 */
-	function stringToRectangle( rectString ) {
-		const args = rectString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${rectString}"`;
+	function stringToRectangle( rectStr ) {
+		const args = rectStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${rectStr}"`;
 		return new Rectangle( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ), parseFloat( args[ 3 ] ), parseFloat( args[ 4 ] ) );
 	}
 
@@ -734,12 +768,11 @@
 
 	const _Window_NameBox_updatePlacement = Window_NameBox.prototype.updatePlacement;
 	Window_NameBox.prototype.updatePlacement = function() {
-		_Window_NameBox_updatePlacement.call( this );
-		if( nameWithFace ) {
-			const tw = this._messageWindow;
-			this.x += tw.margin;
-			this.y = tw.y + tw.height - tw.padding - NAME_HEIGHT;
-		};
+		if( !nameWithFace ) return _Window_NameBox_updatePlacement.call( this );
+
+		const tw = this._messageWindow;
+		this.x += tw.margin;
+		this.y = tw.y + tw.height - tw.padding - NAME_HEIGHT;
 	};
 
 	Window_NameBox.prototype._refreshAllParts = function() {
@@ -756,10 +789,14 @@
 
 	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
 	Window_NameBox.prototype.windowWidth = function() {
-		if( this._name && nameWithFace ) {
-			this.textWidthEx = this.textSizeEx( this._name ).width;
-			const padding = this.padding + this.itemPadding();
-			return ImageManager.faceWidth + padding * 2;
+		if( nameWithFace ) {
+			if( this._name ) {
+				this.textWidthEx = this.textSizeEx( this._name ).width;
+				const padding = this.padding + this.itemPadding();
+				return ImageManager.faceWidth + padding * 2;
+			} else {
+				return this.textWidthEx = 0;
+			}
 		}
 		return _Window_NameBox_windowWidth.call( this );
 	};
