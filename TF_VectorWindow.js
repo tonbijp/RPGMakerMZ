@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.4.0
+// Version :0.5.5.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -64,8 +64,8 @@
  * 
  * @================================================
  * @command setWindow @text ウィンドウの準備
- * @desc [文章の表示]コマンドの前に実行します。
- * 一回表示されると規定値に戻ります。
+ * @desc [文章の表示]コマンドの前に実行すること。
+ * 一回表示されるとウィンドウタイプは規定値に戻る。
  *
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
@@ -77,9 +77,10 @@
  * @on 左(規定値) @off 右
  *
  * @arg pos @text ウィンドウ位置
- * @desc 画面左上からのウィンドウ位置
- * x,y 形式の数値を入力し auto は自動
- * @type string @default auto
+ * @desc 画面左上から x,y の座標
+ * command は[文章の表示]に従う
+ * @type combo @default command
+ * @option command
  */
 /*~struct~WindowParam:ja
  *
@@ -183,21 +184,23 @@
 	 * プラグインコマンドの登録
 	 */
 	const AUTO_SETTING = "auto";
+	const COMMAND_SETTING = "command";
 	//  [ウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, args => {
-		const messageWindow = SceneManager._scene._messageWindow;
-		if( !messageWindow ) return;
+		const tw = SceneManager._scene._messageWindow;
+		if( !tw ) return;
 		const newWindowType = getWindowType( args.windowType );
 		const faceAlign = args.isFaceLeft ? POSITION_LEFT : POSITION_RIGHT;
 		if( newWindowType === ERROR_NUMBER ) {
 			throw new Error( `"${args.windowType}" is wrong window type.` );
 		}
-		setWindowParam( messageWindow, newWindowType );
-		messageWindow.TF_faceAlign = faceAlign;
-		if( args.pos === AUTO_SETTING ) {
-			setMessageParam( messageWindow );
+		setWindowParam( tw, newWindowType );
+		tw.TF_faceAlign = faceAlign;
+		if( args.pos === COMMAND_SETTING ) {
+			tw._positionType = null;// 位置
+			setMessageParam( tw );
 		} else {
-			setMessageParam( messageWindow, stringToPoint( args.pos ) );
+			setMessageParam( tw, stringToPoint( args.pos ) );
 		}
 	} );
 
@@ -427,17 +430,15 @@
 	};
 	function closeFacePicture() {
 		const facePicture = SceneManager._scene.TF_facePicture;
-		facePicture.visible = false;
 		facePicture.bitmap.clear();
 	}
 
-	// 終了時にウィンドウタイプを規定値(0)、顔を左に戻す
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
-		setWindowParam( this, WINDOW_TYPE_TALK );
-		this.TF_faceAlign = POSITION_LEFT;
-		setMessageParam( this );
+		setWindowParam( this, WINDOW_TYPE_TALK ); // ウィンドウタイプをメッセージの規定値に
+		// this.TF_faceAlign = POSITION_LEFT;
+		// setMessageParam( this );
 	};
 
 
@@ -843,7 +844,7 @@
 			this.bitmap.blt( bitmap, sx, sy, sw, sh, 0, 0 );
 			this.setFrame( 0, 0, sw, sh );
 			this.visible = true;
-		};
+		}
 	}
 
 } )();
