@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.0.0.0
+// Version :1.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -101,6 +101,7 @@
  * @================================================
  * @command variable @text 変数の操作
  * @desc 数値は小数値も扱う
+ * 数値以外が入った変数の動作は保証しない
  *
  * @arg name @text 変数の名前
  * @desc 指定変数
@@ -127,6 +128,26 @@
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default 100
  *
+ * @================================================
+ * @command textVariable @text 文字変数の操作
+ * @desc 変数に対して文字を代入
+ * 数値が含まれていても文字列として代入される
+ *
+ * @arg name @text 変数の名前
+ * @desc 指定変数
+ * @type string @default it
+ *
+ * @arg operate @text 操作
+ * @desc 規定値: 指定変数に代入 =
+ * @type select @default =
+ * @option 指定変数に代入 = @value =
+ * @option 結合 += @value +=
+ * @option 結合して一時変数に + @value +
+ *
+ * @arg operand @text オペランド(値)
+ * @desc 文字列(\V[n]を使用できる)
+ * @type string @default \V[1]
+ * 
  * @================================================
  * @command selfSwitch @text セルフスイッチの操作
  * @desc 指定イベントのセルフスイッチを設定。
@@ -626,6 +647,7 @@
 	/*---- プラグインコマンド識別子 ----*/
 	const COM_SWITCH = "switch";
 	const COM_VARIABLE = "variable";
+	const COM_TEXT_VARIABLE = "textVariable";
 	const COM_SELFSWITCH = "selfSwitch";
 
 	const COM_CHECK_SWITCH = "checkSwitch";
@@ -668,6 +690,22 @@
 			case "/": $gameVariables.setValueByName( variableItId, value / operand ); break;
 			case "%": $gameVariables.setValueByName( variableItId, value % operand ); break;
 			case "//": $gameVariables.setValueByName( variableItId, Mathi.floor( value / operand ) ); break;
+		}
+	} );
+
+	// [文字変数の操作]
+	PluginManagerEx.registerCommand( document.currentScript, COM_TEXT_VARIABLE, function( args ) {
+		const operand = String( args.operand );
+		if( args.operate === "=" ) {
+			$gameVariables.setValueByName( args.name, operand );
+			return;
+		}
+		const value = String( $gameVariables.valueByName( args.name ) );
+		switch( args.operate ) {
+			// 指定変数に代入
+			case "+=": $gameVariables.setValueByName( args.name, value + operand ); break;
+			// 一時変数に代入
+			case "+": $gameVariables.setValueByName( variableItId, value + operand ); break;
 		}
 	} );
 
@@ -867,7 +905,7 @@
 	 * @param {String|Number} value 設定する値
 	 */
 	Game_Variables.prototype.setValueByName = function( name, value ) {
-		variableId = stringToVariableId( name );
+		const variableId = stringToVariableId( name );
 		if( 0 < variableId && variableId < $dataSystem.variables.length ) {
 			this._data[ variableId ] = value;
 			this.onChange();
