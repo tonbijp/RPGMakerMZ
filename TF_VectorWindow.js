@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.1.0
+// Version :0.5.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -230,7 +230,15 @@
 		}
 	};
 
-	// _colorTone を反映させるため、_refreshBack の方で描画
+	const _Window__refreshAllParts = Window.prototype._refreshAllParts;
+	Window.prototype._refreshAllParts = function() {
+		// SceneCustomMenu.js のスキンの設定がなければ、パスを先読みしておく
+		if( !this._data || !this._data.WindowSkin ) {
+			this.TF_path2d = getWindowPath( this );
+		}
+		_Window__refreshAllParts.call( this );
+	};
+
 	const _Window__refreshBack = Window.prototype._refreshBack;
 	Window.prototype._refreshBack = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
@@ -239,15 +247,14 @@
 
 		this._backSprite.bitmap = new Bitmap( this.width, this.height );
 		this._backSprite.setFrame( 0, 0, this.width, this.height );
-		const path2d = getWindowPath( this );
-		drawWindowBack( this, path2d );
+		drawWindowBack( this );
 	};
 	/**
 	 * ウィンドウ背景描画
-	 * @param {Window_Message} tw 対象ウィンドウ
-	 * @param {Path2D} path2d 描画するパス
+	 * @param {Window} tw 対象ウィンドウ
 	 */
-	function drawWindowBack( tw, path2d ) {
+	function drawWindowBack( tw ) {
+		const path2d = tw.TF_path2d;
 		const ctx = tw._backSprite.bitmap.context;
 		let bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
 
@@ -269,7 +276,6 @@
 		//if( !dropShadow ) setShadowParam( ctx );
 	}
 
-	// _refreshBack でウィンドウを描画しているので _refreshFrame は機能させない
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
 	Window.prototype._refreshFrame = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
@@ -279,15 +285,14 @@
 		this._frameSprite.bitmap = new Bitmap( this.width, this.height );
 		this._frameSprite.setFrame( 0, 0, this.width, this.height );
 
-		const path2d = getWindowPath( this );
-		drawWindowFrame( this, path2d );
+		drawWindowFrame( this );
 	};
 	/**
 	 * ウィンドウ枠描画
-	 * @param {Window_Message} tw 対象ウィンドウ
-	 * @param {Path2D} path2d 描画するパス
+	 * @param {Window} tw 対象ウィンドウ
 	 */
-	function drawWindowFrame( tw, path2d ) {
+	function drawWindowFrame( tw ) {
+		const path2d = tw.TF_path2d;
 		const ctx = tw._frameSprite.bitmap.context;
 		setBorderParam( ctx, tw.TF_windowType );
 		ctx.stroke( path2d );
@@ -295,7 +300,7 @@
 
 	/**
 	 * ウィンドウのパスを得る
-	 * @param {Window_Message} tw 対象ウィンドウ
+	 * @param {Window} tw 対象ウィンドウ
 	 * @returns  {Path2D} 描画するパス
 	 */
 	function getWindowPath( tw ) {
@@ -732,6 +737,7 @@
 		_Window_NameBox_updatePlacement.call( this );
 		if( nameWithFace ) {
 			const tw = this._messageWindow;
+			this.x += tw.margin;
 			this.y = tw.y + tw.height - tw.padding - NAME_HEIGHT;
 		};
 	};
@@ -750,17 +756,12 @@
 
 	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
 	Window_NameBox.prototype.windowWidth = function() {
-		if( nameWithFace ) {
-			if( this._name ) {
-				this.textWidthEx = this.textSizeEx( this._name ).width;
-				const padding = this.padding + this.itemPadding();
-				return ImageManager.faceWidth + padding * 2;
-			} else {
-				return 0;
-			}
-		} else {
-			return _Window_NameBox_windowWidth.call( this );
+		if( this._name && nameWithFace ) {
+			this.textWidthEx = this.textSizeEx( this._name ).width;
+			const padding = this.padding + this.itemPadding();
+			return ImageManager.faceWidth + padding * 2;
 		}
+		return _Window_NameBox_windowWidth.call( this );
 	};
 
 	const _Window_NameBox_refresh = Window_NameBox.prototype.refresh;
@@ -781,7 +782,7 @@
 		_Scene_Message_createAllWindows.call( this );
 
 		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 0, 0 ) );
-		this.addChild( this.TF_facePicture );
+		this.addWindow( this.TF_facePicture );
 	};
 
 	/*--- Sprite_FacePicture ---*/
@@ -793,10 +794,9 @@
 			this.bitmap.resize( ImageManager.faceWidth, ImageManager.faceHeight );
 		}
 		moveOnMessageWindow( tw ) {
-			const dx = Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 );
-			const dy = Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 );
-			this.x = dx + tw.x + tw.padding + IMG_MARGIN;
-			this.y = dy + tw.y + tw.height - ImageManager.faceHeight - NAME_HEIGHT;
+			this.x = tw.x + tw.padding + IMG_MARGIN;
+			this.y = tw.y + tw.height - tw.padding - ImageManager.faceHeight;
+			if( nameWithFace ) this.y -= NAME_HEIGHT;
 		}
 		drawFace( bitmap, faceIndex ) {
 			const sw = ImageManager.faceWidth;
