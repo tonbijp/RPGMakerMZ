@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.1.0.0
+// Version :1.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -131,7 +131,7 @@
  * @================================================
  * @command textVariable @text 文字変数の操作
  * @desc 変数に対して文字を代入
- * 数値が含まれていても文字列として代入される
+ * 数値が含まれていても文字として代入される
  *
  * @arg name @text 変数の名前
  * @desc 指定変数
@@ -145,7 +145,7 @@
  * @option 結合して一時変数に + @value +
  *
  * @arg operand @text オペランド(値)
- * @desc 文字列(\V[n]を使用できる)
+ * @desc 変数に代入する文字(\V[n]を使用できる)
  * @type string @default \V[1]
  * 
  * @================================================
@@ -163,7 +163,7 @@
  * @type string @default this
  *
  * @arg type @text タイプ
- * @desc 任意の文字列が指定できるが
+ * @desc 任意の文字が指定できるが
  * 通常のイベントコマンドでは使えない。
  * @type combo @default A
  * @option A @option B @option C @option D
@@ -213,7 +213,7 @@
  * @type string @default this
  *
  * @arg type @text タイプ
- * @desc 任意の文字列が指定できるが
+ * @desc 任意の文字が指定できるが
  * 通常のイベントコマンドでは使えない。
  * @type combo @default A
  * @option A @option B @option C @option D
@@ -253,11 +253,12 @@
  * @arg leftSide @text 左辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
- * 
+ *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
+ * @option 以外 != @value !=
  * @option 以上 ≦ @value ≦
  * @option より上 < @value <
  * @option 以下 ≧ @value ≧
@@ -266,6 +267,33 @@
  * @arg rightSide @text 右辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
+ *
+ * @arg operate @text 論理演算
+ * @desc 結果の扱い(規定値:get)
+ * @type select @default get
+ * @option 一時スイッチに代入 get @value get
+ * @option 一時スイッチとの論理積 and @value and
+ * @option 一時スイッチとの論理和 or @value or
+ * @option 一時スイッチと同じ == @value ==
+ * 
+ * @================================================
+ * @command checkCompareText @text 判定:文字比較
+ * @desc
+ * 一時変数と比較した結果を一時スイッチに設定。
+ *
+ * @arg leftSide @text 左辺の文字変数
+ * @desc 変数の名前、\V[n]いずれか
+ * @type string @default it
+ *
+ * @arg compare @text 比較演算子
+ * @desc (規定値: ==)
+ * @type select @default ==
+ * @option 同じ == @value ==
+ * @option 以外 != @value !=
+ *
+ * @arg rightSide @text 右辺の文字
+ * @desc 文字(\V[n]を使える)
+ * @type string @default 
  *
  * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
@@ -421,7 +449,7 @@
  * @desc 出現条件は[実行内容]の上の方に並べて使います。
  * (なお、これは区切り線なので選択しても何も起きません)
  * 
- * @================================================TODO: MZプラグインコマンドに変更
+ * @================================================
  * @command conditionSwitch @text 出現条件:スイッチ
  * @desc
  *
@@ -446,7 +474,7 @@
  * @type string @default this
  *
  * @arg type @text タイプ
- * @desc 任意の文字列が指定できるが
+ * @desc 任意の文字が指定できるが
  * 通常のイベントコマンドでは使えない。
  * @type combo @default A
  * @option A @option B @option C @option D
@@ -460,7 +488,7 @@
  * @arg nameList @text スイッチ名リスト
  * @desc スイッチを名前で指定
  * @type string[] @default ["it", "done"]
- * 
+ *
  * @================================================
  * @command conditionCompare @text 出現条件:数値比較
  * @desc
@@ -474,6 +502,7 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
+ * @option 以外 != @value !=
  * @option 以上 ≦ @value ≦
  * @option より上 < @value <
  * @option 以下 ≧ @value ≧
@@ -482,6 +511,25 @@
  * @arg rightSide @text 右辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
+ * 
+ * @================================================
+ * @command conditionCompareText @text 出現条件:文字比較
+ * @desc
+ * 一時変数と比較した結果を一時スイッチに設定。
+ *
+ * @arg leftSide @text 左辺の文字変数
+ * @desc 変数の名前(\V[n]を使える)
+ * @type string @default it
+ *
+ * @arg compare @text 比較演算子
+ * @desc (規定値: ==)
+ * @type select @default ==
+ * @option 同じ == @value ==
+ * @option 以外 != @value !=
+ *
+ * @arg rightSide @text 右辺の文字
+ * @desc 文字(\V[n]を使える)
+ * @type string @default
  *
  * @================================================
  * @command conditionRange @text 出現条件:数値範囲
@@ -654,6 +702,7 @@
 	const COM_CHECK_SELFSWITCH = "checkselfSwitch";
 	const COM_CHECK_MULTIPLE = "checkMultiple";
 	const COM_CHECK_COMPARE = "checkCompare";
+	const COM_CHECK_COMPARE_TEXT = "checkCompareText";
 	const COM_CHECK_RANGE = "checkRange";
 
 	const COM_CHECK_LOCATION = "checkLocation";
@@ -713,7 +762,6 @@
 	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
 		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( args.operand ) );
 	} );
-
 
 	// [スイッチ判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SWITCH, function( args ) {
@@ -785,10 +833,26 @@
 		const rightSide = stringToNumber( args.rightSide );
 		switch( args.compare ) {
 			case "==": return leftSide === rightSide;
+			case "!=": return leftSide !== rightSide;
 			case "≦": return leftSide <= rightSide;
 			case "<": return leftSide < rightSide;
 			case "≧": return leftSide >= rightSide;
 			case ">": return leftSide > rightSide;
+		}
+	}
+
+	// [文字比較]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_COMPARE_TEXT, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
+		const value = checkCompareText( args );
+		setItTo( value, args.operate );
+	} );
+	function checkCompareText( args ) {
+		const leftSide = String( $gameVariables.valueByName( args.leftSide ) );
+		const rightSide = String( args.rightSide );
+		switch( args.compare ) {
+			case "==": return leftSide === rightSide;
+			case "!=": return leftSide !== rightSide;
 		}
 	}
 
@@ -817,10 +881,8 @@
 		return $gameSwitches.valueByName( value );
 	}
 
-	// TODO
 
 	/*---- Game_Interpreter ----*/
-
 	/**
 	 * プレイヤー前方に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | here | this
@@ -881,7 +943,7 @@
 	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {String} x 対象x座標(タイル数)
 	 * @param {String} y 対象y座標(タイル数)
-	 * @param {String} d プレイヤーの向き(テンキー対応 | 方向文字列)
+	 * @param {String} d プレイヤーの向き(テンキー対応)
 	 * @returns {Boolean} 指定座標と向きがプレイヤーと合致しているか
 	 */
 	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d ) {
@@ -987,11 +1049,12 @@
 	}
 
 
-
+	// 出現条件判定
 	const CONDITION_SWITCH = "conditionSwitch";
 	const CONDITION_SELFSWITCH = "conditionselfSwitch";
 	const CONDITION_MULTIPLE = "conditionMultiple";
 	const CONDITION_COMPARE = "conditionCompare";
+	const CONDITION_COMPARE_TEXT = "conditionCompareText";
 	const CONDITION_RANGE = "conditionRange";
 	/*--- Game_Event ---*/
 	/**
@@ -1011,27 +1074,28 @@
 
 			const pluginCommand = command.parameters[ 1 ];
 			const args = command.parameters[ 3 ];
-			if( pluginCommand === CONDITION_SWITCH ) {// [出現条件:スイッチ]
-				if( !$gameSwitches.valueByName( args.name ) ) return false;
-				continue;
+			switch( pluginCommand ) {
+				case CONDITION_SWITCH:// [出現条件:スイッチ]
+					if( !$gameSwitches.valueByName( args.name ) ) return false;
+					continue;
+				case CONDITION_SELFSWITCH:// [出現条件:セルフスイッチ]
+					if( !getSelfSwitch( args.mapId, args.eventId, args.type ) ) return false;
+					continue;
+				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ&結合]
+					if( !$gameSwitches.multipleAnd( ...args.nameList ) ) return false;
+					continue;
+				case CONDITION_COMPARE:// [出現条件:数値比較]
+					if( !checkCompare( args ) ) return false;
+					continue;
+				case CONDITION_COMPARE_TEXT:// [出現条件:文字列比較]
+					if( !checkCompareText( args ) ) return false;
+					continue;
+				case CONDITION_RANGE:// [出現条件:数値範囲]
+					if( !checkRange( args ) ) return false;
+					continue;
+				default:
+					return true;	// [出現条件] 以外のプラグインコマンド
 			}
-			if( pluginCommand === CONDITION_SELFSWITCH ) {// [出現条件:セルフスイッチ]
-				if( !getSelfSwitch( args.mapId, args.eventId, args.type ) ) return false;
-				continue;
-			}
-			if( pluginCommand === CONDITION_MULTIPLE ) {// [出現条件:複数スイッチ&結合]
-				if( !$gameSwitches.multipleAnd( ...args.nameList ) ) return false;
-				continue;
-			}
-			if( pluginCommand === CONDITION_COMPARE ) {// [出現条件:数値比較]
-				if( !checkCompare( args ) ) return false;
-				continue;
-			}
-			if( pluginCommand === CONDITION_RANGE ) {// [出現条件:数値範囲]
-				if( !checkRange( args ) ) return false;
-				continue;
-			}
-			return true;	// [出現条件] 以外のプラグインコマンド
 		}
 		return true;
 	};
