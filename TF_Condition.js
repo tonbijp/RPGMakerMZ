@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.0.0
+// Version :1.2.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -495,7 +495,7 @@
  * 一時変数と比較した結果を一時スイッチに設定。
  *
  * @arg leftSide @text 左辺の数値
- * @desc 変数の名前、数値、\V[n]いずれか
+ * @desc 変数の名前、数値いずれか
  * @type string @default it
  *
  * @arg compare @text 比較演算子
@@ -509,7 +509,7 @@
  * @option より下 > @value >
  *
  * @arg rightSide @text 右辺の数値
- * @desc 変数の名前、数値、\V[n]いずれか
+ * @desc 変数の名前、数値いずれか
  * @type string @default it
  * 
  * @================================================
@@ -518,7 +518,7 @@
  * 一時変数と比較した結果を一時スイッチに設定。
  *
  * @arg leftSide @text 左辺の文字変数
- * @desc 変数の名前(\V[n]を使える)
+ * @desc 変数の名前
  * @type string @default it
  *
  * @arg compare @text 比較演算子
@@ -528,7 +528,7 @@
  * @option 以外 != @value !=
  *
  * @arg rightSide @text 右辺の文字
- * @desc 文字(\V[n]を使える)
+ * @desc 文字
  * @type string @default
  *
  * @================================================
@@ -538,15 +538,15 @@
  * 結果を一時スイッチに設定。
  *
  * @arg min @text 最小値≦
- * @desc 変数の名前、数値、\V[n]いずれか
+ * @desc 変数の名前、数値いずれか
  * @type number @default 0
  *
  * @arg center @text 中間値
- * @desc 変数の名前、数値、\V[n]いずれか
+ * @desc 変数の名前、数値いずれか
  * @type string @default it
  *
  * @arg max @text ≦最大値
- * @desc 変数の名前、数値、\V[n]いずれか
+ * @desc 変数の名前、数値いずれか
  * @type number @default 100
  */
 
@@ -869,9 +869,13 @@
 		return minValue <= centerValue && centerValue <= maxValue;
 	}
 
+	// 文字列を数値に変換
+	// 数値が書かれた文字列なら、それを数値に変換して返す
+	// 文字列なら、それを変数の識別子と判断して、変数の中身をそのまま返す
 	function stringToNumber( value ) {
 		if( value === undefined || value === "" ) return 0;
-		if( typeof value === TYPE_NUMBER ) return value;
+		const num = parseFloat( value );
+		if( typeof num === TYPE_NUMBER ) return num;
 		return $gameVariables.valueByName( value );
 	}
 
@@ -1099,7 +1103,4 @@
 		}
 		return true;
 	};
-
-
-
 } )();
