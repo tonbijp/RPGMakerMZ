@@ -9,13 +9,13 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `alwaysDash ` | Boolean | [static] [常時ダッシュ] |
-| `commandRemember ` | Boolean | [static] [コマンド記憶] |
-| `bgmVolume` | [Number](Number.md) | [static] [BGM 音量] |
-| `bgsVolume` | [Number](Number.md) | [static] [BGS 音量] |
-| `meVolume` | [Number](Number.md) | [static] [ME 音量] |
-| `seVolume` | [Number](Number.md) | [static] [SE 音量] |
-| `touchUI ` | Boolean | **@MZ** [static] [タッチUI] |
+| `alwaysDash ` | Boolean | [static] [常時ダッシュ] \(規定値: false)  |
+| `commandRemember ` | Boolean | [static] [コマンド記憶] \(規定値: false) |
+| `bgmVolume` | [Number](Number.md) | [static] [BGM 音量] \(規定値: 100) |
+| `bgsVolume` | [Number](Number.md) | [static] [BGS 音量] \(規定値: 100)  |
+| `meVolume` | [Number](Number.md) | [static] [ME 音量] \(規定値: 100)  |
+| `seVolume` | [Number](Number.md) | [static] [SE 音量] \(規定値: 100)  |
+| `touchUI ` | Boolean | **@MZ** [static] [タッチUI] \(規定値: true) |
 | `_isLoaded ` | Boolean | **@MZ** [static] 読み込まれたか |
 
 
