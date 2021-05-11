@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.5.0
+// Version :0.5.6.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -311,10 +311,10 @@
 	function setupBitmap( sprite, width, height ) {
 		if( sprite.bitmap ) {
 			sprite.bitmap.clear();
-			sprite.bitmap.resize( width, height );
 		} else {
-			sprite.bitmap = new Bitmap( width, height );
+			sprite.bitmap = new Bitmap( 1, 1 );
 		}
+		sprite.bitmap.resize( width, height );
 	}
 
 	/**
