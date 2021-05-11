@@ -17,3 +17,7 @@
 | [TF_TextWindowMenu.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_TextWindowMenu.js) | タイトルに著作権情報 | β版 | |
 | [TF_ScreenUtil.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_ScreenUtil.js) | マップ画面二倍拡大とか | α版 | |
 | [TF_LayeredMap.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
+
+進捗報告やサポートなどは、ツクール公式フォーラムの次のスレッドで行なっています。
+
+[【プラグイン】【鳶嶋工房】](https://forum.tkool.jp/index.php?threads/4958/)
