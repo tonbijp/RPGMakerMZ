@@ -132,7 +132,7 @@ namespace JsExtensions
 ### Arrays
 
 * [MV.Color](MV.Color.md)
-* [MV.SelfSwutch](MV.SelfSwutch.md)
+* [MV.SelfSwitch](MV.SelfSwitch.md)
 * [MV.TileRect](MV.TileRect.md)
 * [MV.Tone](MV.Tone.md)
 

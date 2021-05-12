@@ -17,7 +17,7 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_data` | Object | { [MV.SelfSwutch](MV.SelfSwutch.md): Boolean, …} の形 |
+| `_data` | Object | { [MV.SelfSwitch](MV.SelfSwitch.md): Boolean, …} の形 |
 
 
 ### メソッド
@@ -42,7 +42,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `key` | [MV.SelfSwutch](MV.SelfSwutch.md)  | [セルフスイッチ]の指定キー |
+| `key` | [MV.SelfSwitch](MV.SelfSwitch.md)  | [セルフスイッチ]の指定キー |
 | `value` | Boolean | スイッチがONか |
 
 
@@ -53,7 +53,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `key` | [MV.SelfSwutch](MV.SelfSwutch.md)  | [セルフスイッチ]の指定キー |
+| `key` | [MV.SelfSwitch](MV.SelfSwitch.md)  | [セルフスイッチ]の指定キー |
 
 
 

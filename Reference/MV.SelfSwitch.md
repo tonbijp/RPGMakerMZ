@@ -1,6 +1,6 @@
 [クラスツリー](index.md)
 
-# クラス:  [MV](MV.md).SelfSwutch
+# クラス:  [MV](MV.md).SelfSwitch
 
 ## 型: Array
 [セルフスイッチ]を指定するキー。<br />
