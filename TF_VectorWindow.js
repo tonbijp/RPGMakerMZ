@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.7.0
+// Version :0.5.8.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -388,7 +388,6 @@
 
 		this.x = messageView.x;
 		this.TF_faceAlign = POSITION_LEFT;
-		this.name = "Window_Message";
 	};
 
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
@@ -466,6 +465,8 @@
 		const lastClosing = this._closing;
 		_Window_Message_updateClose.call( this );
 		if( lastClosing !== this._closing ) {// 規定値に戻す
+			this.x = messageView.x;
+			this.TF_faceAlign = POSITION_LEFT;
 			this._positionType = 2;
 		}
 	};
