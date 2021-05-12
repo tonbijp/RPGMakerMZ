@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.6.0
+// Version :0.5.7.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -131,6 +131,7 @@
 	const ERROR_NUMBER = -1;
 	const WINDOW_TYPE_DEFAULT = 0; // UIタイプの規定値
 	const WINDOW_TYPE_TALK = 1; // [文章の表示]ウィンドウタイプの規定値
+
 	const SHAPE_ROUNDRECT = "roundrect";
 	const SHAPE_SPIKE = "spike";
 	const SHAPE_OCTAGON = "octagon";
@@ -144,7 +145,9 @@
 	const POSITION_UP = 0;
 	const POSITION_MIDDLE = 1;
 	const POSITION_DOWN = 2;
-	const POSITION_FREE = 20;
+	const POSITION_FREE = 20;	// 座標指定
+	// const AUTO_POSITION = "auto"; // 自動配置の予定
+	const COMMAND_POSITION = "command";	// [文章の表示]-[ウィンドウ位置]
 
 	const POSITION_LEFT = "left";
 	const POSITION_CENTER = "center";
@@ -183,8 +186,6 @@
 	/**
 	 * プラグインコマンドの登録
 	 */
-	const AUTO_SETTING = "auto";
-	const COMMAND_SETTING = "command";
 	//  [ウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, args => {
 		const tw = SceneManager._scene._messageWindow;
@@ -192,15 +193,16 @@
 		const newWindowType = getWindowType( args.windowType );
 		const faceAlign = args.isFaceLeft ? POSITION_LEFT : POSITION_RIGHT;
 		if( newWindowType === ERROR_NUMBER ) {
-			throw new Error( `"${args.windowType}" is wrong window type.` );
+			throw `"${args.windowType}" is wrong window type.`;
 		}
-		setWindowParam( tw, newWindowType );
+		tw.TF_windowType = newWindowType;
 		tw.TF_faceAlign = faceAlign;
-		if( args.pos === COMMAND_SETTING ) {
-			tw._positionType = null;// 位置
-			setMessageParam( tw );
+		if( args.pos === COMMAND_POSITION ) {
+			tw.x = messageView.x;
 		} else {
-			setMessageParam( tw, stringToPoint( args.pos ) );
+			tw._positionType = POSITION_FREE;
+			const pos = stringToPoint( args.pos );
+			[ tw.x, tw.y ] = [ pos.x, pos.y ];
 		}
 	} );
 
@@ -227,10 +229,9 @@
 		// SceneCustomMenu.js のスキンの設定があれば、TF_VectorWindowの設定はしない
 		if( this._data && this._data.WindowSkin ) return;
 		// TF_windowTypeが設定されていないなら、規定値を設定
-		if( this.TF_windowType ) {
-			setWindowParam( this, this.TF_windowType );
-		} else {
-			setWindowParam( this, WINDOW_TYPE_DEFAULT );
+		if( !this.TF_windowType ) {
+			this.TF_windowType = WINDOW_TYPE_DEFAULT;
+			setWindowParam( this );
 		}
 	};
 
@@ -238,7 +239,7 @@
 	Window.prototype._refreshAllParts = function() {
 		// SceneCustomMenu.js のスキンの設定がなければ、パスを先読みしておく
 		if( !this._data || !this._data.WindowSkin ) {
-			this.TF_path2d = getWindowPath( this );
+			setWindowPath( this );
 		}
 		_Window__refreshAllParts.call( this );
 	};
@@ -247,7 +248,7 @@
 	Window.prototype._refreshBack = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
-		if( this.TF_shape === SHAPE_NONE ) return;
+		if( !this.TF_path2d || this.TF_shape === SHAPE_NONE ) return;
 
 		setupBitmap( this._backSprite, this.width, this.height );
 		this._backSprite.setFrame( 0, 0, this.width, this.height );
@@ -284,7 +285,7 @@
 	Window.prototype._refreshFrame = function() {
 		// SceneCustomMenu.js のスキンの設定があれば、通常の描画に渡す
 		if( this._data && this._data.WindowSkin ) return _Window__refreshFrame.call( this );
-		if( this.TF_shape === SHAPE_NONE ) return;
+		if( !this.TF_path2d || this.TF_shape === SHAPE_NONE ) return;
 
 		setupBitmap( this._frameSprite, this.width, this.height );
 		this._frameSprite.setFrame( 0, 0, this.width, this.height );
@@ -322,17 +323,37 @@
 	 * @param {Window} tw 対象ウィンドウ
 	 * @returns  {Path2D} 描画するパス
 	 */
-	function getWindowPath( tw ) {
+	function setWindowPath( tw ) {
 		const m = tw.margin;
 		const r = pluginParams.preset[ tw.TF_windowType ].decorSize;
 		const w = tw.width;
 		const h = tw.height;
 
 		switch( tw.TF_shape ) {
-			case SHAPE_ROUNDRECT: return drawRoundrect( m, w, h, r );
-			case SHAPE_OCTAGON: return drawOctagon( m, w, h, r );
-			case SHAPE_SPIKE: return drawSpike( m, w, h, r, pluginParams.preset[ tw.TF_windowType ].borderWidth );
+			case SHAPE_ROUNDRECT: tw.TF_path2d = drawRoundrect( m, w, h, r ); break;
+			case SHAPE_OCTAGON: tw.TF_path2d = drawOctagon( m, w, h, r ); break;
+			case SHAPE_SPIKE: tw.TF_path2d = drawSpike( m, w, h, r, pluginParams.preset[ tw.TF_windowType ].borderWidth ); break;
 		}
+	}
+	/**
+	 * ウィンドウの数値設定
+	 * @param {Window} tw 対象ウィンドウ
+	 */
+	function setWindowParam( tw ) {
+		const preset = pluginParams.preset[ tw.TF_windowType ];
+		tw.TF_shape = preset.shape;
+		const p = preset.padding;
+		tw._padding = p;
+		tw._margin = preset.margin;
+		tw._clientArea.move( p, p );
+	}
+	/**
+	 * ウィンドウの数値設定
+	 * @param {Window_Message} tw 対象ウィンドウ
+	 */
+	function setMessageParam( tw ) {
+		tw._width = messageView.width;
+		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
 	}
 
 
@@ -365,8 +386,9 @@
 
 		_Window_Message_initialize.apply( this, arguments );
 
+		this.x = messageView.x;
 		this.TF_faceAlign = POSITION_LEFT;
-		setMessageParam( this );
+		this.name = "Window_Message";
 	};
 
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
@@ -422,7 +444,13 @@
 	Window_Message.prototype.newPage = function() {
 		_Window_Message_newPage.apply( this, arguments );
 		closeFacePicture();
+
+		setWindowParam( this );
+		setMessageParam( this );
+		this._refreshAllParts();
+		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
 	};
+
 	const _Window_Message_close = Window_Message.prototype.close;
 	Window_Message.prototype.close = function() {
 		_Window_Message_close.call( this );
@@ -433,14 +461,14 @@
 		facePicture.bitmap.clear();
 	}
 
-	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
-	Window_Message.prototype.terminateMessage = function() {
-		_Window_Message_terminateMessage.call( this );
-		setWindowParam( this, WINDOW_TYPE_TALK ); // ウィンドウタイプをメッセージの規定値に
-		// this.TF_faceAlign = POSITION_LEFT;
-		// setMessageParam( this );
+	const _Window_Message_updateClose = Window_Message.prototype.updateClose;
+	Window_Message.prototype.updateClose = function() {
+		const lastClosing = this._closing;
+		_Window_Message_updateClose.call( this );
+		if( lastClosing !== this._closing ) {// 規定値に戻す
+			this._positionType = 2;
+		}
 	};
-
 
 	// TODO:顔位置の細かい座標はプロパティで指定可能にする
 	// rtl にも対応したい…が
@@ -488,37 +516,6 @@
 
 
 	/*--- 関数 ---*/
-	/**
-	 * ウィンドウの数値設定
-	 * @param {Window} tw 対象ウィンドウ
-	 * @param {Number} windowType プリセットのウィンドウタイプ
-	 */
-	function setWindowParam( tw, windowType ) {
-		tw.TF_windowType = windowType;
-		const preset = pluginParams.preset[ windowType ];
-		tw.TF_shape = preset.shape;
-		tw._padding = preset.padding;
-		tw._margin = preset.margin;
-	}
-	/**
-	 * ウィンドウの数値設定
-	 * @param {Window_Message} tw 対象ウィンドウ
-	 * @param {Point} pos 表示位置(省略可)
-	 */
-	function setMessageParam( tw, pos ) {
-		if( pos ) {
-			tw._positionType = POSITION_FREE;
-			tw.x = pos.x;
-			tw.y = pos.y;
-		} else {
-			tw.x = messageView.x;
-		}
-		tw._width = messageView.width;
-		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
-		tw._clientArea.move( tw._padding, tw._padding );
-		tw._refreshAllParts();
-	}
-
 	/**
 	 * 配列からCSS color文字列を返す
 	 * @param {Array} colorList [ r, g, b, a ] の配列
@@ -819,7 +816,7 @@
 	Scene_Message.prototype.createAllWindows = function() {
 		_Scene_Message_createAllWindows.call( this );
 
-		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 0, 0 ) );
+		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 1, 1 ) );
 		this.addWindow( this.TF_facePicture );
 	};
 
@@ -846,5 +843,4 @@
 			this.visible = true;
 		}
 	}
-
 } )();
