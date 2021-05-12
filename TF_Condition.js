@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.1.0
+// Version :1.2.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -96,7 +96,10 @@
  * 
  * @arg operand @text オペランド(値)
  * @desc スイッチの名前、true、false、\S[n]いずれか
- * @type string @default true
+ * @type combo @default true
+ * @option true
+ * @option false
+ * @option \S[n]
  * 
  * @================================================
  * @command variable @text 変数の操作
@@ -171,7 +174,10 @@
  * @arg operand @text オペランド(値)
  * @desc スイッチの名前、true、false、\S[n]いずれか
  * (セルフスイッチの指定はできません)
- * @type string @default true
+ * @type combo @default true
+ * @option true
+ * @option false
+ * @option \S[n]
  *
  * @command rem1 @text ＿＿＿＿＿ 判定 ＿＿＿＿＿
  * @desc [条件分岐]を行うため下準備的なものです。
@@ -628,11 +634,10 @@
 		}
 
 		// イベント名で指定できるようにする
-		const i = $gameMap._events.findIndex( event => {
-			if( event === undefined ) return false;	// _events[0] が undefined なので無視
+		const i = $gameMap._events.findIndex( e => {
+			if( e === null ) return false;	// _events[0] が null なので無視
 
-			const eventId = event._eventId;
-			return $dataMap.events[ eventId ].name === value;
+			return $dataMap.events[ e._eventId ].name === value;
 		} );
 		if( i === -1 ) return;//イベントが存在しない
 		return i;
@@ -760,6 +765,7 @@
 
 	// [セルフスイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
+		if( args.eventId === EVENT_THIS ) args.eventId = this.character( 0 )._eventId;
 		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( args.operand ) );
 	} );
 
@@ -777,6 +783,7 @@
 	// [セルフスイッチ判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SELFSWITCH, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
+		if( args.eventId === EVENT_THIS ) args.eventId = this.character( 0 )._eventId;
 		const value = getSelfSwitch( args.mapId, args.eventId, args.type );
 		if( args.operate === OPE_NOT ) {
 			setSelfSwitch( args.mapId, args.eventId, args.type, !value );
@@ -1037,6 +1044,7 @@
 		const mapIdNumber = stringToMapId( mapId );
 		const eventIdNumber = stringToEventId( eventId );
 		if( eventIdNumber === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${eventId}'` );
+		if( eventIdNumber <= 0 ) throw Error( `${PLUGIN_NAME}: Can't use '${eventId}'` );
 		$gameSelfSwitches.setValue( [ mapIdNumber, eventIdNumber, type ], stringToBoolean( value ) );
 	}
 	/**
@@ -1083,6 +1091,7 @@
 					if( !$gameSwitches.valueByName( args.name ) ) return false;
 					continue;
 				case CONDITION_SELFSWITCH:// [出現条件:セルフスイッチ]
+					if( args.eventId === EVENT_THIS ) args.eventId = this._eventId;
 					if( !getSelfSwitch( args.mapId, args.eventId, args.type ) ) return false;
 					continue;
 				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ&結合]
