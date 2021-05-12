@@ -19,6 +19,6 @@
 | 番号 | 型 | 説明 |
 | --- | --- | --- |
 | 0 | [Number](Number.md) | マップID |
-| 1 | [Number](Number.md) | イベントID) |
+| 1 | [Number](Number.md) | イベントID |
 | 2 | [String](String.md) | タイプ |
 
