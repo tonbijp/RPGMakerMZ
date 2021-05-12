@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.3.0.0
+// Version :0.3.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -342,7 +342,7 @@
  * @option ↓ @value 2
  *
  * @================================================
- * @command locateEV @text イベントを別のイベント位置に配置
+ * @command locateEv @text イベントを別のイベント位置に配置
  * @desc 瞬間移動する。
  * 状況で異なる初期位置の設定などに。
  *
@@ -361,7 +361,7 @@
  * @arg pointStr @text 相対座標(タイル数)
  * @desc 相対座標(小数点以下可)
  * @type string @default 0,0
- * 
+ *
  * @arg patternNumber @text 歩行パターン
  * @desc
  *  パターンの列(規定値:そのまま)
