@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.8.0
+// Version :0.5.9.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -767,7 +767,8 @@
 
 	const _Window_NameBox_updatePlacement = Window_NameBox.prototype.updatePlacement;
 	Window_NameBox.prototype.updatePlacement = function() {
-		if( !nameWithFace ) return _Window_NameBox_updatePlacement.call( this );
+		_Window_NameBox_updatePlacement.call( this );
+		if( !nameWithFace ) return;
 
 		const tw = this._messageWindow;
 		this.x += tw.margin;
