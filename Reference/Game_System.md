@@ -30,7 +30,7 @@
 | `_framesOnSave` | [Number](Number.md) | 保存累積フレーム数 |
 | `_bgmOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGM |
 | `_bgsOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGS |
-| `_windowTone` | [Array](Array.md).&lt;[Number](Number.md)&gt; | ウィンドウのトーン |
+| `_windowTone` | [MV.Tone](MV.Tone.md) | ウィンドウのトーン |
 | `_battleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 戦闘] |
 | `_victoryMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 勝利] |
 | `_defeatMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 敗北] |
@@ -265,9 +265,9 @@
 **@MZ** ウィンドウ端からコンテンツまでの幅(規定値:12ピクセル)を返す。
 
 
-#### windowTone () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
+#### windowTone () → {[MV.Tone](MV.Tone.md)}
 [ウィンドウカラー] を返す。<br />
- [ r, g, b ] の配列(各-255〜255)
+4つめのグレー値は常に0;
 
 
 
