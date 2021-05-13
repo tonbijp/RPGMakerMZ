@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.2.0
+// Version :1.2.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -457,17 +457,19 @@
  * 
  * @================================================
  * @command conditionSwitch @text 出現条件:スイッチ
- * @desc
+ * @desc 指定した値と同じならページ出現。
  *
  * @arg name @text スイッチの名前
  * @desc 指定スイッチ
  * @type string @default it
  *
+ * @arg operand @text オペランド(値)
+ * @desc 
+ * @type boolean @default true
+ *
  * @================================================
  * @command conditionSelfSwitch @text 出現条件:セルフスイッチ
- * @desc
- * 指定スイッチと一時スイッチを論理演算し、
- * 結果を一時スイッチに設定。
+ * @desc セルフスイッチと値が同じならページ出現。
  *
  * @arg mapId @text マップID
  * @desc マップをIDまたは名前で指定
@@ -485,11 +487,13 @@
  * @type combo @default A
  * @option A @option B @option C @option D
  *
+ * @arg operand @text オペランド(値)
+ * @desc
+ * @type boolean @default true
+ *
  * @================================================
  * @command conditionMultiple @text 出現条件:複数スイッチ&結合
- * @desc
- * 複数のスイッチの論理積(and)の結果を、
- * 一時スイッチに設定。
+ * @desc 指定した値がすべてtrueならページ出現。
  *
  * @arg nameList @text スイッチ名リスト
  * @desc スイッチを名前で指定
@@ -497,8 +501,7 @@
  *
  * @================================================
  * @command conditionCompare @text 出現条件:数値比較
- * @desc
- * 一時変数と比較した結果を一時スイッチに設定。
+ * @desc 比較した結果がtrueならページ出現。
  *
  * @arg leftSide @text 左辺の数値
  * @desc 変数の名前、数値いずれか
@@ -520,8 +523,7 @@
  * 
  * @================================================
  * @command conditionCompareText @text 出現条件:文字比較
- * @desc
- * 一時変数と比較した結果を一時スイッチに設定。
+ * @desc 比較した結果がtrueならページ出現。
  *
  * @arg leftSide @text 左辺の文字変数
  * @desc 変数の名前
@@ -539,9 +541,7 @@
  *
  * @================================================
  * @command conditionRange @text 出現条件:数値範囲
- * @desc
- * 指定変数が範囲内にあるか判定して、
- * 結果を一時スイッチに設定。
+ * @desc 指定変数が範囲内にあればページ出現。
  *
  * @arg min @text 最小値≦
  * @desc 変数の名前、数値いずれか
@@ -635,7 +635,7 @@
 
 		// イベント名で指定できるようにする
 		const i = $gameMap._events.findIndex( e => {
-			if( e === null ) return false;	// _events[0] が null なので無視
+			if( e === null || e === undefined ) return false;	// _events[0] が null なので無視
 
 			return $dataMap.events[ e._eventId ].name === value;
 		} );
@@ -882,8 +882,8 @@
 	function stringToNumber( value ) {
 		if( value === undefined || value === "" ) return 0;
 		const num = parseFloat( value );
-		if( typeof num === TYPE_NUMBER ) return num;
-		return $gameVariables.valueByName( value );
+		if( isNaN( num ) ) return $gameVariables.valueByName( value );
+		return num;
 	}
 
 	function stringToBoolean( value ) {
@@ -1063,7 +1063,7 @@
 
 	// 出現条件判定
 	const CONDITION_SWITCH = "conditionSwitch";
-	const CONDITION_SELFSWITCH = "conditionselfSwitch";
+	const CONDITION_SELFSWITCH = "conditionSelfSwitch";
 	const CONDITION_MULTIPLE = "conditionMultiple";
 	const CONDITION_COMPARE = "conditionCompare";
 	const CONDITION_COMPARE_TEXT = "conditionCompareText";
@@ -1076,7 +1076,7 @@
 	const _Game_Event_meetsConditions = Game_Event.prototype.meetsConditions;
 	Game_Event.prototype.meetsConditions = function( page ) {
 		const doPage = _Game_Event_meetsConditions.apply( this, arguments );
-		if( doPage === false ) return false;
+		if( !doPage ) return false;
 
 		// 全て条件に合ったらtrueを返す(条件に合わないものがひとつでもあったらfalseを返す)
 		for( const command of page.list ) {
@@ -1088,11 +1088,11 @@
 			const args = command.parameters[ 3 ];
 			switch( pluginCommand ) {
 				case CONDITION_SWITCH:// [出現条件:スイッチ]
-					if( !$gameSwitches.valueByName( args.name ) ) return false;
+					if( $gameSwitches.valueByName( args.name ) !== ( args.operand === PARAM_TRUE ) ) return false;
 					continue;
 				case CONDITION_SELFSWITCH:// [出現条件:セルフスイッチ]
 					if( args.eventId === EVENT_THIS ) args.eventId = this._eventId;
-					if( !getSelfSwitch( args.mapId, args.eventId, args.type ) ) return false;
+					if( getSelfSwitch( args.mapId, args.eventId, args.type ) !== ( args.operand === PARAM_TRUE ) ) return false;
 					continue;
 				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ&結合]
 					if( !$gameSwitches.multipleAnd( ...args.nameList ) ) return false;
