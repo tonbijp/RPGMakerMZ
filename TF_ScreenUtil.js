@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.4.2.0
+// Version :0.4.2.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -166,6 +166,8 @@
 		$gameScreen._zoomScale = TF_zoomScale;
 
 		_Scene_Map_onMapLoaded.call( this );
+
+		if( !$dataMap.meta ) return;	// テスト時は $dataMap.meta が空なので以下処理しない
 
 		// マップメモ固定座標の指定メタタグの処理
 		// 例: <TF_fixedMap:0.84,0.2>
