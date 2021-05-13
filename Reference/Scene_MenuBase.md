@@ -156,7 +156,7 @@
 
 
 #### helpWindowRect () → {[Rectangle](Rectangle.md)}
-**@MZ** [ヘルプ]ウィンドウの矩形範囲を返す。
+**@MZ** [ヘルプ]領域の矩形範囲を返す。
 
 
 #### mainAreaBottom() → {[Number](Number.md)}
