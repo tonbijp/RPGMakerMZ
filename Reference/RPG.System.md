@@ -14,12 +14,12 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `gameTitle` | [String](String.md) | [ゲームタイトル] |
-| `versionId` | [Number](Number.md) | RPGメーカーMVによって自動的に保存されるバージョンID |
+| `versionId` | [Number](Number.md) | 『RPGメーカーMZ』によって自動的に保存されるバージョンID |
 | `locale` | [String](String.md) | 地域設定 ja\_JP, en\_US, zh\_CN, zh\_TW, ko\_KR, ru\_RU |
 | `partyMembers` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [初期パーティ] アクターIDの配列 |
 | `currencyUnit` | [String](String.md) | [通貨単位] |
 | `windowTone` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [ウィンドウカラー] |
-| `attackMotions` | [Array](Array.md).&lt;[RPG.System.AttackMotion](RPG.System.AttackMotion.md)&gt; | [[SV]攻撃モーション]の配列 |
+| `attackMotions` | [Array](Array.md).&lt;[RPG.System.AttackMotion](RPG.System.AttackMotion.md)&gt; | [\[SV\]攻撃モーション]の配列 |
 | `battleSystem` | [Number](Number.md) | **@MZ** [戦闘システム] |
 | `elements` | [Array](Array.md).&lt;[String](String.md)&gt; | [属性ID](RPG.Damage.md#属性id)に対応する名称の配列 |
 | `equipTypes` | [Array](Array.md).&lt;[String](String.md)&gt; | [装備タイプID](RPG.Trait.md#装備タイプid)に対応する名称の配列 |
