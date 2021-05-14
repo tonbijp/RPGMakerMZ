@@ -102,7 +102,7 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 
 
 #### buttonAreaBottom () → {[Number](Number.md)}
-**@MZ** ボタン領域の下辺位置を返す。
+**@MZ** ボタン領域の下辺位置(規定値:52)を返す。
 
 
 #### buttonAreaHeight () → {[Number](Number.md)}
@@ -110,11 +110,11 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 
 
 #### buttonAreaTop () → {[Number](Number.md)}
-**@MZ** ボタン領域の上辺位置を返す。
+**@MZ** ボタン領域の上辺位置(規定値:0)を返す。
 
 
 #### buttonY () → {[Number](Number.md)}
-**@MZ** ボタンのy位置を返す。
+**@MZ** ボタンのy位置(規定値:2)を返す。
 
 
 #### calcWindowHeight (numLines, selectable) → {[Number](Number.md)}
