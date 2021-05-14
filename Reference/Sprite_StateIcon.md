@@ -12,7 +12,7 @@
 
 ステートアイコン( img/system/IconSet.png )表示用スプライト。
 
-関連クラス: [ImageManager](ImageManager.md)
+関連クラス: [ImageManager](ImageManager.md), [Window_StatusBase](Window_StatusBase.md)
 
 ### プロパティ
 

@@ -9,7 +9,7 @@
 
 v1.1.0、v1.2.0  で変更あり。
 
-関連クラス: [Spriteset_Battle](Spriteset_Battle.md)
+関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Window_StatusBase](Window_StatusBase.md)
 
 ### プロパティ
 

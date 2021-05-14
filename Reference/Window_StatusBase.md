@@ -7,6 +7,10 @@
 ### new Window_StatusBase (rect)
 **@MZ** ステータス表示するウィンドウの基礎クラス。
 
+[Window_Base](Window_Base.md) にあった描画機能の多くが、こちらに移動している。<br />
+その際、`draw〇〇`系の画像を直接描画するメソッドがいくつか廃止され、`place〇〇`系の `Sprite`クラスにくるんで表示するタイプに置き換えられている。<br />
+描画に必要な機能を `Sprite` を継承したクラスに持たせているため、機能が増えていても扱いやすくなっている。
+
 関連クラス: [Sprite_Gauge](Sprite_Gauge.md), [Sprite_Name](Sprite_Name.md),  [Sprite_StateIcon](Sprite_StateIcon.md)
 
 #### 引数
@@ -404,7 +408,7 @@
 
 
 #### placeActorName (actor, x, y)
-アクター名を配置。
+アクター名を `Sprite` として配置。
 
 ##### 引数
 
@@ -416,7 +420,7 @@
 
 
 #### placeBasicGauges (actor, x, y)
-HP・MP・TPの基本ゲージを配置。
+HP・MP・TPの基本ゲージを `Sprite` として配置。
 
 ##### 引数
 
@@ -428,7 +432,7 @@ HP・MP・TPの基本ゲージを配置。
 
 
 #### placeGauge (actor, type, x, y)
-ゲージを配置。
+ゲージを `Sprite` として配置。
 
 ##### 引数
 
@@ -441,7 +445,7 @@ HP・MP・TPの基本ゲージを配置。
 
 
 #### placeStateIcon (actor, x, y)
-状態アイコンを配置。
+状態アイコンを `Sprite` として配置。
 
 ##### 引数
 
@@ -453,7 +457,7 @@ HP・MP・TPの基本ゲージを配置。
 
 
 #### placeTimeGauge (actor, x, y)
-タイムゲージを配置。
+タイムゲージを `Sprite` として配置。
 
 ##### 引数
 
