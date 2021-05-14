@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.3.0.0
+// Version :0.3.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -57,9 +57,7 @@
 
 	// プラグインパラメータを受け取る
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
-	let topRows = null;
-	let titleItemIndex = null;
-	// pluginParams.windowParams.forEach( ( e ) => e.contents = JSON.parse( e.contents ) );
+	let dafaultRows = 0;
 	const windowParams = pluginParams.windowParams;
 
 	/*---- Window_TitleCommand ----*/
@@ -70,25 +68,10 @@
 	Window_TitleCommand.prototype.makeCommandList = function() {
 		_Window_TitleCommand_makeCommandList.call( this );
 
-		topRows = this.maxItems();
+		dafaultRows = this.maxItems();
 		windowParams.forEach( e => this.addCommand( e.menuLabel, HANDLER_OPEN_WINDOW ) );
 	};
 
-	// 選択中の項目を記録
-	const _Window_TitleCommand_processOk = Window_TitleCommand.prototype.processOk;
-	Window_TitleCommand.prototype.processOk = function() {
-		_Window_TitleCommand_processOk.call( this );
-		titleItemIndex = this.index();
-	};
-
-	const _Window_TitleCommand_selectLast = Window_TitleCommand.prototype.selectLast;
-	Window_TitleCommand.prototype.selectLast = function() {
-		if( titleItemIndex ) {
-			this.select( titleItemIndex );
-		} else {
-			_Window_TitleCommand_selectLast.call( this );
-		}
-	};
 
 	/*---- Scene_Title ----*/
 	// コマンド数に合わせて、高さを増やす。
@@ -99,6 +82,7 @@
 		rect.height += windowParams.length * itemHeight;
 		return rect;
 	};
+
 	// コマンドハンドラを追加。
 	const _Scene_Title_createCommandWindow = Scene_Title.prototype.createCommandWindow;
 	Scene_Title.prototype.createCommandWindow = function() {
@@ -106,6 +90,8 @@
 
 		this._commandWindow.setHandler( HANDLER_OPEN_WINDOW, () => {
 			this._commandWindow.close();
+
+			Scene_SingleInfo.contentsId = this._commandWindow.index() - dafaultRows;
 			SceneManager.push( Scene_SingleInfo );
 		} );
 	};
@@ -120,17 +106,23 @@
 			const infoWindow = new Window_SingleInfo( rect );
 			infoWindow.setHandler( "ok", this.popScene.bind( this ) );
 			infoWindow.setHandler( "cancel", this.popScene.bind( this ) );
+
+			if( Scene_SingleInfo.contentsId !== null ) {
+				infoWindow.setContents( windowParams[ Scene_SingleInfo.contentsId ].contents );
+			}
+
 			this.addWindow( infoWindow );
 		}
 
 		helpAreaHeight() { return 0; };	//ヘルプの高さを0にすることでメインの高さを広げる
 	}
+	window.Scene_SingleInfo = Scene_SingleInfo;//公開
+	Scene_SingleInfo.contentsId = null;
 
 	// 情報ウィンドウ
 	class Window_SingleInfo extends Window_Selectable {
 		initialize( rect ) {
 			super.initialize( rect );
-			this.setContents();
 			this.activate();
 		}
 
@@ -139,11 +131,10 @@
 			return super.isOkTriggered() || TouchInput.isTriggered();
 		};
 
-		setContents() {
+		setContents( text ) {
 			this.contents.clear();
 			const rect = this.baseTextRect();
-			this._text = windowParams[ titleItemIndex - topRows ].contents;
-			this.drawTextEx( this._text, rect.x, rect.y, rect.width );
+			this.drawTextEx( text, rect.x, rect.y, rect.width );
 		}
 	}
 } )();
