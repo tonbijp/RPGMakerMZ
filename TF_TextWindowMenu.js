@@ -1,6 +1,6 @@
 //========================================
 // TF_TextWindowMenu.js
-// Version :0.3.0.1
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -17,10 +17,12 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
- * @param windowParams
- * @desc メニューとウィンドウの設定。
+ * @param windowParams @text メニューとウィンドウの設定。
  * @type struct<WindowParam>[]
  * @default ["{\"menuLabel\":\"著作・製作\",\"contents\":\"©\\n\\n\\\\}©Gotcha Gotcha Games Inc./YOJI OJIMA 2020\\\\{\"}"]
+ *
+ * @param setTitleCommand @text タイトルに表示するか。
+ * @type boolean @default true
  * 
  * @help
  * タイトル画面への著作権情報や操作説明の追加を想定したプラグインです。
@@ -68,6 +70,7 @@
 	Window_TitleCommand.prototype.makeCommandList = function() {
 		_Window_TitleCommand_makeCommandList.call( this );
 
+		if( !pluginParams.setTitleCommand ) return;
 		dafaultRows = this.maxItems();
 		windowParams.forEach( e => this.addCommand( e.menuLabel, HANDLER_OPEN_WINDOW ) );
 	};
@@ -78,6 +81,7 @@
 	const _Scene_Title_commandWindowRect = Scene_Title.prototype.commandWindowRect;
 	Scene_Title.prototype.commandWindowRect = function() {
 		const rect = _Scene_Title_commandWindowRect.call( this );
+		if( !pluginParams.setTitleCommand ) return rect;
 		const itemHeight = Window_TitleCommand.prototype.itemHeight();
 		rect.height += windowParams.length * itemHeight;
 		return rect;
@@ -87,6 +91,7 @@
 	const _Scene_Title_createCommandWindow = Scene_Title.prototype.createCommandWindow;
 	Scene_Title.prototype.createCommandWindow = function() {
 		_Scene_Title_createCommandWindow.call( this );
+		if( !pluginParams.setTitleCommand ) return;
 
 		this._commandWindow.setHandler( HANDLER_OPEN_WINDOW, () => {
 			this._commandWindow.close();
