@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.5.0.0
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -65,11 +65,24 @@
  *
  * 
  * @param rem3 @text ＿＿＿＿ 部品位置 ＿＿＿＿
+ * @desc UI部品配置に関する機能。
+ * (なお、これは区切り線なので値を入力しても何も起きません)
  *
  * @param isTopHelpMode @text ヘルプ上下位置
  * @desc
  * @type boolean @default false
  * @on 上配置 @off 下配置(規定)
+ *
+ * @param helpX @text ヘルプX位置
+ * @desc 規定値: 0
+ * @type number @default 0
+ * @min -99999
+ *
+ * @param helpWidth @text ヘルプ幅
+ * @desc -1 だと「[UIエリア幅] -8 」になります。
+ * 規定値: -1
+ * @type number @default -1
+ * @min -1
  * 
  * @param isTopButtonMode @text ボタン上下位置
  * @desc
@@ -160,6 +173,15 @@
 
     Scene_Base.prototype.isRightInputMode = function() {
         return !pluginParams.isLeftInputMode;
+    };
+
+    /*---- Scene_MenuBase ----*/
+    const _Scene_MenuBase_helpWindowRect = Scene_MenuBase.prototype.helpWindowRect;
+    Scene_MenuBase.prototype.helpWindowRect = function() {
+        const rect = _Scene_MenuBase_helpWindowRect.call( this );
+        rect.x = pluginParams.helpX;
+        if( pluginParams.helpWidth !== -1 ) rect.width = pluginParams.helpWidth;
+        return rect;
     };
 
     /*---- Scene_Menu ----*/
