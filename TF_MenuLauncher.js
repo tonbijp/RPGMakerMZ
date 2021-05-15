@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.2.1.0
+// Version :0.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -36,7 +36,7 @@
  * 
  * @param commandTitle @text タイトル追加コマンド
  * @desc [タイトルシーン識別子]とは共存できません。
- * @type struct<CommandParam>[] @default
+ * @type struct<titleCommandParam>[] @default
  *
  *
  * @param rem2 @text ＿＿＿＿ メニュー ＿＿＿＿
@@ -56,7 +56,7 @@
  *
  * @param commandMenu @text メニュー追加コマンド
  * @desc [メニューシーン識別子]とは共存できません。
- * @type struct<CommandParam>[] @default
+ * @type struct<menuCommandParam>[] @default
  * 
  *
  * @help
@@ -76,15 +76,41 @@
  *
  * 
  */
-/*~struct~CommandParam:ja
+/*~struct~titleCommandParam:ja
  * @param label @text コマンドラベル
  * @desc メニューに表示されるコマンド名。
  * @type string @default コマンド
  *
  * @param sceneId @text シーン識別子
  * @desc SceneCustomMenu.js のシーン識別子
- * カスタムメニューを呼びます。
+ * 又は従来のイベント識別子。
+ * @type combo @default
+ * @option newGame
+ * @option continue
+ * @option options
+ *
+ * @param sceneClass @text シーンクラス名
+ * @desc Scene_Base の子孫クラス名
+ * 標準の JavaScriptクラスを呼びます。
  * @type string @default
+ */
+/*~struct~menuCommandParam:ja
+ * @param label @text コマンドラベル
+ * @desc メニューに表示されるコマンド名。
+ * @type string @default コマンド
+ *
+ * @param sceneId @text シーン識別子
+ * @desc SceneCustomMenu.js のシーン識別子
+ * 又は従来のイベント識別子。
+ * @type combo @default
+ * @option item
+ * @option skill
+ * @option equip
+ * @option status
+ * @option formation
+ * @option options
+ * @option save
+ * @option gameEnd
  *
  * @param sceneClass @text シーンクラス名
  * @desc Scene_Base の子孫クラス名
@@ -99,32 +125,69 @@
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
-
+    let baseMenuCommandsNum;
 
     /*---- Scene_Menu ----*/
     const _Scene_Menu_createCommandWindow = Scene_Menu.prototype.createCommandWindow;
     Scene_Menu.prototype.createCommandWindow = function() {
         if( !pluginParams.emptyMenu ) return _Scene_Menu_createCommandWindow.call( this );
-
         const rect = this.commandWindowRect();
-        const commandWindow = new Window_MenuCommand( rect );
-        // commandWindow.setHandler( "item", this.commandItem.bind( this ) );
-        // commandWindow.setHandler( "skill", this.commandPersonal.bind( this ) );
-        // commandWindow.setHandler( "equip", this.commandPersonal.bind( this ) );
-        // commandWindow.setHandler( "status", this.commandPersonal.bind( this ) );
-        // commandWindow.setHandler( "formation", this.commandFormation.bind( this ) );
-        // commandWindow.setHandler( "options", this.commandOptions.bind( this ) );
-        // commandWindow.setHandler( "save", this.commandSave.bind( this ) );
-        // commandWindow.setHandler( "gameEnd", this.commandGameEnd.bind( this ) );
-        commandWindow.setHandler( "cancel", this.popScene.bind( this ) );
-        this.addWindow( commandWindow );
-        this._commandWindow = commandWindow;
+        this._commandWindow = new Window_MenuCommand( rect );
+        const basicCommand = id => {
+            switch( id ) {
+                case "item": return this.commandItem;
+                case "skill": return this.commandPersonal;
+                case "equip": return this.commandPersonal;
+                case "status": return this.commandPersonal;
+                case "formation": return this.commandFormation;
+                case "options": return this.commandOptions;
+                case "save": return this.commandGameEnd;
+                case "gameEnd": return this.commandItem;
+            }
+            return null;
+        };
+        this._commandWindow.setHandler( "cancel", this.popScene.bind( this ) );
+
+        pluginParams.commandMenu.forEach( e => {
+            const handler = basicCommand( e.sceneId );
+            if( handler === null ) {// 設定されたコマンドを追加
+                this._commandWindow.setHandler( HANDLER_CUSTOM_COMMAND, customCommandMenu.bind( this ) );
+
+            } else {// 規定コマンドを追加
+                this._commandWindow.setHandler( e.sceneId, handler.bind( this ) );
+            }
+        } );
+        this.addWindow( this._commandWindow );
     };
+    function customCommandMenu() {
+        const i = this._commandWindow.index() - ( pluginParams.emptyMenu ? 0 : baseMenuCommandsNum );
+        const command = pluginParams.commandMenu[ i ];
+
+        if( command.sceneId ) { // カスタムシーンの呼び出し
+            this._windowLayer.destroy();
+            SceneManager.callCustomMenu( command.sceneId );
+
+        } else if( command.sceneClass ) { // シーンクラスの呼び出し
+            this._windowLayer.destroy();
+            SceneManager.push( new Function( `return ${command.sceneClass}` )() );
+        }
+    }
 
     /*---- Window_MenuCommand ----*/
     const _Window_MenuCommand_makeCommandList = Window_MenuCommand.prototype.makeCommandList;
     Window_MenuCommand.prototype.makeCommandList = function() {
         if( !pluginParams.emptyMenu ) return _Window_MenuCommand_makeCommandList.call( this );
+        baseMenuCommandsNum = this.maxItems();
+
+        const defaultCommands = [ "item", "skill", "equip", "status", "formation", "options", "save", "gameEnd" ];
+        pluginParams.commandMenu.forEach( e => {
+            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンドを追加
+                this.addCommand( e.label, e.sceneId );
+
+            } else {// 設定されたコマンドを追加
+                this.addCommand( e.label, HANDLER_CUSTOM_COMMAND );
+            }
+        } );
     };
 
 
@@ -152,9 +215,22 @@
             _Scene_Title_createCommandWindow.call( this );
         }
 
-        // 設定されたコマンドを追加
+        const basicCommand = id => {
+            switch( id ) {
+                case "newGame": return this.commandNewGame;
+                case "continue": return this.commandContinue;
+                case "options": return this.commandOptions;
+            }
+            return null;
+        };
         pluginParams.commandTitle.forEach( e => {
-            this._commandWindow.setHandler( HANDLER_CUSTOM_COMMAND, customCommandTitle.bind( this ) );
+            const handler = basicCommand( e.sceneId );
+            if( handler === null ) {// 設定されたコマンドを追加
+                this._commandWindow.setHandler( HANDLER_CUSTOM_COMMAND, customCommandTitle.bind( this ) );
+
+            } else {// 規定コマンドを追加
+                this._commandWindow.setHandler( e.sceneId, handler.bind( this ) );
+            }
         } );
     };
     function customCommandTitle() {
@@ -179,10 +255,15 @@
     Window_TitleCommand.prototype.makeCommandList = function() {
         if( !pluginParams.emptyTitle ) _Window_TitleCommand_makeCommandList.call( this );
 
-        // 設定されたコマンドを追加
-        pluginParams.commandTitle.forEach(
-            e => this.addCommand( e.label, HANDLER_CUSTOM_COMMAND )
-        );
+        const defaultCommands = [ "newGame", "continue", "options" ];
+        pluginParams.commandTitle.forEach( e => {
+            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンドを追加
+                this.addCommand( e.label, e.sceneId );
+
+            } else {// 設定されたコマンドを追加
+                this.addCommand( e.label, HANDLER_CUSTOM_COMMAND );
+            }
+        } );
     };
 
 
