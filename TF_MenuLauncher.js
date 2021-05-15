@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.3.0.1
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -62,15 +62,15 @@
  * @param commandMenu @text メニュー追加コマンド
  * @desc [メニューシーン識別子]とは共存できません。
  * @type struct<menuCommandParam>[] @default
- * 
+ *
  *
  * @help
  * カスタムメニュー作成プラグイン(SceneCustomMenu.js)で作ったシーンを
  * 通常のタイトルやメニューと入れ替えることができます。
  * 
- * 順に[カスタムシーン][シーンクラス]と
- * 設定されていれば実行し、空なら次のものを対象に同様の繰り返し。
- * 実行された時点で、その後の設定は無視されます。
+ * [タイトル追加コマンド]と[メニュー追加コマンド]
+ * 　[シーン識別子]設定されていれば実行し、
+ * 　空なら[シーンクラス名]を実行します。
  * 
  * 実装予定! 希望!
  * ・任意のキーでシーンを呼び出す。
@@ -310,14 +310,40 @@
 
     // 直接メニューから呼び出す
     const _Scene_Map_callMenu = Scene_Map.prototype.callMenu;
-    Scene_Map.prototype.callMenu = function() {
-        if( !pluginParams.sceneMenu ) return _Scene_Map_callMenu.call( this );
+    Scene_Map.prototype.callMenu = function() {// カスタムメニューを呼びます
+        if( pluginParams.sceneMenu ) {
+            beforOpenMenu( this );
+            SceneManager.callCustomMenu( pluginParams.sceneMenu );
 
+        } else if( pluginParams.commonEvMenu ) {// コモンイベントを呼びます
+            const commonEvId = getCommonEvId( pluginParams.commonEvMenu );
+            beforOpenMenu( this );
+            $gameMap.setupDynamicCommon( commonEvId );
+
+        } else {// 通常のメニューを呼びます。
+            _Scene_Map_callMenu.call( this );
+        }
+    };
+    // メニューを開く前処理
+    function beforOpenMenu( ts ) {
         SoundManager.playOk();
-        SceneManager.callCustomMenu( pluginParams.sceneMenu );
         Window_MenuCommand.initCommandPosition();
         $gameTemp.clearDestination();
-        this._mapNameWindow.hide();
-        this._waitCount = 2;
-    };
+        ts._mapNameWindow.hide();
+        ts._waitCount = 2;
+    }
+    // 文字列からコモンイベントIDを返す
+    function getCommonEvId( evStr ) {
+        const evNum = parseInt( evStr, 10 );
+        if( !isNaN( evNum ) ) return evNum;
+
+        const commonEvId = $dataCommonEvents.findIndex( e => {
+            if( !e ) return false;
+            return e.name === evStr;
+        } );
+        if( commonEvId === -1 ) {
+            throw `${PLUGIN_NAME} : No such common event "${evStr}"`;
+        }
+        return commonEvId;
+    }
 } )();
