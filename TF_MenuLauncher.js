@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.3.0.0
+// Version :0.3.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -42,10 +42,15 @@
  * @param rem2 @text ＿＿＿＿ メニュー ＿＿＿＿
  * @desc メニューシーンに関する機能。
  * (なお、これは区切り線なので値を入力しても何も起きません)
- * 
+ *
  * @param sceneMenu @text メニューシーン識別子
  * @desc SceneCustomMenu.js のシーン識別子
  * 空だと通常のメニューシーンを表示。
+ * @type string @default
+ * 
+ * @param commonEvMenu @text メニューコモンイベント
+ * @desc メニュー代わりに呼ぶコモンイベント
+ * コモンイベントで下準備してメニューシーンを呼ぶ想定。
  * @type string @default
  *
  * @param emptyMenu @text メニュー標準コマンド削除
@@ -67,12 +72,10 @@
  * 設定されていれば実行し、空なら次のものを対象に同様の繰り返し。
  * 実行された時点で、その後の設定は無視されます。
  * 
- * 実装予定!
- * ・メニューの項目を設定できるようにする。
- * ・エディタでは消せないメニューの項目を消す。
- * ・規定のシーンも選べるようにする。
+ * 実装予定! 希望!
  * ・任意のキーでシーンを呼び出す。
- * ・シーンの代わりにコモンイベントを呼ぶ。
+ * ・シーンの代わりにコモンイベントを呼ぶ(これタイトルでは厳しい)
+ * ・戦闘シーンのメニューも入れ替えられるといいな。
  *
  * 
  */
@@ -143,8 +146,8 @@
                 case "options": return this.commandOptions;
                 case "save": return this.commandGameEnd;
                 case "gameEnd": return this.commandItem;
+                default: return null;
             }
-            return null;
         };
         this._commandWindow.setHandler( "cancel", this.popScene.bind( this ) );
 
@@ -220,8 +223,8 @@
                 case "newGame": return this.commandNewGame;
                 case "continue": return this.commandContinue;
                 case "options": return this.commandOptions;
+                default: return null;
             }
-            return null;
         };
         pluginParams.commandTitle.forEach( e => {
             const handler = basicCommand( e.sceneId );
@@ -276,7 +279,6 @@
 
         this.checkPlayerLocation();
         DataManager.setupNewGame();
-        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
     };
@@ -285,18 +287,17 @@
     const _Scene_GameEnd_commandToTitle = Scene_GameEnd.prototype.commandToTitle;
     Scene_GameEnd.prototype.commandToTitle = function() {
         if( !pluginParams.sceneTitle ) return _Scene_GameEnd_commandToTitle.call( this );
+
         this.fadeOutAll();
-        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
     };
 
-    // Scene_GameEndからのルートの乗っ取り
+    // Scene_Gameoverからのルートの乗っ取り
     const _Scene_Gameover_gotoTitle = Scene_Gameover.prototype.gotoTitle;
     Scene_Gameover.prototype.gotoTitle = function() {
         if( !pluginParams.sceneTitle ) return _Scene_Gameover_gotoTitle.call( this );
 
-        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
     };
@@ -305,11 +306,6 @@
         AudioManager.playBgm( $dataSystem.titleBgm );
         AudioManager.stopBgs();
         AudioManager.stopMe();
-    }
-    function setTitleImage() {
-        // ここでタイトルイメージを表示できないものか。
-        // _nextScene を改造する方法だと、オプションなどから戻ってきたときにタイトルが再現できないなぁ
-        // SceneManager._backgroundBitmap = ImageManager.loadTitle1( $dataSystem.title1Name );
     }
 
     // 直接メニューから呼び出す
