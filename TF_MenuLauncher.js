@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.1.0.0
+// Version :0.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -67,6 +67,7 @@
         DataManager.setupNewGame();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
+        removeButton();
     };
 
     // Scene_GameEndからのルートの乗っ取り
@@ -76,6 +77,7 @@
         this.fadeOutAll();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
+        removeButton();
     };
 
     // Scene_GameEndからのルートの乗っ取り
@@ -85,13 +87,16 @@
 
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
+        removeButton();
     };
+
     function startTitleSound() {
-        // 音楽再生開始
         AudioManager.playBgm( $dataSystem.titleBgm );
         AudioManager.stopBgs();
         AudioManager.stopMe();
-
+    }
+    function removeButton() {
+        SceneManager._nextScene.needsCancelButton = () => false;
     }
 
     // 直接メニューから呼び出す
