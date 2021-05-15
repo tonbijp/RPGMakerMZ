@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.2.0.0
+// Version :0.2.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -27,11 +27,6 @@
  * @desc SceneCustomMenu.js のシーン識別子
  * 空だと通常のタイトルシーンを表示。
  * @type string @default
- * 
- * @param commonEvIdTitle @text タイトルコモンイベント名
- * @desc タイトルシーンの代わりにコモンイベントを呼びます。
- * 必要ならコモンイベント中にタイトルシーンを呼んでください。
- * @type string @default
  *
  * @param emptyTitle @text タイトル標準コマンド削除
  * @desc [タイトルシーン識別子]とは共存できません。
@@ -53,11 +48,6 @@
  * 空だと通常のメニューシーンを表示。
  * @type string @default
  *
- * @param commonEvIdMenu @text メニューコモンイベント名
- * @desc メニューシーンの代わりにコモンイベントを呼びます。
- * 必要ならコモンイベント中にメニューシーンを呼んでください。
- * @type string @default
- *
  * @param emptyMenu @text メニュー標準コマンド削除
  * @desc [メニューシーン識別子]とは共存できません。
  * 必ず[メニュー追加コマンド]を設定してください。
@@ -72,6 +62,10 @@
  * @help
  * カスタムメニュー作成プラグイン(SceneCustomMenu.js)で作ったシーンを
  * 通常のタイトルやメニューと入れ替えることができます。
+ * 
+ * 順に[カスタムシーン][シーンクラス]と
+ * 設定されていれば実行し、空なら次のものを対象に同様の繰り返し。
+ * 実行された時点で、その後の設定は無視されます。
  * 
  * 実装予定!
  * ・メニューの項目を設定できるようにする。
@@ -96,23 +90,43 @@
  * @desc Scene_Base の子孫クラス名
  * 標準の JavaScriptクラスを呼びます。
  * @type string @default
- * 
- * @param commonEvId @text コモンイベント名
- * @desc コモンイベントを呼びます。
- * @type string @default
  */
 ( () => {
     "use strict";
     const PLUGIN_NAME = "TF_MenuLauncher";
+    const HANDLER_CUSTOM_COMMAND = "handlerCustomCommand";
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
 
-    const COM_TEST = "test";
-    PluginManagerEx.registerCommand( document.currentScript, COM_TEST, function( args ) {
-        console.log( `${PLUGIN_NAME}: args = ${args[ "arg1" ]}` );
-    } );
+
+    /*---- Scene_Menu ----*/
+    const _Scene_Menu_createCommandWindow = Scene_Menu.prototype.createCommandWindow;
+    Scene_Menu.prototype.createCommandWindow = function() {
+        if( !pluginParams.emptyMenu ) return _Scene_Menu_createCommandWindow.call( this );
+
+        const rect = this.commandWindowRect();
+        const commandWindow = new Window_MenuCommand( rect );
+        // commandWindow.setHandler( "item", this.commandItem.bind( this ) );
+        // commandWindow.setHandler( "skill", this.commandPersonal.bind( this ) );
+        // commandWindow.setHandler( "equip", this.commandPersonal.bind( this ) );
+        // commandWindow.setHandler( "status", this.commandPersonal.bind( this ) );
+        // commandWindow.setHandler( "formation", this.commandFormation.bind( this ) );
+        // commandWindow.setHandler( "options", this.commandOptions.bind( this ) );
+        // commandWindow.setHandler( "save", this.commandSave.bind( this ) );
+        // commandWindow.setHandler( "gameEnd", this.commandGameEnd.bind( this ) );
+        commandWindow.setHandler( "cancel", this.popScene.bind( this ) );
+        this.addWindow( commandWindow );
+        this._commandWindow = commandWindow;
+    };
+
+    /*---- Window_MenuCommand ----*/
+    const _Window_MenuCommand_makeCommandList = Window_MenuCommand.prototype.makeCommandList;
+    Window_MenuCommand.prototype.makeCommandList = function() {
+        if( !pluginParams.emptyMenu ) return _Window_MenuCommand_makeCommandList.call( this );
+    };
+
 
     /*---- Scene_Title ----*/
     // コマンド数に合わせて、高さを増やす。
@@ -147,22 +161,17 @@
         const i = this._commandWindow.index() - ( pluginParams.emptyTitle ? 0 : 3 );
         const command = pluginParams.commandTitle[ i ];
 
-        // indexに沿ってコマンドを処理
-        if( command.sceneId ) {
+        if( command.sceneId ) { // カスタムシーンの呼び出し
             this._windowLayer.destroy();
             SceneManager.callCustomMenu( command.sceneId );
-        } else if( command.sceneClass ) {
+
+        } else if( command.sceneClass ) { // シーンクラスの呼び出し
             this._windowLayer.destroy();
             SceneManager.push( new Function( `return ${command.sceneClass}` )() );
-        } else if( command.commonEvId ) {
-            // コモンイベントの実行
-            console.log( `コモンイベント : ${command.commonEvId}` );
-
         }
     }
 
     /*---- Window_TitleCommand ----*/
-    const HANDLER_CUSTOM_COMMAND = "handlerCustomCommand";
     /**
      * タイトルのメニューにコマンドを追加。
      */
