@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.4.0.0
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -62,6 +62,24 @@
  * @param commandMenu @text メニュー追加コマンド
  * @desc [メニューシーン識別子]とは共存できません。
  * @type struct<menuCommandParam>[] @default
+ *
+ * 
+ * @param rem3 @text ＿＿＿＿ 部品位置 ＿＿＿＿
+ *
+ * @param isTopHelpMode @text ヘルプ上下位置
+ * @desc
+ * @type boolean @default false
+ * @on 上配置 @off 下配置(規定)
+ * 
+ * @param isTopButtonMode @text ボタン上下位置
+ * @desc
+ * @type boolean @default true
+ * @on 上配置(規定) @off 下配置
+ * 
+ * @param isLeftInputMode @text 入力項目横位置
+ * @desc
+ * @type boolean @default false
+ * @on 左配置 @off 右配置(規定)
  *
  *
  * @help
@@ -129,6 +147,20 @@
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
     let baseMenuCommandsNum;
+
+
+    /*---- Scene_Base ----*/
+    Scene_Base.prototype.isBottomHelpMode = function() {
+        return !pluginParams.isTopHelpMode;
+    };
+
+    Scene_Base.prototype.isBottomButtonMode = function() {
+        return !pluginParams.isTopButtonMode;
+    };
+
+    Scene_Base.prototype.isRightInputMode = function() {
+        return !pluginParams.isLeftInputMode;
+    };
 
     /*---- Scene_Menu ----*/
     const _Scene_Menu_createCommandWindow = Scene_Menu.prototype.createCommandWindow;
