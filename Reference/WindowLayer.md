@@ -48,7 +48,7 @@ MVでは、ここで処理されていたフィルタ機能など多くは [Wind
 * [setChildIndex (child, index)](PIXI.Container.md#setchildindex-child-index)
 * [sortChildren ()](PIXI.Container.md#sortchildren-)
 * [swapChildren (child, child2)](PIXI.Container.md#swapchildren-child-child2)
-*  [updateTransform ()](PIXI.Container.md#updatetransform-)
+* [updateTransform ()](PIXI.Container.md#updatetransform-)
 
 
 ### メソッド
