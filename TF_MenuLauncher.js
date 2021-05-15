@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.1.1.0
+// Version :0.1.1.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -58,6 +58,9 @@
     } );
 
 
+
+
+
     // Scene_Bootからのルートの乗っ取り
     const _Scene_Boot_startNormalGame = Scene_Boot.prototype.startNormalGame;
     Scene_Boot.prototype.startNormalGame = function() {
@@ -65,9 +68,9 @@
 
         this.checkPlayerLocation();
         DataManager.setupNewGame();
+        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
-        removeButton();
     };
 
     // Scene_GameEndからのルートの乗っ取り
@@ -75,9 +78,9 @@
     Scene_GameEnd.prototype.commandToTitle = function() {
         if( !pluginParams.sceneTitle ) return _Scene_GameEnd_commandToTitle.call( this );
         this.fadeOutAll();
+        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
-        removeButton();
     };
 
     // Scene_GameEndからのルートの乗っ取り
@@ -85,9 +88,9 @@
     Scene_Gameover.prototype.gotoTitle = function() {
         if( !pluginParams.sceneTitle ) return _Scene_Gameover_gotoTitle.call( this );
 
+        setTitleImage();
         SceneManager.callCustomMenu( pluginParams.sceneTitle );
         startTitleSound();
-        removeButton();
     };
 
     function startTitleSound() {
@@ -95,8 +98,10 @@
         AudioManager.stopBgs();
         AudioManager.stopMe();
     }
-    function removeButton() {
-        SceneManager._nextScene.needsCancelButton = () => false;
+    function setTitleImage() {
+        // ここでタイトルイメージを表示できないものか。
+        // _nextScene を改造する方法だと、オプションなどから戻ってきたときにタイトルが再現できないなぁ
+        // SceneManager._backgroundBitmap = ImageManager.loadTitle1( $dataSystem.title1Name );
     }
 
     // 直接メニューから呼び出す
