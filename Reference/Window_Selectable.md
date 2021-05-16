@@ -43,13 +43,13 @@ MVでは引数が x, y, width, height だった。
 | `_cursorFixed` | Boolean | カーソルが固定されているか |
 | `_cursorAll` | Boolean | 全項目を選択しているか |
 | `_helpWindow` | [Window_Help](Window_Help.md) | ヘルプウィンドウ |
-| `_handlers` | Object | \{[入力ハンドラ名](#入力ハンドラ名): ハンドラ関数, …\} |
+| `_handlers` | Object | \{[入力キー名](#入力キー名): ハンドラ関数, …\} |
 | `_doubleTouch` | Boolean | **@MZ** 選択中の項目のクリック・タッチか |
 | `_canRepeat` | Boolean | **@MZ** 繰り返し可か |
 
 
-#### 入力ハンドラ名
-RPGツクールMZの主要な入力ハンドラ。<br />
+#### 入力キー名
+『RPGツクールMZ』の主要な入力キー名。<br />
 キーボード、ゲームパッド、タッチパネル、マウスの入力を共通した以下のシンボル文字列に変換している。
 
 | 文字列 | 説明 |
