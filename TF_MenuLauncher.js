@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.6.0.1
+// Version :0.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -107,6 +107,11 @@
  * @param label @text コマンドラベル
  * @desc メニューに表示されるコマンド名。
  * @type string @default コマンド
+ * 
+ * @param script @text スクリプト
+ * @desc シーン呼び出し前に実行されるスクリプト。
+ * this は現在の Scene_Title。
+ * @type multiline_string @default
  *
  * @param sceneId @text シーン識別子
  * @desc SceneCustomMenu.js のシーン識別子
@@ -125,6 +130,11 @@
  * @param label @text コマンドラベル
  * @desc メニューに表示されるコマンド名。
  * @type string @default コマンド
+ *
+ * @param script @text スクリプト
+ * @desc シーン呼び出し前に実行されるスクリプト。
+ * this は現在の Scene_Menu。
+ * @type multiline_string @default
  *
  * @param sceneId @text シーン識別子
  * @desc SceneCustomMenu.js のシーン識別子
@@ -214,6 +224,10 @@
         const i = this._commandWindow.index() - ( pluginParams.emptyMenu ? 0 : baseMenuCommandsNum );
         const command = pluginParams.commandMenu[ i ];
 
+        if( command.script ) {
+            ( new Function( command.script ) ).call( this );
+        }
+
         if( command.sceneId ) { // カスタムシーンの呼び出し
             this._windowLayer.destroy();
             SceneManager.callCustomMenu( command.sceneId );
@@ -288,6 +302,10 @@
     function customCommandTitle() {
         const i = this._commandWindow.index() - ( pluginParams.emptyTitle ? 0 : 3 );
         const command = pluginParams.commandTitle[ i ];
+
+        if( command.script ) {
+            ( new Function( command.script ) ).call( this );
+        }
 
         if( command.sceneId ) { // カスタムシーンの呼び出し
             this._windowLayer.destroy();
