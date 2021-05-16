@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.6.0.0
+// Version :0.6.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -102,13 +102,6 @@
  * [タイトル追加コマンド]と[メニュー追加コマンド]
  * 　[シーン識別子]設定されていれば実行し、
  * 　空なら[シーンクラス名]を実行します。
- * 
- * 実装予定! 希望!
- * ・任意のキーでシーンを呼び出す。
- * ・シーンの代わりにコモンイベントを呼ぶ(これタイトルでは厳しい)
- * ・戦闘シーンのメニューも入れ替えられるといいな。
- *
- * 
  */
 /*~struct~titleCommandParam:ja
  * @param label @text コマンドラベル
@@ -207,15 +200,16 @@
 
         pluginParams.commandMenu.forEach( e => {
             const handler = basicCommand( e.sceneId );
-            if( handler === null ) {// 設定されたコマンドを追加
+            if( handler === null ) {// 設定されたコマンドのハンドラを追加
                 this._commandWindow.setHandler( HANDLER_CUSTOM_COMMAND, customCommandMenu.bind( this ) );
 
-            } else {// 規定コマンドを追加
+            } else {// 規定コマンドのハンドラを追加
                 this._commandWindow.setHandler( e.sceneId, handler.bind( this ) );
             }
         } );
         this.addWindow( this._commandWindow );
     };
+    // メニューのコマンドを実行
     function customCommandMenu() {
         const i = this._commandWindow.index() - ( pluginParams.emptyMenu ? 0 : baseMenuCommandsNum );
         const command = pluginParams.commandMenu[ i ];
@@ -238,10 +232,10 @@
 
         const defaultCommands = [ "item", "skill", "equip", "status", "formation", "options", "save", "gameEnd" ];
         pluginParams.commandMenu.forEach( e => {
-            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンドを追加
+            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンド項目を追加
                 this.addCommand( e.label, e.sceneId );
 
-            } else {// 設定されたコマンドを追加
+            } else {// 設定されたコマンド項目を追加
                 this.addCommand( e.label, HANDLER_CUSTOM_COMMAND );
             }
         } );
@@ -282,14 +276,15 @@
         };
         pluginParams.commandTitle.forEach( e => {
             const handler = basicCommand( e.sceneId );
-            if( handler === null ) {// 設定されたコマンドを追加
+            if( handler === null ) {// 設定されたコマンドハンドラを追加
                 this._commandWindow.setHandler( HANDLER_CUSTOM_COMMAND, customCommandTitle.bind( this ) );
 
-            } else {// 規定コマンドを追加
+            } else {// 規定コマンドハンドラを追加
                 this._commandWindow.setHandler( e.sceneId, handler.bind( this ) );
             }
         } );
     };
+    //タイトルのコマンドを実行
     function customCommandTitle() {
         const i = this._commandWindow.index() - ( pluginParams.emptyTitle ? 0 : 3 );
         const command = pluginParams.commandTitle[ i ];
@@ -305,19 +300,16 @@
     }
 
     /*---- Window_TitleCommand ----*/
-    /**
-     * タイトルのメニューにコマンドを追加。
-     */
     const _Window_TitleCommand_makeCommandList = Window_TitleCommand.prototype.makeCommandList;
     Window_TitleCommand.prototype.makeCommandList = function() {
         if( !pluginParams.emptyTitle ) _Window_TitleCommand_makeCommandList.call( this );
 
         const defaultCommands = [ "newGame", "continue", "options" ];
         pluginParams.commandTitle.forEach( e => {
-            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンドを追加
+            if( defaultCommands.includes( e.sceneId ) ) {// 規定コマンド項目を追加
                 this.addCommand( e.label, e.sceneId );
 
-            } else {// 設定されたコマンドを追加
+            } else {// 設定されたコマンド項目を追加
                 this.addCommand( e.label, HANDLER_CUSTOM_COMMAND );
             }
         } );
