@@ -35,7 +35,7 @@ v1.1.1、v1.2.0 で変更あり。
 | `baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) | [read-only] 基礎テクスチャ |
 | `canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | [read-only] 画像を描画するcanvas |
 | `context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) | [read-only] 2Dレンダリングコンテクスト |
-| `image` | [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  **(New!)** [read-only] 画像要素 |
+| `image` | [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  **@MZ** [read-only] 画像要素 |
 | `width` | [Number](Number.md) | [read-only] 画像の幅(ピクセル) |
 | `height` | [Number](Number.md) | [read-only] 画像の高さ(ピクセル) |
 | `rect` | [Rectangle](Rectangle.md) | [read-only] 画像の矩形範囲 |
@@ -205,17 +205,17 @@ v1.1.1、v1.2.0 で変更あり。
 
 ##### 引数
 
-| 識別子 | 型 | 特性 | 規定値 | 説明 |
-| --- | --- | --- | --- | --- |
-| `source` | [Bitmap](Bitmap.md) |  |  | 転送元の画像 |
-| `sx` | [Number](Number.md) |  |  | 転送元x座標(ピクセル) |
-| `sy` | [Number](Number.md) |  |  | 転送元y座標(ピクセル) |
-| `sw` | [Number](Number.md) |  |  | 転送元の画像幅(ピクセル) |
-| `sh` | [Number](Number.md) |  |  | 転送元の画像高さ(ピクセル) |
-| `dx` | [Number](Number.md) |  |  | 転送先x座標(ピクセル) |
-| `dy` | [Number](Number.md) |  |  | 転送先y座標(ピクセル) |
-| `dw` | [Number](Number.md) | &lt;optional&gt; | sw | 転送先の画像幅(ピクセル) |
-| `dh` | [Number](Number.md) | &lt;optional&gt; | sh | 転送先の画像高さ(ピクセル) |
+| 識別子 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `source` | [Bitmap](Bitmap.md) |  | 転送元の画像 |
+| `sx` | [Number](Number.md) |  | 転送元x座標(ピクセル) |
+| `sy` | [Number](Number.md) |  | 転送元y座標(ピクセル) |
+| `sw` | [Number](Number.md) |  | 転送元の画像幅(ピクセル) |
+| `sh` | [Number](Number.md) |  | 転送元の画像高さ(ピクセル) |
+| `dx` | [Number](Number.md) |  | 転送先x座標(ピクセル) |
+| `dy` | [Number](Number.md) |  | 転送先y座標(ピクセル) |
+| `dw` | [Number](Number.md) | &lt;optional&gt; | 転送先の画像幅(規定値:sw) |
+| `dh` | [Number](Number.md) | &lt;optional&gt; | 転送先の画像高さ(規定値:sh) |
 
 
 #### bltImage (source, sx, sy, sw, sh, dx, dy, dw opt, dh opt)
@@ -223,17 +223,17 @@ v1.1.1、v1.2.0 で変更あり。
 
 ##### 引数
 
-| 識別子 | 型 | 特性 | 規定値 | 説明 |
-| --- | --- | --- | --- | --- |
-| `source` | [Bitmap](Bitmap.md) |  |  | 転送元の画像 |
-| `sx` | [Number](Number.md) |  |  | 転送元x座標(ピクセル) |
-| `sy` | [Number](Number.md) |  |  | 転送元y座標(ピクセル) |
-| `sw` | [Number](Number.md) |  |  | 転送元の画像幅(ピクセル) |
-| `sh` | [Number](Number.md) |  |  | 転送元の画像高さ(ピクセル) |
-| `dx` | [Number](Number.md) |  |  | 転送先x座標(ピクセル) |
-| `dy` | [Number](Number.md) |  |  | 転送先y座標(ピクセル) |
-| `dw` | [Number](Number.md) | &lt;optional&gt; | sw | 転送先の画像幅(ピクセル) |
-| `dh` | [Number](Number.md) | &lt;optional&gt; | sh | 転送先の画像高さ(ピクセル) |
+| 識別子 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `source` | [Bitmap](Bitmap.md) |  | 転送元の画像 |
+| `sx` | [Number](Number.md) |  | 転送元x座標(ピクセル) |
+| `sy` | [Number](Number.md) |  | 転送元y座標(ピクセル) |
+| `sw` | [Number](Number.md) |  | 転送元の画像幅(ピクセル) |
+| `sh` | [Number](Number.md) |  | 転送元の画像高さ(ピクセル) |
+| `dx` | [Number](Number.md) |  | 転送先x座標(ピクセル) |
+| `dy` | [Number](Number.md) |  | 転送先y座標(ピクセル) |
+| `dw` | [Number](Number.md) | &lt;optional&gt; | 転送先の画像幅(規定値:sw) |
+| `dh` | [Number](Number.md) | &lt;optional&gt; | 転送先の画像高さ(規定値:sh) |
 
 
 #### blur ()
@@ -247,6 +247,15 @@ v1.1.1、v1.2.0 で変更あり。
 #### clear ()
 画像を削除。<br />
 [Sprite](Sprite.md)などの `bitmap`プロパティにすでに`Bitmap`が設定されている場合、新規 `Bitmap` を代入するのはメモリ効率的に問題がありそうなので、 `bitmap`プロパティに値が存在するか調べたのち、このメソッドで削除すると良いだろう。
+
+##### 例
+```js
+if( sprite.bitmap ) {
+    sprite.bitmap.clear();
+}else{
+    sprite.bitmap = new Bitmap(1, 1);
+}
+```
 
 
 #### clearRect (x, y, width, height)
