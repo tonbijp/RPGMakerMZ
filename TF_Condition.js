@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.3.0
+// Version :1.2.3.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -75,14 +75,13 @@
  * 　　一時スイッチと判定結果の値が同じだとON。
  * 
  * ●スクリプト
- * $gameVariables.setValueByName( [変数名], [変数への設定値] )
- * $gameVariables.valueByName( [変数名] )
- * $gameSwitches.setValueByName( [スイッチ名], [スイッチ状態(真偽値)] )
- * $gameSwitches.valueByName( [スイッチ名] )
- * $gameSwitches.multipleAnd( [スイッチ名], [スイッチ名]... )
- * this.TF_checkLocation( [マップID], [x], [y], [向き] )
- * this.TF_checkFrontEvent( [マップID], [イベントID] )
- * this.TF_checkHereEvent( [マップID], [向き], [イベントID] )
+ * $gameVariables.setValueByName( 変数名, 変数への設定値 )
+ * $gameVariables.valueByName( 変数名 )
+ * $gameSwitches.setValueByName( スイッチ名, スイッチ状態(真偽値) )
+ * $gameSwitches.valueByName( スイッチ名 )
+ * this.TF_checkLocation( マップID, x, y, 向き )
+ * this.TF_checkFrontEvent( マップID, イベントID )
+ * this.TF_checkHereEvent( マップID, 向き, イベントID )
  * 
  * 利用規約 : MITライセンス
  *
@@ -795,7 +794,7 @@
 	// [複数スイッチ&結合]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_MULTIPLE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
-		const value = $gameSwitches.multipleAnd( ...args.nameList );
+		const value = args.nameList.every( e => $gameSwitches.valueByName( e ) );
 		setItTo( value, args.operate );
 	} );
 
@@ -882,8 +881,11 @@
 	function stringToNumber( value ) {
 		if( value === undefined || value === "" ) return 0;
 		const num = parseFloat( value );
-		if( isNaN( num ) ) return $gameVariables.valueByName( value );
-		return num;
+		if( isNaN( num ) ) {
+			return $gameVariables.valueByName( value );
+		} else {
+			return num;
+		}
 	}
 
 	function stringToBoolean( value ) {
@@ -1028,10 +1030,6 @@
 		return i;
 	}
 
-	Game_Switches.prototype.multipleAnd = function( ...args ) {
-		return args.reduce( ( pre, curr ) => pre && $gameSwitches.valueByName( curr ), true );
-	};
-
 	/*--- setSelfSwitch ---*/
 	/**
 	 * [セルフスイッチ] を設定
@@ -1095,7 +1093,7 @@
 					if( getSelfSwitch( args.mapId, args.eventId, args.type ) !== ( args.operand === PARAM_TRUE ) ) return false;
 					continue;
 				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ&結合]
-					if( !$gameSwitches.multipleAnd( ...args.nameList ) ) return false;
+					if( !args.nameList.every( e => $gameSwitches.valueByName( e ) ) ) return false;
 					continue;
 				case CONDITION_COMPARE:// [出現条件:数値比較]
 					if( !checkCompare( args ) ) return false;
