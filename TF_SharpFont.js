@@ -1,6 +1,6 @@
 //========================================
 // TF_SharpFont.js
-// Version :0.0.0.0
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -76,16 +76,9 @@
     const threshold = pluginParams.threshold;
     const sharpness = ( 100 - pluginParams.sharpness ) / 100;
 
-    const COM_TEST = "testCommand";
-    PluginManagerEx.registerCommand( document.currentScript, COM_TEST, function( args ) {
-        const argNote = args.note;//JSON.parse( args.note );
-        argNote;
-        paramNote;
-    } );
-
-    const ALIGN_LEFT = "left";
-    const ALIGN_CENTER = "center";
-    const ALIGN_RIGHT = "right";
+    const POSITION_LEFT = "left";
+    const POSITION_CENTER = "center";
+    const POSITION_RIGHT = "right";
 
     /*--- Bitmap ---*/
     const _Bitmap__drawTextBody = Bitmap.prototype._drawTextBody;
@@ -110,9 +103,9 @@
 
         // textAlignで、描画位置が変わるのでズレを設定
         let alignX = 0;
-        if( wCtx.textAlign === ALIGN_RIGHT ) {
+        if( wCtx.textAlign === POSITION_RIGHT ) {
             alignX = maxWidth;
-        } else if( wCtx.textAlign === ALIGN_CENTER ) {
+        } else if( wCtx.textAlign === POSITION_CENTER ) {
             alignX = Math.round( maxWidth / 2 );
         }
         wCtx.fillText( text, alignX, this.fontSize, maxWidth );
