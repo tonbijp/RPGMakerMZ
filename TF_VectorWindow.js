@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.5.9.0
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -51,7 +51,11 @@
  * @param messageView @text メッセージウィンドウ表示範囲
  * @desc 画面全体に対する x,y,幅,高さ の順の数値(ピクセル数)
  * @type string @default 4,4,808,616
- * 
+ *
+ * @param pauseSignPosition @text ポーズサイン位置
+ * @desc 
+ * @type string @default  0,0
+ *
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
  * グラデーション、ドロップシャドウ、フキダシの指定が可能。
@@ -138,7 +142,7 @@
 	const SHAPE_BALLOON = "balloon";
 	const SHAPE_NONE = "none";
 	const workBitmap = new Bitmap( 1, 1 );
-	const workCtx = workBitmap.context;
+	const wCtx = workBitmap.context;
 	const BOX_MARGIN = 4;	// boxWidth,boxHeight の外にある余白
 
 	// $gameMessage.positionType()
@@ -168,6 +172,9 @@
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
+	const pauseSignPosition = stringToPoint( pluginParams.pauseSignPosition );
+
+
 	let messageView;
 
 	/*--- Scene_Boot ---*/
@@ -233,6 +240,14 @@
 			this.TF_windowType = WINDOW_TYPE_DEFAULT;
 			setWindowParam( this );
 		}
+	};
+
+	const _Window__refreshPauseSign = Window.prototype._refreshPauseSign;
+	Window.prototype._refreshPauseSign = function() {
+		_Window__refreshPauseSign.call( this );
+
+		this._pauseSignSprite.x += pauseSignPosition.x;
+		this._pauseSignSprite.y += pauseSignPosition.y;
 	};
 
 	const _Window__refreshAllParts = Window.prototype._refreshAllParts;
@@ -360,7 +375,7 @@
 	/*--- Window_Base ---*/
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
 	Window_Base.prototype.textPadding = function() {
-		return this.lineHeight() - $dataSystem.advanced.fontSize;
+		return Math.ceil( this.lineHeight() - $dataSystem.advanced.fontSize ) + 0.5;
 	};
 
 	// なぜかここで padding を上書きして設定した値が戻っているので無視
@@ -532,10 +547,10 @@
 	}
 
 	function cssColor2Array( CssColor ) {
-		workCtx.clearRect( 0, 0, 1, 1 );
-		workCtx.fillStyle = CssColor;
-		workCtx.fillRect( 0, 0, 1, 1 );
-		return workCtx.getImageData( 0, 0, 1, 1 ).data;
+		wCtx.clearRect( 0, 0, 1, 1 );
+		wCtx.fillStyle = CssColor;
+		wCtx.fillRect( 0, 0, 1, 1 );
+		return wCtx.getImageData( 0, 0, 1, 1 ).data;
 	}
 
 	/**
@@ -755,7 +770,6 @@
 
 
 	/*--- Window_NameBox ---*/
-	const NAME_HEIGHT = 40;//TODO:プロパティで設定できるように
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
 		_Window_NameBox_initialize.apply( this, arguments );
@@ -772,7 +786,7 @@
 
 		const tw = this._messageWindow;
 		this.x += tw.margin;
-		this.y = tw.y + tw.height - tw.padding - NAME_HEIGHT;
+		this.y = tw.y + tw.height - tw.padding - getNameHeight() - this.padding;
 	};
 
 	Window_NameBox.prototype._refreshAllParts = function() {
@@ -810,6 +824,9 @@
 		const x = rect.x + Math.floor( ( rect.width - this.textWidthEx ) / 2 );//センタリング
 		this.drawTextEx( this._name, x, rect.y, rect.width );
 	};
+	function getNameHeight() {
+		return Math.ceil( nameFontSize * lineHeightRatio );
+	}
 
 	/*--- Scene_Message ---*/
 
@@ -833,7 +850,8 @@
 		moveOnMessageWindow( tw ) {
 			this.x = tw.x + tw.padding + IMG_MARGIN;
 			this.y = tw.y + tw.height - tw.padding - ImageManager.faceHeight;
-			if( nameWithFace ) this.y -= NAME_HEIGHT;
+			const speakerName = $gameMessage.speakerName(); //SceneManager._scene._nameBoxWindow._name;
+			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
 		}
 		drawFace( bitmap, faceIndex ) {
 			const sw = ImageManager.faceWidth;
