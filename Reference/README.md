@@ -5,9 +5,10 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 ここは、そのゲームを動かす JavaScript の非公式なリファレンスです。私「とんび@[鳶嶋工房](http://tonbi.jp/)」が個人的に作ったものを公開・共有しています。
 
 ゲーム制作時に[スクリプト]コマンドを使う場合の参考、またゲーム拡張プラグインの制作のお供にお使いください。<br />
-『RPGツクールMZ』の JavaScript の説明をするときなど、各種ソーシャルメディアやブログなどから個々のページリンクするなどして使ってもいいです。
+『RPGツクールMZ』の JavaScript の説明をするときなど、各種ソーシャルメディアやブログなどから個々のページにリンクするなどして使ってください。
 
-ちなみに [RPGツクールMZ プラグイン置き場](https://github.com/tonbijp/RPGMakerMZ/) でプラグインも公開しています。
+ちなみに [RPGツクールMZ プラグイン置き場](https://github.com/tonbijp/RPGMakerMZ/) でプラグインも公開しています。<br />
+[RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) (リファレンスのMV版)もあります。
 
 
 ## リファレンスの使い方
@@ -28,8 +29,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=270496334) トリアコンタン
 * [ツクールMZスクリプトリファレンスwiki](http://www.rpgmaker-script-wiki.xyz/mzscriptwiki.php) 村人A
 * [RPGツクールプラグイン制作過程紹介](https://note.com/nz_prism/n/n179edce51d4b) んーぞー
-* [RPGMV-CoreScript-Reference](https://katai5plate.github.io/RPGMV-CoreScript-Reference/) (リファレンスのMV版)
-
+* [ツクール MZ のクラス/グローバル変数の相互関係表](https://qiita.com/katai5plate/items/0591dbaa1f93454f7725)はどはど@Had2Apps
 
 ## 『RPGツクールMZ』で使われている NW.js のバージョン
 
@@ -45,5 +45,6 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [VScode用インテリセンス定義ファイル 解説(英語フォーラム)](https://forums.rpgmakerweb.com/index.php?threads/lunasense-rpgmakermv-mz-intellisense.126646/) LunaTechsDev
     * [定義ファイル ダウンロード(Github)](https://github.com/LunaTechsDev/LunaLite/tree/master/dist)
 * [Insider.NET 全記事一覧](https://www.atmarkit.co.jp/ait/subtop/features/dotnet/all.html) @IT (VScode や JS の記事を探して読むと良いかと)
+* [VS Codeエディタ入門](https://zenn.dev/karaage0703/books/80b6999d429abc8051bb) karaage0703
 
 ※敬称略
