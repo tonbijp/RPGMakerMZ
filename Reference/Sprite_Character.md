@@ -207,31 +207,31 @@ MV で継承元(スーパークラス)だった Sprite_Base は廃止されて�
 
 
 #### updateBitmap ()
-ビットマップをアップデート。
+ビットマップを更新。
 
 
 #### updateCharacterFrame ()
-キャラクタのフレームをアップデート。
+キャラクタのフレームを更新。
 
 
 #### updateFrame ()
-フレームをアップデート。
+フレームを更新。
 
 
 #### updateHalfBodySprites ()
-半分のスプライトをアップデート。
+半分のスプライトを更新。
 
 
 #### updateOther ()
-その他のアップデート。
+その他の更新。
 
 
 #### updatePosition ()
-キャラクタの位置をアップデート。
+キャラクタの位置を更新。
 
 
 #### updateTileFrame ()
-タイルのフレームをアップデート。
+タイルのフレームを更新。
 
 
 #### updateVisibility ()
