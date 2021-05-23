@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.1.0.0
+// Version :0.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -94,6 +94,8 @@
 
             const shadow = new Sprite_Shadow( e );
             this._tilemap.addChildAt( shadow, preCharacterIndex ); // updateが遅れないように、キャラの前に追加
+            e.shadow = shadow;
+            e._character.hasShadow = true;
         } );
     };
 
@@ -103,13 +105,13 @@
         _Game_Event_setupPageSettings.call( this );
 
         this.refreshShadow = true;
+        this.hasShadow = ( this.event().meta.TF_SHADOW );
     };
 
     /*--- Game_Player ---*/
     const _Game_Player_refresh = Game_Player.prototype.refresh;
     Game_Player.prototype.refresh = function() {
         _Game_Player_refresh.apply( this, arguments );
-
         this.refreshShadow = true;
     };
 
@@ -117,10 +119,28 @@
     var _Game_Follower_refresh = Game_Follower.prototype.refresh;
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
-
         this.refreshShadow = true;
     };
 
+    /*--- Sprite_Character ---*/
+    const _Sprite_Character_update = Sprite_Character.prototype.update;
+    Sprite_Character.prototype.update = function() {
+        _Sprite_Character_update.call( this );
+
+        if( !this._character.refreshShadow ) return;
+        this._character.refreshShadow = false;
+        if( this._character.hasShadow ) {
+            if( this.shadow ) {
+                this.shadow.refresh();
+            } else {
+                const shadow = new Sprite_Shadow( this );
+                this.patternWidth.addChildAt( shadow, preCharacterIndex );
+                this.shadow = shadow;
+            }
+        } else if( this.shadow ) {
+            this.shadow.destroy();
+        }
+    };
 
     /*--- Sprite_Shadow ---*/
     class Sprite_Shadow extends Sprite {
@@ -147,7 +167,7 @@
             this.rY = radius.y;
             this.color = pluginParams.color;
             this.blurStrength = pluginParams.strength;
-            this.shiftY = - 8;
+            this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
         }
 
         getRadius() {
@@ -181,15 +201,12 @@
         }
 
         update() {
-            const tc = this._sprite._character;
-            if( tc.refreshShadow ) this.refresh();
-
             this.opacity = this.getOpacity();
             if( this.opacity === 0 ) return;
 
-            const objDY = tc.shiftY() + tc.jumpHeight() - 8;  // !付きファイル・ジャンプ対応
+            const tc = this._sprite._character;
             this.x = this._sprite.x;
-            this.y = this._sprite.y + objDY;
+            this.y = this._sprite.y + this.shiftY + tc.jumpHeight();  // !付きファイル・ジャンプ対応
             this.z = this._sprite.z - 1;
         }
 
