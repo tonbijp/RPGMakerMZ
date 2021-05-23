@@ -12,7 +12,7 @@
 
 [隊列メンバー]を定義したクラス。 
 
-関連クラス: [Game_Followers](Game_Followers.md)
+関連クラス: [Game_Followers](Game_Followers.md)、[Game_Actor](Game_Actor.md)、[Game_Player](Game_Player.md)
 
 
 ### プロパティ
