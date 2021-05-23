@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.0.0.1
+// Version :0.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -94,7 +94,6 @@
 
             const shadow = new Sprite_Shadow( e );
             this._tilemap.addChildAt( shadow, preCharacterIndex ); // updateが遅れないように、キャラの前に追加
-            e._character.shadow = shadow;
         } );
     };
 
@@ -103,9 +102,7 @@
     Game_Event.prototype.setupPageSettings = function() {
         _Game_Event_setupPageSettings.call( this );
 
-        if( this.shadow ) {
-            this.shadow.refresh();
-        }
+        this.refreshShadow = true;
     };
 
     /*--- Game_Player ---*/
@@ -113,7 +110,7 @@
     Game_Player.prototype.refresh = function() {
         _Game_Player_refresh.apply( this, arguments );
 
-        this.shadow.refresh();
+        this.refreshShadow = true;
     };
 
     /*--- Game_Follower ---*/
@@ -121,7 +118,7 @@
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
 
-        this.shadow.refresh();
+        this.refreshShadow = true;
     };
 
 
@@ -184,10 +181,12 @@
         }
 
         update() {
+            const tc = this._sprite._character;
+            if( tc.refreshShadow ) this.refresh();
+
             this.opacity = this.getOpacity();
             if( this.opacity === 0 ) return;
 
-            const tc = this._sprite._character;
             const objDY = tc.shiftY() + tc.jumpHeight() - 8;  // !付きファイル・ジャンプ対応
             this.x = this._sprite.x;
             this.y = this._sprite.y + objDY;
