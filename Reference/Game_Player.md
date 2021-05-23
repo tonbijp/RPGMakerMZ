@@ -11,6 +11,7 @@
 | [プレイヤー] | [$gamePlayer](global.md#gameplayer-game_player) | 保存される | [RPG.Actor](RPG.Actor.md) | [Sprite_Character](Sprite_Character.md) |
 
 (乗り物を含む)プレイヤーキャラクタを定義したクラス。マップの[場所移動]の処理なども含む。
+JSONデータは [Game_Party](Game_Party.md) クラスの`$gameParty.leader()`を見る必要があるので注意。
 
 v1.1.0、v1.2.0  で変更あり。
 
@@ -502,15 +503,15 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### updateDashing ()
- ダッシュ状態をアップデート。
+ ダッシュ状態を更新。
 
 
 #### updateEncounterCount ()
-[エンカウント]のカウントをアップデート。
+[エンカウント]のカウントを更新。
 
 
 #### updateNonmoving (wasMoving)
- 移動状態をアップデート。
+ 移動状態を更新。
 
 ##### 引数
 
@@ -531,15 +532,15 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### updateVehicle ()
-[乗り物]をアップデート。
+[乗り物]を更新。
 
 
 #### updateVehicleGetOff ()
-[乗り物]からの降りた状態にアップデート。
+[乗り物]からの降りた状態に更新。
 
 
 #### updateVehicleGetOn ()
-[乗り物]へ乗った状態にアップデート。
+[乗り物]へ乗った状態に更新。
 
 
 #### vehicle () → {[Game_Vehicle](Game_Vehicle.md)}
