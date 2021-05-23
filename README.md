@@ -19,6 +19,7 @@
 | [TF_ScreenUtil.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_ScreenUtil.js) | マップ画面二倍拡大とか | α版 | |
 | [TF_LayeredMap.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
 | [TF_SharpFont.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_SharpFont.js) | フォントをくっきりさせる | α版 | |
+| [TF_Shadow.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_Shadow.js) | キャラに影をつける | α版 | |
 
 進捗報告やサポートなどは、ツクール公式フォーラムの次のスレッドで行なっています。
 
