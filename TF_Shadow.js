@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.3.0.0
+// Version :0.3.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -79,7 +79,6 @@
     "use strict";
     const PLUGIN_NAME = "TF_Shadow";
     const TYPE_STRING = "string";
-    let preCharacterIndex;  // タイルマップのchildrenに影を挿入する位置
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
@@ -95,7 +94,6 @@
     /*--- Spriteset_Map ---*/
     const _Spriteset_Map_createCharacters = Spriteset_Map.prototype.createCharacters;
     Spriteset_Map.prototype.createCharacters = function() {
-        preCharacterIndex = this._tilemap.children.length;
         _Spriteset_Map_createCharacters.call( this );
         this._characterSprites.forEach( e => {
             e._character.hasShadow = hasShadow( e._character );
@@ -120,11 +118,15 @@
     }
 
     /**
+     * 
+     * メタタグが
      * @param {Game_Character} tc
      * @returns {Boolean} 影をつけるか
      */
     function hasShadow( tc ) {
-        return getMetaTag( tc ) || !tc.isTile() && !tc.isObjectCharacter();
+        const shadowTag = getMetaTag( tc );
+        if( shadowTag !== undefined ) return !!shadowTag;    //タグ指定があれば、その指定に従う
+        return !tc.isTile() && !tc.isObjectCharacter();
     }
 
     /**
@@ -173,8 +175,7 @@
                 addShadow( this );
             }
         } else if( this.shadow ) {
-            this.parent.remove( this.shadow );
-            this.shadow.destroy();
+            this.parent.removeChild( this.shadow );
         }
     };
 
@@ -238,7 +239,7 @@
         getOpacity() {
             const ts = this._sprite;
             const tc = ts._character;
-            if( !ts.visible || !ts.bitmap || !tc || tc._transparent || tc._opacity === 0 ) return 0;
+            if( !tc || tc._characterName === "" || tc._transparent || tc._opacity === 0 || !ts.visible || !ts.bitmap ) return 0;
             return tc._opacity;
         };
     }
