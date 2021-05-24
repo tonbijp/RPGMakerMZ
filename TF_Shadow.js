@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.2.0.0
+// Version :0.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -41,15 +41,25 @@
  * 
  * @================================================
  * @help
- * プレイヤーと隊列メンバーの下に丸い影をつける。
+ * イベントなどに丸い影をつける。
  * 影はベクター描画するので、画像ファイル不要。
  * 
- * イベントはメモ欄に次のタグを書くと影がつく。
+ * プレイヤー、隊列メンバー、イベントは img/character/ の画像で
+ * ! が頭についていないものには自動でつく。
+ * 
+ * 自動とは別の設定にしたい場合は、
+ * プレイヤーと隊列メンバーはデータベースの[アクター]のメモ欄、
+ * また[イベント]のメモ欄に次のタグを書ける。
+ * 
  * <TF_SHADOW>
- *
- * データベースの[アクター]のメモ欄に以下の形式で書くと
- * 影の半径を指定できる。イベントも同様。
+ * または、<TF_SHADOW:true>
+ * 
+ * 逆に影を消したい場合は以下のタグ。
+ * <TF_SHADOW:false>
+ * 
+ * 以下で影の半径を指定できる。
  * <TF_SHADOW:x,y>
+ *
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -90,7 +100,8 @@
         _Spriteset_Map_createCharacters.call( this );
 
         this._characterSprites.forEach( e => {
-            if( e._character.event && !e._character.event().meta.TF_SHADOW ) return;
+            const shadowTag = getMetaTag( e._character );
+            if( !shadowTag && ( e._character.isTile() || e._character.isObjectCharacter() ) ) return;
 
             const shadow = new Sprite_Shadow( e );
             this._tilemap.addChildAt( shadow, preCharacterIndex ); // updateが遅れないように、キャラの前に追加
@@ -98,6 +109,24 @@
             e._character.hasShadow = true;
         } );
     };
+
+    /**
+     * 
+     * @param {Game_Character} tc 
+     * @returns {String} TF_SHADOWタグの内容(なければnull)
+     */
+    function getMetaTag( tc ) {
+        if( tc instanceof Game_Event ) {
+            return tc.event().meta.TF_SHADOW;
+        } else if( tc instanceof Game_Player ) {
+            return $gameParty.leader().actor().meta.TF_SHADOW;
+        } else if( tc instanceof Game_Follower ) {
+            const actor = tc.actor();
+            if( !actor ) return;
+            return actor.actor().meta.TF_SHADOW;
+        }
+        // viecleも考える、船に影はつけない、飛行船に影はつけない。
+    }
 
     /*--- Game_Event ---*/
     const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
@@ -171,20 +200,8 @@
         }
 
         getRadius() {
-            const tc = this._sprite._character;
-            if( tc instanceof Game_Event ) {
-                const radius = stringToPoint( tc.event().meta.TF_SHADOW );
-                if( radius ) return radius;
-            } else if( tc instanceof Game_Player ) {
-                const radius = stringToPoint( $gameParty.leader().actor().meta.TF_SHADOW );
-                if( radius ) return radius;
-            } else if( tc instanceof Game_Follower ) {
-                const actor = tc.actor();
-                if( !actor ) return shadowRadius;
-                const radius = stringToPoint( actor.actor().meta.TF_SHADOW );
-                if( radius ) return radius;
-            }// viecleも考える、船に影はつけない、飛行船に影はつけない。
-            return shadowRadius;
+            const radius = stringToPoint( getMetaTag( this._sprite._character ) );
+            return ( radius ) ? radius : shadowRadius;
         }
 
         create() {
