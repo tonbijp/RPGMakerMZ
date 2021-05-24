@@ -7,6 +7,11 @@
 ### new Scene_Name ()
 [名前入力の処理]のシーン。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)
 
 

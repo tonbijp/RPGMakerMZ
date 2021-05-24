@@ -6,6 +6,11 @@
 
 ### new Tilemap.Layer ()
 
+主なパス
+```js
+SceneManager._scene._spriteset._tilemap._upperLayer
+SceneManager._scene._spriteset._tilemap._lowerLayer
+```
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md),
 [Tilemap.Renderer](Tilemap.Renderer.md)

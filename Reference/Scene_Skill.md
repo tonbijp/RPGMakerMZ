@@ -7,6 +7,11 @@
 ### new Scene_Skill ()
 [スキル]のシーン。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md), [Window_SkillList](Window_SkillList.md),  [Window_SkillStatus](Window_SkillStatus.md) <br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
 

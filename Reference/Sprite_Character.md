@@ -20,7 +20,13 @@
 MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。<br />
 またフキダシ関連は [Spriteset_Map](Spriteset_Map.md) で管理するように変更されている。
 
-関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md)
+主なパス
+```js
+SceneManager._scene._spriteset._characterSprites[n]
+SceneManager._scene._spriteset._tilemap.children[n]
+```
+
+関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md), [Tilemap](Tilemap.md), [Spriteset_Map](Spriteset_Map.md)
 
 #### 引数
 

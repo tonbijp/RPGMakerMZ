@@ -9,6 +9,11 @@
 
 MVは一枚だったウィンドウが、いくつかに分割されたのでウィンドウ関連のプロパティ・メソッドが増えている。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md)<br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
 

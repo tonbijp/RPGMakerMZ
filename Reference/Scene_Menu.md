@@ -7,6 +7,11 @@
 ### new Scene_Menu ()
 [メニュー]のシーン。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md), [Scene_Item](Scene_Item.md), [Scene_Skill](Scene_Skill.md), [Scene_Equip](Scene_Equip.md), [Scene_Status](Scene_Status.md), [Scene_Options](Scene_Options.md), [Scene_Save](Scene_Save.md), [Scene_GameEnd](Scene_GameEnd.md)
 

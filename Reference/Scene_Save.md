@@ -7,6 +7,11 @@
 #### new Scene_Save ()
 セーブ画面のシーン。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md), [DataManager](DataManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Menu](Scene_Menu.md)
 

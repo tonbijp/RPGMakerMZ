@@ -14,6 +14,11 @@
 
 v1.1.1、v1.2.0  で変更あり。
  
+主なパス
+```js
+SceneManager._scene._spriteset
+```
+
  関連クラス: [Scene_Map](Scene_Map.md)
 
 
@@ -31,7 +36,6 @@ v1.1.1、v1.2.0  で変更あり。
 | `_tileset` | [RPG.Tileset](RPG.Tileset.md) | [タイルセット] |
 | `_shadowSprite` | [Sprite](Sprite.md) |  影スプライト |
 | `_weather` | [Weather](Weather.md) |  天候 |
-
 
 
 ### スーパークラスから継承されたメソッド

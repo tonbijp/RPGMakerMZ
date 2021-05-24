@@ -7,6 +7,11 @@
 ### new Scene_Equip ()
 [装備]シーン。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md), [RPG.EquipItem](RPG.EquipItem.md)<br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
 

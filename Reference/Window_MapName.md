@@ -7,6 +7,11 @@
 ### new Window_MapName (rect)
 マップの[表示名]を表示するウィンドウ。
 
+主なパス
+```js
+SceneManager._scene._mapNameWindow
+```
+
 関連クラス: [Scene_Map](Scene_Map.md)
 
 #### 引数

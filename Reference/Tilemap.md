@@ -5,13 +5,18 @@
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
 ### new Tilemap ()
-2Dベースのタイルマップを表示するためのコンテナクラス。 
+2Dベースのタイルマップを表示するためのコンテナクラス。 <br />
+また、フキダシなどのエフェクト系のスプライトを管理するのにも使われる。
 
 静的メソッドを多く持つユーティリティクラスでもある。
 
 MZで新規にインナークラス [Tilemap.Layer](Tilemap.Layer.md) が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
 
-
+主なパス
+```js
+SceneManager._scene._spriteset._tilemap
+SceneManager._scene._spriteset._effectsContainer
+```
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
 
 ### インナークラス

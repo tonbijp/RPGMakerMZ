@@ -9,6 +9,11 @@
 
 v1.2.0  で変更あり。
 
+主なパス
+```js
+SceneManager._scene
+```
+
 関連クラス: [SceneManager](SceneManager.md)
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
