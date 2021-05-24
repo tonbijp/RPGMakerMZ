@@ -1,6 +1,6 @@
 //========================================
 // TF_SharpFont.js
-// Version :0.1.0.0
+// Version :0.1.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -38,7 +38,7 @@
  * 低い値ほど薄い部分も不透明に変換される
  * @type number @default 200
  * @max 255
- * 
+ *
  * @param sharpness @text シャープ度(%)
  * @desc 値が大きいほどくっきりする
  * 規定値:50
@@ -55,6 +55,9 @@
  * フォントのスムージングはブラウザやOSの機能に依存するので、
  * あまり神経質に値を調整しても意味がありませんので、ご注意ください。
  * たぶん[基本フォントサイズ]以外は規定値で問題ないと思います。
+ * 
+ * また機種によっては動作が遅くなる可能性があります。
+ * 特にコマンドウィンドウの開閉で遅くなるようです。
  * 
  * テスト用のフォントには、マルモニカ(© 2018-2021 hicc 患者長ひっく)を使用。
  * https://00ff.booth.pm/items/2958237
@@ -80,12 +83,13 @@
     const POSITION_CENTER = "center";
     const POSITION_RIGHT = "right";
 
+
     /*--- Bitmap ---*/
     const _Bitmap__drawTextBody = Bitmap.prototype._drawTextBody;
     Bitmap.prototype._drawTextBody = function( text, tx, ty, maxWidth ) {
         const isBaseSize = ( baseFontSize !== 0 ) && this.fontSize % baseFontSize === 0;
         if( !isApplyAll && !isBaseSize ) return _Bitmap__drawTextBody.apply( this, arguments );
-        if( 1024 < maxWidth ) return;// やたらでかい数字で呼び出すやつがいるので無視
+        if( 2048 < maxWidth ) return;// やたらでかい数字で呼び出すやつがいるので無視
 
         //textBaseline = "alphabetic"だとラインの下に出る部分があるのでそのぶん増やす
         const size = Math.floor( this.fontSize * 1.2 );
