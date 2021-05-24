@@ -85,7 +85,6 @@
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
     const shadowRadius = stringToPoint( pluginParams.radius );
 
-
     const COM_TEST = "testCommand";
     PluginManagerEx.registerCommand( document.currentScript, COM_TEST, function( args ) {
         const argNote = args.note;//JSON.parse( args.note );
@@ -98,20 +97,13 @@
     Spriteset_Map.prototype.createCharacters = function() {
         preCharacterIndex = this._tilemap.children.length;
         _Spriteset_Map_createCharacters.call( this );
-
         this._characterSprites.forEach( e => {
-            const shadowTag = getMetaTag( e._character );
-            if( !shadowTag && ( e._character.isTile() || e._character.isObjectCharacter() ) ) return;
-
-            const shadow = new Sprite_Shadow( e );
-            this._tilemap.addChildAt( shadow, preCharacterIndex ); // updateが遅れないように、キャラの前に追加
-            e.shadow = shadow;
-            e._character.hasShadow = true;
+            e._character.hasShadow = hasShadow( e._character );
+            if( e._character.hasShadow ) addShadow( e );
         } );
     };
 
     /**
-     * 
      * @param {Game_Character} tc 
      * @returns {String} TF_SHADOWタグの内容(なければnull)
      */
@@ -122,19 +114,33 @@
             return $gameParty.leader().actor().meta.TF_SHADOW;
         } else if( tc instanceof Game_Follower ) {
             const actor = tc.actor();
-            if( !actor ) return;
-            return actor.actor().meta.TF_SHADOW;
+            if( actor ) return actor.actor().meta.TF_SHADOW;
         }
         // viecleも考える、船に影はつけない、飛行船に影はつけない。
+    }
+
+    /**
+     * @param {Game_Character} tc
+     * @returns {Boolean} 影をつけるか
+     */
+    function hasShadow( tc ) {
+        return getMetaTag( tc ) || !tc.isTile() && !tc.isObjectCharacter();
+    }
+
+    /**
+     * @param {Sprite_Character} ts
+     */
+    function addShadow( ts ) {
+        ts.shadow = new Sprite_Shadow( ts );
+        ts.parent.addChild( ts.shadow );
     }
 
     /*--- Game_Event ---*/
     const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
     Game_Event.prototype.setupPageSettings = function() {
         _Game_Event_setupPageSettings.call( this );
-
         this.refreshShadow = true;
-        this.hasShadow = ( this.event().meta.TF_SHADOW );
+        this.hasShadow = hasShadow( this );
     };
 
     /*--- Game_Player ---*/
@@ -142,6 +148,7 @@
     Game_Player.prototype.refresh = function() {
         _Game_Player_refresh.apply( this, arguments );
         this.refreshShadow = true;
+        this.hasShadow = hasShadow( this );
     };
 
     /*--- Game_Follower ---*/
@@ -149,6 +156,7 @@
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
         this.refreshShadow = true;
+        this.hasShadow = hasShadow( this );
     };
 
     /*--- Sprite_Character ---*/
@@ -162,11 +170,10 @@
             if( this.shadow ) {
                 this.shadow.refresh();
             } else {
-                const shadow = new Sprite_Shadow( this );
-                this.patternWidth.addChildAt( shadow, preCharacterIndex );
-                this.shadow = shadow;
+                addShadow( this );
             }
         } else if( this.shadow ) {
+            this.parent.remove( this.shadow );
             this.shadow.destroy();
         }
     };
@@ -197,6 +204,7 @@
             this.color = pluginParams.color;
             this.blurStrength = pluginParams.strength;
             this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
+            this.z = 2;
         }
 
         getRadius() {
@@ -218,12 +226,12 @@
         }
 
         update() {
+            super.update();
             this.opacity = this.getOpacity();
             if( this.opacity === 0 ) return;
 
-            const tc = this._sprite._character;
             this.x = this._sprite.x;
-            this.y = this._sprite.y + this.shiftY + tc.jumpHeight();  // !付きファイル・ジャンプ対応
+            this.y = this._sprite.y + this.shiftY + this._sprite._character.jumpHeight();  // ジャンプ対応
             this.z = this._sprite.z - 1;
         }
 
