@@ -1,6 +1,6 @@
 //========================================
 // TF_SharpFont.js
-// Version :0.1.0.1
+// Version :0.1.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -88,8 +88,7 @@
     const _Bitmap__drawTextBody = Bitmap.prototype._drawTextBody;
     Bitmap.prototype._drawTextBody = function( text, tx, ty, maxWidth ) {
         const isBaseSize = ( baseFontSize !== 0 ) && this.fontSize % baseFontSize === 0;
-        if( !isApplyAll && !isBaseSize ) return _Bitmap__drawTextBody.apply( this, arguments );
-        if( 2048 < maxWidth ) return;// やたらでかい数字で呼び出すやつがいるので無視
+        if( !isApplyAll && !isBaseSize || 2048 < maxWidth ) return _Bitmap__drawTextBody.apply( this, arguments );
 
         //textBaseline = "alphabetic"だとラインの下に出る部分があるのでそのぶん増やす
         const size = Math.floor( this.fontSize * 1.2 );
