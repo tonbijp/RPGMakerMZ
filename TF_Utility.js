@@ -1,6 +1,6 @@
 //========================================
 // TF_Utility.js
-// Version :0.1.0.1
+// Version :0.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -220,12 +220,28 @@
 	// 追加キー設定
 	const KEY_BS = 8;
 	const KEY_DEL = 46;
+	const KEY_C = 67;
 	const KEY_M = 77;
 	const ACTION_MENU = "menu";
 	const ACTION_CANCEL = "cancel";
 	Input.keyMapper[ KEY_M ] = ACTION_MENU;
 	Input.keyMapper[ KEY_BS ] = ACTION_CANCEL;
 	Input.keyMapper[ KEY_DEL ] = ACTION_CANCEL;
+	Input.keyMapper[ KEY_C ] = ACTION_CANCEL;
+
+	//  Wを上に割り当てると、メニューでのキャラ切り替えができなくなる
+	// const KEY_W = 87;
+	// const KEY_A = 65;
+	// const KEY_S = 83;
+	// const KEY_D = 68;
+	// const ACTION_UP = "up";
+	// const ACTION_DOWN = "down";
+	// const ACTION_LEFT = "left";
+	// const ACTION_RIGHT = "right";
+	// Input.keyMapper[ KEY_W ] = ACTION_UP;
+	// Input.keyMapper[ KEY_A ] = ACTION_LEFT;
+	// Input.keyMapper[ KEY_S ] = ACTION_DOWN;
+	// Input.keyMapper[ KEY_D ] = ACTION_RIGHT;
 
 	/*--- ユーティリティ関数 ---*/
 	/**
