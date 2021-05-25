@@ -15,7 +15,8 @@
 
 マップに表示されるキャラ用のクラス。
 
-関連クラス: [Game_Interpreter](Game_Interpreter.md), [Game_Actor](Game_Actor.md)
+
+関連クラス: [Game_Interpreter](Game_Interpreter.md), [Game_Actor](Game_Actor.md), [Game_Map](Game_Map.md)
 
 
 ### サブクラス
