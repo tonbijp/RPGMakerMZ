@@ -12,6 +12,11 @@
 
 [隊列メンバー]を定義したクラス。 
 
+主なパス
+```js
+$gamePlayer.followers().follower(n)
+```
+
 関連クラス: [Game_Followers](Game_Followers.md)、[Game_Actor](Game_Actor.md)、[Game_Player](Game_Player.md)
 
 

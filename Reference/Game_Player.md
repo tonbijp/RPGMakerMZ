@@ -10,10 +10,15 @@
 | --- | --- | --- | --- | --- |
 | [プレイヤー] | [$gamePlayer](global.md#gameplayer-game_player) | 保存される | [RPG.Actor](RPG.Actor.md) | [Sprite_Character](Sprite_Character.md) |
 
-(乗り物を含む)プレイヤーキャラクタを定義したクラス。マップの[場所移動]の処理なども含む。
+(乗り物を含む)プレイヤーキャラクタを定義したクラス。マップの[場所移動]の処理なども含む。<br />
 JSONデータは [Game_Party](Game_Party.md) クラスの`$gameParty.leader()`を見る必要があるので注意。
 
 v1.1.0、v1.2.0  で変更あり。
+
+主なパス
+```js
+$gamePlayer
+```
 
 関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md),  [Game_Map](Game_Map.md)
 

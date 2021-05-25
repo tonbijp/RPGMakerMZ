@@ -8,6 +8,11 @@
 | --- | --- |
 | [コモンイベント] | [RPG.CommonEvent](RPG.CommonEvent.md) |
 
+主なパス
+```js
+$gameMap._commonEvents[n]
+```
+
 関連クラス: [Game_Map](Game_Map.md)
 
 

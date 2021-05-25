@@ -24,6 +24,12 @@ MV で継承元(スーパークラス)だった Sprite_Base は廃止されて�
 ```js
 SceneManager._scene._spriteset._characterSprites[n]
 SceneManager._scene._spriteset._tilemap.children[n]
+
+// Sprite_Character から JSONデータを取り出す
+$gameParty.leader().actor() // Game_Player
+this._character.actor().actor() // Game_Follower
+this._character.event(); // Game_Event
+this._character.vehicle(); // Game_Vehicle
 ```
 
 関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md), [Tilemap](Tilemap.md), [Spriteset_Map](Spriteset_Map.md)

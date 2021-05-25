@@ -10,18 +10,32 @@
 | --- | --- | --- | --- |
 | [乗り物] | [RPG.System.Vehicle](RPG.System.Vehicle.md) | [Sprite_Character](Sprite_Character.md) |
 
-[乗り物]を定義したクラス。 大体の機能は [Game_Player](Game_Player.md) クラスから使える。
+[乗り物]を定義したクラス。
 
+主なパス
+```js
+$gameMap._vehicles[n]
+```
+
+関連クラス: [Game_Map](Game_Map.md),  [Game_Player](Game_Player.md)
 
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_type` | [String](String.md) | [乗り物]の種類 |
+| `_type` | [String](String.md) | [\[乗り物\]の種類](#[乗り物]の種類) |
 | `_mapId` | [Number](Number.md) | マップID |
 | `_altitude` | [Number](Number.md) | 高度 |
 | `_driving` | Boolean | 運転中か |
 | `_bgm` | [RPG.AudioFile](RPG.AudioFile.md) | [乗り物]用BGM |
+
+#### [乗り物]の種類
+| 番号 | 名前 | 説明 |
+| --- | --- | --- |
+| 0 | "boat" | 小型船 |
+| 1 | "ship" | 大型船 |
+| 2 | "airship" | 飛行船 |
+
 
 
 ### スーパークラスから継承されたメソッド

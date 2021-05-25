@@ -16,6 +16,10 @@
  
 なお、公式プラグイン PluginCommonBase.js によって追加されるメソッドも書いている。
 
+主なパス
+```js
+$gameMap._events[n]
+```
 
 ### プロパティ
 
