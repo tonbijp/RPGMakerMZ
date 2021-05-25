@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.3.1.0
+// Version :0.3.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -103,7 +103,7 @@
 
     /**
      * @param {Game_Character} tc 
-     * @returns {String} TF_SHADOWタグの内容(なければnull)
+     * @returns {String} TF_SHADOWタグの内容(なければundefined)
      */
     function getMetaTag( tc ) {
         if( tc instanceof Game_Event ) {
@@ -113,8 +113,9 @@
         } else if( tc instanceof Game_Follower ) {
             const actor = tc.actor();
             if( actor ) return actor.actor().meta.TF_SHADOW;
+        } else if( tc instanceof Game_Vehicle ) {
+            return false;
         }
-        // viecleも考える、船に影はつけない、飛行船に影はつけない。
     }
 
     /**
@@ -176,6 +177,7 @@
             }
         } else if( this.shadow ) {
             this.parent.removeChild( this.shadow );
+            this.shadow = null;
         }
     };
 
