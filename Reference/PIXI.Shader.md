@@ -1,16 +1,11 @@
 [クラスツリー](index.md)
 
 # クラス: PIXI.Shader
-
-### new PIXI.Filter (program opt, uniforms opt)
-
 詳細は本家PxiiJSのリファレンス [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) を参照のこと。
 
-
-フィルターは、画面に適用される特別なタイプの WebGL シェーダーです。
-
-
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md)
+
+### new PIXI.Shader (program opt, uniforms opt)
 
 ### 引数
 
@@ -18,8 +13,6 @@
 | --- | --- | --- | --- |
 | `program ` | [PIXI.Program](http://pixijs.download/release/docs/PIXI.Program.md) | &lt;optional&gt; | The program the shader will use. |
 | `uniforms` | Object | &lt;optional&gt; |  Custom uniforms to use to augment the built-in ones. |
-
-{ uAlpha: 1 }
 
 ### サブクラス
 

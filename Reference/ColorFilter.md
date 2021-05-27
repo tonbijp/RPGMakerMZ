@@ -10,33 +10,15 @@ WebGLカラーフィルタオブジェクト。
 
 ### new ColorFilter ()
 
-### プロパティ
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `defaultFragmentSrc` | [String](String.md) | [static] |
-| `defaultVertexSrc` | [String](String.md)  | [static]  |
-| `SOURCE_KEY_MAP` | Object | [static][protected]  |
-| `autoFit` | Boolean |  |
-| `blendMode` | [Number](Number.md)  |  |
-| `enabled` | Boolean |  |
-| `legacy` | Boolean |  |
-| `padding` | [Number](Number.md)  |  |
-| `resolution` | [Number](Number.md)  |  |
-| `state` | PIXI.State |  |
-| `program` | PIXI.Program  | [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)からの継承 |
-| `uniforms` | Object |  [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)からの継承 |
-
-
 ### スーパークラスから継承されたメソッド
 
-#### [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
+#### [PIXI.Shader](PIXI.Shader.md)
 
-* [destroy ()](http://pixijs.download/release/docs/PIXI.Shader.html#destroy)
+* [destroy ()](PIXI.Shader.md#destroy-)
 
-####  [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html) 
+####  [PIXI.Filter](PIXI.Filter.md) 
 
-* [apply (filterManager, input, output, clearMode, currentState)](http://pixijs.download/release/docs/PIXI.Filter.html#apply)
+* [apply (filterManager, input, output, clearMode, currentState)](PIXI.Filter.md#apply-filtermanager-input-output-clear-currentstate-opt)
 
 
 ### メソッド

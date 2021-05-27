@@ -20,7 +20,20 @@
 | `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | The source of the fragment shader. |
 | `uniforms` | Object | &lt;optional&gt; |  Custom uniforms to use to augment the built-in ones. |
 
-{ uAlpha: 1 }
+### プロパティ
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `defaultFragmentSrc` | [String](String.md) | [static] The default fragment shader source |
+| `defaultVertexSrc` | [String](String.md)  | [static]  |
+| `SOURCE_KEY_MAP` | Object | [static][protected]  |
+| `autoFit` | Boolean | (規定値: true) |
+| `blendMode` | [Number](Number.md)  | [\[合成方法\]](Sprite.md#合成方法) (規定値: PIXI.BLEND_MODES.NORMAL) |
+| `enabled` | Boolean | (規定値: true)  |
+| `legacy` | Boolean |  |
+| `padding` | [Number](Number.md)  | (規定値: 0)  |
+| `resolution` | [Number](Number.md)  |  |
+| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.md) |  |
 
 ### サブクラス
 追加のフィルタを[PixiJS Filters](https://github.com/pixijs/pixi-filters) からダウンロードできます。
@@ -57,7 +70,7 @@ increase the performance of the filter. |
 
 #### [PIXI.Shader](PIXI.Shader.md)
 
-* [(static) from (vertexSrc, fragmentSrc, uniforms)](PIXI.Shader.md#from-)
+* [(static) from (vertexSrc, fragmentSrc, uniforms)](PIXI.Shader.md#staticform-vertexsrc-opt-fragmentsrc-opt-uniforms-optpixishader)
 * [destroy ()](PIXI.Shader.md#destroy-)
 
 
