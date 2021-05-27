@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window](Window.md)
 
-### new Window_Base (rect)
 メッセージや画像を描くためのメソッドを多く持つ、ウィンドウオブジェクト。<br />
 多くは `contents` に対して [Bitmap](Bitmap.md) のメソッドを使う機能。
 
@@ -16,6 +15,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 
+### new Window_Base (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_BattleStatus (rect)
 戦闘時のパーティメンバーのステータス表示ウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectable.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_BattleStatus (rect)
 #### 引数
 MVでは引数がなかった。
 

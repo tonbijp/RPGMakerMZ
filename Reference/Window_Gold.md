@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_Gold (rect)
 [所持金]を表示するウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_Selectable](Window_Selectable.md) に変更されている。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
+### new Window_Gold (rect)
 #### 引数
 MVでは引数が x, y  だった。
 

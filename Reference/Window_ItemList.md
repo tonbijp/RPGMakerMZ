@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_ItemList (rect)
 [アイテム]の選択ウィンドウ。
 
 関連クラス: [Scene_Item](Scene_Item.md), [Window_ItemCategory](Window_ItemCategory.md)
 
+### new Window_ItemList (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_ShopBuy (rect)
 [ショップの処理]で購入商品の選択に使われるウィンドウ。
 
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopNumber](Window_ShopNumber.md), [Window_ShopStatus](Window_ShopStatus.md), [Window_Help](Window_Help.md)
 
+### new Window_ShopBuy (rect)
 #### 引数
 MVでは引数が x, y, height, shopGoods  だった。
 

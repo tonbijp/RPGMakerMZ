@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_BattleLog (rect)
 戦闘ログのウィンドウ。
 
 このウィンドウのメソッドの多くは、[push()](Window_BattleLog.md#push-methodname-args) によって _methods プロパティに保存され順次実行される。
@@ -15,6 +14,7 @@ MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectabl
 
 関連クラス: [Scene_Battle](Scene_Battle.md), [RPG.State](RPG.State.md), [Game_ActionResult](Game_ActionResult.md)
 
+### new Window_BattleLog (rect)
 #### 引数
 MVでは引数はなかった。
 

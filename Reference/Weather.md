@@ -4,10 +4,11 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-#### new Weather ()
 天候のエフェクト表示用クラス。
 
 関連クラス: [Spriteset_Map](Spriteset_Map.md)
+
+### new Weather ()
 
 ### プロパティ
 

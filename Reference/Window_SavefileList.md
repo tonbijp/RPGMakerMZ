@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_SavefileList (rect)
 セーブ・ロード時にファイルを選択するウィンドウ。
 
 関連クラス: [Scene_File](Scene_File.md), [Scene_Save](Scene_Save.md), [Scene_Load](Scene_Load.md)
 
+### new Window_SavefileList (rect)
 #### 引数
 MVでは引数が x, y, width, height  だった。
 

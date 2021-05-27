@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_MenuStatus (rect)
 メニューでパーティメンバーのステータスを表示するウィンドウ。<br />
 [スキル][装備][ステータス]のアクター選択に使われ、[並べ替え]にも使われる。
 
@@ -14,6 +13,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Window_MenuCommand](Window_MenuCommand.md)
 
+### new Window_MenuStatus (rect)
 #### 引数
 MVでは引数が x, y  だった。
 

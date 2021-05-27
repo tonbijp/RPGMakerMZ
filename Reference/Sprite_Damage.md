@@ -4,12 +4,13 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Damage ()
 ダメージ数値をポップアップさせるスプライト。
 
 MVでは画像で数値を表示していたが、MZではフォントを利用。
 
 関連クラス: [Sprite_Animation](Sprite_Animation.md), [Sprite_Battler](Sprite_Battler.md)
+
+### new Sprite_Damage ()
 
 ### プロパティ
 

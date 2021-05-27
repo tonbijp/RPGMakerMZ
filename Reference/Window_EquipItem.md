@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
-### new Window_EquipItem (rect)
 [装備]シーンでのアイテム選択ウィンドウ。
 
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md), [Window_EquipSlot](Window_EquipSlot.md)
 
+### new Window_EquipItem (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

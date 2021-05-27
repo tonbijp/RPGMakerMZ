@@ -2,12 +2,12 @@
 
 # クラス: String
 
-### new String ()
 JavaScript の文字列にいくつか『RPGツクールMZ』独自のメソッドが追加してある。
 
 詳細は [MDN の Stringのページ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String)を見てもらうとして。
 ここでは追加されたメソッドのみ解説。
 
+### new String ()
 
 ### メソッド
 

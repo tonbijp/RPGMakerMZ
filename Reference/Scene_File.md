@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
-### new Scene_File ()
 セーブファイルを扱うためのシーン。
 
 関連クラス: [DataManager](DataManager.md)
+
+### new Scene_File ()
 
 ### サブクラス
 

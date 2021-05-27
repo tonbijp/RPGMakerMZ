@@ -2,13 +2,13 @@
 
 # クラス: Game_Action
 
-### new Game_Action (subject, forcing)
 攻撃や防御、スキル・アイテムの使用など、戦闘の行動を記述したクラス。
 
 [Game_Battler](Game_Battler.md) の \_actions プロパティが持っていて、逆にこちらからは [subject()](Game_Action.md#subject-) メソッドで Game\_Battler を取得できる。
 
 関連クラス: [BattleManager](BattleManager.md), [Game_Actor](Game_Actor.md), [Game_Enemy](Game_Enemy.md), [Game_ActionResult](Game_ActionResult.md), [RPG.Effect](RPG.Effect.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Damage](RPG.Damage.md)
 
+### new Game_Action (subject, forcing)
 #### 引数
 
 | 名前 | 型 | 説明 |

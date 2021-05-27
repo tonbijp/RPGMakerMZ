@@ -2,8 +2,6 @@
 
 # クラス: Game_CommonEvent
 
-### new Game_CommonEvent ()
-
 | データベース| JSONデータ |
 | --- | --- |
 | [コモンイベント] | [RPG.CommonEvent](RPG.CommonEvent.md) |
@@ -15,6 +13,7 @@ $gameMap._commonEvents[n]
 
 関連クラス: [Game_Map](Game_Map.md)
 
+### new Game_CommonEvent ()
 
 ### プロパティ
 

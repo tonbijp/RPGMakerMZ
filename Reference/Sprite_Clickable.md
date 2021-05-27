@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Clickable ()
 **@MZ** クリック・タップに対応したスプライト。
 
 関連クラス: [TouchInput](TouchInput.md)
+
+### new Sprite_Clickable ()
 
 ### サブクラス
 

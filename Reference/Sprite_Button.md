@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Sprite_Clickable](Sprite_Clickable.md)
 
-### new Sprite_Button (buttonType)
 ボタン表示用スプライト。
 
 MVでは [Sprite](Sprite.md) のサブクラスだったが、MZでは  [Sprite_Clickable](Sprite_Clickable.md) を継承している。
 
 関連クラス: [Window_ShopNumber](Window_ShopNumber.md), [Window_NumberInput](Window_NumberInput.md)
 
+### new Sprite_Button (buttonType)
 #### 引数
 
 | 名前 | 型 | 説明 |

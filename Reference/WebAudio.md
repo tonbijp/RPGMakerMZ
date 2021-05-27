@@ -2,7 +2,6 @@
 
 # クラス: WebAudio
 
-### new WebAudio (url)
 Web Audio API を使った音声データ。
 
 静的メソッドも多く、ユーティリティとしての利用も多い。
@@ -11,6 +10,7 @@ v1.0.2 で変更あり。
 
 関連クラス: [CacheEntry](CacheEntry.md), [SoundManager](SoundManager.md), [Html5Audio](Html5Audio.md), [RPG.AudioFile](RPG.AudioFile.md)
 
+### new WebAudio (url)
 #### 引数
 
 | 名前 | 型 | 説明 |

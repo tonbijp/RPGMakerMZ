@@ -2,8 +2,6 @@
 
 # クラス: Game_Item
 
-### new Game_Item ()
-
 | データベース| JSONデータ |
 | --- | --- |
 | [アイテム][武器][防具][スキル] | [RPG.BaseItem](RPG.BaseItem.md)  |
@@ -13,7 +11,9 @@
 
 関連クラス: [RPG.UsableItem](RPG.UsableItem.md), [RPG.Item](RPG.Item.md), [RPG.Skill](RPG.Skill.md), [RPG.EquipItem](RPG.EquipItem.md), [RPG.Weapon](RPG.Weapon.md), [RPG.Armor](RPG.Armor.md), [Game_Actor](Game_Actor.md), [Game_Action](Game_Action.md)
 
-##### プロパティ
+### new Game_Item ()
+
+### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |

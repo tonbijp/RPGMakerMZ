@@ -4,14 +4,13 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_ShopStatus (rect)
 [ショップの処理]でアイテム選択時に[持っている数]やパーティメンバの装備可不可が表示されるウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopBuy](Window_ShopBuy.md), [Window_ShopNumber](Window_ShopNumber.md)
 
-
+### new Window_ShopStatus (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

@@ -3,7 +3,6 @@
 # クラス: [RPG](RPG.md).[Troop](RPG.Troop.md).Member
  [RPG.Troop](RPG.Troop.md) のメンバーを構成する JSONデータ。
 
-
 ### プロパティ
 
 | 識別子 | 型 | 説明 |

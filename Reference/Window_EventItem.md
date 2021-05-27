@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
-### new Window_EventItem (rect)
 [アイテム選択の処理]をするウィンドウ。
 
 関連クラス: [Window_NumberInput](Window_NumberInput.md)
 
+### new Window_EventItem (rect)
 #### 引数
 MVでは引数が messageWindow だった。
 

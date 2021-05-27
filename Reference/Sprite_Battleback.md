@@ -4,11 +4,11 @@
 
 ## スーパークラス: [TilingSprite](TilingSprite.md)
 
-### new Sprite_Battleback (type)
 **@MZ** 戦闘[背景]用のスプライト。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Scene_Battle](Scene_Battle.md)
 
+### new Sprite_Battleback (type)
 #### 引数
 
 | 名前 | 型 | 説明 |

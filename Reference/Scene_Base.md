@@ -4,13 +4,14 @@
 
 ## スーパークラス: [Stage](Stage.md)
 
-### new Scene_Base ()
 シーンの基礎オブジェクト。
 
 MZ ではタップ操作用のボタン関連の機能が拡充されている。<br />
 MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](Scene_Map.md) は [Scene_Message](Scene_Message.md) のサブクラスになっている。
 
 関連クラス: [SceneManager](SceneManager.md)
+
+### new Scene_Base ()
 
 ### サブクラス
 

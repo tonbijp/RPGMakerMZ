@@ -2,8 +2,6 @@
 
 # クラス: Game_System
 
-### new Game_System ()
-
 | 大域変数 | セーブデータ |
 | --- | --- |
 | [$gameSystem](global.md#gamesystem-game_system) | 保存される |
@@ -12,6 +10,7 @@
 
 関連クラス: [RPG.System](RPG.System.md)
 
+### new Game_System ()
 
 ### プロパティ
 

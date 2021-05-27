@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Unit](Game_Unit.md)
 
-### new Game_Troop ()
-
 | データベース| JSONデータ | 大域変数 |
 | --- | --- | --- |
 | [敵グループ] | [RPG.Troop](RPG.Troop.md) | [$gameTroop](global.md#gametroop-game_troop) |
@@ -14,6 +12,7 @@
 
 関連クラス: [Game_Enemy](Game_Enemy.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
+### new Game_Troop ()
 
 ### プロパティ
 

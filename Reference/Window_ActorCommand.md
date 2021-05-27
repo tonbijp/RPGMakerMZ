@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_ActorCommand (rect)
 戦闘シーンのアクターのコマンド( [攻撃][スキル][防御][アイテム] )のウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_ActorCommand (rect)
 #### 引数
 MVでは引数がなかった。
 

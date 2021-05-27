@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_PartyCommand (rect)
 パーティコマンド( [戦う][逃げる] )を表示するウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_PartyCommand (rect)
 #### 引数
 MVでは引数がなかった。
 

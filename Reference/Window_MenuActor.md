@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_MenuStatus](Window_MenuStatus.md)
 
-### new Window_MenuActor (rect)
 [アイテム][スキル] メニューで、アクターを選択するのに使われるウィンドウ。
 
 関連クラス: [Scene_ItemBase](Scene_ItemBase.md), [Scene_Item](Scene_Item.md), [Scene_Skill](Scene_Skill.md)
 
+### new Window_MenuActor (rect)
 #### 引数
 MVでは引数がなかった。
 

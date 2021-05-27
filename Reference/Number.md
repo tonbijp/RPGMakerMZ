@@ -2,12 +2,12 @@
 
 # クラス: Number
 
-### new Number ()
 JavaScript の数値にいくつか『RPGツクールMZ』独自のメソッドが追加してある。
 
 詳細は [MDN の Numberのページ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number)を見てもらうとして。
 ここでは追加されたメソッドのみ解説。
 
+### new Number ()
 
 ### メソッド
 

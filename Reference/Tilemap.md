@@ -4,7 +4,6 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-### new Tilemap ()
 2Dベースのタイルマップを表示するためのコンテナクラス。 <br />
 また、フキダシなどのエフェクト系のスプライトを管理するのにも使われる。
 
@@ -18,6 +17,8 @@ SceneManager._scene._spriteset._tilemap
 SceneManager._scene._spriteset._effectsContainer
 ```
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
+
+### new Tilemap ()
 
 ### インナークラス
 

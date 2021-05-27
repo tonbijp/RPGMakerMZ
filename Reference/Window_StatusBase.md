@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_StatusBase (rect)
 **@MZ** ステータス表示するウィンドウの基礎クラス。
 
 [Window_Base](Window_Base.md) にあった描画機能の多くが、こちらに移動している。<br />
@@ -13,6 +12,7 @@
 
 関連クラス: [Sprite_Gauge](Sprite_Gauge.md), [Sprite_Name](Sprite_Name.md),  [Sprite_StateIcon](Sprite_StateIcon.md)
 
+### new Window_StatusBase (rect)
 #### 引数
 
 | 名前 | 型 | 説明 |

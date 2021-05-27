@@ -2,7 +2,6 @@
 
 # クラス: Game_Interpreter
 
-### new Game_Interpreter (depth)
 [実行内容]に書かれたイベントコマンドを実行するクラス。 
 
 イベントコマンドの[スクリプト]を実行する際は、このオブジェクトのインスタンスが this になるので、少々乱暴だが拡張コマンドをメソッドとして追加すると便利。
@@ -14,7 +13,7 @@ v1.1.1、v1.2.0  で変更あり。
 
 関連クラス: [RPG.EventPage](RPG.EventPage.md), [Game_Character](Game_Character.md), [Game_Message](Game_Message.md), [ImageManager](ImageManager.md)
 
-
+### new Game_Interpreter (depth)
 #### 引数
 
 | 名前 | 型 | 説明 |

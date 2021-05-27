@@ -4,12 +4,13 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Balloon ()
 フキダシアイコン(img/system/Balloon.png)のスプライト。
 
-MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
+MV で継承元(スーパークラス)だった `Sprite_Base` は廃止されている。
 
 関連クラス: [Spriteset_Map](Spriteset_Map.md), [Sprite_Character](Sprite_Character.md), [Game_Temp](Game_Temp.md), [Game_CharacterBase](Game_CharacterBase.md), [MV.BalloonRequest](MV.BalloonRequest.md)
+
+### new Sprite_Balloon ()
 
 ### プロパティ
 

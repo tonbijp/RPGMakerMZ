@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Sprite_Clickable](Sprite_Clickable.md)
 
-### new Sprite_Battler (battler opt)
 戦闘シーンで表示されるキャラ画像。
 
 MV で継承元(スーパークラス)だった Sprite_Base から [Sprite_Clickable](Sprite_Clickable.md) に変更されている。
 
+### new Sprite_Battler (battler opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 説明 |

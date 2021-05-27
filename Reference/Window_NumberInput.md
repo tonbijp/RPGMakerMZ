@@ -4,12 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_NumberInput ()
 [数値入力の処理]を行うウィンドウ。
 
 関連クラス: [Window_EventItem](Window_EventItem.md)
 
-
+### new Window_NumberInput ()
 #### 引数
 MVでは引数が messageWindow  だったがなくなった。
 

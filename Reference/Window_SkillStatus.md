@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_SkillStatus (rect)
 スキル選択時に表示されるウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
@@ -12,6 +11,7 @@ MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だっ
 関連クラス: [Scene_Skill](Scene_Skill.md), [Window_SkillType](Window_SkillType.md), [Window_SkillList](Window_SkillList.md)
 
 
+### new Window_SkillStatus (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_TitleCommand (rect)
 タイトル画面に表示されるコマンドウィンドウ。
 
 関連クラス: [Scene_Title](Scene_Title.md), [Window_Options](Window_Options.md)
+
+### new Window_TitleCommand (rect)
 
 #### 引数
 MVでは引数がなかった。

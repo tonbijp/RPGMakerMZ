@@ -4,13 +4,13 @@
 
 ## スーパークラス:  [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_EquipStatus (rect)
 [装備]シーンでパラメータの変化を表示するウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md), [Window_EquipSlot](Window_EquipSlot.md), [Window_EquipItem](Window_EquipItem.md)
 
+### new Window_EquipStatus (rect)
 #### 引数
 MVでは引数が x, y  だった。
 

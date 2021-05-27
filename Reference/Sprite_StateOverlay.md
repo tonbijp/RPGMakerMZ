@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_StateOverlay ()
 ステート画像(img/system/States.png)のスプライト。
 
-MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
+MV で継承元(スーパークラス)だった `Sprite_Base` は廃止されている。
 
 関連クラス: [Sprite_Character](Sprite_Character.md)
 
+### new Sprite_StateOverlay ()
 
 #### プロパティ
 

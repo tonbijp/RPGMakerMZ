@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Battler](Game_Battler.md)
 
-### new Game_Enemy ()
-
 | データベース| JSONデータ | スプライト |
 | --- | --- | --- |
 | [敵キャラ] | [RPG.Enemy](RPG.Enemy.md) | [Sprite_Enemy](Sprite_Enemy.md) |
@@ -14,6 +12,7 @@
 
 関連クラス: [RPG.Enemy.Action](RPG.Enemy.Action.md), [Game_Troop](Game_Troop.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Window_BattleEnemy](Window_BattleEnemy.md)
 
+### new Game_Enemy ()
 
 ### プロパティ
 

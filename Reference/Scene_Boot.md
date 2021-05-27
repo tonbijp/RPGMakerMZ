@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
 
-### new Scene_Boot ()
  起動時の初期化を行うシーン。システムに必要なデータや画像を読み込み、戦闘・イベントテストの分岐なども行う。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [Main](Main.md), [SceneManager](SceneManager.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md)
 
+### new Scene_Boot ()
 
 ### 廃止MVプロパティ
 `_startDate`

@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_Command (rect)
 コマンド選択用ウィンドウ。
 
 コマンド項目には画面に表示される「表示名」と、内部で識別に使われる「シンボル」が別に存在するので注意。
 
+### new Window_Command (rect)
 #### 引数
 MVでは引数が x, y だった。
 

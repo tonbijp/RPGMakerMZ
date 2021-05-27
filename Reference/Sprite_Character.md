@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Character (character)
 
 | データベース | JSONデータ | オブジェクト |
 | --- | --- | --- 
@@ -34,6 +33,7 @@ this._character.vehicle(); // Game_Vehicle
 
 関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md), [Tilemap](Tilemap.md), [Spriteset_Map](Spriteset_Map.md)
 
+### new Sprite_Character (character)
 #### 引数
 
 | 名前 | 型 | 説明 |

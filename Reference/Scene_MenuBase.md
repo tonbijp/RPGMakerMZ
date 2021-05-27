@@ -4,8 +4,9 @@
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
 
-### new Scene_MenuBase ()
  メニュー型シーンの基礎クラス。
+
+### new Scene_MenuBase ()
 
 ### サブクラス
 

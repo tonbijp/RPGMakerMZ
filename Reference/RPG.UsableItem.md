@@ -5,7 +5,6 @@
 ## スーパークラス: [RPG.BaseItem](RPG.BaseItem.md)
 アイテム・スキルの基本情報。
 
-
 ### サブクラス
 
 * [RPG.Skill](RPG.Skill.md)

@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_SkillType (rect)
 [スキルタイプ]\( [魔法][必殺技] )選択ウィンドウ。
 
 関連クラス: [Scene_Skill](Scene_Skill.md)
 
+### new Window_SkillType (rect)
 #### 引数
 MVでは引数が x, y だった。
 

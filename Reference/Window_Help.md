@@ -4,12 +4,12 @@
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_Help (rect)
 項目が選択された際の解説などを表示するウィンドウ。<br />
 [Window_Message](Window_Message.md) の軽量版とも言える。
 
 関連クラス: [Scene_Battle](Scene_Battle.md), [Scene_MenuBase](Scene_MenuBase.md), [Scene_File](Scene_File.md), [Window_Selectable](Window_Selectable.md)
 
+### new Window_Help (rect)
 #### 引数
 MVでは引数が numLines だった。
 

@@ -2,8 +2,6 @@
 
 # クラス:  Game_Map
 
-### new Game_Map ()
-
 | データベース| JSONデータ | 大域変数 | セーブデータ | スプライトセット |
 | --- | --- | --- | --- | --- |
 | マップ | [RPG.Map](RPG.Map.md) | [$gameMap](global.md#gamemap-game_map) | 保存される | [Spriteset_Map](Spriteset_Map.md) |
@@ -19,6 +17,7 @@ v1.1.0、v1.2.0  で変更あり。<br />
 
 関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md), [Game_Player](Game_Player.md)
 
+### new Game_Map ()
 
 ### プロパティ
 

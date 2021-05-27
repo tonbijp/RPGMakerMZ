@@ -2,7 +2,6 @@
 
 # クラス: PluginParam
 
-### new PluginParam(parameter, needParse opt)
 **@MZ PluginCommonBase.js** プラグインパラメータを保持し、型を解析して返す。<br />
 ただし、このクラスは大域(グローバルスコープ)にないので直接使うことはない。<br />
 PluginManagerEx.createParameter() の返り値として使う。
@@ -11,6 +10,7 @@ PluginManagerEx.createParameter() の返り値として使う。
 
 関連クラス: [PluginManagerEx](PluginManagerEx.md)
 
+### new PluginParam(parameter, needParse opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 規定値 | 説明 |

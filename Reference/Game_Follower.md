@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Character](Game_Character.md)
 
-### new Game_Follower ()
-
 | データベース| JSONデータ | スプライト |
 | --- | --- | --- | 
 | [フォロワー] |  [RPG.Actor](RPG.Actor.md)  | [Sprite_Character](Sprite_Character.md) |
@@ -19,6 +17,7 @@ $gamePlayer.followers().follower(n)
 
 関連クラス: [Game_Followers](Game_Followers.md)、[Game_Actor](Game_Actor.md)、[Game_Player](Game_Player.md)
 
+### new Game_Follower ()
 
 ### プロパティ
 

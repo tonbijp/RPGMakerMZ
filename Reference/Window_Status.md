@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_Status (rect)
 アクターの主要ステータスを表示するウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectable.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。<br />
@@ -13,6 +12,7 @@ MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectabl
 関連クラス: [Scene_Status](Scene_Status.md), [Window_StatusParams](Window_StatusParams.md), [Window_StatusEquip](Window_StatusEquip.md)
 
 
+### new Window_Status (rect)
 #### 引数
 MVでは引数がなかった。
 

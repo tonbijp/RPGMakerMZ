@@ -2,8 +2,6 @@
 
 # クラス: Bitmap
 
-### new Bitmap (width, height)
-
 画像を表す基本オブジェクト。概ね [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)のラッパーオブジェクト。
 
 `new Bitmap(0, 0)` とデータ0で生成すると、各種メソッドが動作しないので、最低 `new Bitmap(1, 1)` で生成する必要がある。
@@ -12,6 +10,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [ImageManager](ImageManager.md), [Game_Screen](Game_Screen.md), [Sprite](Sprite.md), [Game_Picture](Game_Picture.md)
 
+### new Bitmap (width, height)
 #### 引数
 
 | 名前 | 型 | 説明 |

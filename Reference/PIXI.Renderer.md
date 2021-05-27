@@ -11,7 +11,6 @@
 関連クラス: [Sprite_Animation](Sprite_Animation.md), [PIXI.Container](PIXI.Container.md)
 
 ### new PIXI.Renderer (options opt)
-
 #### 引数
 全ての値は任意(optional)です。
 

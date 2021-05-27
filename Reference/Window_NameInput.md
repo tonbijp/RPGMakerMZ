@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_NameInput (rect)
 [名前の入力の処理]で文字を選択するウィンドウ。
 
 関連クラス: [Scene_Name](Scene_Name.md)
 
+### new Window_NameInput (rect)
 #### 引数
 MVでは引数が editWindow  だった。
 

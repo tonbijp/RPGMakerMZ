@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_Message](Scene_Message.md)
 
-### new Scene_Map ()
 マップ表示シーン。
 
 MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene_Message](Scene_Message.md) に変更されている。
@@ -16,6 +15,8 @@ SceneManager._scene
 
 関連クラス:  [SceneManager](SceneManager.md), [Tilemap](Tilemap.md),  [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md), [Game_Map](Game_Map)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Boot](Scene_Boot.md), [Scene_ItemBase](Scene_ItemBase.md), [Scene_Battle](Scene_Battle.md), [Scene_Load](Scene_Load.md)
+
+### new Scene_Map ()
 
 ### プロパティ
 

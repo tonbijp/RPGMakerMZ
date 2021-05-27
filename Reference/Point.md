@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
 
-### new Point (x opt, y opt)
 座標点を表すクラス。
 
 関連クラス: [Rectangle](Rectangle.md)
 
+### new Point (x opt, y opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 規定値 | 説明 |

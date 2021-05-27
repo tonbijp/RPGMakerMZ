@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_BattleEnemy (rect)
 敵の選択用のウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_BattleEnemy (rect)
 #### 引数
 MVでは引数が x, y  だった。
 

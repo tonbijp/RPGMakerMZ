@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_File](Scene_File.md)
 
-#### new Scene_Save ()
 セーブ画面のシーン。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [SceneManager](SceneManager.md), [DataManager](DataManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Menu](Scene_Menu.md)
 
+#### new Scene_Save ()
 
 ### スーパークラスから継承されたメソッド
 

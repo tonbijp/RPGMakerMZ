@@ -2,9 +2,9 @@
 
 # クラス: Game_ActionResult
 
-### new Game_ActionResult ()
  [Game_Action](Game_Action.md) の結果を記述したオブジェクト。
 
+### new Game_ActionResult ()
 
 ### プロパティ
 

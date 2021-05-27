@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_DebugEdit (rect)
 デバッグ(F9)でスイッチや変数を表示するウィンドウ。
 
 関連クラス: [Scene_Debug](Scene_Debug.md), [Window_DebugRange](Window_DebugRange.md)
 
+### new Window_DebugEdit (rect)
 #### 引数
 MVでは引数が x, y, width  だった。
 

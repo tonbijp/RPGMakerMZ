@@ -11,7 +11,6 @@
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
 ### new PIXI.Filter (vertexSrc opt, fragmentSrc opt, uniforms opt)
-
 ### 引数
 
 | 名前 | 型 | 特性 | 説明 |

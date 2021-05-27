@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.Sprite](PIXI.Sprite.md)
 
-### new Sprite (bitmap)
 描画のための基本オブジェクト。
 
 PRGツクールMZでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
 
+### new Sprite (bitmap)
 #### 引数
 
 | 名前 | 型 | 説明 |

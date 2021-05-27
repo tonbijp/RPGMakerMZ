@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_HorzCommand](Window_HorzCommand.md)
 
-### new Window_ShopCommand (rect)
 [ショップの処理]で水平に並ぶコマンド( [アイテム][武器][防具][大事なもの] )のウィンドウ。
 
 関連クラス: [Scene_Shop](Scene_Shop.md)
 
+### new Window_ShopCommand (rect)
 #### 引数
 MVでは引数が width, purchaseOnly だった。
 

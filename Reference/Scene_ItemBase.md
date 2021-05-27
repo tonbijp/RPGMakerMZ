@@ -4,13 +4,14 @@
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
-### new Scene_ItemBase ()
 [アイテム][スキル]の使用シーン。
 
 v1.0.2 で変更あり。
 
 関連クラス: [SceneManager](SceneManager.md), [Game_Action](Game_Action.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md)
+
+### new Scene_ItemBase ()
 
 ### サブクラス
 

@@ -4,9 +4,9 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_HorzCommand (rect)
 水平方向に並ぶコマンドのウィンドウ。
 
+### new Window_HorzCommand (rect)
 #### 引数
 MVでは引数が x, y だった。
 

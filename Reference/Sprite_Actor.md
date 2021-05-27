@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite_Battler](Sprite_Battler.md)
 
-### new Sprite_Actor (actor opt)
 
 | データベース| JSONデータ | オブジェクト |
 | --- | --- | --- |
@@ -16,6 +15,7 @@ V1.2.1で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md)
 
+### new Sprite_Actor (actor opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 説明 |

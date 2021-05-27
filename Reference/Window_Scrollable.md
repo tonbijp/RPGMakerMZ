@@ -4,9 +4,9 @@
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_Scrollable (rect)
 **@MZ** スクロールする項目を表示するウィンドウ。
 
+### new Window_Scrollable (rect)
 #### 引数
 
 | 名前 | 型 | 説明 |

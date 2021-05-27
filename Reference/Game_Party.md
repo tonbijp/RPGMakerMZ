@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Unit](Game_Unit.md)
 
-### new Game_Party ()
-
 | 大域変数 | セーブデータ |
 | --- | --- |
 | [$gameParty](global.md#gameparty-game_party) | 保存される |
@@ -14,6 +12,7 @@
 
 関連クラス: [Game_Troop](Game_Troop.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md), [Game_Actor](Game_Actor.md), [Game_Actors](Game_Actors.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
+### new Game_Party ()
 
 ### プロパティ
 

@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_Message](Scene_Message.md)
 
-### new Scene_Battle ()
 戦闘シーンのコマンドやメッセージのウィンドウ、[敵キャラ]やサイドビューの[アクター]の画像を管理するクラス。
 
 MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene_Message](Scene_Message.md) に変更されている。
@@ -16,6 +15,8 @@ SceneManager._scene
 
 関連クラス: [SceneManager](SceneManager.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Game_Enemy](Game_Enemy.md), [Game_Troop](Game_Troop.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md)<br />
 関連シーン: [Scene_Boot](Scene_Boot.md), [Scene_Map](Scene_Map.md), [Scene_GameEnd](Scene_GameEnd.md), [Scene_Gameover](Scene_Gameover.md)
+
+### new Scene_Battle ()
 
 ### プロパティ
 

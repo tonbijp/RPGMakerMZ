@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
-### new Scene_Debug ()
 F9キーで開かれる、スイッチ・変数を編集するデバッグスクリーン用のクラス。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [SceneManager](SceneManager.md)<br />
 関連シーン: [Scene_Map](Scene_Map.md)
 
+### new Scene_Debug ()
 
 ### プロパティ
 

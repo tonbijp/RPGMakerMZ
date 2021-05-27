@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_SkillList (rect)
 [スキル]の選択ウィンドウ。
 
 関連クラス: [Scene_Skill](Scene_Skill.md), [Window_SkillType](Window_SkillType.md)
 
+### new Window_SkillList (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

@@ -2,8 +2,6 @@
 
 # クラス: Game_SelfSwitches
 
-### new Game_SelfSwitches ()
-
 | 大域変数 | セーブデータ |
 | --- | --- |
 | [$gameSelfSwitches](global.md#gameselfswitches-game_selfswitches) | 保存される |
@@ -12,6 +10,7 @@
 
 関連クラス: [Game_Variables](Game_Variables.md), [Game_Switches](Game_Switches.md), [RPG.EventPage](RPG.EventPage.md), [RPG.EventPage.Conditions](RPG.EventPage.Conditions.md), [RPG.BattleEventPage](RPG.BattleEventPage.md), [RPG.BattleEventPage.Conditions](RPG.BattleEventPage.Conditions.md)
 
+### new Game_SelfSwitches ()
 
 ### プロパティ
 

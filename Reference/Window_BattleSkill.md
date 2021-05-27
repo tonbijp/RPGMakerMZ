@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_SkillList](Window_SkillList.md)
 
-### new Window_BattleSkill (rect)
 戦闘シーンでのスキル選択ウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_BattleSkill (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

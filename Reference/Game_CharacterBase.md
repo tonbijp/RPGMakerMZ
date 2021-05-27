@@ -2,7 +2,6 @@
 
 # クラス: Game_CharacterBase
 
-### new Game_CharacterBase ()
  マップ上のキャラクタに共通する処理を行うクラス。
   
 キャラの状態だけではなく、 乗っているマップの状態や移動可能かを調べたりもできる。
@@ -10,6 +9,8 @@
 [移動ルートの設定]で[スクリプト]を使用した際の this はこのクラスになるので例えば <code>this.setPattern(0)</code> とすれば歩行パターンを指定できる。
 
 関連クラス: [Sprite_Balloon](Sprite_Balloon.md), [Sprite_Animation](Sprite_Animation.md), [Game_Map](Game_Map.md)
+
+### new Game_CharacterBase ()
 
 ### サブクラス
 

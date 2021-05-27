@@ -2,8 +2,6 @@
 
 # クラス: Game_Screen
 
-### new Game_Screen ()
-
 | 大域変数 | セーブデータ |
 | --- | --- |
 | [$gameScreen](global.md#gamescreen-game_screen) | 保存される |
@@ -12,6 +10,7 @@
 
 関連クラス: [Game_Map](Game_Map.md), [Game_Picture](Game_Picture.md), [Sprite_Picture](Sprite_Picture.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Graphics](Graphics.md), [ImageManager](ImageManager.md)
 
+### new Game_Screen ()
 
 ### プロパティ
 

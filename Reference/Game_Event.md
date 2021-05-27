@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Character](Game_Character.md)
 
-### new Game_Event ()
-
 | データベース| JSONデータ | スプライト |
 | --- | --- | --- | 
 | [イベント] | [RPG.Event](RPG.Event.md) | [Sprite_Character](Sprite_Character.md) |
@@ -20,6 +18,8 @@
 ```js
 $gameMap._events[n]
 ```
+
+### new Game_Event ()
 
 ### プロパティ
 

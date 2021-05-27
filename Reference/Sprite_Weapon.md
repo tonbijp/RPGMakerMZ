@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Weapon ()
 武器(img/system/WeaponsX.png)のスプライト。
 
-MV で継承元(スーパークラス)だった Sprite_Base は廃止されている。
+MV で継承元(スーパークラス)だった `Sprite_Base` は廃止されている。
+
+### new Sprite_Weapon ()
 
 #### プロパティ
 

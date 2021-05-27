@@ -2,11 +2,12 @@
 
 # クラス: Game_Unit
 
-### new Game_Unit ()
 戦闘時のグループを扱うクラス。
 
 返り値が [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; のメンバー取得系のメソッドは、例えば `$gameParty.members[0]` と書きそうになるが、`$gameParty.members()[0]` のようにまず `()` でメソッドを起動し、帰ってきた配列から選択する手順を踏む。<br />
 また、添字が `0` から始まることにも注意。
+
+### new Game_Unit ()
 
 ### サブクラス
 

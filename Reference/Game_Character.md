@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_CharacterBase](Game_CharacterBase.md)
 
-### new Game_Character ()
-
 | データベース |  JSONデータ | オブジェクト | スプライト |
 | --- | --- | --- | --- |
 | [イベント] | [RPG.Event](RPG.Event.md) | [Game_Event](Game_Event.md) | [Sprite_Character](Sprite_Character.md) |
@@ -18,6 +16,7 @@
 
 関連クラス: [Game_Interpreter](Game_Interpreter.md), [Game_Actor](Game_Actor.md), [Game_Map](Game_Map.md)
 
+### new Game_Character ()
 
 ### サブクラス
 

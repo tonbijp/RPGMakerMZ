@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_ItemBase](Scene_ItemBase.md)
 
-### new Scene_Skill ()
 [スキル]のシーン。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [SceneManager](SceneManager.md), [Window_SkillList](Window_SkillList.md),  [Window_SkillStatus](Window_SkillStatus.md) <br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
 
+### new Scene_Skill ()
 
 ### プロパティ
 

@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite_Clickable](Sprite_Clickable.md)
 
-### new Sprite_Picture (pictureId)
 
 | データ | オブジェクト |
 | --- | --- |
@@ -16,6 +15,7 @@ MVでは [Sprite](Sprite.md) のサブクラスだったが、MZでは  [Sprite_
 
 関連クラス:  [Spriteset_Base](Spriteset_Base.md), [Game_Screen](Game_Screen.md)
 
+### new Sprite_Picture (pictureId)
 #### 引数
 
 | 名前 | 型 | 説明 |

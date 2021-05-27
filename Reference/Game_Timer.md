@@ -2,14 +2,13 @@
 
 # クラス: Game_Timer
 
-### new Game_Timer ()
-
 | イベントコマンド | 大域変数 | セーブデータ | スプライト |
 | --- | --- | --- | --- |
 | [タイマーの操作] | [$gameTimer](global.md#gametimer-game_timer) | 保存される | [Sprite_Timer](Sprite_Timer.md) |
 
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md)
 
+### new Game_Timer ()
 
 ### プロパティ
 

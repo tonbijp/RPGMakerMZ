@@ -2,8 +2,6 @@
 
 # クラス: Game_Temp
 
-### new Game_Temp ()
-
 | 大域変数 |
 | --- |
 | [$GameTemp](global.md#gametemp-game_temp) |
@@ -12,6 +10,7 @@
 
 関連クラス: [Game_CommonEvent](Game_CommonEvent.md), [Spriteset_Base](Spriteset_Base.md), [Spriteset_Map](Spriteset_Map.md), [Sprite_Destination](Sprite_Destination.md),
 
+### new Game_Temp ()
 
 ### プロパティ
 

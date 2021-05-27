@@ -4,11 +4,12 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Destination ()
 タッチ移動目標を表示するスプライト。<br />
 [Game_Temp](Game_Temp.md) に設定された値を元に動作する。
 
 関連クラス: [TouchInput](TouchInput.md), [Spriteset_Map](Spriteset_Map.md)
+
+### new Sprite_Destination ()
 
 ### プロパティ
 

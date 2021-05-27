@@ -4,17 +4,17 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_ChoiceList ()
 [選択肢の表示]コマンドで表示されるウィンドウ。
  
  規定値は[はい][いいえ]。
-
-MVでは引数が messageWindow だったが、なくなった。
 
 V1.2.1で変更あり。
   
 関連クラス: [Scene_Menu](Scene_Menu.md), [Scene_Shop](Scene_Shop.md), [Window_Message](Window_Message.md)
 
+### new Window_ChoiceList ()
+MVでは引数が `messageWindow` だったが、なくなった。
+MZの `Window`では例外的に引数がない。
 
 ### プロパティ
 

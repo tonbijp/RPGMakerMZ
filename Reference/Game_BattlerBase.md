@@ -2,9 +2,9 @@
 
 # クラス: Game_BattlerBase
 
-### new Game_BattlerBase ()
 [BattleManager](BattleManager.md) に保持され、戦闘シーンでのパラメータの計算につかわれる。
 
+### new Game_BattlerBase ()
 
 ### サブクラス
 

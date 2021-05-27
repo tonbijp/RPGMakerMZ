@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
-### new Scene_Shop ()
 [ショップの処理]のシーン。
 
 主なパス
@@ -14,6 +13,7 @@ SceneManager._scene
 
 関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)
 
+### new Scene_Shop ()
 
 ### プロパティ
 

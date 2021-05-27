@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Window_Selectable](Window_Selectable.md)
 
-### new Window_ShopNumber (rect)
 [ショップの処理]で売買時に個数を選択するウィンドウ。
 
 img/system/ButtonSet.png の画像が使用される。
 
 関連クラス: [Scene_Shop](Scene_Shop.md), [Window_ShopBuy](Window_ShopBuy.md), [Window_ShopStatus](Window_ShopStatus.md)
 
+### new Window_ShopNumber (rect)
 #### 引数
 MVでは引数が x, y, height   だった。
 

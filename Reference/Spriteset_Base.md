@@ -4,12 +4,13 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Spriteset_Base ()
 複数のスプライトを組み合わせて使うクラス。
 
 v1.1.1、v1.2.0  で変更あり。
 
 関連クラス: [Sprite_Picture](Sprite_Picture.md)
+
+### new Spriteset_Base ()
 
 ### サブクラス
 

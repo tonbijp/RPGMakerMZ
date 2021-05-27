@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_File](Scene_File.md)
 
-### new Scene_Load ()
 ロード画面のシーン。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [SceneManager](SceneManager.md), [DataManager](DataManager.md)<br />
 関連シーン: [Scene_Save](Scene_Save.md), [Scene_Title](Scene_Title.md), [Scene_Map](Scene_Map.md)
 
+### new Scene_Load ()
 
 ### プロパティ
 

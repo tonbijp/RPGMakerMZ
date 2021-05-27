@@ -4,12 +4,12 @@
 
 ## スーパークラス: [Window_BattleStatus](Window_BattleStatus.md)
 
-### new Window_BattleActor (rect)
 戦闘中にアクターを選択するウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 
+### new Window_BattleActor (rect)
 #### 引数
 MVでは引数が x, y だった。
 

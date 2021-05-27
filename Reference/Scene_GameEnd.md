@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_MenuBase](Scene_MenuBase.md)
 
-### new Scene_GameEnd ()
 [ゲーム終了]のシーン。
 
 主なパス
@@ -14,6 +13,8 @@ SceneManager._scene
 
 関連クラス: [SceneManager](SceneManager.md)<br />
 関連シーン: [Scene_Menu](Scene_Menu.md)
+
+### new Scene_GameEnd ()
 
 ### プロパティ
 

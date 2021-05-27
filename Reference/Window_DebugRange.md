@@ -4,11 +4,11 @@
 
 ##  Extends: [Window_Selectable](Window_Selectable.md)
 
-### new Window_DebugRange (rect)
 デバッグ(F9)でスイッチや変数の範囲を表示するウィンドウ。
 
 関連クラス: [Scene_Debug](Scene_Debug.md), [Window_DebugEdit](Window_DebugEdit.md)
 
+### new Window_DebugRange (rect)
 #### 引数
 MVでは引数が x, y だった。
 

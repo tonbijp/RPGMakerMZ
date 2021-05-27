@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_AnimationMV ()
-
 | データベース| JSONデータ | 大域変数 |
 | --- | --- | --- |
 | [アニメーション] | [RPG.Animation](RPG.Animation.md), [RPG.Animation.Timing](RPG.Animation.Timing.md) | [$dataAnimations](global.md#dataanimations-arrayrpganimation)(配列) |
@@ -20,6 +18,7 @@ MVのアニメーションとの互換性を維持するために存在するが
 
 関連クラス: [Sprite_Base](Sprite_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
+### new Sprite_AnimationMV ()
 
 ### プロパティ
 

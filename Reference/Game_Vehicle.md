@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Game_Character](Game_Character.md)
 
-### new Game_Vehicle ()
 
 | データベース | JSONデータ | スプライト |
 | --- | --- | --- | --- |
@@ -18,6 +17,8 @@ $gameMap._vehicles[n]
 ```
 
 関連クラス: [Game_Map](Game_Map.md),  [Game_Player](Game_Player.md)
+
+### new Game_Vehicle ()
 
 ### プロパティ
 

@@ -11,7 +11,6 @@
 なお、JavaScript の canvas クラスと共通する部分が多いので、そちらを調べても良い。
 
 ### new PIXI.Graphics (geometry)
-
 #### 引数
 
 | 名前 | 型 | 説明 |

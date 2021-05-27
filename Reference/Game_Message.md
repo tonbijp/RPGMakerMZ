@@ -2,8 +2,6 @@
 
 # クラス: Game_Message
 
-### new Game_Message ()
-
 | 大域変数 |
 | --- |
 | [$gameMessage](global.md#gamemessage-game_message) |
@@ -14,6 +12,7 @@ Game_Message はデータを保持しているだけで、表示の際はウィ�
 
 関連クラス: [Window_Base](Window_Base.md), [Window_Message](Window_Message.md), [Window_ChoiceList](Window_ChoiceList.md), [Window_NumberInput](Window_NumberInput.md), [Window_EventItem](Window_EventItem.md), [Window_ScrollText](Window_ScrollText.md), [RPG.Actor](RPG.Actor.md)
 
+### new Game_Message ()
 
 ### プロパティ
 

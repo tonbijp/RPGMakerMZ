@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Spriteset_Base](Spriteset_Base.md)
 
-### new Spriteset_Battle ()
 戦闘シーン用のスプライトセット。[アクター][敵キャラ]を含む。
 
 MZで[背景]に関しては、[Sprite_Battleback](Sprite_Battleback.md)に機能が分離された。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Spriteset_Battle ()
 
 ### プロパティ
 

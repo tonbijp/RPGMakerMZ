@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_ItemBase](Scene_ItemBase.md)
 
-### new Scene_Item ()
 [アイテム]のシーン。
 
 v1.2.0  で変更あり。
@@ -16,6 +15,8 @@ SceneManager._scene
 
 関連クラス: [SceneManager](SceneManager.md)
 関連シーン: [Scene_Menu](Scene_Menu.md)
+
+### new Scene_Item ()
 
 ### プロパティ
 

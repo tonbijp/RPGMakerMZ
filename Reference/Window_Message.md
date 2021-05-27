@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_Message (rect)
 [文章の表示]をするウィンドウ。
 
 表示する文は Window\_Message ではなく [$gameMessage](global.md#gamemessage-game_message) を経由して設定するため、単に文を表示するだけならばこのクラスを操作する必要はない。<br />
@@ -15,6 +14,7 @@ V1.2.1で変更あり。
 
 関連クラス: [Scene_Message](Scene_Message.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
+### new Window_Message (rect)
 #### 引数
 MVでは引数がなかった。
 

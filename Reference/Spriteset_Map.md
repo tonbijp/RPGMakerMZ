@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Spriteset_Base](Spriteset_Base.md)
 
-### new Spriteset_Map ()
 
 | データベース| JSONデータ | オプジェクト |
 | --- | --- | --- |
@@ -21,6 +20,7 @@ SceneManager._scene._spriteset
 
  関連クラス: [Scene_Map](Scene_Map.md)
 
+### new Spriteset_Map ()
 
 ### プロパティ
 

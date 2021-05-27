@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_StateIcon ()
 
 | データベース| JSONデータ | 大域変数 |
 | --- | --- | --- |
@@ -13,6 +12,8 @@
 ステートアイコン( img/system/IconSet.png )表示用スプライト。
 
 関連クラス: [ImageManager](ImageManager.md), [Window_StatusBase](Window_StatusBase.md)
+
+### new Sprite_StateIcon ()
 
 ### プロパティ
 

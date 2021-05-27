@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
 
-### new Scene_Message ()
 **@MZ** メッセージウィンドウを持つシーン。
 
 関連クラス: [SceneManager](SceneManager.md)
+
+### new Scene_Message ()
 
 ### サブクラス
 

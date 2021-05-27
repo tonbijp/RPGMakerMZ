@@ -4,13 +4,13 @@
 
 ## スーパークラス: [Window_Scrollable](Window_Scrollable.md)
 
-### new Window_Selectable (rect)
 コマンドカーソルの移動や入力判定を行うウィンドウ。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_Scrollable](Window_Scrollable.md) に変更されている。
 
 関連クラス: [Input](Input.md), [TouchInput](TouchInput.md)
 
+### new Window_Selectable (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

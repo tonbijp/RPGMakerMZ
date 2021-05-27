@@ -4,9 +4,9 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-### new PIXI.Sprite (texture)
 描画のための基本オブジェクト。詳細は本家 PIXI のサイト [PIXI.Sprite](http://pixijs.download/release/docs/PIXI.Sprite.html) を参照。
 
+### new PIXI.Sprite (texture)
 #### 引数
 
 | 名前 | 型 | 説明 |

@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Timer ()
 タイマーのスプライト。
 
 | イベントコマンド | オブジェクト |
@@ -13,6 +12,7 @@
 
 関連クラス: [Game_Interpreter](Game_Interpreter.md), [Spriteset_Base](Spriteset_Base.md)
 
+### new Sprite_Timer ()
 
 ### プロパティ
 

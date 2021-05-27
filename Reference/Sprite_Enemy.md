@@ -4,7 +4,6 @@
 
 ##  Extends: [Sprite_Battler](Sprite_Battler.md)
 
-### new Sprite_Enemy (enemy opt)
 
 | データベース| JSONデータ | オブジェクト |
 | --- | --- | --- |
@@ -16,6 +15,7 @@ v1.0.2 で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Game_Troop](Game_Troop.md)
 
+### new Sprite_Enemy (enemy opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 説明 |

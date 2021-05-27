@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_HorzCommand](Window_HorzCommand.md)
 
-### new Window_ItemCategory (rect)
 [アイテム]や、[ショップの処理]の[売却]で水平に並ぶコマンド( [アイテム][武器][防具][大事なもの] )のウィンドウ。
 
 関連クラス: [Scene_Item](Scene_Item.md), [Scene_Shop](Scene_Shop.md)
 
+### new Window_ItemCategory (rect)
 #### 引数
 MVでは引数がなかった。
 

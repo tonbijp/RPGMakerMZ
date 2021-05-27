@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
 
-### new Scene_Title ()
 タイトルのシーン。
 
 主なパス
@@ -15,6 +14,7 @@ SceneManager._scene
 関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Load](Scene_Load.md), [Scene_Options](Scene_Options.md), [Scene_Boot](Scene_Boot.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Scene_GameEnd](Scene_GameEnd.md), [Scene_Gameover](Scene_Gameover.md)
 
+### new Scene_Title ()
    
 ### プロパティ
 

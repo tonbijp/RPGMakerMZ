@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
-### new Window_BattleItem (rect)
 戦闘シーンでのアイテム選択ウィンドウ。
 
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
+### new Window_BattleItem (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

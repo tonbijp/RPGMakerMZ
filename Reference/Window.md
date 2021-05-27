@@ -4,7 +4,6 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-### new Window ()
 ゲーム内で使われるウィンドウ。ブラウザやその他アプリケーションのウィンドウではない。<br />
 通常 [WindowLayer](WindowLayer.md) に含まれ、内部に以下のような形で画像を持っている。重なり順で並べていてポーズサインが一番画面手前で、ウィンドウ背景が一番奥だ。
 
@@ -34,6 +33,8 @@ opacity系のプロパティは、対象スプライトの alpha プロパティ
 v1.2.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md)
+
+### new Window ()
 
 ### サブクラス
 

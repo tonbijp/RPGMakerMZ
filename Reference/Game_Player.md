@@ -4,8 +4,6 @@
 
 ## スーパークラス: [Game_Character](Game_Character.md)
 
-### new Game_Player ()
-
 | データベース | 大域変数 | セーブデータ | JSONデータ | スプライト |
 | --- | --- | --- | --- | --- |
 | [プレイヤー] | [$gamePlayer](global.md#gameplayer-game_player) | 保存される | [RPG.Actor](RPG.Actor.md) | [Sprite_Character](Sprite_Character.md) |
@@ -21,6 +19,8 @@ $gamePlayer
 ```
 
 関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md),  [Game_Map](Game_Map.md)
+
+### new Game_Player ()
 
 ### プロパティ
 

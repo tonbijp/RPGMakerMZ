@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_ItemList](Window_ItemList.md)
 
-### new Window_ShopSell (rect)
 ショップでの売却時のアイテム選択ウィンドウ。
 
 関連クラス: [Scene_Shop](Scene_Shop.md)
 
+### new Window_ShopSell (rect)
 #### 引数
 MVでは引数が x, y, width, height だった。
 

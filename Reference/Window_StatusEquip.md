@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_StatusBase](Window_StatusBase.md)
 
-### new Window_StatusEquip (rect)
 **@MZ** ステータス装備表示ウィンドウ。
 
 関連クラス: [Scene_Status](Scene_Status.md), [Window_Status](Window_Status.md), [Window_StatusParams](Window_StatusParams.md)
 
+### new Window_StatusEquip (rect)
 #### 引数
 
 | 名前 | 型 | 説明 |

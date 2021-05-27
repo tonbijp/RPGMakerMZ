@@ -2,7 +2,6 @@
 
 # クラス: Main
 
-### new Main ()
 **@MZ**
 メインクラス。main.js で設定されている。
 
@@ -10,6 +9,7 @@ MVでは [SceneManager](SceneManager.md) の `run(Scene_Boot)` に丸投げさ�
 
 関連クラス: [Scene_Boot](Scene_Boot.md)
 
+### new Main ()
 
 ### プロパティ
 

@@ -4,10 +4,11 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Name ()
 **@MZ** ステータスウィンドウの名前表示部のスプライト。
 
 関連クラス: [Window_StatusBase](Window_StatusBase.md)
+
+### new Sprite_Name ()
 
 ### プロパティ
 

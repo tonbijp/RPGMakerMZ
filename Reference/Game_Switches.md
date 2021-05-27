@@ -2,8 +2,6 @@
 
 # クラス: Game_Switches
 
-### new Game_Switches ()
-
 | 大域変数 | セーブデータ |
 | --- | --- |
 | [$gameSwitches](global.md#gameswitches-game_switches) | 保存される |
@@ -14,6 +12,7 @@
 
 関連クラス: [Game_Variables](Game_Variables.md), [Game_SelfSwitches](Game_SelfSwitches.md) 
 
+### new Game_Switches ()
 
 ### プロパティ
 

@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-### new Stage ()
  画面構成オブジェクトのツリーへの追加・削除を行う基礎オブジェクト。 
  
  関連クラス: [Graphics](Graphics.md)
 
+### new Stage ()
  
 ### サブクラス
 

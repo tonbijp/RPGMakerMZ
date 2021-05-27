@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Command](Window_Command.md)
 
-### new Window_GameEnd (rect)
 [ゲーム終了]コマンドを選んだ時に表示されるコマンド([タイトルへ][やめる])のウィンドウ。
 
 関連クラス: [Scene_GameEnd](Scene_GameEnd.md)
 
+### new Window_GameEnd (rect)
 #### 引数
 MVでは引数がなかった。
 

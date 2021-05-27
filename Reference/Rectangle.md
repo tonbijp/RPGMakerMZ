@@ -4,7 +4,6 @@
 
 ## スーパークラス: [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
 
-### new Rectangle (x opt, y opt, width opt, height opt)
 矩形範囲を表すクラス。
 
 ここでは `PIXI.Rectangle` のプロパティ・メソッドも書いているが、詳細は [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) を参照。
@@ -14,6 +13,7 @@
 
 関連クラス: [Point](Point.md), [Window](Window.md), [Window_NameEdit](Window_NameEdit.md), [Window_NameInput](Window_NameInput.md), [Window_SavefileList](Window_SavefileList.md), [Window_Selectable](Window_Selectable.md), [Window_BattleLog](Window_BattleLog.md), [Window_BattleStatus](Window_BattleStatus.md) [Sprite_Button](Sprite_Button.md), [MV.Rectangle](MV.Rectangle.md), [MV.Size](MV.Size.md)
 
+### new Rectangle (x opt, y opt, width opt, height opt)
 #### 引数
 
 | 名前 | 型 | 特性 | 説明 |

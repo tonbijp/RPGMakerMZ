@@ -4,11 +4,11 @@
 
 ## スーパークラス: [Window_Base](Window_Base.md)
 
-### new Window_NameBox (rect)
 **@MZ** 話者の[名前]を表示するウィンドウ。
 
 関連クラス: [Window_Message](Window_Message.md)
 
+### new Window_NameBox (rect)
 #### 引数
 
 | 名前 | 型 | 説明 |

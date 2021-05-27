@@ -4,12 +4,13 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Gauge ()
 **@MZ** ゲージ表示用のスプライト。ラベル・ゲージ・数値で構成される。
 
 v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Window_StatusBase](Window_StatusBase.md)
+
+### new Sprite_Gauge ()
 
 ### プロパティ
 

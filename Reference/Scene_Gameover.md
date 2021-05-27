@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
 
-### new Scene_Gameover ()
 ゲームオーバーのシーン。
 
 主なパス
@@ -14,6 +13,8 @@ SceneManager._scene
 
 関連クラス: [SceneManager](SceneManager.md), [BattleManager](BattleManager.md), [Game_Interpreter](Game_Interpreter.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Battle](Scene_Battle.md)
+
+### new Scene_Gameover ()
 
 ### プロパティ
 
