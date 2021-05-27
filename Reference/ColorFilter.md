@@ -2,15 +2,15 @@
 
 # クラス: ColorFilter
 
-## スーパークラス: [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
+## スーパークラス: [PIXI.Filter](PIXI.Filter.md)
 
-### new ColorFilter ()
 WebGLカラーフィルタオブジェクト。
 
 関連クラス: [Scene_Base](Scene_Base.md), [Sprite](Sprite.md), [Spriteset_Base](Spriteset_Base.md)
 
+### new ColorFilter ()
+
 ### プロパティ
-以下は PIXI.Filter から継承されたプロパティです。
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |

@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
-### new PIXI.Container ()
 描画オブジェクトを含むコンテナ。
 
 詳細は本家 PIXI のサイト [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) を参照。
 
+### new PIXI.Container ()
 
 ### サブクラス
 
@@ -66,7 +66,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### _renderCanvas (renderer)
@@ -76,7 +76,7 @@ canvas の描画。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### addChild (child) → {PIXI.DisplayObject}
@@ -194,7 +194,7 @@ options に Object として指定する内容
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### renderAdvanced (renderer)
@@ -204,7 +204,7 @@ WebGL を使った描画。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### renderCanvas (renderer)
@@ -214,7 +214,7 @@ canvas の描画
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | レンダラ |
 
 
 #### setChildIndex (child, index)

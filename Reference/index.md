@@ -269,7 +269,9 @@ namespace JsExtensions
         * [Tilemap.Render](Tilemap.Render.md)  **@MZ**
         * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
             * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
-* EventEmitter
+* PIXI.utils.EventEmitter
+    * [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
+        * [PIXI.Renderer](PIXI.Renderer.md)
     * [PIXI.SystemRenderer](http://pixijs.download/release/docs/PIXI.SystemRenderer.html)
         * [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html)
         * [PIXI.WebGLRenderer](https://pixijs.download/release/docs/PIXI.WebGLRenderer.html)
@@ -279,8 +281,8 @@ namespace JsExtensions
 ### シェーダ
 
 * GLShader
-    * [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html)
-        * [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)
+    * [PIXI.Shader](PIXI.Shader.md)
+        * [PIXI.Filter](PIXI.Filter.md)
             * [ColorFilter](ColorFilter.md) **@MZ**
         * PIXI.tilemap.TilemapShader
             * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
@@ -294,7 +296,6 @@ namespace JsExtensions
 * [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
 * [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
 * [PIXI.Graphics](PIXI.Graphics.md)
-    * [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 * [Tilemap](Tilemap.md)
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
 * [PIXI.Sprite](PIXI.Sprite.md)

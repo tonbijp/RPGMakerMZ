@@ -4,22 +4,19 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md) 
 
-### new PIXI.Graphics (geometry)
 線や丸などを使って画像を描くためのクラス。<br />
-多くのメソッドが自分自身である PIXI.Graphics を返してくるのは、メソッドを連続で書くメソッドチェーンを使えるようにするため。
+多くのメソッドが自分自身である `PIXI.Graphics` を返してくるのは、メソッドを連続で書くメソッドチェーンを使えるようにするため。
 
 詳細は本家 PIXI のサイト [PIXI.Graphics](http://pixijs.download/release/docs/PIXI.Graphics.html) を参照。<br />
 なお、JavaScript の canvas クラスと共通する部分が多いので、そちらを調べても良い。
+
+### new PIXI.Graphics (geometry)
 
 #### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `geometry ` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | opt. ジオメトリ |
-
-### サブクラス
-
-* [PIXI.tilemap.GraphicsLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/GraphicsLayer.ts)
 
 ### プロパティ
 

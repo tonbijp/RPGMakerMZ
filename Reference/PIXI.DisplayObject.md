@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.utils.EventEmitter](http://pixijs.download/release/docs/PIXI.utils.EventEmitter.html)
 
-### new PIXI.DisplayObject ()
 画面に表示されるもの一般の基本となるオブジェクト。
 
 詳細は本家 PIXI のサイト [PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html) を参照。
 
+### new PIXI.DisplayObject ()
 
 ### サブクラス
 * [PIXI.Container](PIXI.Container.md)
@@ -27,7 +27,7 @@
 | `cacheAsBitmap` | Boolean |ビットマップとしてキャッシュされるか |
 | `cursor` | [String](String.md) | マウスオーバー時のポインタの種類 |
 | `filterArea` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | フィルタ範囲 |
-| `filters` | [Array](Array.md).&lt;[PIXI.Filter](http://pixijs.download/dev/docs/PIXI.Filter.html)&gt; | フィルタの配列 |
+| `filters` | [Array](Array.md).&lt;[PIXI.Filter](PIXI.Filter.md)&gt; | フィルタの配列 |
 | `hitArea` | [PIXI.IHitArea](http://pixijs.download/release/docs/PIXI.IHitArea.html) | (クリック)判定範囲 |
 | `interactive` | Boolean | (クリック)操作可能か |
 | `isSprite` | Boolean | スプライトか |
@@ -117,7 +117,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) |  |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) |  |
 
 
 #### setParent (container) → {PIXI.Container}
@@ -127,11 +127,11 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `container ` | [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | 親に指定するコンテナオブジェクト |
+| `container ` | [PIXI.Container](PIXI.Container.md) | 親に指定するコンテナオブジェクト |
 
 
 #### setTransform (x, y, scaleX, scaleY, rotation, skewX, skewY, pivotX, pivotY) → {PIXI.DisplayObject}
-まとめて変形を設定して[PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html)を返す。
+まとめて変形を設定して自身を返す。
 
 ##### 引数
 
@@ -177,7 +177,7 @@
  変形のアップデート。
 
 
-### Events
+### イベント
 
 #### added(container)
 

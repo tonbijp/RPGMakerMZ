@@ -4,7 +4,6 @@
 
 ## スーパークラス: [Sprite](Sprite.md)
 
-### new Sprite_Animation ()
 | データベース| JSONデータ | 大域変数 |
 | --- | --- | --- |
 | [アニメーション] | [RPG.Animation](RPG.Animation.md), [RPG.Animation.Timing](RPG.Animation.Timing.md) | [$dataAnimations](global.md#dataanimations-arrayrpganimation)(配列) |
@@ -22,6 +21,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [EffectManager](EffectManager.md), [Spriteset_Base](Spriteset_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
+### new Sprite_Animation ()
 
 ### プロパティ
 
@@ -105,7 +105,6 @@ v1.1.0、v1.2.0  で変更あり。
 
 ### メソッド
 
-
 #### _render (renderer) 
 レンダリング実行。
 
@@ -113,7 +112,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### canStart () → {Boolean}
@@ -147,7 +146,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### onBeforeRender (renderer)
@@ -157,7 +156,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### processFlashTimings ()
@@ -175,7 +174,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### saveViewport (renderer)
@@ -185,7 +184,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### setCameraMatrix (renderer) 
@@ -195,7 +194,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ(未使用) |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ(未使用) |
 
 
 #### setProjectionMatrix (renderer) 
@@ -205,7 +204,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### setRotation (x, y, z)
@@ -227,7 +226,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### setup (targets, animation, mirror, delay, previous)
@@ -255,7 +254,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) | レンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) | レンダラ |
 
 
 #### targetSpritePosition (sprite) → {[Point](Point.md)}
