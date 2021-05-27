@@ -51,14 +51,12 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `defaultFragmentSrc ` |  | [static] The default fragment shader source |
-| `defaultVertexSrc ` |  | [static] The default vertex shader source |
-| `SOURCE_KEY_MAP ` |  | [static] The default vertex shader source |
+| `defaultFragmentSrc ` | [String](String.md) | [static] The default fragment shader source |
+| `defaultVertexSrc ` | [String](String.md) | [static] The default vertex shader source |
+| `SOURCE_KEY_MAP ` | Object | [static] The default vertex shader source |
 | `enabled` | Boolean |  If enabled is true the filter is applied, if false it will not. |
 | `fragmentSrc` | [String](String.md) | The fragment shader. |
-| `padding` | [Number](Number.md) | The padding of the filter. Some filters require extra space to breath such as a blur.
-Increasing this will add extra width and height to the bounds of the object that the
-filter is applied to. |
+| `padding` | [Number](Number.md) | The padding of the filter. Some filters require extra space to breath such as a blur.Increasing this will add extra width and height to the bounds of the object that the filter is applied to. |
 | `resolution` | [Number](Number.md) | The resolution of the filter. Setting this to be lower will lower the quality but
 increase the performance of the filter. |
 | `uniforms` | Object |  An object containing the current values of custom uniforms. |
