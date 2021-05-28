@@ -7,18 +7,24 @@
 フィルターは、画面に適用される特別なタイプの WebGL シェーダー。<br />
 [GLSL(OpenGL ES Shading Language) - Wikipedia](https://ja.wikipedia.org/wiki/GLSL)というC言語に似たOpenGL用の言語で書かれた描画プログラムを用いて、描画を行う。
 
-詳細は本家PxiiJSのリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
+WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D および 3D グラフィック -MDN](https://developer.mozilla.org/ja/docs/Web/API/WebGL_API) や [WebGLの基本 - WebGLFundamentals](https://webglfundamentals.org/webgl/lessons/ja/) などを参照。
 
-関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md)
+この`Filter` クラスについて詳細は本家PxiiJSのリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
+
+関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md),  [PIXI.Container](PIXI.Container.md)
 
 ### new PIXI.Filter (vertexSrc opt, fragmentSrc opt, uniforms opt)
 ### 引数
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `vertexSrc ` | [String](String.md) | &lt;optional&gt; | 頂点シェーダ(ピクセルの位置を変換するGLSL) |
-| `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | フラグメントシェーダ(ピクセル単位で色を変換するGLSL) |
+| `vertexSrc ` | [String](String.md) | &lt;optional&gt; | 頂点シェーダ(ポリゴンの頂点位置を変換するGLSL) |
+| `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | 断片シェーダ(ピクセル単位で色を変換するGLSL) |
 | `uniforms` | Object | &lt;optional&gt; | GLSLに渡す変数 |
+
+`uniforms` は、`{変数名:値,...}`の形で任意の変数が指定できる。<br />
+変数名に書いた変数は、`vertexSrc ` あるいは `fragmentSrc ` のシェーダ側で `uniform` として定義しておく必要がある。<br />
+ちなみに、頂点シェーダはバーテックスシェーダ、断片シェーダはフラグメントシェーダと書かれたりもする。
 
 
 ### サブクラス
@@ -39,7 +45,7 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `defaultVertexSrc ` | [String](String.md) | [static] 規定の頂点シェーダ |
-| `defaultFragmentSrc ` | [String](String.md) | [static] 規定のフラグメントシェーダ |
+| `defaultFragmentSrc ` | [String](String.md) | [static] 規定の断片シェーダ |
 | `SOURCE_KEY_MAP ` | Object | [static][protected]  |
 | `autoFit` | Boolean | 性能が発揮できる大きさにフィルタ領域を合わせるか(規定値: true) |
 | `blendMode` | [Number](Number.md)  | [\[合成方法\]](Sprite.md#合成方法) (規定値: PIXI.BLEND_MODES.NORMAL) |
@@ -68,11 +74,11 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | The renderer to retrieve the filter from |
-| `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The input render target. |
-| `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The target to output to. |
+| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |
+| `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像入力対象 |
+| `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像出力対象 |
 | `clearMode` | PIXI.CLEAR_MODES | | レンダリング前に出力先の消去モード |
 | `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 
-`currentState` にはいくつかの有用なプロパティが含まれます :
-target, filters, sourceFrame, destinationFrame, renderTarget, resolution
+`currentState` には次のようなプロパティが含まれる。<br />
+`target`, `filters`, `sourceFrame`, `destinationFrame`, `renderTarget`, `resolution`
