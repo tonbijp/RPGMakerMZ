@@ -18,7 +18,7 @@
 | --- | --- | --- | --- |
 | `vertexSrc ` | [String](String.md) | &lt;optional&gt; | 頂点シェーダ(ピクセルの位置を変換するGLSL) |
 | `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | フラグメントシェーダ(ピクセル単位で色を変換するGLSL) |
-| `uniforms` | Object | &lt;optional&gt; | カスタムユニフォーム(GLSLに渡す変数) |
+| `uniforms` | Object | &lt;optional&gt; | GLSLに渡す変数 |
 
 
 ### サブクラス
@@ -38,8 +38,8 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `defaultFragmentSrc ` | [String](String.md) | [static] 規定のフラグメントシェーダ |
 | `defaultVertexSrc ` | [String](String.md) | [static] 規定の頂点シェーダ |
+| `defaultFragmentSrc ` | [String](String.md) | [static] 規定のフラグメントシェーダ |
 | `SOURCE_KEY_MAP ` | Object | [static][protected]  |
 | `autoFit` | Boolean | 性能が発揮できる大きさにフィルタ領域を合わせるか(規定値: true) |
 | `blendMode` | [Number](Number.md)  | [\[合成方法\]](Sprite.md#合成方法) (規定値: PIXI.BLEND_MODES.NORMAL) |
@@ -48,7 +48,7 @@
 | `padding` | [Number](Number.md) | フィルタのパディング(周辺領域が必要な場合)(規定値: 0)  |
 | `resolution` | [Number](Number.md) | フィルタの解像度 |
 | `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.md) | WebGL の状態 |
-| `uniforms` | Object |  現在のカスタムユニフォーム(GLSLに渡す変数)  |
+| `uniforms` | Object |  現在のGLSLに渡す変数  |
 
 
 ### スーパークラスから継承されたメソッド
