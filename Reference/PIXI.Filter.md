@@ -61,7 +61,7 @@
 
 ### メソッド
 
-#### apply (filterManager, input, output, clear, currentState opt)
+#### apply (filterManager, input, output, clearMode, currentState opt)
 フィルタを適用。
 
 ##### 引数
@@ -71,7 +71,7 @@
 | `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | The renderer to retrieve the filter from |
 | `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The input render target. |
 | `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The target to output to. |
-| `clear` | Boolean | | レンダリング前に出力先を消去するか |
+| `clearMode` | PIXI.CLEAR_MODES | | レンダリング前に出力先の消去モード |
 | `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 
 `currentState` にはいくつかの有用なプロパティが含まれます :
