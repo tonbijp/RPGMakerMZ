@@ -24,11 +24,12 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 
 `uniforms` は、`{変数名:値,...}`の形で任意の変数が指定できる。<br />
 変数名に書いた変数は、`vertexSrc ` あるいは `fragmentSrc ` のシェーダ側で `uniform` として定義しておく必要がある。<br />
+なお `Filter` は左上を原点に正規化してあるので、JavaScriptの座標系の感覚のまま使えるが、他のGLSLコードを転用する際には注意。<br />
 ちなみに、頂点シェーダはバーテックスシェーダ、断片シェーダはフラグメントシェーダと書かれたりもする。
 
 
 ### サブクラス
-追加のフィルタを[PixiJS Filters](https://github.com/pixijs/pixi-filters) からダウンロードできます。
+追加のフィルタを[PixiJS Filters](https://github.com/pixijs/pixi-filters) からダウンロードできる。
 
 * [PIXI.filters.BlurFilter](http://pixijs.download/release/docs/PIXI.filters.BlurFilter.html)
 * [PIXI.filters.BlurXFilter](http://pixijs.download/release/docs/PIXI.filters.BlurXFilter.html)
@@ -77,7 +78,7 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 | `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |
 | `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像入力対象 |
 | `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像出力対象 |
-| `clearMode` | PIXI.CLEAR_MODES | | レンダリング前に出力先の消去モード |
+| `clearMode` | PIXI.CLEAR_MODES | | レンダリングの出力先の消去モード |
 | `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 
 `currentState` には次のようなプロパティが含まれる。<br />
