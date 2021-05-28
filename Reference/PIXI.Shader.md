@@ -26,7 +26,7 @@
 
 ### メソッド
 
-#### (static)form (vertexSrc opt, fragmentSrc opt, uniforms opt)PIXI.Shader
+#### (static)form (vertexSrc opt, fragmentSrc opt, uniforms opt) → {[PIXI.Shader](PIXI.Shader.md)}
 フィルタを適用。
 
 ##### 引数
