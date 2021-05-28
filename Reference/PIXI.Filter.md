@@ -4,7 +4,8 @@
 
 ## スーパークラス: [PIXI.Shader](PIXI.Shader.md)
 
-フィルターは、画面に適用される特別なタイプの WebGL シェーダーです。
+フィルターは、画面に適用される特別なタイプの WebGL シェーダー。<br />
+[GLSL(OpenGL ES Shading Language) - Wikipedia](https://ja.wikipedia.org/wiki/GLSL)というC言語に似たOpenGL用の言語で書かれた描画プログラムを用いて、描画を行う。
 
 詳細は本家PxiiJSのリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
 
@@ -15,24 +16,10 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `vertexSrc ` | [String](String.md) | &lt;optional&gt; | The source of the vertex shader. |
-| `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | The source of the fragment shader. |
-| `uniforms` | Object | &lt;optional&gt; |  Custom uniforms to use to augment the built-in ones. |
+| `vertexSrc ` | [String](String.md) | &lt;optional&gt; | 頂点シェーダ(ピクセルの位置を変換するGLSL) |
+| `fragmentSrc ` | [String](String.md) | &lt;optional&gt; | フラグメントシェーダ(ピクセル単位で色を変換するGLSL) |
+| `uniforms` | Object | &lt;optional&gt; | カスタムユニフォーム(GLSLに渡す変数) |
 
-### プロパティ
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `defaultFragmentSrc` | [String](String.md) | [static] The default fragment shader source |
-| `defaultVertexSrc` | [String](String.md)  | [static]  |
-| `SOURCE_KEY_MAP` | Object | [static][protected]  |
-| `autoFit` | Boolean | (規定値: true) |
-| `blendMode` | [Number](Number.md)  | [\[合成方法\]](Sprite.md#合成方法) (規定値: PIXI.BLEND_MODES.NORMAL) |
-| `enabled` | Boolean | (規定値: true)  |
-| `legacy` | Boolean |  |
-| `padding` | [Number](Number.md)  | (規定値: 0)  |
-| `resolution` | [Number](Number.md)  |  |
-| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.md) |  |
 
 ### サブクラス
 追加のフィルタを[PixiJS Filters](https://github.com/pixijs/pixi-filters) からダウンロードできます。
@@ -51,16 +38,17 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `defaultFragmentSrc ` | [String](String.md) | [static] The default fragment shader source |
-| `defaultVertexSrc ` | [String](String.md) | [static] The default vertex shader source |
-| `SOURCE_KEY_MAP ` | Object | [static] The default vertex shader source |
-| `enabled` | Boolean |  If enabled is true the filter is applied, if false it will not. |
-| `fragmentSrc` | [String](String.md) | The fragment shader. |
-| `padding` | [Number](Number.md) | The padding of the filter. Some filters require extra space to breath such as a blur.Increasing this will add extra width and height to the bounds of the object that the filter is applied to. |
-| `resolution` | [Number](Number.md) | The resolution of the filter. Setting this to be lower will lower the quality but
-increase the performance of the filter. |
-| `uniforms` | Object |  An object containing the current values of custom uniforms. |
-| `vertexSrc` | [String](String.md) | The vertex shader. |
+| `defaultFragmentSrc ` | [String](String.md) | [static] 規定のフラグメントシェーダ |
+| `defaultVertexSrc ` | [String](String.md) | [static] 規定の頂点シェーダ |
+| `SOURCE_KEY_MAP ` | Object | [static][protected]  |
+| `autoFit` | Boolean | 性能が発揮できる大きさにフィルタ領域を合わせるか(規定値: true) |
+| `blendMode` | [Number](Number.md)  | [\[合成方法\]](Sprite.md#合成方法) (規定値: PIXI.BLEND_MODES.NORMAL) |
+| `enabled` | Boolean |  フィルタを適用するか (規定値: true)  |
+| `legacy` | Boolean | [read-only] attributes に position や uvs を使うフィルタか  |
+| `padding` | [Number](Number.md) | フィルタのパディング(周辺領域が必要な場合)(規定値: 0)  |
+| `resolution` | [Number](Number.md) | フィルタの解像度 |
+| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.md) | WebGL の状態 |
+| `uniforms` | Object |  現在のカスタムユニフォーム(GLSLに渡す変数)  |
 
 
 ### スーパークラスから継承されたメソッド
@@ -80,11 +68,11 @@ increase the performance of the filter. |
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `filterManager` | [PIXI.FilterManager](PIXI.FilterManager.md) | | The renderer to retrieve the filter from |
-| `input` | [PIXI.RenderTarget](PIXI.RenderTarget.md) | | The input render target. |
-| `output` | [PIXI.RenderTarget](PIXI.RenderTarget.md) | | The target to output to. |
-| `clear` | Boolean | | Should the output be cleared before rendering to it |
-| `currentState` | [PIXI.FilterManager](PIXI.FilterManager.md) | &lt;optional&gt; | It's current state of filter. |
+| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | The renderer to retrieve the filter from |
+| `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The input render target. |
+| `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | The target to output to. |
+| `clear` | Boolean | | レンダリング前に出力先を消去するか |
+| `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 
-There are some useful properties in the currentState :
+`currentState` にはいくつかの有用なプロパティが含まれます :
 target, filters, sourceFrame, destinationFrame, renderTarget, resolution
