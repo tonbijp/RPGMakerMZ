@@ -6,7 +6,7 @@
 
 描画オブジェクトを含むコンテナ。
 
-詳細は本家 PIXI のサイト [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) を参照。
+詳細は本家 PixiJS のサイト [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) を参照。
 
 ### new PIXI.Container ()
 

@@ -1,9 +1,14 @@
 [クラスツリー](index.md)
 
 # クラス: Graphics
-画像の処理を行うための静的クラス。
-
+画像の処理を行うための静的クラス。<br />
 通常の画面を中心に、ローディングやエラー表示も取り扱う。
+
+PixiJS の [PIXI.Application](PIXI.Application.md) を `app`プロパティに持っている。<br />
+`PIXI.Application` はルートコンテナ、レンダラ、ティッカーなどを持っている画像表示関連の重要なオブジェクト。
+
+Effekseer の EffekseerContext を `effekseer`プロパティに持っている。<br />
+こちらはエフェクト表示関連の重要なオブジェクト。
 
 ウィンドウサイズは、プロジェクト直下の package.json ファイルで決められていて、この width, heigth に合わせて再設定される。<br />
 なので package.json の値と揃えておくと、ゲーム起動時にウィンドウの大きさが変わってパタつくのを防げる。
@@ -28,17 +33,17 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 808) |
 | `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 616) |
 | `defaultScale` | [Number](Number.md) | [static] 拡大率(scaleの名称変更) |
-| `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] PIXIアプリケーション |
-| `_width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) |
-| `_height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) |
+| `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] |
+| `_width` | [Number](Number.md) | [static] |
+| `_height` | [Number](Number.md) | [static] |
 | `_defaultScale` | [Number](Number.md) | [static] 拡大率(_scaleの名称変更) |
 | `_realScale` | [Number](Number.md) | [static] ウィンドウフィットした実際の拡大率 |
 | `_errorPrinter` | HTMLElemant | [static] エラー表示 p要素 |
-| `_tickHandler` |  | **@MZ** |
-| `_fpsCounter` |  | **@MZ** |
-| `_loadingSpinner` |  | **@MZ** |
-| `_effekseer` |  | **@MZ** |
-| `_wasLoading` |  | **@MZ** |
+| `_tickHandler` |  | **@MZ** [static]  |
+| `_fpsCounter` |  | **@MZ** [static]  |
+| `_loadingSpinner` |  | **@MZ** [static]  |
+| `_effekseer` |  | **@MZ** [static]  |
+| `_wasLoading` |  | **@MZ** [static]  |
 | `_canvas` | HTMLCanvasElement | [static] canvas要素 |
 | `_renderer` | PIXI.SystemRenderer | [static] レンダラ |
 | `_stretchEnabled` | Boolean | [static] 画面の伸縮可能か |

@@ -6,7 +6,7 @@
 
 画面に表示されるもの一般の基本となるオブジェクト。
 
-詳細は本家 PIXI のサイト [PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html) を参照。
+詳細は本家 PixiJS のサイト [PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html) を参照。
 
 ### new PIXI.DisplayObject ()
 

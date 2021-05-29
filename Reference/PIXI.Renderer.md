@@ -4,11 +4,11 @@
 
 ## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
 
-レンダリングを行うためのクラス。
+WebGLのレンダリングを行うためのクラス。
 
-詳細は本家 PIXI のサイト [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) を参照。
+詳細は本家 PixiJS のサイト [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) を参照。
 
-関連クラス: [Sprite_Animation](Sprite_Animation.md), [PIXI.Container](PIXI.Container.md)
+関連クラス: [Sprite_Animation](Sprite_Animation.md), [PIXI.Container](PIXI.Container.md), [PIXI.Application](PIXI.Application.md)
 
 ### new PIXI.Renderer (options opt)
 #### 引数

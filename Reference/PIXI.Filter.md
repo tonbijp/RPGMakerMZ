@@ -9,7 +9,7 @@
 
 WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D および 3D グラフィック -MDN](https://developer.mozilla.org/ja/docs/Web/API/WebGL_API) や [WebGLの基本 - WebGLFundamentals](https://webglfundamentals.org/webgl/lessons/ja/) などを参照。
 
-この`Filter` クラスについて詳細は本家PxiiJSのリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
+この`Filter` クラスについて詳細は本家 PixiJS のリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
 
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md),  [PIXI.Container](PIXI.Container.md)
 
@@ -54,7 +54,7 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 | `legacy` | Boolean | [read-only] attributes に position や uvs を使うフィルタか  |
 | `padding` | [Number](Number.md) | フィルタのパディング(周辺領域が必要な場合)(規定値: 0)  |
 | `resolution` | [Number](Number.md) | フィルタの解像度 |
-| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.md) | WebGL の状態 |
+| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | WebGL の状態 |
 | `uniforms` | Object |  現在のGLSLに渡す変数  |
 
 
@@ -75,11 +75,22 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |
+| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |            
 | `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像入力対象 |
 | `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像出力対象 |
-| `clearMode` | PIXI.CLEAR_MODES | | レンダリングの出力先の消去モード |
+| `clearMode` | [PIXI.CLEAR_MODES](#PIXI.CLEAR_MODES) | | レンダリングの出力先の消去モード |
 | `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 
 `currentState` には次のようなプロパティが含まれる。<br />
 `target`, `filters`, `sourceFrame`, `destinationFrame`, `renderTarget`, `resolution`
+
+#### PIXI.CLEAR_MODES
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `AUTO` | `BLIT` と同じ |
+| `BLEND` | 消去せずに重ねる |
+| `BLIT` | FilterSystem の設定に合わせる |
+| `CLEAR` | 消去 |
+| `NO` | `BLEND` と同じ、以前のバージョンの `false` |
+| `YES` | `CLEAR` と同じ、以前のバージョンの `true` |

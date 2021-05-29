@@ -1,7 +1,7 @@
 [クラスツリー](index.md)
 
 # クラス: PIXI.Shader
-詳細は本家PxiiJSのリファレンス [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) を参照のこと。
+詳細は本家 PixiJS のリファレンス [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) を参照。
 
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md)
 
@@ -10,8 +10,8 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `program ` | [PIXI.Program](http://pixijs.download/release/docs/PIXI.Program.md) | &lt;optional&gt; | The program the shader will use. |
-| `uniforms` | Object | &lt;optional&gt; |  Custom uniforms to use to augment the built-in ones. |
+| `program ` | [PIXI.Program](http://pixijs.download/release/docs/PIXI.Program.html]) | &lt;optional&gt; | シェーダの使うプログラム |
+| `uniforms` | Object | &lt;optional&gt; |  GLSLに渡す変数 |
 
 ### サブクラス
 
@@ -21,21 +21,22 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `program ` | [PIXI.Program](http://pixijs.download/release/docs/PIXI.Program.md)  |  Program that the shader uses |
-| `uniforms` | Object |  [read-only] Shader uniform values, shortcut for uniformGroup.uniforms. |
+| `program ` | [PIXI.Program](http://pixijs.download/release/docs/PIXI.Program.html)  |  シェーダの使うプログラム |
+| `uniforms` | Object |  [read-only] GLSLに渡す変数( `uniformGroup.uniforms`と同じ ) |
 
 ### メソッド
 
 #### (static)form (vertexSrc opt, fragmentSrc opt, uniforms opt) → {[PIXI.Shader](PIXI.Shader.md)}
-フィルタを適用。
+シェーダを生成して返す。
 
 ##### 引数
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `vertexSrc` | [String](String.md) | &lt;optional&gt; | It's current state of filter. |
-| `fragmentSrc` | [String](String.md) | &lt;optional&gt; | The source of the fragment shader. |
-| `uniforms` | Object | &lt;optional&gt; | Custom uniforms to use to augment the built-in ones. |
+| `vertexSrc` | [String](String.md) | &lt;optional&gt; | 頂点シェーダのコード |
+| `fragmentSrc` | [String](String.md) | &lt;optional&gt; | 断片シェーダのコード |
+| `uniforms` | Object | &lt;optional&gt; | GLSLに渡す変数 |
 
 
 #### destroy ()
+シェーダの破棄。
