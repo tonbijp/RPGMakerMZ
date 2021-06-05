@@ -18,7 +18,7 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | ` loader` | [PIXI.Loader](http://pixijs.download/release/docs/PIXI.Loader.md) | [read-only] ローダー |
-| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | [static] WebGL レンダラ、なければCanvasレンダラ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | [static] WebGLレンダラ、なければ Canvasレンダラ |
 | `resizeTo ` | Window \| HTMLElement | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
 | `screen` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
 | `stage` | [PIXI.Container](PIXI.Container.md)  | PixiJSの描画のルートオブジェクト |
