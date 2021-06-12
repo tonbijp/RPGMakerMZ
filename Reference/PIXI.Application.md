@@ -1,6 +1,12 @@
 [クラスツリー](index.md)
 
 # クラス: PIXI.Application
+PixiJS で扱う基本的なオブジェクトを保持するクラス。
+
+以前のバージョン(v4以前)は必要なオブジェクトを個々に生成していた。<br />
+このクラスは、それら必要なオブジェクトの生成と保持を一手に担うようもの。<br />
+とりあえず PixiJS を使うときはこの `PIXI.Application`クラスを生成すればよく、準備が簡単になった。
+
 詳細は本家PixiJSのリファレンス [PIXI.Application](http://pixijs.download/release/docs/PIXI.Application.html) を参照。
 
 関連クラス: [Graphics](Graphics.md)
@@ -45,7 +51,7 @@
 
 ### メソッド
 
-#### (static)PIXI.Application.registerPlugin (plugin)
+#### (static) registerPlugin (plugin)
 プラグインを登録。
 
 ##### 引数
@@ -62,7 +68,7 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `removeView` | Boolean | &lt;optional&gt; | 登録するプラグイン |
+| `removeView` | Boolean | &lt;optional&gt; | ビューを削除するか |
 | `stageOptions` | Boolean \| Object | &lt;optional&gt; | オプション |
 
 
