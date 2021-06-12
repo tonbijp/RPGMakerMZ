@@ -1,6 +1,6 @@
 [README](README.md)
 
-# クラスツリー
+# RPGツクールMZ 非公式JavaScriptリファレンス - クラスツリー
 
 ## 目次
 
@@ -35,8 +35,6 @@
 ### 画像
 
 * [コア機能](#コア機能)
-* [レンダラ](#レンダラ)
-* [シェーダ](#シェーダ)
 * [コンテナ(PIXI.Container)](#コンテナpixicontainer)
 	* [スプライト(Sprite)](#スプライトsprite)
 	* [シーン(Scene_Base)](#シーンscene_base)
@@ -252,40 +250,27 @@ namespace JsExtensions
 
 * [Bitmap](Bitmap.md)
 * [Graphics](Graphics.md)
+* [PIXI.Application](PIXI.Application.md)
 * [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
     * [Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
     * [Rectangle](Rectangle.md)
-* EventEmitter
+
+* [PIXI.utils.EventEmitter](http://pixijs.download/release/docs/PIXI.utils.EventEmitter.html)
     * [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html)
-    * [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)
+    * [PIXI.Texture](PIXI.Texture.md)
+    * [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
+        * [PIXI.Renderer](PIXI.Renderer.md)
     * [PIXI.DisplayObject](PIXI.DisplayObject.md)
         * [PIXI.Container](PIXI.Container.md) → [継承](#コンテナpixicontainer)
 
-### レンダラ
-
-* [PIXI.WebGLManager](https://pixijs.download/release/docs/PIXI.WebGLManager.html)
+* [PIXI.System](https://pixijs.download/release/docs/PIXI.System.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
-        * [Tilemap.Render](Tilemap.Render.md)  **@MZ**
-        * [PIXI.tilemap.TileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/TileRenderer.ts)
-            * [PIXI.tilemap.SimpleTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/SimpleTileRenderer.ts)
-* PIXI.utils.EventEmitter
-    * [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
-        * [PIXI.Renderer](PIXI.Renderer.md)
-    * [PIXI.SystemRenderer](http://pixijs.download/release/docs/PIXI.SystemRenderer.html)
-        * [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html)
-        * [PIXI.WebGLRenderer](https://pixijs.download/release/docs/PIXI.WebGLRenderer.html)
-* [PIXI.tilemap.CanvasTileRenderer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CanvasTileRenderer.ts)
+        * [Tilemap.Renderer](Tilemap.Renderer.md)  **@MZ**
 
-
-### シェーダ
-
-* GLShader
-    * [PIXI.Shader](PIXI.Shader.md)
-        * [PIXI.Filter](PIXI.Filter.md)
-            * [ColorFilter](ColorFilter.md) **@MZ**
-        * PIXI.tilemap.TilemapShader
-            * [PIXI.tilemap.RectTileShader](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileShader.ts)
+* [PIXI.Shader](PIXI.Shader.md)
+    * [PIXI.Filter](PIXI.Filter.md)
+        * [ColorFilter](ColorFilter.md) **@MZ**
 
 
 ### [コンテナ(PIXI.Container)](PIXI.Container.md)
@@ -293,8 +278,6 @@ namespace JsExtensions
 * [ScreenSprite](ScreenSprite.md)
 * [Weather](Weather.md)
 * [WindowLayer](WindowLayer.md)
-* [PIXI.tilemap.CompositeRectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/CompositeRectTileLayer.ts)
-* [PIXI.tilemap.RectTileLayer](https://github.com/pixijs/pixi-tilemap/blob/master/src/RectTileLayer.ts)
 * [PIXI.Graphics](PIXI.Graphics.md)
 * [Tilemap](Tilemap.md)
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
