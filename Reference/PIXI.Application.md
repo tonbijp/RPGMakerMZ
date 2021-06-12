@@ -39,7 +39,7 @@
 | `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | [static] WebGLレンダラ または Canvasレンダラ |
 | `resizeTo ` | Window \| HTMLElement | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
 | `screen` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
-| `stage` | [PIXI.Container](PIXI.Container.md)  | PixiJS の描画のルートオブジェクト |
+| `stage` | [PIXI.Container](PIXI.Container.md)  | ルート(『RPGツクールMZ』の場合[Scene_Base](Scene_Base.md)) |
 | `ticker` | [PIXI.Ticker](http://pixijs.download/release/docs/PIXI.Ticker.html)  |  アップデートを行うオブジェクト (規定値:`PIXI.Ticker.shared`)  |
 | `view` | HTMLCanvasElement | [read-only] 描画を行うcanvas  |
 
