@@ -55,11 +55,17 @@ WebGLでのレンダリングを行うためのクラス。
 | `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/release/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
 
 #### プラグイン
-『RPGツクールMZ』のプラグインのことではなく、PixiJSの
+『RPGツクールMZ』のプラグインのことではなく、PixiJS の機能拡張。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `interaction` | 衝突判定など |
+| `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/release/docs/PIXI.AccessibilityManager.html)	| Support tabbing interactive elements. |
+| `batch` | [PIXI.BatchRenderer](http://pixijs.download/release/docs/PIXI.BatchRenderer.html) | Batching of Sprite, Graphics and Mesh objects. |
+| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | Extract image data from renderer. |
+| `interaction` | [PIXI.InteractionManager](http://pixijs.download/release/docs/PIXI.InteractionManager.html)	| UI、衝突判定など |
+| `particle` | [PIXI.ParticleRenderer](http://pixijs.download/release/docs/PIXI.ParticleRenderer.html) | Renderer for ParticleContainer objects. |
+| `prepare` | [PIXI.Prepare](http://pixijs.download/release/docs/PIXI.Prepare.html) | Pre-render display objects. |
+| `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/release/docs/PIXI.TilingSpriteRenderer.html) | Renderer for TilingSprite objects. |
 
 
 
