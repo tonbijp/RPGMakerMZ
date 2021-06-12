@@ -6,6 +6,12 @@
 
 画面に表示されるもの一般の基本となるオブジェクト。
 
+`PIXI.DisplayObject` に限った話ではないが`position` など、複数の数値を持ったデータを変更する場合、<br />
+`displayObject.position = new PIXI.Point(0, 0)` とするより<br />
+`displayObject.position.set(0, 0)` とする方が簡単に書け、かつ処理の負荷も低い。
+
+どのような設定方法が使えるかはデータごとのリファレンス([PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) など)を参照。
+
 詳細は本家 PixiJS のサイト [PIXI.DisplayObject](http://pixijs.download/release/docs/PIXI.DisplayObject.html) を参照。
 
 ### new PIXI.DisplayObject ()
@@ -36,7 +42,7 @@
 | `name` | [String](String.md) | 名前 |
 | `parent` | [PIXI.Container](PIXI.Container.md) | [read-only] 親コンテナオブジェクト |
 | `pivot` | [PIXI.IPoint](http://pixijs.download/release/docs/PIXI.IPoint.html) | 回転軸 |
-| `position` | [Point](Point.md) | 位置(x, y を同時に指定) |
+| `position` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 位置(x, y を同時に指定) |
 | `renderable` | Boolean | レンダ可能か |
 | `rotation` | [Number](Number.md) | 回転角(ラジアン) |
 | `scale` | [PIXI.IPoint](http://pixijs.download/release/docs/PIXI.IPoint.html) | 拡大率(ex: 等倍 {1, 1} / 横2倍 {2, 1}) |
@@ -55,7 +61,7 @@
 | `_lastSortedIndex` | [Number](Number.md) | 最終ソート番号 |
 | `_mask` | [PIXI.Graphics](PIXI.Graphics.md) \| [PIXI.Sprite](PIXI.Sprite.md) \| null | マスク画像 |
 | `_tempDisplayObjectParent` | PIXI.DisplayObject | 仮の親オブジェクト |
-| `_zIndex` | [Number](Number.md) | 高い番号ほど手前に表示される番号 |
+| `_zIndex` | [Number](Number.md) | |
 
 
 ### メソッド
@@ -80,35 +86,35 @@
 #### displayObjectUpdateTransform ()
 
 
-#### getBounds (skipUpdate, rect) → {PIXI.Rectangle}
+#### getBounds (skipUpdate opt, rect opt) → {PIXI.Rectangle}
 矩形範囲を返す。
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `skipUpdate` | Boolean | opt. |
-| `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | opt. |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `skipUpdate` | Boolean | &lt;optional&gt; | |
+| `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) |  &lt;optional&gt; | |
 
 
-#### getGlobalPosition (point, skipUpdate) → {PIXI.Point}
+#### getGlobalPosition (point opt, skipUpdate opt) → {PIXI.Point}
 
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `point` | PIXI.Point | opt. |
-| `skipUpdate` | Boolean | opt. |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `point` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)  | &lt;optional&gt; | |
+| `skipUpdate` | Boolean | &lt;optional&gt; | |
 
 
-#### getLocalBounds (rect) → {PIXI.Rectangle}
+#### getLocalBounds (rect opt) → {PIXI.Rectangle}
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | opt. |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `rect` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) || &lt;optional&gt; | |
 
 
 #### render (renderer)
@@ -148,33 +154,34 @@
 | `pivotY` | [Number](Number.md) | 回転軸y座標 |
 
 
-#### toGlobal (position, point, skipUpdate) → {PIXI.Point}
+#### toGlobal (position, point opt, skipUpdate opt) → {PIXI.Point}
 グローバル座標に変換。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `position` |  | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 変換元の座標 |
-| `point` |  | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | opt. |
-| `skipUpdate` | false | Boolean | opt. |
+| `position` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | | 変換元の座標 |
+| `point` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | &lt;optional&gt; |  |
+| `skipUpdate` | Boolean | &lt;optional&gt; | (規定値: false) |
 
 
-#### toLocal (position, from, point, skipUpdate) → {PIXI.Point}
+
+#### toLocal (position, from opt, point opt, skipUpdate opt) → {PIXI.Point}
 ローカル座標に変換。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `position` |  | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 変換元の座標 |
-| `from` |  | PIXI.DisplayObject | opt. |
-| `point` |  | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | opt. |
-| `skipUpdate` | false | Boolean | opt. |
+| `position` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | | 変換元の座標 |
+| `from` |  | PIXI.DisplayObject | &lt;optional&gt; |  |
+| `point` |  | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | &lt;optional&gt; | |
+| `skipUpdate` | Boolean | &lt;optional&gt; | (規定値: false) |
 
 
 #### updateTransform ()
- 変形のアップデート。
+ 変形の更新。
 
 
 ### イベント

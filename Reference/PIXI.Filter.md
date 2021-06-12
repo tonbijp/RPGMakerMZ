@@ -14,7 +14,7 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md),  [PIXI.Container](PIXI.Container.md)
 
 ### new PIXI.Filter (vertexSrc opt, fragmentSrc opt, uniforms opt)
-### 引数
+#### 引数
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |

@@ -3,8 +3,7 @@
 # クラス: PIXI.Renderer
 
 ## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
-
-WebGLのレンダリングを行うためのクラス。
+WebGLでのレンダリングを行うためのクラス。
 
 詳細は本家 PixiJS のサイト [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) を参照。
 
@@ -12,31 +11,31 @@ WebGLのレンダリングを行うためのクラス。
 
 ### new PIXI.Renderer (options opt)
 #### 引数
-全ての値は任意(optional)です。
+全ての値は任意(optional)。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `options ` | Object | 詳細は以下を参照 |
-| `options.width` | [Number](Number.md) | 画面の幅(ピクセル) (規定値: 800) |
-| `options.height` | [Number](Number.md) | 画面の高さ(ピクセル) (規定値: 600) |
+| `options` | Object | 詳細は以下を参照 |
+| `options.width` | [Number](Number.md) | 描画領域の幅(規定値:800ピクセル) |
+| `options.height` | [Number](Number.md) | 描画領域の高さ(規定値:600ピクセル) |
 | `options.view` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | 表示用 canvas |
-| `options.useContextAlpha` | Boolean |  (規定値: true) |
+| `options.useContextAlpha` | Boolean | canvas の alpha の状態を使うか(規定値:true) |
 | `options.autoDensity` | Boolean | 1以外の解像度を許可するか (規定値: false) |
-| `options.antialias` | Boolean | アンチエイリアスを使うか (規定値: false) |
+| `options.antialias` | Boolean | アンチエイリアスをかけるか(規定値:false) |
 | `options.resolution` | [Number](Number.md) | 解像度 / 機器ピクセル の比。なおレティナの解像度は2 (規定値: PIXI.settings.RESOLUTION) |
 | `options.clearBeforeRender` | Boolean | レンダ前にクリアするか。preserveDrawingBuffer が true の時のみ false にできる (規定値: true) |
 | `options.preserveDrawingBuffer` | Boolean | 描画バッファの保存をするか。WebGLコンテキストで toDataUrl を呼び出す必要がある場合は true (規定値: false) |
-| `backgroundColor` | [Number](Number.md) | 背景色 (規定値: 0x000000) |
-| `backgroundAlpha` | [Number](Number.md) | 背景不透明度 (規定値: 1) |
-| `powerPreference` | [String](String.md) | WebGLコンテキストに渡されるパラメーター。デュアルグラフィックカードを搭載したデバイスの場合は 'high-performance' に設定する |
-| `context` | Object | 指定したWebGLコンテキストから、すべてのパラメーターを取得 |
+| `options.backgroundColor` | [Number](Number.md) | 背景色 (規定値: 0x000000) |
+| `options.backgroundAlpha` | [Number](Number.md) | 背景不透明度 (規定値: 1) |
+| `options.powerPreference` | [String](String.md) | WebGLコンテキストに渡されるパラメーター。デュアルグラフィックカードを搭載したデバイスの場合は "high-performance" に設定する |
+| `options.context` | Object | 指定したWebGLコンテキストから、すべてのパラメーターを取得 |
 
 
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- | 
-| `plugins` | Object | [static][read-only] プラグインのコレクション |
+| `plugins` | Object | [static][read-only] [プラグイン](#プラグイン)のコレクション |
 | `batch` | [PIXI.BatchSystem](http://pixijs.download/release/docs/PIXI.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
 | `context` | [PIXI.ContextSystem](http://pixijs.download/release/docs/PIXI.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
 | `filter` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
@@ -54,6 +53,14 @@ WebGLのレンダリングを行うためのクラス。
 | `stencil` | [PIXI.StencilSystem](http://pixijs.download/release/docs/PIXI.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
 | `texture` | [PIXI.TextureSystem ](http://pixijs.download/release/docs/PIXI.TextureSystem .html) | [read-only] テクスチャシステムのインスタンス |
 | `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/release/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
+
+#### プラグイン
+『RPGツクールMZ』のプラグインのことではなく、PixiJSの
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `interaction` | 衝突判定など |
+
 
 
 ### スーパークラスから継承されたメソッド

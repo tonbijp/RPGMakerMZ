@@ -3,19 +3,20 @@
 # クラス: PIXI.Graphics
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md) 
-
 線や丸などを使って画像を描くためのクラス。<br />
-多くのメソッドが自分自身である `PIXI.Graphics` を返してくるのは、メソッドを連続で書くメソッドチェーンを使えるようにするため。
+多くのメソッドが自分自身である `PIXI.Graphics` を返してくるのは、メソッドを「.」区切りで連続で書くメソッドチェーンを使えるようにするため。
 
 詳細は本家 PixiJS のサイト [PIXI.Graphics](http://pixijs.download/release/docs/PIXI.Graphics.html) を参照。<br />
 なお、JavaScript の canvas クラスと共通する部分が多いので、そちらを調べても良い。
 
-### new PIXI.Graphics (geometry)
+関連クラス: [ScreenSprite](ScreenSprite.md), [WindowLayer](WindowLayer.md), [PIXI.Texture](PIXI.Texture.md)
+
+### new PIXI.Graphics (geometry opt)
 #### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `geometry ` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | opt. ジオメトリ |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `geometry ` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | &lt;optional&gt; | ジオメトリ |
 
 ### プロパティ
 
@@ -28,8 +29,8 @@
 | `fill` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | [read-only] 塗りの形式 |
 | `geometry` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | ジオメトリ |
 | `line` | [PIXI.LineStyle](http://pixijs.download/release/docs/PIXI.LineStyle.html) | [read-only] 線の形式 |
-| `pluginName` | [String](String.md) | 規定値: 'batch' |
-| `shader` | [PIXI.Shader](http://pixijs.download/release/docs/PIXI.Shader.html) | シェーダー |
+| `pluginName` | [String](String.md) | 規定値: "batch" |
+| `shader` | [PIXI.Shader](PIXI.Shader.md) | シェーダ |
 | `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
 | `tint` | [Number](Number.md) | 枠線の色(規定値: 0xFFFFFF) |
 | `vertexData` | Float32Array | 頂点データ |
@@ -76,41 +77,40 @@
 * [updateTransform ()](PIXI.Container.md#updatetransform-)
 
 
-
 ### メソッド
 
 #### _calculateBounds ()
 オーバーライド:[PIXI.Container.md](PIXI.Container.md#_calculatebounds-)
  
  
-#### _initCurve (x, y)
+#### _initCurve (x opt, y opt)
 曲線の初期化。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 肩 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `x` | [Number](Number.md)  | 0 | opt. x座標(ピクセル) |
-| `y` | [Number](Number.md)  | 0 | opt. y座標(ピクセル) |
+| `x` | [Number](Number.md)  |  &lt;optional&gt;  | x座標(規定値: 0ピクセル) |
+| `y` | [Number](Number.md)  |  &lt;optional&gt;  | y座標(規定値: 0ピクセル) |
 
  
 #### _render (renderer)
 オーバーライド:[\_render (renderer)](PIXI.Container.md#_render-renderer)
 
 
-#### arc (cx, cy, radius, startAngle, endAngle, anticlockwise) →  {PIXI.Graphics}
+#### arc (cx, cy, radius, startAngle, endAngle, anticlockwise opt) →  {PIXI.Graphics}
 円弧を描き、自分自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 肩 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `cx` | [Number](Number.md)  |  | 中心 x座標(ピクセル) |
 | `cy` | [Number](Number.md)  |  | 中心 y座標(ピクセル) |
 | `radius` | [Number](Number.md)  |  | 半径(ピクセル) |
 | `startAngle` | [Number](Number.md)  |  | 開始角度 |
 | `endAngle` | [Number](Number.md)  |  | 終点角度 |
-| `anticlockwise` | [Number](Number.md)  | false | opt. 反時計回りか |
+| `anticlockwise` | [Number](Number.md)  | &lt;optional&gt; | 反時計回りか(規定値: false) |
 
 
 #### arcTo (x1, y1, x2, y2, radius) →  {PIXI.Graphics}
@@ -128,34 +128,30 @@
 | `radius` | [Number](Number.md) | 角丸の半径(ピクセル) |
 
 
-#### beginFill (color, alpha) →  {PIXI.Graphics}
+#### beginFill (color opt, alpha opt) →  {PIXI.Graphics}
 塗り潰しを開始し、自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `color` | [Number](Number.md)  | 0 | opt. |
-| `alpha` | [Number](Number.md)  | 1 | opt. |
+| `color` | [Number](Number.md)  |  &lt;optional&gt;  | 色(規定値: 0) |
+| `alpha` | [Number](Number.md)  |  &lt;optional&gt;  | 不透明度(規定値: 1) |
 
 
 #### beginHole () →  {PIXI.Graphics}
 最後に描いたシェイプの内側に穴を開け始め、自身を返す。
 
 
-#### beginTextureFill (color, alpha) →  {PIXI.Graphics}
-テクスチャの塗り潰しを開始し、自身を返す。<br />
-第1引数の color は代わりに texture も使える。<br />
-第2引数の alpha は数値でも PIXI.Matrix でも指定可能。
+#### beginTextureFill (color opt, alpha opt) →  {PIXI.Graphics}
+テクスチャの塗り潰しを開始し、自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `texture` | [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html)   | PIXI.Texture.WHITE | opt. 塗り潰しテクスチャ |
-| `color` | [Number](Number.md)  | 0xffffff | opt. 塗り潰し色 |
-| `alpha` | [Number](Number.md)  | 1 | opt. 不透明度 |
-| `alpha` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html)  | null | opt. 不透明度 |
+| `color` | [Number](Number.md) \| [PIXI.Texture](PIXI.Texture.md) | &lt;optional&gt; | 塗り潰し色(規定値: 0xffffff) |
+| `alpha` | [Number](Number.md) \| [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html)  | &lt;optional&gt; | 不透明度(規定値: 1) |
 
 
 #### bezierCurveTo (cpX, cpY, cpX2, cpY2, toX, toY) →  {PIXI.Graphics}
@@ -203,22 +199,17 @@
 | `point ` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) |  |
 
 
-#### destroy (options)
+#### destroy (options opt)
 オーバーライド:[PIXI.Container](PIXI.Container.md#destroy-options)
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `options ` | Object \| Boolean | opt. 以下のオプション全てに同じ値が設定される |
-
-options に Object として指定する内容
-
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `children` | Boolean | false | opt. 子も破棄するか|
-| `texture` | Boolean | false | opt. children と texture が true だと子のテクスチャを破棄する |
-| `baseTexture` | Boolean | false | opt. children と baseTexture が true だと子のベーステクスチャを破棄する |
+| `options` | Object \| Boolean | &lt;optional&gt; | 真偽値は以下のオプション全てに同じ値が設定される |
+| `options.children` | Boolean | &lt;optional&gt; | 子も破棄するか(規定値: false) |
+| `options.texture` | Boolean | &lt;optional&gt; | children と texture が true だと子のテクスチャを破棄する(規定値: false) |
+| `options.baseTexture` | Boolean | &lt;optional&gt; | children と baseTexture が true だと子のベーステクスチャを破棄する(規定値: false) |
 
 
 #### drawCircle (x, y, radius) →  {PIXI.Graphics}
@@ -285,7 +276,7 @@ options に Object として指定する内容
 
 
 #### drawShape (shape) →  {PIXI.Graphics}
-角丸の四角形を描き、自身を返す。
+指定された図形を描き、自身を返す。
 
 ##### 引数
 
@@ -294,19 +285,19 @@ options に Object として指定する内容
 | `shape` | [PIXI.Circle](http://pixijs.download/release/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/release/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/release/docs/PIXI.RoundedRectangle.html)  | |
 
 
-#### drawStar (x, y, points, radius, innerRadius, rotation) →  {PIXI.Graphics}
+#### drawStar (x, y, points, radius, innerRadius opt, rotation opt) →  {PIXI.Graphics}
 星型の図形を描き、自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `x` | [Number](Number.md) |  | 中心のx座標(ピクセル) |
 | `y` | [Number](Number.md) |  | 中心のy座標(ピクセル) |
 | `points` | [Number](Number.md) |  | 頂点の数 |
 | `radius` | [Number](Number.md) |  | 半径(ピクセル) |
-| `innerRadius` | [Number](Number.md) | radius の半分 | opt. 内側の半径(ピクセル) |
-| `rotation` | [Number](Number.md)  | 0 | opt. 回転角(ラジアン) |
+| `innerRadius` | [Number](Number.md) | &lt;optional&gt; | 内側の半径(規定値: radius/2ピクセル) |
+| `rotation` | [Number](Number.md)  | &lt;optional&gt; | 回転角(規定値: 0ラジアン) |
 
 
 #### endFill () →  {PIXI.Graphics}
@@ -321,8 +312,8 @@ options に Object として指定する内容
 多角形を終了し、自身を返す。
 
 
-#### generateCanvasTexture (scaleMode, resolution) →  {PIXI.Texture}
-指定の設定でテクスチャ([PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html))を生成して返す。
+#### generateCanvasTexture (scaleMode, resolution) →  {[PIXI.Texture](PIXI.Texture.md)}
+指定の設定でテクスチャを生成して返す。
 
 ##### 引数
 
@@ -336,34 +327,36 @@ options に Object として指定する内容
 最初の角か。
 
 
-#### lineStyle (width, color, alpha, alignment, native) →  {PIXI.Graphics}
+#### lineStyle (options opt) →  {PIXI.Graphics}
 指定の値でラインスタイルを設定し、自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `width` | [Number](Number.md) | 0 | opt. 幅(ピクセル) |
-| `color` | [Number](Number.md) | 0 | opt. 色 |
-| `alpha` | [Number](Number.md) | 1 | opt. 不透明度 |
-| `alignment` | [Number](Number.md) | 0.5 | opt.  |
-| `native` | Boolean | false | opt. |
+| `options` | Object | &lt;optional&gt; | 詳細は以下参照 |
+| `options.width` | [Number](Number.md) | &lt;optional&gt; | 幅(規定値: 0ピクセル) |
+| `options.color` | [Number](Number.md) | &lt;optional&gt; | 色(規定値: 0) |
+| `options.alpha` | [Number](Number.md) | &lt;optional&gt; | 不透明度(規定値: 1) |
+| `options.alignment` | [Number](Number.md) | &lt;optional&gt; | (規定値: 0.5) |
+| `options.native` | Boolean | &lt;optional&gt; | (規定値: false) |
 
 
-#### lineTextureStyle (width, texture, color, alpha, matrix, alignment, native) →  {PIXI.Graphics}
+#### lineTextureStyle (options opt) →  {PIXI.Graphics}
 指定の値でラインテクスチャスタイルを設定し、自身を返す。
 
 ##### 引数
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `width` | [Number](Number.md) | 0 | opt. 幅(ピクセル) |
-| `texture` | [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html) | PIXI.Texture.WHITE | opt. テスクチャ |
-| `color` | [Number](Number.md) | 0 | opt. 色 |
-| `alpha` | [Number](Number.md) | 1 | opt. 不透明度 |
-| `matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | null | opt.  |
-| `alignment` | [Number](Number.md) | 0.5 | opt.  |
-| `native` | Boolean | false | opt. |
+| `options` | Object | &lt;optional&gt; | 詳細は以下参照 |
+| `options.width` | [Number](Number.md) | &lt;optional&gt; | 幅(規定値: 0ピクセル) |
+| `options.texture` | [PIXI.Texture](PIXI.Texture.md) | &lt;optional&gt; | テスクチャ(規定値: PIXI.Texture.WHITE) |
+| `options.color` | [Number](Number.md) | &lt;optional&gt; | 色(規定値: 0) |
+| `options.alpha` | [Number](Number.md) | &lt;optional&gt; | 不透明度(規定値: 1) |
+| `options.matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | &lt;optional&gt; |   |
+| `options.alignment` | [Number](Number.md) | &lt;optional&gt; | (規定値: 0.5) |
+| `options.native` | Boolean | &lt;optional&gt; | (規定値: false) |
 
 
 #### lineTo (x, y) →  {PIXI.Graphics}
