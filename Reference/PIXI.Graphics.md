@@ -32,7 +32,7 @@
 | `pluginName` | [String](String.md) | 規定値: "batch" |
 | `shader` | [PIXI.Shader](PIXI.Shader.md) | シェーダ |
 | `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
-| `tint` | [Number](Number.md) | 枠線の色(規定値: 0xFFFFFF) |
+| `tint` | [Number](Number.md) | 枠線の色(規定値: 0xffffff) |
 | `vertexData` | Float32Array | 頂点データ |
 | `graphicsData` | [Array](Array.md).&lt;[PIXI.GraphicsData](http://pixijs.download/release/docs/PIXI.GraphicsData.html)&gt; | 画像データ |
 | `_fillStyle` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | 塗りの形式 |
@@ -90,8 +90,8 @@
 
 | 名前 | 肩 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `x` | [Number](Number.md)  |  &lt;optional&gt;  | x座標(規定値: 0ピクセル) |
-| `y` | [Number](Number.md)  |  &lt;optional&gt;  | y座標(規定値: 0ピクセル) |
+| `x` | [Number](Number.md)  | &lt;optional&gt; | x座標(規定値: 0ピクセル) |
+| `y` | [Number](Number.md)  | &lt;optional&gt; | y座標(規定値: 0ピクセル) |
 
  
 #### _render (renderer)
@@ -105,12 +105,12 @@
 
 | 名前 | 肩 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `cx` | [Number](Number.md)  |  | 中心 x座標(ピクセル) |
-| `cy` | [Number](Number.md)  |  | 中心 y座標(ピクセル) |
-| `radius` | [Number](Number.md)  |  | 半径(ピクセル) |
-| `startAngle` | [Number](Number.md)  |  | 開始角度 |
-| `endAngle` | [Number](Number.md)  |  | 終点角度 |
-| `anticlockwise` | [Number](Number.md)  | &lt;optional&gt; | 反時計回りか(規定値: false) |
+| `cx` | [Number](Number.md) |  | 中心 x座標(ピクセル) |
+| `cy` | [Number](Number.md) |  | 中心 y座標(ピクセル) |
+| `radius` | [Number](Number.md) |  | 半径(ピクセル) |
+| `startAngle` | [Number](Number.md) |  | 開始角度 |
+| `endAngle` | [Number](Number.md) |  | 終点角度 |
+| `anticlockwise` | [Number](Number.md) | &lt;optional&gt; | 反時計回りか(規定値: false) |
 
 
 #### arcTo (x1, y1, x2, y2, radius) →  {PIXI.Graphics}
@@ -121,10 +121,10 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x1` | [Number](Number.md)  | 中間点の x座標(ピクセル) |
-| `y1` | [Number](Number.md)  | 中間点の y座標(ピクセル) |
-| `x2` | [Number](Number.md)  | 到達点の x座標(ピクセル) |
-| `y2` | [Number](Number.md)  | 到達点の y座標(ピクセル) |
+| `x1` | [Number](Number.md) | 中間点の x座標(ピクセル) |
+| `y1` | [Number](Number.md) | 中間点の y座標(ピクセル) |
+| `x2` | [Number](Number.md) | 到達点の x座標(ピクセル) |
+| `y2` | [Number](Number.md) | 到達点の y座標(ピクセル) |
 | `radius` | [Number](Number.md) | 角丸の半径(ピクセル) |
 
 
@@ -135,8 +135,8 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `color` | [Number](Number.md)  |  &lt;optional&gt;  | 色(規定値: 0) |
-| `alpha` | [Number](Number.md)  |  &lt;optional&gt;  | 不透明度(規定値: 1) |
+| `color` | [Number](Number.md) | &lt;optional&gt; | 色(規定値: 0) |
+| `alpha` | [Number](Number.md) | &lt;optional&gt; | 不透明度(規定値: 1) |
 
 
 #### beginHole () →  {PIXI.Graphics}
@@ -161,16 +161,16 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `cpX` | [Number](Number.md)  | 制御点1の x座標(ピクセル) |
-| `cpY` | [Number](Number.md)  | 制御点1の y座標(ピクセル) |
-| `cpX2` | [Number](Number.md)  | 制御点2の x座標(ピクセル) |
-| `cpY2` | [Number](Number.md)  | 制御点2の y座標(ピクセル) |
-| `toX` | [Number](Number.md)  | 到達点の x座標(ピクセル) |
-| `toY` | [Number](Number.md)  | 到達点の y座標(ピクセル) |
+| `cpX` | [Number](Number.md) | 制御点1の x座標(ピクセル) |
+| `cpY` | [Number](Number.md) | 制御点1の y座標(ピクセル) |
+| `cpX2` | [Number](Number.md) | 制御点2の x座標(ピクセル) |
+| `cpY2` | [Number](Number.md) | 制御点2の y座標(ピクセル) |
+| `toX` | [Number](Number.md) | 到達点の x座標(ピクセル) |
+| `toY` | [Number](Number.md) | 到達点の y座標(ピクセル) |
 
 
 #### calculateTints ()
-枠線を計算。
+着色を計算。
 
 
 #### calculateVertices ()
@@ -219,9 +219,9 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
-| `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
-| `radius` | [Number](Number.md)  | 半径(ピクセル) |
+| `x` | [Number](Number.md) | 中心の x座標(ピクセル) |
+| `y` | [Number](Number.md) | 中心の y座標(ピクセル) |
+| `radius` | [Number](Number.md) | 半径(ピクセル) |
 
 
 #### drawEllipse (x, y, width, height) →  {PIXI.Graphics}
@@ -231,10 +231,10 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
-| `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
-| `width` | [Number](Number.md)  | 幅(ピクセル) |
-| `height` | [Number](Number.md)  | 高さ(ピクセル) |
+| `x` | [Number](Number.md) | 中心の x座標(ピクセル) |
+| `y` | [Number](Number.md) | 中心の y座標(ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
 #### drawPolygon (path) →  {PIXI.Graphics}
@@ -244,7 +244,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `path ` | [Array](Array.md).&lt;[Number](Number.md)&gt; \| [Array](Array.md).&lt;[PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)&gt; \| [Array](Array.md).&lt;[PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html)&gt;  | パス |
+| `path ` | [Array](Array.md).&lt;[Number](Number.md)&gt; \| [Array](Array.md).&lt;[PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)&gt; \| [Array](Array.md).&lt;[PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html)&gt; | パス |
 
 
 #### drawRect (x, y, width, height) →  {PIXI.Graphics}
@@ -254,10 +254,10 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | 中心の x座標(ピクセル) |
-| `y` | [Number](Number.md)  | 中心の y座標(ピクセル) |
-| `width` | [Number](Number.md)  | 幅(ピクセル) |
-| `height` | [Number](Number.md)  | 高さ(ピクセル) |
+| `x` | [Number](Number.md) | 中心の x座標(ピクセル) |
+| `y` | [Number](Number.md) | 中心の y座標(ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
 
 
 
@@ -268,11 +268,11 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | 中心のx座標(ピクセル) |
-| `y` | [Number](Number.md)  | 中心のy座標(ピクセル) |
-| `width` | [Number](Number.md)  | 幅(ピクセル) |
-| `height` | [Number](Number.md)  | 高さ(ピクセル) |
-| `radius` | [Number](Number.md)  | 半径(ピクセル) |
+| `x` | [Number](Number.md) | 中心のx座標(ピクセル) |
+| `y` | [Number](Number.md) | 中心のy座標(ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
+| `height` | [Number](Number.md) | 高さ(ピクセル) |
+| `radius` | [Number](Number.md) | 半径(ピクセル) |
 
 
 #### drawShape (shape) →  {PIXI.Graphics}
@@ -282,7 +282,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `shape` | [PIXI.Circle](http://pixijs.download/release/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/release/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/release/docs/PIXI.RoundedRectangle.html)  | |
+| `shape` | [PIXI.Circle](http://pixijs.download/release/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/release/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/release/docs/PIXI.RoundedRectangle.html) | |
 
 
 #### drawStar (x, y, points, radius, innerRadius opt, rotation opt) →  {PIXI.Graphics}
@@ -297,7 +297,7 @@
 | `points` | [Number](Number.md) |  | 頂点の数 |
 | `radius` | [Number](Number.md) |  | 半径(ピクセル) |
 | `innerRadius` | [Number](Number.md) | &lt;optional&gt; | 内側の半径(規定値: radius/2ピクセル) |
-| `rotation` | [Number](Number.md)  | &lt;optional&gt; | 回転角(規定値: 0ラジアン) |
+| `rotation` | [Number](Number.md) | &lt;optional&gt; | 回転角(規定値: 0ラジアン) |
 
 
 #### endFill () →  {PIXI.Graphics}
@@ -366,8 +366,8 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | x座標(ピクセル) |
-| `y` | [Number](Number.md)  | y座標(ピクセル) |
+| `x` | [Number](Number.md) | x座標(ピクセル) |
+| `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### moveTo (x, y) →  {PIXI.Graphics}
@@ -377,8 +377,8 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `x` | [Number](Number.md)  | x座標(ピクセル) |
-| `y` | [Number](Number.md)  | y座標(ピクセル) |
+| `x` | [Number](Number.md) | x座標(ピクセル) |
+| `y` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### quadraticCurveTo (cpX, cpY, toX, toY) →  {PIXI.Graphics}
@@ -388,10 +388,10 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `cpX` | [Number](Number.md)  | コントロールポイントx座標(ピクセル) |
-| `cpY` | [Number](Number.md)  | コントロールポイントy座標(ピクセル) |
-| `toX` | [Number](Number.md)  | x座標(ピクセル) |
-| `toY` | [Number](Number.md)  | y座標(ピクセル) |
+| `cpX` | [Number](Number.md) | コントロールポイントx座標(ピクセル) |
+| `cpY` | [Number](Number.md) | コントロールポイントy座標(ピクセル) |
+| `toX` | [Number](Number.md) | x座標(ピクセル) |
+| `toY` | [Number](Number.md) | y座標(ピクセル) |
 
 
 #### setMatrix (matrix) →  {PIXI.Graphics}
@@ -401,7 +401,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html)   | マトリクス |
+| `matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | マトリクス |
 
 
 ####  startPoly ()
