@@ -278,8 +278,18 @@ canvas をアップデート。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `width` | [Number](Number.md) | ゲーム画面の幅(ピクセル) (規定値:800)|
-| `height` | [Number](Number.md) | ゲーム画面の高さ(ピクセル) (規定値:600) |
+| `width` | [Number](Number.md) | ゲーム画面の幅(規定値:800ピクセル) |
+| `height` | [Number](Number.md) | ゲーム画面の高さ(規定値:600ピクセル) |
+
+
+#### (static) setStage (stage)
+**@MZ** ステージ(描画オブジェクトのルート)の設定。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `stage` | [PIXI.Container](PIXI.Container.md) | `PIXI.application.stage`に設定するコンテナ |
 
 
 #### (static) setTickHandler (handler)
