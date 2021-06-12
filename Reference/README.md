@@ -13,7 +13,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 
 ## リファレンスの使い方
 
-[クラスツリー](index.md) にクラス(オブジェクト)並んでいるので、そちらから目的の物をお探しください。<br />
+**[クラスツリー](index.md)** にクラス(オブジェクト)が並んでいるので、そちらから目的の物をお探しください。<br />
 このページより [クラスツリー](index.md) のページをブックマークしておいた方が便利かと思います。
 
 あるいはページ左上の検索ボックスに単語を入力して[In this repository]で、お探しください。<br />
@@ -29,7 +29,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=270496334) トリアコンタン
 * [ツクールMZスクリプトリファレンスwiki](http://www.rpgmaker-script-wiki.xyz/mzscriptwiki.php) 村人A
 * [RPGツクールプラグイン制作過程紹介](https://note.com/nz_prism/n/n179edce51d4b) んーぞー
-* [ツクール MZ のクラス/グローバル変数の相互関係表](https://qiita.com/katai5plate/items/0591dbaa1f93454f7725)はどはど@Had2Apps
+* [ツクール MZ のクラス/グローバル変数の相互関係表](https://qiita.com/katai5plate/items/0591dbaa1f93454f7725) はどはど@Had2Apps
 
 ## 『RPGツクールMZ』で使われている NW.js のバージョン
 
