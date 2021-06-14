@@ -14,7 +14,7 @@ MZでは、他のクラスと被っている機能が廃止されている。<br
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_scene` | [Scene_Base](Scene_Base.md) | [static] 現在のシーン |
+| `_scene` | [Scene_Base](Scene_Base.md) | [static] 現在のシーン(`Graphics.app.stage` と同じ) |
 | `_nextScene` | [Scene_Base](Scene_Base.md) | [static] 次のシーン |
 | `_stack` | [Array](Array.md).&lt;Function&gt; | [static] シーンなどの履歴 |
 | `_exiting` | Boolean | [static] 抜けているか |

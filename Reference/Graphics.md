@@ -5,7 +5,8 @@
 通常の画面を中心に、ローディングやエラー表示も取り扱う。
 
 PixiJS の [PIXI.Application](PIXI.Application.md) を `app`プロパティに持っている。<br />
-`PIXI.Application` はルートコンテナ、レンダラ、ティッカーなどを持っている画像表示関連の重要なオブジェクト。
+`PIXI.Application` はルートコンテナ、レンダラ、ティッカーなどを持っている画像表示関連の重要なオブジェクト。<br />
+ちなみにルートコンテナの `Graphics.app.stage` は `SceneManager._scene` と同じ値。
 
 Effekseer の EffekseerContext を `effekseer`プロパティに持っている。<br />
 こちらはエフェクト表示関連の重要なオブジェクト。
@@ -28,10 +29,10 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static][read-only] PIXIアプリケーション |
 | `effekseer` | EffekseerContext  | **@MZ**[static][read-only] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
-| `width` | [Number](Number.md) | [static] ゲーム画面の幅(ピクセル) (規定値: 816) |
-| `height` | [Number](Number.md) | [static] ゲーム画面の高さ(ピクセル) (規定値: 624) |
-| `boxWidth` | [Number](Number.md) | [static] UI領域の幅(ピクセル) (規定値: 808) |
-| `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(ピクセル) (規定値: 616) |
+| `width` | [Number](Number.md) | [static] ゲーム画面の幅(規定値: 816ピクセル) |
+| `height` | [Number](Number.md) | [static] ゲーム画面の高さ(規定値: 624ピクセル) |
+| `boxWidth` | [Number](Number.md) | [static] UI領域の幅(規定値: 808ピクセル) |
+| `boxHeight` | [Number](Number.md) | [static] UI領域の高さ(規定値: 616ピクセル) |
 | `defaultScale` | [Number](Number.md) | [static] 拡大率(scaleの名称変更) |
 | `_app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static] |
 | `_width` | [Number](Number.md) | [static] |
@@ -188,23 +189,23 @@ canvas の生成。
 
 
 #### (static) _updateAllElements ()
-全ての要素をアップデート。
+全ての要素を更新。
 
 
 #### (static) _updateCanvas ()
-canvas をアップデート。
+canvas を更新。
 
 
 #### (static) _updateErrorPrinter ()
-エラー表示をアップデート。
+エラー表示を更新。
 
 
 #### (static) _updateRealScale ()
-実際の拡大率をアップデート。
+実際の拡大率を更新。
 
 
 #### (static) _updateVideo ()
-ビデオをアップデート。
+ビデオを更新。
 
 
 #### (static) endLoading () → {Boolean}
@@ -216,16 +217,16 @@ canvas をアップデート。
 
 
 #### (static) initialize (width opt, height opt, type opt) → {Boolean}
-画像機能の初期化し、完了したら true を返す。<br />
+画像機能の初期化し、完了したら `true` を返す。<br />
 通常 [SceneManager](SceneManager.md) の `_screenWidth`, `_screenHeight`が引数に使われるので、x:816, y:624 が初期値となる。
 
 ##### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `width` | [Number](Number.md) | ゲーム画面の幅(ピクセル) (規定値:800)|
-| `height` | [Number](Number.md) | ゲーム画面の高さ(ピクセル) (規定値:600) |
-| `type` | [String](String.md) | [レンダラタイプ](Graphics.md#レンダラタイプ) (規定値:auto) |
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `width` | [Number](Number.md) | &lt;optional&gt; | ゲーム画面の幅 (規定値:800ピクセル)|
+| `height` | [Number](Number.md) | &lt;optional&gt; |  ゲーム画面の高さ (規定値: 600ピクセル) |
+| `type` | [String](String.md) | &lt;optional&gt; |  [レンダラタイプ](Graphics.md#レンダラタイプ) (規定値: auto) |
 
 
 #### (static) isInsideCanvas (x, y) → {Boolean}
@@ -278,8 +279,8 @@ canvas をアップデート。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `width` | [Number](Number.md) | ゲーム画面の幅(規定値:800ピクセル) |
-| `height` | [Number](Number.md) | ゲーム画面の高さ(規定値:600ピクセル) |
+| `width` | [Number](Number.md) | ゲーム画面の幅(規定値: 800ピクセル) |
+| `height` | [Number](Number.md) | ゲーム画面の高さ(規定値: 600ピクセル) |
 
 
 #### (static) setStage (stage)
