@@ -399,7 +399,7 @@ MVでは引数が x, y, width, height だった。
 
 
 #### updatePage ()
-ページをアップデート。
+ページを更新。
 
 
 

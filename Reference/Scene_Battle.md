@@ -379,31 +379,31 @@ SceneManager._scene
 
 
 #### updateBattleProcess ()
-戦闘段階のアップデート。
+戦闘段階の更新。
 
 
 #### updateCancelButton ()
-**@MZ** キャンセルボタンのアップデート。
+**@MZ** キャンセルボタンの更新。
 
 
 #### updateInputWindowVisibility ()
-**@MZ** 入力ウィンドウ表示状態のアップデート。
+**@MZ** 入力ウィンドウ表示状態の更新。
 
 
 #### updateLogWindowVisibility ()
-**@MZ** ログウィンドウ表示状態のアップデート。
+**@MZ** ログウィンドウ表示状態の更新。
 
 
 #### updateStatusWindowPosition ()
-**@MZ** [ステータス]ウィンドウ位置のアップデート。
+**@MZ** [ステータス]ウィンドウ位置の更新。
 
 
 #### updateStatusWindowVisibility ()
-**@MZ** [ステータス]ウィンドウ表示状態のアップデート。
+**@MZ** [ステータス]ウィンドウ表示状態の更新。
 
 
 #### updateVisibility()
-**@MZ** 表示状態のアップデート。
+**@MZ** 表示状態の更新。
 
 
 ### 廃止MVメソッド

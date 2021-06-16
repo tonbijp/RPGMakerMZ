@@ -277,51 +277,51 @@ SceneManager._scene
 
 
 #### updateCallDebug ()
- デバッグウィンドウを呼ぶアップデート。
+ デバッグウィンドウ呼び出しの更新。
 
 
 #### updateCallMenu ()
- メニュー呼び出しのアップデート。
+ メニュー呼び出しの更新。
 
 
 #### updateDestination ()
- タッチ位置表示をアップデート。
+ タッチ位置表示を更新。
 
 
 #### updateEncounter ()
- エンカウントをアップデート。
+ エンカウントを更新。
 
 
 #### updateEncounterEffect ()
- エンカウント時の効果のアップデート。
+ エンカウント時の効果の更新。
 
 
 #### updateMain ()
-[$gameMap](global.md#gamemap-game_map), [$gamePlayer](global.md#gameplayer-game_player), [$gameTimer](global.md#gametimer-game_timer), [$gameScreen](global.md#gamescreen-game_screen) をアップデート。
+[$gameMap](global.md#gamemap-game_map), [$gamePlayer](global.md#gameplayer-game_player), [$gameTimer](global.md#gametimer-game_timer), [$gameScreen](global.md#gamescreen-game_screen) を更新。
 
 
 #### updateMainMultiply ()
- メインをアップデート。早送りモードだと2度アップデート。
+ メインを更新。早送りモードだと2度更新。
 
 
 #### updateMapNameWindow ()
-**@MZ** マップ名ウィンドウをアップデート。
+**@MZ** マップ名ウィンドウを更新。
 
 
 #### updateMenuButton ()
-**@MZ** メニューのボタンをアップデート。
+**@MZ** メニューのボタンを更新。
 
 
 #### updateScene ()
- シーンのアップデート。
+ シーンの更新。
 
 
 #### updateTransferPlayer ()
- プレイヤーのマップ移動のアップデート。
+ プレイヤーのマップ移動の更新。
 
 
 #### updateWaitCount () → {Boolean}
- 待ちカウントをアップデート。
+ 待ちカウントを更新。
  
  ### 廃止MVメソッド
  createMessageWindow (), createScrollTextWindow ()

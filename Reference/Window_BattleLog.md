@@ -777,15 +777,15 @@ TPへのダメージのメッセージを生成。
 
 
 #### updateWait () → {Boolean}
-待ち時間のアップデート。
+待ち時間の更新。
 
 
 #### updateWaitCount () → {Boolean}
-待ちカウントのアップデート。
+待ちカウントの更新。
 
 
 #### updateWaitMode () → {Boolean}
-待ち状態ののアップデート。
+待ち状態のの更新。
 
 
 #### wait ()

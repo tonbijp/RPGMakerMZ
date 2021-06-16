@@ -216,31 +216,31 @@ MV で継承元(スーパークラス)だった Sprite_Base から [Sprite_Click
 
 
 #### updateBitmap ()
-画像のアップデート。
+画像の更新。
 
 
 #### updateDamagePopup ()
-ダメージポップアップのアップデート。
+ダメージポップアップの更新。
 
 
 #### updateFrame ()
-フレームのアップデート。
+フレームの更新。
 
 
 #### updateMain ()
-主要なアップデート。
+主要な更新。
 
 
 #### updateMove ()
-移動のアップデート。
+移動の更新。
 
 
 #### updatePosition ()
-位置のアップデート。
+位置の更新。
 
 
 #### updateSelectionEffect ()
-選択エフェクトのアップデート。
+選択エフェクトの更新。
 
 
 #### updateVisibility ()

@@ -337,11 +337,11 @@ $gameMap._events[n]
 
 
 #### updateParallel ()
-[トリガー:並列処理]をアップデート。
+[トリガー:並列処理]を更新。
 
 
 #### updateSelfMovement ()
-[自律移動]のアップデート。
+[自律移動]の更新。
 
 
 #### updateStop ()

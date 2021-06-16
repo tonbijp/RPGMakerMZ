@@ -34,7 +34,7 @@
 | `width` | [Number](Number.md) | 拡大縮小前の画像の幅(ピクセル) |
 | `height` | [Number](Number.md) | 拡大縮小前の画像の高さ(ピクセル) |
 | `sortableChildren` | Boolean |  子が(zIndexで)ソート可能か |
-| `sortDirty` | Boolean |  次回アップデート時ソートされるか |
+| `sortDirty` | Boolean |  次回更新時ソートされるか |
 
 
 ### スーパークラスから継承されたメソッド
@@ -244,8 +244,3 @@ canvas の描画
 
 #### updateTransform ()
 オーバーライド: [PIXI.DisplayObject](PIXI.DisplayObject.md#updateTransform-)
-
-
-
-
-

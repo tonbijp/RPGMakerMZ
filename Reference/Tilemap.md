@@ -541,7 +541,7 @@ OverpassTile.js プラグインで使われている。
 
 
 #### _updateBitmaps()
-**@MZ** ビットマップのアップデート。
+**@MZ** ビットマップの更新。
 
 
 #### destroy ()
@@ -583,7 +583,7 @@ OverpassTile.js プラグインで使われている。
 
 
 #### update ()
- フレーム毎のタイルマップのアップデート。
+ フレーム毎の更新。
 
 
 #### updateTransform ()

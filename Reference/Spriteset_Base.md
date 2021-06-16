@@ -255,19 +255,19 @@ canvas [色調]変更を生成。
 
 
 #### updateAnimations ()
-**@MZ** アニメーションをアップデート。
+**@MZ** アニメーションを更新。
 
 
 #### updateBaseFilters ()
-**@MZ** 基本フィルタをアップデート。
+**@MZ** 基本フィルタを更新。
 
 
 #### updateOverallFilters ()
-**@MZ** 全体のフィルタをアップデート。
+**@MZ** 全体のフィルタを更新。
 
 
 #### updatePosition ()
-位置をアップデート。
+位置を更新。
 
 
 

@@ -221,27 +221,27 @@ SceneManager._scene._spriteset
 
 
 #### updateBalloons ()
-**@MZ** [フキダシ]のアップデート。
+**@MZ** [フキダシ]の更新。
 
 
 #### updateParallax ()
-[遠景]のアップデート。
+[遠景]の更新。
 
 
 #### updateShadow ()
-影のアップデート。
+影の更新。
 
 
 #### updateTilemap ()
-タイルマップのアップデート。
+タイルマップの更新。
 
 
 #### updateTileset ()
-タイルセットのアップデート。
+タイルセットの更新。
 
 
 #### updateWeather ()
-天候のアップデート。
+天候の更新。
 
 
 ### 廃止MVメソッド

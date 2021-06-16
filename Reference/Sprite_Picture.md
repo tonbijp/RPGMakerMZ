@@ -131,25 +131,25 @@ MVでは [Sprite](Sprite.md) のサブクラスだったが、MZでは  [Sprite_
 
 
 #### updateBitmap ()
-画像のアップデート。
+画像の更新。
 
 
 #### updateOrigin ()
-原点のアップデート。
+原点の更新。
 
 
 #### updateOther ()
-その他のアップデート。
+その他の更新。
 
 
 #### updatePosition ()
-位置のアップデート。
+位置の更新。
 
 
 #### updateScale ()
-拡大率のアップデート。
+拡大率の更新。
 
 
 #### updateTone ()
-[色調]のアップデート。
+[色調]の更新。
 

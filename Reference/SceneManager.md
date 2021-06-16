@@ -275,7 +275,7 @@ MZでは、他のクラスと被っている機能が廃止されている。<br
 
 
 #### (static) update (deltaTime)
- フレーム毎のアップデート。
+ フレーム毎の更新。
 
 ##### 引数
 
@@ -285,7 +285,7 @@ MZでは、他のクラスと被っている機能が廃止されている。<br
 
 
 #### (static) updateEffekseer ()
-**@MZ** Effekseer のアップデート。
+**@MZ** Effekseer の更新。
 
 
 #### (static) updateFrameCount ()
@@ -293,16 +293,15 @@ MZでは、他のクラスと被っている機能が廃止されている。<br
 
 
 #### (static) updateInputData ()
- 入力データのアップデート。
+ 入力データの更新。
 
 
 #### (static) updateMain ()
- 主要部分のアップデート。
+ 主要部分の更新。
 
 
 #### (static) updateScene ()
- シーンのアップデート。
-
+ シーンの更新。
 
 
 ### 廃止MVメソッド

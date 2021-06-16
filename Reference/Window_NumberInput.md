@@ -353,7 +353,7 @@ OKが選択された時に呼ばれるハンドラ。
 
 
 #### updatePlacement ()
-配置をアップデート。
+配置を更新。
 
 
 #### windowHeight () → {[Number](Number.md)}

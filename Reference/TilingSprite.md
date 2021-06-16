@@ -98,11 +98,11 @@ MVでの継承元 `PIXI.extras.PictureTilingSprite` から変更された。
 
 
 #### update ()
-フレームごとのアップデート。
+フレーム毎の更新。
 
 
 #### updateTransform ()
-変形のアップデート。
+変形の更新。
 
 
 ### MV廃止メソッド

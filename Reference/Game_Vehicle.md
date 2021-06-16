@@ -305,11 +305,11 @@ $gameMap._vehicles[n]
 
 
 #### updateAirship ()
-[飛行船]をアップデート。
+[飛行船]を更新。
 
 
 #### updateAirshipAltitude ()
-[飛行船]の高度をアップデート。
+[飛行船]の高度を更新。
 
 
 #### vehicle () → {[RPG.System.Vehicle](RPG.System.Vehicle.md)}

@@ -20,8 +20,8 @@ SceneManager._scene._spriteset._tilemap._lowerLayer
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `MAX_GL_TEXTURES` | [Number](Number.md) | [static] 最大テクスチャ(規定値:3) |
-| `VERTEX_STRIDE` | [Number](Number.md) | [static] 頂点ストライド(規定値:36) |
+| `MAX_GL_TEXTURES` | [Number](Number.md) | [static] 最大テクスチャ(規定値: 3) |
+| `VERTEX_STRIDE` | [Number](Number.md) | [static] 頂点ストライド(規定値: 36) |
 | `_elements` | [Array](Array.md).&lt;[MV.TileRect](MV.TileRect.md)&gt;  | タイル描画に使われる矩形データの配列 |
 | `_images` | [Array](Array.md).&lt;[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)&gt;  | 画像データの配列 |
 | `_vao` | [PIXI.Geometry](http://pixijs.download/release/docs/PIXI.Geometry.html) | ジオメトリ |
@@ -29,8 +29,8 @@ SceneManager._scene._spriteset._tilemap._lowerLayer
 | `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | インデックスのバッファ |
 | `_vertexArray` | Float32Array | `_elements`を一次元化した配列 |
 | `_vertexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | 頂点のバッファ |
-| `_needsTexturesUpdate` | Boolean | テクスチャのアップデートが必要か |
-| `_needsVertexUpdate` | Boolean | 頂点のアップデートが必要か |
+| `_needsTexturesUpdate` | Boolean | テクスチャの更新が必要か |
+| `_needsVertexUpdate` | Boolean | 頂点の更新が必要か |
 | `_state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
 | `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
 
@@ -76,11 +76,11 @@ VAOの生成。
 
 
 ### _updateIndexBuffer ()
-バッファのアップデート。
+インデックスバッファの更新。
 
 
 ### _updateVertexBuffer ()
-バッファのアップデート。
+頂点バッファの更新。
 
 
 #### addRect (setNumber, sx, sy, dx, dy, w, h)

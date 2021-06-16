@@ -355,22 +355,22 @@ Game_Interpreter.prototype.pluginCommand = function ( command, args ){
 
 
 #### update ()
-フレーム毎のアップデート。
+フレーム毎の更新。
 
 #### updateChild () → {Boolean}
-子インタプリタをアップデート。
+子インタプリタを更新。
 
 
 #### updateWait () → {Boolean}
-待ち状態をアップデート。
+待ち状態を更新。
 
 
 #### updateWaitCount () → {Boolean}
-待ちカウントをアップデート。
+待ちカウントを更新。
 
 
 #### updateWaitMode () → {Boolean}
-[ウエイトモード](Game_Interpreter#ウエイトモード)をアップデートしたのち、待ち状態か。
+[ウエイトモード](Game_Interpreter#ウエイトモード)を更新したのち、待ち状態か。
 
 
 #### videoFileExt () → {[String](String.md)}

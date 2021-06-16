@@ -383,7 +383,7 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 #### updateLoading ()
-読み込みのアップデート。
+読み込みの更新。
 
 
 #### updateMessage () → {Boolean}
@@ -408,4 +408,4 @@ MVでは引数はなかったが、アラビア語対応で必要になった。
 
 
 ### 廃止MVメソッド
-createSubWindows (), numVisibleRows (), subWindows (), windowHeight (), windowWidth () 
+createSubWindows (), numVisibleRows (), subWindows (), windowHeight (), windowWidth ()

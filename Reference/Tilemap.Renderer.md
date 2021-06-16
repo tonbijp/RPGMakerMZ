@@ -75,7 +75,7 @@ VAOの生成。
 
 
 ### updateTextures (renderer, images) 
-テクスチャのアップデート。
+テクスチャの更新。
 
 ##### 引数:
 

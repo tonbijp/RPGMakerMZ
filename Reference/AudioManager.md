@@ -257,7 +257,7 @@ SEを停止。
 
 
 #### (static) updateBgmParameters (bgm)
-BGMのパラメータをアップデート。
+BGMのパラメータを更新。
 
 ##### 引数
 
@@ -267,7 +267,7 @@ BGMのパラメータをアップデート。
 
 
 #### (static) updateBgsParameters (bgs)
-BGSのパラメータをアップデート。
+BGSのパラメータを更新。
 
 ##### 引数
 
@@ -277,7 +277,7 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateBufferParameters (buffer, configVolume, audio)
-バッファのパラメータをアップデート。
+バッファのパラメータを更新。
 
 ##### 引数
 
@@ -289,7 +289,7 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateCurrentBgm (bgm, pos)
-現在のBGMをアップデート。
+現在のBGMを更新。
 
 ##### 引数
 
@@ -300,7 +300,7 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateCurrentBgs (bgs, pos)
-現在のBGSをアップデート。
+現在のBGSを更新。
 
 ##### 引数
 
@@ -311,7 +311,7 @@ BGSのパラメータをアップデート。
 
 
 #### (static) updateMeParameters (me)
-MEのパラメータをアップデート。
+MEのパラメータを更新。
 
 ##### 引数
 
@@ -321,7 +321,7 @@ MEのパラメータをアップデート。
 
 
 #### (static) updateSeParameters (buffer, se)
-SEのパラメータをアップデート。
+SEのパラメータを更新。
 
 ##### 引数
 

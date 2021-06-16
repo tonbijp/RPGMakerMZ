@@ -218,35 +218,35 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 
 ####  _updateArrows ()
-矢印のアップデート。
+矢印の更新。
 
 
 ####  _updateClientArea ()
-**@MZ** クライアントエリアのアップデート。
+**@MZ** クライアントエリアの更新。
 
 
 ####  _updateContents ()
-内容のアップデート。
+内容の更新。
 
 
 ####  _updateContentsBack ()
-**@MZ** 項目の背景のアップデート。
+**@MZ** 項目の背景の更新。
 
 
 ####  _updateCursor ()
-カーソルのアップデート。
+カーソルの更新。
 
 
 ####  _updateFilterArea ()
-**@MZ** クライアントエリアのフィルタのアップデート
+**@MZ** クライアントエリアのフィルタの更新
 
 
 ####  _updateFrame ()
-**@MZ** ウィンドウ枠のアップデート
+**@MZ** ウィンドウ枠の更新
 
 
 ####  _updatePauseSign ()
-ポーズサインのアップデート。
+ポーズサインの更新。
 
 
 #### addChildToBack (child) → {Object}
@@ -359,7 +359,7 @@ MZでは、ほぼ同じものがwindowを省略する形で採用されている
 
 
 #### update ()
-フレーム毎のアップデート。
+フレーム毎の更新。
 
 
 #### updateTransform ()

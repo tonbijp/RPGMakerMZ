@@ -3,7 +3,7 @@
 # クラス: Input
 キーボードとゲームパッド(コントローラ)の入力に関する静的クラス。
 
-JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent)と[Gamepad](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad) 周りを扱う。
+JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent) と [Gamepad](https://developer.mozilla.org/en-US/docs/Web/API/Gamepad) 周りを扱う。
 
 関連クラス: [Window_Selectable](Window_Selectable.md), [TouchInput](TouchInput.md)
 
@@ -18,7 +18,7 @@ JavaScriptの [KeyboardEvent](https://developer.mozilla.org/ja/docs/Web/API/Keyb
 | `gamepadMapper` | Object | [static] [ゲームパッド入力マップ](Input.md#ゲームパッド入力マップ)  |
 | `date` | [Number](Number.md) | [static][read-only] 最後に入力された時刻(ミリ秒) |
 | `dir4` | [Number](Number.md) | [static][read-only] 4方向入力の数値(テンキー対応) |
-| `dir8` | [Number](Number.md) | [static][read-only]  8方向入力の数値(テンキー対応) |
+| `dir8` | [Number](Number.md) | [static][read-only] 8方向入力の数値(テンキー対応) |
 | `_currentState` | Object | [static] 現在の入力状態 {[key: string]: boolean} |
 | `_previousState` | Object | [static] 直前の入力状態 {[key: string]: boolean} |
 | `_gamepadStates` | [Array](Array.md).&lt;[Array](Array.md).&lt;Boolean&gt;&gt; | [static] ゲームパッドの状態<br />(ゲームパッドの番号, code, 押されているか) |
@@ -92,7 +92,7 @@ command は参考。
 
 
 #### ゲームパッド入力マップ
-<code>{ code: 'キー名称', ...}</code> の形の、ゲームパッドのボタンコードと[キー名称](Input.md#キー名称)の変換テーブル。<br />
+<code>{ code: "キー名称", ...}</code> の形の、ゲームパッドのボタンコードと[キー名称](Input.md#キー名称)の変換テーブル。<br />
 アナログスティックの入力は up, down, right, left に変換される。<br />
 バッドによってボタンコードとボタンの対応はまちまち。<br />
 gamepadMapper に設定されている。以下のキー名称は規定値。
@@ -194,11 +194,11 @@ y軸の入力(-1, 0, 1)を返す。
 
 
 #### (static) _updateDirection ()
-向きをアップデート。
+向きを更新。
 
 
 #### (static) _updateGamepadState (gamepad, index)
-ゲームパッドの状態をアップデート。
+ゲームパッドの状態を更新。
 
 ##### 引数
 
@@ -256,7 +256,7 @@ y軸の入力(-1, 0, 1)を返す。
 
 
 #### (static) update ()
-フレーム毎のアップデート。
+フレーム毎の更新。
 
 
 #### (static) virtualClick (buttonName)

@@ -181,11 +181,11 @@
 
 
 #### updateBackground ()
-背景のアップデート。
+背景の更新。
 
 
 #### updatePlacement ()
-表示領域のアップデート。
+表示領域の更新。
 
 
 #### windowHeight () → {[Number](Number.md)}

@@ -809,33 +809,34 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### update (sceneActive)
- マップをアップデート。
+フレーム毎の更新。<br />
+ただしインタプリタの更新はシーンがアクティブな場合のみ。
 
 ##### 引数
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `sceneActive` | Boolean |  |
+| `sceneActive` | Boolean | シーンがアクティブか |
 
 
 #### updateEvents ()
- 現在のマップにある全[イベント]をアップデート。
+ 現在のマップにある全[イベント]を更新。
 
 
 #### updateInterpreter ()
- インタプリタをアップデート。
+ インタプリタを更新。
 
 
 #### updateParallax ()
-[遠景]をアップデート。
+[遠景]を更新。
 
 
 #### updateScroll ()
- スクロールをアップデート。
+ スクロールを更新。
 
 
 #### updateVehicles ()
- 現在のマップにある全乗り物をアップデート。
+ 現在のマップにある全乗り物を更新。
 
 
 #### vehicle (type) → {[Game_Vehicle](Game_Vehicle.md)}

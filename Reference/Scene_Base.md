@@ -274,19 +274,19 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 
 
 #### update ()
-フレーム毎のアップデート。
+フレーム毎の更新。
 
 
 #### updateChildren ()
-子オブジェクトのアップデート。
+子オブジェクトの更新。
 
 
 #### updateColorFilter ()
-**@MZ** 色フィルタのアップデート。
+**@MZ** 色フィルタの更新。
 
 
 #### updateFade ()
-フェードのアップデート。
+フェードの更新。
 
 
 ### 廃止MVメソッド

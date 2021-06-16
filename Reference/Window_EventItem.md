@@ -324,13 +324,12 @@ OKが選択された時に呼ばれるハンドラ。
 
 
 #### updateCancelButton ()
-**@MZ** キャンセルボタンをアップデート。
+**@MZ** キャンセルボタンを更新。
 
 
 #### updatePlacement ()
-配置をアップデート。
+配置を更新。
 
 
 ### 廃止MVメソッド
  numVisibleRows (), windowHeight ()
-

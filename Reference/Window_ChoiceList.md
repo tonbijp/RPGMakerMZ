@@ -345,15 +345,15 @@ MZの `Window`では例外的に引数がない。
 
 
 #### updateBackground ()
-背景のアップデート。
+背景の更新。
 
 
 #### updateCancelButton ()
-**@MZ** キャンセルボタンのアップデート。
+**@MZ** キャンセルボタンの更新。
 
 
 #### updatePlacement ()
-ウィンドウの配置のアップデート。
+ウィンドウの配置の更新。
 
 
 #### windowHeight () → {[Number](Number.md)}
@@ -361,7 +361,7 @@ MZの `Window`では例外的に引数がない。
 
 
 #### windowWidth () → {[Number](Number.md)}
-ウィンドウの 幅を返す。
+ウィンドウの幅を返す。
 
 
 #### windowX () → {[Number](Number.md)}

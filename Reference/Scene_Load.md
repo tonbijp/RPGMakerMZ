@@ -162,7 +162,7 @@ SceneManager._scene
 
 
 #### reloadMapIfUpdated ()
-アップデートされていたらマップを読み込む。
+更新されていたらマップを読み込む。
 
 
 #### terminate ()

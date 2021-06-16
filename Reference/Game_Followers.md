@@ -109,11 +109,11 @@ $gamePlayer.followers()]
 
 
 #### update ()
-[隊列メンバー]をアップデート。
+[隊列メンバー]を更新。
 
 
 #### updateMove ()
-[隊列メンバー]の移動をアップデート。
+[隊列メンバー]の移動を更新。
 
 
 #### visibleFollowers () → {[Array](Array.md).<[Game_Follower](Game_Follower.md)>}

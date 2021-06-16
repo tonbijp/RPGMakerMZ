@@ -259,19 +259,19 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### updateBitmap ()
-画像表示領域のアップデート。
+画像表示領域の更新。
 
 
 #### updateFlashing ()
-またたきのアップデート。
+またたきの更新。
 
 
 #### updateGaugeAnimation ()
-ゲージのアニメーションのアップデート。
+ゲージのアニメーションの更新。
 
 
 #### updateTargetValue (value, maxValue)
-対象の数値のアップデート。
+対象の数値の更新。
 
 ##### 引数
 

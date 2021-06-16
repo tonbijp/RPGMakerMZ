@@ -201,7 +201,7 @@
 
 
 #### updatePageButtons ()
-**@MZ** ページボタンをアップデート。
+**@MZ** ページボタンを更新。
 
 
 #### setBackgroundOpacity (opacity)
@@ -215,4 +215,4 @@
 
 
 #### updateActor ()
-現在のアクターをアップデート。
+現在のアクターを更新。

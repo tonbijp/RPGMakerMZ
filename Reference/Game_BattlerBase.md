@@ -970,11 +970,11 @@ TPのパーセント量を返す。
 
 
 #### updateBuffTurns ()
-通常能力値[強化]のアップデート。
+通常能力値[強化]の更新。
 
 
 #### updateStateTurns ()
-ステート変化のアップデート。
+ステート変化の更新。
 
 
 #### xparam (xparamId) → {[Number](Number.md)}

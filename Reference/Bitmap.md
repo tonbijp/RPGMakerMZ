@@ -131,6 +131,12 @@ v1.1.1、v1.2.0 で変更あり。
 #### _createBaseTexture (source)
 **@MZ** 基礎テクスチャの生成。
 
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `source` |  [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | テクスチャの元になるキャンバス |
+
 
 #### _createCanvas (width, height)
 **@MZ** キャンバスの生成。
@@ -174,7 +180,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 
 #### _updateScaleMode ()
-**@MZ** 拡大モードのアップデート。
+**@MZ** 拡大モードの更新。
 
 
 #### addLoadListener (listner)

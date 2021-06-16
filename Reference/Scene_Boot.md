@@ -166,7 +166,7 @@ SceneManager._scene
 
 
 #### updateDocumentTitle ()
- ゲームのタイトルをアップデート。
+ ゲームのタイトルを更新。
 
 
 ### 廃止MVメソッド

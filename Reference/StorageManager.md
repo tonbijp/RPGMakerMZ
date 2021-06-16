@@ -287,7 +287,7 @@ JSON文字列を記録した指定セーブファイルをローカルに保存�
 
 
 #### (static) updateForageKeys ()
-**@MZ** forageキーをアップデート。
+**@MZ** forageキーを更新。
 
 
 #### (static) zipToJson (zip) → {String}
