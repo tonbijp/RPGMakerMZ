@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.3.2.0
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -60,6 +60,9 @@
  * 以下で影の半径を指定できる。
  * <TF_SHADOW:x,y>
  *
+ * [移動ルートの指定]の[スクリプト]
+ * this.TF_hasShadow( true );   // 影をつける
+ * this.TF_hasShadow( false );   // 影を消す
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -101,7 +104,10 @@
         } );
     };
 
+    // 注釈のコマンド番号 TODO:ページの注釈でも設定できるといいんじゃないかな
+    const REMARK = 108;
     /**
+     * TF_SHADOWタグの内容を返す。
      * @param {Game_Character} tc 
      * @returns {String} TF_SHADOWタグの内容(なければundefined)
      */
@@ -119,24 +125,37 @@
     }
 
     /**
-     * 
-     * メタタグが
+     * 指定キャラクターが影を持つか。
      * @param {Game_Character} tc
-     * @returns {Boolean} 影をつけるか
+     * @returns {Boolean} 影を持つか
      */
     function hasShadow( tc ) {
+        if( tc.hasShadow !== undefined ) return tc.hasShadow;
         const shadowTag = getMetaTag( tc );
         if( shadowTag !== undefined ) return !!shadowTag;    //タグ指定があれば、その指定に従う
         return !tc.isTile() && !tc.isObjectCharacter();
     }
 
     /**
+     * ステージに影を追加。
      * @param {Sprite_Character} ts
      */
     function addShadow( ts ) {
         ts.shadow = new Sprite_Shadow( ts );
         ts.parent.addChild( ts.shadow );
     }
+
+
+    /*--- Game_Event ---*/
+    /**
+     * 影のON/OFF
+     * @param {Boolean} hasShadow 影を持つか
+     */
+    Game_CharacterBase.prototype.TF_hasShadow = function( hasShadow ) {
+        this.refreshShadow = true;
+        this.hasShadow = hasShadow;
+    };
+
 
     /*--- Game_Event ---*/
     const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
@@ -182,6 +201,14 @@
     };
 
     /*--- Sprite_Shadow ---*/
+    /**
+     * @class Sprite_Shadow
+     * @property {Point} radius 楕円の半径{x:横, y:縦}
+     * @property {String} color 影の色
+     * @property {Number} blurStrength 影のぼかし強度
+     * @property {Sprite_Character} _sprite 影の設定対象
+     * 
+     */
     class Sprite_Shadow extends Sprite {
         /**
          * @param {Sprite_Character} sprite 影の設定対象
@@ -189,7 +216,7 @@
         initialize( sprite ) {
             super.initialize( new Bitmap( 1, 1 ) );
             this._sprite = sprite;
-            this.anchor.x = this.anchor.y = 0.5;
+            this.anchor.set( 0.5 );
             this.initMembers();
             this.create();
         }
@@ -201,13 +228,11 @@
         }
 
         initMembers() {
-            const radius = this.getRadius();
-            this.rX = radius.x;
-            this.rY = radius.y;
+            this.radius = this.getRadius();
             this.color = pluginParams.color;
             this.blurStrength = pluginParams.strength;
-            this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
             this.z = 2;
+            this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
         }
 
         getRadius() {
@@ -216,8 +241,8 @@
         }
 
         create() {
-            const rX = this.rX;
-            const rY = this.rY;
+            const rX = this.radius.x;
+            const rY = this.radius.y;
             this.bitmap.resize( rX * 2, rY * 2 );
             this.setFrame( 0, 0, rX * 2, rY * 2 );
             const ctx = this.bitmap.context;
