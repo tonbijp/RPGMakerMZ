@@ -2,9 +2,15 @@
 
 # クラス: Bitmap
 
-画像を表す基本オブジェクト。概ね [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)のラッパーオブジェクト。
+画像を表す基本オブジェクト。
 
-`new Bitmap(0, 0)` とデータ0で生成すると、各種メソッドが動作しないので、最低 `new Bitmap(1, 1)` で生成する必要がある。
+画像データ保持に `baseTexture`([PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html))<br />
+画像読み込みに `image`([Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement))<br />
+画像描画に `canvas`([HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)) が使われており、これらの機能が統合されたクラス。
+
+`new Bitmap(0, 0)` とデータ0で生成すると `canvas` が生成されないので、描画関連メソッドを使うのであれば最低 `new Bitmap(1, 1)` で生成する必要がある。
+
+暗号化された画像ファイルの復号機能も持っている。
 
 v1.1.1、v1.2.0 で変更あり。
 
@@ -24,23 +30,23 @@ v1.1.1、v1.2.0 で変更あり。
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `fontFace` | [String](String.md) | フォント名(規定値: "sans-serif") |
-| `fontSize` | [Number](Number.md) | フォントサイズ(ピクセル) (規定値: 16)|
+| `fontSize` | [Number](Number.md) | フォントサイズ(規定値: 16ピクセル)|
 | `fontItalic` | Boolean | イタリックか(規定値: false) |
 | `fontBold` | Boolean | 太字か(規定値: false) |
 | `textColor` | [MV.CssColor](MV.CssColor.md) | 文字色(規定値: "#ffffff") |
 | `outlineColor` | [MV.CssColor](MV.CssColor.md) | アウトラインの色(規定値: "rgba(0, 0, 0, 0.5)") |
 | `outlineWidth` | [Number](Number.md) | アウトラインの幅(規定値: 3) |
 | `url` | [String](String.md) | [read-only] 画像ファイルのURL |
-| `baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) | [read-only] 基礎テクスチャ |
-| `canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | [read-only] 画像を描画するcanvas |
+| `baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) | [read-only] 画像データ保持用の基礎テクスチャ |
+| `canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | [read-only] 画像操作用 `<canvas>`要素 |
 | `context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) | [read-only] 2Dレンダリングコンテクスト |
-| `image` | [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  **@MZ** [read-only] 画像要素 |
+| `image` | [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  **@MZ** [read-only] ファイル読み込み管理用 `<img>`要素 |
 | `width` | [Number](Number.md) | [read-only] 画像の幅(ピクセル) |
 | `height` | [Number](Number.md) | [read-only] 画像の高さ(ピクセル) |
 | `rect` | [Rectangle](Rectangle.md) | [read-only] 画像の矩形範囲 |
-| `smooth` | Boolean | スムーススケーリング(ぼかし)を適用するか |
-| `paintOpacity` | [Number](Number.md) | 不透明度(0 〜 255) |
-| `_loadingState` | [String](String.md) | [読み込みの状態](Bitmap.md#読み込みの状態) |
+| `smooth` | Boolean | スムーススケーリング(ぼかし)を適用するか(規定値: true) |
+| `paintOpacity` | [Number](Number.md) | 描画時の不透明度(0 〜 255)(規定値: 255) |
+| `_loadingState` | [String](String.md) | [読み込みの状態](#読み込みの状態) |
 | `_loadListeners` | [Array](Array.md).&lt;Function&gt; | ロードリスナの配列 |
 | `_smooth` | Boolean |  |
 | `_paintOpacity` | [Number](Number.md)  |  |
@@ -48,21 +54,18 @@ v1.1.1、v1.2.0 で変更あり。
 | `_baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) |  |
 | `_context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) |  |
 | `_canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)  |  |
-| `_image` |  **@MZ** [HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  |
+| `_image` |  **@MZ** [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  |
 
 #### 読み込みの状態
 
 | 文字列 | 説明 |
 | --- | --- |
 | "none" | 画像なし |
-| "pending" | URLリクエスト保留中 |
-| "purged" | URLリクエストを受けてパージ |
-| "requesting" | URI を補完してリクエスト |
-| "requestCompleted" | リクエスト終了 |
-| "decrypting" | 復号中 |
-| "decryptCompleted" | 復号完了 |
+| "loading" | **@MZ** 画像読み込み中 |
 | "loaded" | 画像の利用準備完了 |
 | "error" | エラー発生 |
+
+"pending", "purged", "requesting", "requestCompleted", "decrypting","decryptCompleted" の状態は廃止され "loading" に一本化。
 
 ### 廃止MVプロパティ
 `cacheEntry`
@@ -71,7 +74,8 @@ v1.1.1、v1.2.0 で変更あり。
 ### メソッド
 
 #### (static) load (url) → {[Bitmap](Bitmap.md)}
-画像ファイルを読み込んで、Bitmapオブジェクトを返す。
+画像ファイルを読み込んで、Bitmapオブジェクトを返す。<br />
+なお、この場合 `canvas` は必要になるまで生成されない。
 
 ##### 引数
 
@@ -129,13 +133,13 @@ v1.1.1、v1.2.0 で変更あり。
 
 
 #### _createBaseTexture (source)
-**@MZ** 基礎テクスチャの生成。
+**@MZ** キャンバスかイメージ要素から基礎テクスチャを生成。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `source` |  [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | テクスチャの元になるキャンバス |
+| `source` |  [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) \| [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) | テクスチャの元になるデータ |
 
 
 #### _createCanvas (width, height)
@@ -162,7 +166,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 
 #### _onXhrLoad (xhr)
-**@MZ** XMLHttpRequest読み込み時に呼ばれるハンドラ。
+**@MZ** XMLHttpRequest読み込み終了時に呼ばれるハンドラ。
 
 ##### 引数
 
@@ -180,7 +184,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 
 #### _updateScaleMode ()
-**@MZ** 拡大モードの更新。
+**@MZ** 拡大モード(スムージング)の更新。
 
 
 #### addLoadListener (listner)
@@ -336,8 +340,8 @@ if( sprite.bitmap ) {
 | `color` | [MV.CssColor](MV.CssColor.md) | 色(CSS文字列) |
 
 
-#### getAlphaPixel (x, y) → {[String](String.md)}
-指定位置の不透明度(16進数)を返す。
+#### getAlphaPixel (x, y) → {[Number](Number.md)}
+指定位置の不透明度(0~255)を返す。
 
 ##### 引数
 
@@ -348,7 +352,7 @@ if( sprite.bitmap ) {
 
 
 #### getPixel (x, y) → {[MV.CssColor](MV.CssColor.md)}
-指定位置のピクセルの色を返す。
+指定位置のピクセルの色を(#rrggbb形式で)返す。
 
 ##### 引数
 
@@ -438,12 +442,8 @@ if( sprite.bitmap ) {
 | `offset` | [Number](Number.md) | 色相の変更量(360度) |
 
 
-#### startRequest ()
-"pending" の状態を解除し画像のリクエストを開始。
-
-
 #### strokeRect (x, y, width, height, color) 
-**@MZ** 矩形を描画。
+**@MZ** 矩形枠を描画。
 
 ##### 引数
 
@@ -458,4 +458,4 @@ if( sprite.bitmap ) {
 
 ### 廃止MVメソッド
 [static] request (url)<br />
-_setDirty (), touch ()
+_setDirty (), startRequest (), touch ()
