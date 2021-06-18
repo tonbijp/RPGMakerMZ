@@ -6,7 +6,7 @@
 
 描画のための基本オブジェクト。
 
-PRGツクールMZでは、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
+『PRGツクールMZ』では、[ImageManager](ImageManager.md)で画像ファイルから読み込んだ[Bitmap](Bitmap.md)を、コンストラクタ引数に指定してSpriteを生成し、[Stage](Stage.md)などのコンテナオブジェクトにaddChildする、という手順で画像を表示する。
 
 ### new Sprite (bitmap)
 #### 引数
@@ -40,22 +40,23 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_emptyBaseTexture` |  | **@MZ** [static]  |
-| `_counter` | [Number](Number.md) | [static] スプライトの(生成順)番号 |
+| `_emptyBaseTexture` | [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html) | **@MZ** [static] 空の基礎テクスチャ |
 | `spriteId` | [Number](Number.md) | スプライトID |
 | `bitmap` | [Bitmap](Bitmap.md) | スプライトに設定する画像 |
 | `opacity` | [Number](Number.md) | 不透明度 (0 〜 255) |
-| `visible` | Boolean |  表示中か |
+| `visible` | Boolean |  表示中か(規定値: true) |
 | `z` | [Number](Number.md) | [重なりの優先度](#重なりの優先度) |
-| `blendMode` | [Number](Number.md) | [\[合成方法\]](#合成方法) (規定値:0)|
-| `_bitmap` | | |
-| `_blendColor` | [[MV.Tone](MV.Color.md) | ブレンドカラー |
-| `_blendMode` | | |
-| `_colorFilter` | | 色フィルタ |
-| `_colorTone` | [MV.Tone](MV.Tone.md) | 色調 |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](#合成方法) (規定値: `PIXI.BLEND_MODES.NORMAL`)|
+| `_bitmap` | [Bitmap](Bitmap.md) | |
+| `_blendColor` | [MV.Tone](MV.Color.md) | ブレンドカラー(規定値: [0, 0, 0, 0]) |
+| `_blendMode` | [Number](Number.md) | |
+| `_colorFilter` | [ColorFilter](ColorFilter.md) | 色フィルタ |
+| `_colorTone` | [MV.Tone](MV.Tone.md) | 色調(規定値: [0, 0, 0, 0]) |
+| `_counter` | [Number](Number.md) | [static] スプライトの(生成順)番号 |
 | `_frame` | [Rectangle](Rectangle.md) | 枠 |
-| `_hidden` | Boolean | 隠されているか |
-| `_hue` | [Number](Number.md) | 色相 (-360 〜 360) | 
+| `_hidden` | Boolean | 隠されているか(規定値: false) |
+| `_hue` | [Number](Number.md) | 色相 (-360 〜 360)(規定値: 0) | 
+| `_refreshFrame` | Boolean | フレームを再設定するか |
 
 #### 重なりの優先度
 [Tilemap.\_comparechildorder](Tilemap.md#_comparechildorder-a-b)でソートの際に使われる。
