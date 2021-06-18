@@ -7,7 +7,8 @@
 多くのメソッドが自分自身である `PIXI.Graphics` を返してくるのは、メソッドを「.」区切りで連続で書くメソッドチェーンを使えるようにするため。
 
 詳細は本家 PixiJS のサイト [PIXI.Graphics](http://pixijs.download/release/docs/PIXI.Graphics.html) を参照。<br />
-なお、JavaScript の canvas クラスと共通する部分が多いので、そちらを調べても良い。
+なお、JavaScript の [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)クラスの描画コンテキストである [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) と共通するメソッドが多いので、そちらを調べても良い。
+
 
 関連クラス: [ScreenSprite](ScreenSprite.md), [WindowLayer](WindowLayer.md), [PIXI.Texture](PIXI.Texture.md)
 

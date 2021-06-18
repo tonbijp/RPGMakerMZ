@@ -7,8 +7,8 @@
 画面に表示されるもの一般の基本となるオブジェクト。
 
 `PIXI.DisplayObject` に限った話ではないが`position` など、複数の数値を持ったデータを変更する場合、<br />
-`displayObject.position = new PIXI.Point(0, 0)` とするより<br />
-`displayObject.position.set(0, 0)` とする方が簡単に書け、かつ処理の負荷も低い。
+`displayObject.position = new PIXI.Point( 0, 0 )` とするより<br />
+`displayObject.position.set( 0, 0 )` とする方が簡単に書け、かつ処理の負荷も低い。
 
 どのような設定方法が使えるかはデータごとのリファレンス([PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) など)を参照。
 
@@ -24,13 +24,13 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `accessible` | Boolean | 操作可能か |
-| `accessibleHint` | [String](String.md) |  |
-| `accessibleTitle` | [String](String.md) |  |
+| `accessible` | Boolean | アクセシビリティ対応か |
+| `accessibleHint` | [String](String.md) | ヒント文字列(`accessible`が `true`) |
+| `accessibleTitle` | [String](String.md) | タイトル文字列(`accessible`が `true`) |
 | `alpha` | [Number](Number.md) | 不透明度 |
 | `angle` | [Number](Number.md) | 回転角(角度) |
 | `buttonMode` | Boolean | マウスオーバー時などポインタが変更されるか |
-| `cacheAsBitmap` | Boolean |ビットマップとしてキャッシュされるか |
+| `cacheAsBitmap` | Boolean | ビットマップとしてキャッシュされるか |
 | `cursor` | [String](String.md) | マウスオーバー時のポインタの種類 |
 | `filterArea` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | フィルタ範囲 |
 | `filters` | [Array](Array.md).&lt;[PIXI.Filter](PIXI.Filter.md)&gt; | フィルタの配列 |
@@ -41,7 +41,7 @@
 | `mask` | [PIXI.Graphics](PIXI.Graphics.md) \| [PIXI.Sprite](PIXI.Sprite.md) \| null | マスク画像 |
 | `name` | [String](String.md) | 名前 |
 | `parent` | [PIXI.Container](PIXI.Container.md) | [read-only] 親コンテナオブジェクト |
-| `pivot` | [PIXI.IPoint](http://pixijs.download/release/docs/PIXI.IPoint.html) | 回転軸 |
+| `pivot` | [PIXI.IPoint](http://pixijs.download/release/docs/PIXI.IPoint.html) | 回転軸(ピクセル) |
 | `position` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 位置(x, y を同時に指定) |
 | `renderable` | Boolean | レンダ可能か |
 | `rotation` | [Number](Number.md) | 回転角(ラジアン) |

@@ -11,7 +11,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `texture` | [PIXI.Texture](PIXI.Texture.md) |  スプライトに設定する画像 |
+| `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定する画像 |
 
 
 ### サブクラス
@@ -24,7 +24,7 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](PIXI.Filter.md) \| [PIXI.Shader](PIXI.Shader.md) | [static] シェーダ |
-| `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値:0xffffff) |
+| `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値: 0xffffff) |
 | `_tintedCanvas` | HTMLCanvasElement | 着色された canvas |
 | `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) |座標の基点 (例: 左上{0, 0} / 右下{1, 1} ) |
 | `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値:0) |
@@ -32,7 +32,7 @@
 | `pluginName` | [String](String.md) | プラグイン名(規定値: "batch") |
 | `roundPixels` | Boolean | ピクセル補完するか |
 | `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定された画像 |
-| `tint` | [Number](Number.md) | 着色する色(規定値:0xffffff の場合処理しない) |
+| `tint` | [Number](Number.md) | 着色する色(規定値: 0xffffff の場合処理しない) |
 
 
 

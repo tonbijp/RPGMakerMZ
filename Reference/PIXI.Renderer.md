@@ -38,6 +38,7 @@ WebGLでのレンダリングを行うためのクラス。
 | `plugins` | Object | [static][read-only] [プラグイン](#プラグイン)のコレクション |
 | `batch` | [PIXI.BatchSystem](http://pixijs.download/release/docs/PIXI.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
 | `context` | [PIXI.ContextSystem](http://pixijs.download/release/docs/PIXI.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
+| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | v6で廃止(`plugins.extract`を使うように変更) |
 | `filter` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
 | `framebuffer` | [PIXI.FramebufferSystem](http://pixijs.download/release/docs/PIXI.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
 | `geometry` | [PIXI.GeometrySystem](http://pixijs.download/release/docs/PIXI.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
@@ -59,14 +60,15 @@ WebGLでのレンダリングを行うためのクラス。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/release/docs/PIXI.AccessibilityManager.html)	| Support tabbing interactive elements. |
-| `batch` | [PIXI.BatchRenderer](http://pixijs.download/release/docs/PIXI.BatchRenderer.html) | Batching of Sprite, Graphics and Mesh objects. |
-| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | Extract image data from renderer. |
+| `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/release/docs/PIXI.AccessibilityManager.html)	| UI部品のTABキーフォーカス設定など |
+| `batch` | PIXI.BatchRenderer | Sprite, Graphics および Mesh のバッチ処理 |
+| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | 画像を他の形式で出力するためのオブジェクト |
 | `interaction` | [PIXI.InteractionManager](http://pixijs.download/release/docs/PIXI.InteractionManager.html)	| UI、衝突判定など |
-| `particle` | [PIXI.ParticleRenderer](http://pixijs.download/release/docs/PIXI.ParticleRenderer.html) | Renderer for ParticleContainer objects. |
-| `prepare` | [PIXI.Prepare](http://pixijs.download/release/docs/PIXI.Prepare.html) | Pre-render display objects. |
-| `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/release/docs/PIXI.TilingSpriteRenderer.html) | Renderer for TilingSprite objects. |
+| `particle` | [PIXI.ParticleRenderer](http://pixijs.download/release/docs/PIXI.ParticleRenderer.html) | ParticleContainer のレンダラ |
+| `prepare` | [PIXI.Prepare](http://pixijs.download/release/docs/PIXI.Prepare.html) | displayObject のレンダ前処理 |
+| `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/release/docs/PIXI.TilingSpriteRenderer.html) | TilingSprite のレンダラ |
 
+PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/release/docs/PIXI.BatchPluginFactory.html)で生成される [PIXI.AbstractBatchRenderer](http://pixijs.download/release/docs/PIXI.AbstractBatchRenderer.html) を継承したオブジェクトだが、クラス定義自体はない。
 
 
 ### スーパークラスから継承されたメソッド

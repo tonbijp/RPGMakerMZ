@@ -7,7 +7,14 @@
 
 直接コンテナに追加して表示するのではなく、[PIXI.Sprite](PIXI.Sprite.md) などの表示用オブジェクトにセットして表示される。
 
+`new` で生成する場合は事前に [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html) を作っておく必要があるが、設定を使いまわせる。
+`PIXI.Texture.form()` を使うと直に画像ファイル名などを渡して生成でき、`PIXI.BaseTexture` は不要。
+
+[PIXI.Shader](PIXI.Shader.md) などの `uniforms` に指定する場合は `〇〇: PIXI.Textureインスタンス` で渡して、`uniform sampler2D 〇〇` で受け取れる。
+
 詳細は本家 PixiJS のサイト [PIXI.Texture](http://pixijs.download/release/docs/PIXI.Texture.html) を参照。
+
+関連クラス: [Bitmap](Bitmap.md)
 
 ### new PIXI.Texture  (baseTexture, frame opt, orig opt, trim opt, rotate opt, anchor opt)
 #### 引数
@@ -18,7 +25,7 @@
 | `frame` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | &lt;Optional&gt; | 表示する矩形範囲 |
 | `orig` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | &lt;Optional&gt; | オリジナルの矩形範囲 |
 | `trim` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | &lt;Optional&gt; | オリジナルのトリミング矩形範囲 |
-| `rotate` | [Number](Number.md) | &lt;optional&gt; | 回転角 |
+| `rotate` | [Number](Number.md) | &lt;optional&gt; | 回転角(ラジアン) |
 | `anchor` | [PIXI.IPointData](http://pixijs.download/release/docs/PIXI.IPointData.html) | &lt;Optional&gt; | アンカー点 |
 
 
@@ -40,10 +47,10 @@
 | `rotate` | [Number](Number.md) | 回転角 |
 | `textureCacheIds` | [Array](Array.md).&lt;[String](String.md)&gt; | キャッシュIDの配列 |
 | `trim` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | オリジナルのトリミング矩形範囲 |
-| `uvMatrix` | [PIXI.TextureMatrix](http://pixijs.download/release/docs/PIXI.TextureMatrix.html) | 変形行列 |
+| `uvMatrix` | [PIXI.TextureMatrix](http://pixijs.download/release/docs/PIXI.TextureMatrix.html) | UV変形行列 |
 | `valid` | Boolean | レンダ可能と判定されているか(規定値: false) |
-| `_updateID` | [Number](Number.md) | [protected]アップデートID(規定値: 0)  |
-| `_uvs` | [PIXI.TextureUvs](http://pixijs.download/release/docs/PIXI.TextureUvs.html) | [protected]WebGL UVデータキャッシュ |
+| `_updateID` | [Number](Number.md) | [protected]更新ID(規定値: 0)  |
+| `_uvs` | [PIXI.TextureUvs](http://pixijs.download/release/docs/PIXI.TextureUvs.html) | [protected]WebGL UVSデータキャッシュ |
 
 
 ### メソッド
