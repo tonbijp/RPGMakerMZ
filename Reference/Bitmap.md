@@ -139,7 +139,7 @@ v1.1.1、v1.2.0 で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `source` |  [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) \| [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) | テクスチャの元になるデータ |
+| `source` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) \| [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) | テクスチャの元になるデータ |
 
 
 #### _createCanvas (width, height)

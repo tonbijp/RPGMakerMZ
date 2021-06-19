@@ -47,6 +47,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | `visible` | Boolean |  表示中か(規定値: true) |
 | `z` | [Number](Number.md) | [重なりの優先度](#重なりの優先度) |
 | `blendMode` | [Number](Number.md) | [\[合成方法\]](#合成方法) (規定値: `PIXI.BLEND_MODES.NORMAL`)|
+| `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定された画像 |
 | `_bitmap` | [Bitmap](Bitmap.md) | |
 | `_blendColor` | [MV.Tone](MV.Color.md) | ブレンドカラー(規定値: [0, 0, 0, 0]) |
 | `_blendMode` | [Number](Number.md) | |

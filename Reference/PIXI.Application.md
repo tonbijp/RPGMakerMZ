@@ -34,16 +34,16 @@ v4以前のバージョンは必要なオブジェクトを個々に生成して
 | `options.powerPreference` | [String](String.md) | WebGLコンテキストに渡されるパラメーター。デュアルグラフィックカードを搭載したデバイスの場合は "high-performance" に設定する |
 | `options.sharedTicker` | Boolean | PIXI.Ticker.shared を使うか(規定値: false) |
 | `options.sharedLoader` | Boolean | PIXI.Loader.shared を使うか(規定値: false) |
-| `options.resizeTo ` | Window \| HTMLElement | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
+| `options.resizeTo ` | [Window](https://developer.mozilla.org/ja/docs/Web/API/Window) \| [HTMLElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLElement) | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
 
 
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| ` loader` | [PIXI.Loader](http://pixijs.download/release/docs/PIXI.Loader.md) | [read-only] ローダー |
+| ` loader` | [PIXI.Loader](http://pixijs.download/release/docs/PIXI.Loader.md) | [read-only] ローダ |
 | `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | [static] WebGLレンダラ または Canvasレンダラ |
-| `resizeTo ` | Window \| HTMLElement | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
+| `resizeTo ` | [Window](https://developer.mozilla.org/ja/docs/Web/API/Window) \| [HTMLElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLElement) | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
 | `screen` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
 | `stage` | [PIXI.Container](PIXI.Container.md) | ルート(『RPGツクールMZ』の場合[Scene_Base](Scene_Base.md)) |
 | `ticker` | [PIXI.Ticker](http://pixijs.download/release/docs/PIXI.Ticker.html) | フレーム毎の更新を行うオブジェクト(規定値:`PIXI.Ticker.shared`)  |

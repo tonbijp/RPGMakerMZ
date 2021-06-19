@@ -24,15 +24,15 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](PIXI.Filter.md) \| [PIXI.Shader](PIXI.Shader.md) | [static] シェーダ |
-| `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値: 0xffffff) |
-| `_tintedCanvas` | HTMLCanvasElement | 着色された canvas |
-| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) |座標の基点 (例: 左上{0, 0} / 右下{1, 1} ) |
-| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値:0) |
+| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) | 座標の基点 (例: 左上{0, 0} / 右下{1, 1} ) |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: `PIXI.BLEND_MODES.NORMAL`) |
 | `isSprite` | Boolean | スプライトか |
 | `pluginName` | [String](String.md) | プラグイン名(規定値: "batch") |
 | `roundPixels` | Boolean | ピクセル補完するか |
 | `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定された画像 |
 | `tint` | [Number](Number.md) | 着色する色(規定値: 0xffffff の場合処理しない) |
+| `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値: 0xffffff) |
+| `_tintedCanvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | 着色された canvas |
 
 
 
@@ -75,8 +75,8 @@
 ### メソッド
 
 #### (static) from (source, options opt) → {PIXI.Sprite}
-指定データを元に PIXI.Sprite を生成して返す。<br />
-source には [Number](Number.md)(フレームID), [String](String.md)(画像・ビデオURL), [PIXI.Texture](PIXI.Texture.md), HTMLCanvasElement, HTMLVideoElement が指定できる。
+指定データを元に `PIXI.Sprite` を生成して返す。<br />
+source には [Number](Number.md)(フレームID), [String](String.md)(画像・ビデオURL), [PIXI.Texture](PIXI.Texture.md), [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement), [HTMLVideoElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLVideoElement) が指定できる。
 
 ##### 引数
 

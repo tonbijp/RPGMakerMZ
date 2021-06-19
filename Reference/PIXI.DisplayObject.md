@@ -77,6 +77,7 @@
 
 
 #### _recursivePostUpdateTransform ()
+ルートからこのオブジェクトまでの再帰的な変形の更新。
 
 
 #### destroy ()
@@ -84,6 +85,7 @@
 
 
 #### displayObjectUpdateTransform ()
+子オブジェクトの更新を伴わない、変形の更新。
 
 
 #### getBounds (skipUpdate opt, rect opt) → {PIXI.Rectangle}
@@ -98,7 +100,7 @@
 
 
 #### getGlobalPosition (point opt, skipUpdate opt) → {PIXI.Point}
-
+大域での位置を返す。
 
 ##### 引数
 
@@ -109,6 +111,7 @@
 
 
 #### getLocalBounds (rect opt) → {PIXI.Rectangle}
+局所の矩形範囲を返す。
 
 ##### 引数
 
@@ -118,6 +121,7 @@
 
 
 #### render (renderer)
+レンダリングを行う。
 
 ##### 引数
 
@@ -155,7 +159,7 @@
 
 
 #### toGlobal (position, point opt, skipUpdate opt) → {PIXI.Point}
-グローバル座標に変換。
+大域座標に変換。
 
 ##### 引数
 
@@ -166,9 +170,8 @@
 | `skipUpdate` | Boolean | &lt;optional&gt; | (規定値: false) |
 
 
-
 #### toLocal (position, from opt, point opt, skipUpdate opt) → {PIXI.Point}
-ローカル座標に変換。
+局所座標に変換。
 
 ##### 引数
 
@@ -187,6 +190,7 @@
 ### イベント
 
 #### added(container)
+子オブジェクトが追加された時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -194,6 +198,7 @@
 
 
 #### click(event)
+クリックされた時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -201,6 +206,7 @@
 
 
 #### mousedown(event)
+ボタンが押された瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -208,6 +214,7 @@
 
 
 #### mousemove(event)
+ポインタが移動した時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -215,6 +222,7 @@
 
 
 #### mouseout(event)
+ポインタがUI領域から出た時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -222,6 +230,7 @@
 
 
 #### mouseover(event)
+ポインタがUI領域に入った時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -229,6 +238,7 @@
 
 
 #### mouseup(event)
+ボタンを離した瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -236,6 +246,7 @@
 
 
 #### mouseupoutside(event)
+UI領域内でボタンを離した瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -299,12 +310,15 @@
 
 
 #### removed(container)
+子オブジェクトが削除された時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `container` | [PIXI.Container](PIXI.Container.md) | 子が削除されたコンテナ |
 
+
 #### rightclick(event)
+右クリックされた時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -312,6 +326,7 @@
 
 
 #### rightdown(event)
+右ボタンが押された瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -319,6 +334,7 @@
 
 
 #### rightup(event)
+右ボタンが離された瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -326,6 +342,7 @@
 
 
 #### rightupoutside(event)
+右ボタンがUI領域外で離された瞬間のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
