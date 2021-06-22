@@ -8,7 +8,10 @@
 
 変化のあるシステムデータを扱うクラス。
 
+v1.3.0 で変更あり。
+
 関連クラス: [RPG.System](RPG.System.md)
+
 
 ### new Game_System ()
 
@@ -260,13 +263,15 @@
 勝利回数を返す。
 
 
+#### windowOpacity () → {[Number](Number.md)}
+**@MZ1.3.0** ウィンドウの不透明度(規定値:192)を返す。
+
+
 #### windowPadding () → {[Number](Number.md)}
 **@MZ** ウィンドウ端からコンテンツまでの幅(規定値:12ピクセル)を返す。
 
 
 #### windowTone () → {[MV.Tone](MV.Tone.md)}
 [ウィンドウカラー] を返す。<br />
-4つめのグレー値は常に0;
-
-
+4つめのグレー値は常に0。
 
