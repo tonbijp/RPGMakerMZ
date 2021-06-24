@@ -6,16 +6,19 @@
 `uiAreaWidth` は [Graphics](Graphics.md) の `boxWidth` と同じではなく、`boxWidth`  が8ピクセル少ない。
 同様に  `boxHeight` = `uiAreaHeight` - 8 の関係。
 
+v1.3.0 で変更あり。
+
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `gameId` | [Number](Number.md) | [ゲームID] |
-| `screenWidth` | [Number](Number.md) | [画面の幅] (規定値:816ピクセル) |
-| `screenHeight` | [Number](Number.md) | [画面の高さ] (規定値:624ピクセル) |
-| `uiAreaWidth` | [Number](Number.md) | [UIエリアの幅] (規定値:816ピクセル) |
-| `uiAreaHeight` | [Number](Number.md) | [UIエリアの高さ] (規定値:624ピクセル) |
+| `screenWidth` | [Number](Number.md) | [画面の幅] (規定値: 816ピクセル) |
+| `screenHeight` | [Number](Number.md) | [画面の高さ] (規定値: 624ピクセル) |
+| `uiAreaWidth` | [Number](Number.md) | [UIエリアの幅] (規定値: 816ピクセル) |
+| `uiAreaHeight` | [Number](Number.md) | [UIエリアの高さ] (規定値: 624ピクセル) |
 | `mainFontFilename` | [String](String.md) | [メインフォントのファイル名] |
 | `numberFontFilename` | [String](String.md) | [数字フォントのファイル名] |
 | `fallbackFonts` | [String](String.md) | [フォールバックフォント] |
-| `fontSize` | [Number](Number.md) | [フォントサイズ] (規定値:26) |
+| `fontSize` | [Number](Number.md) | [フォントサイズ] (規定値: 26) |
+| `windowOpacity` | [Number](Number.md) | **1.3.0** [ウィンドウの不透明度] (規定値: 192) |
