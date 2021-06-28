@@ -61,13 +61,14 @@ WebGLでのレンダリングを行うためのクラス。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/release/docs/PIXI.AccessibilityManager.html)	| UI部品のTABキーフォーカス設定など |
-| `batch` | PIXI.BatchRenderer | Sprite, Graphics および Mesh のバッチ処理 |
+| `batch` | [PIXI.BatchRenderer](#PIXI.BatchRenderer) | Sprite, Graphics および Mesh のバッチ処理 |
 | `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | 画像を他の形式で出力するためのオブジェクト |
 | `interaction` | [PIXI.InteractionManager](http://pixijs.download/release/docs/PIXI.InteractionManager.html)	| UI、衝突判定など |
 | `particle` | [PIXI.ParticleRenderer](http://pixijs.download/release/docs/PIXI.ParticleRenderer.html) | ParticleContainer のレンダラ |
 | `prepare` | [PIXI.Prepare](http://pixijs.download/release/docs/PIXI.Prepare.html) | displayObject のレンダ前処理 |
 | `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/release/docs/PIXI.TilingSpriteRenderer.html) | TilingSprite のレンダラ |
 
+#### PIXI.BatchRenderer
 PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/release/docs/PIXI.BatchPluginFactory.html)で生成される [PIXI.AbstractBatchRenderer](http://pixijs.download/release/docs/PIXI.AbstractBatchRenderer.html) を継承したオブジェクトだが、クラス定義自体はない。
 
 
