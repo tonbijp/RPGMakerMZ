@@ -6,13 +6,12 @@
 
 描画のための基本オブジェクト。詳細は本家 PixiJS のサイト [PIXI.Sprite](http://pixijs.download/release/docs/PIXI.Sprite.html) を参照。
 
-### new PIXI.Sprite (texture)
+### new PIXI.Sprite (texture opt)
 #### 引数
 
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定する画像 |
-
+| 名前 | 型 | 特性 | 説明 |
+| --- | --- | --- | --- |
+| `texture` | [PIXI.Texture](PIXI.Texture.md) | &lt;optional&gt; | スプライトに設定する画像 |
 
 ### サブクラス
 
@@ -24,11 +23,11 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](PIXI.Filter.md) \| [PIXI.Shader](PIXI.Shader.md) | [static] シェーダ |
-| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) | 座標の基点 (例: 左上{0, 0} / 右下{1, 1} ) |
+| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) | 座標の基点 (例: 左上{0, 0} / 右下{1, 1} )(規定値: `texture.defaultAnchor`か左上) |
 | `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: `PIXI.BLEND_MODES.NORMAL`) |
 | `isSprite` | Boolean | スプライトか |
-| `pluginName` | [String](String.md) | プラグイン名(規定値: "batch") |
-| `roundPixels` | Boolean | ピクセル補完するか |
+| `pluginName` | [String](String.md) | `PIXI.Renderer`の`plugins`名(規定値: "batch") |
+| `roundPixels` | Boolean | ピクセル補完するか(規定値: `PIXI.settings.ROUND_PIXELS`) |
 | `texture` | [PIXI.Texture](PIXI.Texture.md) | スプライトに設定された画像 |
 | `tint` | [Number](Number.md) | 着色する色(規定値: 0xffffff の場合処理しない) |
 | `_cachedTint` | [Number](Number.md) | キャッシュされた色(規定値: 0xffffff) |
