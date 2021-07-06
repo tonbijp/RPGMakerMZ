@@ -3,6 +3,8 @@
 # クラス: Utils
 便利なメソッドを集めた静的クラス。主に利用環境のチェックを行う。
 
+v1.3.2 で変更あり。
+
 関連クラス: [Graphics](Graphics.md), [Video](Video.md)
 
 ### プロパティ
@@ -74,7 +76,7 @@ MV ではGraphicsのメソッドだった。
 | `str` | [ArrayBuffer](ArrayBuffer.md) | 復号するデータ |
 
 
-#### (static) encodeURI (str) → {[String](String.md))}
+#### (static) encodeURI (str) → {[String](String.md)}
 **@MZ** URIエンコーディングを行う(ただし / はそのまま)
 
 ##### 引数
@@ -84,7 +86,7 @@ MV ではGraphicsのメソッドだった。
 | `str` | [String](String.md) | エンコードする文字列 |
 
 
-#### (static) escapeHtml (str) → {[String](String.md))}
+#### (static) escapeHtml (str) → {[String](String.md)}
 **@MZ** HTML 用の実体参照(&amp;amp;など)によるエスケープを行う。
 
 ##### 引数
@@ -92,6 +94,16 @@ MV ではGraphicsのメソッドだった。
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `str` | [String](String.md) | エスケープする文字列 |
+
+
+#### (static) extractFileName (filename) → {[String](String.md)}
+**@MZ1.3.2** ファイルパスからファイル部分のみを取り出して返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `filename` | [String](String.md) | ファイルパス |
 
 
 #### (static) generateRuntimeId () → {[Number](Number.md)}

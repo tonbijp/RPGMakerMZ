@@ -10,6 +10,8 @@ reserveXxxx()、reserveXxxx() 系統のメソッドは軒並み廃止されて�
 
 また、プロパティは [Window_Base](Window_Base.md) から移ってきたものがいくつかある。
 
+v1.3.2 で変更あり。
+
 関連クラス: [Bitmap](Bitmap.md), [Graphics](Graphics.md), [Game_Screen](Game_Screen.md)
 
 
