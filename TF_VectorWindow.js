@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.6.0.0
+// Version :0.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -26,12 +26,18 @@
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
  * @on 影あり(規定値) @off 影なし
- * 
+ *
  * @param lineHeightRatio @text 行高さ
  * @desc 標準文字サイズを100%とした比率
+ * 規定値:140
  * @type number @default 140
  * @min 100
  *
+ * @param itemHeightRatio @text 項目高さ
+ * @desc 標準文字サイズを100%とした比率
+ * 規定値:160
+ * @type number @default 160
+ *　
  * @param messageFontSize @text メッセージフォントサイズ
  * @type number @default 30
  * @min 8
@@ -53,7 +59,8 @@
  * @type string @default 4,4,808,616
  *
  * @param pauseSignPosition @text ポーズサイン位置
- * @desc 
+ * @desc 中央下部からの相対距離
+ * 規定値: 0,0
  * @type string @default  0,0
  *
  * @help
@@ -85,6 +92,12 @@
  * command は[文章の表示]に従う
  * @type combo @default command
  * @option command
+ *
+ * @arg continuousPos @text 表示位置継続
+ * @desc [ウィンドウ位置]で指定した座標を
+ * 継続した[文章の表示]に適用する。
+ * @type boolean @default true
+ * @on 継続(規定値) @off 単体
  */
 /*~struct~WindowParam:ja
  *
@@ -173,7 +186,7 @@
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
 	const pauseSignPosition = stringToPoint( pluginParams.pauseSignPosition );
-
+	const itemHeightRatio = pluginParams.itemHeightRatio / 100;
 
 	let messageView;
 
@@ -190,12 +203,21 @@
 		} )( stringToRectangle( pluginParams.messageView ) );
 	};
 
+	function getNextCommandIndex( list, index, ignoredCommand ) {
+		while( list[ index ] && list[ index ].code === ignoredCommand ) {
+			index++;
+		}
+		return index;
+	}
 	/**
 	 * プラグインコマンドの登録
 	 */
+	const PLUGIN_PARAM = 657;
+	const SHOW_TEXT = 101;
+	const TEXT_DATA = 401;
 	//  [ウィンドウの準備]
-	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, args => {
-		const tw = SceneManager._scene._messageWindow;
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, function( args ) {
+		const tw = Graphics.app.stage._messageWindow;
 		if( !tw ) return;
 		const newWindowType = getWindowType( args.windowType );
 		const faceAlign = args.isFaceLeft ? POSITION_LEFT : POSITION_RIGHT;
@@ -204,13 +226,19 @@
 		}
 		tw.TF_windowType = newWindowType;
 		tw.TF_faceAlign = faceAlign;
-		if( args.pos === COMMAND_POSITION ) {
-			tw.x = messageView.x;
-		} else {
-			tw._positionType = POSITION_FREE;
-			const pos = stringToPoint( args.pos );
-			[ tw.x, tw.y ] = [ pos.x, pos.y ];
+		if( args.pos === COMMAND_POSITION ) return;
+
+		let eventIndex = getNextCommandIndex( this._list, this._index + 1, PLUGIN_PARAM );
+		if( args.continuousPos ) {
+			while( this._list[ eventIndex ].code === SHOW_TEXT ) {
+				this._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE; // _positionType
+				eventIndex = getNextCommandIndex( this._list, eventIndex + 1, TEXT_DATA );
+			}
+		} else if( this._list[ eventIndex ].code === SHOW_TEXT ) {
+			this._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE; // _positionType
 		}
+		const pos = stringToPoint( args.pos );
+		[ tw.x, tw.y ] = [ pos.x, pos.y ];
 	} );
 
 	/**
@@ -386,32 +414,24 @@
 		}
 	};
 
-	// なぜかここで backOpacity を若干薄く(192)に設定しているので無視
-	const _Window_Base_updateBackOpacity = Window_Base.prototype.updateBackOpacity;
-	Window_Base.prototype.updateBackOpacity = function() {
-		if( this._data && this._data.WindowSkin ) {
-			_Window_Base_updateBackOpacity.call( this );
-		}
-	};
-
 	/*--- Window_Message ---*/
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
 		this.TF_windowType = WINDOW_TYPE_TALK;
 
 		_Window_Message_initialize.apply( this, arguments );
-
-		this.x = messageView.x;
 		this.TF_faceAlign = POSITION_LEFT;
 	};
 
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
 	Window_Message.prototype.updatePlacement = function() {
-		const goldWindow = this._goldWindow;
+		this._positionType = $gameMessage.positionType();
 		if( this._positionType !== POSITION_FREE ) {
-			this._positionType = $gameMessage.positionType();
+			this.x = messageView.x;
 			this.y = messageView.y + ( this._positionType * ( messageView.height - this.height ) ) / 2;
 		}
+
+		const goldWindow = this._goldWindow;
 		if( goldWindow ) {
 			goldWindow.y = this.y > 0 ? 0 : Graphics.boxHeight - goldWindow.height;
 		}
@@ -429,7 +449,7 @@
 	};
 
 	/**
-	 * メッセージウィンドウに限りフキダシ表示を可能にする
+	 * メッセージウィンドウに限りフキダシ型(balloon)表示を可能にする
 	 */
 	const TF_TAIL_HEIGHT = 40;// フキダシのシッポの高さ
 	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
@@ -448,7 +468,7 @@
 	// 顔描画を新規のクラスに任せる
 	// const _Window_Message_drawMessageFace = Window_Message.prototype.drawMessageFace;
 	Window_Message.prototype.drawMessageFace = function() {
-		const facePicture = SceneManager._scene.TF_facePicture;
+		const facePicture = Graphics.app.stage.TF_facePicture;
 		facePicture.moveOnMessageWindow( this );
 		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
 	};
@@ -458,11 +478,9 @@
 	Window_Message.prototype.newPage = function() {
 		_Window_Message_newPage.apply( this, arguments );
 		closeFacePicture();
-
 		setWindowParam( this );
 		setMessageParam( this );
 		this._refreshAllParts();
-		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
 	};
 
 	const _Window_Message_close = Window_Message.prototype.close;
@@ -471,19 +489,14 @@
 		closeFacePicture();
 	};
 	function closeFacePicture() {
-		const facePicture = SceneManager._scene.TF_facePicture;
+		const facePicture = Graphics.app.stage.TF_facePicture;
 		facePicture.bitmap.clear();
 	}
 
-	const _Window_Message_updateClose = Window_Message.prototype.updateClose;
-	Window_Message.prototype.updateClose = function() {
-		const lastClosing = this._closing;
-		_Window_Message_updateClose.call( this );
-		if( lastClosing !== this._closing ) {// 規定値に戻す
-			this.x = messageView.x;
-			this.TF_faceAlign = POSITION_LEFT;
-			this._positionType = 2;
-		}
+	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
+	Window_Message.prototype.terminateMessage = function() {
+		_Window_Message_terminateMessage.call( this );
+		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
 	};
 
 	// TODO:顔位置の細かい座標はプロパティで指定可能にする
@@ -516,7 +529,6 @@
 		const path2d = drawBalloon( m, this._width, this._height, r, this._positionType );
 		drawWindow( this, bitmap.context, path2d );
 	};
-
 
 
 	/**
@@ -743,6 +755,11 @@
 		return path;
 	}
 
+
+	/*--- Window_Selectable ---*/
+	Window_Selectable.prototype.itemHeight = () => Math.ceil( $dataSystem.advanced.fontSize * itemHeightRatio );
+
+
 	/*--- ユーティリティ関数 ---*/
 	/**
 	 * 文字列をPointオブジェクトに変換して返す。
@@ -767,7 +784,6 @@
 
 
 	/*-------------------- 顔表示関連 -----------------------*/
-
 
 	/*--- Window_NameBox ---*/
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
@@ -850,7 +866,7 @@
 		moveOnMessageWindow( tw ) {
 			this.x = tw.x + tw.padding + IMG_MARGIN;
 			this.y = tw.y + tw.height - tw.padding - ImageManager.faceHeight;
-			const speakerName = $gameMessage.speakerName(); //SceneManager._scene._nameBoxWindow._name;
+			const speakerName = $gameMessage.speakerName(); //Graphics.app.stage._nameBoxWindow._name;
 			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
 		}
 		drawFace( bitmap, faceIndex ) {
