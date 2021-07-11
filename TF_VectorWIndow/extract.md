@@ -8,49 +8,81 @@
 ### [Window](../Reference/Window.html) で書き換えているメソッド
 
 * initialize	描画に必要なプロパティを設定
-    * TF_refleshWindow, TF_windowType, TF_faceAlign, TF_shape
-* _refreshFrame	SceneCustomMenu.jsへの対応 / 基本的に、こっちは何もしてない。
-* _refreshBack  SceneCustomMenu.jsへの対応 / こちらで全体のウィンドウ描画を呼んでいる。
+* _refreshPauseSign()
+* _refreshAllParts()
+* _refreshBack()
+* _refreshFrame()
 
 
-### [Window_Base](https://katai5plate.github.io/RPGMV-CoreScript-Reference/jsdoc/Window_Base.html) で書き換えているメソッド
+### [Window_Base](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/Window_Base.html) で書き換えているメソッド
 
-* standardFontSize
-* standardPadding
-* textPadding
-
-* lineHeight
-* calcTextHeight
+* lineHeight()
+* textPadding()
+* updatePadding()
 
 
-### [Window_Message](https://katai5plate.github.io/RPGMV-CoreScript-Reference/jsdoc/Window_Message.html) で書き換えているメソッド
+### [Window_Message](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/Window_Message.html) で書き換えているメソッド
 
-* standardFontSize
-* numVisibleRows
-* textPadding
-* lineHeight
-* initialize
-* startMessage
-* _refreshBack
-* updatePlacement
-* _refreshContents
-* windowHeight
+* initialize()
+* updatePlacement()
+* calcTextHeight()
+* numVisibleRows()
+* textPadding()
+* lineHeight()
+* resetFontSettings()
+* drawMessageFace()
+* newPage()
+* close()
+* terminateMessage()
+* newLineX()
+* _refreshBack()
+* _refreshContents()
+
+
+### [Window_Message](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/Window_Message.html) に加えているプロパティ
+
+* TF_windowType
+* TF_overWrite
+* TF_faceAlign
+* TF_shape
+
+### [Window_NameBox](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/Window_NameBox.html) で書き換えているメソッド
+
+* initialize()
+* updatePlacement()
+* _refreshAllParts()
+* resetFontSettings()
+* windowWidth()
+* refresh()
+
+### [Scene_Message](https://github.com/tonbijp/RPGMakerMZ/blob/master/Reference/Scene_Message.html) で書き換えているメソッド
+
+* createAllWindows()
+* 
+
+### 新規クラス
+
+* Sprite_FacePicture
+
 
 ### 関数
 
-* refreshWindowFrame
-* array2CssColor
-* cssColor2Array
-* drawWindow
-* tintColor
-* setShadowParam
-* setBorderParam
-* drawBalloon
-* drawRoundrect
-* drawOctagon
-* drawSpike
+* closeFacePicture()
+* refreshWindowFrame()
+* array2CssColor()
+* cssColor2Array()
+* drawWindow()
+* tintColor()
+* setShadowParam()
+* setBorderParam()
+* drawBalloon()
+* drawRoundrect()
+* drawOctagon()
+* drawSpike()
 
 
 ### 変数
 
-* TF_refleshWindow
+
+### 定数
+* TF_TAIL_HEIGHT
