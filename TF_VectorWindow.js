@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.7.0.0
+// Version :0.7.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -57,11 +57,6 @@
  * @param messageView @text メッセージウィンドウ表示範囲
  * @desc 画面全体に対する x,y,幅,高さ の順の数値(ピクセル数)
  * @type string @default 4,4,808,616
- *
- * @param pauseSignPosition @text ポーズサイン位置
- * @desc 中央下部からの相対距離
- * 規定値: 0,0
- * @type string @default  0,0
  *
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
@@ -185,7 +180,6 @@
 	const dropShadow = pluginParams.dropShadow;
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
-	const pauseSignPosition = stringToPoint( pluginParams.pauseSignPosition );
 	const itemHeightRatio = pluginParams.itemHeightRatio / 100;
 
 	let messageView;
@@ -268,14 +262,6 @@
 			this.TF_windowType = WINDOW_TYPE_DEFAULT;
 			setWindowParam( this );
 		}
-	};
-
-	const _Window__refreshPauseSign = Window.prototype._refreshPauseSign;
-	Window.prototype._refreshPauseSign = function() {
-		_Window__refreshPauseSign.call( this );
-
-		this._pauseSignSprite.x += pauseSignPosition.x;
-		this._pauseSignSprite.y += pauseSignPosition.y;
 	};
 
 	const _Window__refreshAllParts = Window.prototype._refreshAllParts;
