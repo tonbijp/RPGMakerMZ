@@ -37,6 +37,8 @@
 ( () => {
     "use strict";
     const PLUGIN_NAME = "TF_Core";
+    const PARAM_TRUE = "true";
+    const PARAM_FALSE = "false";
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
