@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.4.0.0
+// Version :0.4.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -81,6 +81,7 @@
 ( () => {
     "use strict";
     const PLUGIN_NAME = "TF_Shadow";
+    const TF_SHADOW = "TF_SHADOW";  // タグ名
     const TYPE_STRING = "string";
 
     // パラメータを受け取る
@@ -109,16 +110,16 @@
     /**
      * TF_SHADOWタグの内容を返す。
      * @param {Game_Character} tc 
-     * @returns {String} TF_SHADOWタグの内容(なければundefined)
+     * @returns {String|Boolean|Number} TF_SHADOWタグの内容(なければundefined)
      */
     function getMetaTag( tc ) {
         if( tc instanceof Game_Event ) {
-            return tc.event().meta.TF_SHADOW;
+            return PluginManagerEx.findMetaValue( tc.event(), TF_SHADOW );
         } else if( tc instanceof Game_Player ) {
-            return $gameParty.leader().actor().meta.TF_SHADOW;
+            return PluginManagerEx.findMetaValue( $gameParty.leader().actor(), TF_SHADOW );
         } else if( tc instanceof Game_Follower ) {
             const actor = tc.actor();
-            if( actor ) return actor.actor().meta.TF_SHADOW;
+            if( actor ) return PluginManagerEx.findMetaValue( actor.actor(), TF_SHADOW );
         } else if( tc instanceof Game_Vehicle ) {
             return false;
         }
@@ -132,8 +133,11 @@
     function hasShadow( tc ) {
         if( tc.hasShadow !== undefined ) return tc.hasShadow;
         const shadowTag = getMetaTag( tc );
-        if( shadowTag !== undefined ) return !!shadowTag;    //タグ指定があれば、その指定に従う
-        return !tc.isTile() && !tc.isObjectCharacter();
+        if( shadowTag === undefined ) {
+            return !tc.isTile() && !tc.isObjectCharacter();
+        } else {
+            return !!shadowTag;    //タグ指定があれば、その指定に従う
+        }
     }
 
     /**
