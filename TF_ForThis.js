@@ -3,7 +3,7 @@
 // Version :0.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2021
+// Copyright : Tobishima-Factory 2021
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -11,19 +11,18 @@
 //========================================
 /*:ja
  * @target MZ
- * @plugindesc このゲーム「TCT」専用のプラグイン。
+ * @plugindesc このゲーム「」専用のプラグイン。
  * @author とんび﹫鳶嶋工房(tonbi.jp)
  * @url http://tonbi.jp/
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  * 
  * @help
- * このゲーム「TCT」専用のプラグイン。
+ * このゲーム「」専用のプラグイン。
  */
 
-( function() {
-	'use strict';
-
+( () => {
+	"use strict";
 
 	/*--- Scene_Title ---*/
 	const _Scene_Title_commandNewGame = Scene_Title.prototype.commandNewGame;
