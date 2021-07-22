@@ -70,4 +70,57 @@
         if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
         return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
     }
+
+
+    /**
+     * character を拡張して隊列メンバーも指定できるようにしたもの。
+     * @param {Game_Interpreter} interpreter インタプリタ
+     * @param {Number} id 拡張イベントID
+     * @returns {Game_CharacterBase}
+     */
+    function getEventById( interpreter, id ) {
+        if( id < -1 ) {
+            return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
+        } else {
+            return interpreter.character( id );			// プレイヤーキャラおよびイベント
+        }
+    }
+
+
+    const EVENT_THIS = "this";
+    const EVENT_SELF = "self";
+    const EVENT_PLAYER = "player";
+    const EVENT_FOLLOWER0 = "follower0";
+    const EVENT_FOLLOWER1 = "follower1";
+    const EVENT_FOLLOWER2 = "follower2";
+    /**
+     * 文字列をイベントIDへ変換
+     * @param {String} value イベントIDの番号か識別子
+     * @returns {Number} 拡張イベントID
+     */
+    function stringToEventId( value ) {
+        // value = treatValue( value );
+        const result = parseInt( value, 10 );
+        if( !isNaN( result ) ) return result;
+
+        const lowValue = value.toLowerCase();
+        switch( lowValue ) {
+            case EVENT_THIS:
+            case EVENT_SELF: return 0;
+            case EVENT_PLAYER: return -1;
+            case EVENT_FOLLOWER0: return -2;
+            case EVENT_FOLLOWER1: return -3;
+            case EVENT_FOLLOWER2: return -4;
+        }
+
+        // イベント名で指定できるようにする
+        const i = $gameMap._events.findIndex( event => {
+            if( event === undefined ) return false;	// _events[0] が undefined なので無視
+
+            const eventId = event._eventId;
+            return $dataMap.events[ eventId ].name === value;
+        } );
+        if( i === -1 ) throw Error( `I can't find the event '${name}'` );
+        return i;
+    }
 } )();
