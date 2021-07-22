@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.4.1.0
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -67,32 +67,104 @@
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
  * @================================================
- * @command visible @text 表示指定
+ * @command hasShadow @text 影の表示
  * @desc 指定キャラの影のON・OFF
  *
- * @arg target @text 対象キャラ
- * @desc 0はこのイベント
- * @type string @default this
- * 
- * @arg vertical @text 表示位置
- * @desc タイル中央からの距離
- * @type boolean @default 
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ *
+ * @arg hasShadow @text 影を持つか
+ * @desc
+ * @type boolean @default true
+ *
+ * @================================================
+ * @command shadowSize @text 影の大きさ変更
+ * @desc 指定キャラの影の大きさ変更
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ *
+ * @param radius @text 大きさ(半径)
+ * @desc 横, 縦
+ * 規定値: 18,9
+ * @type string @default 18,9
  */
 ( () => {
     "use strict";
     const PLUGIN_NAME = "TF_Shadow";
     const TF_SHADOW = "TF_SHADOW";  // タグ名
+    const COM_HAS_SHADOW = "hasShadow";
+    const COM_SHADOW_SIZE = "shadowSize";
+
     const TYPE_STRING = "string";
+
+    /**
+     * character を拡張して隊列メンバーも指定できるようにしたもの。
+     * @param {Game_Interpreter} interpreter インタプリタ
+     * @param {Number} id 拡張イベントID
+     * @returns {Game_CharacterBase}
+     */
+    function getEventById( interpreter, id ) {
+        if( id < -1 ) {
+            return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
+        } else {
+            return interpreter.character( id );			// プレイヤーキャラおよびイベント
+        }
+    }
+
+
+    const EVENT_THIS = "this";
+    const EVENT_SELF = "self";
+    const EVENT_PLAYER = "player";
+    const EVENT_FOLLOWER0 = "follower0";
+    const EVENT_FOLLOWER1 = "follower1";
+    const EVENT_FOLLOWER2 = "follower2";
+    /**
+     * 文字列をイベントIDへ変換
+     * @param {String} value イベントIDの番号か識別子
+     * @returns {Number} 拡張イベントID
+     */
+    function stringToEventId( value ) {
+        // value = treatValue( value );
+        const result = parseInt( value, 10 );
+        if( !isNaN( result ) ) return result;
+
+        const lowValue = value.toLowerCase();
+        switch( lowValue ) {
+            case EVENT_THIS:
+            case EVENT_SELF: return 0;
+            case EVENT_PLAYER: return -1;
+            case EVENT_FOLLOWER0: return -2;
+            case EVENT_FOLLOWER1: return -3;
+            case EVENT_FOLLOWER2: return -4;
+        }
+
+        // イベント名で指定できるようにする
+        const i = $gameMap._events.findIndex( event => {
+            if( event === undefined ) return false;	// _events[0] が undefined なので無視
+
+            const eventId = event._eventId;
+            return $dataMap.events[ eventId ].name === value;
+        } );
+        if( i === -1 ) throw Error( `I can't find the event '${name}'` );
+        return i;
+    }
+
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
     const shadowRadius = stringToPoint( pluginParams.radius );
 
-    const COM_TEST = "testCommand";
-    PluginManagerEx.registerCommand( document.currentScript, COM_TEST, function( args ) {
-        const argNote = args.note;//JSON.parse( args.note );
-        argNote;
-        paramNote;
+
+    PluginManagerEx.registerCommand( document.currentScript, COM_HAS_SHADOW, function( args ) {
+        const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+        targetEvent.TF_hasShadow( args.hasShadow );
     } );
 
     /*--- Spriteset_Map ---*/
@@ -255,6 +327,8 @@
             ctx.beginPath();
             ctx.ellipse( rX, rY, rX, rY, 0, 0, 2 * Math.PI );
             ctx.fill();
+            console.log( `reflesh` );
+
         }
 
         update() {
