@@ -1,6 +1,6 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.7.0.1
+// Version :0.7.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -221,8 +221,8 @@
                 case "status": return this.commandPersonal;
                 case "formation": return this.commandFormation;
                 case "options": return this.commandOptions;
-                case "save": return this.commandGameEnd;
-                case "gameEnd": return this.commandItem;
+                case "save": return this.commandSave;
+                case "gameEnd": return this.commandGameEnd;
                 default: return null;
             }
         };
@@ -353,9 +353,7 @@
         } );
     };
 
-
-
-
+    /*---- Scene_Boot ----*/
     // Scene_Bootからのルートの乗っ取り
     const _Scene_Boot_startNormalGame = Scene_Boot.prototype.startNormalGame;
     Scene_Boot.prototype.startNormalGame = function() {
@@ -367,6 +365,7 @@
         startTitleSound();
     };
 
+    /*---- Scene_GameEnd ----*/
     // Scene_GameEndからのルートの乗っ取り
     const _Scene_GameEnd_commandToTitle = Scene_GameEnd.prototype.commandToTitle;
     Scene_GameEnd.prototype.commandToTitle = function() {
@@ -377,6 +376,7 @@
         startTitleSound();
     };
 
+    /*---- Scene_Gameover ----*/
     // Scene_Gameoverからのルートの乗っ取り
     const _Scene_Gameover_gotoTitle = Scene_Gameover.prototype.gotoTitle;
     Scene_Gameover.prototype.gotoTitle = function() {
@@ -392,6 +392,7 @@
         AudioManager.stopMe();
     }
 
+    /*---- Scene_Map ----*/
     // 直接メニューから呼び出す
     const _Scene_Map_callMenu = Scene_Map.prototype.callMenu;
     Scene_Map.prototype.callMenu = function() {// カスタムメニューを呼びます
