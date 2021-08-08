@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.3.1
+// Version :1.2.4.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -558,6 +558,11 @@
 ( function() {
 	"use strict";
 	const PLUGIN_NAME = "TF_Condition";
+	const PLUGIN_PATH = ( () => {
+		const url = document.currentScript._url;
+		const args = url.match( /^js\/plugins\/(.+)\.js$/ );
+		return args[ 1 ];
+	} )();
 
 	// 論理演算子
 	const OPE_NOT = "not";
@@ -1080,7 +1085,7 @@
 		for( const command of page.list ) {
 			if( command.code === COMMENT_LINE || command.code === COMMENT_END || command.code === PLUGIN_PARAM ) continue;	// 注釈は無視
 			if( command.code !== PLUGIN_COMMAND ) return true;	// プラグインコマンド以外のイベントコマンド
-			if( command.parameters[ 0 ] !== PLUGIN_NAME ) return true;	// 他のプラグイン
+			if( command.parameters[ 0 ] !== PLUGIN_PATH ) return true;	// 他のプラグイン
 
 			const pluginCommand = command.parameters[ 1 ];
 			const args = command.parameters[ 3 ];
