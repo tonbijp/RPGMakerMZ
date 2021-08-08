@@ -41,7 +41,8 @@
 
 #### (static) makeUrl (filename)→ {String}
 **@MZ** 指定ファイル名からURLを生成して返す。<br />
-具体的には "js/plugins/ファイル名.js"
+具体的には "js/plugins/ファイル名.js"<br />
+フォルダにある場合は、フォルダを含んだパスが必要。
 
 ##### 引数
 
