@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.5.0.0
+// Version :0.5.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -327,8 +327,6 @@
             ctx.beginPath();
             ctx.ellipse( rX, rY, rX, rY, 0, 0, 2 * Math.PI );
             ctx.fill();
-            console.log( `reflesh` );
-
         }
 
         update() {
