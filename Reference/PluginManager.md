@@ -6,6 +6,8 @@
 
  公式プラグイン PluginCommonBase.js によって追加される[PluginManagerEx](PluginManagerEx.md) は、このクラスの強化版。
 
+ 関連クラス: [Game_Interpreter](Game_Interpreter.md),  [RPG.EventCommand](RPG.EventCommand.md)
+
 
 ### プロパティ
 

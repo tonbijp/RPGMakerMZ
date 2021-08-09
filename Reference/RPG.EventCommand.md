@@ -23,5 +23,6 @@
 
 [RPGツクールMZ スクリプトリファレンス](https://docs.google.com/spreadsheets/d/1aqY-xzFqT0vnZE-OkfsMYsP9Ud91vWTrBLU-uDkJ-Ls/edit#gid=2095105278) 
 
-ただし `parameters[ 0 ]` に限ってはプラグインのパスが入っている。<br />
+##### 注
+プラグインコマンド(`Command357()`) の引数 `parameters[ 0 ]` にはプラグインのパスが入っている。<br />
 Ver.1.3.0 のフォルダに対応以降は、プラグイン名だけではなくフォルダ名と区切りのも含まれていることに注意。
