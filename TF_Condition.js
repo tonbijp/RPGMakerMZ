@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.4.0
+// Version :1.2.4.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -314,11 +314,11 @@
  * 指定変数が範囲内にあるか判定して、
  * 結果を一時スイッチに設定。
  *
- * @arg min @text 最小値≦
+ * @arg min @text 最小値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type number @default 0
  *
- * @arg center @text 中間値
+ * @arg center @text ≦中間値
  * @desc 変数の名前、数値、\V[n]いずれか
  * @type string @default it
  * 
