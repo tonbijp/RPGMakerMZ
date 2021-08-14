@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.4.2.1
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -179,10 +179,28 @@
 	};
 
 
+	/*--- Sprite_Battleback ---*/
+	// 背景をそのまま画面いっぱいに拡大する方式に変更
+	Sprite_Battleback.prototype.adjustPosition = function() {
+		this.width = Graphics.width;
+		this.height = Graphics.height;
+		this.x = ( Graphics.width - this.width ) / 2;
+		if( $gameSystem.isSideView() ) {
+			this.y = Graphics.height - this.height;
+		} else {
+			this.y = 0;
+		}
+		const ratioX = this.width / this.bitmap.width;
+		const ratioY = this.height / this.bitmap.height;
+		const scale = Math.max( ratioX, ratioY, 1.0 );
+		this.scale.x = scale;
+		this.scale.y = scale;
+	};
+
 	/*--- Sprite_Actor ---*/
 	// アクター位置をスクリーンサイズに合わせて調整
 	const PARTY_X = 600;
-	const PARTY_Y = 280;
+	const PARTY_Y = 250;
 	const VERTICAL_DIFF = 48;
 	const HORIZONTAL_DIFF = 32;
 
@@ -197,21 +215,21 @@
 
 	/*--- Sprite_Enemy ---*/
 	// 敵位置をスクリーンサイズに合わせて調整
-	const _Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
-	Sprite_Enemy.prototype.setBattler = function( battler ) {
-		_Sprite_Enemy_setBattler.apply( this, arguments );
+	// const _Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
+	// Sprite_Enemy.prototype.setBattler = function( battler ) {
+	// 	_Sprite_Enemy_setBattler.apply( this, arguments );
 
-		if( !this._enemy._alteredScreenY ) {
-			this._homeY += Math.floor( ( Graphics.height - DEFAULT_SCREEN_HEIGHT ) / 2 );
-			this._enemy._screenY = this._homeY;
-			this._enemy._alteredScreenY = true;
-		}
-		if( $gameSystem.isSideView() || this._enemy._alteredScreenX ) return;
+	// 	if( !this._enemy._alteredScreenY ) {
+	// 		this._homeY += Math.floor( ( Graphics.height - DEFAULT_SCREEN_HEIGHT ) / 2 );
+	// 		this._enemy._screenY = this._homeY;
+	// 		this._enemy._alteredScreenY = true;
+	// 	}
+	// 	if( $gameSystem.isSideView() || this._enemy._alteredScreenX ) return;
 
-		this._homeX += ( Graphics.width - DEFAULT_SCREEN_WIDTH ) / 2;
-		this._enemy._screenX = this._homeX;
-		this._enemy._alteredScreenX = true;
-	};
+	// 	this._homeX += ( Graphics.width - DEFAULT_SCREEN_WIDTH ) / 2;
+	// 	this._enemy._screenX = this._homeX;
+	// 	this._enemy._alteredScreenX = true;
+	// };
 
 	/*--- Spriteset_Base ---*/
 	const _Spriteset_Base_updatePosition = Spriteset_Base.prototype.updatePosition;
