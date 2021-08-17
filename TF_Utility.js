@@ -1,6 +1,6 @@
 //========================================
 // TF_Utility.js
-// Version :0.1.1.0
+// Version :0.1.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -91,6 +91,8 @@
 	const PAN_CENTER = 0;
 	const LOCATE_DILECT = 0;
 	const FADE_TO_BLACK = 0;
+	const FADE_TO_WHITE = 1;
+	const FADE_NONE = 2;
 
 	const PLAYER_CHARACTER = -1;
 	const gc = Game_Character;
@@ -164,9 +166,9 @@
 
 		return [
 			{ code: CHANGE_PLAYER_FOLLOWERS, parameters: [ FLAG_ON ] },
-			// { code: FADEOUT_SCREEN },
+			{ code: FADEOUT_SCREEN },
 			{ code: PLAY_SE, parameters: [ { name: MOVE_SE, volume: MOVE_VOLUME, pitch: pitch, pan: PAN_CENTER } ] },
-			{ code: TRANSFER_PLAYER, parameters: [ LOCATE_DILECT, mapId, x, y, d, FADE_TO_BLACK ] },
+			{ code: TRANSFER_PLAYER, parameters: [ LOCATE_DILECT, mapId, x, y, d, FADE_NONE ] },
 			{ code: COMMAND_END }
 		];
 	}
