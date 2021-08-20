@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.4.1
+// Version :1.2.4.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -542,11 +542,11 @@
  * @command conditionRange @text 出現条件:数値範囲
  * @desc 指定変数が範囲内にあればページ出現。
  *
- * @arg min @text 最小値≦
+ * @arg min @text 最小値
  * @desc 変数の名前、数値いずれか
  * @type number @default 0
  *
- * @arg center @text 中間値
+ * @arg center @text ≦中間値
  * @desc 変数の名前、数値いずれか
  * @type string @default it
  *
