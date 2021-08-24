@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.2.4.2
+// Version :1.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -79,7 +79,7 @@
  * $gameVariables.valueByName( 変数名 )
  * $gameSwitches.setValueByName( スイッチ名, スイッチ状態(真偽値) )
  * $gameSwitches.valueByName( スイッチ名 )
- * this.TF_checkLocation( マップID, x, y, 向き )
+ * this.TF_checkLocation( マップID, イベントID, x, y, 向き )
  * this.TF_checkFrontEvent( マップID, イベントID )
  * this.TF_checkHereEvent( マップID, 向き, イベントID )
  * 
@@ -341,13 +341,20 @@
  * @================================================
  * @command checkLocation @text 座標位置
  * @desc
- * プレイヤーの座標位置と向きをチェックして、
+ * イベントの座標位置と向きをチェックして、
  * 全て合致していたか結果を一時スイッチに設定。
- *
+ * 
  * @arg mapId @text マップID
  * @desc マップをIDまたは名前で指定
- * 規定値:this(現在のマップ)
+ * 規定値: this (現在のマップ)
  * @type string @default this
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * 規定値: player
+ * @type combo @default player
+ * @option this @option player @option follower0 @option follower1 @option follower2
  *
  * @arg position @text 位置(タイル数)
  * @desc マップ上の位置
@@ -356,7 +363,7 @@
  *
  * @arg d @text 向き(テンキー対応)
  * @desc プレイヤーの向き
- * 規定値:0 (向きを問わない)
+ * 規定値: 0 (向きを問わない)
  * @type select @default 0
  * @option ・0 @value 0
  * @option ↑ 8 @value 8
@@ -668,11 +675,12 @@
 
 	/**
 	 * 指定した方向をプレイヤーが向いているか。
+	 * @param  {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
 	 * @param {Number} d 判定する方向(テンキー対応)
 	 * @returns {Boolean} 方向が同じか
 	 */
-	function isMatchDirection( d ) {
-		return ( d === 0 ) ? true : ( d === $gamePlayer.direction() );
+	function isMatchDirection( targetEvent, d ) {
+		return ( d === 0 ) ? true : ( d === targetEvent.direction() );
 	}
 
 	/**
@@ -807,7 +815,7 @@
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const [ x, y ] = positionStringToArray( args.position );
-		const value = this.TF_checkLocation( args.mapId, x, y, args.d );
+		const value = this.TF_checkLocation( args.mapId, args.eventId, x, y, args.d );
 		setItTo( value, args.operate );
 	} );
 
@@ -904,7 +912,7 @@
 	/**
 	 * プレイヤー前方に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | here | this
-	 * @param {String} eventId 対象イベント
+	 * @param {String} eventId 対象イベントID か 名前
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
 	Game_Interpreter.prototype.TF_checkFrontEvent = function( mapId, eventId ) {
@@ -924,11 +932,11 @@
 	 * プレイヤー位置に指定イベントの判定があるか。
 	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {Number} d プレイヤーの向き(テンキー対応)
-	 * @param {String} eventId 対象イベント
+	 * @param {String} eventId 対象イベントID か 名前
 	 * @returns {Boolean} 指定イベントがあるか
 	 */
 	Game_Interpreter.prototype.TF_checkHereEvent = function( mapId, d, eventId ) {
-		return isMatchDirection( d ) && collisionCheck( this, mapId, $gamePlayer.x, $gamePlayer.y, eventId );
+		return isMatchDirection( $gamePlayer, d ) && collisionCheck( this, mapId, $gamePlayer.x, $gamePlayer.y, eventId );
 	};
 
 	/**
@@ -937,7 +945,7 @@
 	 * @param {String} mapId マップID | マップ名 | this
 	 * @param {Number*} x x位置(タイル数)
 	 * @param {Number} y y位置(タイル数)
-	 * @param {String} eventId 対象イベント
+	 * @param {String} eventId 対象イベントID か 名前
 	 * @returns 
 	 */
 	function collisionCheck( interpreter, mapId, x, y, eventId ) {
@@ -949,9 +957,9 @@
 		} else {
 			events = $gameMap.eventsXy( x, y );
 		}
-		const numberId = stringToEventId( eventId );
-		if( numberId === undefined ) return false;
-		const targetEvent = getEventById( interpreter, numberId );
+		const eventIdNumber = stringToEventId( eventId );
+		if( eventIdNumber === undefined ) return false;
+		const targetEvent = getEventById( interpreter, eventIdNumber );
 		return events.some( e => e === targetEvent );
 	}
 
@@ -959,16 +967,21 @@
 	 * プレイヤーの座標位置と向きをチェックして合致しているか。
 	 * 半歩移動を使っている場合は0.5を考慮する必要がある
 	 * @param {String} mapId マップID | マップ名 | this
+	 * @param {String} eventId 対象イベントID か 名前
 	 * @param {String} x 対象x座標(タイル数)
 	 * @param {String} y 対象y座標(タイル数)
 	 * @param {String} d プレイヤーの向き(テンキー対応)
 	 * @returns {Boolean} 指定座標と向きがプレイヤーと合致しているか
 	 */
-	Game_Interpreter.prototype.TF_checkLocation = function( mapId, x, y, d ) {
-		if( !isMatchDirection( d ) ) return false;
+	Game_Interpreter.prototype.TF_checkLocation = function( mapId, eventId, x, y, d ) {
 		if( stringToMapId( mapId ) !== $gameMap.mapId() ) return false;
+		const eventIdNumber = stringToEventId( eventId );
+		if( eventIdNumber === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${eventId}'` );
+		const targetEvent = getEventById( this, eventIdNumber );
 
-		return ( x === $gamePlayer.x && y === $gamePlayer.y );
+		if( !isMatchDirection( targetEvent, d ) ) return false;
+
+		return ( x === targetEvent.x && y === targetEvent.y );
 	};
 
 	/*--- Game_Variables ---*/
@@ -1039,7 +1052,7 @@
 	/**
 	 * [セルフスイッチ] を設定
 	 * @param {String} mapId 対象マップ
-	 * @param {String} eventId 対象イベント(名前で指定できるのは現在のマップのみ)
+	 * @param {String} eventId 対象イベントID か 名前(名前で指定できるのは現在のマップのみ)
 	 * @param {String} type A・B・C・D などの文字
 	 * @param {String} value ON/OFF状態
 	 */
@@ -1053,7 +1066,7 @@
 	/**
 	 * [セルフスイッチ] の値を得て一時スイッチに返す
 	 * @param {String} mapId 対象マップ
-	 * @param {String} eventId 対象イベント(名前で指定できるのは現在のマップのみ)
+	 * @param {String} eventId 対象イベントID か 名前(名前で指定できるのは現在のマップのみ)
 	 * @param {String} type A・B・C・D などの文字
 	 */
 	function getSelfSwitch( mapId, eventId, type ) {
