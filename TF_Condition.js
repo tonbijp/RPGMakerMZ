@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.3.0.0
+// Version :1.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -186,26 +186,26 @@
  * @command checkSwitch @text 判定:スイッチ
  * @desc
  * 指定スイッチと一時スイッチを論理演算し、
- * 結果を一時スイッチに設定。
+ * 結果を一時スイッチに代入。
  *
  * @arg name @text スイッチの名前
  * @desc 指定スイッチ
  * @type string @default it
  *
  * @arg operate @text 論理演算
- * @desc (規定値: 一時スイッチとの論理積 and)
+ * @desc (規定値: 一時スイッチとの論理積を代入 and)
  * @type select @default and
- * @option 反転 not @value not
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
  * @command checkSelfSwitch @text 判定:セルフスイッチ
  * @desc
- * 指定スイッチと一時スイッチを論理演算し、
- * 結果を一時スイッチに設定。
+ * 指定セルフスイッチと一時スイッチを論理演算し、
+ * 結果を一時スイッチに代入。
  *
  * @arg mapId @text マップID
  * @desc マップをIDまたは名前で指定
@@ -224,19 +224,19 @@
  * @option A @option B @option C @option D
  *
  * @arg operate @text 論理演算
- * @desc (規定値: 一時スイッチとの論理積 and)
+ * @desc (規定値: 一時スイッチとの論理積を代入 and)
  * @type select @default and
- * @option 反転 not @value not
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
  * @command checkMultiple @text 判定:複数スイッチ
  * @desc
  * 複数のスイッチの論理積(and)の結果を、
- * 一時スイッチに設定。
+ * 一時スイッチに代入。
  *
  * @arg nameList @text スイッチ名リスト
  * @desc スイッチを名前で指定
@@ -245,10 +245,10 @@
  * @arg operate @text 論理演算
  * @desc 結果の扱い(規定値:get)
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
  * @command checkCompare @text 判定:数値比較
@@ -603,6 +603,8 @@
 	function setItTo( value, logope ) {
 		if( logope === OPE_EQUAL ) {
 			value = value === $gameSwitches.value( switchItId );
+		} else if( logope === OPE_NOT ) {
+			value = !value;
 		}
 		$gameSwitches.setValue( switchItId, value );
 	}
@@ -716,7 +718,7 @@
 	const COM_SELFSWITCH = "selfSwitch";
 
 	const COM_CHECK_SWITCH = "checkSwitch";
-	const COM_CHECK_SELFSWITCH = "checkselfSwitch";
+	const COM_CHECK_SELFSWITCH = "checkSelfSwitch";
 	const COM_CHECK_MULTIPLE = "checkMultiple";
 	const COM_CHECK_COMPARE = "checkCompare";
 	const COM_CHECK_COMPARE_TEXT = "checkCompareText";
@@ -785,11 +787,7 @@
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SWITCH, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = $gameSwitches.valueByName( args.name );
-		if( args.operate === OPE_NOT ) {
-			$gameSwitches.setValueByName( args.name, !value );
-		} else {
-			setItTo( value, args.operate );
-		}
+		setItTo( value, args.operate );
 	} );
 
 	// [セルフスイッチ判定]
@@ -797,11 +795,7 @@
 		if( shortCircuit( args.operate ) ) return;
 		if( args.eventId === EVENT_THIS ) args.eventId = this.character( 0 )._eventId;
 		const value = getSelfSwitch( args.mapId, args.eventId, args.type );
-		if( args.operate === OPE_NOT ) {
-			setSelfSwitch( args.mapId, args.eventId, args.type, !value );
-		} else {
-			setItTo( value, args.operate );
-		}
+		setItTo( value, args.operate );
 	} );
 
 	// [複数スイッチ&結合]
