@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.3.1.0
+// Version :0.3.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -579,7 +579,8 @@
 
 		// イベント名で指定できるようにする
 		const i = $gameMap._events.findIndex( event => {
-			if( event === undefined ) return false;	// _events[0] が undefined なので無視
+			// if( event === undefined || event === null ) return false;	// _events[0] が null なので無視
+			if( !event ) return false;	// _events[0] が空なら無視
 
 			const eventId = event._eventId;
 			return $dataMap.events[ eventId ].name === value;
@@ -818,13 +819,13 @@
 		targetEvent.setImage( fileName, characterNumber );
 
 		// パターン番号
-		if( patternNumber !== undefined && patternNumber !== "" ) {
+		if( patternNumber !== -1 && patternNumber !== undefined && patternNumber !== "" ) {
 			targetEvent._originalPattern = patternNumber;
 			targetEvent.setPattern( patternNumber );
 		}
 
 		// 向き
-		if( d !== undefined && d !== "" ) {
+		if( d !== 0 && d !== undefined && d !== "" ) {
 			targetEvent._direction = stringToDirection( d );
 		}
 	}
