@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.3.2.0
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -160,6 +160,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  * 
  * @arg routeCode @text ルート設定文字列
  * @desc
@@ -190,6 +191,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg filename @text 画像ファイル名
  * @desc
@@ -233,6 +235,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg fileName @text 画像ファイル名
  * @desc
@@ -275,6 +278,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg pointStr @text 移動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
@@ -293,12 +297,14 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg destinationId @text 目標イベントID
  * @desc
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg pointStr @text 移動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
@@ -318,6 +324,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg pointStr @text 移動先位置(タイル数)
  * @desc 移動先座標(小数点以下可)
@@ -351,12 +358,14 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg destinationId @text 目標イベントID
  * @desc
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg pointStr @text 相対座標(タイル数)
  * @desc 相対座標(小数点以下可)
@@ -403,6 +412,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  *
  * @arg pointStr @text 移動距離(ピクセル数)
  * @desc (小数点以下可)
@@ -447,6 +457,7 @@
  * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
  * 
  */
 
@@ -543,7 +554,9 @@
 	 * @returns {Game_CharacterBase}
 	 */
 	function getEventById( interpreter, id ) {
-		if( id < -1 ) {
+		if( id < -100 ) {
+			return $gameMap._vehicles[ -100 - id ];			// 乗り物(0〜2)
+		} else if( id < -1 ) {
 			return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
 		} else {
 			return interpreter.character( id );			// プレイヤーキャラおよびイベント
@@ -557,6 +570,9 @@
 	const EVENT_FOLLOWER0 = "follower0";
 	const EVENT_FOLLOWER1 = "follower1";
 	const EVENT_FOLLOWER2 = "follower2";
+	const EVENT_VEHICLE0 = "boat";
+	const EVENT_VEHICLE1 = "ship";
+	const EVENT_VEHICLE2 = "airship";
 	/**
 	 * 文字列をイベントIDへ変換
 	 * @param {String} value イベントIDの番号か識別子
@@ -575,6 +591,9 @@
 			case EVENT_FOLLOWER0: return -2;
 			case EVENT_FOLLOWER1: return -3;
 			case EVENT_FOLLOWER2: return -4;
+			case EVENT_VEHICLE0: return -100;
+			case EVENT_VEHICLE1: return -101;
+			case EVENT_VEHICLE2: return -102;
 		}
 
 		// イベント名で指定できるようにする
@@ -833,7 +852,7 @@
 	/**
 	 * TF_LOCATE_XY  の実行。
 	 *
-	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
+	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバー・乗り物のいずれか
 	 * @param {String} x x座標(タイル数)
 	 * @param {String} y y座標(タイル数)
 	 * @param {String} patternNo パターン番号( 0~2 )
@@ -843,7 +862,14 @@
 		if( patternNo ) {
 			setCharPattern( targetEvent, undefined, undefined, patternNo, d );
 		}
-		targetEvent.setPosition( parseFloatStrict( x ), parseFloatStrict( y ) );// HalfMove.js 対応でparseFloatStrict()を使う
+		// 位置指定には HalfMove.js 対応でparseFloatStrict()を使う
+		const floatX = parseFloatStrict( x );
+		const floatY = parseFloatStrict( y );
+		if( targetEvent instanceof Game_Vehicle ) {
+			targetEvent.setLocation( $gameMap.mapId(), floatX, floatY );	// 乗り物
+		} else {
+			targetEvent.setPosition( floatX, floatY );
+		}
 	}
 
 	/**
