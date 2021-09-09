@@ -170,11 +170,11 @@ MZで `all` 引数は廃止。
 
 
 #### contentsHeight () → {[Number](Number.md)}
-**@MZ** ウィンドウに含まれるコンテンツの高さを返す。
+ウィンドウに含まれるコンテンツの高さを返す。
 
 
 #### contentsWidth () → {[Number](Number.md)}
-**@MZ** ウィンドウに含まれるコンテンツの幅を返す。
+ウィンドウに含まれるコンテンツの幅を返す。
 
 
 #### convertEscapeCharacters (text) → {[String](String.md)}
