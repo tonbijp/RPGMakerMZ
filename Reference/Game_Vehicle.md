@@ -9,7 +9,8 @@
 | --- | --- | --- | --- |
 | [乗り物] | [RPG.System.Vehicle](RPG.System.Vehicle.md) | [Sprite_Character](Sprite_Character.md) |
 
-[乗り物]を定義したクラス。
+[乗り物]を定義したクラス。<br />
+いかにも陸上交通用の名前だが、陸の乗り物には対応していない。
 
 主なパス
 ```js
@@ -280,8 +281,8 @@ $gameMap._vehicles[n]
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `mapId` | [Number](Number.md) |  |
-| `x` | [Number](Number.md) |  タイル数 |
-| `y` | [Number](Number.md) |  タイル数 |
+| `x` | [Number](Number.md) | タイル数 |
+| `y` | [Number](Number.md) | タイル数 |
 
 
 #### shadowOpacity () → {[Number](Number.md)}
