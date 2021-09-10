@@ -336,7 +336,7 @@ rtl は RIGHT-TO-LEFT の略。
 | `align` | [String](String.md) | 文字揃え(left, center, right) |
 
 
-#### drawTextEx (text, x, y) → {[Number](Number.md)}
+#### drawTextEx (text, x, y, width) → {[Number](Number.md)}
 指定したエスケープ文字入の文字列を指定位置に描画し、x座標の差分を返す。
 
 ##### 引数
@@ -346,6 +346,7 @@ rtl は RIGHT-TO-LEFT の略。
 | `text` | [String](String.md) | 表示する文字列 |
 | `x` | [Number](Number.md) | x座標(ピクセル) |
 | `y` | [Number](Number.md) | y座標(ピクセル) |
+| `width` | [Number](Number.md) | 幅(ピクセル) |
 
 
 #### fittingHeight (numLines) → {[Number](Number.md)}
