@@ -117,7 +117,7 @@ MVでは引数がなかった。
 * [drawItemName (item, x, y, width)](Window_Base.md#drawitemname-item-x-y-width)
 * [drawRect ( x, y, width, height )](Window_Base.md#drawrect--x-y-width-height-)
 * [drawText (text, x, y, maxWidth, align)](Window_Base.md#drawtext-text-x-y-maxwidth-align)
-* [drawTextEx (text, x, y)](Window_Base.md#drawtextex-text-x-y--number)
+* [drawTextEx (text, x, y, width)](Window_Base.md#drawtextex-text-x-y-width--number)
 * [fittingHeight (numLines)](Window_Base.md#fittingheight-numlines--number)
 * [flushTextState (textState)](Window_Base.md#flushtextstate-textstate)
 * [hide ()](Window_Base.md#hide-)
