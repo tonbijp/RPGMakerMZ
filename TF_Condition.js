@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.4.0.0
+// Version :1.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -144,7 +144,7 @@
  * @type select @default =
  * @option 指定変数に代入 = @value =
  * @option 結合 += @value +=
- * @option 結合して一時変数に + @value +
+ * @option 結合して一時変数に代入 + @value +
  *
  * @arg operand @text オペランド(値)
  * @desc 変数に代入する文字(\V[n]を使用できる)
@@ -178,6 +178,7 @@
  * @option false
  * @option \S[n]
  *
+ * @=================== 【判定】 ===============================================================
  * @command rem1 @text ＿＿＿＿＿ 判定 ＿＿＿＿＿
  * @desc [条件分岐]を行うため下準備的なものです。
  * (なお、これは区切り線なので選択しても何も起きません)
@@ -193,8 +194,9 @@
  * @type string @default it
  *
  * @arg operate @text 論理演算
- * @desc (規定値: 一時スイッチとの論理積を代入 and)
- * @type select @default and
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
+ * @type select @default get
  * @option そのまま代入 get @value get
  * @option 反転して代入 not @value not
  * @option 一時スイッチとの論理積を代入 and @value and
@@ -224,8 +226,9 @@
  * @option A @option B @option C @option D
  *
  * @arg operate @text 論理演算
- * @desc (規定値: 一時スイッチとの論理積を代入 and)
- * @type select @default and
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
+ * @type select @default get
  * @option そのまま代入 get @value get
  * @option 反転して代入 not @value not
  * @option 一時スイッチとの論理積を代入 and @value and
@@ -243,9 +246,11 @@
  * @type string[] @default ["it", "done"]
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
  * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
  * @option 一時スイッチとの論理積を代入 and @value and
  * @option 一時スイッチとの論理和を代入 or @value or
  * @option 一時スイッチとの比較結果を代入 == @value ==
@@ -274,12 +279,14 @@
  * @type string @default it
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
  * @command checkCompareText @text 判定:文字比較
@@ -301,12 +308,14 @@
  * @type string @default 
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
  * @command checkRange @text 判定:数値範囲
@@ -327,13 +336,16 @@
  * @type number @default 100
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
+ * @=================== 【特殊判定】 ===============================================================
  * @command rem2 @text ＿＿＿＿ 特殊判定 ＿＿＿＿
  * @desc 標準にはついてない判定方式で[出現条件]では使えません。
  * (なお、これは区切り線なので選択しても何も起きません)
@@ -372,12 +384,14 @@
  * @option ↓ 2 @value 2
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
  * @command checkFrontEvent @text 前方イベント
@@ -396,12 +410,14 @@
  * @type string @default this
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
  * @command checkHereEvent @text その場イベント
@@ -430,12 +446,14 @@
  * @type string @default this
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
  * @command checkJs @text JavaScript
@@ -448,15 +466,16 @@
  * @type note @default "// 実行結果を returnで返す\nreturn true;"
  *
  * @arg operate @text 論理演算
- * @desc 結果の扱い(規定値:get)
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
  * @type select @default get
- * @option 一時スイッチに代入 get @value get
- * @option 一時スイッチとの論理積 and @value and
- * @option 一時スイッチとの論理和 or @value or
- * @option 一時スイッチと同じ == @value ==
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @=================== 【出現条件】 ===============================================================
- *
  * @command rem3 @text ＿＿＿＿ 出現条件 ＿＿＿＿
  * @desc 出現条件は[実行内容]の上の方に並べて使います。
  * (なお、これは区切り線なので選択しても何も起きません)
@@ -572,8 +591,8 @@
 	} )();
 
 	// 論理演算子
-	const OPE_NOT = "not";
 	const OPE_GET = "get"; // この定数は使われていないが予約
+	const OPE_NOT = "not";
 	const OPE_AND = "and";
 	const OPE_OR = "or";
 	const OPE_EQUAL = "==";
@@ -954,7 +973,7 @@
 		const eventIdNumber = stringToEventId( eventId );
 		if( eventIdNumber === undefined ) return false;
 		const targetEvent = getEventById( interpreter, eventIdNumber );
-		return events.some( e => e === targetEvent );
+		return events.some( e => ( e.x === targetEvent.x ) && e.y === targetEvent.y );
 	}
 
 	/**
