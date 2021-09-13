@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.5.0.0
+// Version :1.5.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -973,7 +973,7 @@
 		const eventIdNumber = stringToEventId( eventId );
 		if( eventIdNumber === undefined ) return false;
 		const targetEvent = getEventById( interpreter, eventIdNumber );
-		return events.some( e => ( e.x === targetEvent.x ) && e.y === targetEvent.y );
+		return events.some( e => e === targetEvent );
 	}
 
 	/**
