@@ -6,7 +6,7 @@
 
 **@MZ** ゲージ表示用のスプライト。ラベル・ゲージ・数値で構成される。
 
-v1.1.0、v1.2.0  で変更あり。
+v1.1.0、v1.2.0、v1.3.3 で変更あり。
 
 関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Window_StatusBase](Window_StatusBase.md)
 
@@ -99,7 +99,8 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### bitmapHeight () → {[Number](Number.md)}
-画像表示領域の高さ(規定値:24ピクセル)を返す。
+画像表示領域の高さ(規定値:32ピクセル)を返す。<br />
+**@MZ 1.3.2** まで規定値:24ピクセル。
 
 
 #### bitmapWidth () → {[Number](Number.md)}
@@ -252,6 +253,10 @@ v1.1.0、v1.2.0  で変更あり。
 
 #### smoothness () → {[Number](Number.md)}
 ゲージのアニメーション間隔を返す。
+
+
+#### textHeight () → {[Number](Number.md)}
+**@MZ 1.3.3** 文字の高さ(規定値:24ピクセル)を返す。
 
 
 #### update ()

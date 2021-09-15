@@ -17,7 +17,7 @@
 なのでプロパティ・メソッドに **@MZ** 表記はつけず、新規クラスとして記述する。<br />
 内容についてはカンでテキトーに書いているので信用しないでください。他のところもそうですけど、ここは特に何もわからずに書いてます(笑)
 
-v1.1.0、v1.2.0  で変更あり。
+v1.1.0、v1.2.0、v1.3.3 で変更あり。
 
 関連クラス: [EffectManager](EffectManager.md), [Spriteset_Base](Spriteset_Base.md), [Sprite_Damage](Sprite_Damage.md), [RPG.UsableItem](RPG.UsableItem.md), [RPG.Weapon](RPG.Weapon.md), [Game_Interpreter](Game_Interpreter.md)
 
@@ -41,7 +41,7 @@ v1.1.0、v1.2.0  で変更あり。
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
 | `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/15秒単位) |
 | `_viewportSize` | [Number](Number.md) | ビューポートサイズ(規定値:4096) |
-| `_originalViewport` | Array](Array.md).&lt;[Number](Number.md)&gt; | ビューポート[ x, y, 幅, 高さ ] |
+| `_originalViewport` | Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ 1.3.3** で廃止。ビューポート[ x, y, 幅, 高さ ] |
 
 
 ### スーパークラスから継承されたメソッド
@@ -168,7 +168,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### resetViewport (renderer)
-ビューポートを(_originalViewportに)再設定。
+ビューポートを再設定。
 
 ##### 引数
 
@@ -178,6 +178,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### saveViewport (renderer)
+**@MZ 1.3.3** で廃止。<br />
 ビューポートを(_originalViewportに)保存。
 
 ##### 引数
