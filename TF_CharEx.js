@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.5.0.0
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -388,11 +388,11 @@
  * @option ← @value 4
  * @option → @value 6
  * @option ↓ @value 2
- * 
+ *
  * @================================================
  * @command getOn @text 乗り物に乗る
- * @desc 乗り物を設定してない、あるいは
- * 乗り物が現在のマップにない場合は動作しない。
+ * @desc すでに乗っている、乗り物を設定してない、
+ * 乗り物が現在のマップにない場合、動作しない。
  *
  * @arg eventId @text 対象乗り物
  * @desc
@@ -403,9 +403,24 @@
  * @option 飛行船(airship) @value airship
  *
  * @arg isVehiclePos @text 乗った後の位置
- * @desc 
+ * @desc
  * @type boolean @default true
  * @on 乗り物位置(規定値) @off プレイヤー位置
+ * 
+ * @================================================
+ * @command getOff @text 乗り物から降りる
+ * @desc 乗り物に乗っていない場合は動作しない。
+ * 通常降りられない場所でも強制的に降りる。
+ *
+ * @arg d @text 降りる向き
+ * @desc (規定値: 前に降りる)
+ * @type select @default 0
+ * @option 前に降りる @value 0
+ * @option ↑ @value 8
+ * @option ← @value 4
+ * @option → @value 6
+ * @option ↓ @value 2
+ * @option その場 @value 5
  * 
  * @================================================
  * @command follow @text 隊列メンバーの追跡設定
@@ -593,9 +608,12 @@
 	const EVENT_FOLLOWER0 = "follower0";
 	const EVENT_FOLLOWER1 = "follower1";
 	const EVENT_FOLLOWER2 = "follower2";
-	const EVENT_VEHICLE0 = "boat";
-	const EVENT_VEHICLE1 = "ship";
-	const EVENT_VEHICLE2 = "airship";
+	const EVENT_FOLLOWER_ALL = "all";
+	const VEHICLE_BOAT = "boat";
+	const VEHICLE_SHIP = "ship";
+	const VEHICLE_AIRSHIP = "airship";
+	const VEHICLE_WALK = "walk";
+
 	/**
 	 * 文字列をイベントIDへ変換
 	 * @param {String} value イベントIDの番号か識別子
@@ -614,9 +632,9 @@
 			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
 			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
 			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
-			case EVENT_VEHICLE0: return VEHICLE_OFFSET;
-			case EVENT_VEHICLE1: return VEHICLE_OFFSET - 1;
-			case EVENT_VEHICLE2: return VEHICLE_OFFSET - 2;
+			case VEHICLE_BOAT: return VEHICLE_OFFSET;
+			case VEHICLE_SHIP: return VEHICLE_OFFSET - 1;
+			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
 		}
 
 		// イベント名で指定できるようにする
@@ -693,6 +711,7 @@
 	const COM_LOCATE_XY = "locateXY";
 	const COM_LOCATE_EV = "locateEv";
 	const COM_GET_ON = "getOn";
+	const COM_GET_OFF = "getOff";
 	const COM_FOLLOW = "follow";
 	const COM_ANIME = "anime";
 	const COM_END_ANIME = "endAnime";
@@ -771,9 +790,28 @@
 		$gamePlayer._vehicleGettingOn = true;
 	} );
 
+	// [ 乗り物から降りる ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_GET_OFF, function( args ) {
+		$gamePlayer._followers.synchronize( $gamePlayer.x, $gamePlayer.y, $gamePlayer.direction() );
+		$gamePlayer.vehicle().getOff();
+		$gamePlayer._vehicleGettingOff = true;
+		$gamePlayer.setTransparent( false );
+		$gamePlayer.setMoveSpeed( 4 );
+		$gamePlayer.setThrough( false );
+		$gamePlayer.makeEncounterCount();
+
+		const d = args.d;
+		if( d === 5 ) return;
+		if( d !== 0 ) {
+			$gamePlayer._direction = d;
+		}
+		$gamePlayer.forceMoveForward();
+		$gamePlayer.gatherFollowers();
+	} );
+
 	// [ 隊列メンバーの追跡設定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_FOLLOW, function( args ) {
-		if( args.eventId === "all" ) {
+		if( args.eventId === EVENT_FOLLOWER_ALL ) {
 			const followers = $gamePlayer.followers();
 			followers._data.forEach( follower => {
 				followMode( follower, args.isFollow );
