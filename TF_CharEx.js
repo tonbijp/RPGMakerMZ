@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.4.0.0
+// Version :0.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -271,7 +271,7 @@
  *
  * @================================================
  * @command goXY @text イベントを指定座標に移動
- * @desc 障害物などで移動できないこともある。
+ * @desc 障害物は無視する。
  *
  * @arg eventId @text イベントID
  * @desc
@@ -290,7 +290,7 @@
  * 
  * @================================================
  * @command goEv @text イベントを別のイベント位置に移動
- * @desc 障害物などで移動できないこともある。
+ * @desc 障害物は無視する。
  *
  * @arg eventId @text イベントID
  * @desc
@@ -390,8 +390,27 @@
  * @option ↓ @value 2
  * 
  * @================================================
+ * @command getOn @text 乗り物に乗る
+ * @desc 乗り物を設定してない、あるいは
+ * 乗り物が現在のマップにない場合は動作しない。
+ *
+ * @arg eventId @text 対象乗り物
+ * @desc
+ * 規定値: 大型船(ship)
+ * @type select @default ship
+ * @option 小型船(boat) @value boat
+ * @option 大型船(ship) @value ship
+ * @option 飛行船(airship) @value airship
+ *
+ * @arg isVehiclePos @text 乗った後の位置
+ * @desc 
+ * @type boolean @default true
+ * @on 乗り物位置(規定値) @off プレイヤー位置
+ * 
+ * @================================================
  * @command follow @text 隊列メンバーの追跡設定
- * @desc 前のメンバーを追うか指定する。
+ * @desc プレイヤーが動いた場合に
+ * 前のメンバーを追うか指定する。
  * 
  * @arg eventId @text 隊列メンバーID
  * @desc 指定隊列メンバー(規定値:all)
@@ -465,7 +484,6 @@
 	"use strict";
 	const WAIT_ROUTE = "route";
 	const WAIT_MOVING = "moving";
-
 
 	/*---- パラメータパース関数 ----*/
 	const PARAM_TRUE = "true";
@@ -554,16 +572,21 @@
 	 * @returns {Game_CharacterBase}
 	 */
 	function getEventById( interpreter, id ) {
-		if( id < -100 ) {
-			return $gameMap._vehicles[ -100 - id ];			// 乗り物(0〜2)
+		if( id < VEHICLE_OFFSET ) {
+			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
 		} else if( id < -1 ) {
-			return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
+			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
 		} else {
 			return interpreter.character( id );			// プレイヤーキャラおよびイベント
 		}
 	}
 
 
+	/*---- イベントIDの配置オフセット ----*/
+	const FOLLOWER_OFFSET = -2;
+	const VEHICLE_OFFSET = -100;
+
+	/*---- イベントID変換用文字列 ----*/
 	const EVENT_THIS = "this";
 	const EVENT_SELF = "self";
 	const EVENT_PLAYER = "player";
@@ -588,12 +611,12 @@
 			case EVENT_THIS:
 			case EVENT_SELF: return 0;
 			case EVENT_PLAYER: return -1;
-			case EVENT_FOLLOWER0: return -2;
-			case EVENT_FOLLOWER1: return -3;
-			case EVENT_FOLLOWER2: return -4;
-			case EVENT_VEHICLE0: return -100;
-			case EVENT_VEHICLE1: return -101;
-			case EVENT_VEHICLE2: return -102;
+			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
+			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
+			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
+			case EVENT_VEHICLE0: return VEHICLE_OFFSET;
+			case EVENT_VEHICLE1: return VEHICLE_OFFSET - 1;
+			case EVENT_VEHICLE2: return VEHICLE_OFFSET - 2;
 		}
 
 		// イベント名で指定できるようにする
@@ -669,6 +692,7 @@
 	const COM_GO_EV = "goEv";
 	const COM_LOCATE_XY = "locateXY";
 	const COM_LOCATE_EV = "locateEv";
+	const COM_GET_ON = "getOn";
 	const COM_FOLLOW = "follow";
 	const COM_ANIME = "anime";
 	const COM_END_ANIME = "endAnime";
@@ -684,9 +708,9 @@
 	// -2, -3, -4 で隊列メンバーの取得する機能を追加。
 	const _Game_Interpreter_character = Game_Interpreter.prototype.character;
 	Game_Interpreter.prototype.character = function( param ) {
-		if( -2 < param ) return _Game_Interpreter_character.apply( this, arguments );
+		if( FOLLOWER_OFFSET < param ) return _Game_Interpreter_character.apply( this, arguments );
 		if( $gameParty.inBattle() ) return null;
-		return $gamePlayer.followers().follower( -2 - id );			// 隊列メンバー(0〜2)
+		return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
 	};
 
 	/**
@@ -734,7 +758,20 @@
 		locateEv( targetEvent, destinationEvent, rect.x, rect.y, args.patternNumber, args.d );
 	} );
 
-	// [ 隊列メンバーの追跡設定 ] COM_FOLLOW
+	// [ 乗り物に乗る ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_GET_ON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		if( !targetEvent ) throw new Error( `I can't find the '${args.eventId}'` );
+
+		if( args.isVehiclePos ) {
+			$gamePlayer.x = targetEvent.x;
+			$gamePlayer.y = targetEvent.y;
+		}
+		$gamePlayer._vehicleType = args.eventId;
+		$gamePlayer._vehicleGettingOn = true;
+	} );
+
+	// [ 隊列メンバーの追跡設定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_FOLLOW, function( args ) {
 		if( args.eventId === "all" ) {
 			const followers = $gamePlayer.followers();
@@ -747,14 +784,14 @@
 		}
 	} );
 
-	// [ アニメの指定 ] COM_ANIME
+	// [ アニメの指定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		const rect = stringToPoint( args.pointStr );
 		anime( targetEvent, rect.x, rect.y, args.wait, args.characterNumber, args.patternNumber, args.d );
 	} );
 
-	// [ アニメの終了 ] COM_END_ANIME
+	// [ アニメの終了 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_END_ANIME, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
 		animeMode( targetEvent, false );
@@ -770,7 +807,7 @@
 	Game_Interpreter.prototype.command205 = function( params ) {
 		// if( typeof params[ 0 ] === TYPE_STRING ) params[ 0 ] = stringToEventId( params[ 0 ] );
 
-		if( -2 < params[ 0 ] ) return _Game_Interpreter_command205.call( this, params );
+		if( FOLLOWER_OFFSET < params[ 0 ] ) return _Game_Interpreter_command205.call( this, params );
 
 		$gameMap.refreshIfNeeded();
 		this._character = getEventById( this, params[ 0 ] );
