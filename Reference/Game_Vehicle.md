@@ -6,7 +6,7 @@
 
 
 | データベース | JSONデータ | スプライト |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | [乗り物] | [RPG.System.Vehicle](RPG.System.Vehicle.md) | [Sprite_Character](Sprite_Character.md) |
 
 [乗り物]を定義したクラス。<br />
