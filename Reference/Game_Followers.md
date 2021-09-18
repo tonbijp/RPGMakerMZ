@@ -6,7 +6,7 @@
 
 主なパス
 ```js
-$gamePlayer.followers()]
+$gamePlayer.followers()
 ```
 
 ### new Game_Followers ()
