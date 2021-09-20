@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.0.0
+// Version :0.6.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -193,11 +193,11 @@
  * @option this @option player @option follower0 @option follower1 @option follower2
  * @option boat @option ship @option airship
  *
- * @arg filename @text 画像ファイル名
+ * @arg fileName @text 画像ファイル名
  * @desc
  * .pngを除いた img/characters/ フォルダのファイル名
- * 指定なしだと、イベントに指定されている画像を使う
- * @type file @default
+ *  (規定値:そのまま)
+ * @type file @dir img/characters/
  *
  * @arg characterNumber @text キャラクター番号
  * @desc
@@ -241,8 +241,7 @@
  * @desc
  * .pngを除いた img/characters/ フォルダのファイル名
  *  (規定値:そのまま)
- * @type file
- * @dir img/characters/
+ * @type file @dir img/characters/
  *
  * @arg characterNumber @text キャラクター番号
  * @desc
@@ -540,7 +539,7 @@
 		let i = $dataSystem.variables.findIndex( i => i === name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
-		if( isNaN( i ) ) throw new Error( `I can't find the variable '${name}'` );
+		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the variable '${name}'` );
 		return i;
 	}
 
@@ -552,7 +551,7 @@
 	function parseIntStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return Math.floor( value );
 		const result = parseInt( treatValue( value ), 10 );
-		if( isNaN( result ) ) throw Error( `[${value}] is not a number.` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: [${value}] is not a number.` );
 		return result;
 	}
 
@@ -564,7 +563,7 @@
 	function parseFloatStrict( value ) {
 		if( typeof value === TYPE_NUMBER ) return value;
 		const result = parseFloat( treatValue( value ) );
-		if( isNaN( result ) ) throw Error( `[${value}] is not a number.` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: [${value}] is not a number.` );
 		return result;
 	}
 
@@ -645,7 +644,7 @@
 			const eventId = event._eventId;
 			return $dataMap.events[ eventId ].name === value;
 		} );
-		if( i === -1 ) throw Error( `I can't find the event '${name}'` );
+		if( i === -1 ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
 		return i;
 	}
 
@@ -780,7 +779,7 @@
 	// [ 乗り物に乗る ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GET_ON, function( args ) {
 		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		if( !targetEvent ) throw new Error( `I can't find the '${args.eventId}'` );
+		if( !targetEvent ) throw Error( `${PLUGIN_NAME}: I can't find the '${args.eventId}'` );
 
 		if( args.isVehiclePos ) {
 			$gamePlayer.x = targetEvent.x;
@@ -1311,17 +1310,6 @@
 		interpreter.setupChild( commandList, eventId );
 	}
 
-	/**
-	 * [ キャラパターン指定アニメ ]の実行。
-	 *
-	 * 実際は args の中身
-	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
-	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下)
-	 * @param {Number} characterNumber キャラクタ番号( 1~8 )
-	 * @param {Number} animePattern アニメ再生パターン(-1〜8)
-	 * @param {Number} waitFrames 待ちフレーム数
-	 *  
-	 */
 	const VD_1LINE = 0;	// ↓
 	const VU_1LINE = 1;	// ↑
 	const VD_3LINE = 2;	// ┬│↓
@@ -1341,6 +1329,18 @@
 	const RIGHT_UP = 5; // ・・↑ 右列 @value 5
 	const ALL_DOWN = 6; // ┬│↓ 左列から順に全て @value 6
 	const ALL_UP = 7; // ↑│┴ 右列から順に全て @value 7
+
+	/**
+	 * [ キャラパターン指定アニメ ]の実行。
+	 *
+	 * 実際は args の中身
+	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
+	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下)
+	 * @param {Number} characterNumber キャラクタ番号( 1~8 )
+	 * @param {Number} animePattern アニメ再生パターン(-1〜8)
+	 * @param {Number} waitFrames 待ちフレーム数
+	 *
+	 */
 	function patternAnime( args ) {
 		const eventId = stringToEventId( args.eventId );
 		const targetEvent = getEventById( this, eventId );
@@ -1366,7 +1366,7 @@
 			patternNumber = RIGHT_PATTERN;
 			animeType = VU_3LINE;
 		} else {
-			throw `[${args.animePattern} is illegal animation pattern.`;
+			throw Error( `${PLUGIN_NAME}: [${args.animePattern} is illegal animation pattern.` );
 		}
 		setCharPattern( targetEvent, args.fileName, args.characterNumber, patternNumber );
 		const tempDirectionFix = targetEvent.isDirectionFixed();
@@ -1618,7 +1618,7 @@
 	 */
 	function stringToPoint( pointStr ) {
 		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
+		if( args === null ) throw Error( `${PLUGIN_NAME}: wrong parameter "${pointStr}"` );
 		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	}
 } )();
