@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.1.0
+// Version :0.6.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -496,6 +496,8 @@
 
 ( () => {
 	"use strict";
+	const PLUGIN_NAME = "TF_CharEx";
+
 	const WAIT_ROUTE = "route";
 	const WAIT_MOVING = "moving";
 
