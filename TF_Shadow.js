@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.5.0.1
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -63,6 +63,7 @@
  * [移動ルートの指定]の[スクリプト]
  * this.TF_hasShadow( true );   // 影をつける
  * this.TF_hasShadow( false );   // 影を消す
+ * this.TF_shadowRadius( 20, 9 );   // 影の半径設定(横, 縦)
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -81,7 +82,7 @@
  * @type boolean @default true
  *
  * @================================================
- * @command shadowSize @text 影の大きさ変更
+ * @command shadowRadius @text 影の大きさ変更
  * @desc 指定キャラの影の大きさ変更
  *
  * @arg eventId @text イベントID
@@ -90,7 +91,7 @@
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
- * @param radius @text 大きさ(半径)
+ * @arg radius @text 影の大きさ(半径)
  * @desc 横, 縦
  * 規定値: 18,9
  * @type string @default 18,9
@@ -100,7 +101,7 @@
     const PLUGIN_NAME = "TF_Shadow";
     const TF_SHADOW = "TF_SHADOW";  // タグ名
     const COM_HAS_SHADOW = "hasShadow";
-    const COM_SHADOW_SIZE = "shadowSize";
+    const COM_SHADOW_RADIUS = "shadowRadius";
 
     const TYPE_STRING = "string";
 
@@ -167,6 +168,12 @@
         targetEvent.TF_hasShadow( args.hasShadow );
     } );
 
+    PluginManagerEx.registerCommand( document.currentScript, COM_SHADOW_RADIUS, function( args ) {
+        const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+        const radius = stringToPoint( args.radius );
+        targetEvent.TF_shadowRadius( radius.x, radius.y );
+    } );
+
     /*--- Spriteset_Map ---*/
     const _Spriteset_Map_createCharacters = Spriteset_Map.prototype.createCharacters;
     Spriteset_Map.prototype.createCharacters = function() {
@@ -177,29 +184,41 @@
         } );
     };
 
-    // 注釈のコマンド番号 TODO:ページの注釈でも設定できるといいんじゃないかな
-    const REMARK = 108;
+
     /**
      * TF_SHADOWタグの内容を返す。
-     * @param {Game_Character} tc 
+     * @param {Game_Character} tc キャラクタオブジェクト
      * @returns {String|Boolean|Number} TF_SHADOWタグの内容(なければundefined)
      */
     function getMetaTag( tc ) {
+        const jsonData = getCharacterJson( tc );
+        if( jsonData ) {
+            return PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
+        } else {
+            return false;   // メモ欄を持たないデータ(Game_Vehicle)
+        }
+    };
+
+    /**
+     * 指定キャラに対応するJSONデータを返す。
+     * @param {Game_Character} tc 指定キャラクタオブジェクト
+     * @returns {RPG.MetaData} JSONデータ(なければundefined)
+     */
+    function getCharacterJson( tc ) {
         if( tc instanceof Game_Event ) {
-            return PluginManagerEx.findMetaValue( tc.event(), TF_SHADOW );
+            return tc.event();
         } else if( tc instanceof Game_Player ) {
-            return PluginManagerEx.findMetaValue( $gameParty.leader().actor(), TF_SHADOW );
+            return $gameParty.leader().actor();
         } else if( tc instanceof Game_Follower ) {
             const actor = tc.actor();
-            if( actor ) return PluginManagerEx.findMetaValue( actor.actor(), TF_SHADOW );
-        } else if( tc instanceof Game_Vehicle ) {
-            return false;
+            if( actor ) return actor.actor();
         }
+        return;   // メモ欄を持たないデータ(Game_Vehicle)
     }
 
     /**
-     * 指定キャラクターが影を持つか。
-     * @param {Game_Character} tc
+     * 指定キャラが影を持つか。
+     * @param {Game_Character} tc 指定キャラクタオブジェクト
      * @returns {Boolean} 影を持つか
      */
     function hasShadow( tc ) {
@@ -230,6 +249,15 @@
     Game_CharacterBase.prototype.TF_hasShadow = function( hasShadow ) {
         this.refreshShadow = true;
         this.hasShadow = hasShadow;
+    };
+    /**
+     * 影のサイズ変更
+     * @param {Number} width 影の横半径
+     * @param {Number} height 影の縦半径
+     */
+    Game_CharacterBase.prototype.TF_shadowRadius = function( width, height ) {
+        this.refreshShadow = true;
+        this.shadowRadius = new Point( width, height );
     };
 
 
@@ -293,6 +321,7 @@
             super.initialize( new Bitmap( 1, 1 ) );
             this._sprite = sprite;
             this.anchor.set( 0.5 );
+            this.initRadius();
             this.initMembers();
             this.create();
         }
@@ -304,21 +333,21 @@
         }
 
         initMembers() {
-            this.radius = this.getRadius();
             this.color = pluginParams.color;
             this.blurStrength = pluginParams.strength;
             this.z = 2;
             this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
         }
 
-        getRadius() {
+        initRadius() {
             const radius = stringToPoint( getMetaTag( this._sprite._character ) );
-            return ( radius ) ? radius : shadowRadius;
+            this._sprite._character.shadowRadius = ( radius ) ? radius : shadowRadius;
         }
 
         create() {
-            const rX = this.radius.x;
-            const rY = this.radius.y;
+            const radius = this._sprite._character.shadowRadius;
+            const rX = radius.x;
+            const rY = radius.y;
             this.bitmap.resize( rX * 2, rY * 2 );
             this.setFrame( 0, 0, rX * 2, rY * 2 );
             const ctx = this.bitmap.context;
