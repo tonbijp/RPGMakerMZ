@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.6.0.0
+// Version :0.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -95,6 +95,21 @@
  * @desc 横, 縦
  * 規定値: 18,9
  * @type string @default 18,9
+ *
+ * @================================================
+ * @command shadowY @text 影の上下位置調整
+ * @desc 指定キャラの影の上下位置調整
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ *
+ * @arg shiftY @text 上下位置調整
+ * @desc 
+ * @type number @default -2
+ * @min -9999
  */
 ( () => {
     "use strict";
@@ -102,6 +117,7 @@
     const TF_SHADOW = "TF_SHADOW";  // タグ名
     const COM_HAS_SHADOW = "hasShadow";
     const COM_SHADOW_RADIUS = "shadowRadius";
+    const COM_SHADOW_Y = "shadowY";
 
     const TYPE_STRING = "string";
 
@@ -172,6 +188,11 @@
         const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
         const radius = stringToPoint( args.radius );
         targetEvent.TF_shadowRadius( radius.x, radius.y );
+    } );
+
+    PluginManagerEx.registerCommand( document.currentScript, COM_SHADOW_Y, function( args ) {
+        const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+        targetEvent.TF_shadowY( args.shiftY );
     } );
 
     /*--- Spriteset_Map ---*/
@@ -259,6 +280,14 @@
         this.refreshShadow = true;
         this.shadowRadius = new Point( width, height );
     };
+    /**
+     * 影の高さ変更
+     * @param {Number} shiftY 影の縦位置
+     */
+    Game_CharacterBase.prototype.TF_shadowY = function( shiftY ) {
+        this.refreshShadow = true;
+        this.shadowY = shiftY;
+    };
 
 
     /*--- Game_Event ---*/
@@ -336,7 +365,8 @@
             this.color = pluginParams.color;
             this.blurStrength = pluginParams.strength;
             this.z = 2;
-            this.shiftY = pluginParams.shiftY + this._sprite._character.shiftY() - 8;
+            const shiftY = ( this._sprite._character.shadowY ) ? this._sprite._character.shadowY : pluginParams.shiftY;
+            this.shiftY = shiftY + this._sprite._character.shiftY() - 8;
         }
 
         initRadius() {
