@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.2.0
+// Version :0.6.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -55,6 +55,9 @@
  * ※ 利用方法はプラグインコマンド設定時の説明をご覧ください。
  * 
  * 【[移動ルートの設定]で使うスクリプト】
+ * ------------------------------
+ * TF_setCharPattern([キャラクター番号], [歩行パターン], [キャラの向き]);
+ * 　[キャラパターンを指定]コマンドの[移動ルートの設定]用。
  * ------------------------------
  * this.TF_goXY( [x], [y] );
  * 　[イベントを指定座標に移動]コマンドの[移動ルートの設定]用。
@@ -588,7 +591,7 @@
 	 * @returns {Game_CharacterBase}
 	 */
 	function getEventById( interpreter, id ) {
-		if( id < VEHICLE_OFFSET ) {
+		if( id <= VEHICLE_OFFSET ) {
 			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
 		} else if( id < -1 ) {
 			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
@@ -604,7 +607,6 @@
 
 	/*---- イベントID変換用文字列 ----*/
 	const EVENT_THIS = "this";
-	const EVENT_SELF = "self";
 	const EVENT_PLAYER = "player";
 	const EVENT_FOLLOWER0 = "follower0";
 	const EVENT_FOLLOWER1 = "follower1";
@@ -627,8 +629,7 @@
 
 		const lowValue = value.toLowerCase();
 		switch( lowValue ) {
-			case EVENT_THIS:
-			case EVENT_SELF: return 0;
+			case EVENT_THIS: return 0;
 			case EVENT_PLAYER: return -1;
 			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
 			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
@@ -640,7 +641,6 @@
 
 		// イベント名で指定できるようにする
 		const i = $gameMap._events.findIndex( event => {
-			// if( event === undefined || event === null ) return false;	// _events[0] が null なので無視
 			if( !event ) return false;	// _events[0] が空なら無視
 
 			const eventId = event._eventId;
@@ -784,8 +784,7 @@
 		if( !targetEvent ) throw Error( `${PLUGIN_NAME}: I can't find the '${args.eventId}'` );
 
 		if( args.isVehiclePos ) {
-			$gamePlayer.x = targetEvent.x;
-			$gamePlayer.y = targetEvent.y;
+			$gamePlayer.setPosition( targetEvent.x, targetEvent.y );
 		}
 		$gamePlayer._vehicleType = args.eventId;
 		$gamePlayer._vehicleGettingOn = true;
@@ -844,8 +843,6 @@
 	 */
 	const _Game_Interpreter_command205 = Game_Interpreter.prototype.command205;
 	Game_Interpreter.prototype.command205 = function( params ) {
-		// if( typeof params[ 0 ] === TYPE_STRING ) params[ 0 ] = stringToEventId( params[ 0 ] );
-
 		if( FOLLOWER_OFFSET < params[ 0 ] ) return _Game_Interpreter_command205.call( this, params );
 
 		$gameMap.refreshIfNeeded();
@@ -875,6 +872,13 @@
 	/**
 	 * スクリプトコマンドの実行。
 	 */
+	/**
+	 * setCharPattern() を呼び出す。
+	 */
+	Game_CharacterBase.prototype.TF_setCharPattern = function( characterNumber, patternNumber, d ) {
+		setCharPattern( this, undefined, characterNumber, patternNumber, d );
+	};
+
 	/**
 	 * goXY() を呼び出す。
 	 */
