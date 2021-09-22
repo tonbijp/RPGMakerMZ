@@ -18,6 +18,11 @@
 ```js
 $gameMap._events[n]
 ```
+[スクリプト]イベントコマンドに書く場合に [Game_Interpreter.character ()](Game_Interpreter.md#character-param--game_character)メソッドを利用したパス。
+```js
+this.character(n)
+this.character(0); // [スクリプト]イベントコマンドを書いたイベント自身
+```
 
 ### new Game_Event ()
 

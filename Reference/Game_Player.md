@@ -17,6 +17,10 @@ v1.1.0、v1.2.0  で変更あり。
 ```js
 $gamePlayer
 ```
+[スクリプト]イベントコマンドに書く場合に [Game_Interpreter.character ()](Game_Interpreter.md#character-param--game_character)メソッドを利用したパス。
+```js
+this.character(-1)
+```
 
 関連クラス: [Game_Vehicle](Game_Vehicle.md), [Game_Event](Game_Event.md),  [Game_Map](Game_Map.md)
 
