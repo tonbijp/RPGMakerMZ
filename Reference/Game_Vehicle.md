@@ -19,7 +19,13 @@ $gameMap._vehicles[n]
 
 関連クラス: [Game_Map](Game_Map.md),  [Game_Player](Game_Player.md)
 
-### new Game_Vehicle ()
+### new Game_Vehicle (type)
+#### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `type` | [String](String.md) | [\[乗り物\]の種類](#[乗り物]の種類) |
+
 
 ### プロパティ
 
