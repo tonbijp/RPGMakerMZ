@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.3.1
+// Version :0.6.4.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -503,6 +503,8 @@
 
 	const WAIT_ROUTE = "route";
 	const WAIT_MOVING = "moving";
+	const WAIT_ANIMATION = "animation";
+	const WAIT_BALLOON = "balloon";
 
 	/*---- パラメータパース関数 ----*/
 	const PARAM_TRUE = "true";
@@ -734,13 +736,18 @@
 		_Game_Interpreter_setupChild.apply( this, arguments );
 	};
 
-	// -2, -3, -4 で隊列メンバーの取得する機能を追加。
-	const _Game_Interpreter_character = Game_Interpreter.prototype.character;
-	Game_Interpreter.prototype.character = function( param ) {
-		if( FOLLOWER_OFFSET < param ) return _Game_Interpreter_character.apply( this, arguments );
-		if( $gameParty.inBattle() ) return null;
-		return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
-	};
+	// const _Game_Interpreter_character = Game_Interpreter.prototype.character;
+	// Game_Interpreter.prototype.character = function( eventId ) {
+	// 	if( FOLLOWER_OFFSET < eventId ) return _Game_Interpreter_character.apply( this, arguments );
+	// 	if( $gameParty.inBattle() ) return null;
+	// 	if( VEHICLE_OFFSET < eventId ) {
+	// 		// -2, -3, -4 で隊列メンバーのオブジェクトを取得。
+	// 		return $gamePlayer.followers().follower( FOLLOWER_OFFSET - eventId );			// 隊列メンバー(0〜2)
+	// 	} else {
+	// 		// -100, -101, -102 で乗り物のオブジェクトを取得。
+	// 		return $gameMap._vehicles[ VEHICLE_OFFSET - eventId ];
+	// 	}
+	// };
 
 	/**
 	 * プラグインコマンドの登録
@@ -846,35 +853,56 @@
 
 
 	/**
-	 * [移動ルートの設定]ができない隊列メンバーに対して、
-	 * TF_ROUTEを可能にする。
-	 * params
+	 * 隊列メンバーに対する[移動ルートの設定]を可能にする。
+	 * params[ 0 ] : Number	イベント番号
+	 * params[ 1 ] : 移動ルート { repeat: 動作を繰り返す, skippable: 移動できない場合は飛ばす, wait: 完了までウェイト, list: 移動コマンドのリスト }
 	 */
 	const _Game_Interpreter_command205 = Game_Interpreter.prototype.command205;
 	Game_Interpreter.prototype.command205 = function( params ) {
 		if( FOLLOWER_OFFSET < params[ 0 ] ) return _Game_Interpreter_command205.call( this, params );
 
 		$gameMap.refreshIfNeeded();
-		this._character = getEventById( this, params[ 0 ] );
-		if( !this._character ) return true;
-		this._character.forceMoveRoute( params[ 1 ] );
+		this._characterId = params[ 0 ];
+		const targetEvent = getEventById( this, params[ 0 ] );
+		if( !targetEvent ) return true;
+		targetEvent.forceMoveRoute( params[ 1 ] );
 		if( params[ 1 ].wait ) this.setWaitMode( WAIT_ROUTE );
 		return true;
 	};
 
 	/**
 	 * ウェイトモードに移動待ちを追加。
+	 * Game_Follower, Game_Vehicle に対応。
 	 */
 	const _Game_Interpreter_updateWaitMode = Game_Interpreter.prototype.updateWaitMode;
 	Game_Interpreter.prototype.updateWaitMode = function() {
-		if( this._waitMode === WAIT_MOVING ) {
-			const waiting = this._character.isMoving();
-			if( !waiting ) {
-				this._waitMode = "";
-			}
-			return waiting;
+		let character;
+		let waiting;
+		switch( this._waitMode ) {
+			case WAIT_MOVING:
+				character = getEventById( this, this._characterId );
+				waiting = character.isMoving();
+				break;
+			case WAIT_ROUTE:
+				character = getEventById( this, this._characterId );
+				waiting = character && character.isMoveRouteForcing();
+				break;
+			case WAIT_ANIMATION:
+				character = getEventById( this, this._characterId );
+				waiting = character && character.isAnimationPlaying();
+				break;
+			case WAIT_BALLOON:
+				character = getEventById( this, this._characterId );
+				waiting = character && character.isBalloonPlaying();
+				break;
 		}
-		return _Game_Interpreter_updateWaitMode.call( this );
+
+		if( waiting === undefined ) return _Game_Interpreter_updateWaitMode.call( this );
+
+		if( waiting === false ) {
+			this._waitMode = "";
+		}
+		return waiting;
 	};
 
 
@@ -939,7 +967,7 @@
 	}
 
 	/**
-	 * TF_LOCATE_XY  の実行。
+	 * キャラ位置とパターンの設定。
 	 *
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバー・乗り物のいずれか
 	 * @param {String} x x座標(タイル数)
@@ -962,7 +990,7 @@
 	}
 
 	/**
-	 * TF_LOCATE_EV  の実行。
+	 * キャラ位置を別キャラ起点で設定しパターンも設定。
 	 *
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
 	 * @param {Game_Character} destinationEvent 目標イベント
@@ -997,7 +1025,7 @@
 
 		const interpreter = getInterpreterFromCharacter( targetEvent );
 		interpreter.setWaitMode( WAIT_MOVING );
-		interpreter._character = targetEvent;
+		interpreter._characterId = targetEvent._eventId;
 	}
 
 	/**
@@ -1505,9 +1533,10 @@
 	// これにより歩行パターンを設定後、規定(1)のオリジナルパターンに戻ることを防ぐ。
 
 	/*---- Game_Player ----*/
-	const _Game_Player_initMembers = Game_Player.prototype.initMembers;
-	Game_Player.prototype.initMembers = function() {
-		_Game_Player_initMembers.call( this );
+	const _Game_Player_initialize = Game_Player.prototype.initialize;
+	Game_Player.prototype.initialize = function() {
+		_Game_Player_initialize.call( this );
+		this._eventId = -1;
 		this._originalPattern = 1;
 	};
 	Game_Player.prototype.isOriginalPattern = function() {
@@ -1515,21 +1544,20 @@
 	};
 
 	/*---- Game_Follower ----*/
-	const _Game_Follower_initMembers = Game_Follower.prototype.initMembers;
-	Game_Follower.prototype.initMembers = function() {
-		_Game_Follower_initMembers.call( this );
+	const _Game_Follower_initialize = Game_Follower.prototype.initialize;
+	Game_Follower.prototype.initialize = function( memberIndex ) {
+		_Game_Follower_initialize.apply( this, arguments );
+
+		this._eventId = FOLLOWER_OFFSET - this._memberIndex + 1;
 		this._originalPattern = 1;
 		this._isFollow = true;
 	};
-
 	Game_Follower.prototype.isOriginalPattern = function() {
 		return this.pattern() === this._originalPattern;
 	};
 
-
 	/**
-	 * 隊列メンバーはプレイヤーのデータをコピーしているが、
-	 * _isFollow が false の時はコピーしない。
+	 * 追跡状態の時は隊列メンバーはプレイヤーのデータをコピー。
 	 */
 	const _Game_Follower_update = Game_Follower.prototype.update;
 	Game_Follower.prototype.update = function() {
@@ -1541,8 +1569,8 @@
 	};
 
 	/**
-	 * _isFollow が false か、TF_isAnime フラグが true の時は
-	 * プレイヤーを追わない。
+	 * プレイヤーの追跡状態か。
+	 * TF_isAnime フラグが true の時はプレイヤーを追わない。
 	 * @returns Boolean 前のキャラを追うか
 	 */
 	Game_Follower.prototype.isFollow = function() {
@@ -1550,10 +1578,21 @@
 	};
 
 
+	/*---- Game_Vehicle ----*/
+	const _Game_Vehicle_initialize = Game_Vehicle.prototype.initialize;
+	Game_Vehicle.prototype.initialize = function( type ) {
+		_Game_Vehicle_initialize.apply( this, arguments );
+		this._eventId = VEHICLE_OFFSET - type;
+		this._originalPattern = 1;
+	};
+	Game_Vehicle.prototype.isOriginalPattern = function() {
+		return this.pattern() === this._originalPattern;
+	};
+
+
 	/*---- Game_Followers ----*/
 	/**
-	 * _isFollow が false か、TF_isAnime フラグが true の時は
-	 * プレイヤーに同期してジャンプしない。
+	 * 追跡状態の時はプレイヤーに同期してジャンプ。
 	 */
 	const _Game_Followers_jumpAll = Game_Followers.prototype.jumpAll;
 	Game_Followers.prototype.jumpAll = function() {
@@ -1569,8 +1608,7 @@
 	};
 
 	/**
-	 * _isFollow が false か、TF_isAnime フラグが true の時は
-	 * プレイヤーを追わない。
+	 * 追跡状態の時だけプレイヤーを追う。
 	 */
 	const _Game_Followers_updateMove = Game_Followers.prototype.updateMove;
 	Game_Followers.prototype.updateMove = function() {
@@ -1620,7 +1658,7 @@
 	}
 	/**
 	 * [移動速度]をウェイトのフレーム数に変換して返す。
-	 * @param {*} speed 
+	 * @param {Number} speed 
 	 */
 	function speedToFrames( speed ) {
 		// speed 1: 1 / 8倍速, 2: 1 / 4倍速, 3: 1 / 2倍速, 4: 通常速, 5: 2倍速, 6: 4倍速
