@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.3.0
+// Version :0.6.3.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -600,6 +600,15 @@
 		}
 	}
 
+	/**
+	 * 指定された文字列に対応するイベントを返す
+	 * @param {Game_Interpreter} interpreter インタプリタ
+	 * @param {String} eventId イベントIDの番号か識別子
+	 * @returns {Game_CharacterBase}
+	 */
+	function stringToEvent( interpreter, eventId ) {
+		return getEventById( interpreter, stringToEventId( eventId ) );
+	}
 
 	/*---- イベントIDの配置オフセット ----*/
 	const FOLLOWER_OFFSET = -2;
@@ -744,43 +753,43 @@
 
 	// [ キャラパターンを指定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_CHAR_PATTERN, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		setCharPattern( targetEvent, args.fileName, args.characterNumber, args.patternNumber, args.d );
 	} );
 
 	// [ イベントを指定座標に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_XY, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		const rect = stringToPoint( args.pointStr );
 		goXY( targetEvent, rect.x, rect.y, args.isWait );
 	} );
 
 	// [ イベントを別のイベント位置に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_EV, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
+		const destinationEvent = stringToEvent( this, args.destinationId );
 		const rect = stringToPoint( args.pointStr );
 		goEv( targetEvent, destinationEvent, rect.x, rect.y, args.isWait );
 	} );
 
 	// [ イベントを指定座標に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		const rect = stringToPoint( args.pointStr );
 		locateXY( targetEvent, rect.x, rect.y, args.patternNumber, args.d );
 	} );
 
 	// [ イベントを別のイベント位置に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const destinationEvent = getEventById( this, stringToEventId( args.destinationId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
+		const destinationEvent = stringToEvent( this, args.destinationId );
 		const rect = stringToPoint( args.pointStr );
 		locateEv( targetEvent, destinationEvent, rect.x, rect.y, args.patternNumber, args.d );
 	} );
 
 	// [ 乗り物に乗る ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GET_ON, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		if( !targetEvent ) throw Error( `${PLUGIN_NAME}: I can't find the '${args.eventId}'` );
 
 		if( args.isVehiclePos ) {
@@ -817,21 +826,21 @@
 				followMode( follower, args.isFollow );
 			} );
 		} else {
-			const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+			const targetEvent = stringToEvent( this, args.eventId );
 			followMode( targetEvent, args.isFollow );
 		}
 	} );
 
 	// [ アニメの指定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_ANIME, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		const rect = stringToPoint( args.pointStr );
 		anime( targetEvent, rect.x, rect.y, args.wait, args.characterNumber, args.patternNumber, args.d );
 	} );
 
 	// [ アニメの終了 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_END_ANIME, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const targetEvent = stringToEvent( this, args.eventId );
 		animeMode( targetEvent, false );
 	} );
 
@@ -890,7 +899,7 @@
 	 * goEv() を呼び出す。
 	 */
 	Game_CharacterBase.prototype.TF_goEv = function( destinationId, dx, dy, isWait ) {
-		const destinationEvent = getEventById( this, stringToEventId( destinationId ) );
+		const destinationEvent = stringToEvent( this, destinationId );
 		goEv( this, destinationEvent, dx, dy, isWait );
 	};
 
