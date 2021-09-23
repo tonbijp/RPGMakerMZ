@@ -17,13 +17,20 @@ $gamePlayer.followers().follower(n)
 
 関連クラス: [Game_Followers](Game_Followers.md)、[Game_Actor](Game_Actor.md)、[Game_Player](Game_Player.md)
 
-### new Game_Follower ()
+### new Game_Follower (memberIndex)
+
+#### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `memberIndex` | [Number](Number.md) | 隊列メンバー番号(1〜3) |
+
 
 ### プロパティ
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_memberIndex` | [Number](Number.md) | 隊列メンバー番号 |
+| `_memberIndex` | [Number](Number.md) | 隊列メンバー番号(1〜3) |
 
 
 ### スーパークラスから継承されたメソッド
@@ -133,6 +140,7 @@ $gamePlayer.followers().follower(n)
 * [deltaYFrom (y)](Game_Character.md#deltayfrom-y--number)
 * [findDirectionTo (goalX, goalY)](Game_Character.md#finddirectionto-goalx-goaly--number)
 * [forceMoveRoute (moveRoute)](Game_Character.md#forcemoveroute-moveroute)
+* [initMembers ()](Game_Character.md#initmembers-)
 * [isMoveRouteForcing ()](Game_Character.md#ismoverouteforcing---boolean)
 * [memorizeMoveRoute ()](Game_Character.md#memorizemoveroute-)
 * [moveAwayFromCharacter (character)](Game_Character.md#moveawayfromcharacter-character)
