@@ -10,7 +10,14 @@
 
 画像指定については [RPG.Actor](RPG.Actor.md) と同じような作り。
 
-関連クラス:  [Game_Map](Game_Map.md),  [Game_Player](Game_Player.md) 
+主なパス
+```js
+$dataSystem.boat;
+$dataSystem.ship;
+$dataSystem.airship;
+```
+
+関連クラス:  [Game_Map](Game_Map.md),  [Game_Player](Game_Player.md)
 
 
 ### プロパティ
