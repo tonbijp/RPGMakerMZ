@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.4.0
+// Version :0.6.5.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -1582,7 +1582,7 @@
 	const _Game_Vehicle_initialize = Game_Vehicle.prototype.initialize;
 	Game_Vehicle.prototype.initialize = function( type ) {
 		_Game_Vehicle_initialize.apply( this, arguments );
-		this._eventId = VEHICLE_OFFSET - type;
+		this._eventId = stringToEventId( type );
 		this._originalPattern = 1;
 	};
 	Game_Vehicle.prototype.isOriginalPattern = function() {
