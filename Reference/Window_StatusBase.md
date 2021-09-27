@@ -9,9 +9,18 @@
 [Window_Base](Window_Base.md) にあった描画機能の多くが、こちらに移動している。<br />
 その際、`draw〇〇`系の画像を直接描画するメソッドがいくつか廃止され、`place〇〇`系の `Sprite`クラスにくるんで表示するタイプに置き換えられている。<br />
 描画に必要な機能を `Sprite` を継承したクラスに持たせているため、機能が増えていても扱いやすくなっている。<br />
-またスプライトは [Window](Window.md)クラスから継承されているクライアントエリア( `_clientArea` )に追加され、`Window_StatusBase`クラスが持つ追加スプライト( `_additionalSprites` )で管理されている。
+またスプライトは [Window](Window.md)クラスから継承されているクライアントエリア( `_clientArea` )に追加され、`Window_StatusBase`クラスが持つ追加スプライト( `_additionalSprites` )で管理されている。<br />
+`_additionalSprites` の `key` は、それぞれのメソッドで以下のものがつけられている。
 
-関連クラス: [Sprite_Gauge](Sprite_Gauge.md), [Sprite_Name](Sprite_Name.md),  [Sprite_StateIcon](Sprite_StateIcon.md)
+
+| スプライト | メソッド | `key` | 説明 |
+| --- | --- | --- | --- |
+| [Sprite_Gauge](Sprite_Gauge.md) | [placeGauge()](#placegauge-actor-type-x-y) | "actorID-gauge-TYPE" | IDは数値、TYPEは"hp","mp","tp","time"のいずれか |
+| [Sprite_Name](Sprite_Name.md) | [placeActorName()](#placeactorname-actor-x-y) | "actorID-name" | IDは数値 |
+| [Sprite_StateIcon](Sprite_StateIcon.md) | [placeStateIcon()](#placestateicon-actor-x-y) | "actorID-stateIcon" | IDは数値 |
+
+例えば `Sprite_Gauge` なら "actor1-gauge-hp" といった `key` が使われ、`_additionalSprites["actor1-gauge-hp"]` で参照できる。
+
 
 ### new Window_StatusBase (rect)
 #### 引数
@@ -284,7 +293,7 @@
 
 
 #### createInnerSprite (key, spriteClass)
-追加スプライト(_additionalSprites)を生成。
+追加スプライト(`_additionalSprites`)を生成。
 
 ##### 引数
 
@@ -401,7 +410,7 @@
 
 
 #### hideAdditionalSprites ()
-追加スプライト(_additionalSprites)を隠す。
+追加スプライト(`_additionalSprites`)を隠す。
 
 
 #### initialize (rect)
