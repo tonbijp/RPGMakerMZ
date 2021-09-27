@@ -8,7 +8,8 @@
 
 [Window_Base](Window_Base.md) にあった描画機能の多くが、こちらに移動している。<br />
 その際、`draw〇〇`系の画像を直接描画するメソッドがいくつか廃止され、`place〇〇`系の `Sprite`クラスにくるんで表示するタイプに置き換えられている。<br />
-描画に必要な機能を `Sprite` を継承したクラスに持たせているため、機能が増えていても扱いやすくなっている。
+描画に必要な機能を `Sprite` を継承したクラスに持たせているため、機能が増えていても扱いやすくなっている。<br />
+またスプライトは [Window](Window.md)クラスから継承されているクライアントエリア( `_clientArea` )に追加され、`Window_StatusBase`クラスが持つ追加スプライト( `_additionalSprites` )で管理されている。
 
 関連クラス: [Sprite_Gauge](Sprite_Gauge.md), [Sprite_Name](Sprite_Name.md),  [Sprite_StateIcon](Sprite_StateIcon.md)
 
@@ -33,7 +34,7 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_name` | [String](String.md) | 名前文字列 |
+| `_additionalSprites` | [Object](Object.md) | 追加スプライト |
 
 
 ### スーパークラスから継承されたメソッド
@@ -72,9 +73,13 @@
 #### [Window](Window.md)
 
 * [addChildToBack (child)](Window.md#addchildtoback-child--object)
+* [addInnerChild (child)](Window.md#addinnerchild-child--object)
+* [drawShape (graphics)](Window.md#drawshape-graphics)
 * [isClosed ()](Window.md#isclosed---boolean)
 * [isOpen ()](Window.md#isopen---boolean)
 * [move (x, y, width opt, height opt)](Window.md#move-x-y-width-opt-height-opt)
+* [moveCursorBy (x, y)](Window.md#movecursorby-x-y)
+* [moveInnerChildrenBy (x, y)](Window.md#moveinnerchildrenby-x-y)
 * [setCursorRect (x, y, width, height)](Window.md#setcursorrect-x-y-width-height)
 * [setTone (r, g, b)](Window.md#settone-r-g-b)
 * [updateTransform ()](Window.md#updatetransform-)
@@ -279,7 +284,7 @@
 
 
 #### createInnerSprite (key, spriteClass)
-内部スプライトを生成。
+追加スプライト(_additionalSprites)を生成。
 
 ##### 引数
 
@@ -396,7 +401,7 @@
 
 
 #### hideAdditionalSprites ()
-追加スプライトを隠す。
+追加スプライト(_additionalSprites)を隠す。
 
 
 #### initialize (rect)
