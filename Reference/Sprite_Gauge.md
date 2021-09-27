@@ -8,7 +8,7 @@
 
 v1.1.0、v1.2.0、v1.3.3 で変更あり。
 
-関連クラス: [Spriteset_Battle](Spriteset_Battle.md), [Window_StatusBase](Window_StatusBase.md)
+関連クラス: [Window_StatusBase](Window_StatusBase.md)
 
 ### new Sprite_Gauge ()
 
