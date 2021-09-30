@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.5.0
+// Version :0.6.6.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -595,7 +595,7 @@
 	function getEventById( interpreter, id ) {
 		if( id <= VEHICLE_OFFSET ) {
 			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
-		} else if( id < -1 ) {
+		} else if( id <= FOLLOWER_OFFSET ) {
 			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
 		} else {
 			return interpreter.character( id );			// プレイヤーキャラおよびイベント
@@ -650,15 +650,9 @@
 			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
 		}
 
-		// イベント名で指定できるようにする
-		const i = $gameMap._events.findIndex( event => {
-			if( !event ) return false;	// _events[0] が空なら無視
-
-			const eventId = event._eventId;
-			return $dataMap.events[ eventId ].name === value;
-		} );
-		if( i === -1 ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
-		return i;
+		const e = $dataMap.events.find( e => e && e.name === value );
+		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
+		return e.id;
 	}
 
 

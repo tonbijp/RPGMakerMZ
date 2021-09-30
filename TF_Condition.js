@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.5.0.1
+// Version :1.5.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -351,7 +351,7 @@
  * (なお、これは区切り線なので選択しても何も起きません)
  *
  * @================================================
- * @command checkLocation @text 座標位置
+ * @command checkLocation @text 判定:座標位置
  * @desc
  * イベントの座標位置と向きをチェックして、
  * 全て合致していたか結果を一時スイッチに設定。
@@ -394,7 +394,7 @@
  * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
- * @command checkFrontEvent @text 前方イベント
+ * @command checkFrontEvent @text 判定:前方イベント
  * @desc
  * プレイヤーの前方に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -420,7 +420,7 @@
  * @option 一時スイッチとの比較結果を代入 == @value ==
  *
  * @================================================
- * @command checkHereEvent @text その場イベント
+ * @command checkHereEvent @text 判定:その場イベント
  * @desc
  * プレイヤーと同じ場所に指定イベントがあるか、
  * 判定した結果を一時スイッチに設定。
@@ -456,7 +456,7 @@
  * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
- * @command checkJs @text JavaScript
+ * @command checkJs @text 判定:JavaScript
  * @desc
  * このイベントを this とした JavaScriptを実行し、
  * return で返った結果を一時スイッチに設定。
@@ -665,14 +665,9 @@
 			case EVENT_FOLLOWER2: return -4;
 		}
 
-		// イベント名で指定できるようにする
-		const i = $gameMap._events.findIndex( e => {
-			if( e === null || e === undefined ) return false;	// _events[0] が null なので無視
-
-			return $dataMap.events[ e._eventId ].name === value;
-		} );
-		if( i === -1 ) return;//イベントが存在しない
-		return i;
+		const e = $dataMap.events.find( e => e && e.name === value );
+		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
+		return e.id;
 	}
 
 	/**
