@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.7.1.0
+// Version :0.7.1.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -76,7 +76,9 @@
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
  * 規定値では UI, talk, thought, shout がある
- * @type string @default thought
+ * @type combo @default shout
+ * @option UI @option talk @option thought @option shout
+ *
  *
  * @arg isFaceLeft @text 顔位置が左か
  * @type boolean @default true
