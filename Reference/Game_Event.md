@@ -16,13 +16,15 @@
 
 主なパス
 ```js
-$gameMap._events[n]
+$gameMap.event( eventId );
 ```
 [スクリプト]イベントコマンドに書く場合に [Game_Interpreter.character ()](Game_Interpreter.md#character-param--game_character)メソッドを利用したパス。
 ```js
 this.character(n)
 this.character(0); // [スクリプト]イベントコマンドを書いたイベント自身
 ```
+
+関連クラス:  [Game_Map](Game_Map.md) 
 
 ### new Game_Event ()
 
