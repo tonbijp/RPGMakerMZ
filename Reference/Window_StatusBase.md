@@ -36,6 +36,7 @@
 * [Window_NameEdit](Window_NameEdit.md)
 * [Window_ShopStatus](Window_ShopStatus.md)
 * [Window_SkillStatus](Window_SkillStatus.md)
+* [Window_Status](Window_Status.md)
 * [Window_StatusParams](Window_StatusParams.md)
 * [Window_StatusEquip](Window_StatusEquip.md)
 
