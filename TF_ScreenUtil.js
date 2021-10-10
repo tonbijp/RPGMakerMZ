@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.5.0.0
+// Version :0.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -38,6 +38,39 @@
  * 
  * 利用規約 : MITライセンス
  * @================================================
+ * @command locateXY @text カメラを指定座標に設定
+ * @desc 瞬時に位置を変え、その位置に固定される。
+ * 指定するのは画面左上の座標。
+ *
+ * @arg pointStr @text 移動先位置(タイル数)
+ * @desc 移動先座標(小数点以下可)
+ * @type string @default 0,0
+ *
+ * @================================================
+ * @command locateEv @text カメラをイベント位置に設定
+ * @desc 瞬時に位置を変え、その位置に固定される。
+ * 指定するのは画面左上の座標。
+ * 
+ * @arg destinationId @text 目標イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
+ *
+ * @arg pointStr @text 移動先位置(タイル数)
+ * @desc イベントからの相対座標(小数点以下可)
+ * @type string @default 0,0
+ * @================================================
+ * @command fixMap @text カメラを固定
+ * @desc カメラをその場に固定する。
+ *
+ * @arg isMapFixed @text カメラ固定状態
+ * @desc
+ * @type boolean @default false
+ * @on 固定 @off 追従(規定値)
+ *
+ * @================================================
 */
 ( () => {
 	"use strict";
@@ -51,10 +84,62 @@
 	const DEFAULT_SCREEN_HEIGHT = 624;
 	const TF_zoomScale = 2;	// 自由にできそうに見えて二倍固定
 
+
 	/**
 	 * パラメータを受け取る
 	 */
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
+
+
+	/*---- プラグインコマンド ----*/
+	const COM_LOCATE_XY = "locateXY";
+	const COM_LOCATE_EV = "locateEv";
+	const COM_FIX_MAP = "fixMap";
+
+	/**
+	 * プラグインコマンドの登録
+	 */
+	// [ カメラを指定座標に配置 ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
+		const rect = stringToPoint( args.pointStr );
+		locateCameraXY( rect.x, rect.y );
+	} );
+
+	// [ カメラをイベント位置に配置 ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
+		const destinationEvent = stringToEvent( this, args.destinationId );
+		const rect = stringToPoint( args.pointStr );
+		locateCameraEv( destinationEvent, rect.x, rect.y );
+	} );
+
+	// [ カメラを固定 ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_FIX_MAP, function( args ) {
+		$gameMap.isMapFixed = args.isMapFixed;
+	} );
+
+	/**
+	 * カメラ位置の設定。
+	 *
+	 * @param {Number} x x座標(タイル数)
+	 * @param {Number} y y座標(タイル数)
+	 */
+	function locateCameraXY( x, y ) {
+		$gameMap.isMapFixed = true;
+		$gameMap.setDisplayPos( x, y );
+	}
+
+	/**
+	 * カメラ位置をキャラ起点で設定。
+	 *
+	 * @param {Game_Character} destinationEvent 目標イベント
+	 * @param {Number} dx 目標イベントからの相対x座標(タイル数)
+	 * @param {Number} dy 目標イベントからの相対y座標(タイル数)
+	 */
+	function locateCameraEv( destinationEvent, dx, dy ) {
+		const x = $gameMap.roundX( destinationEvent.x + dx );
+		const y = $gameMap.roundY( destinationEvent.y + dy );
+		locateCameraXY( x, y );
+	}
 
 
 	// ソフトフォーカスかけない設定
@@ -213,24 +298,6 @@
 		this.setHome( x, y );
 	};
 
-	/*--- Sprite_Enemy ---*/
-	// 敵位置をスクリーンサイズに合わせて調整
-	// const _Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
-	// Sprite_Enemy.prototype.setBattler = function( battler ) {
-	// 	_Sprite_Enemy_setBattler.apply( this, arguments );
-
-	// 	if( !this._enemy._alteredScreenY ) {
-	// 		this._homeY += Math.floor( ( Graphics.height - DEFAULT_SCREEN_HEIGHT ) / 2 );
-	// 		this._enemy._screenY = this._homeY;
-	// 		this._enemy._alteredScreenY = true;
-	// 	}
-	// 	if( $gameSystem.isSideView() || this._enemy._alteredScreenX ) return;
-
-	// 	this._homeX += ( Graphics.width - DEFAULT_SCREEN_WIDTH ) / 2;
-	// 	this._enemy._screenX = this._homeX;
-	// 	this._enemy._alteredScreenX = true;
-	// };
-
 	/*--- Spriteset_Base ---*/
 	const _Spriteset_Base_updatePosition = Spriteset_Base.prototype.updatePosition;
 	Spriteset_Base.prototype.updatePosition = function() {
@@ -270,15 +337,132 @@
 		}
 	};
 
+
+	/*---- パラメータパース関数 ----*/
+	const PARAM_TRUE = "true";
+	const PARAM_ON = "on";
+	const TYPE_BOOLEAN = "boolean";
+	const TYPE_NUMBER = "number";
+	const TYPE_STRING = "string";
+	/**
+	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
+	 * @param {String} value 変換元の文字列( \V[n]形式を含む )
+	 * @return {String} 変換後の文字列
+	 */
+	function treatValue( value ) {
+		if( value === undefined || value === "" ) return "0";
+		const result = value.match( /\x1bV\[(.+)\]/i );
+		if( result === null ) return value;
+		const id = parseInt( result[ 1 ], 10 );
+		if( isNaN( id ) ) {
+			return $gameVariables.valueByName( result[ 1 ] );
+		} else {
+			return $gameVariables.value( id );
+		}
+	}
+
+	/*--- Game_Variables ---*/
+	/**
+	 * 変数を文字列で指定し、値を返す。
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 */
+	Game_Variables.prototype.valueByName = function( name ) {
+		return this.value( stringToVariableId( name ) );
+	};
+	/**
+	 * 指定された変数のIDを返す。
+	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 */
+	function stringToVariableId( name ) {
+		name = treatValue( name );
+		let i = $dataSystem.variables.findIndex( i => i === name );
+		if( 0 <= i ) return i;
+		i = parseInt( name, 10 );
+		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the variable '${name}'` );
+		return i;
+	}
+
+
 	/*--- ユーティリティ関数 ---*/
 	/**
 	 * 文字列をPointオブジェクトに変換して返す。
-	 * @param {String} positionString "x, y" 形式の文字列
+	 * @param {String} pointStr "x, y" 形式の文字列
 	 * @returns {Point} 
 	 */
-	function stringToPoint( positionString ) {
-		const args = positionString.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${positionString}"`;
+	function stringToPoint( pointStr ) {
+		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter '${pointStr}'`;
 		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
+	}
+
+
+	/*--- イベントID・オブジェクト取得関数 ---*/
+	/*---- イベントIDの配置オフセット ----*/
+	const FOLLOWER_OFFSET = -2;
+	const VEHICLE_OFFSET = -100;
+
+	/*---- イベントID変換用文字列 ----*/
+	const EVENT_THIS = "this";
+	const EVENT_PLAYER = "player";
+	const EVENT_FOLLOWER0 = "follower0";
+	const EVENT_FOLLOWER1 = "follower1";
+	const EVENT_FOLLOWER2 = "follower2";
+	const EVENT_FOLLOWER_ALL = "all";
+	const VEHICLE_BOAT = "boat";
+	const VEHICLE_SHIP = "ship";
+	const VEHICLE_AIRSHIP = "airship";
+	const VEHICLE_WALK = "walk";
+
+	/**
+	 * character を拡張して隊列メンバーも指定できるようにしたもの。
+	 * @param {Game_Interpreter} interpreter インタプリタ
+	 * @param {Number} id 拡張イベントID
+	 * @returns {Game_CharacterBase}
+	 */
+	function getEventById( interpreter, id ) {
+		if( id <= VEHICLE_OFFSET ) {
+			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
+		} else if( id <= FOLLOWER_OFFSET ) {
+			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
+		} else {
+			return interpreter.character( id );			// プレイヤーキャラおよびイベント
+		}
+	}
+
+	/**
+	 * 文字列をイベントIDへ変換
+	 * @param {String} value イベントIDの番号か識別子
+	 * @returns {Number} 拡張イベントID
+	 */
+	function stringToEventId( value ) {
+		value = treatValue( value );
+		const result = parseInt( value, 10 );
+		if( !isNaN( result ) ) return result;
+
+		const lowValue = value.toLowerCase();
+		switch( lowValue ) {
+			case EVENT_THIS: return 0;
+			case EVENT_PLAYER: return -1;
+			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
+			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
+			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
+			case VEHICLE_BOAT: return VEHICLE_OFFSET;
+			case VEHICLE_SHIP: return VEHICLE_OFFSET - 1;
+			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
+		}
+
+		const e = $dataMap.events.find( e => e && e.name === value );
+		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
+		return e.id;
+	}
+
+	/**
+	 * 指定された文字列に対応するイベントを返す
+	 * @param {Game_Interpreter} interpreter インタプリタ
+	 * @param {String} eventId イベントIDの番号か識別子
+	 * @returns {Game_CharacterBase}
+	 */
+	function stringToEvent( interpreter, eventId ) {
+		return getEventById( interpreter, stringToEventId( eventId ) );
 	}
 } )();
