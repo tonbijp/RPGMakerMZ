@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.6.1
+// Version :0.6.6.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -732,18 +732,6 @@
 		_Game_Interpreter_setupChild.apply( this, arguments );
 	};
 
-	// const _Game_Interpreter_character = Game_Interpreter.prototype.character;
-	// Game_Interpreter.prototype.character = function( eventId ) {
-	// 	if( FOLLOWER_OFFSET < eventId ) return _Game_Interpreter_character.apply( this, arguments );
-	// 	if( $gameParty.inBattle() ) return null;
-	// 	if( VEHICLE_OFFSET < eventId ) {
-	// 		// -2, -3, -4 で隊列メンバーのオブジェクトを取得。
-	// 		return $gamePlayer.followers().follower( FOLLOWER_OFFSET - eventId );			// 隊列メンバー(0〜2)
-	// 	} else {
-	// 		// -100, -101, -102 で乗り物のオブジェクトを取得。
-	// 		return $gameMap._vehicles[ VEHICLE_OFFSET - eventId ];
-	// 	}
-	// };
 
 	/**
 	 * プラグインコマンドの登録
