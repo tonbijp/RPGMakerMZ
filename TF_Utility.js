@@ -1,6 +1,6 @@
 //========================================
 // TF_Utility.js
-// Version :0.1.2.0
+// Version :0.1.2.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -64,6 +64,7 @@
 
 ( () => {
 	"use strict";
+	const PLUGIN_NAME = "TF_Utility";
 
 	// プラグインコマンド
 	const COM_BEFORE_MOVE = "beforeMove";
@@ -111,7 +112,7 @@
 		if( mapObj !== 0 ) return mapObj.id;
 
 		const result = parseInt( value, 10 );
-		if( isNaN( result ) ) throw Error( `指定したマップ[${value}]がありません。` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't found the map '${value}'` );
 		return result;
 	}
 
