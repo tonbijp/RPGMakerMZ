@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.6.2
+// Version :0.6.6.3
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -149,7 +149,7 @@
  *　　0〜255 の間の数字。
  * 　[合成方法の変更…] : blendmode, m, 合
  * 　　0: 通常, 1: 加算, 2: 乗算, 3: スクリーン
- * 　COM_GO_XY( COM_GO_EV ) : go, @, 移
+ * 　COM_GO_XY( COM_GO_EV ) : go, ＠, 移
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
  *
@@ -1067,7 +1067,7 @@
 	const MOVE_CHARA = [ "change", "c", "変" ]; // キャラパターンの変更 [画像の変更…]の代用
 	const MOVE_OPACITY = [ "opacity", "o", "濁" ]; // [不透明度の変更…]
 	const MOVE_BLEND_MODE = [ "blendmode", "m", "合" ]; // [合成方法の変更…]
-	const MOVE_GO = [ "go", "@", "移" ]; // COM_GO_XY(COM_GO_EV)
+	const MOVE_GO = [ "go", "@", "＠", "移" ]; // COM_GO_XY(COM_GO_EV)
 	// ROUTE_PLAY_SE
 	// ROUTE_SCRIPT
 
