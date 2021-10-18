@@ -36,25 +36,11 @@
 		// $gameSwitches.setValueByName( 'unlokImelda', true );
 		// $gameSwitches.setValueByName( 'testBarrier', true );
 
-		/* 〜 TCT 〜
-		 05 episode2 : エピソード2をプレイ中
-		cut
-			00 : episode1 開始
-			10 : 宿屋の悪漢退治
-			20 : ニナ加入
-			30 : 夜
-			40 : 朝
-			50 :「プリン」捜索。
-			60 :
-		
-		06 openSharaDoor : サーラの部屋のドアをアンロック
-		07 checkBarrier : 結界を普通に歩いて突破しようとした
-		08 talkImelda : イメルダと話した
-		09 talkAnna : アンナと話した
-		10 unlokImelda : イメルダの首輪をアンロック
-		11 testBarrier : 結界にアンロックを試した
-		*/
 	};
-
+	/* 〜 シナリオ カット番号 〜
+	cut
+		00 : episode1 開始
+		10 : 宿屋の悪漢退治
+	*/
 
 } )();
