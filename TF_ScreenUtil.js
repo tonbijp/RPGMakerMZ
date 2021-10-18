@@ -346,6 +346,7 @@
 	 * @return {String} 変換後の文字列
 	 */
 	function treatValue( value ) {
+		if( typeof value === TYPE_NUMBER ) return value;
 		if( value === undefined || value === "" ) return "0";
 		const result = value.match( /\x1bV\[(.+)\]/i );
 		if( result === null ) return value;

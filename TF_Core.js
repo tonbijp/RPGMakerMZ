@@ -1,6 +1,6 @@
 //========================================
 // TF_Core.js
-// Version :0.1.0.0
+// Version :0.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -70,6 +70,7 @@
      * @return {String} 変換後の文字列
      */
     function treatValue( value ) {
+        if( typeof value === TYPE_NUMBER ) return value;
         if( value === undefined || value === "" ) return "0";
         const result = value.match( /\x1bV\[(.+)\]/i );
         if( result === null ) return value;
