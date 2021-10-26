@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.5.1.0
+// Version :1.6.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -148,7 +148,7 @@
  *
  * @arg operand @text オペランド(値)
  * @desc 変数に代入する文字(\V[n]を使用できる)
- * @type string @default \V[1]
+ * @type  multiline_string @default \V[1]
  * 
  * @================================================
  * @command selfSwitch @text セルフスイッチの操作
@@ -268,7 +268,7 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
- * @option 以外 != @value !=
+ * @option 以外 ≠ @value ≠
  * @option 以上 ≦ @value ≦
  * @option より上 < @value <
  * @option 以下 ≧ @value ≧
@@ -301,11 +301,11 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
- * @option 以外 != @value !=
+ * @option 以外 ≠ @value ≠
  *
  * @arg rightSide @text 右辺の文字
  * @desc 文字(\V[n]を使える)
- * @type string @default 
+ * @type multiline_string @default
  *
  * @arg operate @text 論理演算
  * @desc 一時変数への代入前の処理
@@ -536,7 +536,7 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
- * @option 以外 != @value !=
+ * @option 以外 ≠ @value ≠
  * @option 以上 ≦ @value ≦
  * @option より上 < @value <
  * @option 以下 ≧ @value ≧
@@ -558,11 +558,11 @@
  * @desc (規定値: ==)
  * @type select @default ==
  * @option 同じ == @value ==
- * @option 以外 != @value !=
+ * @option 以外 ≠ @value ≠
  *
  * @arg rightSide @text 右辺の文字
- * @desc 文字
- * @type string @default
+ * @desc 文字(\V[n]を使える)
+ * @type multiline_string @default
  *
  * @================================================
  * @command conditionRange @text 出現条件:数値範囲
@@ -603,6 +603,7 @@
 	const PARAM_TRUE = "true";
 	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
+	const TYPE_STRING = "string";
 
 	/**
 	 * ショートサーキットなら結果を一時スイッチに代入。
@@ -860,7 +861,7 @@
 		const rightSide = stringToNumber( args.rightSide );
 		switch( args.compare ) {
 			case "==": return leftSide === rightSide;
-			case "!=": return leftSide !== rightSide;
+			case "≠": return leftSide !== rightSide;
 			case "≦": return leftSide <= rightSide;
 			case "<": return leftSide < rightSide;
 			case "≧": return leftSide >= rightSide;
@@ -879,7 +880,7 @@
 		const rightSide = String( args.rightSide );
 		switch( args.compare ) {
 			case "==": return leftSide === rightSide;
-			case "!=": return leftSide !== rightSide;
+			case "≠": return leftSide !== rightSide;
 		}
 	}
 
@@ -995,10 +996,16 @@
 	/*--- Game_Variables ---*/
 	/**
 	 * 変数を文字列で指定し、値を返す。
+	 * 標準のvalueは空文字列だと 0 を返す。
 	 * @param {String} name 変数(ID, 名前による指定が可能)
 	 */
 	Game_Variables.prototype.valueByName = function( name ) {
-		return this.value( stringToVariableId( name ) );
+		const variableId = stringToVariableId( name );
+		if( typeof this._data[ variableId ] === TYPE_STRING ) {
+			return this._data[ variableId ];
+		} else {
+			return this.value( variableId );
+		}
 	};
 	/**
 	 * 変数を文字列で指定し、値を設定。小数値も設定可能。
