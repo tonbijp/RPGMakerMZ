@@ -1,6 +1,6 @@
 //========================================
 // TF_ScreenUtil.js
-// Version :0.6.0.1
+// Version :0.6.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -361,10 +361,16 @@
 	/*--- Game_Variables ---*/
 	/**
 	 * 変数を文字列で指定し、値を返す。
-	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
+	 * 標準のvalueは空文字列だと 0 を返す。
+	 * @param {String} name 変数(ID, 名前による指定が可能)
 	 */
 	Game_Variables.prototype.valueByName = function( name ) {
-		return this.value( stringToVariableId( name ) );
+		const variableId = stringToVariableId( name );
+		if( typeof this._data[ variableId ] === TYPE_STRING ) {
+			return this._data[ variableId ];
+		} else {
+			return this.value( variableId );
+		}
 	};
 	/**
 	 * 指定された変数のIDを返す。
