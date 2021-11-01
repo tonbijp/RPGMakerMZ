@@ -14,7 +14,7 @@ v1.2.0 で変更あり。
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_phase` | [String](String.md) | [static] [行動状態](BattleManager.md#行動状態) |
+| `_phase` | [String](String.md) | [static] [行動状態](#行動状態) |
 | `_canEscape` | Boolean | [static] [逃走可] |
 | `_canLose` | Boolean | [static] [敗北可] |
 | `_battleTest` | Boolean | [static] [戦闘テスト]か |
@@ -66,7 +66,7 @@ v1.2.0 で変更あり。
 アクターを返す。
 
 
-#### (static) allBattleMembers () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### (static) allBattleMembers () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 戦闘に参加している全バトラーを返す。
 
 

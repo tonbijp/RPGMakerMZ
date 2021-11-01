@@ -116,7 +116,7 @@ $gamePlayer.followers()
 [隊列メンバー]の移動を更新。
 
 
-#### visibleFollowers () → {[Array](Array.md).<[Game_Follower](Game_Follower.md)>}
+#### visibleFollowers () → {[Array](Array.md).&lt;[Game_Follower](Game_Follower.md)&gt;}
  表示中の[隊列メンバー]の配列を返す。
 
 

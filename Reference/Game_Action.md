@@ -592,7 +592,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### itemTargetCandidates () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### itemTargetCandidates () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 対象となり得るバトラーを配列で返す。
 
 
@@ -627,7 +627,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
-#### makeTargets () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### makeTargets () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 対象となり得るバトラーを配列で返す。
 
 
@@ -651,14 +651,14 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 準備(標準では[混乱]の設定しかしていない)
 
 
-#### repeatTargets (targets) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### repeatTargets (targets) → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 繰り返し行動の対象を配列で返す。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `targets` | [Array](Array.md).<[Game_Battler](Game_Battler.md)> | 対象バトラーの配列 |
+| `targets` | [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; | 対象バトラーの配列 |
 
 
 #### setAttack ()
@@ -741,7 +741,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 行動主体を返す。
 
 
-#### targetsForAlive (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForAlive (unit) → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 **@MZ** 生存しているバトラーの配列を返す。
 
 ##### 引数
@@ -751,7 +751,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForDead (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForDead (unit) → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 **@MZ** 戦闘不能のバトラーの配列を返す。
 
 ##### 引数
@@ -761,7 +761,7 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForDeadAndAlive (unit) → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForDeadAndAlive (unit) → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 **@MZ** 戦闘不能・生存のバトラーの配列を返す。
 
 ##### 引数
@@ -771,15 +771,15 @@ _item プロパティの[範囲]と同じものが、指定したの配列の中
 | `unit` | [Game_Unit](Game_Unit.md) | 対象ユニット(敵か味方) |
 
 
-#### targetsForEveryone () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForEveryone () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 **@MZ** 全バトラーの配列を返す。
 
 
-#### targetsForFriends () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForFriends () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 味方側のバトラーの配列を返す。
 
 
-#### targetsForOpponents () → {[Array](Array.md).<[Game_Battler](Game_Battler.md)>}
+#### targetsForOpponents () → {[Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt;}
 敵側のバトラーの配列を返す。
 
 
