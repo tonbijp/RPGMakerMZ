@@ -10,6 +10,15 @@
 
 アクターのパラメータの取得、画像の設定、戦闘の処理とサイドビュー時の画像処理を行うクラス。
 
+主なパス
+```js
+$gameActors.actor( 1 )
+$gameParty.allMembers()
+$gameParty.battleMembers()
+$gameParty.members()
+BattleManager.actor()
+```
+
 v1.1.0、v1.2.0  で変更あり。
 
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Party](Game_Party.md), [Game_Troop](Game_Troop.md), [Game_Enemy](Game_Enemy.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md)
@@ -32,14 +41,29 @@ v1.1.0、v1.2.0  で変更あり。
 | `_faceName` | [String](String.md) | [顔]画像ファイル名(拡張子なし) |
 | `_faceIndex` | [Number](Number.md) | [顔]画像番号 |
 | `_battlerName` | [String](String.md) | [[SV\]戦闘キャラ]画像ファイル名(拡張子なし) |
-| `_exp` | Object | {[classId: number]: number} |
+| `_exp` | Object | [クラス経験値](#クラス経験値) |
 | `_skills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [スキル]の配列 |
 | `_equips` | [Array](Array.md).&lt;[Game_Item](Game_Item.md)&gt; | [装備]の配列 |
 | `_actionInputIndex` | [Number](Number.md) | 行動の番号 |
 | `_lastMenuSkill` | [Game_Item](Game_Item.md) | 最後のメニュースキル |
 | `_lastBattleSkill` | [Game_Item](Game_Item.md) | 最後の戦闘スキル |
 | `_lastCommandSymbol` | [String](String.md) | 最後のコマンド |
-| `_stateSteps` | Object | {[stateId: number]: number} |
+| `_stateSteps` | Object | [ステート歩数](#ステート歩数) |
+
+#### クラス経験値
+クラスID([Number](Number.md)) を識別子とし、対応する経験値を保持するオブジェクト。
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| クラスID |  [Number](Number.md) | 経験値 |
+
+
+#### ステート歩数
+ステートID([Number](Number.md)) を識別子とし、対応する歩数を保持するオブジェクト。
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| ステートID |  [Number](Number.md) | 歩数 |
 
 
 ### スーパークラスから継承されたメソッド
