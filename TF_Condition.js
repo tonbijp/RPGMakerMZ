@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.6.1.0
+// Version :1.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -84,6 +84,9 @@
  * this.TF_checkHereEvent( マップID, 向き, イベントID )
  * 
  * 利用規約 : MITライセンス
+ * 
+ * TODO: 
+ * セルフスイッチを変数として利用できる機能をつける
  *
  * @================================================
  * @command switch @text スイッチの操作
@@ -94,10 +97,11 @@
  * @type string @default it
  * 
  * @arg operand @text オペランド(値)
- * @desc スイッチの名前、true、false、\S[n]いずれか
+ * @desc スイッチの名前、true、false、not、\S[n]いずれか
  * @type combo @default true
  * @option true
  * @option false
+ * @option not
  * @option \S[n]
  * 
  * @================================================
@@ -171,11 +175,12 @@
  * @option A @option B @option C @option D
  *
  * @arg operand @text オペランド(値)
- * @desc スイッチの名前、true、false、\S[n]いずれか
+ * @desc スイッチの名前、true、false、not、\S[n]いずれか
  * (セルフスイッチの指定はできません)
  * @type combo @default true
  * @option true
  * @option false
+ * @option not
  * @option \S[n]
  *
  * @=================== 【判定】 ===============================================================
@@ -746,7 +751,9 @@
 
 	// [スイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SWITCH, function( args ) {
-		$gameSwitches.setValueByName( args.name, stringToBoolean( args.operand ) );
+		const operand = ( args.operand === OPE_NOT ) ?
+			!$gameSwitches.valueByName( args.name ) : args.operand;
+		$gameSwitches.setValueByName( args.name, stringToBoolean( operand ) );
 	} );
 
 
@@ -795,7 +802,9 @@
 	// [セルフスイッチの操作]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SELFSWITCH, function( args ) {
 		if( args.eventId === EVENT_THIS ) args.eventId = this.character( 0 )._eventId;
-		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( args.operand ) );
+		const operand = ( args.operand === OPE_NOT ) ?
+			!getSelfSwitch( args.mapId, args.eventId, args.type ) : args.operand;
+		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( operand ) );
 	} );
 
 	// [スイッチ判定]
