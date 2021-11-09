@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.8.0
+// Version :0.6.9.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -791,7 +791,13 @@
 		if( !targetEvent ) throw Error( `${PLUGIN_NAME}: I can't find the '${args.eventId}'` );
 
 		if( args.isVehiclePos ) {
-			$gamePlayer.setPosition( targetEvent.x, targetEvent.y );
+			// プレイヤーを乗り物の位置に移動
+			$gamePlayer.reserveTransfer( targetEvent._mapId, targetEvent.x, targetEvent.y );
+			this.setWaitMode( "transfer" );
+		} else {
+			// 乗り物をプレイヤーの位置に移動
+			targetEvent.setLocation( $gameMap.mapId(), $gamePlayer.x, $gamePlayer.y );
+			targetEvent.setDirection( $gamePlayer.direction() );
 		}
 		$gamePlayer._vehicleType = args.eventId;
 		$gamePlayer._vehicleGettingOn = true;
