@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.7.1.0
+// Version :0.7.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021
@@ -119,7 +119,26 @@
     const COM_SHADOW_RADIUS = "shadowRadius";
     const COM_SHADOW_Y = "shadowY";
 
+    /*---- パラメータパース関数 ----*/
+    const TYPE_NUMBER = "number";
     const TYPE_STRING = "string";
+    /**
+     * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
+     * @param {String} value 変換元の文字列( \V[n]形式を含む )
+     * @return {String} 変換後の文字列
+     */
+    function treatValue( value ) {
+        if( typeof value === TYPE_NUMBER ) return value;
+        if( value === undefined || value === "" ) return "0";
+        const result = value.match( /\x1bV\[(.+)\]/i );
+        if( result === null ) return value;
+        const id = parseInt( result[ 1 ], 10 );
+        if( isNaN( id ) ) {
+            return $gameVariables.valueByName( result[ 1 ] );
+        } else {
+            return $gameVariables.value( id );
+        }
+    }
 
     /*---- イベントIDの配置オフセット ----*/
     const FOLLOWER_OFFSET = -2;
@@ -252,11 +271,8 @@
     function hasShadow( tc ) {
         if( tc.hasShadow !== undefined ) return tc.hasShadow;
         const shadowTag = getMetaTag( tc );
-        if( shadowTag === undefined ) {
-            return !tc.isTile() && !tc.isObjectCharacter();
-        } else {
-            return !!shadowTag;    //タグ指定があれば、その指定に従う
-        }
+        if( shadowTag === undefined ) return !tc.isTile() && !tc.isObjectCharacter();
+        return !!shadowTag;    //タグ指定があれば、その指定に従う
     }
 
     /**
@@ -387,6 +403,7 @@
         }
 
         initRadius() {
+            if( this._sprite._character.shadowRadius ) return;
             const radius = stringToPoint( getMetaTag( this._sprite._character ) );
             this._sprite._character.shadowRadius = ( radius ) ? radius : shadowRadius;
         }
