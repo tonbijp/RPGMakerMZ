@@ -60,7 +60,8 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | `_refreshFrame` | Boolean | フレームを再設定するか |
 
 #### 重なりの優先度
-[Tilemap.\_comparechildorder](Tilemap.md#_comparechildorder-a-b)でソートの際に使われる。
+[Tilemap.\_comparechildorder](Tilemap.md#_comparechildorder-a-b)でソートの際に使われる。<br />
+キャラクタ関連は[Game_CharacterBase.screenZ ()](Game_CharacterBase.md#screenz---number)の値が使われる。
 
 | z | Object | 内容 |
 | --- | --- | --- |
@@ -69,11 +70,11 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | 7 | [Sprite_Balloon](Sprite_Balloon.md) | フキダシ |
 | 6 | [Sprite](Sprite.md) | 飛行船の影 |
 | 5 | [Sprite_Character](Sprite_Character.md) | プライオリティ [通常キャラの上] ・立体交差の上 |
-| 4 | [Sprite](Sprite.md) | 高層タイル\[☆\](レイヤー1〜4) |
+| 4 | [Sprite](Sprite.md) | 高層タイル[☆]\(レイヤー1〜4) |
 | 3 | [Sprite_Character](Sprite_Character.md) | プライオリティ[通常キャラと同じ] |
 | 2 | | 通常タイル(未使用) |
 | 1 | [Sprite_Character](Sprite_Character.md) | プライオリティ [通常キャラの下] |
-| 0 | [Sprite](Sprite.md) | 低層タイル[○]・\[×\](レイヤー1・2 ・影ペン・3・4 ) |
+| 0 | [Sprite](Sprite.md) | 低層タイル[○]・[×]\(レイヤー1・2 ・影ペン・3・4 ) |
 
 #### [合成方法]
 番号は [Graphics](Graphics.md) の静的クラス定数として定義されていたが、『RPGツクールMZ』では廃止されて、[PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES) の定数を使うようになっている。

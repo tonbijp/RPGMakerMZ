@@ -33,7 +33,7 @@
 | `_blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `_direction` | [Number](Number.md) | 向き(テンキー対応) |
 | `_pattern` | [Number](Number.md) | 歩行パターン(0〜2) |
-| `_priorityType` | [Number](Number.md) | [プライオリティ] |
+| `_priorityType` | [Number](Number.md) | [\[プライオリティ\]](#[プライオリティ]) |
 | `_tileId` | [Number](Number.md) | 足元のタイルID |
 | `_characterName` | [String](String.md) | キャラクタのファイル名 |
 | `_characterIndex` | [Number](Number.md) | キャラクタ番号(0〜7) |
@@ -53,6 +53,14 @@
 | `_jumpCount` | [Number](Number.md) | ジャンプのカウント |
 | `_jumpPeak` | [Number](Number.md) | ジャンプの頂点 |
 | `_movementSuccess` | Boolean | 移動できたか |
+
+### [プライオリティ]
+
+| 番号 | 説明 |
+| --- | --- |
+| 2 | 通常キャラの上 |
+| 1 | 通常キャラと同じ |
+| 0 | 通常キャラの下 |
 
 
 ### メソッド
@@ -436,8 +444,8 @@
 
 
 #### screenZ () → {[Number](Number.md)}
- 重なり位置を返す。
-1: 通常キャラの下, 3:通常キャラと同じ , 5: 通常キャラの上
+`_priorityType * 2 +1`で導かれる重なり位置を返す。<br />
+[Sprite](Sprite.md) の[重なりの優先度](#重なりの優先度)を決める `z` プロパティとして使用される。
 
 
 #### scrolledX () → {[Number](Number.md)}
