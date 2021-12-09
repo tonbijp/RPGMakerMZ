@@ -8,6 +8,8 @@
 MZでは、他のクラスと被っている機能が廃止されている。<br />
 環境チェック系は [Utils](Utils.md) にまとめられている。
 
+v1.4.0 で変更あり。
+
 関連クラス:   [Graphics](Graphics.md), [Bitmap](Bitmap.md), [AudioManager](AudioManager.md), [Input](Input.md), [TouchInput](TouchInput.md)
 
 ### プロパティ

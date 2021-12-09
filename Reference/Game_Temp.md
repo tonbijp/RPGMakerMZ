@@ -8,6 +8,8 @@
 
 ゲームの一時データを保持しておくクラス。
 
+v1.4.0 で変更あり。
+
 関連クラス: [Game_CommonEvent](Game_CommonEvent.md), [Spriteset_Base](Spriteset_Base.md), [Spriteset_Map](Spriteset_Map.md), [Sprite_Destination](Sprite_Destination.md),
 
 ### new Game_Temp ()
@@ -48,8 +50,8 @@
 **@MZ** 戦闘の再設定の要請を解除。
 
 
-#### clearCommonEvent ()
-一時保存の[コモンイベント]を消去。
+#### clearCommonEventReservation ()
+**@MZ 1.4.0** 一時保存の[コモンイベント]を消去。
 
 
 #### clearDestination ()
@@ -247,5 +249,6 @@
 #### touchState () → {[String](String.md)}
 **@MZ** タッチ状態を返す。
 
+
 ### 廃止MVメソッド
-reservedCommonEvent () 
+clearCommonEvent (), reservedCommonEvent () 

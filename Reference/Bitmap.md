@@ -12,7 +12,7 @@
 
 暗号化された画像ファイルの復号機能も持っている。
 
-v1.1.1、v1.2.0 で変更あり。
+v1.1.1、v1.2.0、v1.4.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [ImageManager](ImageManager.md), [Game_Screen](Game_Screen.md), [Sprite](Sprite.md), [Game_Picture](Game_Picture.md)
 

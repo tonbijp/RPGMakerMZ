@@ -8,7 +8,7 @@
 
  [Window](Window.md)クラスが持つ `_clientArea` に追加され、[Window_StatusBase](Window_StatusBase.md)クラスが持つ `_additionalSprites` プロパティで管理される。
 
-v1.1.0、v1.2.0、v1.3.3 で変更あり。
+v1.1.0、v1.2.0、v1.3.3、v1.4.0 で変更あり。
 
 関連クラス: [Window_StatusBase](Window_StatusBase.md)
 

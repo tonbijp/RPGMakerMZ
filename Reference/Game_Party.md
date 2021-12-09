@@ -10,6 +10,8 @@
 
 [パーティ]を定義したクラス。
 
+v1.4.0 で変更あり。
+
 関連クラス: [Game_Troop](Game_Troop.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md), [Game_Actor](Game_Actor.md), [Game_Actors](Game_Actors.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
 ### new Game_Party ()
@@ -70,6 +72,10 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `actorId` | [Number](Number.md) | アクターID |
+
+
+#### allBattleMembers () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
+**@MZ 1.4.0**戦闘メンバーの全アクターを配列で返す。
 
 
 #### allItems () → {[Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt;}
@@ -209,6 +215,10 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 #### hasRaisePreemptive () → {Boolean}
 [先制攻撃率アップ]のパーティ能力を持つか。
+
+
+#### hiddenBattleMembers () → {[Array](Array.md).&lt;[Game_Actor](Game_Actor.md)&gt;}
+**@MZ 1.4.0**戦闘メンバー中で隠れている全アクターを配列で返す。
 
 
 #### highestLevel () → {[Number](Number.md)}

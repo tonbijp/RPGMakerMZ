@@ -6,6 +6,8 @@
 | --- | --- | --- | --- |
 | [タイマーの操作] | [$gameTimer](global.md#gametimer-game_timer) | 保存される | [Sprite_Timer](Sprite_Timer.md) |
 
+v1.4.0 で変更あり。
+
 関連クラス: [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md)
 
 ### new Game_Timer ()
@@ -19,6 +21,9 @@
 
 
 ### メソッド
+
+#### frames () → {[Number](Number.md)}
+**@MZ 1.4.0** 残り時間(フレーム数)を返す。
 
 #### initialize ()
  オブジェクト生成時の初期化。
