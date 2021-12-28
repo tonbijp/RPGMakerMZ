@@ -12,8 +12,8 @@
 
 主なパス
 ```js
-$dataActors[ 1 ]
-$gameActors.actor( 1 ).actor()
+$dataActors[ actorId ]
+$gameActors.actor( actorId ).actor()
 ```
 
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Followers](Game_Followers.md)
