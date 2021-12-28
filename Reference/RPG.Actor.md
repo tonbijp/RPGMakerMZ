@@ -10,6 +10,12 @@
 | [プレイヤー] | 〃 | 〃 | [Game_Player](Game_Player.md) | [Sprite_Character](Sprite_Character.md) | 
 | [フォロワー] | 〃 |  〃 | [Game_Follower](Game_Follower.md) | 〃 |
 
+主なパス
+```js
+$dataActors[ 1 ]
+$gameActors.actor( 1 ).actor()
+```
+
 関連クラス: [Game_Actors](Game_Actors.md), [Game_Followers](Game_Followers.md)
 
 ### プロパティ
