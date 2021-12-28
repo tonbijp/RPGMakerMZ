@@ -13,6 +13,7 @@
 主なパス
 ```js
 $gameActors.actor( 1 )
+$gameParty.leader()
 $gameParty.allMembers()
 $gameParty.battleMembers()
 $gameParty.members()
