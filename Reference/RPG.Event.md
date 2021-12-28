@@ -13,6 +13,12 @@
 
 [RPG.Map](RPG.Map.md)の events プロパティに含まれ、[Game_Event.event()](Game_Event.md#event---rpgevent) メソッドでも得られる。
 
+主なパス
+```js
+$dataMap.events[ eventId ]
+$gameMap.event( eventId ).event()
+```
+
 関連クラス: [RPG.CommonEvent](RPG.CommonEvent.md), [RPG.Troop](RPG.Troop.md)
 
 
