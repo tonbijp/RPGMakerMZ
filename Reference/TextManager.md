@@ -105,7 +105,7 @@
 ### メソッド
 
 #### (static) basic (basicId) → {[String](String.md)}
-指定IDの[[基本ステータス]](RPG.System.Terms.md#[基本ステータス])の用語を返す。
+指定IDの[[基本ステータス]](RPG.System.Terms.md#基本ステータス)の用語を返す。
 
 ##### 引数
 
@@ -115,7 +115,7 @@
 
 
 #### (static) command (commandId) → {[String](String.md)}
-指定IDの[[コマンド]](RPG.System.Terms.md#[コマンド])の用語を返す。
+指定IDの[[コマンド]](RPG.System.Terms.md#コマンド)の用語を返す。
 
 ##### 引数
 
@@ -137,7 +137,7 @@
 
 
 #### (static) message (messageId) → {[String](String.md)}
-指定IDの[メッセージ]の用語を返す。
+指定IDの[[メッセージ]](RPG.System.Terms.md#メッセージ)の用語を返す。
 
 ##### 引数
 
@@ -147,7 +147,7 @@
 
 
 #### (static) param (paramId) → {[String](String.md)}
-指定IDの[[能力値]](RPG.System.Terms.md#[能力値])の用語を返す。
+指定IDの[[能力値]](RPG.System.Terms.md#能力値)の用語を返す。
 
 ##### 引数
 
