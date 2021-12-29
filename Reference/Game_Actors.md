@@ -6,7 +6,7 @@
 | --- | --- | --- | --- |
 | [アクター] | [RPG.Actor](RPG.Actor.md) | [$gameActors](global.md#gameactors-game_actors) | 保存される |
 
-[Game_Actor](Game_Actor.md) をまとめて扱えるようにしたクラス。ほぼ、[$dataActors](global.md#dataactors-arrayrpgactor)と同じ。
+[Game_Actor](Game_Actor.md) をまとめて扱えるようにしたクラス。データベースの[$dataActors](global.md#dataactors-arrayrpgactor)のオブジェクト版。
 
 関連クラス: [Game_Party](Game_Party.md)、[Game_Follower](Game_Follower.md)
 
