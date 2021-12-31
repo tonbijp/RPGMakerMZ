@@ -156,7 +156,7 @@
 | `opacity` | [Number](Number.md) | [不透明度]\(0〜255) |
 | `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `duration` | [Number](Number.md) | 継続時間(フレーム) |
-| `easingType` | [Number](Number.md) | **@MZ** [イージングタイプ](#イージングタイプ)  |
+| `easingType` | [Number](Number.md) | **@MZ** [イージングタイプ](#イージングタイプ) |
 
 
 #### name () → {[String](String.md)}
