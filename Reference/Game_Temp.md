@@ -24,12 +24,13 @@ v1.4.0 で変更あり。
 | `_touchTarget` | Object | **@MZ** タッチの目標 |
 | `_touchState` | [String](String.md) | **@MZ** タッチの状態 |
 | `_needsBattleRefresh` | Boolean | **@MZ** 戦闘の再設定が必要か |
-| `_commonEventQueue` | [Array](Array.md)&lt;[Number](Number.md)&gt; | **@MZ** コモンイベントキュー |
+| `_commonEventQueue` | [Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ** コモンイベントキュー |
 | `_animationQueue` | [Array](Array.md).&lt;[MV.AnimationRequest](MV.AnimationRequest.md)&gt; | **@MZ** アニメーションキュー |
 | `_balloonQueue` | [Array](Array.md).&lt;[MV.BalloonRequest](MV.BalloonRequest.md)&gt; | **@MZ** フキダシキュー |
-| `_lastActionData` | [Array](Array.md) | **@MZ** 最後の行動データ |
+| `_lastActionData` | [Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ** 最後の行動データ |
 
 #### アクションタイプ
+アクションタイプは `_lastActionData` の配列番号に対応して保存されます。
 
 | 番号 | 説明 |
 | --- | ---|
@@ -97,7 +98,7 @@ v1.4.0 で変更あり。
 
 | 名前 | 型 |  説明 |
 | --- | --- | --- |
-| `type` | [String](String.md)  | [アクションタイプ](#アクションタイプ) |
+| `type` | [Number](Number.md)  | [アクションタイプ](#アクションタイプ) |
 
 
 #### reserveCommonEvent (commonEventId)
