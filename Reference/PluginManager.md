@@ -104,7 +104,7 @@
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | [String](String.md) |  プラグイン名(英字の大小を区別しない) |
-| `parameters` | [Parameters](MV.PluginSettings.md#parameters) |  パラメータの[名前]と[値]の組み合わせ |
+| `parameters` | [Parameters](MV.PluginSettings.md#パラメータ) |  パラメータの[名前]と[値]の組み合わせ |
 
 
 #### (static) setup (plugins)
