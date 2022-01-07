@@ -12,7 +12,7 @@
 
 $gameXxx の多くはセーブデータになるが、セーブされないものもある。
 
-### Members
+## データベース
 
 #### $dataActors :[Array](Array.md).&lt;[RPG.Actor](RPG.Actor.md)&gt;
 [アクター]用JSON( Actors.json )。
@@ -74,8 +74,9 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 [武器]用JSON( Weapons.json )。
 
 
-<hr>
+---
 
+## ゲームオブジェクト
 
 #### $gameActors :[Game_Actors](Game_Actors.md)
 [アクター]管理用のクラス。※セーブ
@@ -129,8 +130,9 @@ $gameXxx の多くはセーブデータになるが、セーブされないも�
 [変数]管理用のクラス。※セーブ
 
 
-<hr>
+---
 
+## その他
 
 #### $plugins :[Array](Array.md).&lt;[MV.PluginSettings](MV.PluginSettings.md)&gt;
 『RPGツクールMZ』プラグイン設定( js/plugins.js )。
