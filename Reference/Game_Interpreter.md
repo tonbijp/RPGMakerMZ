@@ -197,7 +197,7 @@ param1, param2 は type によって意味が変わる引数で、例えば type
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `param` | [Number](Number.md) | 適用するエネミーの番号(0:全体 |
+| `param` | [Number](Number.md) | 適用するエネミーの番号(0:全体) |
 | `callback` | function | コールバック関数 |
 
 
