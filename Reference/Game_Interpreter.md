@@ -343,7 +343,7 @@ Game_Interpreter.prototype.pluginCommand = function ( command, args ){
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `waitMode` | [String](String.md) | [ウエイトモード](Game_Interpreter#ウエイトモード) |
+| `waitMode` | [String](String.md) | [ウエイトモード](Game_Interpreter.md#ウエイトモード) |
 
 
 #### skipBranch ()
