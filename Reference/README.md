@@ -31,6 +31,7 @@ Gotcha Gotcha Games 開発のカジュアルゲーム開発環境『RPGツクー
 * [RPGツクールMVやMZで便利なスクリプト備忘録](https://yuwakas.blog.shinobi.jp/Entry/367/) yuwaka
 * [RPGツクールプラグイン制作過程紹介](https://note.com/nz_prism/n/n179edce51d4b) んーぞー
 * [ツクール MZ のクラス/グローバル変数の相互関係表](https://qiita.com/katai5plate/items/0591dbaa1f93454f7725) はどはど@Had2Apps
+* [『RPGツクールMZ』関連記事 目次#スクリプト](https://zenn.dev/tonbi/articles/69ccac7acfedb6#%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88) とんび@鳶嶋工房
 
 ## 『RPGツクールMZ』で使われている NW.js のバージョン
 
