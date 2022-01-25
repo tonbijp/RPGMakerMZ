@@ -220,8 +220,14 @@ v1.4.0 で変更あり。
  履歴からシーンを取り出して遷移。
 
 
-#### (static) prepareNextScene ()
-次のシーンの準備。
+#### (static) prepareNextScene (args)
+次のシーンの準備。引数はショップの品物など。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `args` | * | シーンによって異なる幾つかの引数 |
 
 
 #### (static) push (sceneClass)
