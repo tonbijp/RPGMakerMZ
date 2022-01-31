@@ -28,7 +28,7 @@ v1.1.1、v1.2.0、v1.3.2、v1.4.0  で変更あり。
 | `_depth` | [Number](Number.md) | 世代 |
 | `_branch` | Object | インデントごとの分岐処理状況 |
 | `_indent` | [Number](Number.md) | インデントの深さ |
-| `_frameCount` | [Number](Number.md) | フレーム数 |
+| `_frameCount` | [Number](Number.md) | フレーム数(現在のフレーム数ではなく、フリーズチェック用)現在のフレームは [Graphics.frameCount](Graphics.md) |
 | `_freezeChecker` | [Number](Number.md) | 停止チェック用カウンタ |
 | `_mapId` | [Number](Number.md) | コマンドがあるマップID |
 | `_eventId` | [Number](Number.md) | コマンドがあるイベントID |
