@@ -33,7 +33,7 @@
 | `_blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 | `_direction` | [Number](Number.md) | 向き(テンキー対応) |
 | `_pattern` | [Number](Number.md) | 歩行パターン(0〜2) |
-| `_priorityType` | [Number](Number.md) | [\[プライオリティ\]](#[プライオリティ]) |
+| `_priorityType` | [Number](Number.md) | [\[プライオリティ\]](#プライオリティ) |
 | `_tileId` | [Number](Number.md) | 足元のタイルID |
 | `_characterName` | [String](String.md) | キャラクタのファイル名 |
 | `_characterIndex` | [Number](Number.md) | キャラクタ番号(0〜7) |
