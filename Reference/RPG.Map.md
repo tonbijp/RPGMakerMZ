@@ -10,7 +10,7 @@
 
 JSONファイルの XXX は3桁の数値。
 
-関連クラス: [Scene_Map](Scene_Map.md), [ShaderTilemap](ShaderTilemap.md), [RPG.MapInfo](RPG.MapInfo.md)
+関連クラス: [Scene_Map](Scene_Map.md), [RPG.MapInfo](RPG.MapInfo.md)
  
 
 ### プロパティ
