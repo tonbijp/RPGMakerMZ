@@ -167,11 +167,11 @@ SceneManager._scene._spriteset
 
 
 #### createTilemap ()
-タイルマップ([Tilemap](Tilemap.md) か [ShaderTilemap](ShaderTilemap.md))を生成。
+タイルマップ([Tilemap](Tilemap.md)を生成。
 
 
 #### createWeather ()
-天候スプライト([Weather](Weather.md))の生成。
+天候スプライト([Weather](Weather.md))を生成。
 
 
 #### destroy ()
