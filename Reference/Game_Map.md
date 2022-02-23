@@ -15,7 +15,7 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 v1.1.0、v1.2.0  で変更あり。<br />
 なお、公式プラグイン PluginCommonBase.js によって追加されるプロパティ・メソッドも書いている。
 
-関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [ShaderTilemap](ShaderTilemap.md), [Game_Player](Game_Player.md)
+関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [Game_Player](Game_Player.md)
 
 ### new Game_Map ()
 
