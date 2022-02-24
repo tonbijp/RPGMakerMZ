@@ -103,7 +103,7 @@ v1.1.0、v1.2.0  で変更あり。<br />
 | `z` | [Number](Number.md) | 重なり(0〜3) |
 
 
-#### autorunCommonEvents () → {Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt;}
+#### autorunCommonEvents () → {[Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt;}
 **@MZ** [自動実行]のコモンイベントを返す。
 
 
