@@ -7,6 +7,8 @@
 
 MVでは [SceneManager](SceneManager.md) の `run(Scene_Boot)` に丸投げされていた初期化処理をある程度分離したもの。
 
+v1.4.4 で変更あり。
+
 関連クラス: [Scene_Boot](Scene_Boot.md)
 
 ### new Main ()
@@ -25,6 +27,10 @@ MVでは [SceneManager](SceneManager.md) の `run(Scene_Boot)` に丸投げさ�
 
 #### eraseLoadingSpinner ()
 ローディングスピナー(読み込みアニメ)を消す。
+
+
+#### hookNwjsClose ()
+**@MZ1.4.4** NW.js を確実に閉じるためのフックをセット。
 
 
 #### initEffekseerRuntime ()
