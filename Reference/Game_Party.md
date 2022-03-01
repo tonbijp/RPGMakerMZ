@@ -10,7 +10,7 @@
 
 [パーティ]を定義したクラス。
 
-v1.4.0 で変更あり。
+v1.4.0、1.4.4 で変更あり。
 
 関連クラス: [Game_Troop](Game_Troop.md), [Game_Player](Game_Player.md), [Game_Follower](Game_Follower.md), [Game_Actor](Game_Actor.md), [Game_Actors](Game_Actors.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md)
 
@@ -253,6 +253,11 @@ ABILITY\_ で始まる静的定数は [パーティ能力ID](RPG.Trait.md#パー
 
 #### isEmpty () → {Boolean}
 パーティメンパーが0人か。
+
+
+#### isEscaped () → {Boolean}
+逃げたか。<br />
+**@MZ1.4.4** 使われていなかった引数の `item` が削除された。
 
 
 #### itemContainer (item) → {[Array](Array.md).&lt;[RPG.BaseItem](RPG.BaseItem.md)&gt;}
