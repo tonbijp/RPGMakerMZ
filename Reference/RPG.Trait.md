@@ -26,7 +26,7 @@ code の数値は [Game_BattlerBase](Game_BattlerBase.md) の静的クラス定�
 
 ##### [耐性]
 
-| code | 定数 |内容 | dataId | value |
+| code | 定数 | 内容 | dataId | value |
 | --- | --- | --- | --- | --- |
 | 11 | `TRAIT_ELEMENT_RATE` | 属性有効度 | [属性ID](RPG.Damage.md#属性id) | 変動率 (0〜10) |
 | 12 | `TRAIT_DEBUFF_RATE` | 弱体有効度 | [能力値ID](RPG.Enemy.md#能力値id) | 変動率 (0〜10) |
@@ -35,7 +35,7 @@ code の数値は [Game_BattlerBase](Game_BattlerBase.md) の静的クラス定�
 
 ##### [能力値]
 
-| code | 定数 |内容 | dataId | value |
+| code | 定数 | 内容 | dataId | value |
 | --- | --- | --- | --- | --- |
 | 21 | `TRAIT_PARAM` | 通常能力値 | [能力値ID](RPG.Enemy.md#能力値id) | 変動率 (0〜10) |
 | 22 | `TRAIT_XPARAM` | 追加能力値 | [追加能力値ID](RPG.Trait.md#追加能力値id) |  比率 (-10〜10) |
@@ -73,17 +73,17 @@ code の数値は [Game_BattlerBase](Game_BattlerBase.md) の静的クラス定�
 
 ##### [攻撃]
 
-| code | 定数 |内容 | dataId | value |
+| code | 定数 | 内容 | dataId | value |
 | --- | --- | --- | --- | --- |
 | 31 | `TRAIT_ATTACK_ELEMENT` | 攻撃時属性 | [属性ID](RPG.Damage.md#属性id) | *1* |
 | 32 | `TRAIT_ATTACK_STATE` | 攻撃時ステート | [ステートID](RPG.State.md#ステートid) | 変動率 (0〜10) |
 | 33 | `TRAIT_ATTACK_SPEED` | 攻撃速度補正 | *0* | 増減値 (-10〜10) |
-| 34 | `TRAIT_ATTACK_TIMES` | 攻撃追加回数 | *0*  | 攻撃追加回数(-9.0〜9.0)|
-
+| 34 | `TRAIT_ATTACK_TIMES` | 攻撃追加回数 | *0* | 攻撃追加回数(-9.0〜9.0)|
+| 35 | `TRAIT_ATTACK_SKILL` | **@MZ**攻撃スキル | [スキルID](RPG.Skill.md#スキルid) | *1* |
 
 ##### [スキル]
 
-| code | 定数 |内容 | dataId | value |
+| code | 定数 | 内容 | dataId | value |
 | --- | --- | --- | --- | --- |
 | 41 | `TRAIT_STYPE_ADD` | スキルタイプ追加 | [スキルタイプID](RPG.Skill.md#スキルタイプid) | *1* |
 | 42 | `TRAIT_STYPE_SEAL` | スキルタイプ封印 | [スキルタイプID](RPG.Skill.md#スキルタイプid) | *1* |
