@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.7.0.0
+// Version :1.7.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -685,13 +685,10 @@
 		const label = value.toLowerCase();
 		if( label === EVENT_THIS ) return $gameMap.mapId();
 
-		const i = $dataMapInfos.findIndex( e => {
-			if( !e ) return false;
-			return e.name === value;
-		} );
+		const i = $dataMapInfos.findIndex( e => e ? ( e.name === value ) : false );
 		if( i !== -1 ) return i; // $dataMapInfos[ i ].id が正しい気がするが、実は使われていないようだ
 		const result = parseInt( value, 10 );
-		if( isNaN( result ) ) throw Error( `指定したマップ[${value}]がありません。` );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't find the map '${value}'` );
 		return result;
 	}
 
@@ -1035,7 +1032,7 @@
 	 */
 	function stringToVariableId( name ) {
 		if( typeof name === TYPE_NUMBER ) return name;
-		let i = $dataSystem.variables.findIndex( i => i === name );
+		let i = $dataSystem.variables.indexOf( name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
 		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the variable '${name}'` );
@@ -1065,7 +1062,7 @@
 	 */
 	function stringToSwitchId( name ) {
 		if( typeof name === TYPE_NUMBER ) return name;
-		let i = $dataSystem.switches.findIndex( i => i === name );
+		let i = $dataSystem.switches.indexOf( name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
 		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the switch '${name}'` );
