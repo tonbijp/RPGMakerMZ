@@ -1,9 +1,9 @@
 //========================================
 // TF_Shadow.js
-// Version :0.7.2.0
+// Version :0.7.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2021
+// Copyright : Tobishima-Factory 2021, 2022
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -339,7 +339,7 @@
     };
 
     /*--- Game_Follower ---*/
-    var _Game_Follower_refresh = Game_Follower.prototype.refresh;
+    const _Game_Follower_refresh = Game_Follower.prototype.refresh;
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
         this.refreshShadow = true;
@@ -351,18 +351,31 @@
     Sprite_Character.prototype.update = function() {
         _Sprite_Character_update.call( this );
 
-        if( !this._character.refreshShadow ) return;
-        this._character.refreshShadow = false;
-        if( this._character.hasShadow ) {
-            if( this.shadow ) {
-                this.shadow.refresh();
+        if( this._character.refreshShadow ) {
+            if( this._character.hasShadow ) {
+                if( this.shadow ) {
+                    this.shadow.refresh();
+                } else {
+                    addShadow( this );
+                }
             } else {
-                addShadow( this );
+                if( this.shadow ) {
+                    this.parent.removeChild( this.shadow );
+                    this.shadow = null;
+                }
             }
-        } else if( this.shadow ) {
-            this.parent.removeChild( this.shadow );
-            this.shadow = null;
+            this._character.refreshShadow = false;
         }
+        if( !this.shadow ) return;
+
+        // コンテナに登録している順番上、座標のアップデートが1フレームずれてしまうので
+        // ここで影の座標を設定
+        this.shadow.opacity = this.shadow.getOpacity();
+        if( this.shadow.opacity === 0 ) return;
+
+        this.shadow.x = this.x;
+        this.shadow.y = this.y + this.shadow.shiftY + this._character.jumpHeight();  // ジャンプ対応
+        this.shadow.z = this.z - 1;
     };
 
     /*--- Sprite_Shadow ---*/
@@ -420,16 +433,6 @@
             ctx.beginPath();
             ctx.ellipse( rX, rY, rX, rY, 0, 0, 2 * Math.PI );
             ctx.fill();
-        }
-
-        update() {
-            super.update();
-            this.opacity = this.getOpacity();
-            if( this.opacity === 0 ) return;
-
-            this.x = this._sprite.x;
-            this.y = this._sprite.y + this.shiftY + this._sprite._character.jumpHeight();  // ジャンプ対応
-            this.z = this._sprite.z - 1;
         }
 
         getOpacity() {
