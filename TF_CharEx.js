@@ -1,6 +1,6 @@
 //========================================
 // TF_CharEx.js
-// Version :0.6.9.0
+// Version :0.6.9.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -552,7 +552,7 @@
 	 */
 	function stringToVariableId( name ) {
 		name = treatValue( name );
-		let i = $dataSystem.variables.findIndex( i => i === name );
+		let i = $dataSystem.variables.indexOf( name );
 		if( 0 <= i ) return i;
 		i = parseInt( name, 10 );
 		if( isNaN( i ) ) throw Error( `${PLUGIN_NAME}: I can't find the variable '${name}'` );
