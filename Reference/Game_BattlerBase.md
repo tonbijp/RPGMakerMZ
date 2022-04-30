@@ -21,35 +21,35 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `TRAIT_ELEMENT_RATE` | [Number](Number.md) | [static] [耐性 - 属性有効度] |
-| `TRAIT_DEBUFF_RATE` | [Number](Number.md) | [static] [耐性 - 弱体有効度]  |
-| `TRAIT_STATE_RATE` | [Number](Number.md) | [static] [耐性 - ステート有効度] |
-| `TRAIT_STATE_RESIST` | [Number](Number.md) | [static] [耐性 - ステート無効化] |
-| `TRAIT_PARAM` | [Number](Number.md) | [static] [能力値 - 通常能力値] |
-| `TRAIT_XPARAM` | [Number](Number.md) | [static] [能力値 - 追加能力値] |
-| `TRAIT_SPARAM` | [Number](Number.md) | [static] [能力値 - 特殊能力値] |
-| `TRAIT_ATTACK_ELEMENT` | [Number](Number.md) | [static] [攻撃 - 攻撃時属性]|
-| `TRAIT_ATTACK_STATE` | [Number](Number.md) | [static] [攻撃 - 攻撃時ステート] |
-| `TRAIT_ATTACK_SPEED` | [Number](Number.md) | [static] [攻撃 - 攻撃速度補正] |
-| `TRAIT_ATTACK_TIMES` | [Number](Number.md) | [static] [攻撃 - 攻撃追加回数] |
-| `TRAIT_ATTACK_SKILL` | [Number](Number.md) | **@MZ** [static] [攻撃 - 攻撃スキル] |
-| `TRAIT_STYPE_ADD` | [Number](Number.md) | [static] [スキル - スキルタイプ追加] |
-| `TRAIT_STYPE_SEAL` | [Number](Number.md) | [static] [スキル - スキルタイプ封印] |
-| `TRAIT_SKILL_ADD` | [Number](Number.md) | [static] [スキル - スキル追加] |
-| `TRAIT_SKILL_SEAL` | [Number](Number.md) | [static] [スキル - スキル封印] |
-| `TRAIT_EQUIP_WTYPE` | [Number](Number.md) | [static] [装備 - 武器タイプ装備] |
-| `TRAIT_EQUIP_ATYPE` | [Number](Number.md) | [static] [装備 - 防具タイプ装備] |
-| `TRAIT_EQUIP_LOCK` | [Number](Number.md) | [static] [装備 - 装備固定] |
-| `TRAIT_EQUIP_SEAL` | [Number](Number.md) | [static] [装備 - 装備封印] |
-| `TRAIT_SLOT_TYPE` | [Number](Number.md) | [static] [装備 - スロットタイプ] |
-| `TRAIT_ACTION_PLUS` | [Number](Number.md) | [static] [その他 - 行動回数追加] |
-| `TRAIT_SPECIAL_FLAG` | [Number](Number.md) | [static] [その他 - 特殊フラグ] |
-| `TRAIT_COLLAPSE_TYPE` | [Number](Number.md) | [static] [その他 - 消滅エフェクト] |
-| `TRAIT_PARTY_ABILITY` | [Number](Number.md) | [static] [その他 - パーティ能力] |
-| `FLAG_ID_AUTO_BATTLE` | [Number](Number.md) | [static] 特殊フラグIDの[自動戦闘]|
-| `FLAG_ID_GUARD` | [Number](Number.md) | [static] 特殊フラグIDの[防御]|
-| `FLAG_ID_SUBSTITUTE` | [Number](Number.md) | [static] 特殊フラグIDの[身代わり]|
-| `FLAG_ID_PRESERVE_TP` | [Number](Number.md) | [static] 特殊フラグIDの[TP持ち越し]|
+| `TRAIT_ELEMENT_RATE` | [Number](Number.md) | [static] [耐性]-[属性有効度] |
+| `TRAIT_DEBUFF_RATE` | [Number](Number.md) | [static] [耐性]-[弱体有効度]  |
+| `TRAIT_STATE_RATE` | [Number](Number.md) | [static] [耐性]-[ステート有効度] |
+| `TRAIT_STATE_RESIST` | [Number](Number.md) | [static] [耐性]-[ステート無効化] |
+| `TRAIT_PARAM` | [Number](Number.md) | [static] [能力値]-[通常能力値] |
+| `TRAIT_XPARAM` | [Number](Number.md) | [static] [能力値]-[追加能力値] |
+| `TRAIT_SPARAM` | [Number](Number.md) | [static] [能力値]-[特殊能力値] |
+| `TRAIT_ATTACK_ELEMENT` | [Number](Number.md) | [static] [攻撃]-[攻撃時属性]|
+| `TRAIT_ATTACK_STATE` | [Number](Number.md) | [static] [攻撃]-[攻撃時ステート] |
+| `TRAIT_ATTACK_SPEED` | [Number](Number.md) | [static] [攻撃]-[攻撃速度補正] |
+| `TRAIT_ATTACK_TIMES` | [Number](Number.md) | [static] [攻撃]-[攻撃追加回数] |
+| `TRAIT_ATTACK_SKILL` | [Number](Number.md) | **@MZ** [static] [攻撃]-[攻撃スキル] |
+| `TRAIT_STYPE_ADD` | [Number](Number.md) | [static] [スキル]-[スキルタイプ追加] |
+| `TRAIT_STYPE_SEAL` | [Number](Number.md) | [static] [スキル]-[スキルタイプ封印] |
+| `TRAIT_SKILL_ADD` | [Number](Number.md) | [static] [スキル]-[スキル追加] |
+| `TRAIT_SKILL_SEAL` | [Number](Number.md) | [static] [スキル]-[スキル封印] |
+| `TRAIT_EQUIP_WTYPE` | [Number](Number.md) | [static] [装備]-[武器タイプ装備] |
+| `TRAIT_EQUIP_ATYPE` | [Number](Number.md) | [static] [装備]-[防具タイプ装備] |
+| `TRAIT_EQUIP_LOCK` | [Number](Number.md) | [static] [装備]-[装備固定] |
+| `TRAIT_EQUIP_SEAL` | [Number](Number.md) | [static] [装備]-[装備封印] |
+| `TRAIT_SLOT_TYPE` | [Number](Number.md) | [static] [装備]-[スロットタイプ] |
+| `TRAIT_ACTION_PLUS` | [Number](Number.md) | [static] [その他]-[行動回数追加] |
+| `TRAIT_SPECIAL_FLAG` | [Number](Number.md) | [static] [その他]-[特殊フラグ] |
+| `TRAIT_COLLAPSE_TYPE` | [Number](Number.md) | [static] [その他]-[消滅エフェクト] |
+| `TRAIT_PARTY_ABILITY` | [Number](Number.md) | [static] [その他]-[パーティ能力] |
+| `FLAG_ID_AUTO_BATTLE` | [Number](Number.md) | [static] 特殊フラグIDの[自動戦闘] |
+| `FLAG_ID_GUARD` | [Number](Number.md) | [static] 特殊フラグIDの[防御] |
+| `FLAG_ID_SUBSTITUTE` | [Number](Number.md) | [static] 特殊フラグIDの[身代わり] |
+| `FLAG_ID_PRESERVE_TP` | [Number](Number.md) | [static] 特殊フラグIDの[TP持ち越し] |
 | `ICON_BUFF_START` | [Number](Number.md) | [static] 能力強化アイコンの開始位置 |
 | `ICON_DEBUFF_START` | [Number](Number.md) | [static] 能力弱体アイコンの開始位置  |
 | `hp` | [Number](Number.md) | [read-only] HP |
@@ -97,15 +97,15 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 ### メソッド
 
 #### actionPlusSet () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
- [その他 - 行動回数追加] の配列を返す。
+ [その他]-[行動回数追加] の配列を返す。
 
 
 #### addedSkills () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
-[スキル - スキル追加]の配列を返す。
+[スキル]-[スキル追加]の配列を返す。
 
 
 #### addedSkillTypes () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
- [スキル - スキルタイプ追加] の配列を返す。
+ [スキル]-[スキルタイプ追加] の配列を返す。
 
 
 #### addNewState (stateId)
@@ -147,11 +147,11 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 #### attackSkillId () → {[Number](Number.md)}
 攻撃スキルのID(規定値:1)を返す。<br />
-**@MZ**[攻撃 - 攻撃スキル]の設定があればその値。
+**@MZ**[攻撃]-[攻撃スキル]の設定があればその値。
 
 
 #### attackSpeed () → {[Number](Number.md)}
- [攻撃 - 攻撃速度補正] を返す。
+ [攻撃]-[攻撃速度補正] を返す。
 
 
 #### attackStates () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
@@ -169,7 +169,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 
 #### attackTimesAdd () → {[Number](Number.md)}
-[攻撃 - 攻撃追加回数]を返す。
+[攻撃]-[攻撃追加回数]を返す。
 
 
 #### buff (paramId) → {[Number](Number.md)}
@@ -280,7 +280,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 
 #### collapseType () → {[Number](Number.md)}
-[その他 - 消滅エフェクト]を返す。
+[その他]-[消滅エフェクト]を返す。
 
 
 #### confusionLevel () → {[Number](Number.md)}
@@ -292,7 +292,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 
 #### debuffRate (paramId) → {[Number](Number.md)}
-指定した能力値に対する[耐性 - 弱体有効度] を返す。
+指定した能力値に対する[耐性]-[弱体有効度] を返す。
 
 ##### 引数
 
@@ -316,7 +316,7 @@ TRAIT\_が頭についている静的定数は、[特徴]に含まれる値を�
 
 
 #### elementRate (elementId) → {[Number](Number.md)}
- 指定の属性に対する[耐性 - 属性有効度]を返す。
+ 指定の属性に対する[耐性]-[属性有効度]を返す。
  
 ##### 引数
 
@@ -456,7 +456,7 @@ HPのパーセント量を返す。
 
 
 #### isEquipAtypeOk (atypeId) → {Boolean}
-指定防具タイプが[装備 - 防具タイプ装備]にある(装備可能)か。
+指定防具タイプが[装備]-[防具タイプ装備]にある(装備可能)か。
 
 ##### 引数
 
@@ -466,7 +466,7 @@ HPのパーセント量を返す。
 
 
 #### isEquipTypeLocked (etypeId) → {Boolean}
-指定装備タイプが [装備 - 装備固定]か。
+指定装備タイプが [装備]-[装備固定]か。
 
 ##### 引数
 
@@ -476,7 +476,7 @@ HPのパーセント量を返す。
 
 
 #### isEquipTypeSealed (etypeId) → {Boolean}
-指定装備タイプが [装備 - 装備封印]か。
+指定装備タイプが [装備]-[装備封印]か。
 
 ##### 引数
 
@@ -486,7 +486,7 @@ HPのパーセント量を返す。
 
 
 #### isEquipWtypeOk (wtypeId) → {Boolean}
-指定武器タイプが[装備 - 武器タイプ装備]にある(装備可能)か。
+指定武器タイプが[装備]-[武器タイプ装備]にある(装備可能)か。
 
 ##### 引数
 
@@ -542,7 +542,7 @@ HPのパーセント量を返す。
 
 
 #### isSkillSealed (stypeId) → {Boolean}
-指定スキルタイプが[スキル - スキル封印]か。
+指定スキルタイプが[スキル]-[スキル封印]か。
 
 ##### 引数
 
@@ -552,7 +552,7 @@ HPのパーセント量を返す。
 
 
 #### isSkillTypeSealed (stypeId) → {Boolean}
-指定スキルタイプが [スキル - スキルタイプ封印]されているか。
+指定スキルタイプが [スキル]-[スキルタイプ封印]されているか。
  
 ##### 引数
 
@@ -733,7 +733,7 @@ MPのパーセント量を返す。
 
 
 #### paramRate (paramId) → {[Number](Number.md)}
-指定した[能力値 - 通常能力値]の値を返す。
+指定した[能力値]-[通常能力値]の値を返す。
 
 ##### 引数
 
@@ -743,7 +743,7 @@ MPのパーセント量を返す。
 
 
 #### partyAbility (abilityId) → {Boolean}
-指定パーティ能力が[その他 - パーティ能力]か。
+指定パーティ能力が[その他]-[パーティ能力]か。
 
 ##### 引数
 
@@ -841,7 +841,7 @@ TPを設定。
 
 
 #### slotType () → {[Number](Number.md)}
- [装備 - スロットタイプ]を返す。
+ [装備]-[スロットタイプ]を返す。
 
 
 #### sortStates ()
@@ -849,7 +849,7 @@ TPを設定。
 
 
 #### sparam (sparamId) → {[Number](Number.md)}
-指定した[能力値 - 特殊能力値]の値を返す。
+指定した[能力値]-[特殊能力値]の値を返す。
 
 ##### 引数
 
@@ -859,7 +859,7 @@ TPを設定。
 
 
 #### specialFlag (flagId) → {Boolean}
-指定フラグが[その他 - 特殊フラグ]か。
+指定フラグが[その他]-[特殊フラグ]か。
 
 ##### 引数
 
@@ -881,7 +881,7 @@ SVでのステートの重ね合わせ番号を返す。
 
 
 #### stateRate (stateId) → {[Number](Number.md)}
- 指定したステートに対する[耐性 - ステート有効度]を返す。
+ 指定したステートに対する[耐性]-[ステート有効度]を返す。
  
 ##### 引数
 
@@ -891,7 +891,7 @@ SVでのステートの重ね合わせ番号を返す。
 
 
 #### stateResistSet () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
-[耐性 - ステート無効化]に対応する、[ステートID](RPG.State.md#ステートid)の配列を返す。
+[耐性]-[ステート無効化]に対応する、[ステートID](RPG.State.md#ステートid)の配列を返す。
 
 
 #### states () → {[Array](Array.md).&lt;[RPG.State](RPG.State.md)&gt;}
