@@ -43,11 +43,11 @@
 | `optKeyItemsNumber` | Boolean | **@MZ** [大事なものの個数を表示] |
 | `optSideView` | Boolean | [サイドビュー戦闘を使用] |
 | `optAutosave` | Boolean | **@MZ** [オートセーブを有効化] |
-| `titleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - タイトル] |
-| `battleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - 戦闘] |
-| `victoryMe` | [RPG.AudioFile](RPG.AudioFile.md) | **@MZ** [音楽 - タイプ - 勝利] |
-| `defeatMe` | [RPG.AudioFile](RPG.AudioFile.md) | **@MZ** [音楽 - タイプ - 敗北] |
-| `gameoverMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽 - タイプ - ゲームオーバー] |
+| `titleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽]-[タイプ]-[タイトル] |
+| `battleBgm` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽]-[タイプ]-[戦闘] |
+| `victoryMe` | [RPG.AudioFile](RPG.AudioFile.md) | **@MZ** [音楽]-[タイプ]-[勝利] |
+| `defeatMe` | [RPG.AudioFile](RPG.AudioFile.md) | **@MZ** [音楽]-[タイプ]-[敗北] |
+| `gameoverMe` | [RPG.AudioFile](RPG.AudioFile.md) | [音楽]-[タイプ]-[ゲームオーバー] |
 | `sounds` | [Array](Array.md).&lt;[RPG.AudioFile](RPG.AudioFile.md)&gt; | [効果音]の音声データの配列 |
 | `startMapId` | [Number](Number.md) | プレイヤーの [初期位置] のマップID |
 | `startX` | [Number](Number.md) | プレイヤーの [初期位置] のx座標(タイル数) |
