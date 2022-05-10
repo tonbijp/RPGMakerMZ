@@ -1,9 +1,9 @@
 //========================================
 // TF_Condition.js
-// Version :1.7.0.1
+// Version :1.7.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2021
+// Copyright : Tobishima-Factory 2020-2022
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -51,13 +51,13 @@
  * 　[スイッチの操作][変数の操作][セルフスイッチの操作]
  * 判定
  * 　[スイッチ判定][セルフスイッチ判定]
- * 　[複数スイッチ&結合][JavaScript判定]
+ * 　[複数スイッチ and結合][JavaScript判定]
  * 比較
  * 　[数値比較][数値範囲]
  * 位置
  * 　[座標位置][前方イベント][その場イベント]
  * 出現条件:判定
- * 　[スイッチ判定][セルフスイッチ判定][複数スイッチ&結合]
+ * 　[スイッチ判定][セルフスイッチ判定][複数スイッチ and結合]
  * 出現条件:比較
  * 　[数値比較][数値範囲]
  * ------------------------------
@@ -241,7 +241,7 @@
  * @option 一時スイッチとの比較結果を代入 == @value ==
  * 
  * @================================================
- * @command checkMultiple @text 判定:複数スイッチ
+ * @command checkMultiple @text 判定:複数スイッチ and結合
  * @desc
  * 複数のスイッチの論理積(and)の結果を、
  * 一時スイッチに代入。
@@ -522,7 +522,7 @@
  * @type boolean @default true
  *
  * @================================================
- * @command conditionMultiple @text 出現条件:複数スイッチ&結合
+ * @command conditionMultiple @text 出現条件:複数スイッチ and結合
  * @desc 指定した値がすべてtrueならページ出現。
  *
  * @arg nameList @text スイッチ名リスト
@@ -685,7 +685,7 @@
 		const label = value.toLowerCase();
 		if( label === EVENT_THIS ) return $gameMap.mapId();
 
-		const i = $dataMapInfos.findIndex( e => e ? ( e.name === value ) : false );
+		const i = $dataMapInfos.findIndex( e => e ? e.name === value : false );
 		if( i !== -1 ) return i; // $dataMapInfos[ i ].id が正しい気がするが、実は使われていないようだ
 		const result = parseInt( value, 10 );
 		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't find the map '${value}'` );
@@ -819,7 +819,7 @@
 		setItTo( value, args.operate );
 	} );
 
-	// [複数スイッチ&結合]
+	// [複数スイッチ and結合判定]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_MULTIPLE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = args.nameList.every( e => $gameSwitches.valueByName( e ) );
@@ -1131,7 +1131,8 @@
 					if( args.eventId === EVENT_THIS ) args.eventId = this._eventId;
 					if( getSelfSwitch( args.mapId, args.eventId, args.type ) !== ( args.operand === PARAM_TRUE ) ) return false;
 					continue;
-				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ&結合]
+				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ and結合]
+					args.nameList = JSON.parse( args.nameList );
 					if( !args.nameList.every( e => $gameSwitches.valueByName( e ) ) ) return false;
 					continue;
 				case CONDITION_COMPARE:// [出現条件:数値比較]
