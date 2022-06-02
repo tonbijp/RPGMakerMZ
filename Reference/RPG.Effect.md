@@ -14,24 +14,29 @@
 | `value1` | [Number](Number.md) | code 毎に意味の異なる値1 |
 | `value2` | [Number](Number.md) | code 毎に意味の異なる値2 |
 
-### code
-code は [Game_Action](Game_Action.md) の定数として定義されている。例えば、<code>Game_Action.EFFECT_RECOVER_HP</code>のような形で使う。<br />
 下表で、*0* や *1* のようなイタリック部分は、数字が入っているが未使用。
+
+### code
+code は [Game_Action](Game_Action.md) の定数として定義されている。例えば、<code>Game_Action.EFFECT_RECOVER_HP</code>のような形で使う。
+
+### value1, value2
+%単位のものはデータとしては 1 が 100% を表している。<br />
+なので 10 は 1000% を意味する。
 
 #### [回復]
 
 | code | 定数 | 使用効果 | dataId | value1 | value2 |
 | --- | --- | --- | --- | --- | --- |
-| 11 | `EFFECT_RECOVER_HP` | HP回復 | *0* | 回復量 % (0〜100) | 回復量 (固定値) |
-| 12 | `EFFECT_RECOVER_MP` | MP回復 | *0* | 回復量 % (0〜100) | 回復量 (固定値) |
-| 13 | `EFFECT_GAIN_TP` | TP増加 | *0* | 増加量(固定値)| *0* |
+| 11 | `EFFECT_RECOVER_HP` | HP回復 | *0* | 比率%(-1〜1) | 固定値(-999999～999999) |
+| 12 | `EFFECT_RECOVER_MP` | MP回復 | *0* | 比率%(-1〜1) | 固定値(-999999～999999) |
+| 13 | `EFFECT_GAIN_TP` | TP増加 | *0* | 固定値(0～100) | *0* |
 
 #### [ステート]
 
 | code | 定数 | 使用効果 | dataId | value1 | value2 |
 | --- | --- | --- | --- | --- | --- |
-| 21 | `EFFECT_ADD_STATE` | ステート付加 | [ステートID](RPG.State.md#ステートID) | 確率 % (0〜100) | *0* |
-| 22 | `EFFECT_REMOVE_STATE` | ステート解除 | [ステートID](RPG.State.md#ステートID) | 確率 % (0〜100) | *0* |
+| 21 | `EFFECT_ADD_STATE` | ステート付加 | [ステートID](RPG.State.md#ステートID) | 確率%(0〜10) | *0* |
+| 22 | `EFFECT_REMOVE_STATE` | ステート解除 | [ステートID](RPG.State.md#ステートID) | 確率%(0〜1) | *0* |
 
 #### [能力値]
 
