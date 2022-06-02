@@ -15,14 +15,14 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `scope` | [Number](Number.md) | [範囲](RPG.UsableItem.md#範囲) |
-| `occasion` | [Number](Number.md) | [使用可能時](RPG.UsableItem.md#使用可能時)  |
+| `scope` | [Number](Number.md) | [範囲](#範囲) |
+| `occasion` | [Number](Number.md) | [使用可能時](#使用可能時)  |
 | `speed` | [Number](Number.md) | [速度補正] |
 | `successRate` | [Number](Number.md) | [成功率] % (0〜100) |
 | `repeats` | [Number](Number.md) | [連続回数] \(1〜9) |
 | `tpGain` | [Number](Number.md) | [得TP] \(0〜100) |
-| `hitType` | [Number](Number.md) | [命中タイプ](RPG.UsableItem.md#命中タイプ) |
-| `animationId` | [Number](Number.md) | [アニメーションID](RPG.UsableItem.md#アニメーションid) |
+| `hitType` | [Number](Number.md) | [命中タイプ](#命中タイプ) |
+| `animationId` | [Number](Number.md) | [アニメーションID](#アニメーションid) |
 | `damage` | [RPG.Damage](RPG.Damage.md) | [ダメージ] |
 | `effects` | [Array](Array.md).&lt;[RPG.Effect](RPG.Effect.md)&gt; | [使用効果]の配列 |
 
