@@ -31,7 +31,7 @@ this._character.event(); // Game_Event
 this._character.vehicle(); // Game_Vehicle
 ```
 
-v1.4.4 で変更あり。
+v1.4.4、v1.5.0 で変更あり。
 
 関連クラス: [Scene_Map](Scene_Map.md), [Sprite_Actor](Sprite_Actor.md), [Tilemap](Tilemap.md), [Spriteset_Map](Spriteset_Map.md)
 

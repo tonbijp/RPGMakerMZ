@@ -9,7 +9,7 @@
 実行箇所や [[トリガー]](RPG.EventPage.md#トリガー) が[並列実行]であるかによって、Game_Interpreter を保持しているオブジェクトは次の異なったものがある。<br />
 [Game_Troop](Game_Troop.md)、[Game_Map](Game_Map.md)、[Game_CommonEvent](Game_CommonEvent.md)、[Game_Event](Game_Event.md)、[Game_Interpreter](Game_Interpreter.md)
 
-v1.1.1、v1.2.0、v1.3.2、v1.4.0  で変更あり。
+v1.1.1、v1.2.0、v1.3.2、v1.4.0、v1.5.0  で変更あり。
 
 関連クラス: [RPG.EventPage](RPG.EventPage.md), [Game_Character](Game_Character.md), [Game_Message](Game_Message.md), [ImageManager](ImageManager.md)
 
@@ -347,7 +347,7 @@ Game_Interpreter.prototype.pluginCommand = function ( command, args ){
 
 
 #### skipBranch ()
-条件などの分岐を飛ばす。
+条件などの分岐(インデント部分)を飛ばす。
 
 
 #### terminate ()

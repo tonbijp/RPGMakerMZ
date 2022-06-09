@@ -10,12 +10,16 @@
 静的メソッドを多く持つユーティリティクラスでもある。
 
 MZで新規にインナークラス [Tilemap.Layer](Tilemap.Layer.md) が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
+v1.5.0 ではタイルサイズの変更機能がついたため、大幅な変更が行われている。特に `tileWidth` `tileHeight` については注意が必要。
 
 主なパス
 ```js
 SceneManager._scene._spriteset._tilemap
 SceneManager._scene._spriteset._effectsContainer
 ```
+
+v1.5.0 で変更あり。
+
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
 
 ### new Tilemap ()
@@ -56,16 +60,16 @@ TILE_ から始まる定数はタイルブロックのタイルIDの開始番号
 | `bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列(0〜8)<br />(0:A1, 1:A2, 2:A3, 3:A4, 4:A5, 5:B, 6:C, 7:D, 8:E) |
 | `origin` | [Point](Point.md) |  スクロールに対する基準点 |
 | `flags` | [Array](Array.md).&lt;[Number](Number.md)&gt; |  フラグ(参照:[RPG.Tileset](RPG.Tileset.md)) |
-| `tileWidth` | [Number](Number.md) | タイル幅(規定値:48 ピクセル) |
-| `tileHeight` | [Number](Number.md) | タイル高さ(規定値:48 ピクセル) |
+| `tileWidth` | [Number](Number.md) | **@MZ1.5.0** タイル幅(規定値:48 ピクセル) |
+| `tileHeight` | [Number](Number.md) | **@MZ1.5.0** タイル高さ(規定値:48 ピクセル) |
 | `width` | [Number](Number.md) | 画面幅(規定値:624 ピクセル) (参照:[Graphics.width](Graphics.md)) |
 | `height` | [Number](Number.md) | 画面高さ(規定値:816 ピクセル) (参照:[Graphics.height](Graphics.md)) |
 | `horizontalWrap` | Boolean | 横方向にループするか |
 | `verticalWrap` | Boolean | 縦方向にループするか |
-| `_tileWidth` | [Number](Number.md) |  |
-| `_tileHeight` | [Number](Number.md) |  |
-| `_width` | [Number](Number.md) |  |
-| `_height` | [Number](Number.md) |  |
+| `_tileWidth` | [Number](Number.md) | **@MZ1.5.0** で廃止  |
+| `_tileHeight` | [Number](Number.md) | **@MZ1.5.0** で廃止  |
+| `_width` | [Number](Number.md) | |
+| `_height` | [Number](Number.md) | |
 | `_margin` | [Number](Number.md) | マージン(規定値:20) |
 | `_mapWidth` | [Number](Number.md) | マップ幅(タイル数) |
 | `_mapHeight` | [Number](Number.md) | マップ高さ(タイル数) |

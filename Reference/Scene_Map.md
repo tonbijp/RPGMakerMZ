@@ -13,6 +13,8 @@ MVでは [Scene_Base](Scene_Base.md) がスーパークラスだったが [Scene
 SceneManager._scene
 ```
 
+v1.5.0 で変更あり。
+
 関連クラス: [SceneManager](SceneManager.md), [Tilemap](Tilemap.md),  [Game_Timer](Game_Timer.md), [Game_Screen](Game_Screen.md), [Game_Map](Game_Map.md)<br />
 関連シーン: [Scene_Title](Scene_Title.md), [Scene_Boot](Scene_Boot.md), [Scene_ItemBase](Scene_ItemBase.md), [Scene_Battle](Scene_Battle.md), [Scene_Load](Scene_Load.md)
 

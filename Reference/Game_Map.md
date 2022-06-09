@@ -12,7 +12,7 @@ A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilem
 
 [セルフスイッチ]は[イベント]とは別に [Game_SelfSwitches](Game_SelfSwitches.md) が管理している。
 
-v1.1.0、v1.2.0  で変更あり。<br />
+v1.1.0、v1.2.0、v1.5.0  で変更あり。<br />
 なお、公式プラグイン PluginCommonBase.js によって追加されるプロパティ・メソッドも書いている。
 
 関連クラス: [RPG.Tileset](RPG.Tileset.md), [Scene_Map](Scene_Map.md), [Game_Screen](Game_Screen.md), [Tilemap](Tilemap.md), [Game_Player](Game_Player.md)
@@ -117,6 +117,10 @@ v1.1.0、v1.2.0  で変更あり。<br />
 
 #### boat () → {[Game_Vehicle](Game_Vehicle.md)}
 [小型船]を返す。
+
+
+#### bushDepth () → {[Number](Number.md)}
+**@MZ1.5.0** 草むらの深さ(ピクセル)を返す。
 
 
 #### canvasToMapX (x) → {[Number](Number.md)}

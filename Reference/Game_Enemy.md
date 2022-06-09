@@ -10,6 +10,8 @@
 
 戦闘中の[敵キャラ]のパラメータの取得、画像の設定を行うクラス。
 
+v1.5.0 で変更あり。
+
 関連クラス: [RPG.Enemy.Action](RPG.Enemy.Action.md), [Game_Troop](Game_Troop.md), [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Scene_Battle](Scene_Battle.md), [BattleManager](BattleManager.md), [Window_BattleEnemy](Window_BattleEnemy.md)
 
 ### new Game_Enemy ()
