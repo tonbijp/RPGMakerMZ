@@ -5,7 +5,7 @@
 
 別に公式の初心者講座の、アクターの[特徴の設定](https://tkool.jp/mv/guide/004_003c.html)と、他の[敵キャラの能力を設定する\[特徴\]](https://tkool.jp/mv/guide/004_008a.html#03)、[武器の特徴を設定する](https://tkool.jp/mv/guide/004_005b.html#03)、[防具の特徴を設定する](https://tkool.jp/mv/guide/004_005c.html#03)や、本体のヘルプの記述を参照。
 
-関連クラス: [RPG.Actor](RPG.Actor.md), [RPG.Enemy](RPG.Enemy.md), [RPG.EquipItem](RPG.EquipItem.md), [RPG.Armor](RPG.Armor.md), [RPG.Weapon](RPG.Weapon.md)
+関連クラス: [RPG.Actor](RPG.Actor.md), [RPG.Enemy](RPG.Enemy.md), [RPG.EquipItem](RPG.EquipItem.md), [RPG.Armor](RPG.Armor.md), [RPG.Weapon](RPG.Weapon.md), [RPG.State](RPG.State.md)
 
 ### プロパティ
 
