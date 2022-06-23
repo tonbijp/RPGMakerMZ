@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.9.0.0
+// Version :0.9.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -250,16 +250,16 @@
 
     /**
      * 指定キャラに対応するJSONデータを返す。
-     * @param {Game_Character} tc 指定キャラクタオブジェクト
+     * @param {Game_Character} target 指定キャラクタオブジェクト
      * @returns {RPG.MetaData} JSONデータ(なければundefined)
      */
-    function getCharacterJson( tc ) {
-        if( tc instanceof Game_Event ) {
-            return tc.event();
-        } else if( tc instanceof Game_Player ) {
+    function getCharacterJson( target ) {
+        if( target instanceof Game_Event ) {
+            return target.event();
+        } else if( target instanceof Game_Player ) {
             return $gameParty.leader().actor();
-        } else if( tc instanceof Game_Follower ) {
-            const actor = tc.actor();
+        } else if( target instanceof Game_Follower ) {
+            const actor = target.actor();
             if( actor ) return actor.actor();
         }
         return;   // メモ欄を持たないデータ
@@ -274,7 +274,7 @@
         if( tc.hasShadow !== undefined ) return tc.hasShadow;
         const shadowTag = getTag_TF_SHADOW( tc );
         if( shadowTag === undefined ) return !tc.isTile() && !tc.isObjectCharacter();
-        return !!shadowTag;    //タグ指定があれば、その指定に従う
+        return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
     }
 
     /**
@@ -371,6 +371,7 @@
      * @returns Point 影の縦横半径
      */
     function actorShadowRadius( actor ) {
+        if( !actor ) return;
         if( actor.shadowRadius ) return actor.shadowRadius;
         const radius = rpgMetaShadowRadius( actor.actor() );
         if( !radius ) return;
