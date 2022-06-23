@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.7.3.0
+// Version :0.8.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -285,15 +285,6 @@
     }
 
 
-
-    /*--- Game_Interpreter ---*/
-    const _Game_Interpreter_command129 = Game_Interpreter.prototype.command129;
-    Game_Interpreter.prototype.command129 = function( params ) {
-        const followers = $gamePlayer.followers().data();
-        followers.forEach( e => e.refreshShadow = true );
-        return _Game_Interpreter_command129.apply( this, arguments );
-    };
-
     /*--- Game_CharacterBase ---*/
     /**
      * 影のON/OFF
@@ -334,6 +325,7 @@
     const _Game_Player_refresh = Game_Player.prototype.refresh;
     Game_Player.prototype.refresh = function() {
         _Game_Player_refresh.apply( this, arguments );
+        this.shadowRadius = null;
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
     };
@@ -342,6 +334,7 @@
     const _Game_Follower_refresh = Game_Follower.prototype.refresh;
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
+        this.shadowRadius = null;
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
     };
@@ -418,6 +411,7 @@
         initRadius() {
             if( this._sprite._character.shadowRadius ) return;
             const radius = stringToPoint( getMetaTag( this._sprite._character ) );
+
             this._sprite._character.shadowRadius = ( radius ) ? radius : shadowRadius;
         }
 
