@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :1.0.0.0
+// Version :1.0.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -253,62 +253,50 @@
 
 
     /**
-     * TF_SHADOWタグの内容を返す。
-     * @param {Game_Character} tc キャラクタオブジェクト
-     * @returns {String|Boolean|Number} TF_SHADOWタグの内容(なければundefined)
-     */
-    function getTag_TF_SHADOW( tc ) {
-        const jsonData = getCharacterJson( tc );
-        if( jsonData ) {
-            return PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
-        } else if( tc instanceof Game_Follower ) {
-            return undefined;   // Actor未設定のGame_Follower
-        } else {
-            return false;   // メモ欄を持たないデータ(Game_Vehicle)
-        }
-    };
-
-    /**
      * 指定キャラに対応するJSONデータを返す。
-     * @param {Game_Character} target 指定キャラクタオブジェクト
+     * @param {Game_Character} character 指定キャラクタオブジェクト
      * @returns {RPG.MetaData} JSONデータ(なければundefined)
      */
-    function getCharacterJson( target ) {
-        if( target instanceof Game_Event ) {
-            return target.event();
-        } else if( target instanceof Game_Player ) {
-            return $gameParty.leader().actor();
-        } else if( target instanceof Game_Follower ) {
-            const actor = target.actor();
+    function getCharacterJson( character ) {
+        if( character instanceof Game_Event ) return character.event();
+        if( character instanceof Game_Player ) return $gameParty.leader().actor();
+        if( character instanceof Game_Follower ) {
+            const actor = character.actor();
             if( actor ) return actor.actor();
         }
-        return;   // メモ欄を持たないデータ
     }
 
     /**
      * 指定キャラが影を持つか。
-     * @param {Game_Character} tc 指定キャラクタオブジェクト
+     * @param {Game_Character} character 指定キャラクタオブジェクト
      * @returns {Boolean} 影を持つか
      */
-    function hasShadow( tc ) {
-        if( tc.hasShadow !== undefined ) return tc.hasShadow;
-        const shadowTag = getTag_TF_SHADOW( tc );
-        if( shadowTag === undefined ) return !tc.isTile() && !tc.isObjectCharacter();
-        return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
+    function hasShadow( character ) {
+        if( character.hasShadow !== undefined ) return character.hasShadow; // 判定済み
+
+        const jsonData = getCharacterJson( character );
+        if( !jsonData ) return false;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+
+        const shadowTag = PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
+        if( shadowTag === undefined ) {
+            return !character.isTile() && !character.isObjectCharacter(); // タイル・!ファイルは影なし
+        } else {
+            return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
+        }
     }
 
     /**
      * ステージに影を追加。
-     * @param {Sprite_Character} ts
+     * @param {Sprite_Character} spriteCharacter
      */
-    function addShadow( ts ) {
-        ts.shadow = new Sprite_Shadow( ts );
-        ts.parent.addChild( ts.shadow );
+    function addShadow( spriteCharacter ) {
+        spriteCharacter.shadow = new Sprite_Shadow( spriteCharacter );
+        spriteCharacter.parent.addChild( spriteCharacter.shadow );
     }
 
     /*--- Game_Actor ---*/
     /**
-     * 影のサイズ変更
+     * アクターの影の大きさ変更
      * @param {Point} radius 影の横縦半径
      */
     Game_Actor.prototype.TF_shadowRadius = function( radius ) {
@@ -326,7 +314,7 @@
         this.hasShadow = hasShadow;
     };
     /**
-     * 影のサイズ変更
+     * 影の大きさ変更
      * @param {Number} width 影の横半径
      * @param {Number} height 影の縦半径
      */
