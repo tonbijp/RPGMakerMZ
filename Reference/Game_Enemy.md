@@ -436,7 +436,7 @@ v1.5.0 で変更あり。
 
 
 #### performActionStart (action)
-Overrides [Game_Battler](Game_Battler.md#performactionstart-action)
+オーバーライド:[Game_Battler](Game_Battler.md#performactionstart-action)
 
 
 #### performCollapse ()
