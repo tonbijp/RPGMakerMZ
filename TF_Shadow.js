@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.9.1.0
+// Version :1.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -81,7 +81,6 @@
  * @desc
  * @type boolean @default true
  *
- * 
  * @================================================
  * @command shadowRadius @text 影の大きさ変更
  * @desc 指定キャラの影の大きさ変更
@@ -112,6 +111,20 @@
  * @desc 
  * @type number @default -2
  * @min -9999
+ * 
+ * @================================================
+ * @command actorShadowRadius @text アクターの影の大きさ変更
+ * @desc 指定アクターの影の大きさ変更
+ * マップ移動や並び替えで戻りません
+ *
+ * @arg actorId @text アクターID
+ * @desc 規定値: 1
+ * @type actor @default 1
+ *
+ * @arg radius @text 影の大きさ(半径)
+ * @desc 横, 縦
+ * 規定値: 18,9
+ * @type string @default 18,9
  */
 ( () => {
     "use strict";
@@ -119,6 +132,7 @@
     const TF_SHADOW = "TF_SHADOW";  // タグ名
     const COM_HAS_SHADOW = "hasShadow";
     const COM_SHADOW_RADIUS = "shadowRadius";
+    const COM_ACTOR_SHADOW_RADIUS = "actorShadowRadius";
     const COM_SHADOW_Y = "shadowY";
 
     /*---- パラメータパース関数 ----*/
@@ -221,6 +235,12 @@
         targetEvent.TF_shadowY( args.shiftY );
     } );
 
+    PluginManagerEx.registerCommand( document.currentScript, COM_ACTOR_SHADOW_RADIUS, function( args ) {
+        const targetActor = $gameActors.actor( args.actorId );
+        targetActor.TF_shadowRadius( stringToPoint( args.radius ) );
+    } );
+
+
     /*--- Spriteset_Map ---*/
     const _Spriteset_Map_createCharacters = Spriteset_Map.prototype.createCharacters;
     Spriteset_Map.prototype.createCharacters = function() {
@@ -286,6 +306,15 @@
         ts.parent.addChild( ts.shadow );
     }
 
+    /*--- Game_Actor ---*/
+    /**
+     * 影のサイズ変更
+     * @param {Point} radius 影の横縦半径
+     */
+    Game_Actor.prototype.TF_shadowRadius = function( radius ) {
+        this.shadowRadius = radius;
+        $gamePlayer.refresh();
+    };
 
     /*--- Game_CharacterBase ---*/
     /**
@@ -305,15 +334,6 @@
         this.refreshShadow = true;
         this.shadowRadius = new Point( width, height );
     };
-    /**
-     * 影のサイズ変更
-     * @param {Number} width 影の横半径
-     * @param {Number} height 影の縦半径
-     */
-    Game_Actor.prototype.TF_shadowRadius = function( width, height ) {
-        this.shadowRadius = new Point( width, height );
-    };
-
 
     /**
      * 影の高さ変更
