@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :0.8.0.0
+// Version :0.9.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -81,13 +81,15 @@
  * @desc
  * @type boolean @default true
  *
+ * 
  * @================================================
  * @command shadowRadius @text 影の大きさ変更
  * @desc 指定キャラの影の大きさ変更
+ * マップ移動などで元に戻ります
  *
  * @arg eventId @text イベントID
- * @desc
- * イベントID(数値)かイベントの名前
+ * @desc イベントID(数値)かイベントの名前
+ * 規定値: this
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
@@ -235,7 +237,7 @@
      * @param {Game_Character} tc キャラクタオブジェクト
      * @returns {String|Boolean|Number} TF_SHADOWタグの内容(なければundefined)
      */
-    function getMetaTag( tc ) {
+    function getTag_TF_SHADOW( tc ) {
         const jsonData = getCharacterJson( tc );
         if( jsonData ) {
             return PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
@@ -270,7 +272,7 @@
      */
     function hasShadow( tc ) {
         if( tc.hasShadow !== undefined ) return tc.hasShadow;
-        const shadowTag = getMetaTag( tc );
+        const shadowTag = getTag_TF_SHADOW( tc );
         if( shadowTag === undefined ) return !tc.isTile() && !tc.isObjectCharacter();
         return !!shadowTag;    //タグ指定があれば、その指定に従う
     }
@@ -304,6 +306,16 @@
         this.shadowRadius = new Point( width, height );
     };
     /**
+     * 影のサイズ変更
+     * @param {Number} width 影の横半径
+     * @param {Number} height 影の縦半径
+     */
+    Game_Actor.prototype.TF_shadowRadius = function( width, height ) {
+        this.shadowRadius = new Point( width, height );
+    };
+
+
+    /**
      * 影の高さ変更
      * @param {Number} shiftY 影の縦位置
      */
@@ -317,6 +329,9 @@
     const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
     Game_Event.prototype.setupPageSettings = function() {
         _Game_Event_setupPageSettings.call( this );
+        if( !this.shadowRadius ) {
+            this.shadowRadius = rpgMetaShadowRadius( this.event() );
+        }
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
     };
@@ -325,19 +340,43 @@
     const _Game_Player_refresh = Game_Player.prototype.refresh;
     Game_Player.prototype.refresh = function() {
         _Game_Player_refresh.apply( this, arguments );
-        this.shadowRadius = null;
+        this.shadowRadius = actorShadowRadius( $gameParty.leader() );
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
     };
+
 
     /*--- Game_Follower ---*/
     const _Game_Follower_refresh = Game_Follower.prototype.refresh;
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
-        this.shadowRadius = null;
+        this.shadowRadius = actorShadowRadius( this.actor() );
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
     };
+
+    /**
+     * 
+     * @param {RPG.meta} rpgMeta メタデータを持ったJSONデータ
+     * @returns Point 影の縦横半径
+     */
+    function rpgMetaShadowRadius( rpgMeta ) {
+        const shadowString = PluginManagerEx.findMetaValue( rpgMeta, TF_SHADOW );
+        return stringToPoint( shadowString );
+    }
+
+    /**
+     * 
+     * @param {Game_Actor} actor アクター
+     * @returns Point 影の縦横半径
+     */
+    function actorShadowRadius( actor ) {
+        if( actor.shadowRadius ) return actor.shadowRadius;
+        const radius = rpgMetaShadowRadius( actor.actor() );
+        if( !radius ) return;
+        return actor.shadowRadius = radius;
+    }
+
 
     /*--- Sprite_Character ---*/
     const _Sprite_Character_update = Sprite_Character.prototype.update;
@@ -388,14 +427,12 @@
             super.initialize( new Bitmap( 1, 1 ) );
             this._sprite = sprite;
             this.anchor.set( 0.5 );
-            this.initRadius();
             this.initMembers();
             this.create();
         }
 
         refresh() {
             this.bitmap.clear();
-            this.initRadius();
             this.initMembers();
             this.create();
         }
@@ -408,15 +445,8 @@
             this.shiftY = shiftY + this._sprite._character.shiftY() - 8;
         }
 
-        initRadius() {
-            if( this._sprite._character.shadowRadius ) return;
-            const radius = stringToPoint( getMetaTag( this._sprite._character ) );
-
-            this._sprite._character.shadowRadius = ( radius ) ? radius : shadowRadius;
-        }
-
         create() {
-            const radius = this._sprite._character.shadowRadius;
+            const radius = ( this._sprite._character.shadowRadius ) ? this._sprite._character.shadowRadius : shadowRadius;
             const rX = radius.x;
             const rY = radius.y;
             this.bitmap.resize( rX * 2, rY * 2 );
