@@ -177,7 +177,7 @@ v1.4.4、v1.5.0 で変更あり。
 
 
 #### isTile () → {boolean}
-タイルの上に乗っている(0 < tileID)か。
+タイル画像(0 < tileID)か。
 
 
 #### patternHeight () → {[Number](Number.md)}
