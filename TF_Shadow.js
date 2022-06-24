@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :1.0.1.0
+// Version :1.0.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -12,7 +12,7 @@
 /*:ja
  * @target MZ
  * @plugindesc キャラに影をつける
- * @author とんび﹫鳶嶋工房(tonbi.jp)
+ * @author とんび@鳶嶋工房(tonbi.jp)
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
  *
  * @base PluginCommonBase
@@ -58,7 +58,7 @@
  * <TF_SHADOW:false>
  * 
  * 以下で影の半径を指定できる。
- * <TF_SHADOW:横, 縦>
+ * <TF_SHADOW:x,y>
  *
  * [移動ルートの指定]の[スクリプト]
  * this.TF_hasShadow( true );   // 影をつける
@@ -102,13 +102,13 @@
  * @desc 指定キャラの影の上下位置調整
  *
  * @arg eventId @text イベントID
- * @desc イベントID(数値)かイベントの名前
- * 規定値: this
+ * @desc
+ * イベントID(数値)かイベントの名前
  * @type combo @default this
  * @option this @option player @option follower0 @option follower1 @option follower2
  *
  * @arg shiftY @text 上下位置調整
- * @desc 規定値: -2
+ * @desc 
  * @type number @default -2
  * @min -9999
  * 
@@ -126,122 +126,6 @@
  * 規定値: 18,9
  * @type string @default 18,9
  */
-
-/*:en
-* @target MZ
-* @plugindesc put a shadow under a characer.
-* @author Tonbi﹫Tobishima-Factory(tonbi.jp)
-* @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
-*
-* @base PluginCommonBase
-* @orderAfter PluginCommonBase
-*
-* @param radius
-* @desc width, height
-* Default: 18,9
-* @type string @default 18,9
-*
-* @param shiftY
-* @desc Difference of vertical position.
-* Default: -2
-* @type number @default -2
-* @min -9999
-*
-* @param color
-* @desc CSS Color setting.
-* Default: #0006
-* @type string @default #0006
-*
-* @param strength
-* @desc Blur strength.
-* Default:4
-* @type number @default 4
-* 
-* @================================================
-* @help
-* This plugin can put a shadow under a characer.
-* You haven't need to ready shadow picture. Because, shadow draw by vector.
-* 
-* Shadow put automaticaly for player, follower and event without '!' mark on file name.
-* But, map tiles are ignore.
-* 
-* And you can put a shadow optional. note at database [actor] or note at a event.
-* 
-* <TF_SHADOW> or <TF_SHADOW:true>
-* 
-* If you want to remove a shadow.
-
-* <TF_SHADOW:false>
-* 
-* You can specify radius by number of width, height.
-*
-* <TF_SHADOW:w,h>
-*
-* [Script] at [Movement Route]
-* this.TF_hasShadow( true );   // Put a shadow.
-* this.TF_hasShadow( false );   // Remove a shadow.
-* this.TF_shadowRadius( 20, 9 );   // Set shadow radius(width, height) 
-*
-* ※ You can use ` \V[n]` control code by PluginCommonBase plugin.
-*
-* @================================================
-* @command hasShadow
-* @desc Shadow ON・OFF
-*
-* @arg eventId
-* @desc
-* event ID or event name.
-* @type combo @default this
-* @option this @option player @option follower0 @option follower1 @option follower2
-*
-* @arg hasShadow
-* @desc
-* @type boolean @default true
-*
-* @================================================
-* @command shadowRadius
-* @desc Chane shadow size.
-* Change until move map and so on.
-*
-* @arg eventId
-* @desc event ID or event name.
-* Default: this
-* @type combo @default this
-* @option this @option player @option follower0 @option follower1 @option follower2
-*
-* @arg radius
-* @desc 横, 縦
-* 規定値: 18,9
-* @type string @default 18,9
-*
-* @================================================
-* @command shadowY
-* @desc Difference of vertical position.
-*
-* @arg eventId
-* @desc event ID or event name.
-* @type combo @default this
-* @option this @option player @option follower0 @option follower1 @option follower2
-*
-* @arg shiftY
-* @desc Default -2
-* @type number @default -2
-* @min -9999
-* 
-* @================================================
-* @command actorShadowRadius
-* @desc Set a shadow size by actor ID.
-* This parameter don't back before size by move map.
-*
-* @arg actorId
-* @desc Default: 1
-* @type actor @default 1
-*
-* @arg radius
-* @desc width, height
-* Default: 18,9
-* @type string @default 18,9
-*/
 ( () => {
     "use strict";
     const PLUGIN_NAME = "TF_Shadow";
@@ -395,7 +279,7 @@
 
         const shadowTag = PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
         if( shadowTag === undefined ) {
-            return !character.isObjectCharacter(); // タイル・!ファイルは影なし !character.isTile() &&
+            return !character.isTile() && !character.isObjectCharacter(); // タイル・!ファイルは影なし
         } else {
             return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
         }
@@ -450,15 +334,14 @@
 
 
     /*--- Game_Event ---*/
-    const _Game_Event_refresh = Game_Event.prototype.refresh;
-    Game_Event.prototype.refresh = function() {
-        _Game_Event_refresh.call( this );
+    const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
+    Game_Event.prototype.setupPageSettings = function() {
+        _Game_Event_setupPageSettings.call( this );
         if( !this.shadowRadius ) {
             this.shadowRadius = rpgMetaShadowRadius( this.event() );
         }
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
-
     };
 
     /*--- Game_Player ---*/
@@ -588,9 +471,7 @@
         getOpacity() {
             const ts = this._sprite;
             const tc = ts._character;
-            if( !tc
-                || ( tc._characterName === "" && tc.tileId() === 0 ) // 歩行グラフィックもタイルもセットされていない
-                || tc._transparent || !ts.visible || !ts.bitmap ) return 0;
+            if( !tc || tc._characterName === "" || tc._transparent || tc._opacity === 0 || !ts.visible || !ts.bitmap ) return 0;
             return tc._opacity;
         };
     }
