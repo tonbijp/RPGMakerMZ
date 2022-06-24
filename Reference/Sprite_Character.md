@@ -173,11 +173,11 @@ v1.4.4、v1.5.0 で変更あり。
 
 
 #### isObjectCharacter ()→ {boolean}
-**@MZ** オブジェクトキャラクタ(characters フォルダ以下)の画像か。
+**@MZ** オブジェクトキャラクタ(!付きファイルかタイル)の画像か。
 
 
 #### isTile () → {boolean}
-タイルの上に乗っている(0 < tileID)か。
+タイル画像が設定されているか。
 
 
 #### patternHeight () → {[Number](Number.md)}
