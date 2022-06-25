@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :1.0.1.0
+// Version :1.0.1.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -11,7 +11,7 @@
 //========================================
 /*:ja
  * @target MZ
- * @plugindesc キャラに影をつける
+ * @plugindesc Ver.1.0.1.1 キャラに影をつける
  * @author とんび﹫鳶嶋工房(tonbi.jp)
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
  *
@@ -129,7 +129,7 @@
 
 /*:en
 * @target MZ
-* @plugindesc put a shadow under a characer.
+* @plugindesc Ver.1.0.1.1 Put a shadow under a characer.
 * @author Tonbi﹫Tobishima-Factory(tonbi.jp)
 * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
 *
@@ -475,8 +475,10 @@
     const _Game_Follower_refresh = Game_Follower.prototype.refresh;
     Game_Follower.prototype.refresh = function() {
         _Game_Follower_refresh.apply( this, arguments );
+        if( !this.actor() ) return;
         this.shadowRadius = actorShadowRadius( this.actor() );
         this.refreshShadow = true;
+        this.hasShadow = undefined;// follower は Actorによって設定が変わるのでリセット
         this.hasShadow = hasShadow( this );
     };
 
