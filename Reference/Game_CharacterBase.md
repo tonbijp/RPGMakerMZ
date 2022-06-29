@@ -76,7 +76,7 @@
 
 #### bushDepth () → {[Number](Number.md)}
 [茂み]の深さ(ピクセル数)を返す。<br />
-茂みがある場合12ない場合は0が返る。
+茂みがある場合タイル高さの1/4(規定値:12px)ない場合は0が返る。
 
 
 #### canPass (x, y, d) → {Boolean}
@@ -150,7 +150,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `character` | [Game_Player](Game_Player.md) |  |
+| `character` | [Game_CharacterBase](Game_CharacterBase.md) | コピー元のキャラクタ |
 
 
 #### direction () → {[Number](Number.md)}
