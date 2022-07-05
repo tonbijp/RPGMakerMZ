@@ -29,7 +29,6 @@
 | `frameMax` | [Number](Number.md) | 最大[フレーム数] |
 | `frames` | [Array](Array.md).&lt;[Array](Array.md).&lt;[Array](Array.md).&lt;[Number](Number.md)&gt;&gt;&gt; | [フレーム情報](#フレーム情報) |
 | `timings` | [Array](Array.md).&lt;[RPG.Animation.Timing](RPG.Animation.Timing.md)&gt; | [SEとフラッシュのタイミング]の配列 |
-
 | `displayType` | [String](String.md) | **@MZ** 表示タイプ |
 
 
