@@ -39,7 +39,7 @@ v1.1.0、v1.2.0、v1.3.3、v1.4.0 で変更あり。
 | `_frameIndex` | [Number](Number.md) | フレーム番号 |
 | `_maxTimingFrames` | [Number](Number.md) | 最大フレーム |
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
-| `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/15秒単位) |
+| `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/60秒単位) |
 | `_viewportSize` | [Number](Number.md) | ビューポートサイズ(規定値:4096) |
 | `_originalViewport` | [Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ 1.3.3** で廃止。ビューポート[ x, y, 幅, 高さ ] |
 
