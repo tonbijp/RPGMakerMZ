@@ -23,7 +23,7 @@
 | `name` | [String](String.md) | エディタで表示される[名前] |
 | `animation1Name` | [String](String.md) | [画像]1のファイル名(img/animations/ フォルダで、拡張子を含まない) |
 | `animation1Hue` | [Number](Number.md) |[画像]1の色相(0〜360) |
-| `animation2Name` | [String](String.md) | [画像]2のファイル名((img/animations/ フォルダで、拡張子を含まない) |
+| `animation2Name` | [String](String.md) | [画像]2のファイル名(img/animations/ フォルダで、拡張子を含まない) |
 | `animation2Hue` | [Number](Number.md) | [画像]2の色相(0〜360) |
 | `position` | [Number](Number.md) | [[位置](#位置)]([Sprite_AnimationMV](Sprite_AnimationMV.md)用) |
 | `frameMax` | [Number](Number.md) | 最大[フレーム数] |
