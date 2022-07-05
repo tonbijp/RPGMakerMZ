@@ -30,7 +30,7 @@ MVのアニメーションとの互換性を維持するために存在するが
 | `_animation` | [RPG.Animation](RPG.Animation.md) | アニメーションデータ |
 | `_mirror` | Boolean | 左右反転するか |
 | `_delay` | [Number](Number.md) | 表示時間 |
-| `_rate` | [Number](Number.md) | 表示レート |
+| `_rate` | [Number](Number.md) | 表示レート(規定値:4フレーム) |
 | `_duration` | [Number](Number.md) | 継続時間 |
 | `_flashColor` | [Array](Array.md).&lt;[Number](Number.md)&gt; | フラッシュの色の配列 [ 赤, 緑, 青, 強さ ] |
 | `_flashDuration` | [Number](Number.md) | フラッシュの[時間] \(1/15秒単位) |
@@ -122,8 +122,6 @@ y座標の絶対値を返す。
 
 #### createScreenFlashSprite ()
 画面に対するフラッシュ用のスプライトを生成。
-
-
 
 
 #### currentFrameIndex () → {[Number](Number.md)}
