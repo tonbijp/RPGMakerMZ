@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.7.1.0
+// Version :1.7.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2022
@@ -1132,8 +1132,8 @@
 					if( getSelfSwitch( args.mapId, args.eventId, args.type ) !== ( args.operand === PARAM_TRUE ) ) return false;
 					continue;
 				case CONDITION_MULTIPLE:// [出現条件:複数スイッチ and結合]
-					args.nameList = JSON.parse( args.nameList );
-					if( !args.nameList.every( e => $gameSwitches.valueByName( e ) ) ) return false;
+					const nameList = JSON.parse( args.nameList );
+					if( !nameList.every( e => $gameSwitches.valueByName( e ) ) ) return false;
 					continue;
 				case CONDITION_COMPARE:// [出現条件:数値比較]
 					if( !checkCompare( args ) ) return false;
