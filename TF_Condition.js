@@ -1,6 +1,6 @@
 //========================================
 // TF_Condition.js
-// Version :1.7.2.0
+// Version :1.7.2.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2022
@@ -376,7 +376,7 @@
  * @arg position @text 位置(タイル数)
  * @desc マップ上の位置
  *  x, y 座標2つの数値を区切って入力。
- * @type string @default 0, 0
+ * @type string @default 0,0
  *
  * @arg d @text 向き(テンキー対応)
  * @desc プレイヤーの向き
