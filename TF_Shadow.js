@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :1.0.1.1
+// Version :1.0.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -11,7 +11,7 @@
 //========================================
 /*:ja
  * @target MZ
- * @plugindesc Ver.1.0.1.1 キャラに影をつける
+ * @plugindesc Ver.1.0.2.0 キャラに影をつける
  * @author とんび﹫鳶嶋工房(tonbi.jp)
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
  *
@@ -127,9 +127,9 @@
  * @type string @default 18,9
  */
 
-/*:en
+/*
 * @target MZ
-* @plugindesc Ver.1.0.1.1 Put a shadow under a characer.
+* @plugindesc Ver.1.0.2.0 Put a shadow under a characer.
 * @author Tonbi﹫Tobishima-Factory(tonbi.jp)
 * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
 *
@@ -450,15 +450,15 @@
 
 
     /*--- Game_Event ---*/
-    const _Game_Event_refresh = Game_Event.prototype.refresh;
-    Game_Event.prototype.refresh = function() {
-        _Game_Event_refresh.call( this );
+    // ページ切り替えを行なった場合に影を変更(ページ切り替え時にrefreshは呼ばれない)
+    const _Game_Event_setupPageSettings = Game_Event.prototype.setupPageSettings;
+    Game_Event.prototype.setupPageSettings = function() {
+        _Game_Event_setupPageSettings.call( this );
         if( !this.shadowRadius ) {
             this.shadowRadius = rpgMetaShadowRadius( this.event() );
         }
         this.refreshShadow = true;
         this.hasShadow = hasShadow( this );
-
     };
 
     /*--- Game_Player ---*/
