@@ -1,6 +1,6 @@
 //========================================
 // TF_Shadow.js
-// Version :1.0.2.0
+// Version :1.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2021, 2022
@@ -394,11 +394,10 @@
         if( !jsonData ) return false;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
 
         const shadowTag = PluginManagerEx.findMetaValue( jsonData, TF_SHADOW );
-        if( shadowTag === undefined ) {
-            return !character.isObjectCharacter(); // タイル・!ファイルは影なし !character.isTile() &&
-        } else {
-            return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
-        }
+        if( shadowTag !== undefined ) return !!shadowTag;    //タグ指定があれば、その指定(true/false)に従う
+
+        if( character._characterName === "" && character._tileId === 0 ) return undefined;    // 判定を保留
+        return !character.isObjectCharacter(); // タイル・!ファイルは影なし !character.isTile() &&
     }
 
     /**
