@@ -20,6 +20,8 @@
 | [TF_LayeredMap.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_LayeredMap.js) | マップタイル重ね合わせ強化 | α版 | |
 | [TF_SharpFont.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_SharpFont.js) | フォントをくっきりさせる | α版 | |
 | [TF_Shadow.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_Shadow.js) | キャラに影をつける | α版 | |
+| [TF_TransferEx.js](https://raw.githubusercontent.com/tonbijp/RPGMakerMZ/master/TF_TransferEx.js) | 半歩単位場所移動など | α版 | |
+
 
 進捗報告やサポートなどは、ツクール公式フォーラムの次のスレッドで行なっています。
 
