@@ -1,6 +1,6 @@
 //========================================
 // TF_TransferEx.js
-// Version :0.0.0.1
+// Version :0.0.0.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2022
@@ -85,24 +85,10 @@
 	// イベントコマンドの番号
 	const COMMAND_END = 0;
 	const TRANSFER_PLAYER = 201;
-	const SET_MOVEMENT_ROUTE = 205;
-	const CHANGE_PLAYER_FOLLOWERS = 216;
-	const FADEOUT_SCREEN = 221;
-	const FADEIN_SCREEN = 222;
-	const WAIT_FOR = 230;
-	const PLAY_SE = 250;
-	const REMOVE_EVENT = 214;
 
 	// イベントコマンドのパラメータ
-	const FLAG_ON = 1;
-	const FLAG_OFF = 0;
-	const PAN_CENTER = 0;
 	const LOCATE_DILECT = 0;
-	const FADE_TO_BLACK = 0;
-	const FADE_TO_WHITE = 1;
-	const FADE_NONE = 2;
 
-	const PLAYER_CHARACTER = -1;
 	const gc = Game_Character;
 
 	/**
@@ -142,8 +128,6 @@
 	);
 
 	/*--- ユーティリティ関数 ---*/
-	const TYPE_BOOLEAN = "boolean";
-	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
 	/**
 	 * 文字列をマップIDへ変換
