@@ -1,9 +1,9 @@
 //========================================
 // TF_Billboard.js
-// Version :0.0.2.0
+// Version :0.0.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020
+// Copyright : Tobishima-Factory 2020-2022
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -57,7 +57,7 @@
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
         _Tilemap_createLayers.call( this );
-        const maxBillboard = Math.ceil( this._height / this._tileHeight ) + 2;  // 縦タイル数とスクロール時に必要になる+2
+        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 2;  // 縦タイル数とスクロール時に必要になる+2
         if( !this.hasOwnProperty( "_billboards" ) ) {
             this._billboards = [];
         }
@@ -91,8 +91,8 @@
     Tilemap.prototype._addSpotTile = function( tileId, dx, dy ) {
         if( this._isHigherTile( tileId ) && this.flags[ tileId ] & MASK_ALL_DIR ) {
             // [☆]かつ、4方向いずれかが通行不可設定だと書き割り
-            const y = dy / this._tileHeight;
-            this._addTile( this._billboards[ y ], tileId, dx, -this._tileHeight );
+            const y = dy / $gameMap.tileHeight();
+            this._addTile( this._billboards[ y ], tileId, dx, -$gameMap.tileHeight() );
         } else {
             _Tilemap__addSpotTile.apply( this, arguments );
         }
@@ -105,15 +105,15 @@
     Tilemap.prototype.updateTransform = function() {
         const ox = Math.ceil( this.origin.x );
         const oy = Math.ceil( this.origin.y );
-        const startX = Math.floor( ( ox - this._margin ) / this._tileWidth );
-        const startY = Math.floor( ( oy - this._margin ) / this._tileHeight );
-        const posX = startX * this._tileWidth - ox;
-        const posY = startY * this._tileHeight - oy;
+        const startX = Math.floor( ( ox - this._margin ) / $gameMap.tileWidth() );
+        const startY = Math.floor( ( oy - this._margin ) / $gameMap.tileHeight() );
+        const posX = startX * $gameMap.tileWidth() - ox;
+        const posY = startY * $gameMap.tileHeight() - oy;
         const l = this._billboards.length;
         for( let i = 0; i < l; i++ ) {
             const curItem = this._billboards[ i ];
             curItem.x = posX;
-            curItem.y = posY + this._tileHeight * ( i + 1 );
+            curItem.y = posY + $gameMap.tileHeight() * ( i + 1 );
         };
 
         _Tilemap_updateTransform.apply( this, arguments );
