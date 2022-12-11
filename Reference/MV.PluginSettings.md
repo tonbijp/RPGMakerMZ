@@ -215,6 +215,28 @@ MVの時は識別子が衝突しないように`TF_`などの短い開発者ご�
 ```
 
 
+#### @type color
+**@MZ1.6.0** カラーパレットから選択。1.5.0以前のバージョンでは `@type string` として解釈される。
+
+##### Example
+```
+ * @param colorNumber @text カラー番号
+ * @desc パラメータ、カラー番号の説明(規定値: 0)
+ * @type color @default 0
+```
+
+
+#### @type icon
+**@MZ1.6.0** アイコン一覧から選択。1.5.0以前のバージョンでは `@type string` として解釈される。
+
+##### Example
+```
+ * @param iconNumber @text アイコン番号
+ * @desc パラメータ、アイコン番号の説明(規定値: 0)
+ * @type icon @default 0
+```
+
+
 #### @type multiline_string
 **@MZ** 複数行の文字列。『RPGツクールMV』で複数行のデータには `@type note`が使われていた。<br />
 `@default` は冒頭の空白や空行を無視するので、空行のみを規定値とすることはできないようだ。何か文字を書いた後は改行を認識する。

@@ -6,6 +6,8 @@
 
  起動時の初期化を行うシーン。システムに必要なデータや画像を読み込み、戦闘・イベントテストの分岐なども行う。
 
+v1.6.0  で変更あり。
+
 主なパス
 ```js
 SceneManager._scene
@@ -151,6 +153,10 @@ SceneManager._scene
 
 #### resizeScreen ()
 **@MZ** 画面サイズを再設定。
+
+
+#### screenScale () → { {[Number](Number.md)}}
+**@MZ1.6.0** 画面の拡大率($dataSystem.advanced.screenScale)を返す。
 
 
 #### setEncryptionInfo ()

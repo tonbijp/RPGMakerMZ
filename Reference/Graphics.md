@@ -16,7 +16,7 @@ Effekseer の EffekseerContext を `effekseer`プロパティに持っている�
 
 描画がWebGLに統一されたこと、[Utils](Utils.md#canUseCssFontLoading) 、[Video](Video.md) クラスに機能が移ったことなどで、多くのMVにあったプロパティ・メソッドが廃止されている。
 
-v1.2.0 で変更あり。
+v1.2.0、v1.6.0 で変更あり。
 
 関連クラス: [Bitmap](Bitmap.md), [ImageManager](ImageManager.md), [SceneManager](SceneManager.md), [Game_Screen](Game_Screen.md), [Window](Window.md), [RPG.System](RPG.System.md), [RPG.System.Advanced](RPG.System.Advanced.md)
 

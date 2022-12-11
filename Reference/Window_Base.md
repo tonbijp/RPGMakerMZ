@@ -11,7 +11,7 @@ MZで色関連は [ColorManager](ColorManager.md)に、ステータス描画は[
 また、個々の要素の描画は [Sprite_Gauge](Sprite_Gauge.md)、[Sprite_StateIcon](Sprite_StateIcon.md) 、[Sprite_Name](Sprite_Name.md) といったスプライトに機能分解されている。<br />
 画像のサイズなどのプロパティは [ImageManager](ImageManager.md) に移っている。
 
-v1.1.1、v1.2.0、v1.3.0 で変更あり。
+v1.1.1、v1.2.0、v1.3.0、v1.6.0 で変更あり。
 
 関連クラス: [Graphics](Graphics.md), [Scene_Base](Scene_Base.md), [WindowLayer](WindowLayer.md), [Game_Message](Game_Message.md)
 
@@ -179,6 +179,7 @@ MZで `all` 引数は廃止。
 
 #### convertEscapeCharacters (text) → {[String](String.md)}
 **@MZ** エスケープ文字を変換して返す。
+**@MZ1.6.0** \V[n] の展開の2階層制限がなくなった。 
 
 ##### 引数
 
