@@ -94,11 +94,11 @@ v1.1.1、v1.2.0  で変更あり。
 
 
 #### animationBaseDelay () → {[Number](Number.md)}
-**@MZ** 基本遅延時間(規定値:8)を返す。
+**@MZ** 基本遅延時間( 規定値:8 )を返す。
 
 
 #### animationNextDelay () → {[Number](Number.md)}
-**@MZ** 次の遅延時間(規定値:12)を返す。
+**@MZ** 次の遅延時間( 規定値:12 )を返す。
 
 
 #### animationShouldMirror (target) → {Boolean}
