@@ -19,7 +19,7 @@
 | `name` | [String](String.md) | [名前] |
 | `mode` | [Number](Number.md) | [[モード]](RPG.Tileset.md#モード) |
 | `tilesetNames` | [Array](Array.md).&lt;[String](String.md)&gt; | タイルセットに使われる画像ファイル名の配列<br />( 0:A1, 1:A2, 2:A3, 3:A4, 4:A5, 5:B, 6:C, 7:D, 8:E ) |
-| `flags` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [ビットフラグ](RPG.Tileset.md#ビットフラグ)の配列 |
+| `flags` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [ビットフラグ](RPG.Tileset.md#ビットフラグ)の配列、添字は[タイルID](Tilemap.md#タイルID) |
 
 #### [モード]
 VX 互換タイプ とあるが、使われていない。

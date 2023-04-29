@@ -9,7 +9,7 @@
 
 静的メソッドを多く持つユーティリティクラスでもある。
 
-MZで新規にインナークラス [Tilemap.Layer](Tilemap.Layer.md) が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。
+MZで新規にインナークラス [Tilemap.Layer](Tilemap.Layer.md) が導入されたのに伴い、draw系のメソッドは add系に書き換えられている。<br />
 v1.5.0 ではタイルサイズの変更機能がついたため、大幅な変更が行われている。特に `tileWidth` `tileHeight` については注意が必要。
 
 主なパス
