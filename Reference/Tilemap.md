@@ -32,11 +32,11 @@ v1.5.0 で変更あり。
 ### サブクラス
 『RPGツクールMV』では描画モードが別れていたので以下のWebGL用クラスがあったが、『RPGツクールMZ』ではWebGLに一本化されたので廃止された。
 
-*  ~~ShaderTilemap~~ (廃止)
+* `ShaderTilemap` (廃止)
 
 
 ### プロパティ
-TILE_ から始まる定数はタイルブロックのタイルIDの開始番号。
+TILE_ から始まる定数はタイルブロックの[タイルID](#タイルID)の開始番号。
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
@@ -100,6 +100,16 @@ children に含まれるレイヤーの種類と位置。<br />
 | 1 | [Sprite_Character](Sprite_Character.md) | 低層キャラ |
 | 0 | [Tileset.Layer](Tileset.Layer.md) | 低層タイル |
 
+#### タイルID
+タイルの種類を表す値。<br />
+以下の表のような割り当てで、isAutotile() などの各種 isXXX()メソッドを使って種類を判定できる。
+
+| セット | 説明 |
+| --- | --- |
+| A1 | 海:0、深海:1、浅瀬障害:2,3、水面:4,6,8,10,12,14、滝:5,7,9,11,13,15 |
+| A2 | 地面:16〜19,24〜27,32〜35,40〜43、重ねて配置用:20〜23,28〜31,36〜39,44〜47 |
+| A3 | 屋根:48〜55,64〜71、壁:56〜63,72〜79 |
+| A4 | 壁上：80〜87,96〜103,112〜119、壁:88〜95,104〜111,120〜127 |
 
 ### 廃止MVプロパティ
 `upperZLayer`, `lowerZLayer`, `_upperBitmap`, `_lowerBitmap `, `_layerWidth `, `_layerHeight `,`_lastTiles `
@@ -143,21 +153,13 @@ children に含まれるレイヤーの種類と位置。<br />
 ### メソッド
 
 #### (static) getAutotileKind (tileId) → {[Number](Number.md)}
- オートタイルの種類を返す。<br />
- 返り値から以下の表にしたがって判断が必要だが、各種isXXXメソッドを使えば種類が確定できる。
-
-| セット | 説明 |
-| --- | --- |
-| A1 | 海:0、深海:1、浅瀬障害:2,3、水面:4,6,8,10,12,14、滝:5,7,9,11,13,15 |
-| A2 | 地面:16〜19,24〜27,32〜35,40〜43、重ねて配置用:20〜23,28〜31,36〜39,44〜47 |
-| A3 | 屋根:48〜55,64〜71、壁:56〜63,72〜79 |
-| A4 | 壁上：80〜87,96〜103,112〜119、壁:88〜95,104〜111,120〜127 |
+ オートタイルの種類を返す。
 
 ##### 引数:
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) getAutotileShape (tileId) → {[Number](Number.md)}
@@ -168,7 +170,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isAutotile (tileId) → {Boolean}
@@ -178,7 +180,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isFloorTypeAutotile (tileId) → {Boolean}
@@ -188,7 +190,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isGroundTile (tileId) → {Boolean}
@@ -198,7 +200,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isRoofTile (tileId) → {Boolean}
@@ -208,7 +210,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isSameKindTile (tileID1, tileID2) → {Boolean}
@@ -218,8 +220,8 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileID1` | [Number](Number.md) | タイルID |
-| `tileID2` | [Number](Number.md) | タイルID |
+| `tileID1` | [Number](Number.md) | [タイルID](#タイルID) |
+| `tileID2` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isShadowingTile (tileId) → {Boolean}
@@ -229,7 +231,7 @@ children に含まれるレイヤーの種類と位置。<br />
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isTileA1 (tileId) → {Boolean}
@@ -239,7 +241,7 @@ A1(アニメーション)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isTileA2 (tileId) → {Boolean}
@@ -249,7 +251,7 @@ A2(地面)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isTileA3 (tileId) → {Boolean}
@@ -259,7 +261,7 @@ A3(建物)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isTileA4 (tileId) → {Boolean}
@@ -269,7 +271,7 @@ A4(壁)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isTileA5 (tileId) → {Boolean}
@@ -279,7 +281,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isVisibleTile (tileId) → {Boolean}
@@ -289,7 +291,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWallSideTile (tileId) → {Boolean}
@@ -299,7 +301,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWallTile (tileId) → {Boolean}
@@ -309,7 +311,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWallTopTile (tileId) → {Boolean}
@@ -319,7 +321,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWallTypeAutotile (tileId) → {Boolean}
@@ -329,7 +331,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWaterfallTile (tileId) → {Boolean}
@@ -339,7 +341,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWaterfallTypeAutotile (tileId) → {Boolean}
@@ -349,7 +351,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) isWaterTile (tileId) → {Boolean}
@@ -359,7 +361,7 @@ A5(通常)のタイルか。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### (static) makeAutotileId (kind, shape) → {[Number](Number.md)}
@@ -418,7 +420,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 | `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
@@ -431,7 +433,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 | `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
@@ -444,7 +446,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 | `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
@@ -457,7 +459,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 | `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
@@ -470,7 +472,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `layer` | [Tilemap.Layer](Tilemap.Layer.md) | タイルレイヤー |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 | `dx` | [Number](Number.md) | レイヤー内の x座標(ピクセル) |
 | `dy` | [Number](Number.md) | レイヤー内の y座標(ピクセル) |
 
@@ -500,7 +502,7 @@ z の内容は、[重なりの優先度](Sprite.md#重なりの優先度)を参�
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 ####  _isOverpassPosition (mx, my) → {Boolean}
@@ -523,7 +525,7 @@ OverpassTile.js プラグインで使われている。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](#タイルID) |
 
 
 #### _readMapData (x, y, z) → {[Number](Number.md)}

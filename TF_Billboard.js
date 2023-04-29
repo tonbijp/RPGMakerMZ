@@ -73,12 +73,12 @@
     /**
      * 描画前に書き割りの中を空にしておく。
      */
-    const _Tilemap__addAllSpots = Tilemap.prototype._addAllSpots;
+    const _Tilemap_addAllSpots = Tilemap.prototype._addAllSpots;
     Tilemap.prototype._addAllSpots = function( startX, startY ) {
         for( const curItem of this._billboards ) {
             curItem.clear();
         }
-        _Tilemap__addAllSpots.apply( this, arguments );
+        _Tilemap_addAllSpots.apply( this, arguments );
     };
 
     /**
@@ -87,14 +87,14 @@
      * @param {Number} dx レイヤー内描画 x座標(ピクセル)
      * @param {Number} dy レイヤー内描画 y座標(ピクセル)
      */
-    const _Tilemap__addSpotTile = Tilemap.prototype._addSpotTile;
+    const _Tilemap_addSpotTile = Tilemap.prototype._addSpotTile;
     Tilemap.prototype._addSpotTile = function( tileId, dx, dy ) {
         if( this._isHigherTile( tileId ) && this.flags[ tileId ] & MASK_ALL_DIR ) {
             // [☆]かつ、4方向いずれかが通行不可設定だと書き割り
-            const y = dy / $gameMap.tileHeight();
+            const y = Math.floor( dy / $gameMap.tileHeight() );
             this._addTile( this._billboards[ y ], tileId, dx, -$gameMap.tileHeight() );
         } else {
-            _Tilemap__addSpotTile.apply( this, arguments );
+            _Tilemap_addSpotTile.apply( this, arguments );
         }
     };
 
