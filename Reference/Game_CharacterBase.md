@@ -34,7 +34,7 @@
 | `_direction` | [Number](Number.md) | 向き(テンキー対応) |
 | `_pattern` | [Number](Number.md) | 歩行パターン(0〜2) |
 | `_priorityType` | [Number](Number.md) | [\[プライオリティ\]](#プライオリティ) |
-| `_tileId` | [Number](Number.md) | 足元のタイルID |
+| `_tileId` | [Number](Number.md) | 足元の[タイルID](Tilemap.md#タイルID)  |
 | `_characterName` | [String](String.md) | キャラクタのファイル名 |
 | `_characterIndex` | [Number](Number.md) | キャラクタ番号(0〜7) |
 | `_isObjectCharacter` | Boolean | オブジェクト(!がついたファイルかタイル)か |
@@ -595,7 +595,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) |  タイルID |
+| `tileId` | [Number](Number.md) |  [タイルID](Tilemap.md#タイルID)  |
 
 
 #### setTransparent (transparent)
@@ -640,7 +640,7 @@
 
 
 #### tileId () → {[Number](Number.md)}
- タイルIDを返す。
+ [タイルID](Tilemap.md#タイルID) を返す。
 
 
 #### update ()

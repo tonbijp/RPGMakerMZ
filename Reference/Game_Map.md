@@ -8,7 +8,7 @@
 
 [イベント][タイルセット] などを含むマップの管理、スクロール制御や通行判定など役割の多いクラス。 
 
-A〜Eの各タイルに割り当てられているタイルIDの数値は [Tilemap](Tilemap.md) で定義されている定数を参照。
+A〜Eの各タイルに割り当てられている[タイルID](Tilemap.md#タイルID)の数値は [Tilemap](Tilemap.md) で定義されている定数を参照。
 
 [セルフスイッチ]は[イベント]とは別に [Game_SelfSwitches](Game_SelfSwitches.md) が管理している。
 
@@ -77,7 +77,7 @@ v1.1.0、v1.2.0、v1.5.0  で変更あり。<br />
 
 
 #### allTiles (x, y) → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
-指定位置に重なった[イベント]も含めた全タイルIDの配列を返す。
+指定位置に重なった[イベント]も含めた全[タイルID](Tilemap.md#タイルID) の配列を返す。
 
 ##### 引数
 
@@ -499,7 +499,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### layeredTiles (x, y) → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
- 指定位置に重なったタイルIDの配列を返す。
+ 指定位置に重なった[タイルID](Tilemap.md#タイルID) の配列を返す。
 
 ##### 引数
 
@@ -774,7 +774,7 @@ y座標2点間のタイル距離を(ループも考慮して)返す。
 
 
 #### tileId (x, y, z) → {[Number](Number.md)}
- 指定位置のタイルIDを返す。
+ 指定位置の[タイルID](Tilemap.md#タイルID) を返す。
 
 ##### 引数
 

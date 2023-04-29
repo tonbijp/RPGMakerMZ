@@ -38,7 +38,7 @@ JSONファイルの XXX は3桁の数値。
 | `parallaxSx` | [Number](Number.md) | [遠景]が[横方向にループする]場合の[スクロール]量 |
 | `parallaxSy` | [Number](Number.md) | [遠景]が[縦方向にループする]場合の[スクロール]量 |
 | `parallaxShow` | Boolean | [遠景]を[エディターに表示する]か |
-| `data` | [Array](Array.md).&lt;[Number](Number.md)&gt; | タイルIDの配列による[マップデータ](RPG.Map.md#マップデータ) |
+| `data` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [タイルID](Tilemap.md#タイルID)の配列による[マップデータ](RPG.Map.md#マップデータ) |
 | `events` | [Array](Array.md).&lt;[RPG.Event](RPG.Event.md)&gt; | [イベント]データの配列 |
 
 ####  [スクロールタイプ]

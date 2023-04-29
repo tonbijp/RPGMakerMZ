@@ -213,7 +213,7 @@ v1.4.4、v1.5.0 で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `tileId` | [Number](Number.md) | タイルID |
+| `tileId` | [Number](Number.md) | [タイルID](Tilemap.md#タイルID)  |
 
 
 #### update ()
