@@ -12,7 +12,7 @@
 /*:ja
  * @target MZ
  * @plugindesc [スクリプト]から使いやすいコマンド集
- * @author とんび@鳶嶋工房(tonbi.jp)
+ * @author とんび﹫鳶嶋工房(tonbi.jp)
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Utility.js
  * 
  * @base PluginCommonBase
@@ -20,6 +20,9 @@
  * @base PluginBaseFunction
  * @base TF_CharEx
  * 
+ * @requiredAssets audio/se/Move1
+ *
+ * @================================================
  * @help
  * 移動の前後の処理をカプセル化。
  *
@@ -166,8 +169,8 @@
 		mapId = stringToMapId( mapId );
 
 		return [
-			{ code: CHANGE_PLAYER_FOLLOWERS, parameters: [ FLAG_ON ] },
 			{ code: FADEOUT_SCREEN },
+			{ code: CHANGE_PLAYER_FOLLOWERS, parameters: [ FLAG_ON ] },
 			{ code: PLAY_SE, parameters: [ { name: MOVE_SE, volume: MOVE_VOLUME, pitch: pitch, pan: PAN_CENTER } ] },
 			{ code: TRANSFER_PLAYER, parameters: [ LOCATE_DILECT, mapId, x, y, d, FADE_NONE ] },
 			{ code: COMMAND_END }
@@ -218,7 +221,6 @@
 		}
 		_Scene_Battle_changeInputWindow.call( this );
 	};
-
 
 	// 追加キー設定
 	const KEY_BS = 8;
