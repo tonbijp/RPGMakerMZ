@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.2.0.0
+// Version :0.2.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2023
@@ -233,7 +233,7 @@
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
         _Tilemap_createLayers.call( this );
-        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 3;  // 縦タイル数とスクロール時に必要になる+3
+        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 5;  // 縦タイル数とスクロール時に必要になる+5
         if( !this.hasOwnProperty( "_billboards" ) ) {
             this._billboards = [];
         }
@@ -334,7 +334,7 @@
          * @param {Number} priorityFloor 優先階
          */
         const getFloorNumber = ( priorityFloor ) => {
-            if( priorityFloor === 2 || priorityFloor === 3 ) {
+            if( priorityFloor === 2 || priorityFloor === 3 || priorityFloor === 4 ) {
                 const wallSideType = getWallSideType( this._readMapData( mx, my + 1, 1 ) );
 
                 if( wallSideType === 1 ) return 2;
@@ -356,7 +356,7 @@
             // 3階設定は、ふたつ下の書き割りに書き込む
             this._addTile( this._billboards[ y + 2 ], tileId, dx, -$gameMap.tileHeight() * 3 );
         } else if( floorNumber === 4 ) {
-            // 4階設定は、ふたつ下の書き割りに書き込む
+            // 4階設定は、みっつ下の書き割りに書き込む
             this._addTile( this._billboards[ y + 3 ], tileId, dx, -$gameMap.tileHeight() * 4 );
 
         } else if( this.flags[ tileId ] & MASK_ALL_DIR ) {
