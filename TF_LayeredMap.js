@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.2.1.0
+// Version :0.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2023
@@ -82,8 +82,6 @@
  * 
  * 2. For the clif.
  * 　First, set [counter].
- *      A3・A4 odd line(roof・walltop)
- *      　[○] All = upper[☆]
  *      A3・A4 even line(wallside)
  *      　[○] All = billboard, South=can't pass.(floor height set automaticaly)
  *      Common to A3 and A4 
@@ -173,8 +171,6 @@
  *  
  * 2. 崖など回り込み用オートタイル
  * 　[カウンター]設定
- *      A3・A4の奇数列(屋根・壁上面)
- *      　[○] 全体=通行可、[☆]
  *      A3・A4の偶数列(壁)
  *      　[○] 全体=回り込み、南方向は通行不可(壁の高さは自動調整)
  *      A3・A4に共通
@@ -435,13 +431,6 @@
     }
 
     /**
-     * 指定タイルが全方位に衝突判定を持っているか。
-     * @param {Number} tileFlag タイルのフラグ情報
-     */
-    function isFullCollisionTile( tileFlag ) {
-        return MASK_ALL_DIR === ( tileFlag & MASK_ALL_DIR );
-    }
-    /**
      * 指定タイルが衝突判定を持っているか。
      * @param {Number} tileFlag タイルのフラグ情報
      */
@@ -473,18 +462,10 @@
                 // 側面
                 case 2: setWallSidePass( flags, tileId ); break;   // [○][♢]
                 case 3: setWallSideEdgePass( flags, tileId ); break;   // [×][♢]
-                // case 4: setBridgeSNPass( flags, tileId, false ); break;    // [○][TT]
-                // case 5: setBridgeSNPass( flags, tileId, true ); break;   // [×][TT]
-                // case 6 : ; break;   // [○][♢][TT]
-                // case 7 : ; break;   // [×][♢][TT]
 
                 // 上面
                 case 9: setRoofBottomPass( flags, tileId ); break;   // [×]
-                case 10: setAutoUpperPass( flags, tileId, 16 ); break;   // [○][♢]
                 case 11: setRoofUpperPass( flags, tileId ); break;   // [×][♢]
-                // case 12: setBridgeWEPass( flags, tileId, false ); break;   // [○][TT]
-                // case 13: setBridgeWEPass( flags, tileId, true ); break;   // [×][TT]
-                // case 14: setEmptySquarePass( flags, tileId ); break;     // [○][♢][TT]
             }
         }
     }
@@ -500,18 +481,10 @@
                 // 側面
                 case 2: setWallSidePass( flags, tileId ); break;                  // [○][♢]
                 case 3: setWallSideEdgePass( flags, tileId ); break;       // [×][♢]
-                // case 4: setBridgeSNPass( flags, tileId, false ); break;    // [○][TT]
-                // case 5: setBridgeSNPass( flags, tileId, true ); break;   // [×][TT]
-                // case 6 : ; break;   // [○][♢][TT]
-                // case 7 : ; break;   // [×][♢][TT]
 
                 // 上面
                 case 9: if( !TF_IsA4UpperOpen ) { setEmptyLinePass( flags, tileId ); } break;   // [×]
-                case 10: setAutoUpperPass( flags, tileId, 47 ); break;   // [○][♢]
                 case 11: setA4UpperPass( flags, tileId ); break;               // [×][♢]
-                // case 12 : ; break;       // [○][TT]
-                // case 13: setA4UpperStarPass( flags, tileId ); break;   // [×][TT]
-                // case 14: setEmptyLinePass( flags, tileId ); break;   // [○][♢][TT] 
             }
         }
     }
@@ -530,17 +503,6 @@
         }
     }
 
-    /**
-     * 高層[☆] 全通行に変更。
-     * @param {Array<Number>} flags 地形フラグの配列
-     * @param {Number} tileId タイルID
-     * @param {Number} maxNum 変更数
-     */
-    function setAutoUpperPass( flags, tileId, maxNum ) {
-        for( let i = 0; i < maxNum; i++ ) {
-            flags[ tileId + i ] = flags[ tileId + i ] & MASK_WITHOUT_DIR_UPPER | FLAG_UPPER;
-        }
-    }
     /**
      * カウンター用に変更。
      * 地面(カウンター) : 北が半分侵入可書き割り、■通行不可
@@ -916,26 +878,5 @@
      */
     function getHalfPos( x, y ) {
         return ( ( ( x % 1 ) === 0 ) ? 1 : 0 ) + ( ( ( y % 1 ) === 0 ) ? 2 : 0 );
-    }
-    /**
-     * 指定方向のX要素を返す。
-     * @param {Number} d 方向(テンキー対応)
-     */
-    function getDx( d ) {
-        return ( d === 6 ) ? 1 : ( d === 4 ) ? -1 : 0;
-    }
-    /**
-     * 指定方向のY要素を返す。
-     * @param {Number} d 方向(テンキー対応)
-     */
-    function getDy( d ) {
-        return ( d === 2 ) ? 1 : ( d === 8 ) ? -1 : 0;
-    }
-    /**
-     * 指定方向をflagに変換して返す。
-     * @param {Number} d 方向(テンキー対応)
-     */
-    function getFlag( d ) {
-        return 1 << ( d / 2 - 1 );
     }
 } )();
