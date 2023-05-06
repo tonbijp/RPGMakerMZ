@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.3.0.0
+// Version :0.3.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2023
@@ -270,6 +270,7 @@
         const shadowBits = this._readMapData( mx, my, 4 ); // 影ペン
         const upperTileId1 = this._readMapData( mx, my - 1, 1 ); // 北位置の低層タイルA
 
+
         this.TF_addSpotTile( tileId0, dx, dy, mx, my );
         this.TF_addSpotTile( tileId1, dx, dy, mx, my );
         this._addShadow( this._lowerLayer, shadowBits, dx, dy );
@@ -294,7 +295,7 @@
         const floorType = this.flags[ tileId ] & MASK_UPPER_DIR;
         if( !this._isHigherTile( tileId ) || floorType === FLOOR1_N_HALF ) {
             // 高層タイルではない
-            this._addSpotTile( tileId, dx, dy );
+            this._addTile( this._lowerLayer, tileId, dx, dy );
             return;
         }
         const y = dy / $gameMap.tileHeight();
