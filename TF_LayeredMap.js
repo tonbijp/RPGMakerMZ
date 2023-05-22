@@ -1,6 +1,6 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.3.1.0
+// Version :0.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2018 - 2023
@@ -74,9 +74,9 @@
  *      0x8 ・→←↓ : billboard,  all directtion , ground (for bush)
  *      0x9 ・→←・ : billboard,  all directtion , 2nd floor
  *      0xA ・→・↓ : billboard,  all directtion , 3rd floor
- *      0xB ・→・・ : billboard,  all directtion , 4th floor
+ *      0xB ・→・・ : ignore(for decoration)
  *      0xC ・・←↓ : Same as 0x1 and south half blocked (for Barrel) (HalfMove.js is needed)
- *      0xD ・・←・ : Same as 0xB and collision is half (for lower tree) (HalfMove.js is needed)
+ *      0xD ・・←・ : Collision is north center (for lower tree) (HalfMove.js is needed)
  *      0xE ・・・↓ : Same as 0xC and collision is half  (for chair) (HalfMove.js is needed)
  *      0xF ・・・・ : Same as 0x1 and collision is half (for peg)(HalfMove.js is needed)
  * 
@@ -163,9 +163,9 @@
  *      0x8 ・→←↓ : 書き割り、全方向に 通行可、1階 （草むらなどに）
  *      0x9 ・→←・ : 書き割り、全方向に 通行可、2階
  *      0xA ・→・↓ : 書き割り、全方向に 通行可、3階
- *      0xB ・→・・ : 書き割り、全方向に 通行可、4階
+ *      0xB ・→・・ : 通行判定に影響を与えない(見た目だけの装飾に)
  *      0xC ・・←↓ : 0x1 と同じだが南半分が通行不可 （机などに）(HalfMove.js が必要)
- *      0xD ・・←・ : 0xB と同じだが北の両脇が通行可 （根元とか）(HalfMove.js が必要)
+ *      0xD ・・←・ : 北の中心だけ通行不可 （根元とか）(HalfMove.js が必要)
  *      0xE ・・・↓ : 0xC と同じだが南の両脇が通行可 （椅子とか）(HalfMove.js が必要)
  *      0xF ・・・・ : 0x1 と同じだが南の両脇が通行可 （杭などに）(HalfMove.js が必要)
  *  
@@ -201,7 +201,7 @@
     const FLOOR1_BOARD = 0x18;
     const FLOOR2_BOARD = 0x19;
     const FLOOR3_BOARD = 0x1A;
-    const FLOOR4_BOARD = 0x1B;
+    const IGNORE_TILE = 0x1B;
     const FLOOR1_S_FULL = 0x1C; // 12 机
     const FLOOR1_N_HALF = 0x1D; // 13 椅子(北)
     const FLOOR1_S_HALF = 0x1E; // 14 椅子(南)
@@ -229,7 +229,7 @@
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
         _Tilemap_createLayers.call( this );
-        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 5;  // 縦タイル数とスクロール時に必要になる+5
+        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 4;  // 縦タイル数とスクロール時に必要になる+4
         if( !this.hasOwnProperty( "_billboards" ) ) {
             this._billboards = [];
         }
@@ -293,7 +293,7 @@
      */
     Tilemap.prototype.TF_addSpotTile = function( tileId, dx, dy, mx, my ) {
         const floorType = this.flags[ tileId ] & MASK_UPPER_DIR;
-        if( !this._isHigherTile( tileId ) || floorType === FLOOR1_N_HALF ) {
+        if( !this._isHigherTile( tileId ) || floorType === FLOOR1_N_HALF || floorType === IGNORE_TILE ) {
             // 高層タイルではない
             this._addTile( this._lowerLayer, tileId, dx, dy );
             return;
@@ -322,7 +322,6 @@
         const getPriorityFloor = ( tileId ) => {
             if( floorType === FLOOR2_BOARD ) return 2;
             if( floorType === FLOOR3_BOARD ) return 3;
-            if( floorType === FLOOR4_BOARD ) return 4;
             return 1;
         };
 
@@ -331,7 +330,7 @@
          * @param {Number} priorityFloor 優先階
          */
         const getFloorNumber = ( priorityFloor ) => {
-            if( priorityFloor === 2 || priorityFloor === 3 || priorityFloor === 4 ) {
+            if( priorityFloor === 2 || priorityFloor === 3 ) {
                 const wallSideType = getWallSideType( this._readMapData( mx, my + 1, 1 ) );
 
                 if( wallSideType === 1 ) return 2;
@@ -352,14 +351,9 @@
         } else if( floorNumber === 3 ) {
             // 3階設定は、ふたつ下の書き割りに書き込む
             this._addTile( this._billboards[ y + 2 ], tileId, dx, -$gameMap.tileHeight() * 3 );
-        } else if( floorNumber === 4 ) {
-            // 4階設定は、みっつ下の書き割りに書き込む
-            this._addTile( this._billboards[ y + 3 ], tileId, dx, -$gameMap.tileHeight() * 4 );
-
         } else if( this.flags[ tileId ] & MASK_ALL_DIR ) {
             // 通行不可設定のどれかがONだと書き割り
             this._addTile( this._billboards[ y ], tileId, dx, -$gameMap.tileHeight() );
-
         } else {
             // 全方向通行可の場合は通常の高層[☆]表示
             this._addSpotTile( tileId, dx, dy );
@@ -742,7 +736,7 @@
 
             for( let i = 0; i < tiles.length; i++ ) {
                 const collisionType = flags[ tiles[ i ] ] & MASK_UPPER_DIR;
-                if( FLOOR1_BOARD <= collisionType && collisionType <= FLOOR4_BOARD ) continue;
+                if( FLOOR1_BOARD <= collisionType && collisionType <= FLOOR3_BOARD ) continue;
                 const hitResult = CLILISION_TABLE[ collisionType ];
                 if( hitResult ) {
                     return hitResult[ wallNumber ];
@@ -863,7 +857,8 @@
             if( ( flag & FLAG_UPPER ) && hasHalfMove && ( flag & FLAG_NORTH_DIR ) ) continue;
             if( tileId === 0 ) continue;    // Bタイルの左上は無視
             const collisionType = flag & MASK_UPPER_DIR;
-            if( FLOOR1_BOARD <= collisionType && collisionType <= FLOOR4_BOARD ) continue;// 看板全通行可タイプは無視
+            if( FLOOR1_BOARD <= collisionType && collisionType <= FLOOR3_BOARD ) continue;// 看板全通行可タイプは無視
+            if( collisionType === IGNORE_TILE ) continue;
 
             if( !( flag & FLAG_UPPER ) && ( flag & bit ) === 0 ) return true;// [☆]以外は通れるタイルが上にある時点で通れる
             if( ( flag & bit ) === bit ) return false;
