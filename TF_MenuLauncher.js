@@ -1,9 +1,9 @@
 //========================================
 // TF_MenuLauncher.js
-// Version :0.7.1.0
+// Version :0.7.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2021
+// Copyright : Tobishima-Factory 2021-2023
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -299,6 +299,7 @@
         } else {
             _Scene_Title_createCommandWindow.call( this );
         }
+        if( !pluginParams.commandTitle ) return;
 
         const basicCommand = id => {
             switch( id ) {
@@ -341,6 +342,7 @@
     const _Window_TitleCommand_makeCommandList = Window_TitleCommand.prototype.makeCommandList;
     Window_TitleCommand.prototype.makeCommandList = function() {
         if( !pluginParams.emptyTitle ) _Window_TitleCommand_makeCommandList.call( this );
+        if( !pluginParams.commandTitle ) return;
 
         const defaultCommands = [ "newGame", "continue", "options" ];
         pluginParams.commandTitle.forEach( e => {
@@ -422,10 +424,7 @@
         const evNum = parseInt( evStr, 10 );
         if( !isNaN( evNum ) ) return evNum;
 
-        const commonEvId = $dataCommonEvents.findIndex( e => {
-            if( !e ) return false;
-            return e.name === evStr;
-        } );
+        const commonEvId = $dataCommonEvents.findIndex( e => e ? e.name === evStr : false );
         if( commonEvId === -1 ) {
             throw `${PLUGIN_NAME} : No such common event "${evStr}"`;
         }
