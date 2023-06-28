@@ -281,6 +281,7 @@ namespace JsExtensions
 * [PIXI.Graphics](PIXI.Graphics.md)
 * [Tilemap](Tilemap.md)
 * [Tilemap.Layer](Tilemap.Layer.md)  **@MZ**
+* [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md)   **@MZ1.7.0**
 * [PIXI.Sprite](PIXI.Sprite.md)
     * [Sprite](Sprite.md) → [継承](#スプライトsprite)
     * [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html)

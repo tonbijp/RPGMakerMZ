@@ -18,7 +18,7 @@ SceneManager._scene._spriteset._tilemap
 SceneManager._scene._spriteset._effectsContainer
 ```
 
-v1.5.0 で変更あり。
+v1.5.0、v1.7.0 で変更あり。
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md)
 
@@ -28,6 +28,7 @@ v1.5.0 で変更あり。
 
 * [Tilemap.Layer](Tilemap.Layer.md) **@MZ**
 * [Tilemap.Renderer](Tilemap.Renderer.md) **@MZ**
+*[Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) **@MZ1.7.0**
 
 ### サブクラス
 『RPGツクールMV』では描画モードが別れていたので以下のWebGL用クラスがあったが、『RPGツクールMZ』ではWebGLに一本化されたので廃止された。

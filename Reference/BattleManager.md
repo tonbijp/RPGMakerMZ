@@ -5,7 +5,7 @@
 
 『RPGツクールMZ』では主にタイムプログレス戦闘関連の機能が増えている。
 
-v1.2.0、v1.4.0、v1.4.3 で変更あり。
+v1.2.0、v1.4.0、v1.4.3、v1.7.0 で変更あり。
 
 関連クラス: [Game_Actor](Game_Actor.md), [Game_Party](Game_Party.md), [Game_Enemy](Game_Enemy.md), [Game_Troop](Game_Troop.md), [Scene_Battle](Scene_Battle.md)
 

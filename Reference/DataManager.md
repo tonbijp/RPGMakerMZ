@@ -3,11 +3,13 @@
 # クラス: DataManager
 [データベース]の管理を行う静的クラス。
 
-$XXXで大域変数に設定されているものや、セーブデータの管理など行う。
+\$XXXで大域変数に設定されているものや、セーブデータの管理など行う。
 
 大域変数について詳細は [Global](global.md) のページを参照。
 
 関連クラス: [JsonEx](JsonEx.md)
+
+v1.7.0 で変更あり。
 
 ### プロパティ
 
@@ -136,6 +138,10 @@ data.noteに書いてあるデータを分解しdata.metaに設定。<br />
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
 | `item` | Object | [RPG.Skill](RPG.Skill.md)など |
+
+
+#### (static) isTitleSkip () → {Boolean}
+**@MZ1.7.0** メニューで[タイトル画面をスキップ]が選ばれているか
 
 
 #### (static) isWeapon (item) → {Boolean}

@@ -1,47 +1,22 @@
 [クラスツリー](index.md)
 
-# クラス: [Tilemap](Tilemap.md).Layer
+# クラス: [Tilemap](Tilemap.md).CombinedLayer
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-マップで扱われるタイルの下層(通行判定○・×)と上層(通行判定☆)を表示するクラス。
-1.7.0からは、[Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) に含まれる形に変わった。
+1.7.0で導入された、マップで扱われるタイルの下層(通行判定○・×)と上層(通行判定☆)を表示するクラス。
+[Tilemap.Layer](Tilemap.Layer.md) を `children` プロパティに含む。
 
 主なパス
 ```js
 SceneManager._scene._spriteset._tilemap._upperLayer
 SceneManager._scene._spriteset._tilemap._lowerLayer
 ```
-1.7.0からは
-```js
-SceneManager._scene._spriteset._tilemap._upperLayer.childlen[n]
-SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
-```
 
 関連クラス: [RPG.Map](RPG.Map.md), [RPG.Tileset](RPG.Tileset.md), [Game_Map](Game_Map.md), [Spriteset_Map](Spriteset_Map.md),
 [Tilemap.Renderer](Tilemap.Renderer.md)
 
-### new Tilemap.Layer ()
-
-### プロパティ
-
-| 識別子 | 型 | 説明 |
-| --- | --- | --- |
-| `MAX_GL_TEXTURES` | [Number](Number.md) | [static] 最大テクスチャ(規定値: 3) |
-| `VERTEX_STRIDE` | [Number](Number.md) | [static] 頂点ストライド(規定値: 36) |
-| `MAX_SIZE` | [Number](Number.md) | **@MZ1.7.0** [static] 最大要素数(規定値: 16000) |
-| `_elements` | [Array](Array.md).&lt;[MV.TileRect](MV.TileRect.md)&gt;  | タイル描画に使われる矩形データの配列 |
-| `_images` | [Array](Array.md).&lt;[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)&gt;  | 画像データの配列 |
-| `_vao` | [PIXI.Geometry](http://pixijs.download/release/docs/PIXI.Geometry.html) | ジオメトリ |
-| `_indexArray` | Float32Array | インデックスの配列 |
-| `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | インデックスのバッファ |
-| `_vertexArray` | Float32Array | `_elements`を一次元化した配列 |
-| `_vertexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | 頂点のバッファ |
-| `_needsTexturesUpdate` | Boolean | テクスチャの更新が必要か |
-| `_needsVertexUpdate` | Boolean | 頂点の更新が必要か |
-| `_state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
-| `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
-
+### new Tilemap.CombinedLayer ()
 
 ### スーパークラスから継承されたメソッド
 
@@ -79,18 +54,6 @@ SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
 
 ### メソッド
 
-### _createVao ()
-VAOの生成。
-
-
-### _updateIndexBuffer ()
-インデックスバッファの更新。
-
-
-### _updateVertexBuffer ()
-頂点バッファの更新。
-
-
 #### addRect (setNumber, sx, sy, dx, dy, w, h)
 タイルセット中の矩形(タイル)範囲を設定。(参照: [MV.TileRect](MV.TileRect.md))
 
@@ -119,10 +82,6 @@ VAOの生成。
 準備ができているか。
 
 
-#### render (renderer)
-オーバーライド:  [PIXI.Container](PIXI.Container.md#render-renderer)
-
-
 #### setBitmaps (bitmaps)
 タイルセット画像の設定。
 
@@ -134,7 +93,7 @@ VAOの生成。
 
 
 #### size ()→ {[Number](Number.md)}
-**@MZ1.7.0** 含まれる要素(`_elements`)数を返す。
+内容のある要素(`children`)数を返す。
 
 #### clear ()
 画像の消去。
