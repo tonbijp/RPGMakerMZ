@@ -8,6 +8,8 @@
 
 含まれる情報はエディタ用。
 
+v1.7.0で変更あり。
+
 関連クラス: [RPG.Map](RPG.Map.md)
 
 
@@ -22,6 +24,7 @@
 | `expanded` | Boolean | エディタでリストが開いているか |
 | `scrollX` | [Number](Number.md) | エディタで開くx位置 |
 | `scrollY` | [Number](Number.md) | エディタで開くy位置 |
+| `quick` | Boolean | **@MZ1.7.0** クイックアクセスにあるか |
 
 ※ `id` は実装上は配列番号が使われていて、このプロパティは使われていないようだ。<br />
 そのため、MapInfos.json に並んだ null, 行を削除するなどして配列番号が変わると ID がずれてしまう。
