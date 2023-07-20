@@ -28,7 +28,7 @@ v1.5.0、v1.7.0 で変更あり。
 
 * [Tilemap.Layer](Tilemap.Layer.md) **@MZ**
 * [Tilemap.Renderer](Tilemap.Renderer.md) **@MZ**
-*[Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) **@MZ1.7.0**
+* [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) **@MZ1.7.0**
 
 ### サブクラス
 『RPGツクールMV』では描画モードが別れていたので以下のWebGL用クラスがあったが、『RPGツクールMZ』ではWebGLに一本化されたので廃止された。
