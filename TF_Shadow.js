@@ -1,9 +1,9 @@
 //========================================
 // TF_Shadow.js
-// Version :1.1.0.0
+// Version :1.1.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2021, 2022
+// Copyright : Tobishima-Factory 2021-2023
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -11,7 +11,7 @@
 //========================================
 /*:ja
  * @target MZ
- * @plugindesc Ver.1.0.2.0 キャラに影をつける
+ * @plugindesc Ver.1.1.1.0 キャラに影をつける
  * @author とんび﹫鳶嶋工房(tonbi.jp)
  * @url https://github.com/tonbijp/RPGMakerMZ/blob/master/TF_Shadow.js
  *
@@ -343,7 +343,11 @@
     PluginManagerEx.registerCommand( document.currentScript, COM_SHADOW_RADIUS, function( args ) {
         const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
         const radius = stringToPoint( args.radius );
-        targetEvent.TF_shadowRadius( radius.x, radius.y );
+        if( radius ) {
+            targetEvent.TF_shadowRadius( radius.x, radius.y );
+        } else {
+            targetEvent.TF_shadowRadius( shadowRadius.x, shadowRadius.y );
+        }
     } );
 
     PluginManagerEx.registerCommand( document.currentScript, COM_SHADOW_Y, function( args ) {
