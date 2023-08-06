@@ -18,6 +18,13 @@ SceneManager._scene._spriteset._tilemap._lowerLayer
 
 ### new Tilemap.CombinedLayer ()
 
+### プロパティ
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `children` | [Array](Array.md).&lt;[Tilemap.Layer](Tilemap.Layer.md)&gt; | レイヤー |
+
+
 ### スーパークラスから継承されたメソッド
 
 #### [PIXI.DisplayObject](PIXI.DisplayObject.md)

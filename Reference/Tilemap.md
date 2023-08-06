@@ -28,7 +28,7 @@ v1.5.0、v1.7.0 で変更あり。
 
 * [Tilemap.Layer](Tilemap.Layer.md) **@MZ**
 * [Tilemap.Renderer](Tilemap.Renderer.md) **@MZ**
-*[Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) **@MZ1.7.0**
+* [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) **@MZ1.7.0**
 
 ### サブクラス
 『RPGツクールMV』では描画モードが別れていたので以下のWebGL用クラスがあったが、『RPGツクールMZ』ではWebGLに一本化されたので廃止された。
@@ -76,8 +76,8 @@ TILE_ から始まる定数はタイルブロックの[タイルID](#タイルID
 | `_mapHeight` | [Number](Number.md) | マップ高さ(タイル数) |
 | `_mapData` | [Array](Array.md).&lt;[Number](Number.md)&gt; | 1次元配列によるマップのデータ(参照: [RPG.Map.data](RPG.Map.md#マップデータ)) |
 | `_bitmaps` | [Array](Array.md).&lt;[Bitmap](Bitmap.md)&gt; | タイルセット画像の配列 |
-| `_upperLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 高層[☆]タイル( z = 4 ) |
-| `_lowerLayer` | [Tilemap.Layer](Tilemap.Layer.md) | 低層レイヤー( z = 0 ) |
+| `_upperLayer` | [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) | 高層[☆]タイル( z = 4 ) **@MZ1.6.0** までは[Tilemap.Layer](Tilemap.Layer.md) |
+| `_lowerLayer` | [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) | 低層レイヤー( z = 0 ) **@MZ1.6.0** までは[Tilemap.Layer](Tilemap.Layer.md) |
 | `_lastStartX` | [Number](Number.md) | 前回の開始 x座標 |
 | `_lastStartY` | [Number](Number.md) | 前回の開始 y座標 |
 | `_lastAnimationFrame` | [Number](Number.md) | 前回のアニメフレーム位置 |
