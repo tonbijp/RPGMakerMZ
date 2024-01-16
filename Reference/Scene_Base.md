@@ -20,6 +20,7 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 * [Scene_Title](Scene_Title.md)
 * [Scene_Message](Scene_Message.md) **@MZ**
 * [Scene_MenuBase](Scene_MenuBase.md)
+* [Scene_Message](Scene_Message.md) **@MZ**
 
 
 ### プロパティ

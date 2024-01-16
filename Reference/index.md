@@ -316,11 +316,13 @@ namespace JsExtensions
     * [Spriteset_Battle](Spriteset_Battle.md)
     * [Spriteset_Map](Spriteset_Map.md)
 
+
 ### [シーン(Scene_Base)](Scene_Base.md)
 
 * [Scene_Boot](Scene_Boot.md)
 * [Scene_Gameover](Scene_Gameover.md)
 * [Scene_Title](Scene_Title.md)
+* [Scene_Splash](Scene_Splash.md) **@MZ1.8.0**
 * [Scene_Message](Scene_Message.md) **@MZ**
     * [Scene_Battle](Scene_Battle.md) (継承位置変更)
     * [Scene_Map](Scene_Map.md) (継承位置変更)

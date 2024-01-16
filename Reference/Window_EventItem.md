@@ -6,6 +6,8 @@
 
 [アイテム選択の処理]をするウィンドウ。
 
+v1.8.0  で変更あり。
+
 関連クラス: [Window_NumberInput](Window_NumberInput.md)
 
 ### new Window_EventItem (rect)

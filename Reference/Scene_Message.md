@@ -6,6 +6,8 @@
 
 **@MZ** メッセージウィンドウを持つシーン。
 
+v1.8.0  で変更あり。
+
 関連クラス: [SceneManager](SceneManager.md)
 
 ### new Scene_Message ()
@@ -111,6 +113,10 @@
 
 #### associateWindows ()
 メッセージウィンドウに関連ウィンドウを結合。
+
+
+#### cancelMessageWait ()
+**@MZ1.8.0**待ち時間のキャンセル。
 
 
 #### createAllWindows ()

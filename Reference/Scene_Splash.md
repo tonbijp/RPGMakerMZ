@@ -1,25 +1,28 @@
 [クラスツリー](index.md)
 
-# クラス: Scene_Boot
+# クラス: Scene_Splash
 
 ## スーパークラス: [Scene_Base](Scene_Base.md)
-
- 起動時の初期化を行うシーン。システムに必要なデータや画像を読み込み、戦闘・イベントテストの分岐なども行う。
-
-v1.6.0、v1.8.0  で変更あり。
+**@MZ1.8.0**
+スプラッシュ(起動)画面のシーン。
+”img/system/Splash.png” の画像を表示します。
 
 主なパス
 ```js
 SceneManager._scene
 ```
 
-関連クラス: [Main](Main.md), [SceneManager](SceneManager.md)<br />
-関連シーン: [Scene_Title](Scene_Title.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md)
+関連クラス: [SceneManager](SceneManager.md)<br />
+関連シーン: [Scene_Boot](Scene_Boot.md)、[Scene_Title](Scene_Title.md)
 
-### new Scene_Boot ()
+#### new Scene_Splash ()
 
-### 廃止MVプロパティ
-`_startDate`
+### プロパティ
+
+| 識別子 | 型 | 説明 |
+| --- | --- | --- |
+| `_backSprite` | [Sprite](Sprite.md) | 背景画像 |
+| `_waitCount` | [Number](Number.md) | スプラッシュ表示時間(フレーム)) |
 
 
 ### スーパークラスから継承されたメソッド
@@ -93,9 +96,7 @@ SceneManager._scene
 * [slowFadeSpeed ()](Scene_Base.md#slowfadespeed---number)
 * [startFadeIn (duration opt, white opt)](Scene_Base.md#startfadein-duration-opt-white-opt)
 * [startFadeOut (duration opt, white opt)](Scene_Base.md#startfadeout-duration-opt-white-opt)
-* [stop ()](Scene_Base.md#stop-)
 * [terminate ()](Scene_Base.md#terminate-)
-* [update ()](Scene_Base.md#update-)
 * [updateChildren ()](Scene_Base.md#updatechildren-)
 * [updateColorFilter ()](Scene_Base.md#updatecolorfilter-)
 * [updateFade ()](Scene_Base.md#updatefade-)
@@ -103,77 +104,48 @@ SceneManager._scene
 
 ### メソッド
 
-#### (static) loadSystemImages ()
- 各種アイコンなどのシステムに必要なデータを読み込む。
+#### adjustBackground ()
+背景の調整。
 
 
-#### adjustBoxSize ()
-**@MZ** UIエリアの部品表示範囲を設定。
-
-
-#### adjustWindow ()
-**@MZ** ゲーム表示範囲を設定。
-
-
-#### checkPlayerLocation ()
- プレイヤーの場所が設定されているか検査し、設定されていないならエラーを出力。
-
+#### checkSkip ()
+スキップ操作が入っていたら、表示時間を0にする。
 
 #### create ()
-オーバーライド: [Scene_Base](Scene_Base.md#create-)
+オーバーライド: [Scene_File](Scene_Base.md#create-)
+
+
+#### createBackground ()
+スプラッシュ画面の背景を生成。
+
+
+#### gotoTitle ()
+タイトル([Scene_Title](Scene_Title.md))に遷移。
 
 
 #### initialize ()
 オーバーライド: [Scene_Base](Scene_Base.md#initialize-)
 
 
-#### isPlayerDataLoaded () → {Boolean}
-**@MZ** プレイヤー情報(グローバル・オプション)が読み込まれているか。
+#### initWaitCount ()
+スプラッシュ画面の表示時間の初期化(120固定)
 
 
-#### isGameFontLoaded () → {Boolean}
- フォントが読み込まれているか。
-
-
-#### isReady () → {Boolean}
-オーバーライド: [Scene_Base](Scene_Base.md#isReady-)
-
-
-#### loadPlayerData ()
-**@MZ** プレイヤー情報(グローバル・オプション)を読み込む。
-
-
-#### loadGameFonts ()
-**@MZ** フォントを読み込む。
-
-
-#### onDatabaseLoaded ()
-**@MZ** データベース読み込み完了時のハンドラ。
-
-
-#### resizeScreen ()
-**@MZ** 画面サイズを再設定。
-
-
-#### screenScale () → { {[Number](Number.md)}}
-**@MZ1.6.0** 画面の拡大率($dataSystem.advanced.screenScale)を返す。
-
-
-#### setEncryptionInfo ()
-**@MZ** 暗号化された情報を設定。
+#### isEnabled () → {Boolean}
+実行可能か。
 
 
 #### start ()
 オーバーライド: [Scene_Base](Scene_Base.md#start-)
 
 
-#### startNormalGame ()
-**@MZ** 新規ゲームを開始。
+#### stop ()
+オーバーライド: [Scene_Base](Scene_Base.md#stop-)
 
 
-#### updateDocumentTitle ()
- ゲームのタイトルを更新。
+#### update ()
+オーバーライド: [Scene_Base](Scene_Base.md#update-)
 
 
-### 廃止MVメソッド
-`loadSystemWindowImage ()`
+#### updateWaitCount () → {Boolean}
+表示時間を1つ減らし、残り時間があるか返す。
