@@ -1,9 +1,9 @@
 //========================================
 // TF_LayeredMap.js
-// Version :0.4.0.0
+// Version :0.4.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2018 - 2023
+// Copyright : Tobishima-Factory 2018 - 2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -270,7 +270,6 @@
         const shadowBits = this._readMapData( mx, my, 4 ); // 影ペン
         const upperTileId1 = this._readMapData( mx, my - 1, 1 ); // 北位置の低層タイルA
 
-
         this.TF_addSpotTile( tileId0, dx, dy, mx, my );
         this.TF_addSpotTile( tileId1, dx, dy, mx, my );
         this._addShadow( this._lowerLayer, shadowBits, dx, dy );
@@ -279,8 +278,14 @@
                 this._addTableEdge( this._lowerLayer, upperTileId1, dx, dy );
             }
         }
-        this.TF_addSpotTile( tileId2, dx, dy, mx, my );
-        this.TF_addSpotTile( tileId3, dx, dy, mx, my );
+
+        if( this._isOverpassPosition( mx, my ) ) {
+            this._addTile( this._upperLayer, tileId2, dx, dy );
+            this._addTile( this._upperLayer, tileId3, dx, dy );
+        } else {
+            this.TF_addSpotTile( tileId2, dx, dy, mx, my );
+            this.TF_addSpotTile( tileId3, dx, dy, mx, my );
+        }
     };
 
     /**
