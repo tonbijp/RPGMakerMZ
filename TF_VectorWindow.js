@@ -1,9 +1,9 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.7.1.1
+// Version :0.7.1.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2021
+// Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -81,6 +81,7 @@
  *
  *
  * @arg isFaceLeft @text 顔位置が左か
+ * @desc 
  * @type boolean @default true
  * @on 左(規定値) @off 右
  *
@@ -109,7 +110,7 @@
  * @option 8角形 @value octagon
  * @option なし @value none
  * 
- * @param margin @text 端から枠までの間隔
+ * @param margin @text 端から枠までの間隔
  * @type number @default 8
  * @min 0
  * 
@@ -118,7 +119,8 @@
  * @min 0
  * 
  * @param borderColor @text 枠の色(CSS形式)
- * @type color @default #FFF
+ * @desc CSS形式の例：#F00
+ * @type string @default #FFF
  *
  * @param decorSize @text 装飾の大きさ
  * @desc 角丸・角・トゲ
