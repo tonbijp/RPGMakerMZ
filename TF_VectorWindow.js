@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.8.0.0
+// Version :0.8.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -553,7 +553,7 @@
 	/*--- 関数 ---*/
 	/**
 	 * 配列からCSS color文字列を返す
-	 * @param {Array} colorList [ r, g, b, a ] の配列
+	 * @param {Array.<Number>} colorList [ r, g, b, a ] の配列
 	 * @returns {String} 'rgb(r,g,b)' か 'rgba(r,g,b,a)'の文字列
 	 */
 	function array2CssColor( colorList ) {
@@ -565,7 +565,13 @@
 		}
 	}
 
+	/**
+	 * CSS形式の色をRGB配列に分解して返す
+	 * @param {String} CssColor CSS形式
+	 * @returns {Array.<Number>} RGBに分解した色
+	 */
 	function cssColor2Array( CssColor ) {
+		// 一旦塗ってその色を取って返すという荒技
 		wCtx.clearRect( 0, 0, 1, 1 );
 		wCtx.fillStyle = CssColor;
 		wCtx.fillRect( 0, 0, 1, 1 );
@@ -573,9 +579,9 @@
 	}
 
 	/**
-	 * 
-	 * @param {*} bgColor 
-	 * @param {*} colorTone 
+	 * 色に色調変更を適用して返す
+	 * @param {String} bgColor 背景色(CSS形式)
+	 * @param {Array.<Number>} colorTone 色調変更
 	 */
 	function tintColor( bgColor, colorTone ) {
 		const colorArray = cssColor2Array( bgColor );
@@ -587,7 +593,7 @@
 	}
 	/**
 	 * ドロップシャドウの設定
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx コンテキスト
 	 */
 	function setShadowParam( ctx ) {
 		ctx.shadowBlur = 4;
@@ -598,7 +604,8 @@
 
 	/**
 	 * 枠の設定をする
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx コンテキスト
+	 * @param {String} type ウィンドウのタイプ
 	 */
 	function setBorderParam( ctx, type ) {
 		if( !pluginParams.preset[ type ].borderWidth ) return;
@@ -804,7 +811,7 @@
 
 	const _Window_NameBox_updatePlacement = Window_NameBox.prototype.updatePlacement;
 	Window_NameBox.prototype.updatePlacement = function() {
-			_Window_NameBox_updatePlacement.call( this );
+		_Window_NameBox_updatePlacement.call( this );
 		if( !nameWithFace ) return;
 
 		const tw = this._messageWindow;
@@ -889,6 +896,11 @@
 			const speakerName = $gameMessage.speakerName(); //Graphics.app.stage._nameBoxWindow._name;
 			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
 		}
+		/**
+		 * 指定番号の顔画像を描画する
+		 * @param {Bitmap} bitmap 表示する画像データ
+		 * @param {Number} faceIndex 顔番号
+		 */
 		drawFace( bitmap, faceIndex ) {
 			const sw = ImageManager.faceWidth;
 			const sh = ImageManager.faceHeight;
