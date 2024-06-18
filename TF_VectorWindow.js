@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.7.1.2
+// Version :0.8.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -39,10 +39,14 @@
  * @type number @default 160
  *　
  * @param messageFontSize @text メッセージフォントサイズ
+ * @desc 
+ * 規定値:30
  * @type number @default 30
  * @min 8
  *
  * @param nameFontSize @text 名前フォントサイズ
+ * @desc 
+ * 規定値:20
  * @type number @default 20
  * @min 8
  * 
@@ -51,11 +55,14 @@
  * @on 顔の下に表示(規定) @off 標準
  *
  * @param messageLines @text メッセージに表示する行数
+ * @desc 
+ * 規定値:3
  * @type number @default 3
  * @min 1
  *
  * @param messageView @text メッセージウィンドウ表示範囲
  * @desc 画面全体に対する x,y,幅,高さ の順の数値(ピクセル数)
+ * 規定値:4,4,808,616
  * @type string @default 4,4,808,616
  *
  * @help
@@ -75,10 +82,9 @@
  *
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
- * 規定値では UI, talk, thought, shout がある
+ * あらかじめ UI, talk, thought, shout がある
  * @type combo @default shout
  * @option UI @option talk @option thought @option shout
- *
  *
  * @arg isFaceLeft @text 顔位置が左か
  * @desc 
@@ -103,6 +109,8 @@
  * @type string
  * 
  * @param shape @text ウィンドウの形
+ * @desc 
+ * 規定値:roundrect
  * @type select @default roundrect
  * @option 角丸(decorSize:0 で長方形) @value roundrect
  * @option 破裂型(叫び) @value spike
@@ -111,28 +119,37 @@
  * @option なし @value none
  * 
  * @param margin @text 端から枠までの間隔
+ * @desc 
+ * 規定値:8
  * @type number @default 8
  * @min 0
  * 
  * @param borderWidth @text 枠の幅
+ * @desc 
+ * 規定値:6
  * @type number @default 6
  * @min 0
  * 
  * @param borderColor @text 枠の色(CSS形式)
- * @desc CSS形式の例：#F00
+ * @desc 
+ * 規定値:#FFF
  * @type string @default #FFF
  *
  * @param decorSize @text 装飾の大きさ
- * @desc 角丸・角・トゲ
+ * @desc 角丸・角・トゲのサイズ
+ * 規定値:10
  * @type number @default 10
  * @min 0
  * 
- * @param padding @text 端から内容までの間隔
+ * @param padding @text 枠から内容までの間隔
+ * @desc 
+ * 規定値:18
  * @type number @default 18
  * @min 0
  * 
  * @param bgColor @text 背景色(CSS形式)
  * @desc 複数指定すると縦のグラデーションとして描画
+ * 規定値:["#0086"]
  * @type string[] @default ["#0086"]
  */
 
@@ -153,7 +170,7 @@
 	const SHAPE_OCTAGON = "octagon";
 	const SHAPE_BALLOON = "balloon";
 	const SHAPE_NONE = "none";
-	const workBitmap = new Bitmap( 1, 1 );
+	const workBitmap = new Bitmap( 1, 1 );	// 前処理用に使うビットマップ
 	const wCtx = workBitmap.context;
 	const BOX_MARGIN = 4;	// boxWidth,boxHeight の外にある余白
 
@@ -195,8 +212,8 @@
 	Scene_Boot.prototype.start = function() {
 		_Scene_Boot_start.call( this );
 		messageView = ( rect => {
-			rect.x = rect.x - Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 ) - BOX_MARGIN;
-			rect.y = rect.y - Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 ) - BOX_MARGIN;
+			rect.x = rect.x - Math.floor( ( Graphics.width - Graphics.boxWidth ) / 2 );
+			rect.y = rect.y - Math.floor( ( Graphics.height - Graphics.boxHeight ) / 2 );
 			return rect;
 		} )( stringToRectangle( pluginParams.messageView ) );
 	};
@@ -781,17 +798,23 @@
 		_Window_NameBox_initialize.apply( this, arguments );
 		this.contents.fontSize = nameFontSize;
 		if( nameWithFace ) {
-			this._isWindow = false;
+			this._isWindow = false;// 重ね合わせのくり抜きをしない
 		};
 	};
 
 	const _Window_NameBox_updatePlacement = Window_NameBox.prototype.updatePlacement;
 	Window_NameBox.prototype.updatePlacement = function() {
-		_Window_NameBox_updatePlacement.call( this );
+			_Window_NameBox_updatePlacement.call( this );
 		if( !nameWithFace ) return;
 
 		const tw = this._messageWindow;
-		this.x += tw.margin;
+		if( tw.TF_faceAlign === POSITION_LEFT ){
+			this.x = tw.x + IMG_MARGIN;
+		} else if( tw.TF_faceAlign === POSITION_RIGHT ){
+			this.x = tw.x + tw.width - tw.padding * 2
+				- IMG_MARGIN * 2 - ImageManager.faceWidth;
+		}
+
 		this.y = tw.y + tw.height - tw.padding - getNameHeight() - this.padding;
 	};
 
@@ -799,7 +822,6 @@
 		if( nameWithFace ) return;
 		Window_Base.prototype._refreshAllParts.call( this );
 	};
-
 
 	Window_NameBox.prototype.resetFontSettings = function() {
 		this.contents.fontFace = $gameSystem.mainFontFace();
@@ -809,16 +831,15 @@
 
 	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
 	Window_NameBox.prototype.windowWidth = function() {
-		if( nameWithFace ) {
-			if( this._name ) {
-				this.textWidthEx = this.textSizeEx( this._name ).width;
-				const padding = this.padding + this.itemPadding();
-				return ImageManager.faceWidth + padding * 2;
-			} else {
-				return this.textWidthEx = 0;
-			}
+		if( !nameWithFace ) return _Window_NameBox_windowWidth.call( this );
+
+		if( this._name ) {
+			this.textWidthEx = this.textSizeEx( this._name ).width;
+			const padding = this.padding + this.itemPadding();
+			return ImageManager.faceWidth + padding * 2;
+		} else {
+			return this.textWidthEx = 0;
 		}
-		return _Window_NameBox_windowWidth.call( this );
 	};
 
 	const _Window_NameBox_refresh = Window_NameBox.prototype.refresh;
@@ -853,8 +874,17 @@
 			super.initialize( bitmap );
 			this.bitmap.resize( ImageManager.faceWidth, ImageManager.faceHeight );
 		}
+		/**
+		 * 指定したウィンドウの指定位置に移動
+		 * @param {Window_Message} tw 目標とするウィンドウ 
+		 */
 		moveOnMessageWindow( tw ) {
-			this.x = tw.x + tw.padding + IMG_MARGIN;
+			if( tw.TF_faceAlign === POSITION_LEFT ){
+				this.x = tw.x + tw.padding + IMG_MARGIN;
+			} else if( tw.TF_faceAlign === POSITION_RIGHT ){
+				this.x = tw.x + tw.width - tw.padding
+					- IMG_MARGIN * 2 - ImageManager.faceWidth;
+			}
 			this.y = tw.y + tw.height - tw.padding - ImageManager.faceHeight;
 			const speakerName = $gameMessage.speakerName(); //Graphics.app.stage._nameBoxWindow._name;
 			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
