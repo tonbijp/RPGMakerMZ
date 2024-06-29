@@ -65,7 +65,7 @@ v1.2.0、v1.3.0 で変更あり。
 | `innerHeight` | [Number](Number.md) | **@MZ** [read-only]クライアントエリアの高さ(height - padding * 2 ) |
 | `innerRect` | [Rectangle](Rectangle.md) | **@MZ** [read-only]クライアントエリアの矩形範囲 |
 | `_isWindow` | Boolean | ウィンドウか |
-| `_windowskin` | [Bitmap](Bitmap.md) |  |
+| `_windowskin` | [Bitmap](Bitmap.md) | 'img/system/Window.png' |
 | `_width` | [Number](Number.md) |  |
 | `_height` | [Number](Number.md) |  |
 | `_innerChildren` | [Array](Array.md).&lt;Object&gt; | **@MZ** クライアントエリアの子オブジェクトの配列 |
