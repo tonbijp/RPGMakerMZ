@@ -59,7 +59,7 @@
 | `_bounds` | [PIXI.Bounds](http://pixijs.download/release/docs/PIXI.Bounds.html) | 矩形範囲 |
 | `_destroyed` | Boolean | destroy() により破棄されているか |
 | `_lastSortedIndex` | [Number](Number.md) | 最終ソート番号 |
-| `_mask` | [PIXI.Graphics](PIXI.Graphics.md) \| [PIXI.Sprite](PIXI.Sprite.md) \| null | マスク画像 |
+| `_mask` | [PIXI.Graphics](PIXI.Graphics.md) \| [PIXI.Sprite](PIXI.Sprite.md) \| null |  |
 | `_tempDisplayObjectParent` | PIXI.DisplayObject | 仮の親オブジェクト |
 | `_zIndex` | [Number](Number.md) | |
 
