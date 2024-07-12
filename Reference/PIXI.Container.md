@@ -115,7 +115,7 @@ canvas の描画。
 
 options に Object として指定する内容
 
-| Name | Type | Default | Description |
+| 名前 | 型 | 規定値 | 説明 |
 | --- | --- | --- | --- |
 | `children` | Boolean | false | opt. 子も破棄するか|
 | `texture` | Boolean | false | opt. children と texture が true だと子のテクスチャを破棄する |
