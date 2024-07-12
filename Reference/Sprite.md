@@ -230,7 +230,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 
 #### setFrame (x, y, width, height)
- 保持している画像(bitmap)の表示領域を指定。
+ 保持している画像(bitmap)のうち、表示する領域を指定。
 
 ##### 引数
 
