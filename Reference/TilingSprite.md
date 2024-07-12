@@ -2,7 +2,7 @@
 
 # クラス: TilingSprite
 
-## スーパークラス: [PIXI.TilingSprite](http://pixijs.download/release/docs/PIXI.TilingSprite.html)
+## スーパークラス: [PIXI.TilingSprite](http://pixijs.download/v5.3.12/docs/PIXI.TilingSprite.html)
 
 タイル(繰り返し表示)画像用のスプライト。<br />
 [遠景]および、ウィンドウの背景に使われる。

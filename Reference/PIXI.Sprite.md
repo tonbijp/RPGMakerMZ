@@ -4,7 +4,7 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-描画のための基本オブジェクト。詳細は本家 PixiJS のサイト [PIXI.Sprite](http://pixijs.download/release/docs/PIXI.Sprite.html) を参照。
+描画のための基本オブジェクト。詳細は本家 PixiJS のサイト [PIXI.Sprite](http://pixijs.download/v5.3.12/docs/PIXI.Sprite.html) を参照。
 
 ### new PIXI.Sprite (texture opt)
 #### 引数
@@ -23,7 +23,7 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `shader` | [PIXI.Filter](PIXI.Filter.md) \| [PIXI.Shader](PIXI.Shader.md) | [static] シェーダ |
-| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/release/docs/PIXI.ObservablePoint.html) | 座標の基点 (例: 左上{0, 0} / 右下{1, 1} )(規定値: `texture.defaultAnchor`か左上) |
+| `anchor` | [PIXI.ObservablePoint](http://pixijs.download/v5.3.12/docs/PIXI.ObservablePoint.html) | 座標の基点 (例: 左上{0, 0} / 右下{1, 1} )(規定値: `texture.defaultAnchor`か左上) |
 | `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: `PIXI.BLEND_MODES.NORMAL`) |
 | `isSprite` | Boolean | スプライトか |
 | `pluginName` | [String](String.md) | `PIXI.Renderer`の`plugins`名(規定値: "batch") |
@@ -82,7 +82,7 @@ source には [Number](Number.md)(フレームID), [String](String.md)(画像・
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `source` | * | | 生成元となるデータ |
-| `options` | Object | &lt;optional&gt; | [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html) のコンストラクタの option と同じ形式 |
+| `options` | Object | &lt;optional&gt; | [PIXI.BaseTexture](http://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html) のコンストラクタの option と同じ形式 |
 
 
 #### _calculateBounds ()
@@ -108,7 +108,7 @@ source には [Number](Number.md)(フレームID), [String](String.md)(画像・
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `point` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) | 座標 |
+| `point` | [PIXI.Point](http://pixijs.download/v5.3.12/docs/PIXI.Point.html) | 座標 |
 
 
 #### destroy (options)

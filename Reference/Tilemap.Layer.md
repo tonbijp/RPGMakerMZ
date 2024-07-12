@@ -32,14 +32,14 @@ SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
 | `MAX_SIZE` | [Number](Number.md) | **@MZ1.7.0** [static] 最大要素数(規定値: 16000) |
 | `_elements` | [Array](Array.md).&lt;[MV.TileRect](MV.TileRect.md)&gt;  | タイル描画に使われる矩形データの配列 |
 | `_images` | [Array](Array.md).&lt;[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)&gt;  | 画像データの配列 |
-| `_vao` | [PIXI.Geometry](http://pixijs.download/release/docs/PIXI.Geometry.html) | ジオメトリ |
+| `_vao` | [PIXI.Geometry](http://pixijs.download/v5.3.12/docs/PIXI.Geometry.html) | ジオメトリ |
 | `_indexArray` | Float32Array | インデックスの配列 |
-| `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | インデックスのバッファ |
+| `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/v5.3.12/docs/PIXI.Buffer.html) | インデックスのバッファ |
 | `_vertexArray` | Float32Array | `_elements`を一次元化した配列 |
-| `_vertexBuffer` | [PIXI.Buffer](http://pixijs.download/release/docs/PIXI.Buffer.html) | 頂点のバッファ |
+| `_vertexBuffer` | [PIXI.Buffer](http://pixijs.download/v5.3.12/docs/PIXI.Buffer.html) | 頂点のバッファ |
 | `_needsTexturesUpdate` | Boolean | テクスチャの更新が必要か |
 | `_needsVertexUpdate` | Boolean | 頂点の更新が必要か |
-| `_state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
+| `_state` | [PIXI.State](http://pixijs.download/v5.3.12/docs/PIXI.State.html) | 状態 |
 | `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
 
 

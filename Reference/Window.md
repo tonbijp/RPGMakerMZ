@@ -75,11 +75,11 @@ v1.2.0、v1.3.0 で変更あり。
 | `_padding` | [Number](Number.md) |  |
 | `_margin` | [Number](Number.md) |  |
 | `_colorTone` | [MV.Tone](MV.Tone.md) | [色調] |
-| `_container` | [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** ウィンドウ画像コンテナ |
+| `_container` | [PIXI.Container](http://pixijs.download/v5.3.12/docs/PIXI.Container.html) | **@MZ** ウィンドウ画像コンテナ |
 | `_backSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ背景 |
 | `_cursorSprite` | [Sprite](Sprite.md) | **@MZ** コマンド選択カーソル |
 | `_frameSprite` | [Sprite](Sprite.md) | **@MZ** ウィンドウ枠 |
-| `_clientArea` |  [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) | **@MZ** 内容( `contents` を含む ) |
+| `_clientArea` |  [PIXI.Container](http://pixijs.download/v5.3.12/docs/PIXI.Container.html) | **@MZ** 内容( `contents` を含む ) |
 | `_contentsBackSprite` | [Sprite](Sprite.md) | **@MZ** 項目の背景 |
 | `_contentsSprite` | [Sprite](Sprite.md) | **@MZ** 内容 |
 | `_pauseSignSprite` | [Sprite](Sprite.md) | **@MZ** ポーズサイン |

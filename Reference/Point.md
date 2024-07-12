@@ -2,7 +2,7 @@
 
 # クラス: Point
 
-## スーパークラス: [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)
+## スーパークラス: [PIXI.Point](http://pixijs.download/v5.3.12/docs/PIXI.Point.html)
 
 座標点を表すクラス。
 

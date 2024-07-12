@@ -6,7 +6,7 @@
 
 描画オブジェクトを含むコンテナ。
 
-詳細は本家 PixiJS のサイト [PIXI.Container](http://pixijs.download/release/docs/PIXI.Container.html) を参照。
+詳細は本家 PixiJS のサイト [PIXI.Container](http://pixijs.download/v5.3.12/docs/PIXI.Container.html) を参照。
 
 ### new PIXI.Container ()
 
@@ -214,7 +214,7 @@ canvas の描画
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `renderer` | [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | レンダラ |
+| `renderer` | [PIXI.CanvasRenderer](http://pixijs.download/v5.3.12/docs/PIXI.CanvasRenderer.html) | レンダラ |
 
 
 #### setChildIndex (child, index)

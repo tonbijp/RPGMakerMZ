@@ -2,10 +2,10 @@
 
 # クラス: PIXI.Renderer
 
-## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
+## スーパークラス: [PIXI.AbstractRenderer](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html) 
 WebGLでのレンダリングを行うためのクラス。
 
-詳細は本家 PixiJS のサイト [PIXI.Renderer](http://pixijs.download/release/docs/PIXI.Renderer.html) を参照。
+詳細は本家 PixiJS のサイト [PIXI.Renderer](http://pixijs.download/v5.3.12/docs/PIXI.Renderer.html) を参照。
 
 関連クラス: [Sprite_Animation](Sprite_Animation.md), [PIXI.Container](PIXI.Container.md), [PIXI.Application](PIXI.Application.md)
 
@@ -36,48 +36,48 @@ WebGLでのレンダリングを行うためのクラス。
 | 識別子 | 型 | 説明 |
 | --- | --- | --- | 
 | `plugins` | Object | [static][read-only] [プラグイン](#プラグイン)のコレクション |
-| `batch` | [PIXI.BatchSystem](http://pixijs.download/release/docs/PIXI.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
-| `context` | [PIXI.ContextSystem](http://pixijs.download/release/docs/PIXI.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
-| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | v6で廃止(`plugins.extract`を使うように変更) |
-| `filter` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
-| `framebuffer` | [PIXI.FramebufferSystem](http://pixijs.download/release/docs/PIXI.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
-| `geometry` | [PIXI.GeometrySystem](http://pixijs.download/release/docs/PIXI.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
+| `batch` | [PIXI.BatchSystem](http://pixijs.download/v5.3.12/docs/PIXI.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
+| `context` | [PIXI.ContextSystem](http://pixijs.download/v5.3.12/docs/PIXI.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
+| `extract` | [PIXI.Extract](http://pixijs.download/v5.3.12/docs/PIXI.Extract.html) | v6で廃止(`plugins.extract`を使うように変更) |
+| `filter` | [PIXI.FilterSystem](http://pixijs.download/v5.3.12/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
+| `framebuffer` | [PIXI.FramebufferSystem](http://pixijs.download/v5.3.12/docs/PIXI.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
+| `geometry` | [PIXI.GeometrySystem](http://pixijs.download/v5.3.12/docs/PIXI.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
 | `gl` | WebGLRenderingContext | [read-only] WebGLのコンテキスト(規定値: undefined) |
-| `globalUniforms` | [PIXI.UniformGroup](http://pixijs.download/release/docs/PIXI.UniformGroup.html) | [read-only] 大域ユニフォーム |
-| `mask` | [PIXI.MaskSystem](http://pixijs.download/release/docs/PIXI.MaskSystem.html) | [read-only] マスクシステムのインスタンス |
-| `projection` | [PIXI.ProjectionSystem](http://pixijs.download/release/docs/PIXI.ProjectionSystem.html) | [read-only] プロジェクションシステムのインスタンス |
+| `globalUniforms` | [PIXI.UniformGroup](http://pixijs.download/v5.3.12/docs/PIXI.UniformGroup.html) | [read-only] 大域ユニフォーム |
+| `mask` | [PIXI.MaskSystem](http://pixijs.download/v5.3.12/docs/PIXI.MaskSystem.html) | [read-only] マスクシステムのインスタンス |
+| `projection` | [PIXI.ProjectionSystem](http://pixijs.download/v5.3.12/docs/PIXI.ProjectionSystem.html) | [read-only] プロジェクションシステムのインスタンス |
 | `renderingToScreen` | Boolean | [read-only] Flag if we are rendering to the screen vs renderTexture(規定値: true) |
-| `renderTexture` | [PIXI.RenderTextureSystem](http://pixijs.download/release/docs/PIXI.RenderTextureSystem.html) | [read-only] レンダテクスチャシステムのインスタンス |
-| `scissor` | [PIXI.ScissorSystem ](http://pixijs.download/release/docs/PIXI.RenderTextureSystem.html) | [read-only] シザーシステムのインスタンス |
-| `shader` | [PIXI.ShaderSystem](http://pixijs.download/release/docs/PIXI.ShaderSystem.html) | [read-only] シェーダシステムのインスタンス |
-| `state` | [PIXI.StateSystem](http://pixijs.download/release/docs/PIXI.StateSystem.html) | [read-only] ステートシステムのインスタンス |
-| `stencil` | [PIXI.StencilSystem](http://pixijs.download/release/docs/PIXI.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
-| `texture` | [PIXI.TextureSystem ](http://pixijs.download/release/docs/PIXI.TextureSystem .html) | [read-only] テクスチャシステムのインスタンス |
-| `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/release/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
+| `renderTexture` | [PIXI.RenderTextureSystem](http://pixijs.download/v5.3.12/docs/PIXI.RenderTextureSystem.html) | [read-only] レンダテクスチャシステムのインスタンス |
+| `scissor` | [PIXI.ScissorSystem ](http://pixijs.download/v5.3.12/docs/PIXI.RenderTextureSystem.html) | [read-only] シザーシステムのインスタンス |
+| `shader` | [PIXI.ShaderSystem](http://pixijs.download/v5.3.12/docs/PIXI.ShaderSystem.html) | [read-only] シェーダシステムのインスタンス |
+| `state` | [PIXI.StateSystem](http://pixijs.download/v5.3.12/docs/PIXI.StateSystem.html) | [read-only] ステートシステムのインスタンス |
+| `stencil` | [PIXI.StencilSystem](http://pixijs.download/v5.3.12/docs/PIXI.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
+| `texture` | [PIXI.TextureSystem ](http://pixijs.download/v5.3.12/docs/PIXI.TextureSystem .html) | [read-only] テクスチャシステムのインスタンス |
+| `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/v5.3.12/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
 
 #### プラグイン
 『RPGツクールMZ』のプラグインのことではなく、PixiJS の機能拡張。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/release/docs/PIXI.AccessibilityManager.html)	| UI部品のTABキーフォーカス設定など |
+| `accessibility` | [PIXI.AccessibilityManager](http://pixijs.download/v5.3.12/docs/PIXI.AccessibilityManager.html)	| UI部品のTABキーフォーカス設定など |
 | `batch` | [PIXI.BatchRenderer](#PIXI.BatchRenderer) | Sprite, Graphics および Mesh のバッチ処理 |
-| `extract` | [PIXI.Extract](http://pixijs.download/release/docs/PIXI.Extract.html) | 画像を他の形式で出力するためのオブジェクト |
-| `interaction` | [PIXI.InteractionManager](http://pixijs.download/release/docs/PIXI.InteractionManager.html)	| UI、衝突判定など |
-| `particle` | [PIXI.ParticleRenderer](http://pixijs.download/release/docs/PIXI.ParticleRenderer.html) | ParticleContainer のレンダラ |
-| `prepare` | [PIXI.Prepare](http://pixijs.download/release/docs/PIXI.Prepare.html) | displayObject のレンダ前処理 |
-| `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/release/docs/PIXI.TilingSpriteRenderer.html) | TilingSprite のレンダラ |
+| `extract` | [PIXI.Extract](http://pixijs.download/v5.3.12/docs/PIXI.Extract.html) | 画像を他の形式で出力するためのオブジェクト |
+| `interaction` | [PIXI.InteractionManager](http://pixijs.download/v5.3.12/docs/PIXI.InteractionManager.html)	| UI、衝突判定など |
+| `particle` | [PIXI.ParticleRenderer](http://pixijs.download/v5.3.12/docs/PIXI.ParticleRenderer.html) | ParticleContainer のレンダラ |
+| `prepare` | [PIXI.Prepare](http://pixijs.download/v5.3.12/docs/PIXI.Prepare.html) | displayObject のレンダ前処理 |
+| `tilingSprite` | [PIXI.TilingSpriteRenderer](http://pixijs.download/v5.3.12/docs/PIXI.TilingSpriteRenderer.html) | TilingSprite のレンダラ |
 
 #### PIXI.BatchRenderer
-PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/release/docs/PIXI.BatchPluginFactory.html)で生成される [PIXI.AbstractBatchRenderer](http://pixijs.download/release/docs/PIXI.AbstractBatchRenderer.html) を継承したオブジェクトだが、クラス定義自体はない。
+PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/v5.3.12/docs/PIXI.BatchPluginFactory.html)で生成される [PIXI.AbstractBatchRenderer](http://pixijs.download/v5.3.12/docs/PIXI.AbstractBatchRenderer.html) を継承したオブジェクトだが、クラス定義自体はない。
 
 
 ### スーパークラスから継承されたメソッド
 
-#### [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html) 
+#### [PIXI.AbstractRenderer](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html) 
 
- * [generateTexture (displayObject, scaleMode, resolution, region)](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html#generateTexture)
- * [initPlugins (staticMap)](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html#initPlugins)
+ * [generateTexture (displayObject, scaleMode, resolution, region)](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html#generateTexture)
+ * [initPlugins (staticMap)](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html#initPlugins)
 
 
 ### メソッド
@@ -109,7 +109,7 @@ PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/release/
 
 
 #### destroy (removeView)
-オーバーライド: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html#destroy) 
+オーバーライド: [PIXI.AbstractRenderer](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html#destroy) 
 
 
 #### render (displayObject, options opt) 
@@ -119,11 +119,11 @@ PIXI.BatchRenderer は [PIXI.BatchPluginFactory](http://pixijs.download/release/
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `displayObject` | [PIXI.IRenderableObject](http://pixijs.download/release/docs/PIXI.IRenderableObject.html) |  | レンダリング対象 |
+| `displayObject` | [PIXI.IRenderableObject](http://pixijs.download/v5.3.12/docs/PIXI.IRenderableObject.html) |  | レンダリング対象 |
 | `options` | Object | &lt;optional&gt; | 詳細は以下 |
-| `options.renderTexture` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | &lt;optional&gt; | レンダテクスチャ |
+| `options.renderTexture` | [PIXI.RenderTexture](http://pixijs.download/v5.3.12/docs/PIXI.RenderTexture.html) | &lt;optional&gt; | レンダテクスチャ |
 | `options.clear` | Boolean | &lt;optional&gt; | レンダリング前に消去するか(規定値: true) |
-| `options.transform` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | &lt;optional&gt; | レンダリング前に加える変形 |
+| `options.transform` | [PIXI.Matrix](http://pixijs.download/v5.3.12/docs/PIXI.Matrix.html) | &lt;optional&gt; | レンダリング前に加える変形 |
 | `options.skipUpdateTransform` | Boolean | &lt;optional&gt; | 変形の更新をとばすか(規定値: false) |
 
 
@@ -132,7 +132,7 @@ WebGL の状態を初期化。
 
 
 #### resize (screenWidth, screenHeight)
-オーバーライド: [PIXI.AbstractRenderer](http://pixijs.download/release/docs/PIXI.AbstractRenderer.html#resize) 
+オーバーライド: [PIXI.AbstractRenderer](http://pixijs.download/v5.3.12/docs/PIXI.AbstractRenderer.html#resize) 
 
 
 ### イベント

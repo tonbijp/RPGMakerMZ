@@ -2,11 +2,11 @@
 
 # クラス: Rectangle
 
-## スーパークラス: [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html)
+## スーパークラス: [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html)
 
 矩形範囲を表すクラス。
 
-ここでは `PIXI.Rectangle` のプロパティ・メソッドも書いているが、詳細は [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) を参照。
+ここでは `PIXI.Rectangle` のプロパティ・メソッドも書いているが、詳細は [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html) を参照。
 
 メソッドが大抵は自身を返すのは、メソッドチェーンに利用するため。
 
@@ -36,7 +36,7 @@
 | `bottom` | [Number](Number.md) | 矩形下の y座標 |
 | `left` | [Number](Number.md) | 矩形左の x座標( `x` と同じ) |
 | `right` | [Number](Number.md) | 矩形右の y座標 |
-| `type` | [Number](Number.md) | [read-only] タイプ(参照:[PIXI.SHAPES](http://pixijs.download/release/docs/PIXI.html#SHAPES)) |
+| `type` | [Number](Number.md) | [read-only] タイプ(参照:[PIXI.SHAPES](http://pixijs.download/v5.3.12/docs/PIXI.html#SHAPES)) |
 
 
 ### 廃止MVプロパティ

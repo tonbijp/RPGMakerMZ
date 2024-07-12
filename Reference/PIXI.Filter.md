@@ -9,7 +9,7 @@
 
 WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D および 3D グラフィック -MDN](https://developer.mozilla.org/ja/docs/Web/API/WebGL_API) や [WebGLの基本 - WebGLFundamentals](https://webglfundamentals.org/webgl/lessons/ja/) などを参照。
 
-この`Filter` クラスについて詳細は本家 PixiJS のリファレンス [PIXI.Filter](http://pixijs.download/release/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
+この`Filter` クラスについて詳細は本家 PixiJS のリファレンス [PIXI.Filter](http://pixijs.download/v5.3.12/docs/PIXI.Filter.html)、[フィルタの使用方法に関するドキュメント](https://github.com/pixijs/pixi.js/wiki/v5-Creating-filters) を参照。
 
 関連クラス: [PIXI.DisplayObject](PIXI.DisplayObject.md),  [PIXI.Container](PIXI.Container.md)
 
@@ -31,14 +31,14 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 ### サブクラス
 追加のフィルタを[PixiJS Filters](https://github.com/pixijs/pixi-filters) からダウンロードできる。
 
-* [PIXI.filters.BlurFilter](http://pixijs.download/release/docs/PIXI.filters.BlurFilter.html)
-* [PIXI.filters.BlurXFilter](http://pixijs.download/release/docs/PIXI.filters.BlurXFilter.html)
-* [PIXI.filters.BlurYFilter](http://pixijs.download/release/docs/PIXI.filters.BlurYFilter.html)
-* [PIXI.filters.ColorMatrixFilter](http://pixijs.download/release/docs/PIXI.filters.ColorMatrixFilter.html)
-* [PIXI.filters.DisplacementFilter](http://pixijs.download/release/docs/PIXI.filters.DisplacementFilter.html)
-* [PIXI.filters.FXAAFilter](http://pixijs.download/release/docs/PIXI.filters.FXAAFilter.html)
-* [PIXI.filters.NoiseFilter](http://pixijs.download/release/docs/PIXI.filters.NoiseFilter.html)
-* [PIXI.filters.VoidFilter](http://pixijs.download/release/docs/PIXI.filters.VoidFilter.html)
+* [PIXI.filters.BlurFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.BlurFilter.html)
+* [PIXI.filters.BlurXFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.BlurXFilter.html)
+* [PIXI.filters.BlurYFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.BlurYFilter.html)
+* [PIXI.filters.ColorMatrixFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.ColorMatrixFilter.html)
+* [PIXI.filters.DisplacementFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.DisplacementFilter.html)
+* [PIXI.filters.FXAAFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.FXAAFilter.html)
+* [PIXI.filters.NoiseFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.NoiseFilter.html)
+* [PIXI.filters.VoidFilter](http://pixijs.download/v5.3.12/docs/PIXI.filters.VoidFilter.html)
 * [ColorFilter](ColorFilter.md)
 
 ### プロパティ
@@ -54,7 +54,7 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 | `legacy` | Boolean | [read-only] attributes に position や uvs を使うフィルタか  |
 | `padding` | [Number](Number.md) | フィルタのパディング(周辺領域が必要な場合)(規定値: 0)  |
 | `resolution` | [Number](Number.md) | フィルタの解像度 |
-| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | WebGL の状態 |
+| `state` | [PIXI.State](http://pixijs.download/v5.3.12/docs/PIXI.State.html) | WebGL の状態 |
 | `uniforms` | Object |  現在のGLSLに渡す変数  |
 
 
@@ -75,9 +75,9 @@ WebGL およびシェーダの内容について詳細は[WebGL: ウェブの 2D
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/release/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |            
-| `input` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像入力対象 |
-| `output` | [PIXI.RenderTexture](http://pixijs.download/release/docs/PIXI.RenderTexture.html) | | 画像出力対象 |
+| `filterManager` | [PIXI.FilterSystem](http://pixijs.download/v5.3.12/docs/PIXI.FilterSystem.html) | | フィルタを取得するレンダラ |            
+| `input` | [PIXI.RenderTexture](http://pixijs.download/v5.3.12/docs/PIXI.RenderTexture.html) | | 画像入力対象 |
+| `output` | [PIXI.RenderTexture](http://pixijs.download/v5.3.12/docs/PIXI.RenderTexture.html) | | 画像出力対象 |
 | `clearMode` | [PIXI.CLEAR_MODES](#PIXI.CLEAR_MODES) | | レンダリングの出力先の消去モード |
 | `currentState` | Object | &lt;optional&gt; | フィルタの現在の状態 |
 

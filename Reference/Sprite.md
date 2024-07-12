@@ -40,7 +40,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_emptyBaseTexture` | [PIXI.BaseTexture](http://pixijs.download/release/docs/PIXI.BaseTexture.html) | **@MZ** [static] 空の基礎テクスチャ |
+| `_emptyBaseTexture` | [PIXI.BaseTexture](http://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html) | **@MZ** [static] 空の基礎テクスチャ |
 | `spriteId` | [Number](Number.md) | スプライトID |
 | `bitmap` | [Bitmap](Bitmap.md) | スプライトに設定する画像 |
 | `opacity` | [Number](Number.md) | 不透明度 (0 〜 255) |
@@ -77,7 +77,7 @@ MZになって新規クラスが増えたのとSprite_Baseが廃止された関�
 | 0 | [Sprite](Sprite.md) | 低層タイル[○]・[×]\(レイヤー1・2 ・影ペン・3・4 ) |
 
 #### [合成方法]
-番号は [Graphics](Graphics.md) の静的クラス定数として定義されていたが、『RPGツクールMZ』では廃止されて、[PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES) の定数を使うようになっている。
+番号は [Graphics](Graphics.md) の静的クラス定数として定義されていたが、『RPGツクールMZ』では廃止されて、[PIXI.BLEND_MODES](http://pixijs.download/v5.3.12/docs/PIXI.html#.BLEND_MODES) の定数を使うようになっている。
 
 公式には 0-3まで使用可能となっているが、それ以外の合成方法で使えるものもある。ただし大抵は `NORMAL` と同じ合成方法が設定されているだけ。
 

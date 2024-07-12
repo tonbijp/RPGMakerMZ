@@ -6,7 +6,7 @@
 線や丸などを使って画像を描くためのクラス。<br />
 多くのメソッドが自分自身である `PIXI.Graphics` を返してくるのは、メソッドを「.」区切りで連続で書くメソッドチェーンを使えるようにするため。
 
-詳細は本家 PixiJS のサイト [PIXI.Graphics](http://pixijs.download/release/docs/PIXI.Graphics.html) を参照。<br />
+詳細は本家 PixiJS のサイト [PIXI.Graphics](http://pixijs.download/v5.3.12/docs/PIXI.Graphics.html) を参照。<br />
 なお、JavaScript の [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)クラスの描画コンテキストである [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) と共通するメソッドが多いので、そちらを調べても良い。
 
 
@@ -17,7 +17,7 @@
 
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
-| `geometry ` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | &lt;optional&gt; | ジオメトリ |
+| `geometry ` | [PIXI.GraphicsGeometry](http://pixijs.download/v5.3.12/docs/PIXI.GraphicsGeometry.html) | &lt;optional&gt; | ジオメトリ |
 
 ### プロパティ
 
@@ -25,21 +25,21 @@
 | --- | --- | --- |
 | `batches` | [Array](Array.md).&lt;Object&gt; | バッチ |
 | `batchTint` | [Number](Number.md) | (規定値: -1) |
-| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: [PIXI.BLEND_MODES](http://pixijs.download/release/docs/PIXI.html#.BLEND_MODES).NORMAL) |
-| `currentPath` | [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) | 現在のパス |
-| `fill` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | [read-only] 塗りの形式 |
-| `geometry` | [PIXI.GraphicsGeometry](http://pixijs.download/release/docs/PIXI.GraphicsGeometry.html) | ジオメトリ |
-| `line` | [PIXI.LineStyle](http://pixijs.download/release/docs/PIXI.LineStyle.html) | [read-only] 線の形式 |
+| `blendMode` | [Number](Number.md) | [\[合成方法\]](Sprite.md#合成方法) (規定値: [PIXI.BLEND_MODES](http://pixijs.download/v5.3.12/docs/PIXI.html#.BLEND_MODES).NORMAL) |
+| `currentPath` | [PIXI.Polygon](http://pixijs.download/v5.3.12/docs/PIXI.Polygon.html) | 現在のパス |
+| `fill` | [PIXI.FillStyle](http://pixijs.download/v5.3.12/docs/PIXI.FillStyle.html) | [read-only] 塗りの形式 |
+| `geometry` | [PIXI.GraphicsGeometry](http://pixijs.download/v5.3.12/docs/PIXI.GraphicsGeometry.html) | ジオメトリ |
+| `line` | [PIXI.LineStyle](http://pixijs.download/v5.3.12/docs/PIXI.LineStyle.html) | [read-only] 線の形式 |
 | `pluginName` | [String](String.md) | 規定値: "batch" |
 | `shader` | [PIXI.Shader](PIXI.Shader.md) | シェーダ |
-| `state` | [PIXI.State](http://pixijs.download/release/docs/PIXI.State.html) | 状態 |
+| `state` | [PIXI.State](http://pixijs.download/v5.3.12/docs/PIXI.State.html) | 状態 |
 | `tint` | [Number](Number.md) | 枠線の色(規定値: 0xffffff) |
 | `vertexData` | Float32Array | 頂点データ |
-| `graphicsData` | [Array](Array.md).&lt;[PIXI.GraphicsData](http://pixijs.download/release/docs/PIXI.GraphicsData.html)&gt; | 画像データ |
-| `_fillStyle` | [PIXI.FillStyle](http://pixijs.download/release/docs/PIXI.FillStyle.html) | 塗りの形式 |
+| `graphicsData` | [Array](Array.md).&lt;[PIXI.GraphicsData](http://pixijs.download/v5.3.12/docs/PIXI.GraphicsData.html)&gt; | 画像データ |
+| `_fillStyle` | [PIXI.FillStyle](http://pixijs.download/v5.3.12/docs/PIXI.FillStyle.html) | 塗りの形式 |
 | `_holeMode` | Boolean | 穴あけモードか(規定値: false) |
-| `_lineStyle` | [PIXI.LineStyle](http://pixijs.download/release/docs/PIXI.LineStyle.html) | 線の形式 |
-| `_matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | 変形行列 |
+| `_lineStyle` | [PIXI.LineStyle](http://pixijs.download/v5.3.12/docs/PIXI.LineStyle.html) | 線の形式 |
+| `_matrix` | [PIXI.Matrix](http://pixijs.download/v5.3.12/docs/PIXI.Matrix.html) | 変形行列 |
 
 ### スーパークラスから継承されたメソッド
 
@@ -152,7 +152,7 @@
 | 名前 | 型 | 特性 | 説明 |
 | --- | --- | --- | --- |
 | `color` | [Number](Number.md) \| [PIXI.Texture](PIXI.Texture.md) | &lt;optional&gt; | 塗り潰し色(規定値: 0xffffff) |
-| `alpha` | [Number](Number.md) \| [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html)  | &lt;optional&gt; | 不透明度(規定値: 1) |
+| `alpha` | [Number](Number.md) \| [PIXI.Matrix](http://pixijs.download/v5.3.12/docs/PIXI.Matrix.html)  | &lt;optional&gt; | 不透明度(規定値: 1) |
 
 
 #### bezierCurveTo (cpX, cpY, cpX2, cpY2, toX, toY) →  {PIXI.Graphics}
@@ -197,7 +197,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `point ` | [PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html) |  |
+| `point ` | [PIXI.Point](http://pixijs.download/v5.3.12/docs/PIXI.Point.html) |  |
 
 
 #### destroy (options opt)
@@ -245,7 +245,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `path ` | [Array](Array.md).&lt;[Number](Number.md)&gt; \| [Array](Array.md).&lt;[PIXI.Point](http://pixijs.download/release/docs/PIXI.Point.html)&gt; \| [Array](Array.md).&lt;[PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html)&gt; | パス |
+| `path ` | [Array](Array.md).&lt;[Number](Number.md)&gt; \| [Array](Array.md).&lt;[PIXI.Point](http://pixijs.download/v5.3.12/docs/PIXI.Point.html)&gt; \| [Array](Array.md).&lt;[PIXI.Polygon](http://pixijs.download/v5.3.12/docs/PIXI.Polygon.html)&gt; | パス |
 
 
 #### drawRect (x, y, width, height) →  {PIXI.Graphics}
@@ -283,7 +283,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `shape` | [PIXI.Circle](http://pixijs.download/release/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/release/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/release/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/release/docs/PIXI.RoundedRectangle.html) | 図形の形を指定するオブジェクト |
+| `shape` | [PIXI.Circle](http://pixijs.download/v5.3.12/docs/PIXI.Circle.html) \| [PIXI.Ellipse](http://pixijs.download/v5.3.12/docs/PIXI.Ellipse.html) \| [PIXI.Polygon](http://pixijs.download/v5.3.12/docs/PIXI.Polygon.html) \| [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html) \| [PIXI.RoundedRectangle](http://pixijs.download/v5.3.12/docs/PIXI.RoundedRectangle.html) | 図形の形を指定するオブジェクト |
 
 
 #### drawStar (x, y, points, radius, innerRadius opt, rotation opt) →  {PIXI.Graphics}
@@ -320,7 +320,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `scaleMode` | [Number](Number.md) | [PIXI.SCALE_MODES](http://pixijs.download/release/docs/PIXI.html#.SCALE_MODES) |
+| `scaleMode` | [Number](Number.md) | [PIXI.SCALE_MODES](http://pixijs.download/v5.3.12/docs/PIXI.html#.SCALE_MODES) |
 | `resolution` | [Number](Number.md) | 解像度 |
 
 
@@ -355,7 +355,7 @@
 | `options.texture` | [PIXI.Texture](PIXI.Texture.md) | &lt;optional&gt; | テスクチャ(規定値: PIXI.Texture.WHITE) |
 | `options.color` | [Number](Number.md) | &lt;optional&gt; | 色(規定値: 0) |
 | `options.alpha` | [Number](Number.md) | &lt;optional&gt; | 不透明度(規定値: 1) |
-| `options.matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | &lt;optional&gt; |   |
+| `options.matrix` | [PIXI.Matrix](http://pixijs.download/v5.3.12/docs/PIXI.Matrix.html) | &lt;optional&gt; |   |
 | `options.alignment` | [Number](Number.md) | &lt;optional&gt; | (規定値: 0.5) |
 | `options.native` | Boolean | &lt;optional&gt; | (規定値: false) |
 
@@ -402,7 +402,7 @@
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `matrix` | [PIXI.Matrix](http://pixijs.download/release/docs/PIXI.Matrix.html) | マトリクス |
+| `matrix` | [PIXI.Matrix](http://pixijs.download/v5.3.12/docs/PIXI.Matrix.html) | マトリクス |
 
 
 ####  startPoly ()

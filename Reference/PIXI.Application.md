@@ -7,13 +7,13 @@ v4以前のバージョンは必要なオブジェクトを個々に生成して
 このクラスは必要なオブジェクトの生成と保持を一手に担うもの。<br />
 とりあえず PixiJS を使うときはこの `PIXI.Application`クラスを生成すれば準備が整うようになった。
 
-詳細は本家 PixiJS のリファレンス [PIXI.Application](http://pixijs.download/release/docs/PIXI.Application.html) を参照。
+詳細は本家 PixiJS のリファレンス [PIXI.Application](http://pixijs.download/v5.3.12/docs/PIXI.Application.html) を参照。
 
 関連クラス: [Graphics](Graphics.md)
 
 ### new PIXI.Application (options opt)
 #### 引数
-全ての値は任意(optional)。
+すべての値は任意(optional)。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
@@ -41,12 +41,12 @@ v4以前のバージョンは必要なオブジェクトを個々に生成して
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| ` loader` | [PIXI.Loader](http://pixijs.download/release/docs/PIXI.Loader.md) | [read-only] ローダ |
-| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/release/docs/PIXI.CanvasRenderer.html) | [static] WebGLレンダラ または Canvasレンダラ |
+| ` loader` | [PIXI.Loader](http://pixijs.download/v5.3.12/docs/PIXI.Loader.md) | [read-only] ローダ |
+| `renderer` | [PIXI.Renderer](PIXI.Renderer.md) \| [PIXI.CanvasRenderer](http://pixijs.download/v5.3.12/docs/PIXI.CanvasRenderer.html) | [static] WebGLレンダラ または Canvasレンダラ |
 | `resizeTo ` | [Window](https://developer.mozilla.org/ja/docs/Web/API/Window) \| [HTMLElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLElement) | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
-| `screen` | [PIXI.Rectangle](http://pixijs.download/release/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
+| `screen` | [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
 | `stage` | [PIXI.Container](PIXI.Container.md) | ルート(『RPGツクールMZ』の場合[Scene_Base](Scene_Base.md)) |
-| `ticker` | [PIXI.Ticker](http://pixijs.download/release/docs/PIXI.Ticker.html) | フレーム毎の更新を行うオブジェクト(規定値:`PIXI.Ticker.shared`)  |
+| `ticker` | [PIXI.Ticker](http://pixijs.download/v5.3.12/docs/PIXI.Ticker.html) | フレーム毎の更新を行うオブジェクト(規定値:`PIXI.Ticker.shared`)  |
 | `view` | HTMLCanvasElement | [read-only] 描画を行うcanvas  |
 
 
@@ -59,7 +59,7 @@ v4以前のバージョンは必要なオブジェクトを個々に生成して
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `plugin` | [PIXI.IApplicationPlugin](http://pixijs.download/release/docs/PIXI.IApplicationPlugin.html) | 登録するプラグイン |
+| `plugin` | [PIXI.IApplicationPlugin](http://pixijs.download/v5.3.12/docs/PIXI.IApplicationPlugin.html) | 登録するプラグイン |
 
 
 #### destroy (removeView opt, stageOptions opt)
