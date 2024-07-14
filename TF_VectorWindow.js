@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.8.0.1
+// Version :0.8.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -67,7 +67,7 @@
  *
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
- * グラデーション、ドロップシャドウ、フキダシの指定が可能。
+ * 背景のグラデーションや枠線の太さや形など指定が可能。
  *
  * 標準の[文章の表示]コマンドを使う前に
  * プラグインコマンド[ウィンドウの準備]を実行し、
@@ -86,10 +86,12 @@
  * @type combo @default shout
  * @option UI @option talk @option thought @option shout
  *
- * @arg isFaceLeft @text 顔位置が左か
+ * @arg faceAlign @text 顔位置
  * @desc 
- * @type boolean @default true
- * @on 左(規定値) @off 右
+ * 規定値:left
+ * @type select @default left
+ * @option 左 @value left
+ * @option 右 @value right
  *
  * @arg pos @text ウィンドウ位置
  * @desc 画面左上から x,y の座標
@@ -114,7 +116,6 @@
  * @type select @default roundrect
  * @option 角丸(decorSize:0 で長方形) @value roundrect
  * @option 破裂型(叫び) @value spike
- * @option フキダシ(シッポつき角丸) @value balloon
  * @option 8角形 @value octagon
  * @option なし @value none
  * 
@@ -168,7 +169,6 @@
 	const SHAPE_ROUNDRECT = "roundrect";
 	const SHAPE_SPIKE = "spike";
 	const SHAPE_OCTAGON = "octagon";
-	const SHAPE_BALLOON = "balloon";
 	const SHAPE_NONE = "none";
 	const workBitmap = new Bitmap( 1, 1 );	// 前処理用に使うビットマップ
 	const wCtx = workBitmap.context;
@@ -235,7 +235,7 @@
 		const tw = Graphics.app.stage._messageWindow;
 		if( !tw ) return;
 		const newWindowType = getWindowType( args.windowType );
-		const faceAlign = args.isFaceLeft ? POSITION_LEFT : POSITION_RIGHT;
+		const faceAlign = args.faceAlign;
 		if( newWindowType === ERROR_NUMBER ) {
 			throw `"${args.windowType}" is wrong window type.`;
 		}
@@ -300,10 +300,12 @@
 		if( this._data && this._data.WindowSkin ) return _Window__refreshBack.call( this );
 		if( !this.TF_path2d || this.TF_shape === SHAPE_NONE ) return;
 
-		setupBitmap( this._backSprite, this.width, this.height );
-		this._backSprite.setFrame( 0, 0, this.width, this.height );
+		const sprite = this._backSprite;
+		setupBitmap( sprite, this.width, this.height );
+		sprite.setFrame( 0, 0, this.width, this.height );
 		drawWindowBack( this );
 	};
+
 	/**
 	 * ウィンドウ背景描画
 	 * @param {Window} tw 対象ウィンドウ
@@ -455,11 +457,6 @@
 		return textHeight;
 	};
 
-	/**
-	 * メッセージウィンドウに限りフキダシ型(balloon)表示を可能にする
-	 */
-	const TF_TAIL_HEIGHT = 40;// フキダシのシッポの高さ
-	const TF_TAIL_POSISION = POSITION_LEFT;// フキダシのシッポの左右位置
 	// $gameMessage.positionType() で上下位置は決まる
 	Window_Message.prototype.numVisibleRows = () => messageLines;
 	Window_Message.prototype.textPadding = function() {
@@ -514,41 +511,10 @@
 		if( this.TF_faceAlign === POSITION_LEFT && faceExists ) {
 			const faceWidth = ImageManager.faceWidth;
 			return faceWidth + this.textPadding() * 2;
-		} else {
-			return this.textPadding();
 		}
+		// 顔がない、または顔が右
+		return this.textPadding();
 	};
-
-	/**
-	 * フキダシ型(balloon)のみ、Window_Message に設定できる
-	 */
-	Window_Message.prototype._refreshBack = function() {
-		if( this.TF_shape !== SHAPE_BALLOON ) {
-			Window_Base.prototype._refreshBack.call( this );
-			return;
-		}
-
-		const m = this.margin;
-		const r = pluginParams.preset[ this.TF_windowType ].decorSize;
-		const bitmap = new Bitmap( this._width, this._height + 4 );// +4 はdrop shadow用
-		this._frameSprite.bitmap = bitmap;
-		this._frameSprite.setFrame( 0, 0, this._width, this._height + 12 );
-		const path2d = drawBalloon( m, this._width, this._height, r, this._positionType );
-		drawWindow( this, bitmap.context, path2d );
-	};
-
-
-	/**
-	 * コンテンツ位置を、尻尾の高さに合わせて調整
-	 */
-	Window_Message.prototype._refreshContents = function() {
-		if( this.TF_shape === SHAPE_BALLOON && this._positionType === POSITION_DOWN ) {
-			this._contentsSprite.move( this.padding, this.padding + TF_TAIL_HEIGHT );
-		} else {
-			this._contentsSprite.move( this.padding, this.padding );
-		}
-	};
-
 
 	/*--- 関数 ---*/
 	/**
@@ -617,60 +583,7 @@
 	}
 
 	/**
-	 * フキダシ(角丸の矩形シッポ付き)を描く
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
-	 * @param {Number} m 枠外のマージン
-	 * @param {Number} w ウィンドウ描画領域の幅
-	 * @param {Number} h ウィンドウ描画領域の高さ
-	 * @param {Number} r 角丸の半径
-	 * @returns {Path2D} 生成したパス
-	 */
-	function drawBalloon( m, w, h, r, vPos ) {
-		const hPos = TF_TAIL_POSISION;
-		const dy = ( vPos === POSITION_UP ) ? TF_TAIL_HEIGHT : 0;	// 上位置表示の場合の下のシッポ高さ
-		const uy = ( vPos === POSITION_DOWN ) ? TF_TAIL_HEIGHT : 0;	// 下位置表示の場合の上のシッポ高さ
-		const iRect = { l: m, r: w - m, u: m + uy, d: h - m - dy };// 内側座標
-		const cRect = { l: m + r, r: w - ( m + r ), u: m + r + uy, d: h - ( m + r ) - dy };// 角を除く内側座標
-
-		const path = new Path2D();
-		path.moveTo( cRect.l, iRect.u );
-		if( vPos === POSITION_DOWN ) {
-			if( hPos === POSITION_LEFT ) {
-				// 左上にシッポ
-				path.lineTo( cRect.l + 250, iRect.u );
-				path.lineTo( cRect.l + 230, iRect.u - TF_TAIL_HEIGHT + m );
-				path.lineTo( cRect.l + 270, iRect.u );
-			} else if( hPos === POSITION_RIGHT ) {
-				// 右上にシッポ
-				path.lineTo( cRect.r - 270, iRect.u );
-				path.lineTo( cRect.r - 230, iRect.u - TF_TAIL_HEIGHT + m );
-				path.lineTo( cRect.r - 250, iRect.u );
-			}
-		}
-		path.arcTo( iRect.r, iRect.u, iRect.r, cRect.u, r );// ─╮
-		path.arcTo( iRect.r, iRect.d, cRect.r, iRect.d, r );//│ ╯
-		if( vPos === POSITION_UP ) {
-			if( hPos === POSITION_LEFT ) {
-				// 左下にシッポ
-				path.lineTo( cRect.l + 270, iRect.d );
-				path.lineTo( cRect.l + 230, iRect.d + TF_TAIL_HEIGHT + m );
-				path.lineTo( cRect.l + 250, iRect.d );
-			} else if( hPos === POSITION_RIGHT ) {
-				// 右下にシッポ
-				path.lineTo( cRect.r - 250, iRect.d );
-				path.lineTo( cRect.r - 230, iRect.d + TF_TAIL_HEIGHT - m );
-				path.lineTo( cRect.r - 270, iRect.d );
-			}
-		}
-		path.arcTo( iRect.l, iRect.d, iRect.l, cRect.d, r );//╰─
-		path.arcTo( iRect.l, iRect.u, cRect.l, iRect.u, r );// │╭
-		path.closePath();
-		return path;
-	}
-
-	/**
 	 * 角丸の矩形を描く
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
 	 * @param {Number} m 枠外のマージン
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
@@ -692,7 +605,6 @@
 
 	/**
 	 * 8角形を描く
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
 	 * @param {Number} m 枠外のマージン
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
@@ -717,7 +629,6 @@
 
 	/**
 	 * トゲ型装飾枠を描く
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
 	 * @param {Number} m トゲの長さ
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
@@ -815,9 +726,9 @@
 		if( !nameWithFace ) return;
 
 		const tw = this._messageWindow;
-		if( tw.TF_faceAlign === POSITION_LEFT ){
+		if( tw.TF_faceAlign === POSITION_LEFT ) {
 			this.x = tw.x + IMG_MARGIN;
-		} else if( tw.TF_faceAlign === POSITION_RIGHT ){
+		} else if( tw.TF_faceAlign === POSITION_RIGHT ) {
 			this.x = tw.x + tw.width - tw.padding * 2
 				- IMG_MARGIN * 2 - ImageManager.faceWidth;
 		}
@@ -886,9 +797,9 @@
 		 * @param {Window_Message} tw 目標とするウィンドウ 
 		 */
 		moveOnMessageWindow( tw ) {
-			if( tw.TF_faceAlign === POSITION_LEFT ){
+			if( tw.TF_faceAlign === POSITION_LEFT ) {
 				this.x = tw.x + tw.padding + IMG_MARGIN;
-			} else if( tw.TF_faceAlign === POSITION_RIGHT ){
+			} else if( tw.TF_faceAlign === POSITION_RIGHT ) {
 				this.x = tw.x + tw.width - tw.padding
 					- IMG_MARGIN * 2 - ImageManager.faceWidth;
 			}
