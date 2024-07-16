@@ -81,7 +81,7 @@ MVでは引数はなかった。
 
 * [activate ()](Window_Base.md#activate-)
 * [actorName (actorIndex)](Window_Base.md#actorname-actorindex--string)
-* [baseTextRect (actorIndex)](Window_Base.md#basetextrect-actorindex--rectangle)
+* [baseTextRect ()](Window_Base.md#basetextrect---rectangle)
 * [calcTextHeight (textState)](Window_Base.md#calctextheight-textstate--number)
 * [changeOutlineColor (color)](Window_Base.md#changeoutlinecolor-color)
 * [changePaintOpacity (enabled)](Window_Base.md#changepaintopacity-enabled)

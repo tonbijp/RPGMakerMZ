@@ -108,7 +108,7 @@ MVでは引数が x, y, width, height だった。
 | `actorIndex` | [Number](Number.md) | アクターの番号(1から始まる) |
 
 
-#### baseTextRect (actorIndex) → {[Rectangle](Rectangle.md)}
+#### baseTextRect () → {[Rectangle](Rectangle.md)}
 **@MZ** 文字表示用の矩形範囲を返す。<br />
 [Window_Message](Window_Message.md) ではなく、[Window_NameBox](Window_NameBox.md) , [Window_Help](Window_Help.md) および [Window_ScrollText](Window_ScrollText.md) で使われる。
 
