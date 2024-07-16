@@ -4,7 +4,7 @@
 
 画像を表す基本オブジェクト。
 
-画像データ保持に `baseTexture`([PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html))<br />
+画像データ保持に `baseTexture`([PIXI.BaseTexture](https://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html))<br />
 画像読み込みに `image`([Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement))<br />
 画像描画に `canvas`([HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)) が使われており、これらの機能が統合されたクラス。
 
@@ -37,7 +37,7 @@ v1.1.1、v1.2.0、v1.4.0、v1.5.0 で変更あり。
 | `outlineColor` | [MV.CssColor](MV.CssColor.md) | アウトラインの色(規定値: "rgba(0, 0, 0, 0.5)") |
 | `outlineWidth` | [Number](Number.md) | アウトラインの幅(規定値: 3) |
 | `url` | [String](String.md) | [read-only] 画像ファイルのURL |
-| `baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) | [read-only] 画像データ保持用の基礎テクスチャ |
+| `baseTexture` | [PIXI.BaseTexture](https://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html) | [read-only] 画像データ保持用の基礎テクスチャ |
 | `canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement) | [read-only] 画像操作用 `<canvas>`要素 |
 | `context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) | [read-only] 2Dレンダリングコンテクスト |
 | `image` | [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  **@MZ** [read-only] ファイル読み込み管理用 `<img>`要素 |
@@ -51,7 +51,7 @@ v1.1.1、v1.2.0、v1.4.0、v1.5.0 で変更あり。
 | `_smooth` | Boolean |  |
 | `_paintOpacity` | [Number](Number.md)  |  |
 | `_url` | [String](String.md) |  |
-| `_baseTexture` | [PIXI.BaseTexture](http://pixijs.download/dev/docs/PIXI.BaseTexture.html) |  |
+| `_baseTexture` | [PIXI.BaseTexture](https://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html) |  |
 | `_context` | [CanvasRenderingContext2D](https://developer.mozilla.org/ja/docs/Web/API/CanvasRenderingContext2D) |  |
 | `_canvas` | [HTMLCanvasElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLCanvasElement)  |  |
 | `_image` |  **@MZ** [Image(HTMLImageElement)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) |  |
