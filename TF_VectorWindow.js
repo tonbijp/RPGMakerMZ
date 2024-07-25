@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.8.1.0
+// Version :0.9.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -90,8 +90,10 @@
  * @desc 
  * 規定値:left
  * @type select @default left
+ * @option 左外 @value beyondleft
  * @option 左 @value left
  * @option 右 @value right
+ * @option 右外 @value beyondright
  *
  * @arg pos @text ウィンドウ位置
  * @desc 画面左上から x,y の座標
@@ -182,9 +184,11 @@
 	// const AUTO_POSITION = "auto"; // 自動配置の予定
 	const COMMAND_POSITION = "command";	// [文章の表示]-[ウィンドウ位置]
 
+	const POSITION_BEYONDLEFT = "beyondleft";
 	const POSITION_LEFT = "left";
 	const POSITION_CENTER = "center";
 	const POSITION_RIGHT = "right";
+	const POSITION_BEYONDRIGHT = "beyondright";
 
 	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
@@ -508,11 +512,12 @@
 	const _Window_Message_newLineX = Window_Message.prototype.newLineX;
 	Window_Message.prototype.newLineX = function( textState ) {
 		const faceExists = $gameMessage.faceName() !== "";
+
+		// 顔が左内側の場合、文章開始位置を顔の分だけ右にずらす
 		if( this.TF_faceAlign === POSITION_LEFT && faceExists ) {
 			const faceWidth = ImageManager.faceWidth;
 			return faceWidth + this.textPadding() * 2;
 		}
-		// 顔がない、または顔が右
 		return this.textPadding();
 	};
 
@@ -725,26 +730,26 @@
 		_Window_NameBox_updatePlacement.call( this );
 		if( !nameWithFace ) return;
 
-		const tw = this._messageWindow;
-		if( tw.TF_faceAlign === POSITION_LEFT ) {
-			this.x = tw.x + IMG_MARGIN;
-		} else if( tw.TF_faceAlign === POSITION_RIGHT ) {
-			this.x = tw.x + tw.width - tw.padding * 2
-				- IMG_MARGIN * 2 - ImageManager.faceWidth;
-		}
+		const mw = this._messageWindow;
 
-		this.y = tw.y + tw.height - tw.padding - getNameHeight() - this.padding;
-	};
+		// 顔ウィンドウの下に中央揃えで配置
+		const faceX = Graphics.app.stage.TF_facePicture.getPositionX( mw );
+		const halfFaceWidth = Math.floor( ImageManager.faceWidth / 2 );
+		const halfNameWidth = Math.floor( this.windowWidth() / 2 );
+		this.x = faceX + halfFaceWidth - halfNameWidth;
 
-	Window_NameBox.prototype._refreshAllParts = function() {
-		if( nameWithFace ) return;
-		Window_Base.prototype._refreshAllParts.call( this );
+		this.y = mw.y + mw.height - mw.padding - getNameHeight() - this.padding;
 	};
 
 	Window_NameBox.prototype.resetFontSettings = function() {
 		this.contents.fontFace = $gameSystem.mainFontFace();
 		this.contents.fontSize = nameFontSize;
 		this.resetTextColor();
+	};
+
+	Window_NameBox.prototype._refreshAllParts = function() {
+		if( nameWithFace ) return;// 顔の側に名前を置く場合、ウィンドウを描かない
+		Window_Base.prototype._refreshAllParts.call( this );
 	};
 
 	const _Window_NameBox_windowWidth = Window_NameBox.prototype.windowWidth;
@@ -792,21 +797,31 @@
 			super.initialize( bitmap );
 			this.bitmap.resize( ImageManager.faceWidth, ImageManager.faceHeight );
 		}
+
 		/**
 		 * 指定したウィンドウの指定位置に移動
-		 * @param {Window_Message} tw 目標とするウィンドウ 
+		 * @param {Window_Message} mw 目標とするウィンドウ 
 		 */
-		moveOnMessageWindow( tw ) {
-			if( tw.TF_faceAlign === POSITION_LEFT ) {
-				this.x = tw.x + tw.padding + IMG_MARGIN;
-			} else if( tw.TF_faceAlign === POSITION_RIGHT ) {
-				this.x = tw.x + tw.width - tw.padding
-					- IMG_MARGIN * 2 - ImageManager.faceWidth;
-			}
-			this.y = tw.y + tw.height - tw.padding - ImageManager.faceHeight;
+		moveOnMessageWindow( mw ) {
+			this.x = this.getPositionX( mw );
+			this.y = mw.y + mw.height - mw.padding - ImageManager.faceHeight;
 			const speakerName = $gameMessage.speakerName(); //Graphics.app.stage._nameBoxWindow._name;
 			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
 		}
+
+		// Window_NameBox から読めるように外に出しておく
+		// 位置指定が前後しても問題ないよう、現在位置ではなく定義位置を取る
+		getPositionX( mw ) {
+			switch( mw.TF_faceAlign ) {
+				case POSITION_BEYONDLEFT: return mw.x - mw.padding - IMG_MARGIN - ImageManager.faceWidth;
+				case POSITION_LEFT: return mw.x + mw.padding + IMG_MARGIN;
+				case POSITION_RIGHT: return mw.x + mw.width - mw.padding
+					- IMG_MARGIN - ImageManager.faceWidth;
+				case POSITION_BEYONDRIGHT: return mw.x + mw.width + mw.padding + IMG_MARGIN;
+				default: return;
+			}
+		}
+
 		/**
 		 * 指定番号の顔画像を描画する
 		 * @param {Bitmap} bitmap 表示する画像データ
