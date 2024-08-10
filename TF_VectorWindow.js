@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :0.9.0.0
+// Version :1.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -65,6 +65,17 @@
  * 規定値:4,4,808,616
  * @type string @default 4,4,808,616
  *
+ * @param tailLength @text シッポの長さ
+ * @desc フキダシのシッポの長さ(ピクセル数)
+ * 規定値:36
+ * @type string @default 36
+ * 
+ * @param tailWidth @text シッポの幅
+ * @desc フキダシのシッポの幅(ピクセル数)
+ * 規定値:20
+ * @type string @default 20
+ *
+ * @================================================
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
  * 背景のグラデーションや枠線の太さや形など指定が可能。
@@ -90,14 +101,63 @@
  * @desc 
  * 規定値:left
  * @type select @default left
- * @option 左外 @value beyondleft
+ * @option 左外 @value beyondLeft
  * @option 左 @value left
  * @option 右 @value right
- * @option 右外 @value beyondright
+ * @option 右外 @value beyondRight
  *
  * @arg pos @text ウィンドウ位置
  * @desc 画面左上から x,y の座標
  * command は[文章の表示]に従う
+ * @type combo @default command
+ * @option command
+ *
+ * @arg continuousPos @text 表示位置継続
+ * @desc [ウィンドウ位置]で指定した座標を
+ * 継続した[文章の表示]に適用する。
+ * @type boolean @default true
+ * @on 継続(規定値) @off 単体
+ * 
+ * 
+ * @command setSpeachBalloon @text フキダシの準備
+ * @desc [文章の表示]コマンドの前に実行すること。
+ * 一回表示されるとウィンドウタイプは規定値に戻る。
+ *
+ * @arg windowType @text ウィンドウタイプ
+ * @desc プラグインパラメータで設定した番号か名前
+ * あらかじめ UI, talk, thought, shout がある
+ * @type combo @default shout
+ * @option UI @option talk @option thought @option shout
+ *
+ * @arg pointerAlign @text シッポ位置
+ * @desc autoは[文章の表示]の指定と[顔位置]指定から決定されます
+ * 規定値:auto
+ * @type select @default auto
+ * @option 上の左側 @value NW
+ * @option 上の中央 @value NC
+ * @option 上の右側 @value NE
+ * @option 下の左側 @value SW
+ * @option 下の中央 @value SC
+ * @option 下の右側 @value SE
+ * @option 左の上側 @value WN
+ * @option 左の中央 @value WC
+ * @option 左の下側 @value WS
+ * @option 右の上側 @value EN
+ * @option 右の中央 @value EC
+ * @option 右の下側 @value ES
+ * 
+ * @arg faceAlign @text 顔位置
+ * @desc 
+ * 規定値:left
+ * @type select @default left
+ * @option 左外 @value beyondLeft
+ * @option 左 @value left
+ * @option 右 @value right
+ * @option 右外 @value beyondRight
+ *
+ * @arg pos @text フキダシ位置
+ * @desc 画面左上から x,y の座標(例:"200,100")
+ * 規定値の command は[文章の表示]に従う
  * @type combo @default command
  * @option command
  *
@@ -162,6 +222,7 @@
 
 	// プラグインコマンド
 	const COM_SET_WINDOW = "setWindow";
+	const COM_SET_SPEACHBALLOON = "setSpeachBalloon";
 
 	// ウィンドウ描画関連
 	const ERROR_NUMBER = -1;
@@ -181,14 +242,17 @@
 	const POSITION_MIDDLE = 1;
 	const POSITION_DOWN = 2;
 	const POSITION_FREE = 20;	// 座標指定
-	// const AUTO_POSITION = "auto"; // 自動配置の予定
+	const AUTO_POSITION = "auto"; // 自動配置
 	const COMMAND_POSITION = "command";	// [文章の表示]-[ウィンドウ位置]
 
-	const POSITION_BEYONDLEFT = "beyondleft";
+	// 顔位置
+	const POSITION_BEYONDLEFT = "beyondLeft";
 	const POSITION_LEFT = "left";
+	const POSITION_INNERLEFT = "innerLeft";
 	const POSITION_CENTER = "center";
+	const POSITION_INNERRIGHT = "innerRight";
 	const POSITION_RIGHT = "right";
-	const POSITION_BEYONDRIGHT = "beyondright";
+	const POSITION_BEYONDRIGHT = "beyondRight";
 
 	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
@@ -198,14 +262,23 @@
 	 */
 	const pluginParams = PluginManagerEx.createParameter( document.currentScript );
 
-	// 全体設定
+	// メッセージ設定
 	const messageFontSize = pluginParams.messageFontSize;
 	const lineHeightRatio = pluginParams.lineHeightRatio / 100;
 	const messageLines = pluginParams.messageLines;
-	const dropShadow = pluginParams.dropShadow;
+
+	// フキダシ(メッセージ)ウィンドウ設定
+	const tailLength = pluginParams.tailLength;// シッポの長さ
+	const tailWidth = Math.floor( pluginParams.tailWidth / 2 );// シッポの幅(半分)
+
+	// 名前表示設定
 	const nameFontSize = pluginParams.nameFontSize;
 	const nameWithFace = pluginParams.nameWithFace;
+
+	// 選択項目設定
 	const itemHeightRatio = pluginParams.itemHeightRatio / 100;
+
+	// const dropShadow = pluginParams.dropShadow;
 
 	let messageView;
 
@@ -222,43 +295,84 @@
 		} )( stringToRectangle( pluginParams.messageView ) );
 	};
 
-	function getNextCommandIndex( list, index, ignoredCommand ) {
-		while( list[ index ] && list[ index ].code === ignoredCommand ) {
-			index++;
-		}
-		return index;
-	}
 	/**
 	 * プラグインコマンドの登録
 	 */
-	const PLUGIN_PARAM = 657;
-	const SHOW_TEXT = 101;
-	const TEXT_DATA = 401;
-	//  [ウィンドウの準備]
-	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, function( args ) {
-		const tw = Graphics.app.stage._messageWindow;
-		if( !tw ) return;
-		const newWindowType = getWindowType( args.windowType );
-		const faceAlign = args.faceAlign;
-		if( newWindowType === ERROR_NUMBER ) {
-			throw `"${args.windowType}" is wrong window type.`;
-		}
-		tw.TF_windowType = newWindowType;
-		tw.TF_faceAlign = faceAlign;
-		if( args.pos === COMMAND_POSITION ) return;
+	const PLUGIN_PARAM = 657;// プラグインコマンドのエディタでの引数の表示用
+	const SHOW_TEXT = 101;// 文章の表示…
+	const TEXT_DATA = 401;// 文章の表示のメッセージ
 
-		let eventIndex = getNextCommandIndex( this._list, this._index + 1, PLUGIN_PARAM );
-		if( args.continuousPos ) {
-			while( this._list[ eventIndex ].code === SHOW_TEXT ) {
-				this._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE; // _positionType
-				eventIndex = getNextCommandIndex( this._list, eventIndex + 1, TEXT_DATA );
-			}
-		} else if( this._list[ eventIndex ].code === SHOW_TEXT ) {
-			this._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE; // _positionType
-		}
-		const pos = stringToPoint( args.pos );
-		[ tw.x, tw.y ] = [ pos.x, pos.y ];
+	//  [メッセージウィンドウの準備]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, function( args ) {
+		const mw = Graphics.app.stage._messageWindow;
+		if( !mw ) return;
+		mw.TF_pointerAlign = POINTER_NONE;
+		setWindowType( mw, this, args );
 	} );
+
+	//  [フキダシウィンドウの準備]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_SPEACHBALLOON, function( args ) {
+		const mw = Graphics.app.stage._messageWindow;
+		if( !mw ) return;
+		mw.TF_pointerAlign = args.pointerAlign;
+		setWindowType( mw, this, args );
+	} );
+	/**
+	 * メッセージウィンドウの設定
+	 * @param {Window_Message} mw 対象のメッセージウィンドウ
+	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
+	 * @param {Array} args プラグインコマンドのパラメータリスト
+	 */
+	function setWindowType( mw, interpreter, args ) {
+		const windowType = getWindowType( args.windowType );
+		if( windowType === ERROR_NUMBER ) throw `"${args.windowType}" is wrong window type.`;
+
+		mw.TF_windowType = windowType;
+		mw.TF_faceAlign = args.faceAlign;
+
+		const pos = args.pos;
+		if( pos === COMMAND_POSITION ) return;
+		setFreeWindowPosition( interpreter, args.continuousPos );
+		const point = stringToPoint( pos );
+		[ mw.x, mw.y ] = [ point.x, point.y ];
+	}
+
+	/**
+	 * フキダシ位置に座標(x,y)が書かれている場合の処理
+	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
+	 * @param {Boolean} continuousPos 表示位置継続か
+	 */
+	function setFreeWindowPosition( interpreter, continuousPos ) {
+		const mw = Graphics.app.stage._messageWindow;
+
+		/**
+		 * 指定のインデックスの次のコマンドのインデックスを返す
+		 * コマンドが複数行に複数行にわたる事があるので、次のコマンドまで不要な行を飛ばす処理が入っている
+		 * @param {Array.<RPG.EventCommand>} list イベントコマンドのリスト
+		 * @param {Number} index 現在のコマンドのインデックス
+		 * @param {Number} ignoredCommand 飛ばすコマンド
+		 * @returns {Number} 次のコマンドのインデックス
+		 */
+		const getNextCommandIndex = ( list, index, ignoredCommand ) => {
+			while( list[ index ] && list[ index ].code === ignoredCommand ) index++;
+			return index;
+		};
+
+		let eventIndex = getNextCommandIndex( interpreter._list, interpreter._index + 1, PLUGIN_PARAM );
+
+		// ウィンドウ位置 : parameters[ 3 ]
+		if( continuousPos ) {
+			// [文章を表示]コマンドが続く限り、ウィンドウ位置を自由位置指定にする
+			while( interpreter._list[ eventIndex ].code === SHOW_TEXT ) {
+				interpreter._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE;
+				eventIndex = getNextCommandIndex( interpreter._list, eventIndex + 1, TEXT_DATA );
+			}
+		} else if( interpreter._list[ eventIndex ].code === SHOW_TEXT ) {
+			// 次の[文章を表示]コマンドのウィンドウ位置を自由位置指定にする
+			interpreter._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE;
+		}
+	}
+
 
 	/**
 	 * ウィンドウタイプ番号を返す
@@ -293,7 +407,7 @@
 	Window.prototype._refreshAllParts = function() {
 		// SceneCustomMenu.js のスキンの設定がなければ、パスを先読みしておく
 		if( !this._data || !this._data.WindowSkin ) {
-			setWindowPath( this );
+			this.TF_path2d = setWindowPath( this );
 		}
 		_Window__refreshAllParts.call( this );
 	};
@@ -315,26 +429,26 @@
 	 * @param {Window} tw 対象ウィンドウ
 	 */
 	function drawWindowBack( tw ) {
-		const path2d = tw.TF_path2d;
 		const ctx = tw._backSprite.bitmap.context;
-		let bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
 
+		setFillColor( ctx, tw );
+		// if( dropShadow ) setShadowParam( ctx );
+		ctx.fill( tw.TF_path2d );
+		//if( !dropShadow ) setShadowParam( ctx );
+	}
+	function setFillColor( ctx, tw ) {
+		const bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
 		if( bgColor.length === 1 ) {
 			ctx.fillStyle = tintColor( bgColor[ 0 ], tw._colorTone );
-		} else {
-			const grad = ctx.createLinearGradient( 0, 0, 0, tw._height );
-			const l = bgColor.length;
-			const interval = 1.0 / ( l - 1 );
-			bgColor.forEach( ( e, i ) => {
-				grad.addColorStop( i * interval, tintColor( e, tw._colorTone ) );
-			} );
-			ctx.fillStyle = grad;
+			return;
 		}
-
-		// if( dropShadow ) setShadowParam( ctx );
-		ctx.fill( path2d );// 'nonzero'  'evenodd'
-
-		//if( !dropShadow ) setShadowParam( ctx );
+		const grad = ctx.createLinearGradient( 0, 0, 0, tw._height );
+		const l = bgColor.length;
+		const interval = 1.0 / ( l - 1 );
+		bgColor.forEach( ( e, i ) => {
+			grad.addColorStop( i * interval, tintColor( e, tw._colorTone ) );
+		} );
+		ctx.fillStyle = grad;
 	}
 
 	const _Window__refreshFrame = Window.prototype._refreshFrame;
@@ -358,6 +472,19 @@
 		setBorderParam( ctx, tw.TF_windowType );
 		ctx.stroke( path2d );
 	}
+	/**
+	 * 枠の設定をする
+	 * @param {CanvasRenderingContext2D} ctx コンテキスト
+	 * @param {String} type ウィンドウのタイプ
+	 */
+	function setBorderParam( ctx, type ) {
+		if( !pluginParams.preset[ type ].borderWidth ) return;
+
+		ctx.lineWidth = pluginParams.preset[ type ].borderWidth;
+		ctx.strokeStyle = pluginParams.preset[ type ].borderColor;
+		ctx.shadowBlur = 3;
+		ctx.shadowOffsetY = 0;
+	}
 
 	/**
 	 * スプライトに指定サイズのビットマップを設定する
@@ -377,7 +504,7 @@
 	/**
 	 * ウィンドウのパスを得る
 	 * @param {Window} tw 対象ウィンドウ
-	 * @returns  {Path2D} 描画するパス
+	 * @returns {Path2D} 描画するパス
 	 */
 	function setWindowPath( tw ) {
 		const m = tw.margin;
@@ -386,9 +513,9 @@
 		const h = tw.height;
 
 		switch( tw.TF_shape ) {
-			case SHAPE_ROUNDRECT: tw.TF_path2d = drawRoundrect( m, w, h, r ); break;
-			case SHAPE_OCTAGON: tw.TF_path2d = drawOctagon( m, w, h, r ); break;
-			case SHAPE_SPIKE: tw.TF_path2d = drawSpike( m, w, h, r, pluginParams.preset[ tw.TF_windowType ].borderWidth ); break;
+			case SHAPE_ROUNDRECT: return drawRoundrect( m, w, h, r );
+			case SHAPE_OCTAGON: return drawOctagon( m, w, h, r );
+			case SHAPE_SPIKE: return drawSpike( m, w, h, r, pluginParams.preset[ tw.TF_windowType ].borderWidth );
 		}
 	}
 	/**
@@ -404,12 +531,12 @@
 		tw._clientArea.move( p, p );
 	}
 	/**
-	 * ウィンドウの数値設定
-	 * @param {Window_Message} tw 対象ウィンドウ
+	 * メッセージウィンドウの数値設定
+	 * @param {Window_Message} mw 対象ウィンドウ
 	 */
-	function setMessageParam( tw ) {
-		tw._width = messageView.width;
-		tw._height = tw.lineHeight() * messageLines + tw._padding * 2;
+	function setMessageParam( mw ) {
+		mw._width = messageView.width;
+		mw._height = mw.lineHeight() * messageLines + mw._padding * 2;
 	}
 
 
@@ -446,12 +573,12 @@
 
 		const goldWindow = this._goldWindow;
 		if( goldWindow ) {
-			goldWindow.y = this.y > 0 ? 0 : Graphics.boxHeight - goldWindow.height;
+			goldWindow.y = 0 < this.y ? 0 : Graphics.boxHeight - goldWindow.height;
 		}
 	};
 
 	// フォントサイズが異なるので、オーバーライドして別計算
-	// const _Window_Message_calcTextHeight = Window_Message.prototype.calcTextHeight;
+	const _Window_Message_calcTextHeight = Window_Message.prototype.calcTextHeight;
 	Window_Message.prototype.calcTextHeight = function( textState ) {
 		const textPadding = this.textPadding();
 		const lines = textState.text.slice( textState.index ).split( "\n" );
@@ -490,15 +617,13 @@
 		setMessageParam( this );
 		this._refreshAllParts();
 	};
-
 	const _Window_Message_close = Window_Message.prototype.close;
 	Window_Message.prototype.close = function() {
 		_Window_Message_close.call( this );
 		closeFacePicture();
 	};
 	function closeFacePicture() {
-		const facePicture = Graphics.app.stage.TF_facePicture;
-		facePicture.bitmap.clear();
+		Graphics.app.stage.TF_facePicture.bitmap.clear();
 	}
 
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
@@ -514,85 +639,229 @@
 		const faceExists = $gameMessage.faceName() !== "";
 
 		// 顔が左内側の場合、文章開始位置を顔の分だけ右にずらす
-		if( this.TF_faceAlign === POSITION_LEFT && faceExists ) {
-			const faceWidth = ImageManager.faceWidth;
-			return faceWidth + this.textPadding() * 2;
+		if( faceExists && this.TF_faceAlign === POSITION_LEFT ) {
+			return ImageManager.faceWidth + this.textPadding() * 2;
 		}
 		return this.textPadding();
 	};
 
-	/*--- 関数 ---*/
 	/**
-	 * 配列からCSS color文字列を返す
-	 * @param {Array.<Number>} colorList [ r, g, b, a ] の配列
-	 * @returns {String} 'rgb(r,g,b)' か 'rgba(r,g,b,a)'の文字列
+	 * メッセージ枠の描画
 	 */
-	function array2CssColor( colorList ) {
-		if( colorList.length === 3 ) {
-			return Utils.rgbToCssColor( ...colorList );
+	const _Window_Message__refreshFrame = Window_Message.prototype._refreshFrame;
+	Window_Message.prototype._refreshFrame = function() {
+		// フキダシ表示でない場合はメッセージを送る
+		if( !this.TF_pointerAlign || this.TF_pointerAlign === POINTER_NONE ) {
+			this._frameSprite.move( 0, 0 );
+			return _Window_Message__refreshFrame.call( this );
+		}
+
+		const m = this._margin;
+		const w = this.width;
+		const h = this.height;
+
+		setupBitmap( this._frameSprite, w + tailLength * 2, h + tailLength * 2 );
+		this._frameSprite.setFrame( 0, 0, w, h );
+
+
+		// フキダシ本体
+		const pathBox = this.TF_path2d;
+
+		// シッポ
+		const pathTail = new Path2D();
+		pathTail.addPath( drawTriangle(), getTailMatrix( this ) );
+		const pathComposite = new Path2D( pathBox );
+		pathComposite.addPath( pathTail );
+
+		// 描画準備
+		const ctx = prepareDrawBalloon( this._frameSprite, w, h );
+
+		// フキダシのマスクの描画
+		ctx.fillStyle = "#000";
+		ctx.fill( pathTail );
+		ctx.fill( pathBox );
+		ctx.globalCompositeOperation = "source-out";// マスク以外に描画
+
+		// 枠の描画
+		setBorderParam( ctx, this.TF_windowType );
+		ctx.lineWidth = pluginParams.preset[ this.TF_windowType ].borderWidth * 2;
+		ctx.stroke( pathComposite );
+		ctx.globalCompositeOperation = "source-over";// デフォルト状態に戻す
+	};
+
+	/**
+	 * メッセージ背景の描画
+	 */
+	const _Window_Message__refreshBack = Window_Message.prototype._refreshBack;
+	Window_Message.prototype._refreshBack = function() {
+		// フキダシ表示でない場合はメッセージを送る
+		if( !this.TF_pointerAlign || this.TF_pointerAlign === POINTER_NONE ) {
+			this._backSprite.move( 0, 0 );
+			return _Window_Message__refreshBack.call( this );
+		}
+
+		const m = this._margin;
+		const w = this.width;
+		const h = this.height;
+
+		// フキダシ本体
+		const pathBox = this.TF_path2d;
+		// シッポ
+		const pathTail = new Path2D();
+		pathTail.addPath( drawTriangle(), getTailMatrix( this ) );
+
+		// 描画準備
+		const ctx = prepareDrawBalloon( this._backSprite, w, h );
+
+		// フキダシのマスクの描画
+		ctx.fillStyle = "#000";
+		ctx.fill( pathTail );
+		ctx.fill( pathBox );
+		ctx.globalCompositeOperation = "source-in";// マスク部分に描画
+
+		// フキダシの描画
+		setFillColor( ctx, this );
+		ctx.fillRect( -tailLength, -tailLength, w + tailLength * 2, h + tailLength * 2 );
+		ctx.globalCompositeOperation = "source-over";// デフォルト状態に戻す
+	};
+
+	/**
+	 * フキダシを描く準備
+	 * @param {Sprite} sprite 対象スプライト
+	 * @param {Number} w ウインドウの幅
+	 * @param {Number} h ウインドウの高さ
+	 * @returns {CanvasRenderingContext2D} コンテキスト
+	 */
+	function prepareDrawBalloon( sprite, w, h ) {
+		// シッポの分、広く画像を描く
+		setupBitmap( sprite, w + tailLength * 2, h + tailLength * 2 );
+		sprite.move( -tailLength, -tailLength );
+
+		// 尻尾の分だけ基準点を下に移動
+		const ctx = sprite.bitmap.context;
+		ctx.translate( tailLength, tailLength );
+		return ctx;
+	}
+
+	const DIRECTION_NW = "NW";// 上の左側
+	const DIRECTION_NC = "NC";// 上の中央
+	const DIRECTION_NE = "NE";// 上の右側
+	const DIRECTION_SW = "SW";// 下の左側
+	const DIRECTION_SC = "SC";// 下の中央
+	const DIRECTION_SE = "SE";// 下の右側
+	const DIRECTION_WN = "WN";// 左の上側
+	const DIRECTION_WC = "WC";// 左の中央
+	const DIRECTION_WS = "WS";// 左の下側
+	const DIRECTION_EN = "EN";// 右の上側
+	const DIRECTION_EC = "EC";// 右の中央
+	const DIRECTION_ES = "ES";// 右の下側
+	const POINTER_NONE = "none";// シッポなし
+	/**
+	 * シッポの移動と回転用の行列を返す
+	 * @param {Window_Message} mw 対象となるメッセージウィンドウ
+	 * @returns {DOMMatrix} 変形用の行列
+	 */
+	function getTailMatrix( mw ) {
+		let x, y, a;
+
+		switch( mw.TF_pointerAlign ) {
+			case DIRECTION_NW:
+				x = 100;
+				y = tailWidth + mw._margin;
+				a = -50;
+				break;
+			case DIRECTION_NC:
+				x = Math.floor( mw.width / 2 );
+				y = tailWidth + mw._margin;
+				a = 0;
+				break;
+			case DIRECTION_NE:
+				x = mw.width - 100;
+				y = tailWidth + mw._margin;
+				a = 50;
+				break;
+			case DIRECTION_SW:
+				x = 100;
+				y = mw.height - tailWidth - mw._margin;
+				a = -130;
+				break;
+			case DIRECTION_SC:
+				x = Math.floor( mw.width / 2 );
+				y = mw.height - tailWidth - mw._margin;
+				a = 180;
+				break;
+			case DIRECTION_SE:
+				x = mw.width - 100;
+				y = mw.height - tailWidth - mw._margin;
+				a = 130;
+				break;
+			case DIRECTION_WN:
+				x = tailWidth + mw._margin;
+				y = 50;
+				a = -40;
+				break;
+			case DIRECTION_WC:
+				x = tailWidth + mw._margin;
+				y = Math.floor( mw.height / 2 );
+				a = -90;
+				break;
+			case DIRECTION_WS:
+				x = tailWidth + mw._margin;
+				y = mw.height - 50;
+				a = -140;
+				break;
+			case DIRECTION_EN:
+				x = mw.width - tailWidth - mw._margin;
+				y = 50;
+				a = 40;
+				break;
+			case DIRECTION_EC:
+				x = mw.width - tailWidth - mw._margin;
+				y = Math.floor( mw.height / 2 );
+				a = 90;
+				break;
+			case DIRECTION_ES:
+				x = mw.width - tailWidth - mw._margin;
+				y = mw.height - 50;
+				a = 140;
+				break;
+			case undefined:
+				x = Math.floor( mw.width / 2 );
+				y = mw.height - tailWidth - mw._margin;
+				a = 180;
+				break;
+			default:
+				throw `"${pointerAlingn}" is wrong direction.`;
+		}
+		return new DOMMatrix().translateSelf( x, y ).rotateSelf( a );
+	}
+
+	/**
+	 * スプライトに指定サイズのビットマップを設定する
+	 * @param {Sprite} sprite スプライト
+	 * @param {Number} width 幅
+	 * @param {Number} height 高さ
+	 */
+	function setupBitmap( sprite, width, height ) {
+		const b = sprite.bitmap;
+		if( b ) {
+			b.resize( width, height );
+			b.clear();
+			sprite.width = width;
+			sprite.height = height;
 		} else {
-			// Utils.rgbToCssColor( r, g, b ) は a を扱ってくれないので
-			return `rgba(${colorList[ 0 ]},${colorList[ 1 ]},${colorList[ 2 ]},${colorList[ 3 ] / 255})`;
+			sprite.bitmap = new Bitmap( width, height );
 		}
 	}
 
-	/**
-	 * CSS形式の色をRGB配列に分解して返す
-	 * @param {String} CssColor CSS形式
-	 * @returns {Array.<Number>} RGBに分解した色
-	 */
-	function cssColor2Array( CssColor ) {
-		// 一旦塗ってその色を取って返すという荒技
-		wCtx.clearRect( 0, 0, 1, 1 );
-		wCtx.fillStyle = CssColor;
-		wCtx.fillRect( 0, 0, 1, 1 );
-		return wCtx.getImageData( 0, 0, 1, 1 ).data;
-	}
-
-	/**
-	 * 色に色調変更を適用して返す
-	 * @param {String} bgColor 背景色(CSS形式)
-	 * @param {Array.<Number>} colorTone 色調変更
-	 */
-	function tintColor( bgColor, colorTone ) {
-		const colorArray = cssColor2Array( bgColor );
-		colorArray[ 0 ] += colorTone[ 0 ];
-		colorArray[ 1 ] += colorTone[ 1 ];
-		colorArray[ 2 ] += colorTone[ 2 ];
-
-		return array2CssColor( colorArray );
-	}
-	/**
-	 * ドロップシャドウの設定
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
-	 */
-	function setShadowParam( ctx ) {
-		ctx.shadowBlur = 4;
-		ctx.shadowColor = 'black';
-		ctx.shadowOffsetX = 0;
-		ctx.shadowOffsetY = 6;
-	}
-
-	/**
-	 * 枠の設定をする
-	 * @param {CanvasRenderingContext2D} ctx コンテキスト
-	 * @param {String} type ウィンドウのタイプ
-	 */
-	function setBorderParam( ctx, type ) {
-		if( !pluginParams.preset[ type ].borderWidth ) return;
-
-		ctx.lineWidth = pluginParams.preset[ type ].borderWidth;
-		ctx.strokeStyle = pluginParams.preset[ type ].borderColor;
-		ctx.shadowBlur = 3;
-		ctx.shadowOffsetY = 0;
-	}
-
+	/*--- 図形パス描画関数 ---*/
 	/**
 	 * 角丸の矩形を描く
 	 * @param {Number} m 枠外のマージン
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
 	 * @param {Number} r 角丸の半径
+	 * @returns {Path2D} 角丸の矩形パス
 	 */
 	function drawRoundrect( m, w, h, r ) {
 		const iRect = { l: m, r: w - m, u: m, d: h - m };// 内側座標
@@ -604,7 +873,6 @@
 		path.arcTo( iRect.r, iRect.d, cRect.r, iRect.d, r );//│ ╯
 		path.arcTo( iRect.l, iRect.d, iRect.l, cRect.d, r );//╰─
 		path.arcTo( iRect.l, iRect.u, cRect.l, iRect.u, r );// │╭
-		path.closePath();
 		return path;
 	}
 
@@ -614,6 +882,7 @@
 	 * @param {Number} w ウィンドウ描画領域の幅
 	 * @param {Number} h ウィンドウ描画領域の高さ
 	 * @param {Number} r  √r*r = 角の斜め線の長さ
+	 * @returns {Path2D} 8角形パス
 	 */
 	function drawOctagon( m, w, h, r ) {
 		const iRect = { l: m, r: w - m, u: m, d: h - m };// 内側座標
@@ -639,9 +908,9 @@
 	 * @param {Number} h ウィンドウ描画領域の高さ
 	 * @param {Number} r トゲの(おおよその)横幅
 	 * @param {Number} bw 線の幅
+	 * @returns {Path2D} トゲ型装飾枠パス
 	 */
 	function drawSpike( m, w, h, r, bw ) {
-
 		const iRect = { l: m, r: w - m, u: m, d: h - m };// 内側座標
 		const oRect = { l: bw, r: w - bw, u: bw, d: h - bw };// 外側座標
 
@@ -685,36 +954,26 @@
 		return path;
 	}
 
+	/**
+	 * 三角(フキダシのシッポ)を描画(0時の方向)
+	 * @returns {Path2D} 三角形状データ
+	 */
+	function drawTriangle() {
+		const path = new Path2D();
+		path.moveTo( tailWidth, 0 );
+		path.lineTo( 0, -tailLength );
+		path.lineTo( -tailWidth, 0 );
+		path.arcTo( 0, tailWidth, tailWidth, 0, tailWidth );
+		path.closePath();
+		return path;
+	}
 
 	/*--- Window_Selectable ---*/
 	Window_Selectable.prototype.itemHeight = () => Math.ceil( $dataSystem.advanced.fontSize * itemHeightRatio );
 
 
-	/*--- ユーティリティ関数 ---*/
-	/**
-	 * 文字列をPointオブジェクトに変換して返す。
-	 * @param {String} pointStr "x, y" 形式の文字列
-	 * @returns {Point} 
-	 */
-	function stringToPoint( pointStr ) {
-		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
-		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
-	}
-	/**
-	 * 文字列を Rectangle に変換して返す
-	 * @param {String} rectStr "x,y,w,h" 形式で数値を書いた文字列
-	 * @returns {Rectangle}
-	 */
-	function stringToRectangle( rectStr ) {
-		const args = rectStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
-		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${rectStr}"`;
-		return new Rectangle( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ), parseFloat( args[ 3 ] ), parseFloat( args[ 4 ] ) );
-	}
-
 
 	/*-------------------- 顔表示関連 -----------------------*/
-
 	/*--- Window_NameBox ---*/
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
@@ -779,7 +1038,6 @@
 	}
 
 	/*--- Scene_Message ---*/
-
 	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
 	Scene_Message.prototype.createAllWindows = function() {
@@ -837,4 +1095,80 @@
 			this.visible = true;
 		}
 	}
+
+
+	/*--- ユーティリティ関数 ---*/
+	/**
+	 * 配列からCSS color文字列を返す
+	 * @param {Array.<Number>} colorList [ r, g, b, a ] の配列
+	 * @returns {String} 'rgb(r,g,b)' か 'rgba(r,g,b,a)'の文字列
+	 */
+	function array2CssColor( colorList ) {
+		if( colorList.length === 3 ) return Utils.rgbToCssColor( ...colorList );
+
+		// Utils.rgbToCssColor( r, g, b ) は a を扱ってくれないので
+		return `rgba(${colorList[ 0 ]},${colorList[ 1 ]},${colorList[ 2 ]},${colorList[ 3 ] / 255})`;
+	}
+
+	/**
+	 * CSS形式の色をRGB配列に分解して返す
+	 * @param {String} CssColor CSS形式
+	 * @returns {Array.<Number>} RGBに分解した色
+	 */
+	function cssColor2Array( CssColor ) {
+		// 一旦塗ってその色を取って返すという荒技
+		wCtx.clearRect( 0, 0, 1, 1 );
+		wCtx.fillStyle = CssColor;
+		wCtx.fillRect( 0, 0, 1, 1 );
+		return wCtx.getImageData( 0, 0, 1, 1 ).data;
+	}
+
+	/**
+	 * 色に色調変更を適用して返す
+	 * @param {String} bgColor 背景色(CSS形式)
+	 * @param {Array.<Number>} colorTone 色調変更
+	 */
+	function tintColor( bgColor, colorTone ) {
+		const colorArray = cssColor2Array( bgColor );
+		colorArray[ 0 ] += colorTone[ 0 ];
+		colorArray[ 1 ] += colorTone[ 1 ];
+		colorArray[ 2 ] += colorTone[ 2 ];
+
+		return array2CssColor( colorArray );
+	}
+
+	/**
+	 * 文字列をPointオブジェクトに変換して返す。
+	 * @param {String} pointStr "x, y" 形式で数値を書いた文字列
+	 * @returns {Point} 
+	 */
+	function stringToPoint( pointStr ) {
+		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
+		console.log( `x:y = ${args[ 1 ]}:${args[ 2 ]}` );
+
+		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
+	}
+	/**
+	 * 文字列を Rectangle に変換して返す
+	 * @param {String} rectStr "x,y,w,h" 形式で数値を書いた文字列
+	 * @returns {Rectangle}
+	 */
+	function stringToRectangle( rectStr ) {
+		const args = rectStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${rectStr}"`;
+		return new Rectangle( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ), parseFloat( args[ 3 ] ), parseFloat( args[ 4 ] ) );
+	}
+
+	/**
+	 * ドロップシャドウの設定
+	 * @param {CanvasRenderingContext2D} ctx コンテキスト
+	 */
+	function setShadowParam( ctx ) {
+		ctx.shadowBlur = 4;
+		ctx.shadowColor = 'black';
+		ctx.shadowOffsetX = 0;
+		ctx.shadowOffsetY = 6;
+	}
+
 } )();
