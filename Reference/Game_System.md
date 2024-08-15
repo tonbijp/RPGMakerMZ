@@ -28,7 +28,7 @@ v1.3.0、v1.7.0 で変更あり。
 | `_escapeCount` | [Number](Number.md) | 逃亡回数 |
 | `_saveCount` | [Number](Number.md) | セーブ回数 |
 | `_versionId` | [Number](Number.md) | バージョンID |
-| `_savefileId` | [Number](Number.md) | **@MZ** バージョンID |
+| `_savefileId` | [Number](Number.md) | **@MZ** セーブファイルID |
 | `_framesOnSave` | [Number](Number.md) | 保存累積フレーム数 |
 | `_bgmOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGM |
 | `_bgsOnSave` | [RPG.AudioFile](RPG.AudioFile.md) | 保存BGS |
