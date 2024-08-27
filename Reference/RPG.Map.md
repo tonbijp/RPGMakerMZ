@@ -10,6 +10,8 @@
 
 JSONファイルの XXX は3桁の数値。
 
+`$dataMap`はマップを移動するごとに読み込まれ、常に現在のマップのデータに置き換えられます。
+
 関連クラス: [Scene_Map](Scene_Map.md), [RPG.MapInfo](RPG.MapInfo.md)
  
 
