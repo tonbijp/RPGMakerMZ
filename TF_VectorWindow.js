@@ -1,6 +1,6 @@
 //========================================
 // TF_VectorWindow.js
-// Version :1.0.0.0
+// Version :1.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -126,7 +126,7 @@
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
  * あらかじめ UI, talk, thought, shout がある
- * @type combo @default shout
+ * @type combo @default talk
  * @option UI @option talk @option thought @option shout
  *
  * @arg pointerAlign @text シッポ位置
@@ -307,7 +307,8 @@
 		const mw = Graphics.app.stage._messageWindow;
 		if( !mw ) return;
 		mw.TF_pointerAlign = POINTER_NONE;
-		setWindowType( mw, this, args );
+		setWindowType( mw, args );
+		setWindowPosition( mw, this, args );
 	} );
 
 	//  [フキダシウィンドウの準備]
@@ -315,26 +316,42 @@
 		const mw = Graphics.app.stage._messageWindow;
 		if( !mw ) return;
 		mw.TF_pointerAlign = args.pointerAlign;
-		setWindowType( mw, this, args );
+		setWindowType( mw, args );
+		setWindowPosition( mw, this, args );
 	} );
 	/**
 	 * メッセージウィンドウの設定
 	 * @param {Window_Message} mw 対象のメッセージウィンドウ
-	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
 	 * @param {Array} args プラグインコマンドのパラメータリスト
 	 */
-	function setWindowType( mw, interpreter, args ) {
+	function setWindowType( mw, args ) {
 		const windowType = getWindowType( args.windowType );
 		if( windowType === ERROR_NUMBER ) throw `"${args.windowType}" is wrong window type.`;
 
 		mw.TF_windowType = windowType;
 		mw.TF_faceAlign = args.faceAlign;
-
+	}
+	/**
+	 * メッセージウィンドウの位置を設定
+	 * @param {Window_Message} mw 対象のメッセージウィンドウ
+	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
+	 * @param {Array} args プラグインコマンドのパラメータリスト
+	 * @returns 
+	 */
+	function setWindowPosition( mw, interpreter, args ) {
 		const pos = args.pos;
 		if( pos === COMMAND_POSITION ) return;
+
+		$gameMessage.setPositionType( POSITION_FREE );
 		setFreeWindowPosition( interpreter, args.continuousPos );
-		const point = stringToPoint( pos );
-		[ mw.x, mw.y ] = [ point.x, point.y ];
+		if( isPointString( pos ) ) {
+			const point = stringToPoint( pos );
+			[ mw.x, mw.y ] = [ point.x, point.y ];
+		} else {
+			const rect = stringToRectangle( pos );
+			// _width、_height に代入するのは、_refreshAllParts を発生させないため
+			[ mw.x, mw.y, mw._width, mw._height ] = [ rect.x, rect.y, rect.width, rect.height ];
+		}
 	}
 
 	/**
@@ -344,19 +361,7 @@
 	 */
 	function setFreeWindowPosition( interpreter, continuousPos ) {
 		const mw = Graphics.app.stage._messageWindow;
-
-		/**
-		 * 指定のインデックスの次のコマンドのインデックスを返す
-		 * コマンドが複数行に複数行にわたる事があるので、次のコマンドまで不要な行を飛ばす処理が入っている
-		 * @param {Array.<RPG.EventCommand>} list イベントコマンドのリスト
-		 * @param {Number} index 現在のコマンドのインデックス
-		 * @param {Number} ignoredCommand 飛ばすコマンド
-		 * @returns {Number} 次のコマンドのインデックス
-		 */
-		const getNextCommandIndex = ( list, index, ignoredCommand ) => {
-			while( list[ index ] && list[ index ].code === ignoredCommand ) index++;
-			return index;
-		};
+		mw._positionType = POSITION_FREE;
 
 		let eventIndex = getNextCommandIndex( interpreter._list, interpreter._index + 1, PLUGIN_PARAM );
 
@@ -372,6 +377,18 @@
 			interpreter._list[ eventIndex ].parameters[ 3 ] = POSITION_FREE;
 		}
 	}
+	/**
+	 * 指定のインデックスの次のコマンドのインデックスを返す
+	 * コマンドが複数行に複数行にわたる事があるので、次のコマンドまで不要な行を飛ばす処理が入っている
+	 * @param {Array.<RPG.EventCommand>} list イベントコマンドのリスト
+	 * @param {Number} index 現在のコマンドのインデックス
+	 * @param {Number} ignoredCommand 飛ばすコマンド
+	 * @returns {Number} 次のコマンドのインデックス
+	 */
+	const getNextCommandIndex = ( list, index, ignoredCommand ) => {
+		while( list[ index ] && list[ index ].code === ignoredCommand ) index++;
+		return index;
+	};
 
 
 	/**
@@ -387,6 +404,17 @@
 		} else {
 			return ERROR_NUMBER;
 		}
+	};
+
+	/*--- Game_Interpreter ---*/
+	const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
+	Game_Interpreter.prototype.command101 = function( params ) {
+		const result = _Game_Interpreter_command101.apply( this, arguments );
+
+		if( $gameMessage.positionType() !== POSITION_FREE ) {
+			setMessageParam( Graphics.app.stage._messageWindow );
+		}
+		return result;
 	};
 
 	/*--- Window ---*/
@@ -614,7 +642,6 @@
 		_Window_Message_newPage.apply( this, arguments );
 		closeFacePicture();
 		setWindowParam( this );
-		setMessageParam( this );
 		this._refreshAllParts();
 	};
 	const _Window_Message_close = Window_Message.prototype.close;
@@ -1138,6 +1165,17 @@
 	}
 
 	/**
+	 * 指定した文字列が、点用(数値2つ並び)のものか
+	 * @param {String} pointStr テストする文字列
+	 * @returns {Boolean} 点用か
+	 */
+	function isPointString( pointStr ) {
+		const args = pointStr.match( /\d+/g );
+		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
+		return ( args.length === 2 );
+	}
+
+	/**
 	 * 文字列をPointオブジェクトに変換して返す。
 	 * @param {String} pointStr "x, y" 形式で数値を書いた文字列
 	 * @returns {Point} 
@@ -1145,8 +1183,6 @@
 	function stringToPoint( pointStr ) {
 		const args = pointStr.match( /([-.0-9]+)[^-.0-9]+([-.0-9]+)/ );
 		if( args === null ) throw `${PLUGIN_NAME}: wrong parameter "${pointStr}"`;
-		console.log( `x:y = ${args[ 1 ]}:${args[ 2 ]}` );
-
 		return new Point( parseFloat( args[ 1 ] ), parseFloat( args[ 2 ] ) );
 	}
 	/**
