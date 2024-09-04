@@ -508,13 +508,13 @@
 
 
 #### setMovementSuccess (success)
- 移動成功したか保存。
+　移動できる状態か設定。`false`を設定している間は移動しない。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `success` | Boolean | 移動成功 |
+| `success` | Boolean | 移動可能 |
 
 
 #### setMoveSpeed (moveSpeed)
