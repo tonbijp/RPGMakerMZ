@@ -7,6 +7,8 @@
 返り値が [Array](Array.md).&lt;[Game_Battler](Game_Battler.md)&gt; のメンバー取得系のメソッドは、例えば `$gameParty.members[0]` と書きそうになるが、`$gameParty.members()[0]` のようにまず `()` でメソッドを起動し、帰ってきた配列から選択する手順を踏む。<br />
 また、添字が `0` から始まることにも注意。
 
+v1.8.1 で変更あり。
+
 ### new Game_Unit ()
 
 ### サブクラス
@@ -114,8 +116,15 @@
 | `index` | [Number](Number.md) | メンバー番号 |
 
 
-#### substituteBattler () → {[Game_Battler](Game_Battler.md)}
+#### substituteBattler (target) → {[Game_Battler](Game_Battler.md)}
 身代わりのバトラーを返す。
+**@MZ1.8.1** 引数`target`追加。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `target` | [Game_Battler](Game_Battler.md) | 対象バトラー |
 
 
 #### tgrSum () → {[Number](Number.md)}

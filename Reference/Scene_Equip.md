@@ -6,6 +6,8 @@
 
 [装備]シーン。
 
+v1.8.1 で変更あり。
+
 主なパス
 ```js
 SceneManager._scene
