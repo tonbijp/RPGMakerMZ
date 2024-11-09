@@ -48,7 +48,7 @@
 * [select (activeMember)](Game_Unit.md#select-activemember)
 * [smoothDeadTarget (index)](Game_Unit.md#smoothdeadtarget-index--game_battler)
 * [smoothTarget (index)](Game_Unit.md#smoothtarget-index--game_battler)
-* [substituteBattler ()](Game_Unit.md#substitutebattler---game_battler)
+* [substituteBattler (target)](Game_Unit.md#substitutebattler-target--game_battler)
 * [tgrSum ()](Game_Unit.md#tgrsum---number)
 
 
