@@ -1,6 +1,6 @@
 //=================================================
 // TF_Template.js
-// Version :0.0.0.0
+// Version : 0.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2024
