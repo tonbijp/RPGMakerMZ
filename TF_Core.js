@@ -1,6 +1,6 @@
 //========================================
 // TF_Core.js
-// Version :0.1.1.1
+// Version :0.1.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2021
@@ -36,13 +36,9 @@
 
 ( () => {
     "use strict";
-    const PLUGIN_NAME = "TF_Core";
-    const PARAM_TRUE = "true";
-    const PARAM_FALSE = "false";
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
-
 
     /**
      * 
@@ -60,6 +56,7 @@
 
     /*---- パラメータパース関数 ----*/
     const PARAM_TRUE = "true";
+    const PARAM_FALSE = "false";
     const PARAM_ON = "on";
     const TYPE_BOOLEAN = "boolean";
     const TYPE_NUMBER = "number";
