@@ -37,6 +37,8 @@
  */
 ( () => {
     "use strict";
+    // エラー表示用にプラグイン名を取得
+    const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
 
     // パラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
