@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :0.7.0.0
+// Version :0.8.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -384,6 +384,22 @@
  * @option 通常キャラと同じ @value 1
  * @option 通常キャラの下 @value 0
  * 
+ * @================================================
+ * @command getPriorityType @text プライオリティを取得
+ * @desc イベントのプライオリティを変数に取得。
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
+ * 
+ * @arg variableId @text 変数ID
+ * @desc
+ * 値を返す変数(規定値: 1)
+ * @type variable @default 1
+ * 
  * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help
  * 主な機能とイベントコマンドにない利点。
@@ -754,6 +770,7 @@
 	const COM_ANIME = "anime";
 	const COM_END_ANIME = "endAnime";
 	const COM_SET_PRIORITY_TYPE = "setPriorityType";
+	const COM_GET_PRIORITY_TYPE = "getPriorityType";
 
 
 	/*--- Game_Interpreter ---*/
@@ -877,6 +894,15 @@
 		const targetEvent = stringToEvent( this, args.eventId );
 		setPriorityType( targetEvent, args.priorityType );
 	} );
+
+	// [ プライオリティの取得 ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_GET_PRIORITY_TYPE, function( args ) {
+		const targetEvent = stringToEvent( this, args.eventId );
+		const priorityType = targetEvent._priorityType;
+		$gameVariables.setValue( args.variableId, priorityType );
+	} );
+
+
 
 	/**
 	 * 隊列メンバーに対する[移動ルートの設定]を可能にする。
