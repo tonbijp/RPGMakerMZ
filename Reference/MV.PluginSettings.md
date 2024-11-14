@@ -139,7 +139,7 @@ fileしかないのでfileと書く (MVで使えた animation は廃止)
 
 #### @param
 パラメータ識別子。省略不可。パラメータ毎の設定の先頭に置くこと。<br />
-空白文字も使えるが、プラグイン側で値を取り出す時に <code>parameters["param with space "]</code> 形式しか使えず <code>parameters.param with space</code> と書いても正しく認識されないことに注意。
+空白文字も使えるが、プラグイン側で値を取り出す時に <code>parameters["param with space"]</code> 形式しか使えず <code>parameters.param with space</code> と書いても正しく認識されないことに注意。
 
 
 #### @text
