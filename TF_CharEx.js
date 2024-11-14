@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :0.8.0.0
+// Version :0.9.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -531,7 +531,7 @@
  * 　COM_GO_XY( COM_GO_EV ) : go, ＠, 移
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
- *   CON_SET_PRIORITY_TYPE : priority, ^, 積
+ *   COM_SET_PRIORITY_TYPE : priority, ^, 積
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -1332,7 +1332,8 @@
 				}
 				movementList.push( { code: COM_GO_XY, parameters: [ x, y ] } );
 
-			} else if( MOVE_PRIORITY.includes( value ) ) {
+			} else if( MOVE_PRIORITY.includes( value ) ) { // COM_SET_PRIORITY_TYPE
+
 				movementList.push( { code: COM_SET_PRIORITY_TYPE, parameters: [ paramNo ] } );
 			}
 		} );
@@ -1598,6 +1599,7 @@
 		switch( command.code ) {
 			case SET_CHAR: setCharPattern( this, undefined, params[ 0 ], params[ 1 ], params[ 2 ] ); break;
 			case COM_GO_XY: this.TF_goXY( ...params ); break;
+			case COM_SET_PRIORITY_TYPE: setPriorityType( this, params[ 0 ] ); break;
 		}
 	};
 
