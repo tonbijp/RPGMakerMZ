@@ -1,9 +1,9 @@
 //========================================
 // TF_Condition.js
-// Version :1.7.2.1
+// Version :1.7.2.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2022
+// Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -111,7 +111,7 @@
  *
  * @arg name @text 変数の名前
  * @desc 指定変数
- * @type string @default it
+ * @type string @default $it
  *
  * @arg operate @text 操作
  * @desc 規定値: 指定変数に代入 =
@@ -141,7 +141,7 @@
  *
  * @arg name @text 変数の名前
  * @desc 指定変数
- * @type string @default it
+ * @type string @default $it
  *
  * @arg operate @text 操作
  * @desc 規定値: 指定変数に代入 =
@@ -267,7 +267,7 @@
  *
  * @arg leftSide @text 左辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
- * @type string @default it
+ * @type string @default $it
  *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
@@ -281,7 +281,7 @@
  *
  * @arg rightSide @text 右辺の数値
  * @desc 変数の名前、数値、\V[n]いずれか
- * @type string @default it
+ * @type string @default $it
  *
  * @arg operate @text 論理演算
  * @desc 一時変数への代入前の処理
@@ -300,7 +300,7 @@
  *
  * @arg leftSide @text 左辺の文字変数
  * @desc 変数の名前、\V[n]いずれか
- * @type string @default it
+ * @type string @default $it
  *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
@@ -334,7 +334,7 @@
  *
  * @arg center @text ≦中間値
  * @desc 変数の名前、数値、\V[n]いずれか
- * @type string @default it
+ * @type string @default $it
  * 
  * @arg max @text ≦最大値
  * @desc 変数の名前、数値、\V[n]いずれか
@@ -535,7 +535,7 @@
  *
  * @arg leftSide @text 左辺の数値
  * @desc 変数の名前、数値いずれか
- * @type string @default it
+ * @type string @default $it
  *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
@@ -549,7 +549,7 @@
  *
  * @arg rightSide @text 右辺の数値
  * @desc 変数の名前、数値いずれか
- * @type string @default it
+ * @type string @default $it
  * 
  * @================================================
  * @command conditionCompareText @text 出現条件:文字比較
@@ -557,7 +557,7 @@
  *
  * @arg leftSide @text 左辺の文字変数
  * @desc 変数の名前
- * @type string @default it
+ * @type string @default $it
  *
  * @arg compare @text 比較演算子
  * @desc (規定値: ==)
@@ -579,7 +579,7 @@
  *
  * @arg center @text ≦中間値
  * @desc 変数の名前、数値いずれか
- * @type string @default it
+ * @type string @default $it
  *
  * @arg max @text ≦最大値
  * @desc 変数の名前、数値いずれか
@@ -682,11 +682,14 @@
 	 * @returns {Number} マップID
 	 */
 	function stringToMapId( value ) {
+		if( typeof value === TYPE_NUMBER ) return value;
+
 		const label = value.toLowerCase();
 		if( label === EVENT_THIS ) return $gameMap.mapId();
 
 		const i = $dataMapInfos.findIndex( e => e ? e.name === value : false );
 		if( i !== -1 ) return i; // $dataMapInfos[ i ].id が正しい気がするが、実は使われていないようだ
+
 		const result = parseInt( value, 10 );
 		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't find the map '${value}'` );
 		return result;
