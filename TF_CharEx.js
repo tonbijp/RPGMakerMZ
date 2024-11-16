@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :0.9.0.0
+// Version :0.9.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -532,6 +532,9 @@
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
  *   COM_SET_PRIORITY_TYPE : priority, ^, 積
+ *     プライオリティの設定。
+ * 　　0: 通常キャラの下, 1: 通常キャラと同じ, 2: 通常キャラの上
+ *     
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -540,7 +543,8 @@
 
 ( () => {
 	"use strict";
-	const PLUGIN_NAME = "TF_CharEx";
+	// エラー表示用にプラグイン名を取得
+	const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
 
 	const WAIT_ROUTE = "route";
 	const WAIT_MOVING = "moving";
@@ -799,31 +803,31 @@
 	// [ イベントを指定座標に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_XY, function( args ) {
 		const targetEvent = stringToEvent( this, args.eventId );
-		const rect = stringToPoint( args.pointStr );
-		goXY( targetEvent, rect.x, rect.y, args.isWait );
+		const point = stringToPoint( args.pointStr );
+		goXY( targetEvent, point.x, point.y, args.isWait );
 	} );
 
 	// [ イベントを別のイベント位置に移動 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_GO_EV, function( args ) {
 		const targetEvent = stringToEvent( this, args.eventId );
 		const destinationEvent = stringToEvent( this, args.destinationId );
-		const rect = stringToPoint( args.pointStr );
-		goEv( targetEvent, destinationEvent, rect.x, rect.y, args.isWait );
+		const point = stringToPoint( args.pointStr );
+		goEv( targetEvent, destinationEvent, point.x, point.y, args.isWait );
 	} );
 
 	// [ イベントを指定座標に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_XY, function( args ) {
 		const targetEvent = stringToEvent( this, args.eventId );
-		const rect = stringToPoint( args.pointStr );
-		locateXY( targetEvent, rect.x, rect.y, args.patternNumber, args.d );
+		const point = stringToPoint( args.pointStr );
+		locateXY( targetEvent, point.x, point.y, args.patternNumber, args.d );
 	} );
 
 	// [ イベントを別のイベント位置に配置 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_EV, function( args ) {
 		const targetEvent = stringToEvent( this, args.eventId );
 		const destinationEvent = stringToEvent( this, args.destinationId );
-		const rect = stringToPoint( args.pointStr );
-		locateEv( targetEvent, destinationEvent, rect.x, rect.y, args.patternNumber, args.d );
+		const point = stringToPoint( args.pointStr );
+		locateEv( targetEvent, destinationEvent, point.x, point.y, args.patternNumber, args.d );
 	} );
 
 	// [ 乗り物に乗る ]
@@ -1024,13 +1028,16 @@
 	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバー・乗り物のいずれか
 	 * @param {String} x x座標(タイル数)
 	 * @param {String} y y座標(タイル数)
-	 * @param {String} patternNo パターン番号( 0~2 )
-	 * @param {String} d キャラの向き(テンキー対応)
+	 * @param {String} patternNo パターン番号( 0~2 ) 変更なし : -1
+	 * @param {String} d キャラの向き(テンキー対応) 変更なし : 0
 	 */
 	function locateXY( targetEvent, x, y, patternNo, d ) {
-		if( patternNo ) {
+		// マップタイルの場合は設定しない
+		// 判定に targetEvent.isTile() を使うと priorityType:0 でないと弾かれてしまうので注意 
+		if( targetEvent.tileId() === 0 ) {
 			setCharPattern( targetEvent, undefined, undefined, patternNo, d );
 		}
+
 		// 位置指定には HalfMove.js 対応でparseFloatStrict()を使う
 		const floatX = parseFloatStrict( x );
 		const floatY = parseFloatStrict( y );
