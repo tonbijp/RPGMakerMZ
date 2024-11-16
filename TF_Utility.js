@@ -1,14 +1,14 @@
-//========================================
+//=================================================
 // TF_Utility.js
-// Version :0.1.2.1
+// Version :0.1.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
-// -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2021
+// ----------------------------------------------
+// Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
-//========================================
+//=================================================
 /*:ja
  * @target MZ
  * @plugindesc [スクリプト]から使いやすいコマンド集
@@ -22,13 +22,7 @@
  * 
  * @requiredAssets audio/se/Move1
  *
- * @================================================
- * @help
- * 移動の前後の処理をカプセル化。
- *
- * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
- * 
- * @================================================
+ * @================== command =====================
  * @command beforeMove @text 移動と前処理
  * @desc 一歩前進してフェードアウトを行い、マップを移動する。
  *
@@ -63,11 +57,17 @@
  * @command afterMove @text 移動後の処理
  * @desc フェードインして一歩前進、イベントの一時消去。
  * 
+ * @============ この長さに合わせるとヘルプではみ出ない =============
+ * @help
+ * 移動の前後の処理をカプセル化。
+ *
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  */
 
 ( () => {
 	"use strict";
-	const PLUGIN_NAME = "TF_Utility";
+	// エラー表示用にプラグイン名を取得
+	const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
 
 	// プラグインコマンド
 	const COM_BEFORE_MOVE = "beforeMove";
@@ -102,22 +102,7 @@
 	const gc = Game_Character;
 
 	/*---- パラメータパース関数 ----*/
-	/**
-	 * 文字列をマップIDへ変換
-	 * @param {String} value マップIDの番号か識別子
-	 * @returns {Number} マップID
-	 */
-	function stringToMapId( value ) {
-		const label = value.toLowerCase();
-		if( label === EVENT_THIS ) return $gameMap.mapId();
 
-		const mapObj = DataManager.searchDataItem( $dataMapInfos, "name", value );
-		if( mapObj !== 0 ) return mapObj.id;
-
-		const result = parseInt( value, 10 );
-		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't found the map '${value}'` );
-		return result;
-	}
 
 	/**
 	 * プラグインコマンドの登録
@@ -132,27 +117,24 @@
 	 * @param {Number} d 向き(テンキー対応 | 方向文字列) (規定値: 現在の向き( 0 ))
 	 * 
 	 */
-	PluginManagerEx.registerCommand( document.currentScript, COM_BEFORE_MOVE,
-		function( args ) {
-			const pos = stringToPoint( args.pointStr );
-			const eventCommands = getMoveMapCommands( args.mapId, pos.x, pos.y, args.d, args.pitch );
-
-			if( args.isMove ) {
-				eventCommands.unshift( {
-					code: SET_MOVEMENT_ROUTE, parameters: [ PLAYER_CHARACTER,
-						{
-							repeat: false, skippable: true, wait: true, list: [
-								{ code: gc.ROUTE_THROUGH_ON },
-								{ code: gc.ROUTE_MOVE_FORWARD },
-								{ code: gc.ROUTE_END }
-							]
-						}
-					]
-				} );
-			}
-			this.setupChild( eventCommands, this._eventId );
+	PluginManagerEx.registerCommand( document.currentScript, COM_BEFORE_MOVE, function( args ) {
+		const pos = stringToPoint( args.pointStr );
+		const eventCommands = getMoveMapCommands( args.mapId, pos.x, pos.y, args.d, args.pitch );
+		if( args.isMove ) {
+			eventCommands.unshift( {
+				code: SET_MOVEMENT_ROUTE, parameters: [ PLAYER_CHARACTER, {
+					repeat: false, skippable: true, wait: true, list:
+						[
+							{ code: gc.ROUTE_THROUGH_ON },
+							{ code: gc.ROUTE_MOVE_FORWARD },
+							{ code: gc.ROUTE_THROUGH_OFF },
+							{ code: gc.ROUTE_END }
+						]
+				} ]
+			} );
 		}
-	);
+		this.setupChild( eventCommands, this._eventId );
+	} );
 
 	/**
 	 * マップ移動前の処理のコマンド配列を返す。
@@ -190,9 +172,10 @@
 					code: SET_MOVEMENT_ROUTE, parameters: [ PLAYER_CHARACTER,
 						{
 							repeat: false, skippable: true, wait: true, list: [
+								{ code: gc.ROUTE_THROUGH_ON },
+								{ code: gc.ROUTE_MOVE_FORWARD },
 								{ code: gc.ROUTE_THROUGH_OFF },
 								{ code: gc.ROUTE_DIR_FIX_OFF },
-								{ code: gc.ROUTE_MOVE_FORWARD },
 								{ code: gc.ROUTE_END }
 							]
 						}
@@ -210,29 +193,17 @@
 	Window_Options.prototype.volumeOffset = () => VOLUME_OFFSET;
 
 
-	/*---- Scene_Battle ----*/
-	/**
-	 * 戦闘シーンのパーティコマンドを飛ばす。
-	 */
-	const _Scene_Battle_changeInputWindow = Scene_Battle.prototype.changeInputWindow;
-	Scene_Battle.prototype.changeInputWindow = function() {
-		if( BattleManager.isInputting() && !BattleManager.actor() ) {
-			this.selectNextCommand();
-		}
-		_Scene_Battle_changeInputWindow.call( this );
-	};
-
 	// 追加キー設定
-	const KEY_BS = 8;
-	const KEY_DEL = 46;
-	const KEY_C = 67;
-	const KEY_M = 77;
-	const ACTION_MENU = "menu";
-	const ACTION_CANCEL = "cancel";
-	Input.keyMapper[ KEY_M ] = ACTION_MENU;
-	Input.keyMapper[ KEY_BS ] = ACTION_CANCEL;
-	Input.keyMapper[ KEY_DEL ] = ACTION_CANCEL;
-	Input.keyMapper[ KEY_C ] = ACTION_CANCEL;
+	// const KEY_BS = 8;
+	// const KEY_DEL = 46;
+	// const KEY_C = 67;
+	// const KEY_M = 77;
+	// const ACTION_MENU = "menu";
+	// const ACTION_CANCEL = "cancel";
+	// Input.keyMapper[ KEY_M ] = ACTION_MENU;
+	// Input.keyMapper[ KEY_BS ] = ACTION_CANCEL;
+	// Input.keyMapper[ KEY_DEL ] = ACTION_CANCEL;
+	// Input.keyMapper[ KEY_C ] = ACTION_CANCEL;
 
 	//  Wを上に割り当てると、メニューでのキャラ切り替えができなくなる
 	// const KEY_W = 87;
@@ -249,6 +220,26 @@
 	// Input.keyMapper[ KEY_D ] = ACTION_RIGHT;
 
 	/*--- ユーティリティ関数 ---*/
+	const TYPE_STRING = "string";
+	/**
+	 * 文字列をマップIDへ変換
+	 * @param {String} value マップIDの番号か識別子
+	 * @returns {Number} マップID
+	 */
+	function stringToMapId( value ) {
+		if( typeof value === TYPE_STRING ) {
+			const label = value.toLowerCase();
+			if( label === EVENT_THIS ) return $gameMap.mapId();
+		}
+
+		const mapObj = DataManager.searchDataItem( $dataMapInfos, "name", value );
+		if( mapObj !== 0 ) return mapObj.id;
+
+		const result = parseInt( value, 10 );
+		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: I can't found the map '${value}'` );
+		return result;
+	}
+
 	/**
 	 * 文字列をPointオブジェクトに変換して返す。
 	 * @param {String} pointStr "x, y" 形式の文字列
