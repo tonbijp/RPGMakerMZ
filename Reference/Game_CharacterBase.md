@@ -306,8 +306,7 @@
 
 
 #### isTile () → {Boolean}
- タイル用(tilesets フォルダ以下)の画像か。
-
+ タイル用(tilesets フォルダ以下)かつ[通常キャラの下]\( _priorityType:0 )の画像か。
 
 #### isTransparent () → {Boolean}
 [透明]状態か。
