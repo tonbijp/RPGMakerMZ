@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :0.9.1.0
+// Version :0.10.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -88,11 +88,12 @@
  * @option ↓・・ 左列 @value 0
  * @option ・↓・ 中央列 @value 1
  * @option ・・↓ 右列 @value 2
+ * @option ↑現在列 @value -2
  * @option ↑・・ 左列 @value 3
  * @option ・↑・ 中央列 @value 4
  * @option ・・↑ 右列 @value 5
- * @option ┬│↓ 左列から順に全て @value 6
- * @option ↑│┴ 右列から順に全て @value 7
+ * @option ┬│↓ 左列から順にすべて @value 6
+ * @option ↑│┴ 右列から順にすべて @value 7
  *
  * @arg waitFrames @text ウェイト
  * @desc
@@ -1443,15 +1444,16 @@
 	const RIGHT_PATTERN = 2;
 
 	// animePattern
-	const CURRENT_PATTERN = -1; // ↓現在列 @value -1
-	const LEFT_DOWN = 0; // ↓・・ 左列 @value 0
-	const CENTER_DOWN = 1; // ・↓・ 中央列 @value 1
-	const RIGHT_DOWN = 2; // ・・↓ 右列 @value 2
-	const LEFT_UP = 3; // ↑・・ 左列 @value 3
-	const CENTER_UP = 4; // ・↑・ 中央列 @value 4
-	const RIGHT_UP = 5; // ・・↑ 右列 @value 5
-	const ALL_DOWN = 6; // ┬│↓ 左列から順に全て @value 6
-	const ALL_UP = 7; // ↑│┴ 右列から順に全て @value 7
+	const CURRENT_DOWN = -1; // ↓現在列
+	const LEFT_DOWN = 0; // ↓・・ 左列
+	const CENTER_DOWN = 1; // ・↓・ 中央列
+	const RIGHT_DOWN = 2; // ・・↓ 右列
+	const CURRENT_UP = -2; // ↑現在列
+	const LEFT_UP = 3; // ↑・・ 左列
+	const CENTER_UP = 4; // ・↑・ 中央列
+	const RIGHT_UP = 5; // ・・↑ 右列
+	const ALL_DOWN = 6; // ┬│↓ 左列から順にすべて
+	const ALL_UP = 7; // ↑│┴ 右列から順にすべて
 
 	/**
 	 * [ キャラパターン指定アニメ ]の実行。
@@ -1460,7 +1462,7 @@
 	 * @param {String} eventId イベントIDかそれに替わる識別子の文字列
 	 * @param {String} fileName キャラクタファイル名( img/characters/ 以下)
 	 * @param {Number} characterNumber キャラクタ番号( 1~8 )
-	 * @param {Number} animePattern アニメ再生パターン(-1〜8)
+	 * @param {Number} animePattern アニメ再生パターン(-2〜8)
 	 * @param {Number} waitFrames 待ちフレーム数
 	 *
 	 */
@@ -1473,9 +1475,12 @@
 
 		let animeType;
 		let patternNumber;
-		if( args.animePattern === CURRENT_PATTERN ) {
+		if( args.animePattern === CURRENT_DOWN ) {
 			patternNumber = undefined;
 			animeType = VD_1LINE;
+		} else if( args.animePattern === CURRENT_UP ) {
+			patternNumber = undefined;
+			animeType = VU_1LINE;
 		} else if( args.animePattern <= RIGHT_DOWN ) {
 			patternNumber = args.animePattern;
 			animeType = VD_1LINE;
