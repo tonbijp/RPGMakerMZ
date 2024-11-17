@@ -45,10 +45,13 @@
     const testParam = pluginParams.testParam;
     console.log( `testParam = ${testParam}` );
 
+    // #region registerCommand
     // プラグインコマンドの定義
     const COM_TEST = "testCommand";
+    // [テストコマンド]
     PluginManagerEx.registerCommand( document.currentScript, COM_TEST, function( args ) {
         const arg1 = args[ "arg1" ];
         console.log( `arg1 = ${arg1}` );
     } );
+    // #endregion
 } )();
