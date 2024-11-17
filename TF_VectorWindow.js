@@ -1,14 +1,14 @@
-//========================================
+//=================================================
 // TF_VectorWindow.js
-// Version :1.1.0.0
+// Version :1.1.0.1
 // For : RPGツクールMZ (RPG Maker MZ)
-// -----------------------------------------------
+// ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
-//========================================
+//=================================================
 /*:ja
  * @target MZ
  * @plugindesc ウィンドウの表示をベクトル描画
@@ -17,76 +17,77 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  * 
+ * @================= parameter ====================
  * @param preset @text ウィンドウ設定
  * @desc ウィンドウ設定のプリセット
  * (1:UI用、2:メッセージ用、3〜 : メッセージ変更用)
  * @type struct<WindowParam>[]
  * @default ["{\"name\":\"UI\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"20\",\"padding\":\"12\",\"bgColor\":\"[\\\"#0008\\\"]\"}","{\"name\":\"talk\",\"shape\":\"roundrect\",\"margin\":\"3\",\"borderWidth\":\"6\",\"borderColor\":\"#0ee\",\"decorSize\":\"20\",\"padding\":\"14\",\"bgColor\":\"[\\\"#0008\\\",\\\"#000C\\\"]\"}","{\"name\":\"thought\",\"shape\":\"roundrect\",\"margin\":\"6\",\"borderWidth\":\"2\",\"borderColor\":\"#666\",\"decorSize\":\"100\",\"padding\":\"16\",\"bgColor\":\"[\\\"#000a\\\"]\"}","{\"name\":\"shout\",\"shape\":\"spike\",\"margin\":\"60\",\"borderWidth\":\"6\",\"borderColor\":\"#fff\",\"decorSize\":\"80\",\"padding\":\"74\",\"bgColor\":\"[\\\"#0006\\\"]\"}"]
  * 
+ * @================================================
  * @param dropShadow @text ウィンドウの影
  * @type boolean @default true
  * @on 影あり(規定値) @off 影なし
  *
+ * @================================================
  * @param lineHeightRatio @text 行高さ
  * @desc 標準文字サイズを100%とした比率
  * 規定値:140
  * @type number @default 140
  * @min 100
  *
+ * @================================================
  * @param itemHeightRatio @text 項目高さ
  * @desc 標準文字サイズを100%とした比率
  * 規定値:160
  * @type number @default 160
  *　
+ * @================================================
  * @param messageFontSize @text メッセージフォントサイズ
  * @desc 
  * 規定値:30
  * @type number @default 30
  * @min 8
  *
+ * @================================================
  * @param nameFontSize @text 名前フォントサイズ
  * @desc 
  * 規定値:20
  * @type number @default 20
  * @min 8
  * 
+ * @================================================
  * @param nameWithFace @text 顔に名前表示
  * @type boolean @default true
  * @on 顔の下に表示(規定) @off 標準
  *
+ * @================================================
  * @param messageLines @text メッセージに表示する行数
  * @desc 
  * 規定値:3
  * @type number @default 3
  * @min 1
  *
+ * @================================================
  * @param messageView @text メッセージウィンドウ表示範囲
  * @desc 画面全体に対する x,y,幅,高さ の順の数値(ピクセル数)
  * 規定値:4,4,808,616
  * @type string @default 4,4,808,616
  *
+ * @================================================
  * @param tailLength @text シッポの長さ
  * @desc フキダシのシッポの長さ(ピクセル数)
  * 規定値:36
  * @type string @default 36
  * 
+ * @================================================
  * @param tailWidth @text シッポの幅
  * @desc フキダシのシッポの幅(ピクセル数)
  * 規定値:20
  * @type string @default 20
  *
- * @================================================
- * @help
- * ウィンドウをPNG画像を使わずに描画する。
- * 背景のグラデーションや枠線の太さや形など指定が可能。
- *
- * 標準の[文章の表示]コマンドを使う前に
- * プラグインコマンド[ウィンドウの準備]を実行し、
- * ウィンドウタイプや顔グラフィックの左右位置を指定する。
  * 
- * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
- * 
- * @================================================
+ * @================== command =====================
  * @command setWindow @text ウィンドウの準備
  * @desc [文章の表示]コマンドの前に実行すること。
  * 一回表示されるとウィンドウタイプは規定値に戻る。
@@ -118,7 +119,7 @@
  * @type boolean @default true
  * @on 継続(規定値) @off 単体
  * 
- * 
+ * @================================================
  * @command setSpeachBalloon @text フキダシの準備
  * @desc [文章の表示]コマンドの前に実行すること。
  * 一回表示されるとウィンドウタイプは規定値に戻る。
@@ -166,12 +167,24 @@
  * 継続した[文章の表示]に適用する。
  * @type boolean @default true
  * @on 継続(規定値) @off 単体
+ * 
+ * @============ この長さに合わせるとヘルプではみ出ない =============
+ * @help
+ * ウィンドウをPNG画像を使わずに描画する。
+ * 背景のグラデーションや枠線の太さや形など指定が可能。
+ *
+ * 標準の[文章の表示]コマンドを使う前に
+ * プラグインコマンド[ウィンドウの準備]を実行し、
+ * ウィンドウタイプや顔グラフィックの左右位置を指定する。
+ * 
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  */
 /*~struct~WindowParam:ja
  *
  * @param name @text ウィンドウ名
  * @type string
  * 
+ * @================================================
  * @param shape @text ウィンドウの形
  * @desc 
  * 規定値:roundrect
@@ -181,35 +194,41 @@
  * @option 8角形 @value octagon
  * @option なし @value none
  * 
+ * @================================================
  * @param margin @text 端から枠までの間隔
  * @desc 
  * 規定値:8
  * @type number @default 8
  * @min 0
  * 
+ * @================================================
  * @param borderWidth @text 枠の幅
  * @desc 
  * 規定値:6
  * @type number @default 6
  * @min 0
  * 
+ * @================================================
  * @param borderColor @text 枠の色(CSS形式)
  * @desc 
  * 規定値:#FFF
  * @type string @default #FFF
  *
+ * @================================================
  * @param decorSize @text 装飾の大きさ
  * @desc 角丸・角・トゲのサイズ
  * 規定値:10
  * @type number @default 10
  * @min 0
  * 
+ * @================================================
  * @param padding @text 枠から内容までの間隔
  * @desc 
  * 規定値:18
  * @type number @default 18
  * @min 0
  * 
+ * @================================================
  * @param bgColor @text 背景色(CSS形式)
  * @desc 複数指定すると縦のグラデーションとして描画
  * 規定値:["#0086"]
@@ -218,11 +237,8 @@
 
 ( () => {
 	"use strict";
-	const PLUGIN_NAME = "TF_VectorWindow";
-
-	// プラグインコマンド
-	const COM_SET_WINDOW = "setWindow";
-	const COM_SET_SPEACHBALLOON = "setSpeachBalloon";
+	// エラー表示用にプラグイン名を取得
+	const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
 
 	// ウィンドウ描画関連
 	const ERROR_NUMBER = -1;
@@ -238,21 +254,21 @@
 	const BOX_MARGIN = 4;	// boxWidth,boxHeight の外にある余白
 
 	// $gameMessage.positionType()
-	const POSITION_UP = 0;
-	const POSITION_MIDDLE = 1;
-	const POSITION_DOWN = 2;
+	const ALIGN_UP = 0;
+	const ALIGN_MIDDLE = 1;
+	const ALIGN_DOWN = 2;
 	const POSITION_FREE = 20;	// 座標指定
 	const AUTO_POSITION = "auto"; // 自動配置
-	const COMMAND_POSITION = "command";	// [文章の表示]-[ウィンドウ位置]
+	const COMMAND_ALIGN = "command";	// [文章の表示]-[ウィンドウ位置]
 
 	// 顔位置
-	const POSITION_BEYONDLEFT = "beyondLeft";
-	const POSITION_LEFT = "left";
-	const POSITION_INNERLEFT = "innerLeft";
-	const POSITION_CENTER = "center";
-	const POSITION_INNERRIGHT = "innerRight";
-	const POSITION_RIGHT = "right";
-	const POSITION_BEYONDRIGHT = "beyondRight";
+	const ALIGN_BEYONDLEFT = "beyondLeft";
+	const ALIGN_LEFT = "left";
+	const ALIGN_INNERLEFT = "innerLeft";
+	const ALIGN_CENTER = "center";
+	const ALIGN_INNERRIGHT = "innerRight";
+	const ALIGN_RIGHT = "right";
+	const ALIGN_BEYONDRIGHT = "beyondRight";
 
 	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
@@ -295,9 +311,14 @@
 		} )( stringToRectangle( pluginParams.messageView ) );
 	};
 
+
+	// #region registerCommand
 	/**
 	 * プラグインコマンドの登録
 	 */
+	const COM_SET_WINDOW = "setWindow";
+	const COM_SET_SPEACHBALLOON = "setSpeachBalloon";
+
 	const PLUGIN_PARAM = 657;// プラグインコマンドのエディタでの引数の表示用
 	const SHOW_TEXT = 101;// 文章の表示…
 	const TEXT_DATA = 401;// 文章の表示のメッセージ
@@ -319,6 +340,8 @@
 		setWindowType( mw, args );
 		setWindowPosition( mw, this, args );
 	} );
+	// #endregion
+
 	/**
 	 * メッセージウィンドウの設定
 	 * @param {Window_Message} mw 対象のメッセージウィンドウ
@@ -340,7 +363,7 @@
 	 */
 	function setWindowPosition( mw, interpreter, args ) {
 		const pos = args.pos;
-		if( pos === COMMAND_POSITION ) return;
+		if( pos === COMMAND_ALIGN ) return;
 
 		$gameMessage.setPositionType( POSITION_FREE );
 		setFreeWindowPosition( interpreter, args.continuousPos );
@@ -417,6 +440,8 @@
 		return result;
 	};
 
+
+	// #region Window
 	/*--- Window ---*/
 	const _Window_initialize = Window.prototype.initialize;
 	Window.prototype.initialize = function() {
@@ -566,8 +591,10 @@
 		mw._width = messageView.width;
 		mw._height = mw.lineHeight() * messageLines + mw._padding * 2;
 	}
+	// #endregion
 
 
+	// #region Window_Base
 	/*--- Window_Base ---*/
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
 	Window_Base.prototype.textPadding = function() {
@@ -581,14 +608,17 @@
 			_Window_Base_updatePadding.call( this );
 		}
 	};
+	// #endregion
 
+
+	// #region Window_Message
 	/*--- Window_Message ---*/
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
 		this.TF_windowType = WINDOW_TYPE_TALK;
 
 		_Window_Message_initialize.apply( this, arguments );
-		this.TF_faceAlign = POSITION_LEFT;
+		this.TF_faceAlign = ALIGN_LEFT;
 	};
 
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
@@ -666,7 +696,7 @@
 		const faceExists = $gameMessage.faceName() !== "";
 
 		// 顔が左内側の場合、文章開始位置を顔の分だけ右にずらす
-		if( faceExists && this.TF_faceAlign === POSITION_LEFT ) {
+		if( faceExists && this.TF_faceAlign === ALIGN_LEFT ) {
 			return ImageManager.faceWidth + this.textPadding() * 2;
 		}
 		return this.textPadding();
@@ -751,6 +781,7 @@
 		ctx.fillRect( -tailLength, -tailLength, w + tailLength * 2, h + tailLength * 2 );
 		ctx.globalCompositeOperation = "source-over";// デフォルト状態に戻す
 	};
+	// #endregion
 
 	/**
 	 * フキダシを描く準備
@@ -1098,11 +1129,11 @@
 		// 位置指定が前後しても問題ないよう、現在位置ではなく定義位置を取る
 		getPositionX( mw ) {
 			switch( mw.TF_faceAlign ) {
-				case POSITION_BEYONDLEFT: return mw.x - mw.padding - IMG_MARGIN - ImageManager.faceWidth;
-				case POSITION_LEFT: return mw.x + mw.padding + IMG_MARGIN;
-				case POSITION_RIGHT: return mw.x + mw.width - mw.padding
+				case ALIGN_BEYONDLEFT: return mw.x - mw.padding - IMG_MARGIN - ImageManager.faceWidth;
+				case ALIGN_LEFT: return mw.x + mw.padding + IMG_MARGIN;
+				case ALIGN_RIGHT: return mw.x + mw.width - mw.padding
 					- IMG_MARGIN - ImageManager.faceWidth;
-				case POSITION_BEYONDRIGHT: return mw.x + mw.width + mw.padding + IMG_MARGIN;
+				case ALIGN_BEYONDRIGHT: return mw.x + mw.width + mw.padding + IMG_MARGIN;
 				default: return;
 			}
 		}
