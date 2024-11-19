@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.1.0.1
+// Version :1.1.0.2
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -168,6 +168,56 @@
  * @type boolean @default true
  * @on 継続(規定値) @off 単体
  * 
+ * @================================================
+ * @command setSpeachBalloonToEvent @text イベントフキダシの準備
+ * @desc [文章の表示]コマンドの前に実行すること。
+ * 一回表示されるとウィンドウタイプは規定値に戻る。
+ *
+ * @arg windowType @text ウィンドウタイプ
+ * @desc プラグインパラメータで設定した番号か名前
+ * あらかじめ UI, talk, thought, shout がある
+ * @type combo @default talk
+ * @option UI @option talk @option thought @option shout
+ *
+ * @arg pointerAlign @text シッポ位置
+ * @desc autoは[文章の表示]の指定と[顔位置]指定から決定されます
+ * 規定値:auto
+ * @type select @default auto
+ * @option 上の左側 @value NW
+ * @option 上の中央 @value NC
+ * @option 上の右側 @value NE
+ * @option 下の左側 @value SW
+ * @option 下の中央 @value SC
+ * @option 下の右側 @value SE
+ * @option 左の上側 @value WN
+ * @option 左の中央 @value WC
+ * @option 左の下側 @value WS
+ * @option 右の上側 @value EN
+ * @option 右の中央 @value EC
+ * @option 右の下側 @value ES
+ * 
+ * @arg faceAlign @text 顔位置
+ * @desc 
+ * 規定値:left
+ * @type select @default left
+ * @option 左外 @value beyondLeft
+ * @option 左 @value left
+ * @option 右 @value right
+ * @option 右外 @value beyondRight
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
+ *
+ * @arg continuousPos @text 表示位置継続
+ * @desc [ウィンドウ位置]で指定した座標を
+ * 継続した[文章の表示]に適用する。
+ * @type boolean @default true
+ * @on 継続(規定値) @off 単体
+ * 
  * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help
  * ウィンドウをPNG画像を使わずに描画する。
@@ -318,6 +368,7 @@
 	 */
 	const COM_SET_WINDOW = "setWindow";
 	const COM_SET_SPEACHBALLOON = "setSpeachBalloon";
+	const COM_SET_SPEACHBALLOON2EVENT = "setSpeachBalloonToEvent";
 
 	const PLUGIN_PARAM = 657;// プラグインコマンドのエディタでの引数の表示用
 	const SHOW_TEXT = 101;// 文章の表示…
@@ -329,7 +380,7 @@
 		if( !mw ) return;
 		mw.TF_pointerAlign = POINTER_NONE;
 		setWindowType( mw, args );
-		setWindowPosition( mw, this, args );
+		setWindowAreaToCommand( this, args.pos, args.continuousPos );
 	} );
 
 	//  [フキダシウィンドウの準備]
@@ -338,10 +389,20 @@
 		if( !mw ) return;
 		mw.TF_pointerAlign = args.pointerAlign;
 		setWindowType( mw, args );
-		setWindowPosition( mw, this, args );
+		setWindowAreaToCommand( this, args.pos, args.continuousPos );
+	} );
+
+	//  [イベントフキダシウィンドウの準備]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_SPEACHBALLOON2EVENT, function( args ) {
+		const mw = Graphics.app.stage._messageWindow;
+		if( !mw ) return;
+		mw.TF_pointerAlign = args.pointerAlign;
+		setWindowType( mw, args );
+		setWindowAreaToCommand( this, args.pos, args.continuousPos );
 	} );
 	// #endregion
 
+	// #region window command
 	/**
 	 * メッセージウィンドウの設定
 	 * @param {Window_Message} mw 対象のメッセージウィンドウ
@@ -354,27 +415,42 @@
 		mw.TF_windowType = windowType;
 		mw.TF_faceAlign = args.faceAlign;
 	}
+
+	/**
+	 * メッセージウィンドウの位置をコマンドに設定
+	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
+	 * @param {String} posText ウィンドウの位置・大きさの文字列
+	 * @param {Boolean} continuousPos 表示位置継続か
+	 */
+	function setWindowAreaToCommand( interpreter, posText, continuousPos ) {
+		if( posText === COMMAND_ALIGN ) return;
+
+		$gameMessage.setPositionType( POSITION_FREE );
+		setFreeWindowPosition( interpreter, continuousPos );
+		const mw = Graphics.app.stage._messageWindow;
+		if( isPointString( posText ) ) {
+			setWindowPosition( stringToPoint( mw, posText ) );
+		} else {
+			setWindowReactangle( stringToRectangle( mw, posText ) );
+		}
+	}
+
 	/**
 	 * メッセージウィンドウの位置を設定
 	 * @param {Window_Message} mw 対象のメッセージウィンドウ
-	 * @param {Game_Interpreter} interpreter コマンドインタプリタ
-	 * @param {Array} args プラグインコマンドのパラメータリスト
-	 * @returns 
+	 * @param {Point} point ウィンドウの位置
 	 */
-	function setWindowPosition( mw, interpreter, args ) {
-		const pos = args.pos;
-		if( pos === COMMAND_ALIGN ) return;
-
-		$gameMessage.setPositionType( POSITION_FREE );
-		setFreeWindowPosition( interpreter, args.continuousPos );
-		if( isPointString( pos ) ) {
-			const point = stringToPoint( pos );
-			[ mw.x, mw.y ] = [ point.x, point.y ];
-		} else {
-			const rect = stringToRectangle( pos );
-			// _width、_height に代入するのは、_refreshAllParts を発生させないため
-			[ mw.x, mw.y, mw._width, mw._height ] = [ rect.x, rect.y, rect.width, rect.height ];
-		}
+	function setWindowPosition( mw, point ) {
+		[ mw.x, mw.y ] = [ point.x, point.y ];
+	}
+	/**
+	 * メッセージウィンドウの矩形を設定
+	 * @param {Window_Message} mw 対象のメッセージウィンドウ
+	 * @param {Rectangle} rectangle ウィンドウの位置・大きさ
+	 */
+	function setWindowReactangle( mw, rectangle ) {
+		// _width、_height に代入するのは、_refreshAllParts を発生させないため
+		[ mw.x, mw.y, mw._width, mw._height ] = [ rectangle.x, rectangle.y, rectangle.width, rectangle.height ];
 	}
 
 	/**
@@ -413,7 +489,6 @@
 		return index;
 	};
 
-
 	/**
 	 * ウィンドウタイプ番号を返す
 	 * @param {String|Number} windowType ウィンドウタイプの番号か名前の文字列
@@ -428,7 +503,10 @@
 			return ERROR_NUMBER;
 		}
 	};
+	// #endregion
 
+
+	// #region Game_Interpreter
 	/*--- Game_Interpreter ---*/
 	const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
 	Game_Interpreter.prototype.command101 = function( params ) {
@@ -439,6 +517,7 @@
 		}
 		return result;
 	};
+	// #endregion
 
 
 	// #region Window
@@ -515,6 +594,10 @@
 
 		drawWindowFrame( this );
 	};
+	// #endregion
+
+
+	// #region Window method
 	/**
 	 * ウィンドウ枠描画
 	 * @param {Window} tw 対象ウィンドウ
@@ -620,7 +703,10 @@
 		_Window_Message_initialize.apply( this, arguments );
 		this.TF_faceAlign = ALIGN_LEFT;
 	};
-
+	/**
+	 * メッセージウィンドウの位置の自動設定
+	 * _positionType　0:上、1:中、2:下、20:自由位置
+	 */
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
 	Window_Message.prototype.updatePlacement = function() {
 		this._positionType = $gameMessage.positionType();
@@ -814,6 +900,9 @@
 	const DIRECTION_EC = "EC";// 右の中央
 	const DIRECTION_ES = "ES";// 右の下側
 	const POINTER_NONE = "none";// シッポなし
+
+	const TAIL_MARGIN_X = 100;// X尻尾マージン
+	const TAIL_MARGIN_Y = 50;// Y尻尾マージン
 	/**
 	 * シッポの移動と回転用の行列を返す
 	 * @param {Window_Message} mw 対象となるメッセージウィンドウ
@@ -824,7 +913,7 @@
 
 		switch( mw.TF_pointerAlign ) {
 			case DIRECTION_NW:
-				x = 100;
+				x = TAIL_MARGIN_X;
 				y = tailWidth + mw._margin;
 				a = -50;
 				break;
@@ -834,12 +923,12 @@
 				a = 0;
 				break;
 			case DIRECTION_NE:
-				x = mw.width - 100;
+				x = mw.width - TAIL_MARGIN_X;
 				y = tailWidth + mw._margin;
 				a = 50;
 				break;
 			case DIRECTION_SW:
-				x = 100;
+				x = TAIL_MARGIN_X;
 				y = mw.height - tailWidth - mw._margin;
 				a = -130;
 				break;
@@ -849,13 +938,13 @@
 				a = 180;
 				break;
 			case DIRECTION_SE:
-				x = mw.width - 100;
+				x = mw.width - TAIL_MARGIN_X;
 				y = mw.height - tailWidth - mw._margin;
 				a = 130;
 				break;
 			case DIRECTION_WN:
 				x = tailWidth + mw._margin;
-				y = 50;
+				y = TAIL_MARGIN_Y;
 				a = -40;
 				break;
 			case DIRECTION_WC:
@@ -865,12 +954,12 @@
 				break;
 			case DIRECTION_WS:
 				x = tailWidth + mw._margin;
-				y = mw.height - 50;
+				y = mw.height - TAIL_MARGIN_Y;
 				a = -140;
 				break;
 			case DIRECTION_EN:
 				x = mw.width - tailWidth - mw._margin;
-				y = 50;
+				y = TAIL_MARGIN_Y;
 				a = 40;
 				break;
 			case DIRECTION_EC:
@@ -880,7 +969,7 @@
 				break;
 			case DIRECTION_ES:
 				x = mw.width - tailWidth - mw._margin;
-				y = mw.height - 50;
+				y = mw.height - TAIL_MARGIN_Y;
 				a = 140;
 				break;
 			case undefined:
@@ -912,6 +1001,7 @@
 		}
 	}
 
+	// #region drawing method
 	/*--- 図形パス描画関数 ---*/
 	/**
 	 * 角丸の矩形を描く
@@ -1025,13 +1115,16 @@
 		path.closePath();
 		return path;
 	}
+	// #endregion
 
+	// #region Window_Selectable
 	/*--- Window_Selectable ---*/
 	Window_Selectable.prototype.itemHeight = () => Math.ceil( $dataSystem.advanced.fontSize * itemHeightRatio );
-
+	// #endregion
 
 
 	/*-------------------- 顔表示関連 -----------------------*/
+	// #region Window_NameBox
 	/*--- Window_NameBox ---*/
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
@@ -1094,7 +1187,9 @@
 	function getNameHeight() {
 		return Math.ceil( nameFontSize * lineHeightRatio );
 	}
+	// #endregion
 
+	// #region Scene_Message
 	/*--- Scene_Message ---*/
 	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
@@ -1104,7 +1199,9 @@
 		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 1, 1 ) );
 		this.addWindow( this.TF_facePicture );
 	};
+	// #endregion
 
+	// #region Sprite_FacePicture
 	/*--- Sprite_FacePicture ---*/
 	// 顔画像ピクチャ
 	const IMG_MARGIN = 4;	// TODO:プラグインの設定で変えられるようにする
@@ -1153,8 +1250,9 @@
 			this.visible = true;
 		}
 	}
+	// #endregion
 
-
+	// #region utility method
 	/*--- ユーティリティ関数 ---*/
 	/**
 	 * 配列からCSS color文字列を返す
@@ -1237,5 +1335,5 @@
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 6;
 	}
-
+	// #endregion
 } )();
