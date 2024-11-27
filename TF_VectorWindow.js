@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.2.1.0
+// Version :1.3.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -85,6 +85,12 @@
  * @desc フキダシのシッポの幅(ピクセル数)
  * 規定値:20
  * @type string @default 20
+ * 
+ * @================================================
+ * @param defaultEventHeight @text イベント画像の高さ
+ * @desc フキダシを上に表示する際の頭位置(ピクセル数)
+ * 規定値:48
+ * @type string @default 48
  *
  * 
  * @================== command =====================
@@ -292,6 +298,8 @@
 	// エラー表示用にプラグイン名を取得
 	const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
 
+	const TF_EVENTHEIGHT = "TF_EVENTHEIGHT";// イベント高さ設定タグ名
+
 	// ウィンドウ描画関連
 	const ERROR_NUMBER = -1;
 	const WINDOW_TYPE_DEFAULT = 0; // UIタイプの規定値
@@ -341,6 +349,8 @@
 	// フキダシ(メッセージ)ウィンドウ設定
 	const pointerLength = pluginParams.pointerLength;// シッポの長さ
 	const pointerWidth = Math.floor( pluginParams.pointerWidth / 2 );// シッポの幅(半分)
+	const defaultEventHeight = pluginParams.defaultEventHeight;// イベント画像のデフォルト高さ
+	//48;
 
 	// 名前表示設定
 	const nameFontSize = pluginParams.nameFontSize;
@@ -777,7 +787,7 @@
 		const textSize = this.textSizeEx( $gameMessage.allText() );
 		const messageWidth = textSize.width + ( this._margin + this._padding ) * 2 + 16;// TODO:16 は適当な調整用数値なので、きちんと計算して出してね(未来の僕)
 		const messageHeight = textSize.height + ( this._margin + this._padding ) * 2;
-		const characterHeight = 128;// TODO:メタタグで身長を設定する予定
+		const eventHeight = defaultEventHeight + 48;
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -790,24 +800,25 @@
 			case DIRECTION_SW:
 			case DIRECTION_SC:
 			case DIRECTION_SE:
-				y -= messageHeight + characterHeight;
+				y -= messageHeight + eventHeight + pointerLength;
 				break;
 		}
 
 		switch( $gameMessage.TF_pointerAlign ) {
 			case DIRECTION_NW:
 			case DIRECTION_SW:
-				x += Math.ceil( messageWidth / 2 );
 				break;
 			case DIRECTION_NE:
 			case DIRECTION_SE:
-				x -= Math.ceil( messageWidth / 2 );
+				x -= messageWidth;
 				break;
 			default:
+				// 中央
+				x -= Math.ceil( messageWidth / 2 );
 				break;
 		}
 
-		this.x = x - Math.ceil( messageWidth / 2 );
+		this.x = x;
 		this.y = y;
 		this.width = messageWidth;
 		this.height = messageHeight;
@@ -1532,6 +1543,33 @@
 	 */
 	function stringToEvent( eventId ) {
 		return getEventById( stringToEventId( eventId ) );
+	}
+
+	/**
+ * 指定キャラの高さ。
+ * @param {Game_Character} character 指定キャラクタオブジェクト
+ * @returns {Number} 指定キャラの高さ
+ */
+	function getEventHeight( character ) {
+		const jsonData = getCharacterJson( character );
+		if( !jsonData ) return false;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
+		return ( eventHeight === undefined ) ? defaultEventHeight : eventHeight;
+	}
+
+
+	/**
+	 * 指定キャラに対応するJSONデータを返す。
+	 * @param {Game_Character} character 指定キャラクタオブジェクト
+	 * @returns {RPG.MetaData} JSONデータ(なければundefined)
+	 */
+	function getCharacterJson( character ) {
+		if( character instanceof Game_Event ) return character.event();
+		if( character instanceof Game_Player ) return $gameParty.leader().actor();
+		if( character instanceof Game_Follower ) {
+			const actor = character.actor();
+			if( actor ) return actor.actor();
+		}
 	}
 	// #endregion
 } )();
