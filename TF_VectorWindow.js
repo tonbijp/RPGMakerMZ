@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.1.0.2
+// Version :1.2.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -75,13 +75,13 @@
  * @type string @default 4,4,808,616
  *
  * @================================================
- * @param tailLength @text シッポの長さ
+ * @param pointerLength @text シッポの長さ
  * @desc フキダシのシッポの長さ(ピクセル数)
  * 規定値:36
  * @type string @default 36
  * 
  * @================================================
- * @param tailWidth @text シッポの幅
+ * @param pointerWidth @text シッポの幅
  * @desc フキダシのシッポの幅(ピクセル数)
  * 規定値:20
  * @type string @default 20
@@ -134,6 +134,7 @@
  * @desc autoは[文章の表示]の指定と[顔位置]指定から決定されます
  * 規定値:auto
  * @type select @default auto
+ * @option 自動配置 @value auto
  * @option 上の左側 @value NW
  * @option 上の中央 @value NC
  * @option 上の右側 @value NE
@@ -173,6 +174,13 @@
  * @desc [文章の表示]コマンドの前に実行すること。
  * 一回表示されるとウィンドウタイプは規定値に戻る。
  *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
+ *
  * @arg windowType @text ウィンドウタイプ
  * @desc プラグインパラメータで設定した番号か名前
  * あらかじめ UI, talk, thought, shout がある
@@ -183,6 +191,7 @@
  * @desc autoは[文章の表示]の指定と[顔位置]指定から決定されます
  * 規定値:auto
  * @type select @default auto
+ * @option 自動配置 @value auto
  * @option 上の左側 @value NW
  * @option 上の中央 @value NC
  * @option 上の右側 @value NE
@@ -204,13 +213,6 @@
  * @option 左 @value left
  * @option 右 @value right
  * @option 右外 @value beyondRight
- *
- * @arg eventId @text イベントID
- * @desc
- * イベントID(数値)かイベントの名前
- * @type combo @default this
- * @option this @option player @option follower0 @option follower1 @option follower2
- * @option boat @option ship @option airship
  *
  * @arg continuousPos @text 表示位置継続
  * @desc [ウィンドウ位置]で指定した座標を
@@ -308,7 +310,6 @@
 	const ALIGN_MIDDLE = 1;
 	const ALIGN_DOWN = 2;
 	const POSITION_FREE = 20;	// 座標指定
-	const AUTO_POSITION = "auto"; // 自動配置
 	const COMMAND_ALIGN = "command";	// [文章の表示]-[ウィンドウ位置]
 
 	// 顔位置
@@ -320,6 +321,10 @@
 	const ALIGN_RIGHT = "right";
 	const ALIGN_BEYONDRIGHT = "beyondRight";
 
+	const PARAM_TRUE = "true";
+	const PARAM_FALSE = "false";
+	const PARAM_ON = "on";
+	const TYPE_BOOLEAN = "boolean";
 	const TYPE_NUMBER = "number";
 	const TYPE_STRING = "string";
 
@@ -334,8 +339,8 @@
 	const messageLines = pluginParams.messageLines;
 
 	// フキダシ(メッセージ)ウィンドウ設定
-	const tailLength = pluginParams.tailLength;// シッポの長さ
-	const tailWidth = Math.floor( pluginParams.tailWidth / 2 );// シッポの幅(半分)
+	const pointerLength = pluginParams.pointerLength;// シッポの長さ
+	const pointerWidth = Math.floor( pluginParams.pointerWidth / 2 );// シッポの幅(半分)
 
 	// 名前表示設定
 	const nameFontSize = pluginParams.nameFontSize;
@@ -376,44 +381,48 @@
 
 	//  [メッセージウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_WINDOW, function( args ) {
-		const mw = Graphics.app.stage._messageWindow;
-		if( !mw ) return;
-		mw.TF_pointerAlign = POINTER_NONE;
-		setWindowType( mw, args );
+		$gameMessage.TF_pointerAlign = POINTER_NONE;
+		setWindowType( args );
 		setWindowAreaToCommand( this, args.pos, args.continuousPos );
 	} );
 
 	//  [フキダシウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_SPEACHBALLOON, function( args ) {
-		const mw = Graphics.app.stage._messageWindow;
-		if( !mw ) return;
-		mw.TF_pointerAlign = args.pointerAlign;
-		setWindowType( mw, args );
+
+		$gameMessage.TF_pointerAlign = args.pointerAlign;
+		setWindowType( args );
 		setWindowAreaToCommand( this, args.pos, args.continuousPos );
 	} );
 
 	//  [イベントフキダシウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_SPEACHBALLOON2EVENT, function( args ) {
-		const mw = Graphics.app.stage._messageWindow;
-		if( !mw ) return;
-		mw.TF_pointerAlign = args.pointerAlign;
-		setWindowType( mw, args );
-		setWindowAreaToCommand( this, args.pos, args.continuousPos );
+		setWindowType( args );
+		$gameMessage.setPositionType( POSITION_FREE );
+		setFreeWindowPosition( this, args.continuousPos );
+		// [文章の表示]の際に参照できるように、メッセージウィンドウを設定
+		$gameMessage.TF_pointerAlign = args.pointerAlign;
+
+		const id = stringToEventId( args.eventId );
+		if( id === 0 ) {
+			// [このイベント]が指定されていた場合
+			$gameMessage.TF_targetEventId = this._eventId;
+		} else {
+			$gameMessage.TF_targetEventId = id;
+		}
 	} );
 	// #endregion
 
 	// #region window command
 	/**
 	 * メッセージウィンドウの設定
-	 * @param {Window_Message} mw 対象のメッセージウィンドウ
 	 * @param {Array} args プラグインコマンドのパラメータリスト
 	 */
-	function setWindowType( mw, args ) {
+	function setWindowType( args ) {
 		const windowType = getWindowType( args.windowType );
 		if( windowType === ERROR_NUMBER ) throw `"${args.windowType}" is wrong window type.`;
 
-		mw.TF_windowType = windowType;
-		mw.TF_faceAlign = args.faceAlign;
+		$gameMessage.TF_windowType = windowType;
+		$gameMessage.TF_faceAlign = args.faceAlign;
 	}
 
 	/**
@@ -427,28 +436,27 @@
 
 		$gameMessage.setPositionType( POSITION_FREE );
 		setFreeWindowPosition( interpreter, continuousPos );
-		const mw = Graphics.app.stage._messageWindow;
 		if( isPointString( posText ) ) {
-			setWindowPosition( stringToPoint( mw, posText ) );
+			setWindowPosition( stringToPoint( posText ) );
 		} else {
-			setWindowReactangle( stringToRectangle( mw, posText ) );
+			setWindowReactangle( stringToRectangle( posText ) );
 		}
 	}
 
 	/**
 	 * メッセージウィンドウの位置を設定
-	 * @param {Window_Message} mw 対象のメッセージウィンドウ
 	 * @param {Point} point ウィンドウの位置
 	 */
-	function setWindowPosition( mw, point ) {
+	function setWindowPosition( point ) {
+		const mw = Graphics.app.stage._messageWindow;
 		[ mw.x, mw.y ] = [ point.x, point.y ];
 	}
 	/**
 	 * メッセージウィンドウの矩形を設定
-	 * @param {Window_Message} mw 対象のメッセージウィンドウ
 	 * @param {Rectangle} rectangle ウィンドウの位置・大きさ
 	 */
-	function setWindowReactangle( mw, rectangle ) {
+	function setWindowReactangle( rectangle ) {
+		const mw = Graphics.app.stage._messageWindow;
 		// _width、_height に代入するのは、_refreshAllParts を発生させないため
 		[ mw.x, mw.y, mw._width, mw._height ] = [ rectangle.x, rectangle.y, rectangle.width, rectangle.height ];
 	}
@@ -506,22 +514,43 @@
 	// #endregion
 
 
-	// #region Game_Interpreter
-	/*--- Game_Interpreter ---*/
-	const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
-	Game_Interpreter.prototype.command101 = function( params ) {
-		const result = _Game_Interpreter_command101.apply( this, arguments );
+	// #region Game_Screen
+	/**
+	 * 画面座標をズームを考慮した座標に変換します。
+	 * @param {Number} x 画面座標
+	 * @returns {Number} ズームを考慮したxf座標
+	 */
+	Game_Screen.prototype.convertRealX = function( x ) {
+		const scale = this.zoomScale();
+		return scale * x - ( scale - 1.0 ) * this.zoomX();
+	};
 
-		if( $gameMessage.positionType() !== POSITION_FREE ) {
-			setMessageParam( Graphics.app.stage._messageWindow );
-		}
-		return result;
+	/**
+	 * 画面座標をズームを考慮した座標に変換します。
+	 * @param {Number} y 画面座標
+	 * @returns {Number} ズームを考慮したy座標
+	 */
+	Game_Screen.prototype.convertRealY = function( y ) {
+		const scale = this.zoomScale();
+		return scale * y - ( scale - 1.0 ) * this.zoomY();
 	};
 	// #endregion
 
 
+	// #region Game_Interpreter
+	/**
+	 * [文章の表示]イベントコマンドの実行時に設定しておく
+	 * $gameMessage を使うべき？
+	 */
+	// const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
+	// Game_Interpreter.prototype.command101 = function( params ) {
+	// 	const result = _Game_Interpreter_command101.apply( this, arguments );
+
+	// };
+	// #endregion
+
+
 	// #region Window
-	/*--- Window ---*/
 	const _Window_initialize = Window.prototype.initialize;
 	Window.prototype.initialize = function() {
 		_Window_initialize.call( this );
@@ -666,19 +695,10 @@
 		tw._margin = preset.margin;
 		tw._clientArea.move( p, p );
 	}
-	/**
-	 * メッセージウィンドウの数値設定
-	 * @param {Window_Message} mw 対象ウィンドウ
-	 */
-	function setMessageParam( mw ) {
-		mw._width = messageView.width;
-		mw._height = mw.lineHeight() * messageLines + mw._padding * 2;
-	}
 	// #endregion
 
 
 	// #region Window_Base
-	/*--- Window_Base ---*/
 	Window_Base.prototype.lineHeight = () => Math.ceil( $dataSystem.advanced.fontSize * lineHeightRatio );
 	Window_Base.prototype.textPadding = function() {
 		return Math.ceil( this.lineHeight() - $dataSystem.advanced.fontSize ) + 0.5;
@@ -695,24 +715,128 @@
 
 
 	// #region Window_Message
-	/*--- Window_Message ---*/
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
 		this.TF_windowType = WINDOW_TYPE_TALK;
 
 		_Window_Message_initialize.apply( this, arguments );
-		this.TF_faceAlign = ALIGN_LEFT;
+		$gameMessage.TF_faceAlign = ALIGN_LEFT;
 	};
+
+
+	const _Window_Message_startMessage = Window_Message.prototype.startMessage;
+	Window_Message.prototype.startMessage = function() {
+		if( $gameMessage.TF_targetEventId ) {
+			// イベントの情報をあらかじめ、取り出しておく
+			this.TF_targetEvent = getEventById( $gameMessage.TF_targetEventId );
+			this.TF_eventX = $gameScreen.convertRealX( this.TF_targetEvent.screenX() );
+			this.TF_eventY = $gameScreen.convertRealY( this.TF_targetEvent.screenY() );
+			if( $gameMessage.TF_pointerAlign === DIRECTION_AUTO ) {
+				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
+			}
+		}
+
+		_Window_Message_startMessage.apply( this, arguments );
+
+		if( $gameMessage.TF_targetEventId ) {
+			this.TF_resetLayoutByEvent();
+			this._nameBoxWindow.updatePlacement();//start();
+		} else if( $gameMessage.positionType() !== POSITION_FREE ) {
+			// メッセージ表示位置を設定
+			this.TF_setMessageParam();
+		}
+	};
+
 	/**
-	 * メッセージウィンドウの位置の自動設定
-	 * _positionType　0:上、1:中、2:下、20:自由位置
+	 * 自動配置の場合、フキダシのトゲの向きを自動設定する
+	 */
+	Window_Message.prototype.TF_getAutoPointerDirection = function() {
+		const sw = $dataSystem.advanced.screenWidth;
+		const sh = $dataSystem.advanced.screenHeight;
+		const flagW = ( this.TF_eventX < sw * 0.2 );
+		const flagE = ( sw * 0.8 < this.TF_eventX );
+		if( this.TF_eventY < sh * 0.2 ) {
+			if( flagW ) return DIRECTION_NW;
+			if( flagE ) return DIRECTION_NE;
+			return DIRECTION_NC;
+		} else {
+			if( flagW ) return DIRECTION_SW;
+			if( flagE ) return DIRECTION_SE;
+			return DIRECTION_SC;
+		}
+	};
+
+	/**
+	 * メッセージウィンドウの数値設定
+	 */
+	Window_Message.prototype.TF_setMessageParam = function() {
+		this.TF_windowType = $gameMessage.TF_windowType;
+		this.width = messageView.width;
+		this.height = this.lineHeight() * messageLines + this._padding * 2;
+	};
+
+	/**
+	 * イベントとメッセージに合わせてフキダシの位置・大きさを決める
+	 */
+	Window_Message.prototype.TF_resetLayoutByEvent = function() {
+		const textSize = this.textSizeEx( $gameMessage.allText() );
+		const messageWidth = textSize.width + ( this._margin + this._padding ) * 2 + 16;// TODO:16 は適当な調整用数値なので、きちんと計算して出してね(未来の僕)
+		const messageHeight = textSize.height + ( this._margin + this._padding ) * 2;
+		const characterHeight = 128;// TODO:メタタグで身長を設定する予定
+
+		let x = this.TF_eventX;
+		let y = this.TF_eventY;
+		switch( $gameMessage.TF_pointerAlign ) {
+			case DIRECTION_NW:
+			case DIRECTION_NC:
+			case DIRECTION_NE:
+				y += pointerLength;
+				break;
+			case DIRECTION_SW:
+			case DIRECTION_SC:
+			case DIRECTION_SE:
+				y -= messageHeight + characterHeight;
+				break;
+		}
+
+		switch( $gameMessage.TF_pointerAlign ) {
+			case DIRECTION_NW:
+			case DIRECTION_SW:
+				x += Math.ceil( messageWidth / 2 );
+				break;
+			case DIRECTION_NE:
+			case DIRECTION_SE:
+				x -= Math.ceil( messageWidth / 2 );
+				break;
+			default:
+				break;
+		}
+
+		this.x = x - Math.ceil( messageWidth / 2 );
+		this.y = y;
+		this.width = messageWidth;
+		this.height = messageHeight;
+		$gameMessage.TF_targetEventId = null;
+	};
+
+	/**
+	 * メッセージウィンドウの位置設定
 	 */
 	const _Window_Message_updatePlacement = Window_Message.prototype.updatePlacement;
 	Window_Message.prototype.updatePlacement = function() {
+		// _Window_Message_updatePlacement.call(this);
+
 		this._positionType = $gameMessage.positionType();
 		if( this._positionType !== POSITION_FREE ) {
 			this.x = messageView.x;
-			this.y = messageView.y + ( this._positionType * ( messageView.height - this.height ) ) / 2;
+			switch( this._positionType ) {
+				case ALIGN_UP:
+					this.y = messageView.y; break;
+				case ALIGN_MIDDLE:
+					this.y = messageView.y + Math.ceil( ( messageView.height - this.height ) / 2 ); break;
+				case ALIGN_DOWN:
+					this.y = messageView.y + ( messageView.height - this.height ); break;
+			}
 		}
 
 		const goldWindow = this._goldWindow;
@@ -732,12 +856,13 @@
 		return textHeight;
 	};
 
+
 	// $gameMessage.positionType() で上下位置は決まる
 	Window_Message.prototype.numVisibleRows = () => messageLines;
+	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeightRatio );
 	Window_Message.prototype.textPadding = function() {
 		return this.lineHeight() - messageFontSize;
 	};
-	Window_Message.prototype.lineHeight = () => Math.ceil( messageFontSize * lineHeightRatio );
 
 	Window_Message.prototype.resetFontSettings = function() {
 		Window_Base.prototype.resetFontSettings.call( this );
@@ -752,7 +877,7 @@
 		facePicture.drawFace( this._faceBitmap, $gameMessage.faceIndex() );
 	};
 
-	// 閉じるときに顔を非表示に
+	// TODO: ここで顔画像を閉じているがチラつくので対処したい
 	const _Window_Message_newPage = Window_Message.prototype.newPage;
 	Window_Message.prototype.newPage = function() {
 		_Window_Message_newPage.apply( this, arguments );
@@ -760,6 +885,8 @@
 		setWindowParam( this );
 		this._refreshAllParts();
 	};
+
+	// 閉じるときに顔を非表示に
 	const _Window_Message_close = Window_Message.prototype.close;
 	Window_Message.prototype.close = function() {
 		_Window_Message_close.call( this );
@@ -773,6 +900,7 @@
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
 		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
+		// TODO: シッポの位置なども規定値に戻す
 	};
 
 	// TODO:顔位置の細かい座標はプロパティで指定可能にする
@@ -782,7 +910,7 @@
 		const faceExists = $gameMessage.faceName() !== "";
 
 		// 顔が左内側の場合、文章開始位置を顔の分だけ右にずらす
-		if( faceExists && this.TF_faceAlign === ALIGN_LEFT ) {
+		if( faceExists && $gameMessage.TF_faceAlign === ALIGN_LEFT ) {
 			return ImageManager.faceWidth + this.textPadding() * 2;
 		}
 		return this.textPadding();
@@ -794,7 +922,7 @@
 	const _Window_Message__refreshFrame = Window_Message.prototype._refreshFrame;
 	Window_Message.prototype._refreshFrame = function() {
 		// フキダシ表示でない場合はメッセージを送る
-		if( !this.TF_pointerAlign || this.TF_pointerAlign === POINTER_NONE ) {
+		if( !$gameMessage.TF_pointerAlign || $gameMessage.TF_pointerAlign === POINTER_NONE ) {
 			this._frameSprite.move( 0, 0 );
 			return _Window_Message__refreshFrame.call( this );
 		}
@@ -803,7 +931,7 @@
 		const w = this.width;
 		const h = this.height;
 
-		setupBitmap( this._frameSprite, w + tailLength * 2, h + tailLength * 2 );
+		setupBitmap( this._frameSprite, w + pointerLength * 2, h + pointerLength * 2 );
 		this._frameSprite.setFrame( 0, 0, w, h );
 
 
@@ -838,7 +966,7 @@
 	const _Window_Message__refreshBack = Window_Message.prototype._refreshBack;
 	Window_Message.prototype._refreshBack = function() {
 		// フキダシ表示でない場合はメッセージを送る
-		if( !this.TF_pointerAlign || this.TF_pointerAlign === POINTER_NONE ) {
+		if( !$gameMessage.TF_pointerAlign || $gameMessage.TF_pointerAlign === POINTER_NONE ) {
 			this._backSprite.move( 0, 0 );
 			return _Window_Message__refreshBack.call( this );
 		}
@@ -864,7 +992,7 @@
 
 		// フキダシの描画
 		setFillColor( ctx, this );
-		ctx.fillRect( -tailLength, -tailLength, w + tailLength * 2, h + tailLength * 2 );
+		ctx.fillRect( -pointerLength, -pointerLength, w + pointerLength * 2, h + pointerLength * 2 );
 		ctx.globalCompositeOperation = "source-over";// デフォルト状態に戻す
 	};
 	// #endregion
@@ -878,15 +1006,16 @@
 	 */
 	function prepareDrawBalloon( sprite, w, h ) {
 		// シッポの分、広く画像を描く
-		setupBitmap( sprite, w + tailLength * 2, h + tailLength * 2 );
-		sprite.move( -tailLength, -tailLength );
+		setupBitmap( sprite, w + pointerLength * 2, h + pointerLength * 2 );
+		sprite.move( -pointerLength, -pointerLength );
 
 		// 尻尾の分だけ基準点を下に移動
 		const ctx = sprite.bitmap.context;
-		ctx.translate( tailLength, tailLength );
+		ctx.translate( pointerLength, pointerLength );
 		return ctx;
 	}
 
+	const DIRECTION_AUTO = "auto";// 自動配置
 	const DIRECTION_NW = "NW";// 上の左側
 	const DIRECTION_NC = "NC";// 上の中央
 	const DIRECTION_NE = "NE";// 上の右側
@@ -911,70 +1040,70 @@
 	function getTailMatrix( mw ) {
 		let x, y, a;
 
-		switch( mw.TF_pointerAlign ) {
+		switch( $gameMessage.TF_pointerAlign ) {
 			case DIRECTION_NW:
 				x = TAIL_MARGIN_X;
-				y = tailWidth + mw._margin;
+				y = pointerWidth + mw._margin;
 				a = -50;
 				break;
 			case DIRECTION_NC:
 				x = Math.floor( mw.width / 2 );
-				y = tailWidth + mw._margin;
+				y = pointerWidth + mw._margin;
 				a = 0;
 				break;
 			case DIRECTION_NE:
 				x = mw.width - TAIL_MARGIN_X;
-				y = tailWidth + mw._margin;
+				y = pointerWidth + mw._margin;
 				a = 50;
 				break;
 			case DIRECTION_SW:
 				x = TAIL_MARGIN_X;
-				y = mw.height - tailWidth - mw._margin;
+				y = mw.height - pointerWidth - mw._margin;
 				a = -130;
 				break;
 			case DIRECTION_SC:
 				x = Math.floor( mw.width / 2 );
-				y = mw.height - tailWidth - mw._margin;
+				y = mw.height - pointerWidth - mw._margin;
 				a = 180;
 				break;
 			case DIRECTION_SE:
 				x = mw.width - TAIL_MARGIN_X;
-				y = mw.height - tailWidth - mw._margin;
+				y = mw.height - pointerWidth - mw._margin;
 				a = 130;
 				break;
 			case DIRECTION_WN:
-				x = tailWidth + mw._margin;
+				x = pointerWidth + mw._margin;
 				y = TAIL_MARGIN_Y;
 				a = -40;
 				break;
 			case DIRECTION_WC:
-				x = tailWidth + mw._margin;
+				x = pointerWidth + mw._margin;
 				y = Math.floor( mw.height / 2 );
 				a = -90;
 				break;
 			case DIRECTION_WS:
-				x = tailWidth + mw._margin;
+				x = pointerWidth + mw._margin;
 				y = mw.height - TAIL_MARGIN_Y;
 				a = -140;
 				break;
 			case DIRECTION_EN:
-				x = mw.width - tailWidth - mw._margin;
+				x = mw.width - pointerWidth - mw._margin;
 				y = TAIL_MARGIN_Y;
 				a = 40;
 				break;
 			case DIRECTION_EC:
-				x = mw.width - tailWidth - mw._margin;
+				x = mw.width - pointerWidth - mw._margin;
 				y = Math.floor( mw.height / 2 );
 				a = 90;
 				break;
 			case DIRECTION_ES:
-				x = mw.width - tailWidth - mw._margin;
+				x = mw.width - pointerWidth - mw._margin;
 				y = mw.height - TAIL_MARGIN_Y;
 				a = 140;
 				break;
 			case undefined:
 				x = Math.floor( mw.width / 2 );
-				y = mw.height - tailWidth - mw._margin;
+				y = mw.height - pointerWidth - mw._margin;
 				a = 180;
 				break;
 			default:
@@ -1108,24 +1237,22 @@
 	 */
 	function drawTriangle() {
 		const path = new Path2D();
-		path.moveTo( tailWidth, 0 );
-		path.lineTo( 0, -tailLength );
-		path.lineTo( -tailWidth, 0 );
-		path.arcTo( 0, tailWidth, tailWidth, 0, tailWidth );
+		path.moveTo( pointerWidth, 0 );
+		path.lineTo( 0, -pointerLength );
+		path.lineTo( -pointerWidth, 0 );
+		path.arcTo( 0, pointerWidth, pointerWidth, 0, pointerWidth );
 		path.closePath();
 		return path;
 	}
 	// #endregion
 
 	// #region Window_Selectable
-	/*--- Window_Selectable ---*/
 	Window_Selectable.prototype.itemHeight = () => Math.ceil( $dataSystem.advanced.fontSize * itemHeightRatio );
 	// #endregion
 
 
 	/*-------------------- 顔表示関連 -----------------------*/
 	// #region Window_NameBox
-	/*--- Window_NameBox ---*/
 	const _Window_NameBox_initialize = Window_NameBox.prototype.initialize;
 	Window_NameBox.prototype.initialize = function() {
 		_Window_NameBox_initialize.apply( this, arguments );
@@ -1190,7 +1317,6 @@
 	// #endregion
 
 	// #region Scene_Message
-	/*--- Scene_Message ---*/
 	// 顔表示スプライトを「シーンに」追加
 	const _Scene_Message_createAllWindows = Scene_Message.prototype.createAllWindows;
 	Scene_Message.prototype.createAllWindows = function() {
@@ -1202,7 +1328,6 @@
 	// #endregion
 
 	// #region Sprite_FacePicture
-	/*--- Sprite_FacePicture ---*/
 	// 顔画像ピクチャ
 	const IMG_MARGIN = 4;	// TODO:プラグインの設定で変えられるようにする
 	class Sprite_FacePicture extends Sprite {
@@ -1222,10 +1347,15 @@
 			if( nameWithFace && speakerName !== "" ) this.y -= getNameHeight();
 		}
 
-		// Window_NameBox から読めるように外に出しておく
-		// 位置指定が前後しても問題ないよう、現在位置ではなく定義位置を取る
+		/**
+		 * 顔ウィンドウの X 座標を得る
+		 * Window_NameBox から読めるように外に出しておく
+		 * 位置指定が前後しても問題ないよう、現在位置ではなく定義位置を取る
+		 * @param {Window_Message} mw 
+		 * @returns {Number} 顔ウィンドウの X 座標
+		 */
 		getPositionX( mw ) {
-			switch( mw.TF_faceAlign ) {
+			switch( $gameMessage.TF_faceAlign ) {
 				case ALIGN_BEYONDLEFT: return mw.x - mw.padding - IMG_MARGIN - ImageManager.faceWidth;
 				case ALIGN_LEFT: return mw.x + mw.padding + IMG_MARGIN;
 				case ALIGN_RIGHT: return mw.x + mw.width - mw.padding
@@ -1334,6 +1464,76 @@
 		ctx.shadowColor = 'black';
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 6;
+	}
+	// #endregion
+
+	// #region event method
+	/*--- イベントID・オブジェクト取得関数 ---*/
+	/*---- イベントIDの配置オフセット ----*/
+	const FOLLOWER_OFFSET = -2;
+	const VEHICLE_OFFSET = -100;
+
+	/*---- イベントID変換用文字列 ----*/
+	const EVENT_THIS = "this";
+	const EVENT_PLAYER = "player";
+	const EVENT_FOLLOWER0 = "follower0";
+	const EVENT_FOLLOWER1 = "follower1";
+	const EVENT_FOLLOWER2 = "follower2";
+	const EVENT_FOLLOWER_ALL = "all";
+	const VEHICLE_BOAT = "boat";
+	const VEHICLE_SHIP = "ship";
+	const VEHICLE_AIRSHIP = "airship";
+	const VEHICLE_WALK = "walk";
+
+	/**
+	 * character を拡張して隊列メンバーも指定できるようにしたもの
+	 * @param {Number} id 拡張イベントID
+	 * @returns {Game_CharacterBase}
+	 */
+	function getEventById( id ) {
+		if( id <= VEHICLE_OFFSET ) return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
+		if( id <= FOLLOWER_OFFSET ) return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
+
+		// プレイヤーキャラおよびイベント
+		if( $gameParty.inBattle() ) return null;
+		if( id === -1 ) return $gamePlayer;
+		if( id === 0 ) return "this";
+		return $gameMap.event( id );
+	}
+
+	/**
+	 * 文字列をイベントIDへ変換
+	 * @param {String} value イベントIDの番号か識別子
+	 * @returns {Number} 拡張イベントID
+	 */
+	function stringToEventId( value ) {
+		const result = parseInt( value, 10 );
+		if( !isNaN( result ) ) return result;
+
+		const lowValue = value.toLowerCase();
+		switch( lowValue ) {
+			case EVENT_THIS: return 0;
+			case EVENT_PLAYER: return -1;
+			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
+			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
+			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
+			case VEHICLE_BOAT: return VEHICLE_OFFSET;
+			case VEHICLE_SHIP: return VEHICLE_OFFSET - 1;
+			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
+		}
+
+		const e = $dataMap.events.find( e => e && e.name === value );
+		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
+		return e.id;
+	}
+
+	/**
+	 * 指定された文字列に対応するイベントを返す
+	 * @param {String} eventId イベントIDの番号か識別子
+	 * @returns {Game_CharacterBase}
+	 */
+	function stringToEvent( eventId ) {
+		return getEventById( stringToEventId( eventId ) );
 	}
 	// #endregion
 } )();
