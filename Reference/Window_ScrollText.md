@@ -140,7 +140,7 @@ MVでは引数はなかった。
 * [show ()](Window_Base.md#show-)
 * [showBackgroundDimmer ()](Window_Base.md#showbackgrounddimmer-)
 * [systemColor ()](Window_Base.md#systemcolor---mvcsscolor)
-* [textSizeEx (text)](Window_Base.md#textsizeex-text--number)
+* [textSizeEx (text)](Window_Base.md#textsizeex-text--mvsize)
 * [textWidth (text)](Window_Base.md#textwidth-text--number)
 * [translucentOpacity ()](Window_Base.md#translucentopacity---number)
 * [updateBackgroundDimmer ()](Window_Base.md#updatebackgrounddimmer-)
