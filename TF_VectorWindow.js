@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.2.0.0
+// Version :1.2.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -388,7 +388,6 @@
 
 	//  [フキダシウィンドウの準備]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_SPEACHBALLOON, function( args ) {
-
 		$gameMessage.TF_pointerAlign = args.pointerAlign;
 		setWindowType( args );
 		setWindowAreaToCommand( this, args.pos, args.continuousPos );
@@ -403,12 +402,8 @@
 		$gameMessage.TF_pointerAlign = args.pointerAlign;
 
 		const id = stringToEventId( args.eventId );
-		if( id === 0 ) {
-			// [このイベント]が指定されていた場合
-			$gameMessage.TF_targetEventId = this._eventId;
-		} else {
-			$gameMessage.TF_targetEventId = id;
-		}
+		// [このイベント]が指定されていた場合、ここでイベントIDを設定しておく
+		$gameMessage.TF_targetEventId = ( id === 0 ) ? this._eventId : id;
 	} );
 	// #endregion
 
@@ -740,10 +735,11 @@
 
 		if( $gameMessage.TF_targetEventId ) {
 			this.TF_resetLayoutByEvent();
-			this._nameBoxWindow.updatePlacement();//start();
-		} else if( $gameMessage.positionType() !== POSITION_FREE ) {
+			this._nameBoxWindow.updatePlacement();
+		} else {
 			// メッセージ表示位置を設定
 			this.TF_setMessageParam();
+			this.updatePlacement();
 		}
 	};
 
@@ -770,7 +766,6 @@
 	 * メッセージウィンドウの数値設定
 	 */
 	Window_Message.prototype.TF_setMessageParam = function() {
-		this.TF_windowType = $gameMessage.TF_windowType;
 		this.width = messageView.width;
 		this.height = this.lineHeight() * messageLines + this._padding * 2;
 	};
@@ -900,6 +895,9 @@
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
 		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
+		this.TF_pointerAlign = POINTER_NONE;
+		$gameMessage.TF_pointerAlign = POINTER_NONE;
+		// $gameMessage.TF_targetEventId = null;
 		// TODO: シッポの位置なども規定値に戻す
 	};
 
