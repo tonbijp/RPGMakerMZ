@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.4.0.0
+// Version :1.4.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -544,14 +544,16 @@
 
 	// #region Game_Interpreter
 	/**
-	 * [文章の表示]イベントコマンドの実行時に設定しておく
-	 * $gameMessage を使うべき？
+	 * [文章の表示]イベントコマンドの実行時に、Game_Interpreterが必要な処理をしておく
 	 */
-	// const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
-	// Game_Interpreter.prototype.command101 = function( params ) {
-	// 	const result = _Game_Interpreter_command101.apply( this, arguments );
+	const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
+	Game_Interpreter.prototype.command101 = function( params ) {
+		// 次のコマンドも[文章の表示]か
+		const eventIndex = getNextCommandIndex( this._list, this._index + 1, TEXT_DATA );
+		$gameMessage.TF_continuous = ( this._list[ eventIndex ].code === SHOW_TEXT );
 
-	// };
+		return _Game_Interpreter_command101.apply( this, arguments );
+	};
 	// #endregion
 
 
@@ -722,11 +724,25 @@
 	// #region Window_Message
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
-		this.TF_windowType = WINDOW_TYPE_TALK;
-
 		_Window_Message_initialize.apply( this, arguments );
-		$gameMessage.TF_faceAlign = ALIGN_LEFT;
+		this.TF_initialize();
 	};
+	Window_Message.prototype.TF_initialize = function() {
+		$gameMessage.TF_faceAlign = ALIGN_LEFT;
+		$gameMessage.TF_continuous = false;
+		$gameMessage.TF_pointerAlign = POINTER_NONE;
+		$gameMessage.TF_targetEventId = null;
+		this.TF_windowType = WINDOW_TYPE_TALK;
+		this.TF_pointerAlign = POINTER_NONE;
+		this.TF_targetEvent = null;
+		this.TF_eventX = null;
+		this.TF_eventY = null;
+		this.TF_eventHeight = null;
+		this.TF_path2d = null;
+		this.TF_facePicture = null;
+		this.TF_shape = null;
+	};
+
 
 
 	const _Window_Message_startMessage = Window_Message.prototype.startMessage;
@@ -742,21 +758,25 @@
 				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
 			}
 		}
+		if( $gameMessage.TF_windowType ) this.TF_windowType = $gameMessage.TF_windowType;
 
 		_Window_Message_startMessage.apply( this, arguments );
 
-		if( $gameMessage.TF_targetEventId ) {
+		if( this.TF_targetEvent ) {
 			this.TF_resetLayoutByEvent();
 			this._nameBoxWindow.updatePlacement();
 		} else {
 			// メッセージ表示位置を設定
 			this.TF_setMessageParam();
 			this.updatePlacement();
+			this._nameBoxWindow.updatePlacement();
 		}
 	};
 
 	/**
 	 * 自動配置の場合、フキダシのトゲの向きを自動設定する
+	 * 
+	 * @returns 設定するトゲの向き
 	 */
 	Window_Message.prototype.TF_getAutoPointerDirection = function() {
 		const sw = $dataSystem.advanced.screenWidth;
@@ -770,8 +790,14 @@
 		} else {
 			if( flagW ) return DIRECTION_SW;
 			if( flagE ) return DIRECTION_SE;
-			return DIRECTION_SC;
 		}
+		// 中央付近の場合、対象のキャラ配置によって上下に分ける
+		if( this.TF_targetEvent instanceof Game_Player ) {
+			if( this.TF_targetEvent.direction() === 8 ) return DIRECTION_NC;
+		} else {
+			if( $gamePlayer.y < this.TF_targetEvent.y ) return DIRECTION_NC;
+		}
+		return DIRECTION_SC;
 	};
 
 	/**
@@ -823,6 +849,7 @@
 		this.y = y;
 		this.width = messageWidth;
 		this.height = messageHeight;
+
 		$gameMessage.TF_targetEventId = null;
 	};
 
@@ -906,11 +933,9 @@
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
-		this.TF_windowType = WINDOW_TYPE_TALK;	// 次回は規定値を予約
-		this.TF_pointerAlign = POINTER_NONE;
-		$gameMessage.TF_pointerAlign = POINTER_NONE;
-		// $gameMessage.TF_targetEventId = null;
-		// TODO: シッポの位置なども規定値に戻す
+		if( $gameMessage.TF_continuous ) return;
+		// 次回は規定値を予約
+		this.TF_initialize();
 	};
 
 	// TODO:顔位置の細かい座標はプロパティで指定可能にする
