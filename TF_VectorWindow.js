@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.3.0.0
+// Version :1.4.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -733,9 +733,11 @@
 	Window_Message.prototype.startMessage = function() {
 		if( $gameMessage.TF_targetEventId ) {
 			// イベントの情報をあらかじめ、取り出しておく
-			this.TF_targetEvent = getEventById( $gameMessage.TF_targetEventId );
-			this.TF_eventX = $gameScreen.convertRealX( this.TF_targetEvent.screenX() );
-			this.TF_eventY = $gameScreen.convertRealY( this.TF_targetEvent.screenY() );
+			const te = getEventById( $gameMessage.TF_targetEventId );
+			this.TF_targetEvent = te;
+			this.TF_eventX = $gameScreen.convertRealX( te.screenX() );
+			this.TF_eventY = $gameScreen.convertRealY( te.screenY() );
+			this.TF_eventHeight = getEventHeight( te );
 			if( $gameMessage.TF_pointerAlign === DIRECTION_AUTO ) {
 				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
 			}
@@ -787,7 +789,6 @@
 		const textSize = this.textSizeEx( $gameMessage.allText() );
 		const messageWidth = textSize.width + ( this._margin + this._padding ) * 2 + 16;// TODO:16 は適当な調整用数値なので、きちんと計算して出してね(未来の僕)
 		const messageHeight = textSize.height + ( this._margin + this._padding ) * 2;
-		const eventHeight = defaultEventHeight + 48;
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -800,7 +801,7 @@
 			case DIRECTION_SW:
 			case DIRECTION_SC:
 			case DIRECTION_SE:
-				y -= messageHeight + eventHeight + pointerLength;
+				y -= messageHeight + this.TF_eventHeight + pointerLength;
 				break;
 		}
 
@@ -1551,10 +1552,11 @@
  * @returns {Number} 指定キャラの高さ
  */
 	function getEventHeight( character ) {
+		const zoomScale = $gameScreen.zoomScale();
 		const jsonData = getCharacterJson( character );
-		if( !jsonData ) return false;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+		if( !jsonData ) return defaultEventHeight * zoomScale;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
 		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
-		return ( eventHeight === undefined ) ? defaultEventHeight : eventHeight;
+		return ( ( eventHeight === undefined ) ? defaultEventHeight : eventHeight ) * zoomScale;
 	}
 
 
