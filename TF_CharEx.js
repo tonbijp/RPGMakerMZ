@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :0.10.0.0
+// Version :1.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -401,6 +401,21 @@
  * 値を返す変数(規定値: 1)
  * @type variable @default 1
  * 
+ * @================================================
+ * @command setAngle @text イベントを回転
+ * @desc 指定した角度(360度指定)に従って時計回り(⤵︎)に回転。
+ *
+ * @arg eventId @text イベントID
+ * @desc
+ * イベントID(数値)かイベントの名前
+ * @type combo @default this
+ * @option this @option player @option follower0 @option follower1 @option follower2
+ * @option boat @option ship @option airship
+ * 
+ * @arg angle @text 角度(360度指定)
+ * @desc (規定値: 0)
+ * @type number @default 0
+ * 
  * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help
  * 主な機能とイベントコマンドにない利点。
@@ -438,7 +453,7 @@
  * 
  * 【[移動ルートの設定]で使うスクリプト】
  * ------------------------------
- * TF_setCharPattern([キャラクター番号], [歩行パターン], [キャラの向き]);
+ * this.TF_setCharPattern([キャラクター番号], [歩行パターン], [キャラの向き]);
  * 　[キャラパターンを指定]コマンドの[移動ルートの設定]用。
  * ------------------------------
  * this.TF_goXY( [x], [y] );
@@ -446,6 +461,9 @@
  * ------------------------------
  * this.TF_goEv( [目標イベントID], [dx], [dy] );
  * 　[イベントを別のイベント位置に移動]コマンドの[移動ルートの設定]用。
+ * ------------------------------
+ * this.TF_setAngle( [θ] );
+ * 　[イベントを回転]コマンドの[移動ルートの設定]用。
  * =========================
  * 
  * 【プラグインコマンドに指定する引数の詳細】
@@ -519,26 +537,32 @@
  * 　[表示] : visible, v, 示
  * 　　数字が0の場合は[表示OFF]、1で[表示ON]
  * 　　透明化のOFFで見えるというのが分かりづらく間違いまくるので追加。
- * 　SET_CHAR : change, c, 変
+ * 　[不透明度の変更…] : opacity, o, 濁
+ *　　0〜255 の間の数字。
+ * 　[合成方法の変更…] : blendmode, m, 合
+ * 　　0: 通常, 1: 加算, 2: 乗算, 3: スクリーン
+ * 
+ *  == プラグインコマンド ==
+ * 　[キャラパターンを指定] : change, c, 変
  * 　　コンマ( , )で区切って [キャラ番号],[歩行パターン],[向き] を数字で指定。
  * 　　標準のコマンド[画像の変更…]は数字だけで指定できないので、
  * 　　現在指定しているキャラ画像内での変更するコマンドを別に追加。
  * 　　[画像の変更…]はファイルとキャラの変更はできる。
  * 　　でも[歩行パターン][向き]の変更はできないので、むしろ高機能かも。
- * 　[不透明度の変更…] : opacity, o, 濁
- *　　0〜255 の間の数字。
- * 　[合成方法の変更…] : blendmode, m, 合
- * 　　0: 通常, 1: 加算, 2: 乗算, 3: スクリーン
- * 　COM_GO_XY( COM_GO_EV ) : go, ＠, 移
+ * 　[イベントを指定座標に移動]( [イベントを別のイベント位置に移動] ) : go, ＠, 移
  * 　　コンマ( , )で区切って [x],[y] の座標に移動。
  * 　　数字がひとつだけの場合イベントIDとみなし、その位置に移動。
- *   COM_SET_PRIORITY_TYPE : priority, ^, 積
+ *   [プライオリティを設定] : priority, ^, 積
  *     プライオリティの設定。
  * 　　0: 通常キャラの下, 1: 通常キャラと同じ, 2: 通常キャラの上
+ *   [イベントを回転] : angle, θ, 回
+ * 　　指定した角度(360度指定)に従って時計回り(⤵︎)に回転。
  *     
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
+ * 一部、神無月サスケ(Sasuke KANNAZUKI)さんの EventEffects.js のコードを使っています。
+ * 
  * 利用規約 : MITライセンス
  */
 
@@ -776,6 +800,7 @@
 	const COM_END_ANIME = "endAnime";
 	const COM_SET_PRIORITY_TYPE = "setPriorityType";
 	const COM_GET_PRIORITY_TYPE = "getPriorityType";
+	const COM_SET_ANGLE = "setAngle";
 
 
 	/*--- Game_Interpreter ---*/
@@ -897,7 +922,7 @@
 	// [ プライオリティの設定 ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_SET_PRIORITY_TYPE, function( args ) {
 		const targetEvent = stringToEvent( this, args.eventId );
-		setPriorityType( targetEvent, args.priorityType );
+		targetEvent.setPriorityType( args.priorityType );
 	} );
 
 	// [ プライオリティの取得 ]
@@ -905,6 +930,12 @@
 		const targetEvent = stringToEvent( this, args.eventId );
 		const priorityType = targetEvent._priorityType;
 		$gameVariables.setValue( args.variableId, priorityType );
+	} );
+
+	// [ 回転角度の設定 ]
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_ANGLE, function( args ) {
+		const targetEvent = stringToEvent( this, args.eventId );
+		targetEvent.TF_setAngle( args.angle );
 	} );
 
 
@@ -988,6 +1019,9 @@
 		goEv( this, destinationEvent, dx, dy, isWait );
 	};
 
+	Game_CharacterBase.prototype.TF_setAngle = function( d ) {
+		this._angle = d;
+	};
 
 	/**
 	 * [ キャラパターンを指定 ]
@@ -1145,6 +1179,7 @@
 	const MOVE_BLEND_MODE = [ "blendmode", "m", "合" ]; // [合成方法の変更…]
 	const MOVE_GO = [ "go", "@", "＠", "移" ]; // COM_GO_XY(COM_GO_EV)
 	const MOVE_PRIORITY = [ "priority", "^", "＾", "積" ]; // COM_SET_PRIORITY_TYPE
+	const MOVE_ANGLE = [ "angle", "θ", "回" ]; // COM_SET_ANGLE
 
 	// ROUTE_PLAY_SE
 	// ROUTE_SCRIPT
@@ -1341,8 +1376,11 @@
 				movementList.push( { code: COM_GO_XY, parameters: [ x, y ] } );
 
 			} else if( MOVE_PRIORITY.includes( value ) ) { // COM_SET_PRIORITY_TYPE
-
 				movementList.push( { code: COM_SET_PRIORITY_TYPE, parameters: [ paramNo ] } );
+
+			} else if( MOVE_ANGLE.includes( value ) ) { // COM_SET_ANGLE
+				movementList.push( { code: COM_SET_ANGLE, parameters: [ paramNo ] } );
+
 			}
 		} );
 
@@ -1417,17 +1455,6 @@
 			{ code: COMMAND_END }
 		];
 		interpreter.setupChild( commandList, eventId );
-	}
-
-
-	/**
-	 * プライオリティの設定。
-	 * 
-	 * @param {Game_Character} targetEvent イベント・プレイヤー・隊列メンバーのいずれか
-	 * @param {Number} priorityType プライオリティ()
-	 */
-	function setPriorityType( targetEvent, priorityType ) {
-		targetEvent.setPriorityType( priorityType );
 	}
 
 
@@ -1611,7 +1638,8 @@
 		switch( command.code ) {
 			case SET_CHAR: setCharPattern( this, undefined, params[ 0 ], params[ 1 ], params[ 2 ] ); break;
 			case COM_GO_XY: this.TF_goXY( ...params ); break;
-			case COM_SET_PRIORITY_TYPE: setPriorityType( this, params[ 0 ] ); break;
+			case COM_SET_PRIORITY_TYPE: this.setPriorityType( params[ 0 ] ); break;
+			case COM_SET_ANGLE: this.TF_setAngle( params[ 0 ] ); break;
 		}
 	};
 
