@@ -1,6 +1,6 @@
 //=================================================
 // TF_CharEx.js
-// Version :1.0.0.0
+// Version :1.0.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -557,7 +557,10 @@
  * 　　0: 通常キャラの下, 1: 通常キャラと同じ, 2: 通常キャラの上
  *   [イベントを回転] : angle, θ, 回
  * 　　指定した角度(360度指定)に従って時計回り(⤵︎)に回転。
- *     
+ *   [イベントを左右反転] : angle, θ, 回
+ * 　　指定した角度(360度指定)に従って時計回り(⤵︎)に回転。
+ *   [イベントを左右反転] : angle, θ, 回
+ * 　　指定した角度(360度指定)に従って時計回り(⤵︎)に回転。
  *
  * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
  *
@@ -1015,12 +1018,17 @@
 	 * goEv() を呼び出す。
 	 */
 	Game_CharacterBase.prototype.TF_goEv = function( destinationId, dx, dy, isWait ) {
-		const destinationEvent = stringToEvent( this, destinationId );
+		const interpreter = getInterpreterFromCharacter( targetEvent );
+		const destinationEvent = stringToEvent( interpreter, destinationId );// interpriterこれ動いてないのでは？
 		goEv( this, destinationEvent, dx, dy, isWait );
 	};
 
-	Game_CharacterBase.prototype.TF_setAngle = function( d ) {
-		this._angle = d;
+	/**
+	 * 回転角度の設定
+	 * @param {Number} angle 時計回りでの回転角度(360度指定)
+	 */
+	Game_CharacterBase.prototype.TF_setAngle = function( angle ) {
+		this._angle = angle;
 	};
 
 	/**
