@@ -1,14 +1,14 @@
-//========================================
+//=================================================
 // TF_BalloonEx.js
-// Version :0.6.3.0
+// Version :0.6.3.1
 // For : RPGツクールMZ (RPG Maker MZ)
-// -----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2021
+// ----------------------------------------------
+// Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
-//========================================
+//=================================================
 /*:
  * @target MZ
  * @plugindesc [Display balloon icon] extension
@@ -162,50 +162,17 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
+ * @================= parameter ====================
  * @param balloonParamList @text アニメーション設定
  * @type struct<BalloonParam>[]
  * @default ["{\"name\":\"びっくり\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"7\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"4\",\"waitTime\":\"24\"}","{\"name\":\"はてな\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"4\",\"waitTime\":\"24\"}","{\"name\":\"音符\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"4\",\"waitTime\":\"12\"}","{\"name\":\"ハート\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"4\",\"loopPatterns\":\"4\",\"endPatterns\":\"0\",\"loops\":\"3\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"怒り\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"汗\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"8\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"8\",\"waitTime\":\"32\"}","{\"name\":\"くしゃくしゃ\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"3\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"沈黙\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"1\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"12\",\"waitTime\":\"48\"}","{\"name\":\"電球\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"Zzz\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"0\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"2\",\"speed\":\"10\",\"waitTime\":\"12\"}","{\"name\":\"星\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"6\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"はてな複数\",\"dx\":\"18\",\"dy\":\"15\",\"startPatterns\":\"5\",\"loopPatterns\":\"3\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"音符複数\",\"dx\":\"20\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"ハート複数\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"0\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"ユゲダシ\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"5\",\"endPatterns\":\"0\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"汗複数\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"3\",\"loopPatterns\":\"3\",\"endPatterns\":\"1\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"12\"}","{\"name\":\"がやがや\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"2\",\"loopPatterns\":\"3\",\"endPatterns\":\"2\",\"loops\":\"4\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"きゃっきゃ\",\"dx\":\"20\",\"dy\":\"5\",\"startPatterns\":\"3\",\"loopPatterns\":\"2\",\"endPatterns\":\"3\",\"loops\":\"40\",\"speed\":\"8\",\"waitTime\":\"0\"}","{\"name\":\"ヒットマーク\",\"dx\":\"0\",\"dy\":\"40\",\"startPatterns\":\"5\",\"loopPatterns\":\"1\",\"endPatterns\":\"2\",\"loops\":\"5\",\"speed\":\"1\",\"waitTime\":\"0\"}","{\"name\":\"カウントダウン\",\"dx\":\"0\",\"dy\":\"0\",\"startPatterns\":\"5\",\"loopPatterns\":\"0\",\"endPatterns\":\"0\",\"loops\":\"1\",\"speed\":\"60\",\"waitTime\":\"0\"}"]
  * 
+ * @================================================
  * @param baseDy @text 基本y座標差分
  * @type number
  * @default 0
  * 
- * @================================================
- * @help
- * ●基本的な使い方
- * 　プラグインパラメータの[アニメーション設定]に[フキダシ番号]毎に設定を書く。
- * 　・配置(dx,dy) ループ回数(loops) 速度(speed) 終了時間(waitTime)など設定。
- * 　・パターン数(出現, ループ, 消滅)は計8以内。
- * 　・値について詳細は、それぞれのヘルプ文などを参照。
- * 　通常の[フキダシアイコンの表示]イベントコマンドを実行すると、
- * 　[フキダシ番号]に応じた設定でアニメが再生されます。
- *
- * ●プラグインコマンド
- * [フキダシアニメ開始]
- * [単体フキダシ表示]
- * [フキダシ位置変更]
- * [フキダシアニメ停止]
- * 
- * ● [移動ルートの設定]で使えるスクリプト
- * 
- * this.TF_startBalloon( [フキダシ番号], [完了までウエイト], [dx], [dy] );
- * 　[フキダシアニメ開始]の機能
- * 　[完了までウエイト], [dx], [dy] は省略できます。
- * 　規定値は [フキダシアニメ開始] に準拠します。
- *------------------------------
- * this.TF_setBalloon( [フキダシ番号], [パターン番号], [表示フレーム数], [完了までウェイト], [dx], [dy] );
- * 　[単体フキダシ表示]の機能
- *------------------------------
- * this.TF_locateBalloon( [dx], [dy] );
- * 　[フキダシ位置変更]の機能
- *------------------------------
- * this.TF_stopBalloon( [消滅アニメを表示] );
- * 　[フキダシアニメ停止]の機能
- *------------------------------
- *
- *
- * 利用規約 : MITライセンス
- * @================================================
+ * @================== command =====================
  * @command startBalloon @text フキダシアニメ開始
  * @desc
  * ほぼ[フキダシアイコンの表示]コマンドと同じ。
@@ -337,6 +304,42 @@
  * 消滅アニメを表示してから消すか。
  * @type boolean @default false
  * @on 消滅アニメ表示(規定) @off 即時
+ * 
+ * @============ この長さに合わせるとヘルプではみ出ない =============
+ * @help
+ * ●基本的な使い方
+ * 　プラグインパラメータの[アニメーション設定]に[フキダシ番号]毎に設定を書く。
+ * 　・配置(dx,dy) ループ回数(loops) 速度(speed) 終了時間(waitTime)など設定。
+ * 　・パターン数(出現, ループ, 消滅)は計8以内。
+ * 　・値について詳細は、それぞれのヘルプ文などを参照。
+ * 　通常の[フキダシアイコンの表示]イベントコマンドを実行すると、
+ * 　[フキダシ番号]に応じた設定でアニメが再生されます。
+ *
+ * ●プラグインコマンド
+ * [フキダシアニメ開始]
+ * [単体フキダシ表示]
+ * [フキダシ位置変更]
+ * [フキダシアニメ停止]
+ * 
+ * ● [移動ルートの設定]で使えるスクリプト
+ * 
+ * this.TF_startBalloon( [フキダシ番号], [完了までウエイト], [dx], [dy] );
+ * 　[フキダシアニメ開始]の機能
+ * 　[完了までウエイト], [dx], [dy] は省略できます。
+ * 　規定値は [フキダシアニメ開始] に準拠します。
+ *------------------------------
+ * this.TF_setBalloon( [フキダシ番号], [パターン番号], [表示フレーム数], [完了までウェイト], [dx], [dy] );
+ * 　[単体フキダシ表示]の機能
+ *------------------------------
+ * this.TF_locateBalloon( [dx], [dy] );
+ * 　[フキダシ位置変更]の機能
+ *------------------------------
+ * this.TF_stopBalloon( [消滅アニメを表示] );
+ * 　[フキダシアニメ停止]の機能
+ *------------------------------
+ *
+ *
+ * 利用規約 : MITライセンス
  */
 
 /*~struct~BalloonParam:ja
