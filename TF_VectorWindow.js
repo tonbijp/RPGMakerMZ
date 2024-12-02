@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.4.1.1
+// Version :1.4.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -758,7 +758,9 @@
 	};
 
 
-
+	const BG_WINDOW = 0;
+	const BG_DIMMER = 1;
+	const BG_TRANSPARENT = 2;
 	const _Window_Message_startMessage = Window_Message.prototype.startMessage;
 	Window_Message.prototype.startMessage = function() {
 		if( $gameMessage.TF_targetEventId ) {
@@ -771,20 +773,22 @@
 			if( $gameMessage.TF_pointerAlign === DIRECTION_AUTO ) {
 				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
 			}
+			$gameMessage.TF_targetEventId = null;
 		}
 		if( $gameMessage.TF_windowType ) this.TF_windowType = $gameMessage.TF_windowType;
 
-		_Window_Message_startMessage.apply( this, arguments );
+		setWindowParam( this );
 
 		if( this.TF_targetEvent ) {
 			this.TF_resetLayoutByEvent();
-			this._nameBoxWindow.updatePlacement();
 		} else {
-			// メッセージ表示位置を設定
-			this.TF_setMessageParam();
-			this.updatePlacement();
-			this._nameBoxWindow.updatePlacement();
+			if( $gameMessage.background() !== BG_TRANSPARENT ) {
+				this.TF_setMessageParam();
+			}
 		}
+		this._refreshAllParts();
+
+		_Window_Message_startMessage.apply( this, arguments );
 	};
 
 	/**
@@ -827,8 +831,9 @@
 	 */
 	Window_Message.prototype.TF_resetLayoutByEvent = function() {
 		const textSize = this.textSizeEx( $gameMessage.allText() );
-		const messageWidth = textSize.width + ( this._margin + this._padding ) * 2 + 16;// TODO:16 は適当な調整用数値なので、きちんと計算して出してね(未来の僕)
-		const messageHeight = textSize.height + ( this._margin + this._padding ) * 2;
+		// 謎の数字18(うち4に関しては本体の newLineX で追加してある謎の数値)
+		const messageWidth = textSize.width + this._padding * 2 + 18;
+		const messageHeight = textSize.height + this._padding * 2;
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -861,10 +866,8 @@
 
 		this.x = x;
 		this.y = y;
-		this.width = messageWidth;
-		this.height = messageHeight;
-
-		$gameMessage.TF_targetEventId = null;
+		this._width = messageWidth;
+		this._height = messageHeight;
 	};
 
 	/**
@@ -930,8 +933,6 @@
 	Window_Message.prototype.newPage = function() {
 		_Window_Message_newPage.apply( this, arguments );
 		closeFacePicture();
-		setWindowParam( this );
-		this._refreshAllParts();
 	};
 
 	// 閉じるときに顔を非表示に
@@ -947,6 +948,7 @@
 	const _Window_Message_terminateMessage = Window_Message.prototype.terminateMessage;
 	Window_Message.prototype.terminateMessage = function() {
 		_Window_Message_terminateMessage.call( this );
+		// [メッセージを表示]コマンドが継続しているなら値を維持
 		if( $gameMessage.TF_continuous ) return;
 		// 次回は規定値を予約
 		this.TF_initialize();
