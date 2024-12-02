@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.4.2.0
+// Version :1.4.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -613,12 +613,17 @@
 	function drawWindowBack( tw ) {
 		const ctx = tw._backSprite.bitmap.context;
 
-		setFillColor( ctx, tw );
+		setFillColor( tw, ctx );
 		// if( dropShadow ) setShadowParam( ctx );
 		ctx.fill( tw.TF_path2d );
 		//if( !dropShadow ) setShadowParam( ctx );
 	}
-	function setFillColor( ctx, tw ) {
+	/**
+	 * ウィンドウの描画色を設定
+	 * @param {Window_Base} tw 対象ウィンドウ
+	 * @param {CanvasRenderingContext2D} ctx 対象コンテキスト
+	 */
+	function setFillColor( tw, ctx ) {
 		const bgColor = pluginParams.preset[ tw.TF_windowType ].bgColor;
 		if( bgColor.length === 1 ) {
 			ctx.fillStyle = tintColor( bgColor[ 0 ], tw._colorTone );
@@ -834,6 +839,7 @@
 		// 謎の数字18(うち4に関しては本体の newLineX で追加してある謎の数値)
 		const messageWidth = textSize.width + this._padding * 2 + 18;
 		const messageHeight = textSize.height + this._padding * 2;
+		const pl = ( this.TF_shape === SHAPE_SPIKE ) ? 0 : pointerLength;
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -841,12 +847,12 @@
 			case DIRECTION_NW:
 			case DIRECTION_NC:
 			case DIRECTION_NE:
-				y += pointerLength;
+				y += pl;
 				break;
 			case DIRECTION_SW:
 			case DIRECTION_SC:
 			case DIRECTION_SE:
-				y -= messageHeight + this.TF_eventHeight + pointerLength;
+				y -= messageHeight + this.TF_eventHeight + pl;
 				break;
 		}
 
@@ -982,9 +988,18 @@
 		const w = this.width;
 		const h = this.height;
 
-		setupBitmap( this._frameSprite, w + pointerLength * 2, h + pointerLength * 2 );
-		this._frameSprite.setFrame( 0, 0, w, h );
+		if( this.TF_shape === SHAPE_SPIKE ) {
+			setupBitmap( this._frameSprite, w, h );
+			this._frameSprite.move( 0, 0 );
 
+			const ctx = this._frameSprite.bitmap.context;
+			// 枠の描画
+			setBorderParam( ctx, this.TF_windowType );
+			ctx.lineWidth = pluginParams.preset[ this.TF_windowType ].borderWidth;
+			ctx.stroke( this.TF_path2d );
+
+			return;
+		}
 
 		// フキダシ本体
 		const pathBox = this.TF_path2d;
@@ -1026,6 +1041,16 @@
 		const w = this.width;
 		const h = this.height;
 
+		if( this.TF_shape === SHAPE_SPIKE ) {
+			// フキダシの描画
+			setupBitmap( this._backSprite, w, h );
+			this._backSprite.move( 0, 0 );
+			const ctx = this._backSprite.bitmap.context;
+			setFillColor( this, ctx );
+			ctx.fill( this.TF_path2d );
+			return;
+		}
+
 		// フキダシ本体
 		const pathBox = this.TF_path2d;
 		// シッポ
@@ -1042,7 +1067,7 @@
 		ctx.globalCompositeOperation = "source-in";// マスク部分に描画
 
 		// フキダシの描画
-		setFillColor( ctx, this );
+		setFillColor( this, ctx );
 		ctx.fillRect( -pointerLength, -pointerLength, w + pointerLength * 2, h + pointerLength * 2 );
 		ctx.globalCompositeOperation = "source-over";// デフォルト状態に戻す
 	};
@@ -1060,7 +1085,7 @@
 		setupBitmap( sprite, w + pointerLength * 2, h + pointerLength * 2 );
 		sprite.move( -pointerLength, -pointerLength );
 
-		// 尻尾の分だけ基準点を下に移動
+		// 尻尾の分だけ基準点を右下に移動
 		const ctx = sprite.bitmap.context;
 		ctx.translate( pointerLength, pointerLength );
 		return ctx;
@@ -1588,10 +1613,10 @@
 	}
 
 	/**
- * 指定キャラの高さ。
- * @param {Game_Character} character 指定キャラクタオブジェクト
- * @returns {Number} 指定キャラの高さ
- */
+	* 指定キャラの高さ。
+	* @param {Game_Character} character 指定キャラクタオブジェクト
+	* @returns {Number} 指定キャラの高さ
+	*/
 	function getEventHeight( character ) {
 		const zoomScale = $gameScreen.zoomScale();
 		const jsonData = getCharacterJson( character );
