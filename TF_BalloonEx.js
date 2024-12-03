@@ -1,6 +1,6 @@
 //=================================================
 // TF_BalloonEx.js
-// Version :0.6.3.1
+// Version :0.6.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -9,6 +9,7 @@
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 //=================================================
+// #region annotation
 /*:
  * @target MZ
  * @plugindesc [Display balloon icon] extension
@@ -338,6 +339,16 @@
  * 　[フキダシアニメ停止]の機能
  *------------------------------
  *
+ * パラメータとは別に個々のキャラに設定にしたい場合は、
+ * プレイヤーと隊列メンバーはデータベースの[アクター]のメモ欄、
+ * また[イベント]のメモ欄に次のタグを書ける。
+ * 
+ * <TF_EVENTHEIGHT:高さ>
+ * 
+ * 高さはピクセル数(画面の拡大率を考慮する必要はない)
+ * 
+ * 以下のタグだと、96pxの高さがあるキャラ(イベント)と判断します。
+ * <TF_EVENTHEIGHT:96>
  *
  * 利用規約 : MITライセンス
  */
@@ -391,15 +402,20 @@
  * @type number @default 12
  * @min 0
  */
+// #endregion
 
 ( () => {
 	"use strict";
 	const PLUGIN_NAME = "TF_BalloonEx";
+
 	// プラグインコマンド
 	const COM_START_BALLOON = "startBalloon";
 	const COM_SET_BALLOON = "setBalloon";
 	const COM_LOCATE_BALLOON = "locateBalloon";
 	const COM_STOP_BALLOON = "stopBalloon";
+
+	// メタタグ
+	const TF_EVENTHEIGHT = "TF_EVENTHEIGHT";// イベント高さ設定タグ名
 
 	// ウェイトモード
 	const WAIT_BALLOON = "balloon";
@@ -421,25 +437,45 @@
 	const baseDy = pluginParams.baseDy;
 	const balloonParamList = pluginParams.balloonParamList;
 
-	/**
-	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
-	 * @param {String} value 変換元の文字列( \V[n]形式を含む )
-	 * @return {String} 変換後の文字列
-	 */
-	function treatValue( value ) {
-		if( typeof value === TYPE_NUMBER ) return value;
-		if( value === undefined || value === "" ) return "0";
-		const result = value.match( /\x1bV\[(.+)\]/i );
-		if( result === null ) return value;
-		const id = parseInt( result[ 1 ], 10 );
-		if( isNaN( id ) ) {
-			return $gameVariables.valueByName( result[ 1 ] );
-		} else {
-			return $gameVariables.value( id );
-		}
-	}
 
-	/*--- Game_Variables ---*/
+	// #region registerCommand
+	// [フキダシアニメ開始] コマンド
+	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+		targetEvent._balloon = new Game_Balloon().setByBalloonIndex( balloonIndex, args.dx, args.dy );
+		$gameTemp.requestBalloon( targetEvent, balloonIndex );
+		if( args.isWait ) {
+			this.setWaitMode( WAIT_BALLOON );
+		}
+	} );
+
+	// [単体フキダシ表示] コマンド
+	PluginManagerEx.registerCommand( document.currentScript, COM_SET_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
+		setBalloon( targetEvent, balloonIndex, args.patternIndex, args.waitTime, args.dx, args.dy );
+		if( args.isWait ) {
+			this.setWaitMode( WAIT_BALLOON );
+		}
+	} );
+
+	// [フキダシ位置変更] コマンド
+	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		if( targetEvent._balloon ) {
+			locateBalloon( targetEvent, args.dx, args.dy );
+		}
+	} );
+
+	// [フキダシアニメ停止] コマンド
+	PluginManagerEx.registerCommand( document.currentScript, COM_STOP_BALLOON, function( args ) {
+		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
+		stopBalloon( targetEvent, args.showFinish );
+	} );
+	// #endregion
+
+	// #region Game_Variables
 	/**
 	 * 変数を文字列で指定し、値を返す。
 	 * @param {String} name 変数(ID, 名前, \V[n]による指定が可能)
@@ -471,159 +507,9 @@
 		if( isNaN( result ) ) throw Error( `${PLUGIN_NAME}: [${value}] is not a number.` );
 		return result;
 	}
+	// #endregion
 
-
-	/*--- イベントID・オブジェクト取得関数 ---*/
-	/*---- イベントIDの配置オフセット ----*/
-	const FOLLOWER_OFFSET = -2;
-	const VEHICLE_OFFSET = -100;
-
-	/*---- イベントID変換用文字列 ----*/
-	const EVENT_THIS = "this";
-	const EVENT_PLAYER = "player";
-	const EVENT_FOLLOWER0 = "follower0";
-	const EVENT_FOLLOWER1 = "follower1";
-	const EVENT_FOLLOWER2 = "follower2";
-	const VEHICLE_BOAT = "boat";
-	const VEHICLE_SHIP = "ship";
-	const VEHICLE_AIRSHIP = "airship";
-
-	/**
-	 * character を拡張して隊列メンバーも指定できるようにしたもの。
-	 * @param {Game_Interpreter} interpreter インタプリタ
-	 * @param {Number} id 拡張イベントID
-	 * @returns {Game_CharacterBase}
-	 */
-	function getEventById( interpreter, id ) {
-		if( id <= VEHICLE_OFFSET ) {
-			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
-		} else if( id <= FOLLOWER_OFFSET ) {
-			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
-		} else {
-			return interpreter.character( id );			// プレイヤーキャラおよびイベント
-		}
-	}
-
-	/**
-	 * 文字列をイベントIDへ変換
-	 * @param {String} value イベントIDの番号か識別子
-	 * @returns {Number} 拡張イベントID
-	 */
-	function stringToEventId( value ) {
-		value = treatValue( value );
-		const result = parseInt( value, 10 );
-		if( !isNaN( result ) ) return result;
-
-		const lowValue = value.toLowerCase();
-		switch( lowValue ) {
-			case EVENT_THIS: return 0;
-			case EVENT_PLAYER: return -1;
-			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
-			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
-			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
-			case VEHICLE_BOAT: return VEHICLE_OFFSET;
-			case VEHICLE_SHIP: return VEHICLE_OFFSET - 1;
-			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
-		}
-
-		const e = $dataMap.events.find( e => e && e.name === value );
-		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
-		return e.id;
-	}
-
-	/**
-	 * 文字列をフキダシ番号へ変換
-	 * @param {String} value フキダシ番号かnameプロパティ
-	 * @returns {Number} フキダシ番号
-	 */
-	function stringToBalloonIndex( value ) {
-		const result = parseInt( treatValue( value ), 10 );
-		if( !isNaN( result ) ) return result;
-
-		const i = balloonParamList.findIndex( e => e.name === value );
-		if( i === -1 ) throw Error( `指定したフキダシ[${value}]がありません。` );
-		return i + 1;
-	}
-
-	/**
-	 * TF_SET_BALLOON
-	 * @param {Game_Character} character 
-	 * @param {Number} balloonIndex フキダシ番号
-	 * @param {Number} patternIndex パターン番号
-	 * @param {Number} waitTime 表示フレーム数
-	 * @param {Number} dx x差分
-	 * @param {Number} dy y差分
-	 */
-	function setBalloon( character, balloonIndex, patternIndex, waitTime, dx, dy ) {
-		character._balloon = new Game_Balloon().setSinglePattern( balloonIndex, patternIndex, waitTime, dx, dy );
-		$gameTemp.requestBalloon( character, balloonIndex );
-	}
-
-	/**
-	 * フキダシ待ち状態に設定。
-	 * @param {Game_Character} character 実行中のイベント・プレイヤーキャラ
-	 */
-	function setWaitMode2Balloon( character ) {
-		getInterpreterFromCharacter( character ).setWaitMode( WAIT_BALLOON );
-	}
-	const TRIGGER_PARALLEL = 4;	// 並列処理
-	/**
-	 * 	イベントで使われているインタプリタを取り出す。
-	 * @param {*} character 
-	 */
-	function getInterpreterFromCharacter( character ) {
-		let interpreter;
-		if( character._trigger === TRIGGER_PARALLEL ) {
-			interpreter = character._interpreter;
-		} else {
-			interpreter = $gameMap._interpreter;
-		}
-		while( interpreter._childInterpreter ) {
-			interpreter = interpreter._childInterpreter;
-		}
-		return interpreter;
-	}
-
-	/**
-	 * フキダシ位置変更
-	 * @param {Game_Character} gameCharacter キャラ
-	 * @param {Number} dx x差分
-	 * @param {Number} dy y差分
-	 */
-	function locateBalloon( gameCharacter, dx, dy ) {
-		const balloonParam = balloonParamList[ gameCharacter._balloon.balloonIndex - 1 ];
-		gameCharacter._balloon.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
-		gameCharacter._balloon.dy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
-	}
-
-	/**
-	 * フキダシアイコン表示の停止
-	 * @param {Game_CharacterBase} targetEvent 対象となるキャラ・イベント
-	 * @param {Boolean} showFinish 消滅アニメを表示するか
-	 */
-	function stopBalloon( targetEvent, showFinish ) {
-		if( !targetEvent._balloon ) return;
-
-		if( showFinish ) {
-			targetEvent._balloon.phase = PHASE_SHOW_FINISH;
-		} else {
-			targetEvent._balloon.phase = PHASE_FINISH;
-		}
-	}
-
-	/**
-	 * プラグインコマンドの登録
-	 */
-	// [フキダシアニメ開始] コマンド
-	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
-		targetEvent._balloon = new Game_Balloon().setByBalloonIndex( balloonIndex, args.dx, args.dy );
-		$gameTemp.requestBalloon( targetEvent, balloonIndex );
-		if( args.isWait ) {
-			this.setWaitMode( WAIT_BALLOON );
-		}
-	} );
+	// #region Game_CharacterBase
 	// [フキダシアニメ開始] スクリプト
 	Game_CharacterBase.prototype.TF_startBalloon = function( index, isWait, dx, dy ) {
 		const balloonIndex = stringToBalloonIndex( index );
@@ -635,15 +521,6 @@
 		}
 	};
 
-	// [単体フキダシ表示] コマンド
-	PluginManagerEx.registerCommand( document.currentScript, COM_SET_BALLOON, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		const balloonIndex = stringToBalloonIndex( args.balloonIndex );
-		setBalloon( targetEvent, balloonIndex, args.patternIndex, args.waitTime, args.dx, args.dy );
-		if( args.isWait ) {
-			this.setWaitMode( WAIT_BALLOON );
-		}
-	} );
 	// [単体フキダシ表示] スクリプト
 	Game_CharacterBase.prototype.TF_setBalloon = function( balloonIndex, patternIndex, waitTime, isWait, dx, dy ) {
 		patternIndex = ( patternIndex ? parseIntStrict( patternIndex ) : 8 );
@@ -654,13 +531,6 @@
 		}
 	};
 
-	// [フキダシ位置変更] コマンド
-	PluginManagerEx.registerCommand( document.currentScript, COM_LOCATE_BALLOON, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		if( targetEvent._balloon ) {
-			locateBalloon( targetEvent, args.dx, args.dy );
-		}
-	} );
 	// [フキダシ位置変更] スクリプト
 	Game_CharacterBase.prototype.TF_locateBalloon = function( dx, dy ) {
 		if( this._balloon ) {
@@ -668,17 +538,13 @@
 		}
 	};
 
-	// [フキダシアニメ停止] コマンド
-	PluginManagerEx.registerCommand( document.currentScript, COM_STOP_BALLOON, function( args ) {
-		const targetEvent = getEventById( this, stringToEventId( args.eventId ) );
-		stopBalloon( targetEvent, args.showFinish );
-	} );
 	// [フキダシアニメ停止] スクリプト
 	Game_CharacterBase.prototype.TF_stopBalloon = function( showFinish ) {
 		stopBalloon( this, showFinish );
 	};
+	// #endregion
 
-	/*--- Sprite_Character ---*/
+	// #region Sprite_Character
 	/**
 	 * 初期化時にフキダシデータがあったら復帰。
 	 */
@@ -690,7 +556,9 @@
 			$gameTemp.requestBalloon( this._character, character._balloon.balloonIndex );
 		}
 	};
+	// #endregion
 
+	// #region Game_Balloon
 	/**
 	 * @class Game_Balloon
 	 * @property duration 残り時間
@@ -758,7 +626,9 @@
 			return this;
 		};
 	}
+	// #endregion
 
+	// #region Sprite_Balloon
 	Sprite_Balloon.prototype.isPlaying = function() {
 		if( this._duration > 0 ) {
 			return true;
@@ -771,8 +641,6 @@
 		}
 	};
 
-
-	/*--- Sprite_Balloon ---*/
 	/**
 	 * アップデート。
 	 */
@@ -857,4 +725,189 @@
 			return _Sprite_Balloon_waitTime.call( this );
 		}
 	};
+	// #endregion
+
+	// #region balloon method
+	/**
+	 * 文字列をフキダシ番号へ変換
+	 * @param {String} value フキダシ番号かnameプロパティ
+	 * @returns {Number} フキダシ番号
+	 */
+	function stringToBalloonIndex( value ) {
+		const result = parseInt( treatValue( value ), 10 );
+		if( !isNaN( result ) ) return result;
+
+		const i = balloonParamList.findIndex( e => e.name === value );
+		if( i === -1 ) throw Error( `指定したフキダシ[${value}]がありません。` );
+		return i + 1;
+	}
+
+	/**
+	 * TF_SET_BALLOON
+	 * @param {Game_Character} character 
+	 * @param {Number} balloonIndex フキダシ番号
+	 * @param {Number} patternIndex パターン番号
+	 * @param {Number} waitTime 表示フレーム数
+	 * @param {Number} dx x差分
+	 * @param {Number} dy y差分
+	 */
+	function setBalloon( character, balloonIndex, patternIndex, waitTime, dx, dy ) {
+		character._balloon = new Game_Balloon().setSinglePattern( balloonIndex, patternIndex, waitTime, dx, dy );
+		$gameTemp.requestBalloon( character, balloonIndex );
+	}
+
+	/**
+	 * フキダシ待ち状態に設定。
+	 * @param {Game_Character} character 実行中のイベント・プレイヤーキャラ
+	 */
+	function setWaitMode2Balloon( character ) {
+		getInterpreterFromCharacter( character ).setWaitMode( WAIT_BALLOON );
+	}
+
+	/**
+	 * フキダシアイコン表示の停止
+	 * @param {Game_CharacterBase} targetEvent 対象となるキャラ・イベント
+	 * @param {Boolean} showFinish 消滅アニメを表示するか
+	 */
+	function stopBalloon( targetEvent, showFinish ) {
+		if( !targetEvent._balloon ) return;
+
+		targetEvent._balloon.phase = showFinish ? PHASE_SHOW_FINISH : PHASE_FINISH;
+	}
+
+	/**
+	 * フキダシ位置変更
+	 * @param {Game_Character} gameCharacter キャラ
+	 * @param {Number} dx x差分
+	 * @param {Number} dy y差分
+	 */
+	function locateBalloon( gameCharacter, dx, dy ) {
+		const balloonParam = balloonParamList[ gameCharacter._balloon.balloonIndex - 1 ];
+		gameCharacter._balloon.dx = ( typeof dx === TYPE_NUMBER ) ? dx : balloonParam.dx;
+		gameCharacter._balloon.dy = ( typeof dy === TYPE_NUMBER ) ? dy : balloonParam.dy;
+	}
+	// #endregion
+
+	// #region utility method
+	const TRIGGER_PARALLEL = 4;	// 並列処理
+	/**
+	 * 	イベントで使われているインタプリタを取り出す。
+	 * @param {Game_Character} character 
+	 */
+	function getInterpreterFromCharacter( character ) {
+		let interpreter;
+		if( character._trigger === TRIGGER_PARALLEL ) {
+			interpreter = character._interpreter;
+		} else {
+			interpreter = $gameMap._interpreter;
+		}
+		while( interpreter._childInterpreter ) {
+			interpreter = interpreter._childInterpreter;
+		}
+		return interpreter;
+	}
+
+	/**
+	 * 与えられた文字列に変数が指定されていたら、変数の内容に変換して返す。
+	 * @param {String} value 変換元の文字列( \V[n]形式を含む )
+	 * @return {String} 変換後の文字列
+	 */
+	function treatValue( value ) {
+		if( typeof value === TYPE_NUMBER ) return value;
+		if( value === undefined || value === "" ) return "0";
+		const result = value.match( /\x1bV\[(.+)\]/i );
+		if( result === null ) return value;
+		const id = parseInt( result[ 1 ], 10 );
+		if( isNaN( id ) ) {
+			return $gameVariables.valueByName( result[ 1 ] );
+		} else {
+			return $gameVariables.value( id );
+		}
+	}
+
+	/*--- イベントID・オブジェクト取得関数 ---*/
+	/*---- イベントIDの配置オフセット ----*/
+	const FOLLOWER_OFFSET = -2;
+	const VEHICLE_OFFSET = -100;
+
+	/*---- イベントID変換用文字列 ----*/
+	const EVENT_THIS = "this";
+	const EVENT_PLAYER = "player";
+	const EVENT_FOLLOWER0 = "follower0";
+	const EVENT_FOLLOWER1 = "follower1";
+	const EVENT_FOLLOWER2 = "follower2";
+	const VEHICLE_BOAT = "boat";
+	const VEHICLE_SHIP = "ship";
+	const VEHICLE_AIRSHIP = "airship";
+
+	/**
+	 * character を拡張して隊列メンバーも指定できるようにしたもの。
+	 * @param {Game_Interpreter} interpreter インタプリタ
+	 * @param {Number} id 拡張イベントID
+	 * @returns {Game_CharacterBase}
+	 */
+	function getEventById( interpreter, id ) {
+		if( id <= VEHICLE_OFFSET ) {
+			return $gameMap._vehicles[ VEHICLE_OFFSET - id ];			// 乗り物(0〜2)
+		} else if( id <= FOLLOWER_OFFSET ) {
+			return $gamePlayer.followers().follower( FOLLOWER_OFFSET - id );			// 隊列メンバー(0〜2)
+		} else {
+			return interpreter.character( id );			// プレイヤーキャラおよびイベント
+		}
+	}
+
+	/**
+	 * 文字列をイベントIDへ変換
+	 * @param {String} value イベントIDの番号か識別子
+	 * @returns {Number} 拡張イベントID
+	 */
+	function stringToEventId( value ) {
+		value = treatValue( value );
+		const result = parseInt( value, 10 );
+		if( !isNaN( result ) ) return result;
+
+		const lowValue = value.toLowerCase();
+		switch( lowValue ) {
+			case EVENT_THIS: return 0;
+			case EVENT_PLAYER: return -1;
+			case EVENT_FOLLOWER0: return FOLLOWER_OFFSET;
+			case EVENT_FOLLOWER1: return FOLLOWER_OFFSET - 1;
+			case EVENT_FOLLOWER2: return FOLLOWER_OFFSET - 2;
+			case VEHICLE_BOAT: return VEHICLE_OFFSET;
+			case VEHICLE_SHIP: return VEHICLE_OFFSET - 1;
+			case VEHICLE_AIRSHIP: return VEHICLE_OFFSET - 2;
+		}
+
+		const e = $dataMap.events.find( e => e && e.name === value );
+		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
+		return e.id;
+	}
+
+	/**
+	* 指定キャラの高さ。
+	* @param {Game_Character} character 指定キャラクタオブジェクト
+	* @returns {Number} 指定キャラの高さ
+	*/
+	function getEventHeight( character ) {
+		const zoomScale = $gameScreen.zoomScale();
+		const jsonData = getCharacterJson( character );
+		if( !jsonData ) return defaultEventHeight * zoomScale;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
+		return ( ( eventHeight === undefined ) ? defaultEventHeight : eventHeight ) * zoomScale;
+	}
+
+	/**
+	 * 指定キャラに対応するJSONデータを返す。
+	 * @param {Game_Character} character 指定キャラクタオブジェクト
+	 * @returns {RPG.MetaData} JSONデータ(なければundefined)
+	 */
+	function getCharacterJson( character ) {
+		if( character instanceof Game_Event ) return character.event();
+		if( character instanceof Game_Player ) return $gameParty.leader().actor();
+		if( character instanceof Game_Follower ) {
+			const actor = character.actor();
+			if( actor ) return actor.actor();
+		}
+	}
+	// #endregion
 } )();
