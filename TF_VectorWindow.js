@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.4.3.0
+// Version :1.5.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -9,6 +9,7 @@
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 //=================================================
+// #region annotation
 /*:ja
  * @target MZ
  * @plugindesc ウィンドウの表示をベクトル描画
@@ -86,12 +87,6 @@
  * 規定値:20
  * @type string @default 20
  * 
- * @================================================
- * @param defaultEventHeight @text イベント画像の高さ
- * @desc フキダシを上に表示する際の頭位置(ピクセル数)
- * 規定値:48
- * @type string @default 48
- *
  * 
  * @================== command =====================
  * @command setWindow @text ウィンドウの準備
@@ -306,7 +301,7 @@
  * 規定値:["#0086"]
  * @type string[] @default ["#0086"]
  */
-
+// #endregion
 ( () => {
 	"use strict";
 	// エラー表示用にプラグイン名を取得
@@ -316,8 +311,12 @@
 
 	// ウィンドウ描画関連
 	const ERROR_NUMBER = -1;
-	const WINDOW_TYPE_DEFAULT = 0; // UIタイプの規定値
+
+	const WINDOW_TYPE_UI = 0; // UIタイプの規定値
 	const WINDOW_TYPE_TALK = 1; // [文章の表示]ウィンドウタイプの規定値
+	const WINDOW_TYPE_THOUGHT = 2;
+	const WINDOW_TYPE_SHOUT = 3;
+
 
 	const SHAPE_ROUNDRECT = "roundrect";
 	const SHAPE_SPIKE = "spike";
@@ -363,8 +362,6 @@
 	// フキダシ(メッセージ)ウィンドウ設定
 	const pointerLength = pluginParams.pointerLength;// シッポの長さ
 	const pointerWidth = Math.floor( pluginParams.pointerWidth / 2 );// シッポの幅(半分)
-	const defaultEventHeight = pluginParams.defaultEventHeight;// イベント画像のデフォルト高さ
-	//48;
 
 	// 名前表示設定
 	const nameFontSize = pluginParams.nameFontSize;
@@ -377,9 +374,11 @@
 
 	let messageView;
 
-	/*--- Scene_Boot ---*/
-	// 全体での大きさを_windowLayer からのサイズに変換
-	// Graphics のサイズがここで決まるので、その直後に処理
+	// #region Scene_Boot
+	/**
+	 * 全体での大きさを_windowLayer からのサイズに変換
+	 * Graphics のサイズがここで決まるので、その直後に処理
+	 */
 	const _Scene_Boot_start = Scene_Boot.prototype.start;
 	Scene_Boot.prototype.start = function() {
 		_Scene_Boot_start.call( this );
@@ -389,6 +388,7 @@
 			return rect;
 		} )( stringToRectangle( pluginParams.messageView ) );
 	};
+	// #endregion
 
 
 	// #region registerCommand
@@ -429,6 +429,18 @@
 		// [このイベント]が指定されていた場合、ここでイベントIDを設定しておく
 		$gameMessage.TF_targetEventId = ( id === 0 ) ? this._eventId : id;
 	} );
+	// #endregion
+
+	// #region Game_CharacterBase
+	const _Game_CharacterBase_initMembers = Game_CharacterBase.prototype.initMembers;
+	Game_CharacterBase.prototype.initMembers = function() {
+		_Game_CharacterBase_initMembers.apply( this, arguments );
+		this.TF_setImageSize( 0, 0 );
+	};
+
+	Game_CharacterBase.prototype.TF_setImageSize = function( width, height ) {
+		this._size = { width: width, height: height };
+	};
 	// #endregion
 
 	// #region window command
@@ -580,7 +592,7 @@
 		if( this._data && this._data.WindowSkin ) return;
 		// TF_windowTypeが設定されていないなら、規定値を設定
 		if( !this.TF_windowType ) {
-			this.TF_windowType = WINDOW_TYPE_DEFAULT;
+			this.TF_windowType = WINDOW_TYPE_UI;
 			setWindowParam( this );
 		}
 	};
@@ -774,7 +786,7 @@
 			this.TF_targetEvent = te;
 			this.TF_eventX = $gameScreen.convertRealX( te.screenX() );
 			this.TF_eventY = $gameScreen.convertRealY( te.screenY() );
-			this.TF_eventHeight = getEventHeight( te );
+			this.TF_eventHeight = getEventHeight( te ) * $gameScreen.zoomScale();
 			if( $gameMessage.TF_pointerAlign === DIRECTION_AUTO ) {
 				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
 			}
@@ -801,12 +813,14 @@
 	 * 
 	 * @returns 設定するトゲの向き
 	 */
+	const AUTO_BALLOON_THRESHOLD = 0.4;// 中央でフキダシを南北方向に降る閾値
+	const AUTO_BALLOON_NS_THRESHOLD = 0.8;// 東西でフキダシを南北方向に降る閾値
 	Window_Message.prototype.TF_getAutoPointerDirection = function() {
 		const sw = $dataSystem.advanced.screenWidth;
 		const sh = $dataSystem.advanced.screenHeight;
-		const flagW = ( this.TF_eventX < sw * 0.2 );
-		const flagE = ( sw * 0.8 < this.TF_eventX );
-		if( this.TF_eventY < sh * 0.2 ) {
+		const flagW = ( this.TF_eventX < sw * AUTO_BALLOON_THRESHOLD );
+		const flagE = ( sw * AUTO_BALLOON_NS_THRESHOLD < this.TF_eventX );
+		if( this.TF_eventY < sh * AUTO_BALLOON_THRESHOLD ) {
 			if( flagW ) return DIRECTION_NW;
 			if( flagE ) return DIRECTION_NE;
 			return DIRECTION_NC;
@@ -839,7 +853,7 @@
 		// 謎の数字18(うち4に関しては本体の newLineX で追加してある謎の数値)
 		const messageWidth = textSize.width + this._padding * 2 + 18;
 		const messageHeight = textSize.height + this._padding * 2;
-		const pl = ( this.TF_shape === SHAPE_SPIKE ) ? 0 : pointerLength;
+		const pl = ( this.TF_windowType === WINDOW_TYPE_SHOUT ) ? 0 : pointerLength;
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -988,7 +1002,8 @@
 		const w = this.width;
 		const h = this.height;
 
-		if( this.TF_shape === SHAPE_SPIKE ) {
+		if( this.TF_windowType === WINDOW_TYPE_SHOUT ) {
+			// 叫びフキダシにシッポはつけない
 			setupBitmap( this._frameSprite, w, h );
 			this._frameSprite.move( 0, 0 );
 
@@ -1005,8 +1020,7 @@
 		const pathBox = this.TF_path2d;
 
 		// シッポ
-		const pathTail = new Path2D();
-		pathTail.addPath( drawTriangle(), getTailMatrix( this ) );
+		const pathTail = drawTail( this );
 		const pathComposite = new Path2D( pathBox );
 		pathComposite.addPath( pathTail );
 
@@ -1041,7 +1055,7 @@
 		const w = this.width;
 		const h = this.height;
 
-		if( this.TF_shape === SHAPE_SPIKE ) {
+		if( this.TF_windowType === WINDOW_TYPE_SHOUT ) {
 			// フキダシの描画
 			setupBitmap( this._backSprite, w, h );
 			this._backSprite.move( 0, 0 );
@@ -1051,11 +1065,8 @@
 			return;
 		}
 
-		// フキダシ本体
-		const pathBox = this.TF_path2d;
-		// シッポ
-		const pathTail = new Path2D();
-		pathTail.addPath( drawTriangle(), getTailMatrix( this ) );
+		const pathBox = this.TF_path2d;// フキダシ本体
+		const pathTail = drawTail( this );// シッポ
 
 		// 描画準備
 		const ctx = prepareDrawBalloon( this._backSprite, w, h );
@@ -1073,22 +1084,76 @@
 	};
 	// #endregion
 
+	// #region drawing method
 	/**
-	 * フキダシを描く準備
-	 * @param {Sprite} sprite 対象スプライト
-	 * @param {Number} w ウインドウの幅
-	 * @param {Number} h ウインドウの高さ
-	 * @returns {CanvasRenderingContext2D} コンテキスト
+	 * スプライトに指定サイズのビットマップを設定する
+	 * @param {Sprite} sprite スプライト
+	 * @param {Number} width 幅
+	 * @param {Number} height 高さ
 	 */
-	function prepareDrawBalloon( sprite, w, h ) {
-		// シッポの分、広く画像を描く
-		setupBitmap( sprite, w + pointerLength * 2, h + pointerLength * 2 );
-		sprite.move( -pointerLength, -pointerLength );
+	function setupBitmap( sprite, width, height ) {
+		const b = sprite.bitmap;
+		if( b ) {
+			b.resize( width, height );
+			b.clear();
+			sprite.width = width;
+			sprite.height = height;
+		} else {
+			sprite.bitmap = new Bitmap( width, height );
+		}
+	}
+	// #endregion
 
-		// 尻尾の分だけ基準点を右下に移動
-		const ctx = sprite.bitmap.context;
-		ctx.translate( pointerLength, pointerLength );
-		return ctx;
+	// #region tail draw method
+	/**
+	 * シッポのパスを得る(自動でトゲとアワを選択)
+	 * @param {Window_Message} mw 対象のメッセージウィンドウ
+	 * @returns {Path2D} シッポのパス
+	 */
+	function drawTail( mw ) {
+		const pathTail = new Path2D();
+		if( mw.TF_windowType === WINDOW_TYPE_TALK ) {
+			pathTail.addPath( drawTriangle(), getTailMatrix( mw ) );
+		} else if( mw.TF_windowType === WINDOW_TYPE_THOUGHT ) {
+			pathTail.addPath( drawBubble(), getTailMatrix( mw ) );
+		} else {
+			throw `${PLUGIN_NAME}: wrong windowType "${mw.TF_windowType}"`;
+		}
+		return pathTail;
+	}
+
+	/**
+	 * 三角(フキダシのシッポ)を描画(0時の方向)
+	 * @returns {Path2D} 三角形状データ
+	 */
+	function drawTriangle() {
+		const path = new Path2D();
+		path.moveTo( pointerWidth, 0 );
+		path.lineTo( 0, -pointerLength );
+		path.lineTo( -pointerWidth, 0 );
+		path.arcTo( 0, pointerWidth, pointerWidth, 0, pointerWidth );
+		path.closePath();
+		return path;
+	}
+
+	/**
+	 * アワ(フキダシのシッポ)を描画(0時の方向)
+	 * @returns {Path2D} アワ形状データ
+	 */
+	function drawBubble() {
+		const path = new Path2D();
+		const pathS = new Path2D();
+		pathS.ellipse( 0, -pointerLength, pointerWidth / 3, pointerWidth / 3, 0, 0, 2 * Math.PI );
+		path.addPath( pathS );
+
+		const pathM = new Path2D();
+		pathM.ellipse( 0, -pointerLength * 2 / 3, pointerWidth / 2, pointerWidth / 2, 0, 0, 2 * Math.PI );
+		path.addPath( pathM );
+
+		const pathL = new Path2D();
+		pathL.ellipse( 0, -pointerWidth, pointerWidth, pointerWidth, 0, 0, 2 * Math.PI );
+		path.addPath( pathL );
+		return path;
 	}
 
 	const DIRECTION_AUTO = "auto";// 自動配置
@@ -1187,26 +1252,27 @@
 		}
 		return new DOMMatrix().translateSelf( x, y ).rotateSelf( a );
 	}
+	// #endregion
 
+
+	// #region balloon draw method
 	/**
-	 * スプライトに指定サイズのビットマップを設定する
-	 * @param {Sprite} sprite スプライト
-	 * @param {Number} width 幅
-	 * @param {Number} height 高さ
+	 * フキダシを描く準備
+	 * @param {Sprite} sprite 対象スプライト
+	 * @param {Number} w ウインドウの幅
+	 * @param {Number} h ウインドウの高さ
+	 * @returns {CanvasRenderingContext2D} コンテキスト
 	 */
-	function setupBitmap( sprite, width, height ) {
-		const b = sprite.bitmap;
-		if( b ) {
-			b.resize( width, height );
-			b.clear();
-			sprite.width = width;
-			sprite.height = height;
-		} else {
-			sprite.bitmap = new Bitmap( width, height );
-		}
-	}
+	function prepareDrawBalloon( sprite, w, h ) {
+		// シッポの分、広く画像を描く
+		setupBitmap( sprite, w + pointerLength * 2, h + pointerLength * 2 );
+		sprite.move( -pointerLength, -pointerLength );
 
-	// #region drawing method
+		// 尻尾の分だけ基準点を右下に移動
+		const ctx = sprite.bitmap.context;
+		ctx.translate( pointerLength, pointerLength );
+		return ctx;
+	}
 	/*--- 図形パス描画関数 ---*/
 	/**
 	 * 角丸の矩形を描く
@@ -1306,20 +1372,6 @@
 		path.closePath();
 		return path;
 	}
-
-	/**
-	 * 三角(フキダシのシッポ)を描画(0時の方向)
-	 * @returns {Path2D} 三角形状データ
-	 */
-	function drawTriangle() {
-		const path = new Path2D();
-		path.moveTo( pointerWidth, 0 );
-		path.lineTo( 0, -pointerLength );
-		path.lineTo( -pointerWidth, 0 );
-		path.arcTo( 0, pointerWidth, pointerWidth, 0, pointerWidth );
-		path.closePath();
-		return path;
-	}
 	// #endregion
 
 	// #region Window_Selectable
@@ -1400,6 +1452,25 @@
 
 		this.TF_facePicture = new Sprite_FacePicture( new Bitmap( 1, 1 ) );
 		this.addWindow( this.TF_facePicture );
+	};
+	// #endregion
+
+	// #region Sprite_Character
+	/**
+	 * 画像更新時にキャラの高さをGame_Character側に設定
+	 */
+	const _Sprite_Character_updateBitmap = Sprite_Character.prototype.updateBitmap;
+	Sprite_Character.prototype.updateBitmap = function() {
+		if( this.isImageChanged() ) this._imageChange = true;
+		_Sprite_Character_updateBitmap.apply( this, arguments );
+		if( this._imageChange ) {
+			this.bitmap.addLoadListener( () => {
+				const width = this.bitmap.width === 1 ? $gameMap.tileWidth() : this.patternWidth();
+				const height = this.bitmap.height === 1 ? $gameMap.tileHeight() : this.patternHeight();
+				this._character.TF_setImageSize( width, height );
+			} );
+			this._imageChange = false;
+		}
 	};
 	// #endregion
 
@@ -1618,11 +1689,10 @@
 	* @returns {Number} 指定キャラの高さ
 	*/
 	function getEventHeight( character ) {
-		const zoomScale = $gameScreen.zoomScale();
 		const jsonData = getCharacterJson( character );
-		if( !jsonData ) return defaultEventHeight * zoomScale;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+		if( !jsonData ) return character._size.height;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
 		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
-		return ( ( eventHeight === undefined ) ? defaultEventHeight : eventHeight ) * zoomScale;
+		return ( eventHeight === undefined ) ? character._size.height : eventHeight;
 	}
 
 
