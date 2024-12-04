@@ -1,6 +1,6 @@
 //=================================================
 // TF_BalloonEx.js
-// Version :0.6.3.0
+// Version :0.7.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -437,7 +437,6 @@
 	const baseDy = pluginParams.baseDy;
 	const balloonParamList = pluginParams.balloonParamList;
 
-
 	// #region registerCommand
 	// [フキダシアニメ開始] コマンド
 	PluginManagerEx.registerCommand( document.currentScript, COM_START_BALLOON, function( args ) {
@@ -630,15 +629,12 @@
 
 	// #region Sprite_Balloon
 	Sprite_Balloon.prototype.isPlaying = function() {
-		if( this._duration > 0 ) {
-			return true;
-		} else {
-			if( this._balloon ) {
-				//TODO
-				delete this._target._character._balloon;
-			}
-			return false;
+		if( 0 < this._duration ) return true;
+		if( this._balloon ) {
+			//TODO
+			delete this._target._character._balloon;
 		}
+		return false;
 	};
 
 	/**
@@ -702,10 +698,24 @@
 	Sprite_Balloon.prototype.updatePosition = function() {
 		_Sprite_Balloon_updatePosition.call( this );
 
+		const metaHight = this.TF_getTargetHight();
+		if( metaHight ) {
+			this.y = this._target.y - metaHight;
+		}
 		if( this._balloon ) {
 			this.x += this._balloon.dx;
 			this.y += this._balloon.dy;
 		}
+	};
+
+	Sprite_Balloon.prototype.TF_getTargetHight = function() {
+		const targetSprite = this._target;
+		const character = targetSprite._character;
+
+		const jsonData = getCharacterJson( character );
+		if( !jsonData ) return targetSprite.height;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
+		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
+		return ( ( eventHeight === undefined ) ? targetSprite.height : eventHeight );
 	};
 
 	const _Sprite_Balloon_speed = Sprite_Balloon.prototype.speed;
@@ -881,19 +891,6 @@
 		const e = $dataMap.events.find( e => e && e.name === value );
 		if( e === undefined ) throw Error( `${PLUGIN_NAME}: I can't find the event '${value}'` );
 		return e.id;
-	}
-
-	/**
-	* 指定キャラの高さ。
-	* @param {Game_Character} character 指定キャラクタオブジェクト
-	* @returns {Number} 指定キャラの高さ
-	*/
-	function getEventHeight( character ) {
-		const zoomScale = $gameScreen.zoomScale();
-		const jsonData = getCharacterJson( character );
-		if( !jsonData ) return defaultEventHeight * zoomScale;   // メモ欄を持たないデータ(Game_Vehicle、Actor がない follower)
-		const eventHeight = PluginManagerEx.findMetaValue( jsonData, TF_EVENTHEIGHT );
-		return ( ( eventHeight === undefined ) ? defaultEventHeight : eventHeight ) * zoomScale;
 	}
 
 	/**
