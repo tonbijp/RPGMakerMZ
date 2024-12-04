@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.5.0.0
+// Version :1.5.1.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -813,21 +813,25 @@
 	 * 
 	 * @returns 設定するトゲの向き
 	 */
-	const AUTO_BALLOON_THRESHOLD = 0.4;// 中央でフキダシを南北方向に降る閾値
-	const AUTO_BALLOON_NS_THRESHOLD = 0.8;// 東西でフキダシを南北方向に降る閾値
+	const AUTO_BALLOON_NS_THRESHOLD = 0.35;// 南北の際の閾値
+	const AUTO_BALLOON_WE_THRESHOLD = 0.2;// 東西の際の閾値
 	Window_Message.prototype.TF_getAutoPointerDirection = function() {
 		const sw = $dataSystem.advanced.screenWidth;
 		const sh = $dataSystem.advanced.screenHeight;
-		const flagW = ( this.TF_eventX < sw * AUTO_BALLOON_THRESHOLD );
-		const flagE = ( sw * AUTO_BALLOON_NS_THRESHOLD < this.TF_eventX );
-		if( this.TF_eventY < sh * AUTO_BALLOON_THRESHOLD ) {
-			if( flagW ) return DIRECTION_NW;
-			if( flagE ) return DIRECTION_NE;
-			return DIRECTION_NC;
-		} else {
-			if( flagW ) return DIRECTION_SW;
-			if( flagE ) return DIRECTION_SE;
+		const flagW = this.TF_eventX < sw * AUTO_BALLOON_WE_THRESHOLD;// 西際
+		const flagE = sw - sw * AUTO_BALLOON_WE_THRESHOLD < this.TF_eventX;// 東際
+		const flagN = this.TF_eventY < sh * AUTO_BALLOON_NS_THRESHOLD;  // 北際
+		const flagS = sh - sh * AUTO_BALLOON_NS_THRESHOLD < this.TF_eventY; //南際
+		if( flagW ) {
+			if( flagN ) return DIRECTION_NW;
+			return DIRECTION_SW;
+		} else if( flagE ) {
+			if( flagN ) return DIRECTION_NE;
+			return DIRECTION_SE;
 		}
+		if( flagN ) return DIRECTION_NC;
+		if( flagS ) return DIRECTION_SC;
+
 		// 中央付近の場合、対象のキャラ配置によって上下に分ける
 		if( this.TF_targetEvent instanceof Game_Player ) {
 			if( this.TF_targetEvent.direction() === 8 ) return DIRECTION_NC;
