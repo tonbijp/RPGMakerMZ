@@ -1,14 +1,14 @@
-//========================================
+//=================================================
 // TF_Condition.js
-// Version :1.7.2.2
+// Version :1.8.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
-// -----------------------------------------------
+// ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
-//========================================
+//=================================================
 /*:ja
  * @target MZ
  * @plugindesc 条件判定関連のスクリプト
@@ -17,78 +17,18 @@
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  *
+ * @================= parameter ====================
  * @param temporarySwitch @text 一時スイッチのID
  * @desc 各種値を返すスイッチのID(規定値:1)
  * @type switch @default 1
  *
+ * @================================================
  * @param temporaryVariable @text 一時変数のID
  * @desc 各種値を返す変数のID(規定値:1)
  * @type variable @default 1
  *
- * @================================================
- * @help 
- * 変数・スイッチ・セルフスイッチをIDだけでなく[名前]で設定できる。
- * そのため、制作途中でIDを変えても[名前]が同じなら大丈夫。
- * 
- * プレイヤー位置・前方のイベントなどの判定ができる。
- * 
- * 数値・真偽値に指定できる値について
- * ・基本は変数・スイッチの[名前]を指定します。
- * ・PluginCommonBase 定義により \V[n] \S[n]が使えます。
- * ・数字は名前でなく数値と判断します。
- * ・true、false は名前ではなく値と判断します。
- * 
- * 一時変数・一時スイッチについて
- * ・名前に it をつけることを推奨します。
- * 　プラグインコマンドの規定値が it だからです。
- * 　一時変数・一時スイッチ両方とも it が規定値です。
- * ・IDはプラグインパラメータで変更できますが 1 を推奨します。
- * 　イベントコマンドの規定値が 1 だから入れ替える必要がありません。
  *
- * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
- *
- * ●イベントコマンド
- * 　[スイッチの操作][変数の操作][セルフスイッチの操作]
- * 判定
- * 　[スイッチ判定][セルフスイッチ判定]
- * 　[複数スイッチ and結合][JavaScript判定]
- * 比較
- * 　[数値比較][数値範囲]
- * 位置
- * 　[座標位置][前方イベント][その場イベント]
- * 出現条件:判定
- * 　[スイッチ判定][セルフスイッチ判定][複数スイッチ and結合]
- * 出現条件:比較
- * 　[数値比較][数値範囲]
- * ------------------------------
- * 引数の[論理演算]の選択肢のうち get そして and、or、== は、
- * 判定を連続して行いたい場合に使います。
- * 論理演算の結果は一時スイッチに代入されます。
- *
- *  [一時スイッチに代入 get]
- * 　　判定結果。
- *  [一時スイッチとの論理積 and]
- * 　　一時スイッチと判定結果が両方ともONだとON。
- *  [一時スイッチとの論理和 or]
- * 　　一時スイッチと判定結果のどちらかがONだとON。
- *  [一時スイッチと同じ ==]
- * 　　一時スイッチと判定結果の値が同じだとON。
- * 
- * ●スクリプト
- * $gameVariables.setValueByName( 変数名, 変数への設定値 )
- * $gameVariables.valueByName( 変数名 )
- * $gameSwitches.setValueByName( スイッチ名, スイッチ状態(真偽値) )
- * $gameSwitches.valueByName( スイッチ名 )
- * this.TF_checkLocation( マップID, イベントID, x, y, 向き )
- * this.TF_checkFrontEvent( マップID, イベントID )
- * this.TF_checkHereEvent( マップID, 向き, イベントID )
- * 
- * 利用規約 : MITライセンス
- * 
- * TODO: 
- * セルフスイッチを変数として利用できる機能をつける
- *
- * @================================================
+ * @================== command =====================
  * @command switch @text スイッチの操作
  * @desc 指定スイッチへの代入。
  *
@@ -350,6 +290,32 @@
  * @option 一時スイッチとの論理和を代入 or @value or
  * @option 一時スイッチとの比較結果を代入 == @value ==
  *
+ * @================================================
+ * @command checkItem @text 判定:アイテム
+ * @desc
+ * 指定アイテムを持っているか判定して、
+ * 結果を一時スイッチに設定。
+ * 
+ * @arg itemId @text アイテムID
+ * @desc (規定値: 0)
+ * @type item @default 0
+ * 
+ * @arg includeEquip @text 装備中のアイテムを含むか
+ * @desc (規定値: true)
+ * @type boolean @default true
+ * @on 装備中を含む(規定) @off 含まない
+ * 
+ * @arg operate @text 論理演算
+ * @desc 一時変数への代入前の処理
+ * 規定値: そのまま代入 get
+ * @type select @default get
+ * @option そのまま代入 get @value get
+ * @option 反転して代入 not @value not
+ * @option 一時スイッチとの論理積を代入 and @value and
+ * @option 一時スイッチとの論理和を代入 or @value or
+ * @option 一時スイッチとの比較結果を代入 == @value ==
+ * 
+ *  
  * @=================== 【特殊判定】 ===============================================================
  * @command rem2 @text ＿＿＿＿ 特殊判定 ＿＿＿＿
  * @desc 標準にはついてない判定方式で[出現条件]では使えません。
@@ -538,8 +504,8 @@
  * @type string @default $it
  *
  * @arg compare @text 比較演算子
- * @desc (規定値: ==)
- * @type select @default ==
+ * @desc (規定値: ≦)
+ * @type select @default ≦
  * @option 同じ == @value ==
  * @option 以外 ≠ @value ≠
  * @option 以上 ≦ @value ≦
@@ -584,11 +550,86 @@
  * @arg max @text ≦最大値
  * @desc 変数の名前、数値いずれか
  * @type number @default 100
+ * 
+ * @================================================
+ * @command conditionItem @text 出現条件:アイテム
+ * @desc 指定アイテムを持っていればページ出現。
+ *
+ * @arg itemId @text アイテムID
+ * @desc アイテム(規定値: 0)
+ * @type item @default 0
+ * 
+ * 
+ * @============ この長さに合わせるとヘルプではみ出ない =============
+ * @help 
+ * 変数・スイッチ・セルフスイッチをIDだけでなく[名前]で設定できる。
+ * そのため、制作途中でIDを変えても[名前]が同じなら大丈夫。
+ * 
+ * プレイヤー位置・前方のイベントなどの判定ができる。
+ * 
+ * 数値・真偽値に指定できる値について
+ * ・基本は変数・スイッチの[名前]を指定します。
+ * ・PluginCommonBase 定義により \V[n] \S[n]が使えます。
+ * ・数字は名前でなく数値と判断します。
+ * ・true、false は名前ではなく値と判断します。
+ * 
+ * 一時変数・一時スイッチについて
+ * ・名前に it をつけることを推奨します。
+ * 　プラグインコマンドの規定値が it だからです。
+ * 　一時変数・一時スイッチ両方とも it が規定値です。
+ * ・IDはプラグインパラメータで変更できますが 1 を推奨します。
+ * 　イベントコマンドの規定値が 1 だから入れ替える必要がありません。
+ *
+ * ※ PluginCommonBase 定義によりパラメータや引数に \V[n] を使えます。
+ *
+ * ●イベントコマンド
+ * 　[スイッチの操作][変数の操作][セルフスイッチの操作]
+ * 判定
+ * 　[スイッチ判定][セルフスイッチ判定]
+ * 　[複数スイッチ and結合][JavaScript判定]
+ * 比較
+ * 　[数値比較][数値範囲]
+ * 位置
+ * 　[座標位置][前方イベント][その場イベント]
+ * 出現条件:判定
+ * 　[スイッチ判定][セルフスイッチ判定][複数スイッチ and結合]
+ * 出現条件:比較
+ * 　[数値比較][数値範囲]
+ * ------------------------------
+ * 引数の[論理演算]の選択肢のうち get そして and、or、== は、
+ * 判定を連続して行いたい場合に使います。
+ * 論理演算の結果は一時スイッチに代入されます。
+ *
+ *  [一時スイッチに代入 get]
+ * 　　判定結果。
+ *  [一時スイッチとの論理積 and]
+ * 　　一時スイッチと判定結果が両方ともONだとON。
+ *  [一時スイッチとの論理和 or]
+ * 　　一時スイッチと判定結果のどちらかがONだとON。
+ *  [一時スイッチと同じ ==]
+ * 　　一時スイッチと判定結果の値が同じだとON。
+ * 
+ * ●スクリプト
+ * $gameVariables.setValueByName( 変数名, 変数への設定値 )
+ * $gameVariables.valueByName( 変数名 )
+ * $gameSwitches.setValueByName( スイッチ名, スイッチ状態(真偽値) )
+ * $gameSwitches.valueByName( スイッチ名 )
+ * this.TF_checkLocation( マップID, イベントID, x, y, 向き )
+ * this.TF_checkFrontEvent( マップID, イベントID )
+ * this.TF_checkHereEvent( マップID, 向き, イベントID )
+ * 
+ * 利用規約 : MITライセンス
+ * 
+ * TODO: 
+ * セルフスイッチを変数として利用できる機能をつける
  */
 
 ( function() {
 	"use strict";
-	const PLUGIN_NAME = "TF_Condition";
+	// エラー表示用にプラグイン名を取得
+	const PLUGIN_NAME = PluginManagerEx.findPluginName( document.currentScript );
+
+	// プラグインコマンド判定用パス
 	const PLUGIN_PATH = ( () => {
 		const url = document.currentScript._url;
 		const args = url.match( /^js\/plugins\/(.+)\.js$/ );
@@ -743,6 +784,7 @@
 	const COM_CHECK_COMPARE = "checkCompare";
 	const COM_CHECK_COMPARE_TEXT = "checkCompareText";
 	const COM_CHECK_RANGE = "checkRange";
+	const COM_CHECK_ITEM = "checkItem";
 
 	const COM_CHECK_LOCATION = "checkLocation";
 	const COM_CHECK_FRONT_EVENT = "checkFrontEvent";
@@ -807,14 +849,14 @@
 		setSelfSwitch( args.mapId, args.eventId, args.type, stringToBoolean( operand ) );
 	} );
 
-	// [スイッチ判定]
+	// [判定:スイッチ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SWITCH, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = $gameSwitches.valueByName( args.name );
 		setItTo( value, args.operate );
 	} );
 
-	// [セルフスイッチ判定]
+	// [判定:セルフスイッチ]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_SELFSWITCH, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		if( args.eventId === EVENT_THIS ) args.eventId = this.character( 0 )._eventId;
@@ -822,14 +864,14 @@
 		setItTo( value, args.operate );
 	} );
 
-	// [複数スイッチ and結合判定]
+	// [判定:複数スイッチ and結合]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_MULTIPLE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = args.nameList.every( e => $gameSwitches.valueByName( e ) );
 		setItTo( value, args.operate );
 	} );
 
-	// [プレイヤー位置判定]
+	// [判定:座標位置]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_LOCATION, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const [ x, y ] = positionStringToArray( args.position );
@@ -837,21 +879,21 @@
 		setItTo( value, args.operate );
 	} );
 
-	// [プレイヤー前方イベント判定]
+	// [判定:前方イベント]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_FRONT_EVENT, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = this.TF_checkFrontEvent( args.mapId, args.eventId );
 		setItTo( value, args.operate );
 	} );
 
-	// [プレイヤー位置イベント判定]
+	// [判定:その場イベント]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_HERE_EVENT, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = this.TF_checkHereEvent( args.mapId, args.d, args.eventId );
 		setItTo( value, args.operate );
 	} );
 
-	// [JavaScript判定]
+	// [判定:JavaScript]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_JS, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const code = JSON.parse( args.script );
@@ -859,7 +901,7 @@
 		setItTo( value, args.operate );
 	} );
 
-	// [数値比較]
+	// [判定:数値比較]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_COMPARE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = checkCompare( args );
@@ -878,7 +920,7 @@
 		}
 	}
 
-	// [文字比較]
+	// [判定:文字比較]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_COMPARE_TEXT, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = checkCompareText( args );
@@ -893,7 +935,7 @@
 		}
 	}
 
-	// [範囲判定]
+	// [判定:数値範囲]
 	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_RANGE, function( args ) {
 		if( shortCircuit( args.operate ) ) return;
 		const value = checkRange( args );
@@ -923,6 +965,21 @@
 		if( value === undefined || value === "" ) return false;
 		if( typeof value === TYPE_BOOLEAN ) return value;
 		return $gameSwitches.valueByName( value );
+	}
+
+
+	// [判定:アイテム]
+	PluginManagerEx.registerCommand( document.currentScript, COM_CHECK_ITEM, function( args ) {
+		if( shortCircuit( args.operate ) ) return;
+		const value = checkItem( args );
+		setItTo( value, args.operate );
+	} );
+	function checkItem( args ) {
+		const id = stringToNumber( args.itemId );
+		const item = $dataItems[ id ];
+		const includeEquip = args.includeEquip;
+
+		return $gameParty.hasItem( item, includeEquip );
 	}
 
 
@@ -1108,6 +1165,7 @@
 	const CONDITION_COMPARE = "conditionCompare";
 	const CONDITION_COMPARE_TEXT = "conditionCompareText";
 	const CONDITION_RANGE = "conditionRange";
+	const CONDITION_ITEM = "conditionItem";
 	/*--- Game_Event ---*/
 	/**
 	 * 指定イベントページの出現条件判定を行う。
@@ -1147,6 +1205,10 @@
 				case CONDITION_RANGE:// [出現条件:数値範囲]
 					if( !checkRange( args ) ) return false;
 					continue;
+				case CONDITION_ITEM:// [出現条件:アイテム]
+					if( !checkItem( args ) ) return false;
+					continue;
+
 				default:
 					return true;	// [出現条件] 以外のプラグインコマンド
 			}
