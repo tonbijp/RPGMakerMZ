@@ -1,6 +1,6 @@
 //=================================================
 // TF_Condition.js
-// Version :1.8.0.0
+// Version :1.9.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -300,11 +300,11 @@
  * @desc (規定値: 0)
  * @type item @default 0
  * 
- * @arg includeEquip @text 装備中のアイテムを含むか
- * @desc (規定値: true)
+ * @arg hasOrNot @text 持っているか
+ * @desc 指定アイテムの有無の指定
  * @type boolean @default true
- * @on 装備中を含む(規定) @off 含まない
- * 
+ * @on 持っている(規定) @off 持たない
+ *  
  * @arg operate @text 論理演算
  * @desc 一時変数への代入前の処理
  * 規定値: そのまま代入 get
@@ -553,13 +553,18 @@
  * 
  * @================================================
  * @command conditionItem @text 出現条件:アイテム
- * @desc 指定アイテムを持っていればページ出現。
+ * @desc 指定アイテムの所持状態でページ出現。
  *
  * @arg itemId @text アイテムID
- * @desc アイテム(規定値: 0)
+ * @desc (規定値: 0)
  * @type item @default 0
  * 
+ * @arg hasOrNot @text 持っているか
+ * @desc 指定アイテムの有無の指定
+ * @type boolean @default true
+ * @on 持っている(規定) @off 持たない
  * 
+ *  
  * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help 
  * 変数・スイッチ・セルフスイッチをIDだけでなく[名前]で設定できる。
@@ -976,10 +981,9 @@
 	} );
 	function checkItem( args ) {
 		const id = stringToNumber( args.itemId );
-		const item = $dataItems[ id ];
-		const includeEquip = args.includeEquip;
-
-		return $gameParty.hasItem( item, includeEquip );
+		const hasOrNot = args.hasOrNot;
+		const hasItem = $gameParty.hasItem( $dataItems[ id ], true );
+		return hasOrNot ? hasItem : !hasItem;
 	}
 
 
