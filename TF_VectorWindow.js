@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.5.1.0
+// Version :1.5.2.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -759,6 +759,7 @@
 		this.TF_initialize();
 	};
 	Window_Message.prototype.TF_initialize = function() {
+		$gameMessage.TF_windowType = WINDOW_TYPE_TALK;
 		$gameMessage.TF_faceAlign = ALIGN_LEFT;
 		$gameMessage.TF_continuous = false;
 		$gameMessage.TF_pointerAlign = POINTER_NONE;
@@ -792,8 +793,10 @@
 			}
 			$gameMessage.TF_targetEventId = null;
 		}
-		if( $gameMessage.TF_windowType ) this.TF_windowType = $gameMessage.TF_windowType;
 
+		if( typeof $gameMessage.TF_windowType === TYPE_NUMBER ) {
+			this.TF_windowType = $gameMessage.TF_windowType;
+		}
 		setWindowParam( this );
 
 		if( this.TF_targetEvent ) {
@@ -1006,7 +1009,7 @@
 		const w = this.width;
 		const h = this.height;
 
-		if( this.TF_windowType === WINDOW_TYPE_SHOUT ) {
+		if( this.TF_windowType !== WINDOW_TYPE_TALK && this.TF_windowType !== WINDOW_TYPE_THOUGHT ) {
 			// 叫びフキダシにシッポはつけない
 			setupBitmap( this._frameSprite, w, h );
 			this._frameSprite.move( 0, 0 );
@@ -1059,7 +1062,7 @@
 		const w = this.width;
 		const h = this.height;
 
-		if( this.TF_windowType === WINDOW_TYPE_SHOUT ) {
+		if( this.TF_windowType !== WINDOW_TYPE_TALK && this.TF_windowType !== WINDOW_TYPE_THOUGHT ) {
 			// フキダシの描画
 			setupBitmap( this._backSprite, w, h );
 			this._backSprite.move( 0, 0 );
