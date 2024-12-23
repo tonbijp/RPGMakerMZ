@@ -1,6 +1,6 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.5.2.0
+// Version :1.5.3.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2020-2024
@@ -574,11 +574,11 @@
 	 */
 	const _Game_Interpreter_command101 = Game_Interpreter.prototype.command101;
 	Game_Interpreter.prototype.command101 = function( params ) {
+		const result = _Game_Interpreter_command101.call( this, params );
+		if( !result ) return false;
 		// 次のコマンドも[文章の表示]か
-		const eventIndex = getNextCommandIndex( this._list, this._index + 1, TEXT_DATA );
-		$gameMessage.TF_continuous = ( this._list[ eventIndex ].code === SHOW_TEXT );
-
-		return _Game_Interpreter_command101.apply( this, arguments );
+		$gameMessage.TF_continuous = ( this.nextEventCode() === SHOW_TEXT );
+		return true;
 	};
 	// #endregion
 
@@ -756,6 +756,12 @@
 	const _Window_Message_initialize = Window_Message.prototype.initialize;
 	Window_Message.prototype.initialize = function() {
 		_Window_Message_initialize.apply( this, arguments );
+
+		// MessageAlignCenter.js が Window_MessageDummy を作った時の対策で
+		// TF_initialize を通さないパターンを用意しておく
+		// [メッセージを表示]コマンドが継続しているなら値を維持
+		if( $gameMessage.TF_continuous ) return;
+		// 次回は規定値を予約
 		this.TF_initialize();
 	};
 	Window_Message.prototype.TF_initialize = function() {
@@ -801,10 +807,8 @@
 
 		if( this.TF_targetEvent ) {
 			this.TF_resetLayoutByEvent();
-		} else {
-			if( $gameMessage.background() !== BG_TRANSPARENT ) {
-				this.TF_setMessageParam();
-			}
+		} else if( $gameMessage.background() !== BG_TRANSPARENT ) {
+			this.TF_setMessageParam();
 		}
 		this._refreshAllParts();
 
