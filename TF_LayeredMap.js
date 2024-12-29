@@ -1,14 +1,15 @@
-//========================================
+//=================================================
 // TF_LayeredMap.js
-// Version :0.4.1.0
+// Version :0.4.1.1
 // For : RPGツクールMZ (RPG Maker MZ)
-// -----------------------------------------------
-// Copyright : Tobishima-Factory 2018 - 2024
+// ----------------------------------------------
+// Copyright : Tobishima-Factory 2018-2024
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
-//========================================
+//=================================================
+// #region annotation
 /*:
  * @target MZ
  * @plugindesc Extended map tile layer.
@@ -169,12 +170,16 @@
  *      0xE ・・・↓ : 0xC と同じだが南の両脇が通行可 （椅子とか）(HalfMove.js が必要)
  *      0xF ・・・・ : 0x1 と同じだが南の両脇が通行可 （杭などに）(HalfMove.js が必要)
  *  
- * 2. 崖など回り込み用オートタイル
+ * 2. A3・A4オートタイル
  * 　[カウンター]設定
+ *      A3の奇数列(屋根)
+ *      　[○] 「矩形面全体で」南北通行不可、東西通行可(・→←・)
+ *      A3の偶数列(壁)
+ *      　[○] 「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
  *      A3・A4の偶数列(壁)
- *      　[○] 全体=回り込み、南方向は通行不可(壁の高さは自動調整)
- *      A3・A4に共通
  *      　[×] 北=回り込み、周囲=通行不可
+ *      A3・A4に共通
+ *      　[☆] 全体=回り込み、南方向は通行不可(壁の高さは自動調整)
  * 
  * 3. 重ね合わせのソート順を調整するメタタグ
  *      <TF_zDef:数値>の形でイベントのメモに入力します。
@@ -183,6 +188,7 @@
  * 
  * 利用規約 : MITライセンス
  */
+// #endregion
 ( () => {
     "use strict";
     const LAYER_MIDDLE = 3; // キャラ配置レイヤーのz番号
@@ -222,7 +228,7 @@
     const TF_IsA3UpperOpen = pluginParams.IsA3UpperOpen;
     const TF_IsA4UpperOpen = pluginParams.IsA4UpperOpen;
 
-    /*---- Tilemap ----*/
+    // #region Tilemap
     /**
      * 書き割りレイヤーの生成と追加。
      */
@@ -400,8 +406,10 @@
         }
         return a.spriteId - b.spriteId;
     };
+    // #endregion
 
-    /*---- DataManager ---*/
+
+    // #region DataManager
     /**
      * 読み込み直後に、タイルセットデータを書き換える。
      * @param {Object} object 読み込んだデータ
@@ -672,9 +680,10 @@
         ];
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, SQUARE_PASS );
     }
+    // #endregion
 
 
-    /*---- Game_CharacterBase ----*/
+    // #region Game_CharacterBase
     /**
      * 指定方向への移動が可能か
      * キャラクタ半分の位置が関係するものは、ここで判定。
@@ -820,9 +829,10 @@
 
         return _Game_CharacterBase_isMapPassable.apply( this, arguments );
     };
+    // #endregion
 
 
-    /*---- Game_Event ----*/
+    // #region Game_Event
     const _Game_Event_initialize = Game_Event.prototype.initialize;
     Game_Event.prototype.initialize = function( mapId, eventId ) {
         _Game_Event_initialize.apply( this, arguments );
@@ -838,9 +848,10 @@
         const higherLevel = getMetaValue( this.event(), "higherLevel" );
         if( higherLevel !== undefined ) this._higherLevel = ( higherLevel.toLowerCase() === PARAM_TRUE );
     };
+    // #endregion
 
 
-    /*---- Game_Map ----*/
+    // #region Game_Map
     /**
      * 指定位置の指定フラグビットが通行可か。
      * 高層表示[☆]の4方向の通行設定については@helpを参照
@@ -880,4 +891,5 @@
     function getHalfPos( x, y ) {
         return ( ( ( x % 1 ) === 0 ) ? 1 : 0 ) + ( ( ( y % 1 ) === 0 ) ? 2 : 0 );
     }
+    // #endregion
 } )();
