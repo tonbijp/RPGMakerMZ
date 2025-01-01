@@ -1,9 +1,9 @@
 //=================================================
 // TF_LayeredMap.js
-// Version :0.4.1.1
+// Version :1.0.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
-// Copyright : Tobishima-Factory 2018-2024
+// Copyright : Tobishima-Factory 2018-2025
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -95,6 +95,8 @@
  * 
  * Released under the MIT License.
  */
+// #endregion
+// #region annotation ja
 /*:ja
  * @target MZ
  * @plugindesc マップタイル重ね合わせ強化
@@ -104,9 +106,11 @@
  * @orderAfter PluginCommonBase
  * @orderAfter HalfMove
  *
+ * @================= parameter ====================
  * @param Autotile
  * @text オートタイル
  * 
+ * @================================================
  * @param UseLayeredCounter
  * @text カウンター回り込み
  * @type boolean
@@ -117,6 +121,7 @@
  * @default false
  * @parent Autotile
  * 
+ * @================================================
  * @param IsA2FullCollision
  * @text タイル全体を通行不可
  * @type boolean
@@ -126,6 +131,7 @@
  * @default true
  * @parent Autotile
  * 
+ * @================================================
  * @param IsA3UpperOpen
  * @type boolean
  * @on 南を開く
@@ -135,6 +141,7 @@
  * @default false
  * @parent Autotile
  * 
+ * @================================================
  * @param IsA4UpperOpen
  * @type boolean
  * @on 南を開く(規定値)
@@ -144,42 +151,58 @@
  * @default true
  * @parent Autotile
  * 
+ * @============ この長さに合わせるとヘルプではみ出ない =============
  * @help 
  * このプラグインは以下の機能を提供します。
  * 　1. [☆]+[通行設定(4方向)]で、B〜Eタイルの重なり機能を追加。
- * 　2. [カウンター]で、A3・A4タイルに回り込み機能を追加。
+ * 　2. [♢]カウンター設定を行ったオートタイルの挙動を、カウンター以外の機能に変更。
  * 　3. <TF_zDef:数値> をイベントのメモに記入して重なりの調整。
  * 　4. A2[カウンター]の北側に回り込み機能を追加(プラグインパラメータを参照)
  * 　5. オートタイルの通行判定の仕様変更(プラグインパラメータを参照)
  * 
  * 1. B〜Eタイルに[☆]を指定したあと、[通行設定(4方向)]
  *      0x0 ↑→←↓ : [☆] 設定、全方向に 通行可(プラグインなしと同じ)
- *      0x1 ↑→←・ : 書き割り、北　西東 通行可、1階 【基本、柵とか】
- *      0x2 ↑→・↓ : 書き割り、北南　東 通行可、1階 （柵の西側とか）┃
- *      0x3 ↑→・・ : 書き割り、北　　東 通行可、1階 （柵の西南とか）┗
- *      0x4 ↑・←↓ : 書き割り、北南西　 通行可、1階 （柵の東側とか）   ┃
- *      0x5 ↑・←・ : 書き割り、北　西　 通行可、1階 （柵の東南とか）   ┛
- *      0x6 ↑・・↓ : 書き割り、北南　　 通行可、1階 （両脇に木とか）┃┃
- *      0x7 ↑・・・ : 書き割り、北　　　 通行可、1階 （張り出し的な）┗┛
- *      0x8 ・→←↓ : 書き割り、全方向に 通行可、1階 （草むらなどに）
- *      0x9 ・→←・ : 書き割り、全方向に 通行可、2階
- *      0xA ・→・↓ : 書き割り、全方向に 通行可、3階
- *      0xB ・→・・ : 通行判定に影響を与えない(見た目だけの装飾に)
+ *      0x1 ↑→←・ : 書割り、北　西東 通行可、1階 【基本、柵とか】━━━
+ *      0x2 ↑→・↓ : 書割り、北南　東 通行可、1階 （柵の西側とか）┃
+ *      0x3 ↑→・・ : 書割り、北　　東 通行可、1階 （柵の西南とか）┗
+ *      0x4 ↑・←↓ : 書割り、北南西　 通行可、1階 （柵の東側とか）  　┃
+ *      0x5 ↑・←・ : 書割り、北　西　 通行可、1階 （柵の東南とか）  　┛
+ *      0x6 ↑・・↓ : 書割り、北南　　 通行可、1階 （両脇に木とか）┃　┃
+ *      0x7 ↑・・・ : 書割り、北　　　 通行可、1階 （張り出し的な）┗━┛
+ *      0x8 ・→←↓ : 書割り、全方向に 通行可、1階 （草むらなどに）
+ *      0x9 ・→←・ : 書割り、全方向に 通行可、2階
+ *      0xA ・→・↓ : 書割り、全方向に 通行可、3階
+ *      0xB ・→・・ : 通行判定に影響を与えない(見た目だけの装飾)
  *      0xC ・・←↓ : 0x1 と同じだが南半分が通行不可 （机などに）(HalfMove.js が必要)
  *      0xD ・・←・ : 北の中心だけ通行不可 （根元とか）(HalfMove.js が必要)
  *      0xE ・・・↓ : 0xC と同じだが南の両脇が通行可 （椅子とか）(HalfMove.js が必要)
  *      0xF ・・・・ : 0x1 と同じだが南の両脇が通行可 （杭などに）(HalfMove.js が必要)
  *  
- * 2. A3・A4オートタイル
- * 　[カウンター]設定
- *      A3の奇数列(屋根)
- *      　[○] 「矩形面全体で」南北通行不可、東西通行可(・→←・)
- *      A3の偶数列(壁)
- *      　[○] 「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
- *      A3・A4の偶数列(壁)
- *      　[×] 北=回り込み、周囲=通行不可
- *      A3・A4に共通
- *      　[☆] 全体=回り込み、南方向は通行不可(壁の高さは自動調整)
+ * 2. [♢]カウンター設定を行ったオートタイルの挙動を、カウンター以外の機能に変更。
+ *  A2の[×]以外の設定は[レイヤー1]に配置しても意味がないので、
+ *  [自動]ではなく[レイヤー2]以降を選択して配置します。
+ *    A1
+ *      [○] 通行判定に影響を与えない(見た目だけの装飾)
+ *      [×] ----
+ *      [☆] ----
+ *    A2
+ *      [○] 通行判定に影響を与えない(見た目だけの装飾)
+ *      [×] -- 通常のカウンターの挙動 --
+ *      [☆] ----
+ *    A3
+ *      [○]
+ *        奇数列(屋根)「矩形面全体で」南北通行不可、東西通行可(・→←・)
+ *        偶数列(壁)  「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
+ *      [×] 北=書割り、周囲=通行不可
+ *      [☆] 全体=書割り、南方向は通行不可(壁の高さは自動調整)
+ *    A4
+ *      [○]
+ *        奇数列(上面) 通行判定に影響を与えない(見た目だけの装飾)
+ *        偶数列(壁)  「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
+ *      [×] 北=書割り、周囲=通行不可
+ *      [☆]
+ *        奇数列(上面) 北=上層[☆]、他=通行不可
+ *        全体=書割り、南方向は通行不可(壁の高さは自動調整)
  * 
  * 3. 重ね合わせのソート順を調整するメタタグ
  *      <TF_zDef:数値>の形でイベントのメモに入力します。
@@ -194,15 +217,16 @@
     const LAYER_MIDDLE = 3; // キャラ配置レイヤーのz番号
 
     // flagのマスク
-    const MASK_WITHOUT_DIR_UPPER = 0xFF60; // 方向と高層[☆]とカウンターを除いたもの用マスク
-    const MASK_WITHOUT_TAG_DIR_UPPER = 0xF60; // 方向と高層[☆]と地形タグとカウンターを除いたもの用マスク
-    const MASK_ALL_DIR = 0xF; // 通行設定用マスク
+    const MASK_WITHOUT_DIR_UPPER = 0xFF60; // 通行設定と高層[☆]とカウンターを除いたもの
+    const MASK_WITHOUT_TAG_DIR_UPPER = 0xF60; // 通行設定と高層[☆]と地形タグとカウンターを除いたもの
+    const MASK_ALL_DIR = 0xF; // 通行設定
+    const MASK_UPPER_DIR = 0x1F; // 高層[☆]と通行設定
 
     // flag用定数
-    const MASK_UPPER_DIR = 0x1F; // 高層[☆]と通行設定用マスク
     const FLAG_NORTH_DIR = 0x8; // 北の通行設定
     const FLAG_UPPER = 0x10; // 高層[☆]
     const FLAG_COUNTER = 0x80; // カウンター
+
 
     const FLOOR1_BOARD = 0x18;
     const FLOOR2_BOARD = 0x19;
@@ -223,14 +247,14 @@
 
     // プラグインパラメータを受け取る
     const pluginParams = PluginManagerEx.createParameter( document.currentScript );
-    const TF_UseLayeredCounter = pluginParams.UseLayeredCounter;
-    const TF_IsA2FullCollision = pluginParams.IsA2FullCollision;
-    const TF_IsA3UpperOpen = pluginParams.IsA3UpperOpen;
-    const TF_IsA4UpperOpen = pluginParams.IsA4UpperOpen;
+    const TF_useLayeredCounter = pluginParams.UseLayeredCounter;    // カウンターの後ろに回り込めるか
+    const TF_isA2FullCollision = pluginParams.IsA2FullCollision;    // A2の全体を通行不可にするか
+    const TF_isA3UpperOpen = pluginParams.IsA3UpperOpen;    // A3の南を開くか
+    const TF_isA4UpperOpen = pluginParams.IsA4UpperOpen;    // A4の南を開くか
 
     // #region Tilemap
     /**
-     * 書き割りレイヤーの生成と追加。
+     * 書割りレイヤーの生成と追加。
      */
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
@@ -249,7 +273,7 @@
     };
 
     /**
-     * 描画前に書き割りの中を空にしておく。
+     * 描画前に書割りの中を空にしておく。
      */
     const _Tilemap_addAllSpots = Tilemap.prototype._addAllSpots;
     Tilemap.prototype._addAllSpots = function( startX, startY ) {
@@ -357,13 +381,13 @@
         const floorNumber = getFloorNumber( getPriorityFloor( tileId ) );
 
         if( floorNumber === 2 ) {
-            // 2階設定は、ひとつ下の書き割りに書き込む
+            // 2階設定は、ひとつ下の書割りに書き込む
             this._addTile( this._billboards[ y + 1 ], tileId, dx, -$gameMap.tileHeight() * 2 );
         } else if( floorNumber === 3 ) {
-            // 3階設定は、ふたつ下の書き割りに書き込む
+            // 3階設定は、ふたつ下の書割りに書き込む
             this._addTile( this._billboards[ y + 2 ], tileId, dx, -$gameMap.tileHeight() * 3 );
         } else if( this.flags[ tileId ] & MASK_ALL_DIR ) {
-            // 通行不可設定のどれかがONだと書き割り
+            // 通行不可設定のどれかがONだと書割り
             this._addTile( this._billboards[ y ], tileId, dx, -$gameMap.tileHeight() );
         } else {
             // 全方向通行可の場合は通常の高層[☆]表示
@@ -372,7 +396,7 @@
     };
 
     /**
-     * スクロールに合わせて書き割りの表示位置を変更。
+     * スクロールに合わせて書割りの表示位置を変更。
      */
     const _Tilemap_updateTransform = Tilemap.prototype.updateTransform;
     Tilemap.prototype.updateTransform = function() {
@@ -422,6 +446,7 @@
         // 全タイルセットに対してflagの走査・変更
         for( const curTileset of $dataTilesets ) {
             if( !curTileset ) continue;
+            treatA1Tilesets( curTileset.flags );
             treatA2Tilesets( curTileset.flags );
             treatA3Tilesets( curTileset.flags );
             treatA4Tilesets( curTileset.flags );
@@ -439,68 +464,137 @@
     }
 
     /**
-     * 指定タイルが衝突判定を持っているか。
+     * 指定タイルが衝突判定[×]を持っているか。
      * @param {Number} tileFlag タイルのフラグ情報
      */
     function isCollisionTile( tileFlag ) {
         return 0 < ( tileFlag & MASK_ALL_DIR );
     }
 
-    // A2タイルの走査・変更。
+    /**
+     * 指定タイルが高層判定[☆]を持っているか。
+     * @param {Number} tileFlag タイルのフラグ情報
+     */
+    function isUpperTile( tileFlag ) {
+        return 0 < ( tileFlag & FLAG_UPPER );
+    }
+
+    /**
+     * 地形フラグを得る。
+     * @param {Array<Number>} flags 地形フラグの配列
+     * @param {Number} tileId 
+     * @returns {Number} [♢]:2, [☆]:4 の合算値を返す。
+     */
+    function getAutotileFlags( flags, tileId ) {
+        return ( isUpperTile( flags[ tileId ] ) ? 4 : 0 ) + // [☆]
+            ( isCounterTile( flags[ tileId ] ) ? 2 : 0 );   // [♢]
+    }
+
+    /**
+     * A1タイルの走査・変更。
+     *      [○] 通行判定に影響を与えない(見た目だけの装飾)
+     *      [×] ----
+     *      [☆] ----
+     * @param {Array<Number>} flags 地形フラグの配列
+     */
+    function treatA1Tilesets( flags ) {
+        for( let tileId = Tilemap.TILE_ID_A1; tileId < Tilemap.TILE_ID_A2; tileId++ ) {
+            const shift = Tilemap.isWaterfallTile( tileId ) ? 1 : 16;
+            const autotileFlags = getAutotileFlags( flags, tileId ) +
+                // [×]でもオートタイルの0番は通行判定が空なので、tileId をずらす
+                ( isCollisionTile( flags[ tileId + shift ] ) ? 1 : 0 ); // [×]
+            switch( autotileFlags ) {
+                case 2: setIgnorePass( flags, tileId ); break;   // [○][♢]
+            }
+        }
+    }
+    /**
+     * A2タイルの走査・変更。
+     *      [○] 通行判定に影響を与えない(見た目だけの装飾)
+     *      [×] -- 通常のカウンターの挙動 --
+     *      [☆] ----
+     * @param {Array<Number>} flags 地形フラグの配列
+     */
     function treatA2Tilesets( flags ) {
         for( let tileId = Tilemap.TILE_ID_A2; tileId < Tilemap.TILE_ID_A3; tileId += AUTOTILE_BLOCK ) {
-            const autotileFlags =
-                ( isCounterTile( flags[ tileId ] ) ? 2 : 0 ) +
-                ( isCollisionTile( flags[ tileId + 46 ] ) ? 1 : 0 );
+            const autotileFlags = getAutotileFlags( flags, tileId ) +
+                // [×]でもオートタイルの0番は通行判定が空なので、tileId をひとつずらす
+                ( isCollisionTile( flags[ tileId + 1 ] ) ? 1 : 0 ); // [×]
             switch( autotileFlags ) {
-                case 1: if( !TF_IsA2FullCollision ) { setEmptyLinePass( flags, tileId ); }; break;   // [×]
-                case 3: if( TF_UseLayeredCounter ) { setCounterPass( flags, tileId ); }; break;   // [×][♢]
+                case 1: if( !TF_isA2FullCollision ) { setEmptyLinePass( flags, tileId ); }; break;   // [×]
+                case 2: setIgnorePass( flags, tileId ); break;   // [○][♢]
+                case 3: if( TF_useLayeredCounter ) { setCounterPass( flags, tileId ); }; break;   // [×][♢]
             }
         }
     }
 
-    // A3タイルの走査・変更。
+    /**
+     * A3タイルの走査・変更。
+     *      [○]
+     *        奇数列(屋根)「矩形面全体で」南北通行不可、東西通行可(・→←・)
+     *        偶数列(壁)  「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
+     *      [×] 北=書割り、周囲=通行不可
+     *      [☆] 全体=書割り、南方向は通行不可(壁の高さは自動調整)
+     * @param {Array<Number>} flags 地形フラグの配列
+     */
     function treatA3Tilesets( flags ) {
         for( let tileId = Tilemap.TILE_ID_A3; tileId < Tilemap.TILE_ID_A4; tileId += AUTOTILE_BLOCK ) {
             const autotileFlags =
-                ( Tilemap.isRoofTile( tileId ) ? 8 : 0 ) +
-                ( isCounterTile( flags[ tileId ] ) ? 2 : 0 ) +
-                ( isCollisionTile( flags[ tileId + 15 ] ) ? 1 : 0 );
+                ( Tilemap.isRoofTile( tileId ) ? 8 : 0 ) +              // 屋根
+                getAutotileFlags( flags, tileId ) +
+                // [×]でもオートタイルの0番は通行判定が空なので、tileId をひとつずらす
+                ( isCollisionTile( flags[ tileId + 1 ] ) ? 1 : 0 ); // [×]
             switch( autotileFlags ) {
-                // 側面
-                case 2: setWallSidePass( flags, tileId ); break;   // [○][♢]
-                case 3: setWallSideEdgePass( flags, tileId ); break;   // [×][♢]
-
-                // 上面
-                case 9: setRoofBottomPass( flags, tileId ); break;   // [×]
-                case 11: setRoofUpperPass( flags, tileId ); break;   // [×][♢]
+                // 壁
+                case 2: setVerticalPass( flags, tileId ); break;    // [○][♢]
+                case 3: setWallSidePass( flags, tileId ); break;    // [×][♢]
+                case 6: setBillboardPass( flags, tileId ); break;   // [☆][♢]
+                // 屋根
+                case 10: setHorizontalPass( flags, tileId ); break; // [○][♢]
+                case 11: setRoofUpperPass( flags, tileId ); break;  // [×][♢]
+                case 14: setBillboardPass( flags, tileId ); break;  // [☆][♢]
             }
         }
     }
 
-    // A4タイルの走査・変更。
+    /**
+     * A4タイルの走査・変更。
+     *      [○] 
+     *        奇数列(上面) 通行判定に影響を与えない(見た目だけの装飾)
+     *        偶数列(壁)  「矩形面全体で」南北通行可、東西通行不可(↑・・↓)
+     *      [×] 北=書割り、周囲=通行不可
+     *      [☆]
+     *        奇数列(上面) 北=上層[☆]、他=通行不可
+     *        全体=書割り、南方向は通行不可(壁の高さは自動調整)
+     * @param {Array<Number>} flags 地形フラグの配列
+     */
     function treatA4Tilesets( flags ) {
         for( let tileId = Tilemap.TILE_ID_A4; tileId < Tilemap.TILE_ID_MAX; tileId += AUTOTILE_BLOCK ) {
+            const isWallTopTile = Tilemap.isWallTopTile( tileId );
+            const shift = isWallTopTile ? 16 : 1;
             const autotileFlags =
-                ( Tilemap.isWallTopTile( tileId ) ? 8 : 0 ) +
-                ( isCounterTile( flags[ tileId ] ) ? 2 : 0 ) +
-                ( isCollisionTile( flags[ tileId + 46 ] ) ? 1 : 0 );
+                ( isWallTopTile ? 8 : 0 ) +           // 壁(上面)
+                getAutotileFlags( flags, tileId ) +
+                // [×]でもオートタイルの0番は通行判定が空なので、tileId をずらす
+                ( isCollisionTile( flags[ tileId + shift ] ) ? 1 : 0 ); // [×]
             switch( autotileFlags ) {
-                // 側面
-                case 2: setWallSidePass( flags, tileId ); break;                  // [○][♢]
-                case 3: setWallSideEdgePass( flags, tileId ); break;       // [×][♢]
-
-                // 上面
-                case 9: if( !TF_IsA4UpperOpen ) { setEmptyLinePass( flags, tileId ); } break;   // [×]
-                case 11: setA4UpperPass( flags, tileId ); break;               // [×][♢]
+                // 壁(側面)
+                case 2: setVerticalPass( flags, tileId ); break;        // [○][♢]
+                case 3: setWallSidePass( flags, tileId ); break;        // [×][♢]
+                case 6: setBillboardPass( flags, tileId ); break;    // [☆][♢]
+                // 壁(上面)
+                case 9: if( !TF_isA4UpperOpen ) { setEmptyLinePass( flags, tileId ); } break;   // [×]
+                case 10: setIgnorePass( flags, tileId ); break;         // [○][♢]
+                case 11: setA4UpperPass( flags, tileId ); break;        // [×][♢]
+                case 14: setA4UpperEdgePass( flags, tileId ); break;    // [☆][♢]
             }
         }
     }
 
     /**
      * 衝突判定を指定した設定に変換。
-     * @param {Array} flags 
-     * @param {Number} tileId 
+     * @param {Array<Number>} flags 地形フラグの配列
+     * @param {Number} tileId タイルID
      * @param {Number} mask flagのマスク
      * @param {Array} collisionSetting 適用するflag設定 
      */
@@ -510,11 +604,20 @@
             flags[ tileId + i ] = flags[ tileId + i ] & mask | collisionSetting[ i ];
         }
     }
-
+    /**
+     * 通行判定に影響を与えない(見た目だけの装飾)に変更。
+     * @param {Array<Number>} flags 地形フラグの配列
+     * @param {Number} tileId タイルID
+     */
+    function setIgnorePass( flags, tileId ) {
+        // フルオートか滝かによって変更範囲を変える
+        const maxNum = Tilemap.isWaterfallTile( tileId ) ? 4 : 48;
+        for( let i = 0; i < maxNum; i++ ) {
+            flags[ tileId + i ] = flags[ tileId + i ] & MASK_WITHOUT_DIR_UPPER | IGNORE_TILE;
+        }
+    }
     /**
      * カウンター用に変更。
-     * 地面(カウンター) : 北が半分侵入可書き割り、■通行不可
-     * [A2 右側][×][♢][UseLayeredCounter:ON]
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
@@ -531,8 +634,6 @@
     }
     /**
      * 中空の地形に変更。
-     * [A2][×][IsA2FullCollision:OFF] □周囲=通行不可
-     * [A4][○][♢][TT] □周囲=通行不可
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
@@ -545,37 +646,34 @@
             6, 9, 10, 10, 12, 12, 5, 5,
             3, 3, 14, 11, 7, 13, 15, 15
         ];
-        //if( isCrossPass ) EMPTY_PASS.map( v => OPTT + v );
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, EMPTY_PASS );
-    };
+    }
     /**
-     * 屋根 : 北が書き割り、他は周囲通行不可に変更。
-     * [A3 奇数列][×][カウンター]
+     * 屋根 : 北=書割り、周囲=通行不可に変更。
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
     function setRoofUpperPass( flags, tileId ) {
-        const A3_UPPER_PASS = TF_IsA3UpperOpen ? [
-            0, 2, 17, 17,
-            4, 6, 17, 17,
-            0, 2, 17, 17,
-            4, 6, 17, 17,
+        const A3_UPPER_PASS = TF_isA3UpperOpen ? [
+            0x00, 0x02, 0x11, 0x11,
+            0x04, 0x06, 0x11, 0x11,
+            0x00, 0x02, 0x11, 0x11,
+            0x04, 0x06, 0x11, 0x11,
         ] : [
-            0, 2, 17, 17,
-            4, 6, 17, 17,
-            1, 3, 17, 17,
-            5, 7, 17, 17,
+            0x00, 0x02, 0x11, 0x11,
+            0x04, 0x06, 0x11, 0x11,
+            0x01, 0x03, 0x11, 0x11,
+            0x05, 0x07, 0x11, 0x11,
         ];
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, A3_UPPER_PASS );
     }
     /**
-     * 壁(上面) : 北が書き割り、他は周囲通行不可に変更。
-     * [A4 奇数列][×][カウンター]
+     * 壁(上面) : 北=書割り、周囲=通行不可に変更。
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
     function setA4UpperPass( flags, tileId ) {
-        const A4_UPPER_PASS = TF_IsA4UpperOpen ? [
+        const A4_UPPER_PASS = TF_isA4UpperOpen ? [
             0, 2, 4, 6, 0, 2, 4, 6,
             0, 2, 4, 6, 0, 2, 4, 6,
             2, 6, 2, 6, 17, 17, 17, 17,
@@ -593,92 +691,78 @@
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, A4_UPPER_PASS );
     }
     /**
-     * 壁(上面) : 北が☆、他は通行不可に変更。
-     * [A4 奇数列][○][TT]
+     * 壁(上面) : 北=上層[☆]、他=通行不可に変更。
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
-    function setA4UpperStarPass( flags, tileId ) {
-        const A4_UPPER_STAR_PASS = [
-            15, 15, 15, 15, 15, 15, 15, 15,
-            15, 15, 15, 15, 15, 15, 15, 15,
-            15, 15, 15, 15, 16, 16, 16, 16,
-            15, 15, 15, 15, 15, 15, 15, 15,
-            15, 16, 16, 16, 16, 16, 15, 15,
-            15, 15, 16, 16, 15, 16, 16, 16,
+    function setA4UpperEdgePass( flags, tileId ) {
+        const A4_UPPER_PASS = [
+            0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F,
+            0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F,
+            0x0F, 0x0F, 0x0F, 0x0F, 0x10, 0x10, 0x10, 0x10,
+            0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F, 0x0F,
+            0x0F, 0x10, 0x10, 0x10, 0x10, 0x10, 0x0F, 0x0F,
+            0x0F, 0x0F, 0x10, 0x10, 0x0F, 0x10, 0x10, 0x10,
         ];
-        replaceCollision( flags, tileId, MASK_WITHOUT_TAG_DIR_UPPER, A4_UPPER_STAR_PASS );
+        replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, A4_UPPER_PASS );
     }
     /**
-     * 壁(側面):南が書き割り、他は通行可に変更。
-     * [A3・A4 偶数列][○]
+     * 「矩形面全体で」南北通行不可、東西通行可(・→←・)に変更。
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
-    function setWallSideEdgePass( flags, tileId ) {
+    function setHorizontalPass( flags, tileId ) {
+        const HORIZONTAL_PASS = [
+            0, 0, 8, 8,
+            0, 0, 8, 8,
+            1, 1, 9, 9,
+            1, 1, 9, 9,
+        ];
+        replaceCollision( flags, tileId, MASK_WITHOUT_TAG_DIR_UPPER, HORIZONTAL_PASS );
+    }
+    /**
+     * 「矩形面全体で」南北通行可、東西通行不可(↑・・↓)に変更。
+     * @param {Array<Number>} flags 地形フラグの配列
+     * @param {Number} tileId タイルID
+     */
+    function setVerticalPass( flags, tileId ) {
+        const VERTICAL_PASS = [
+            0, 2, 0, 2,
+            4, 6, 4, 6,
+            0, 2, 0, 2,
+            4, 6, 4, 6,
+        ];
+        replaceCollision( flags, tileId, MASK_WITHOUT_TAG_DIR_UPPER, VERTICAL_PASS );
+    }
+
+
+    /**
+     * 壁(側面): 全体=書割り、南方向は通行不可(壁の高さは自動調整)に変更。
+     * @param {Array<Number>} flags 地形フラグの配列
+     * @param {Number} tileId タイルID
+     */
+    function setBillboardPass( flags, tileId ) {
         const WALL_SIDE_PASS_EDGE = [
-            15, 15, 17, 17,
-            15, 15, 17, 17,
-            15, 15, 17, 17,
-            15, 15, 17, 17,
+            0x19, 0x19, 0x1A, 0x1A,
+            0x19, 0x19, 0x1A, 0x1A,
+            0x11, 0x11, 0x11, 0x11,
+            0x11, 0x11, 0x11, 0x11,
         ];
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, WALL_SIDE_PASS_EDGE );
     }
     /**
-     * 壁(側面): 北が書き割り、他は全通行不可に変更。
-     * [A3・A4 偶数列][○][♢]
+     * 壁(側面): 北=書割り、周囲=通行不可に変更。
      * @param {Array<Number>} flags 地形フラグの配列
      * @param {Number} tileId タイルID
      */
     function setWallSidePass( flags, tileId ) {
         const WALL_SIDE_PASS = [
-            25, 25, 26, 26,
-            25, 25, 26, 26,
-            17, 17, 17, 17,
-            17, 17, 17, 17,
+            0x00, 0x02, 0x11, 0x11,
+            0x04, 0x06, 0x11, 0x11,
+            0x01, 0x03, 0x11, 0x11,
+            0x05, 0x07, 0x11, 0x11,
         ];
         replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, WALL_SIDE_PASS );
-    }
-    /**
-     * 屋根 (地面) : 周囲通行不可に変更。
-     * [A3 奇数列][×]
-     * @param {Array<Number>} flags 地形フラグの配列
-     * @param {Number} tileId タイルID
-     */
-    function setRoofBottomPass( flags, tileId ) {
-        if( TF_IsA3UpperOpen ) {
-            setSquareOpenPass( flags, tileId );
-        } else {
-            setEmptySquarePass( flags, tileId );
-        }
-    }
-    /**
-     * 屋根 (地面) : 南以外通行不可に変更。
-     * @param {Array<Number>} flags 地形フラグの配列
-     * @param {Number} tileId タイルID
-     */
-    function setSquareOpenPass( flags, tileId ) {
-        const SQUARE_PASS = [
-            0, 2, 8, 10,
-            4, 6, 12, 14,
-            0, 2, 8, 10,
-            4, 6, 12, 14,
-        ];
-        replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, SQUARE_PASS );
-    }
-    /**
-     * 屋根 (地面) : 全周通行不可に変更。
-     * @param {Array<Number>} flags 地形フラグの配列
-     * @param {Number} tileId タイルID
-     */
-    function setEmptySquarePass( flags, tileId ) {
-        const SQUARE_PASS = [
-            0, 2, 8, 10,
-            4, 6, 12, 14,
-            1, 3, 9, 11,
-            5, 7, 13, 15,
-        ];
-        replaceCollision( flags, tileId, MASK_WITHOUT_DIR_UPPER, SQUARE_PASS );
     }
     // #endregion
 
