@@ -42,7 +42,7 @@ WebGLでのレンダリングを行うためのクラス。
 | `filter` | [PIXI.FilterSystem](http://pixijs.download/v5.3.12/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
 | `framebuffer` | [PIXI.FramebufferSystem](http://pixijs.download/v5.3.12/docs/PIXI.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
 | `geometry` | [PIXI.GeometrySystem](http://pixijs.download/v5.3.12/docs/PIXI.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
-| `gl` | WebGLRenderingContext | [read-only] WebGLのコンテキスト(規定値: undefined) |
+| `gl` | [WebGLRenderingContext](https://developer.mozilla.org/ja/docs/Web/API/WebGLRenderingContext) | [read-only] WebGLのコンテキスト(規定値: undefined) |
 | `globalUniforms` | [PIXI.UniformGroup](http://pixijs.download/v5.3.12/docs/PIXI.UniformGroup.html) | [read-only] 大域ユニフォーム |
 | `mask` | [PIXI.MaskSystem](http://pixijs.download/v5.3.12/docs/PIXI.MaskSystem.html) | [read-only] マスクシステムのインスタンス |
 | `projection` | [PIXI.ProjectionSystem](http://pixijs.download/v5.3.12/docs/PIXI.ProjectionSystem.html) | [read-only] プロジェクションシステムのインスタンス |
@@ -144,7 +144,7 @@ WebGLコンテキストが呼ばれた時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `gl` | WebGLRenderingContext  | WebGLコンテキスト |
+| `gl` | [WebGLRenderingContext](https://developer.mozilla.org/ja/docs/Web/API/WebGLRenderingContext)  | WebGLコンテキスト |
 
 
 #### postrender
