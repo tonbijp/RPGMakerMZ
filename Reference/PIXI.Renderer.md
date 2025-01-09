@@ -52,7 +52,7 @@ WebGLでのレンダリングを行うためのクラス。
 | `shader` | [PIXI.ShaderSystem](http://pixijs.download/v5.3.12/docs/PIXI.ShaderSystem.html) | [read-only] シェーダシステムのインスタンス |
 | `state` | [PIXI.StateSystem](http://pixijs.download/v5.3.12/docs/PIXI.StateSystem.html) | [read-only] ステートシステムのインスタンス |
 | `stencil` | [PIXI.StencilSystem](http://pixijs.download/v5.3.12/docs/PIXI.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
-| `texture` | [PIXI.TextureSystem ](http://pixijs.download/v5.3.12/docs/PIXI.TextureSystem .html) | [read-only] テクスチャシステムのインスタンス |
+| `texture` | [PIXI.TextureSystem](http://pixijs.download/v5.3.12/docs/PIXI.TextureSystem.html) | [read-only] テクスチャシステムのインスタンス |
 | `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/v5.3.12/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
 
 #### プラグイン
