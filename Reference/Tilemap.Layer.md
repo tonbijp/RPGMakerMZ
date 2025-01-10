@@ -40,7 +40,7 @@ SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
 | `_needsTexturesUpdate` | Boolean | テクスチャの更新が必要か |
 | `_needsVertexUpdate` | Boolean | 頂点の更新が必要か |
 | `_state` | [PIXI.State](http://pixijs.download/v5.3.12/docs/PIXI.State.html) | 状態 |
-| `z` | [Number](Number.md) | z番号 ( (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置)))|
+| `z` | [Number](Number.md) | z番号 (参照: [レイヤーの配置](Tilemap.md#レイヤーの配置))|
 
 
 ### スーパークラスから継承されたメソッド
