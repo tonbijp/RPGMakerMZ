@@ -46,7 +46,7 @@ v4以前のバージョンは必要なオブジェクトを個々に生成して
 | `resizeTo ` | [Window](https://developer.mozilla.org/ja/docs/Web/API/Window) \| [HTMLElement](https://developer.mozilla.org/ja/docs/Web/API/HTMLElement) | リサイズ対象のブラウザウィンドウまたは他のHTML要素 |
 | `screen` | [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html) | [read-only] クリックやフィルタに対応している画面のサイズ |
 | `stage` | [PIXI.Container](PIXI.Container.md) | ルート(『RPGツクールMZ』の場合[Scene_Base](Scene_Base.md)) |
-| `ticker` | [PIXI.Ticker](http://pixijs.download/v5.3.12/docs/PIXI.Ticker.html) | フレーム毎の更新を行うオブジェクト(規定値:`PIXI.Ticker.shared`)  |
+| `ticker` | [PIXI.Ticker](https://pixijs.download/v5.3.12/docs/PIXI.Ticker_.html) | フレーム毎の更新を行うオブジェクト(規定値:`PIXI.Ticker.shared`)  |
 | `view` | HTMLCanvasElement | [read-only] 描画を行うcanvas  |
 
 

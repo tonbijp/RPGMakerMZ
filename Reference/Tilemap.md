@@ -95,11 +95,11 @@ children に含まれるレイヤーの種類と位置。<br />
 | 7 | [Sprite_Balloon](Sprite_Balloon.md) | フキダシ |
 | 6 | [Sprite_Character](Sprite_Character.md) | 飛行船の影 |
 | 5 | [Sprite_Character](Sprite_Character.md) | 高層キャラ(立体交差用) |
-| 4 | [Tileset.Layer](Tileset.Layer.md) | 高層[☆]タイル |
+| 4 | [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) | 高層[☆]タイル |
 | 3 | [Sprite_Character](Sprite_Character.md) | 通常キャラ |
 | 2 |  | 未使用 |
 | 1 | [Sprite_Character](Sprite_Character.md) | 低層キャラ |
-| 0 | [Tileset.Layer](Tileset.Layer.md) | 低層タイル |
+| 0 | [Tilemap.CombinedLayer](Tilemap.CombinedLayer.md) | 低層タイル |
 
 #### タイルID
 タイルの種類を表す値。<br />

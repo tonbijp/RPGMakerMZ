@@ -4,8 +4,11 @@
 
 ## スーパークラス: [PIXI.Container](PIXI.Container.md)
 
-1.7.0で導入された、マップで扱われるタイルの下層(通行判定○・×)と上層(通行判定☆)を表示するクラス。
+1.7.0で導入された、マップで扱われるタイルの下層(通行判定○・×)と上層(通行判定☆)を表示するクラス。<br />
 [Tilemap.Layer](Tilemap.Layer.md) を `children` プロパティに含む。
+
+`Tilemap.Layer.MAX_SIZE`に設定された上限(16000)までで`Tilemap.Layer`を複数に分ける目的で存在する。<br />
+操作に必要なメソッドは`children`に含まれる`Tilemap.Layer`に丸投げしているので、ほぼ`Tilemap.Layer`そのものと思って使える。
 
 主なパス
 ```js

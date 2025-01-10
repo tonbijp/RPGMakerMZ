@@ -36,24 +36,24 @@ WebGLでのレンダリングを行うためのクラス。
 | 識別子 | 型 | 説明 |
 | --- | --- | --- | 
 | `plugins` | Object | [static][read-only] [プラグイン](#プラグイン)のコレクション |
-| `batch` | [PIXI.BatchSystem](http://pixijs.download/v5.3.12/docs/PIXI.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
-| `context` | [PIXI.ContextSystem](http://pixijs.download/v5.3.12/docs/PIXI.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
-| `extract` | [PIXI.Extract](http://pixijs.download/v5.3.12/docs/PIXI.Extract.html) | v6で廃止(`plugins.extract`を使うように変更) |
-| `filter` | [PIXI.FilterSystem](http://pixijs.download/v5.3.12/docs/PIXI.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
-| `framebuffer` | [PIXI.FramebufferSystem](http://pixijs.download/v5.3.12/docs/PIXI.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
-| `geometry` | [PIXI.GeometrySystem](http://pixijs.download/v5.3.12/docs/PIXI.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
-| `gl` | WebGLRenderingContext | [read-only] WebGLのコンテキスト(規定値: undefined) |
-| `globalUniforms` | [PIXI.UniformGroup](http://pixijs.download/v5.3.12/docs/PIXI.UniformGroup.html) | [read-only] 大域ユニフォーム |
-| `mask` | [PIXI.MaskSystem](http://pixijs.download/v5.3.12/docs/PIXI.MaskSystem.html) | [read-only] マスクシステムのインスタンス |
-| `projection` | [PIXI.ProjectionSystem](http://pixijs.download/v5.3.12/docs/PIXI.ProjectionSystem.html) | [read-only] プロジェクションシステムのインスタンス |
+| `batch` | [PIXI.systems.BatchSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.BatchSystem.html) | [read-only] パッチシステムのインスタンス |
+| `context` | [PIXI.systems.ContextSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.ContextSystem.html) | [read-only] コンテクストシステムのインスタンス |
+| `extract` | [PIXI.Extract](https://pixijs.download/v5.3.12/docs/PIXI.Extract_.html) | 画像、ピクセルなどを抽出するためのメソッド集。v6で廃止(`plugins.extract`を使うように変更) |
+| `filter` | [PIXI.systems.FilterSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.FilterSystem.html) | [read-only] フィルタシステムのインスタンス |
+| `framebuffer` | [PIXI.systems.FramebufferSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.FramebufferSystem.html) | [read-only] フレームバッファシステムのインスタンス |
+| `geometry` | [PIXI.systems.GeometrySystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.GeometrySystem.html) | [read-only] ジオメトリシステムのインスタンス |
+| `gl` | [WebGLRenderingContext](https://developer.mozilla.org/ja/docs/Web/API/WebGLRenderingContext) | [read-only] WebGLのコンテキスト(規定値: undefined) |
+| `globalUniforms` | [PIXI.UniformGroup](https://pixijs.download/v5.3.12/docs/PIXI.UniformGroup.html) | [read-only] 大域ユニフォーム |
+| `mask` | [PIXI.systems.MaskSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.MaskSystem.html) | [read-only] マスクシステムのインスタンス |
+| `projection` | [PIXI.systems.ProjectionSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.ProjectionSystem.html) | [read-only] プロジェクションシステムのインスタンス |
 | `renderingToScreen` | Boolean | [read-only] Flag if we are rendering to the screen vs renderTexture(規定値: true) |
-| `renderTexture` | [PIXI.RenderTextureSystem](http://pixijs.download/v5.3.12/docs/PIXI.RenderTextureSystem.html) | [read-only] レンダテクスチャシステムのインスタンス |
-| `scissor` | [PIXI.ScissorSystem ](http://pixijs.download/v5.3.12/docs/PIXI.RenderTextureSystem.html) | [read-only] シザーシステムのインスタンス |
-| `shader` | [PIXI.ShaderSystem](http://pixijs.download/v5.3.12/docs/PIXI.ShaderSystem.html) | [read-only] シェーダシステムのインスタンス |
-| `state` | [PIXI.StateSystem](http://pixijs.download/v5.3.12/docs/PIXI.StateSystem.html) | [read-only] ステートシステムのインスタンス |
-| `stencil` | [PIXI.StencilSystem](http://pixijs.download/v5.3.12/docs/PIXI.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
-| `texture` | [PIXI.TextureSystem ](http://pixijs.download/v5.3.12/docs/PIXI.TextureSystem .html) | [read-only] テクスチャシステムのインスタンス |
-| `textureGC` | [PIXI.TextureGCSystem](http://pixijs.download/v5.3.12/docs/PIXI.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
+| `renderTexture` | [PIXI.systems.RenderTextureSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.RenderTextureSystem.html) | [read-only] レンダテクスチャシステムのインスタンス |
+| `scissor` | [PIXI.systems.ScissorSystem ](https://pixijs.download/v5.3.12/docs/PIXI.systems.ScissorSystem.html) | [read-only] シザーシステムのインスタンス |
+| `shader` | [PIXI.systems.ShaderSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.ShaderSystem.html) | [read-only] シェーダシステムのインスタンス |
+| `state` | [PIXI.systems.StateSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.StateSystem.html) | [read-only] ステートシステムのインスタンス |
+| `stencil` | [PIXI.systems.StencilSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.StencilSystem.html) | [read-only] ステンシルシステムのインスタンス |
+| `texture` | [PIXI.systems.TextureSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.TextureSystem.html) | [read-only] テクスチャシステムのインスタンス |
+| `textureGC` | [PIXI.systems.TextureGCSystem](https://pixijs.download/v5.3.12/docs/PIXI.systems.TextureGCSystem.html) | [read-only] テクスチャガベッジコレクションシステムのインスタンス |
 
 #### プラグイン
 『RPGツクールMZ』のプラグインのことではなく、PixiJS の機能拡張。
@@ -144,7 +144,7 @@ WebGLコンテキストが呼ばれた時のイベント。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `gl` | WebGLRenderingContext  | WebGLコンテキスト |
+| `gl` | [WebGLRenderingContext](https://developer.mozilla.org/ja/docs/Web/API/WebGLRenderingContext)  | WebGLコンテキスト |
 
 
 #### postrender
