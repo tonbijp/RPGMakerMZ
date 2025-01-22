@@ -167,7 +167,7 @@ SceneManager._scene._spriteset
 
 
 #### createTilemap ()
-タイルマップ([Tilemap](Tilemap.md)を生成。
+タイルマップ([Tilemap](Tilemap.md))を生成。
 
 
 #### createWeather ()
