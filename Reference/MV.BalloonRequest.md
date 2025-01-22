@@ -14,5 +14,5 @@
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `balloonId` | [Number](Number.md) | フキダシID |
-| `target` | [[Game_Character](Game_Character.md) | 対象 |
+| `target` | [Game_Character](Game_Character.md) | 対象 |
 
