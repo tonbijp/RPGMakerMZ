@@ -175,7 +175,7 @@ SceneManager._scene._spriteset
 
 
 #### destroy ()
-**@MZ** [Spriteset_Base](Spriteset_Base.md#destroy-)
+**@MZ** オーバーライド:[Spriteset_Base](Spriteset_Base.md#destroy-)
 
 
 #### hideCharacters ()
