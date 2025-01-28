@@ -32,7 +32,7 @@ SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
 | `MAX_SIZE` | [Number](Number.md) | **@MZ1.7.0** [static] 最大要素数(規定値: 16000) |
 | `_elements` | [Array](Array.md).&lt;[MV.TileRect](MV.TileRect.md)&gt;  | タイル描画に使われる矩形データの配列 |
 | `_images` | [Array](Array.md).&lt;[HTMLImageElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)&gt;  | 画像データの配列 |
-| `_vao` | [PIXI.Geometry](http://pixijs.download/v5.3.12/docs/PIXI.Geometry.html) | ジオメトリ |
+| `_vao` | [PIXI.Geometry](http://pixijs.download/v5.3.12/docs/PIXI.Geometry.html) | VAO(頂点配列オブジェクト:Vertex Array Object) |
 | `_indexArray` | Float32Array | インデックスの配列 |
 | `_indexBuffer` | [PIXI.Buffer](http://pixijs.download/v5.3.12/docs/PIXI.Buffer.html) | インデックスのバッファ |
 | `_vertexArray` | Float32Array | `_elements`を一次元化した配列 |
@@ -80,7 +80,7 @@ SceneManager._scene._spriteset._tilemap._lowerLayer.childlen[n]
 ### メソッド
 
 ### _createVao ()
-VAOの生成。
+VAO(頂点配列オブジェクト:Vertex Array Object)の生成。
 
 
 ### _updateIndexBuffer ()

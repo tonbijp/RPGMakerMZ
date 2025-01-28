@@ -27,7 +27,7 @@ v1.1.0、v1.2.0、v1.5.0  で変更あり。<br />
 | `_mapId` | [Number](Number.md) | [マップ]のID |
 | `_tilesetId` | [Number](Number.md) | [タイルセット]のID |
 | `_events` | [Array](Array.md).&lt;[Game_Event](Game_Event.md)&gt; | [イベント]の配列 |
-| `_commonEvents` | [Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt; | [コモンイベント]の配列 |
+| `_commonEvents` | [Array](Array.md).&lt;[Game_CommonEvent](Game_CommonEvent.md)&gt; | トリガー[並列処理]の[コモンイベント]の配列 |
 | `_vehicles` | [Array](Array.md).&lt;[Game_Vehicle](Game_Vehicle.md)&gt; | [乗り物]の配列 |
 | `_displayX` | [Number](Number.md) | マップ表示の x座標(タイル数) |
 | `_displayY` | [Number](Number.md) | マップ表示の y座標(タイル数) |
