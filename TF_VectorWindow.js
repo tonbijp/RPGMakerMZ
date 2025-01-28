@@ -1,9 +1,9 @@
 //=================================================
 // TF_VectorWindow.js
-// Version :1.5.3.0
+// Version :1.6.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
-// Copyright : Tobishima-Factory 2020-2024
+// Copyright : Tobishima-Factory 2020-2025
 // Website : http://tonbi.jp
 //
 // This software is released under the MIT License.
@@ -142,6 +142,7 @@
  * @option 下の左側 @value SW
  * @option 下の中央 @value SC
  * @option 下の右側 @value SE
+ * @option -------- @value none
  * @option 左の上側 @value WN
  * @option 左の中央 @value WC
  * @option 左の下側 @value WS
@@ -199,6 +200,7 @@
  * @option 下の左側 @value SW
  * @option 下の中央 @value SC
  * @option 下の右側 @value SE
+ * @option -------- @value none
  * @option 左の上側 @value WN
  * @option 左の中央 @value WC
  * @option 左の下側 @value WS
@@ -776,6 +778,7 @@
 		this.TF_eventX = null;
 		this.TF_eventY = null;
 		this.TF_eventHeight = null;
+		this.TF_eventWidth = null;
 		this.TF_path2d = null;
 		this.TF_facePicture = null;
 		this.TF_shape = null;
@@ -794,6 +797,7 @@
 			this.TF_eventX = $gameScreen.convertRealX( te.screenX() );
 			this.TF_eventY = $gameScreen.convertRealY( te.screenY() );
 			this.TF_eventHeight = getEventHeight( te ) * $gameScreen.zoomScale();
+			this.TF_eventWidth = te._size.width * $gameScreen.zoomScale();
 			if( $gameMessage.TF_pointerAlign === DIRECTION_AUTO ) {
 				$gameMessage.TF_pointerAlign = this.TF_getAutoPointerDirection();
 			}
@@ -864,7 +868,7 @@
 		// 謎の数字18(うち4に関しては本体の newLineX で追加してある謎の数値)
 		const messageWidth = textSize.width + this._padding * 2 + 18;
 		const messageHeight = textSize.height + this._padding * 2;
-		const pl = ( this.TF_windowType === WINDOW_TYPE_SHOUT ) ? 0 : pointerLength;
+		const pl = ( this.TF_windowType === WINDOW_TYPE_SHOUT ) ? 0 : pointerLength;// シッポの長さ
 
 		let x = this.TF_eventX;
 		let y = this.TF_eventY;
@@ -879,6 +883,16 @@
 			case DIRECTION_SE:
 				y -= messageHeight + this.TF_eventHeight + pl;
 				break;
+			case DIRECTION_WN:
+			case DIRECTION_EN:
+				break;
+			case DIRECTION_WC:
+			case DIRECTION_EC:
+				y -= Math.round( messageHeight / 2 ) + this.TF_eventHeight - pl;
+				break;
+			case DIRECTION_WS:
+			case DIRECTION_ES:
+				y -= messageHeight + this.TF_eventHeight;
 		}
 
 		switch( $gameMessage.TF_pointerAlign ) {
@@ -888,6 +902,16 @@
 			case DIRECTION_NE:
 			case DIRECTION_SE:
 				x -= messageWidth;
+				break;
+			case DIRECTION_WN:
+			case DIRECTION_WC:
+			case DIRECTION_WS:
+				x += Math.round( this.TF_eventWidth / 2 ) + pl;
+				break;
+			case DIRECTION_EN:
+			case DIRECTION_EC:
+			case DIRECTION_ES:
+				x -= messageWidth + Math.round( this.TF_eventWidth / 2 ) + pl;
 				break;
 			default:
 				// 中央
@@ -1174,6 +1198,7 @@
 	const DIRECTION_SW = "SW";// 下の左側
 	const DIRECTION_SC = "SC";// 下の中央
 	const DIRECTION_SE = "SE";// 下の右側
+
 	const DIRECTION_WN = "WN";// 左の上側
 	const DIRECTION_WC = "WC";// 左の中央
 	const DIRECTION_WS = "WS";// 左の下側
