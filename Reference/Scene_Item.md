@@ -177,5 +177,7 @@ SceneManager._scene
 
 
 #### user () → {[Game_Actor](Game_Actor.md)}
-オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#user---gameactor)
+オーバーライド: [Scene_ItemBase](Scene_ItemBase.md#user---game_actor)<br />
+行動可能なメンバーの中でpha(薬効果率)が一番高い Game_Actor を返す。
+
 
