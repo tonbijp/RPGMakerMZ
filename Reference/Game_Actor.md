@@ -305,7 +305,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### battlerName () → {[String](String.md)}
-バトラーの名前を返す。
+[[SV]戦闘キャラ]画像ファイル名(拡張子なし)を返す。
 
 
 #### benchMembersExpRate () → {[Number](Number.md)}
