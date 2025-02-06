@@ -38,7 +38,7 @@ v1.1.0、v1.2.0  で変更あり。
 | `_classId` | [Number](Number.md) | 職業ID |
 | `_level` | [Number](Number.md) | [レベル] |
 | `_characterName` | [String](String.md) | [歩行キャラ]画像ファイル名(拡張子なし) |
-| `_characterIndex` | [Number](Number.md) | [歩行キャラ]画像番号 |
+| `_characterIndex` | [Number](Number.md) | [歩行キャラ]画像番号(0〜7) |
 | `_faceName` | [String](String.md) | [顔]画像ファイル名(拡張子なし) |
 | `_faceIndex` | [Number](Number.md) | [顔]画像番号 |
 | `_battlerName` | [String](String.md) | [[SV\]戦闘キャラ]画像ファイル名(拡張子なし) |
@@ -388,7 +388,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### characterIndex () → {[Number](Number.md)}
-キャラ番号を返す。
+[歩行キャラ]画像番号(0〜7)を返す。
 
 
 #### characterName () → {[String](String.md)}
