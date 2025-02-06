@@ -392,7 +392,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### characterName () → {[String](String.md)}
-キャラの[名前]を返す。
+[歩行キャラ]画像ファイル名(拡張子なし)を返す。
 
 
 #### checkFloorEffect ()
