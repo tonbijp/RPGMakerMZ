@@ -561,7 +561,7 @@ OKが起動されたか。
 
 
 #### processCursorMove ()
-カーソルの移動を処理。
+キー入力に従って、カーソルの移動を処理。
 
 
 #### processHandling ()
