@@ -18,9 +18,9 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 * [Scene_Boot](Scene_Boot.md)
 * [Scene_Gameover](Scene_Gameover.md)
 * [Scene_Title](Scene_Title.md)
+* [Scene_Splash](Scene_Splash.md) **@MZ1.8.0**
 * [Scene_Message](Scene_Message.md) **@MZ**
 * [Scene_MenuBase](Scene_MenuBase.md)
-* [Scene_Message](Scene_Message.md) **@MZ**
 
 
 ### プロパティ
