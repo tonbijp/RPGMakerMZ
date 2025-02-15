@@ -633,7 +633,7 @@ OKの処理。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `index` | [Number](Number.md) | 項目番号 |
+| `index` | [Number](Number.md) | 項目番号(0から開始) |
 
 
 #### select (index)
