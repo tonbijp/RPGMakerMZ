@@ -33,6 +33,7 @@
 
 * [Window_BattleStatus](Window_BattleStatus.md)
 * [Window_EquipStatus](Window_EquipStatus.md)
+* [Window_MenuStatus](Window_MenuStatus.md)
 * [Window_NameEdit](Window_NameEdit.md)
 * [Window_ShopStatus](Window_ShopStatus.md)
 * [Window_SkillStatus](Window_SkillStatus.md)
