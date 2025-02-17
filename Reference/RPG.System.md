@@ -6,6 +6,8 @@
 | --- | --- | --- | --- |
 | [システム] | System.json | [$dataSystem](global.md#datasystem-rpgsystem) |  |
 
+v1.5.0, 1.9.0 で変更あり。
+
 関連クラス: [Game_System](Game_System.md), [Game_Variables](Game_Variables.md), [Game_Switches](Game_Switches.md), [TextManager](TextManager.md)
 
 
@@ -65,6 +67,12 @@
 | `itemCategories` | [Array](Array.md).&lt;Boolean&gt; | **@MZ** [アイテムカテゴリー] |
 | `magicSkills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ** [\[SV\]魔法スキル] |
 | `titleCommandWindow` | [RPG.System.titleCommandWindow](RPG.System.titleCommandWindow.md) | **@MZ** [コマンドウィンドウ] |
+| `editor` | [RPG.System.Editor](RPG.System.Editor.md) | **@MZ1.9.0** [エディター設定] |
+| `tileSize` | [Number](Number.md) | **@MZ1.5.0** [タイルサイズ] (規定値:48ピクセル) |
+| `iconSize` | [Number](Number.md) | **@MZ1.9.0** [アイコンサイズ] (規定値:32ピクセル) |
+| `faceSize` | [Number](Number.md) | **@MZ1.9.0** [顔サイズ] (規定値:144ピクセル) |
+
+
 
 ### 廃止MVプロパティ
 `battleEndMe`
@@ -73,6 +81,7 @@
 
 * [RPG.System.Advanced](RPG.System.Advanced.md) **@MZ**
 * [RPG.System.AttackMotion](RPG.System.AttackMotion.md)
+* [RPG.System.Editor](RPG.System.Editor.md) **@MZ1.9.0**
 * [RPG.System.titleCommandWindow](RPG.System.titleCommandWindow.md) **@MZ**
 * [RPG.System.Terms](RPG.System.Terms.md)
 * [RPG.System.TestBattler](RPG.System.TestBattler.md)
