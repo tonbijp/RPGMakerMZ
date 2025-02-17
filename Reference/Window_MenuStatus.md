@@ -9,7 +9,7 @@
 
 MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectable.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
-v1.1.1、v1.2.0 で変更あり。
+v1.1.1、v1.2.0、v1.9.0 で変更あり。
 
 関連クラス: [Scene_Menu](Scene_Menu.md), [Window_MenuCommand](Window_MenuCommand.md)
 
