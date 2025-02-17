@@ -359,6 +359,7 @@ JSON文字列を書く。主に複数行の文字列を扱うためのもの。<
 img か audio フォルダ以下のファイル(拡張子を含まない)<br />
 `@default `にはフォルダだけの指定、あるいはファイルだけ、または両方を指定できる。<br />
 なお指定できるフォルダは2階層まで。
+**@MZ1.9.0** 参照フォルダとして'movies'の指定が追加された。
 
 | Name | Description |
 | --- | --- |
@@ -562,6 +563,28 @@ img か audio フォルダ以下のファイル(拡張子を含まない)<br />
  * @param commonEventId @text コモンイベントID
  * @desc コモンイベントの説明(規定値: 0)
  * @type common_event @default 0
+```
+
+
+#### @type map
+マップID
+
+##### Example
+```
+ * @param mapId @text マップID
+ * @desc マップの説明(規定値: 1)
+ * @type map @default 1
+```
+
+
+#### @type location
+マップID及び位置を持った構造型文字列。
+
+##### Example
+```
+ * @param mapLocation @text マップと位置の構造型
+ * @desc マップと位置の説明(規定値: {"mapId":"1","x":"0","y":"0"})
+ * @type map @default {"mapId":"1","x":"0","y":"0"}
 ```
 
 
