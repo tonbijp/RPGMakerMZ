@@ -8,6 +8,8 @@
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
+v1.9.0 で変更あり。
+
 関連クラス: [Scene_Equip](Scene_Equip.md), [RPG.EquipItem](RPG.EquipItem.md), [Window_EquipSlot](Window_EquipSlot.md), [Window_EquipItem](Window_EquipItem.md)
 
 ### new Window_EquipStatus (rect)
