@@ -21,6 +21,7 @@
 
 例えば `Sprite_Gauge` なら "actor1-gauge-hp" といった `key` が使われ、`_additionalSprites["actor1-gauge-hp"]` で参照できる。
 
+v1.9.0 で変更あり。
 
 ### new Window_StatusBase (rect)
 #### 引数
