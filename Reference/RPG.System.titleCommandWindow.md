@@ -1,7 +1,7 @@
 [クラスツリー](index.md)
 
-# クラス: [RPG](RPG.md).[System](RPG.System.md).titleCommandWindow
-**@MZ** [タイトル]-[コマンドウィンドウ]のJSONデータ。
+# クラス: [RPG](RPG.md).[System](RPG.System.md).TitleCommandWindow
+**@MZ** [タイトル画面]-[コマンドウィンドウ]のJSONデータ。
 
 ### プロパティ
 
