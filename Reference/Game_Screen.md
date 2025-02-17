@@ -8,6 +8,8 @@
 
 イベントコマンドの[画面]関連の挙動の担当クラス。 
 
+v1.9.0 で変更あり。
+
 関連クラス: [Game_Map](Game_Map.md), [Game_Picture](Game_Picture.md), [Sprite_Picture](Sprite_Picture.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Graphics](Graphics.md), [ImageManager](ImageManager.md)
 
 ### new Game_Screen ()
@@ -114,7 +116,7 @@
 
 
 #### maxPictures () → {[Number](Number.md)}
-最大ピクチャ数を返す。
+最大ピクチャ数を返す(規定値:100)。**@MZ1.9.0** 1〜500。
 
 
 #### movePicture (pictureId, origin, x, y, scaleX, scaleY, opacity, blendMode, duration, easingType)
