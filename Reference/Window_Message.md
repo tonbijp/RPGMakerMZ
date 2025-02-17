@@ -10,7 +10,7 @@
 また、Window\_Message は選択肢関連のサブウィンドウの起動も行う。シーンに近い役割を持ったクラス。<br />
 新規に文字を表示するウィンドウが必要ならば、[WIndow_Help](WIndow_Help.md) を使うか、Window\_Base を継承して新たにクラスを作る方が良い。
 
-V1.2.1、v1.8.0 で変更あり。
+V1.2.1、v1.8.0、v1.9.0 で変更あり。
 
 関連クラス: [Scene_Message](Scene_Message.md), [Scene_Map](Scene_Map.md), [Scene_Battle](Scene_Battle.md), [Game_Message](Game_Message.md)
 
