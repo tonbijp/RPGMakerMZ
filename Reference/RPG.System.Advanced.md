@@ -6,7 +6,7 @@
 `uiAreaWidth` は [Graphics](Graphics.md) の `boxWidth` と同じではなく、`boxWidth`  が8ピクセル少ない。
 同様に  `boxHeight` = `uiAreaHeight` - 8 の関係。
 
-v1.3.0 で変更あり。
+v1.3.0、1.9.0 で変更あり。
 
 ### プロパティ
 
@@ -21,4 +21,6 @@ v1.3.0 で変更あり。
 | `numberFontFilename` | [String](String.md) | [数字フォントのファイル名] |
 | `fallbackFonts` | [String](String.md) | [フォールバックフォント] |
 | `fontSize` | [Number](Number.md) | [フォントサイズ] (規定値: 26) |
-| `windowOpacity` | [Number](Number.md) | **1.3.0** [ウィンドウの不透明度] (規定値: 192) |
+| `windowOpacity` | [Number](Number.md) | **MZ1.3.0** [ウィンドウの不透明度] (規定値: 192) |
+| `picturesUpperLimit` | [Number](Number.md) | **MZ1.9.0** [ピクチャ枚数上限] (規定値: 100) |
+
