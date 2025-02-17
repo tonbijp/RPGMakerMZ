@@ -66,7 +66,7 @@ v1.5.0, 1.9.0 で変更あり。
 | `menuCommands` | [Array](Array.md).&lt;Boolean&gt; | **@MZ** [メニューコマンド] |
 | `itemCategories` | [Array](Array.md).&lt;Boolean&gt; | **@MZ** [アイテムカテゴリー] |
 | `magicSkills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | **@MZ** [\[SV\]魔法スキル] |
-| `titleCommandWindow` | [RPG.System.titleCommandWindow](RPG.System.titleCommandWindow.md) | **@MZ** [コマンドウィンドウ] |
+| `titleCommandWindow` | [RPG.System.TitleCommandWindow](RPG.System.TitleCommandWindow.md) | **@MZ** [コマンドウィンドウ] |
 | `editor` | [RPG.System.Editor](RPG.System.Editor.md) | **@MZ1.9.0** [エディター設定] |
 | `tileSize` | [Number](Number.md) | **@MZ1.5.0** [タイルサイズ] (規定値:48ピクセル) |
 | `iconSize` | [Number](Number.md) | **@MZ1.9.0** [アイコンサイズ] (規定値:32ピクセル) |
