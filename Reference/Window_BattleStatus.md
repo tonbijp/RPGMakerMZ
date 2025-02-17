@@ -8,6 +8,8 @@
 
 MVではスーパークラス(継承元)が [Window_Selectable](Window_Selectable.md) だったが、MZで [Window_StatusBase](Window_StatusBase.md) に変更されている。
 
+v1.9.0 で変更あり。
+
 関連クラス: [Scene_Battle](Scene_Battle.md)
 
 ### new Window_BattleStatus (rect)
