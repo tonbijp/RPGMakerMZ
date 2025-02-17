@@ -10,7 +10,7 @@ reserveXxxx()、reserveXxxx() 系統のメソッドは軒並み廃止されて�
 
 また、プロパティは [Window_Base](Window_Base.md) から移ってきたものがいくつかある。
 
-v1.3.2 で変更あり。
+v1.3.2、1.9.0 で変更あり。
 
 関連クラス: [Bitmap](Bitmap.md), [Graphics](Graphics.md), [Game_Screen](Game_Screen.md)
 
@@ -19,10 +19,14 @@ v1.3.2 で変更あり。
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `iconWidth` | [Number](Number.md) | **@MZ** [static] アイコン幅(規定値:32ピクセル) |
-| `iconHeight` | [Number](Number.md) | **@MZ** [static] アイコン高さ(規定値:32ピクセル) |
-| `faceWidth` | [Number](Number.md) | **@MZ** [static] 顔画像幅(規定値:144ピクセル) |
-| `faceHeight` | [Number](Number.md) | **@MZ** [static] 顔画像高さ(規定値:144ピクセル) |
+| `iconWidth` | [Number](Number.md) | **@MZ** [static] アイコン幅 |
+| `iconHeight` | [Number](Number.md) | **@MZ** [static] アイコン高さ |
+| `faceWidth` | [Number](Number.md) | **@MZ** [static] 顔画像幅 |
+| `faceHeight` | [Number](Number.md) | **@MZ** [static] 顔画像高さ |
+| `standardIconWidth` | [Number](Number.md) | **@MZ1.9.0** [static] 規定アイコン幅(32ピクセル) |
+| `standardIconHeight` | [Number](Number.md) | **@MZ1.9.0** [static] 規定アイコン高さ(32ピクセル) |
+| `standardFaceWidth` | [Number](Number.md) | **@MZ1.9.0** [static] 規定顔画像幅(144ピクセル) |
+| `standardFaceHeight` | [Number](Number.md) | **@MZ1.9.0** [static] 規定顔画像高さ(144ピクセル) |
 | `_cache` | Object.&lt;[Bitmap](Bitmap.md)&gt; | [static] URLをキーとした画像のキャッシュ |
 | `_system` | Object.&lt;[Bitmap](Bitmap.md)&gt; | [static] systemフォルダの画像を対象とした<br />URLをキーとした画像のキャッシュ |
 | `_emptyBitmap` | [Bitmap](Bitmap.md) | [static] 空の画像 |
@@ -36,6 +40,14 @@ v1.3.2 で変更あり。
 #### (static) clear ()
 RPGツクールMZの画像キャッシュをクリア。<br />
 ブラウザなどが持っているキャッシュがクリアされるわけではない。
+
+
+#### (static) getIconSize () → {[Number](Number.md)}
+**@MZ1.9.0** アイコンのサイズ(ピクセル数)を得る。
+
+
+#### (static) getFaceSize () → {[Number](Number.md)}
+**@MZ1.9.0** 顔画像のサイズ(ピクセル数)を得る。
 
 
 #### (static) isBigCharacter (filename) → {Boolean}
