@@ -10,6 +10,7 @@
 ```js
 SceneManager._scene
 ```
+v1.9.0 で変更あり。
 
 関連クラス: [SceneManager](SceneManager.md), [Game_Interpreter](Game_Interpreter.md)
 
