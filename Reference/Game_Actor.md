@@ -444,7 +444,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### equips () → {[Array](Array.md).&lt;[RPG.EquipItem](RPG.EquipItem.md)&gt;}
-装備の配列を返す。
+装備のJSONデータの配列を返す。
 
 
 #### equipSlots () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
