@@ -10,13 +10,13 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `keyRepeatWait` | [Number](Number.md) | [static] The wait time of the pseudo key repeat in frames. |
-| `keyRepeatInterval` | [Number](Number.md) | [static] The interval of the pseudo key repeat in frames. |
-| `wheelX` | [Number](Number.md) | [static][read-only] The horizontal scroll amount. |
-| `wheelY` | [Number](Number.md) | [static][read-only] The vertical scroll amount. |
-| `x` | [Number](Number.md) | [static][read-only] The x coordinate on the canvas area of the latest touch event. |
-| `y` | [Number](Number.md) | [static][read-only] The y coordinate on the canvas area of the latest touch event. |
-| `date` | [Number](Number.md) | [static][read-only] The time of the last input in milliseconds. |
+| `keyRepeatWait` | [Number](Number.md) | [static] キーリピート開始までの待ち時間(フレーム) |
+| `keyRepeatInterval` | [Number](Number.md) | [static] キーリピートの間隔(フレーム) |
+| `wheelX` | [Number](Number.md) | [static][read-only] 水平スクロールの単位量(ピクセル) |
+| `wheelY` | [Number](Number.md) | [static][read-only] 垂直スクロールの単位量(ピクセル) |
+| `x` | [Number](Number.md) | [static][read-only] 最後のタッチ・クリック入力のx座標 |
+| `y` | [Number](Number.md) | [static][read-only] 最後のタッチ・クリック入力のy座標 |
+| `date` | [Number](Number.md) | [static][read-only] 最後のタッチ・クリック入力の発生時刻(ミリ秒) |
 | `_mousePressed` | Boolean | [static] |
 | `_screenPressed` | Boolean | [static] |
 | `_pressedTime` | [Number](Number.md) | [static] |
