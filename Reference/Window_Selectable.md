@@ -5,6 +5,7 @@
 ## スーパークラス: [Window_Scrollable](Window_Scrollable.md)
 
 コマンドカーソルの移動や入力判定を行うウィンドウ。
+項目のデータ自体はこのクラスでは設定されておらず、継承した子クラスでそれぞれに`_list`や`_data`などのプロパティが用意されている。
 
 MVではスーパークラス(継承元)が [Window_Base](Window_Base.md) だったが、MZで [Window_Scrollable](Window_Scrollable.md) に変更されている。
 
