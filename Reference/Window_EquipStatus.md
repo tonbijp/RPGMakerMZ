@@ -382,6 +382,7 @@ MVでは引数が x, y  だった。
 
 
 #### refresh ()
+オーバーライド: [Window_StatusBase](Window_StatusBase.md#refresh-)
 再描画。
 
 
