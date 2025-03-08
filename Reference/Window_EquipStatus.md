@@ -286,7 +286,6 @@ MVでは引数が x, y  だった。
 * [placeGauge (actor, type, x, y)](Window_StatusBase.md#placegauge-actor-type-x-y)
 * [placeStateIcon (actor, x, y)](Window_StatusBase.md#placestateicon-actor-x-y)
 * [placeTimeGauge (actor, x, y)](Window_StatusBase.md#placetimegauge-actor-x-y)
-* [refresh ()](Window_StatusBase.md#refresh-)
 * [setName (name)](Window_StatusBase.md#setname-name)
 
 
