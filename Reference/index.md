@@ -256,7 +256,6 @@ namespace JsExtensions
     * [Point](Point.md)
 * [PIXI.Rectangle](http://pixijs.download/v5.3.12/docs/PIXI.Rectangle.html)
     * [Rectangle](Rectangle.md)
-
 * [PIXI.utils.EventEmitter](http://pixijs.download/v5.3.12/docs/PIXI.utils.EventEmitter.html)
     * [PIXI.BaseTexture](http://pixijs.download/v5.3.12/docs/PIXI.BaseTexture.html)
     * [PIXI.Texture](PIXI.Texture.md)
@@ -264,11 +263,9 @@ namespace JsExtensions
         * [PIXI.Renderer](PIXI.Renderer.md)
     * [PIXI.DisplayObject](PIXI.DisplayObject.md)
         * [PIXI.Container](PIXI.Container.md) → [継承](#コンテナpixicontainer)
-
 * [PIXI.System](https://pixijs.download/release/docs/PIXI.System.html)
     * [PIXI.ObjectRenderer](https://pixijs.download/release/docs/PIXI.ObjectRenderer.html)
         * [Tilemap.Renderer](Tilemap.Renderer.md)  **@MZ**
-
 * [PIXI.Shader](PIXI.Shader.md)
     * [PIXI.Filter](PIXI.Filter.md)
         * [ColorFilter](ColorFilter.md) **@MZ**
