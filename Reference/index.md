@@ -9,14 +9,13 @@
 * [マネージャ](#マネージャ)
 * [ユーティリティ](#ユーティリティ)
 * [入力](#入力)
-* [ファイル](#ファイル)
 * [音声](#音声)
 
 ### オブジェクト構造データ
 
-* [Objects](#Objects) 
-* [Arrays](#Arrays) 
-* [Strings](#Strings) 
+* [Objects](#objects) 
+* [Arrays](#arrays) 
+* [Strings](#strings) 
 
 ### データベース(JSON)
 
