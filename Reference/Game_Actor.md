@@ -14,12 +14,13 @@
 「スロットID」は選択したウィンドウ項目のインデックス番号に対応している。
 
 主なパス
-```js
+``` JavaScript
 $gameActors.actor( actorId )
 $gameParty.leader()
 $gameParty.allMembers()
 $gameParty.battleMembers()
 $gameParty.members()
+$gameParty.menuActor()
 BattleManager.actor()
 ```
 
