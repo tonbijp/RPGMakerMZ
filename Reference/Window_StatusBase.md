@@ -290,7 +290,7 @@ v1.9.0 で変更あり。
 
 ### メソッド
 
-#### actorSlotName ( actor, index ) → {[String](String.md)}
+#### actorSlotName (actor, index) → {[String](String.md)}
 アクターの[装備タイプ]を返す。
 
 ##### 引数
