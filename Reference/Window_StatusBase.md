@@ -290,9 +290,15 @@ v1.9.0 で変更あり。
 
 ### メソッド
 
-#### actorSlotName () → {[String](String.md)}
-アクターの[装備タイプ]を返す。<br />
-参照:  [装備タイプID](RPG.Trait.md#装備タイプid)
+#### actorSlotName ( actor, index ) → {[String](String.md)}
+アクターの[装備タイプ]を返す。
+
+##### 引数
+
+| 名前 | 型 | 説明 |
+| --- | --- | --- |
+| `actor` | [Game_Actor](Game_Actor.md)  | アクター |
+| `index` | [Number](Number.md) | [装備タイプID](RPG.Trait.md#装備タイプid) |
 
 
 #### createInnerSprite (key, spriteClass)
