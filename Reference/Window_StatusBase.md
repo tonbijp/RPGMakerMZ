@@ -493,14 +493,3 @@ HP・MP・TPの基本ゲージを `Sprite` として配置。
 
 #### refresh ()
 オーバーライド: [Window_Selectable](Window_Selectable.md#refresh-)
-
-
-#### setName (name)
-名前を設定。
-
-##### 引数
-
-| 名前 | 型 | 説明 |
-| --- | --- | --- |
-| `name` | [String](String.md)  | 名前文字列 |
-
