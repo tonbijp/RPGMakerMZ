@@ -17,7 +17,7 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor' ) |
+| `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor', '' ) |
 | `_itemId` | [Number](Number.md) | アイテムID(種類毎に異なる) |
 
 
@@ -64,13 +64,13 @@ JSONデータを返す。
 
 
 #### setEquip (isWeapon, itemId)
-指定アイテムで装備品の設定。
+指定アイテムIDで装備品を設定。
 
 ##### 引数
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `isWeapon` | Boolean | 武器か |
+| `isWeapon` | Boolean | 武器か(さもなくば防具) |
 | `itemId` | [Number](Number.md) | アイテムID |
 
 
