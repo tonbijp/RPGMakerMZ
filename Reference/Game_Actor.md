@@ -281,7 +281,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### armors () → {[Array](Array.md).&lt;[RPG.Armor](RPG.Armor.md)&gt;}
-防具を返す。
+装備している防具を配列で返す。
 
 
 #### attackAnimationId1 () → {[Number](Number.md)}
@@ -531,7 +531,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### hasArmor (armor) → {Boolean}
-指定鎧を装備しているか。
+指定防具を装備しているか。
 
 ##### 引数
 
@@ -541,7 +541,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### hasNoWeapons () → {Boolean}
-武器を持っていな(素手)か。
+武器を持っていない(素手)か。
 
 
 #### hasSkill (skillId) → {Boolean}
