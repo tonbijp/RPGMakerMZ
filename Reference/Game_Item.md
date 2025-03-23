@@ -17,7 +17,7 @@
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor', '' ) |
+| `_dataClass` | [String](String.md) | アイテムの種類( 'item', 'skill', 'weapon', 'armor' ) |
 | `_itemId` | [Number](Number.md) | アイテムID(種類毎に異なる) |
 
 
