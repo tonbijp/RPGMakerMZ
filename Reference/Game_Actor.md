@@ -47,7 +47,7 @@ v1.1.0、v1.2.0  で変更あり。
 | `_faceIndex` | [Number](Number.md) | [顔]画像番号 |
 | `_battlerName` | [String](String.md) | [[SV\]戦闘キャラ]画像ファイル名(拡張子なし) |
 | `_exp` | Object | [クラス経験値](#クラス経験値) |
-| `_skills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [スキル]の配列 |
+| `_skills` | [Array](Array.md).&lt;[Number](Number.md)&gt; | [スキル]の配列(ID) |
 | `_equips` | [Array](Array.md).&lt;[Game_Item](Game_Item.md)&gt; | [装備]の配列 |
 | `_actionInputIndex` | [Number](Number.md) | 行動の番号 |
 | `_lastMenuSkill` | [Game_Item](Game_Item.md) | 最後のメニュースキル |
@@ -448,7 +448,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### equips () → {[Array](Array.md).&lt;[RPG.EquipItem](RPG.EquipItem.md)&gt;}
-装備のJSONデータの配列を返す。
+装備データの配列を返す。
 
 
 #### equipSlots () → {[Array](Array.md).&lt;[Number](Number.md)&gt;}
