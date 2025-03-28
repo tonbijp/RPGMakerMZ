@@ -486,7 +486,7 @@ v1.1.0、v1.2.0  で変更あり。
 
 
 #### findNewSkills (lastSkills) → {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
-指定スキルを習得済みとして、身習得スキルを返す。
+指定スキルを習得済みとして、未習得スキルの配列を返す。
 
 ##### 引数
 
@@ -982,11 +982,11 @@ SVのバトラー画像を設定。
 
 
 #### skills () → {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
-取得済みスキルを返す。
+取得済みスキルの配列を返す。
 
 
 #### skillTypes ()→ {[Array](Array.md).&lt;[RPG.Skill](RPG.Skill.md)&gt;}
-**@MZ** スキルタイプを返す。
+**@MZ** スキルタイプの配列を返す。
 
 
 #### stepsForTurn () → {[Number](Number.md)}
