@@ -107,7 +107,7 @@ v1.4.0 、v1.5.0 で変更あり。
 
 
 #### (static) exit ()
-シーン遷移を終了。
+アプリケーション(NW.js)を終了。
 
 
 #### (static) goto (sceneClass)
