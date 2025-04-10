@@ -470,7 +470,7 @@ OKが起動されたか。
 
 
 #### itemLineRect (index) → {[Rectangle](Rectangle.md)}
-**@MZ** 指定項目行の矩形範囲を返す。
+**@MZ** 指定項目の枠線の矩形範囲を返す。
 
 ##### 引数
 
