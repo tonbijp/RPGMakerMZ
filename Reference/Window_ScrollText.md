@@ -26,6 +26,9 @@ MVでは引数はなかった。
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
 | `_allTextHeight` | [Number](Number.md) | 全体の文章の高さ |
+| `_blockHeight` | [Number](Number.md) | ブロックの高さ |
+| `_blockIndex` | [Number](Number.md) | ブロックの番号 |
+| `_maxBitmapHeight` | [Number](Number.md) | ビットマップの最大高さ(規定値:2048) |
 | `_text` | [String](String.md) | 表示する文章 |
 | `_reservedRect` | [Rectangle](Rectangle.md) | **@MZ** 保存された矩形範囲 |
 
