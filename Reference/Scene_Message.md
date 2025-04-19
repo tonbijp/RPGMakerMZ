@@ -92,6 +92,7 @@ v1.8.0  で変更あり。
 * [isBottomHelpMode ()](Scene_Base.md#isbottomhelpmode---boolean)
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isRightInputMode ()](Scene_Base.md#isrightinputmode---boolean)
+* [isStarted ()](Scene_Base.md#isstarted---boolean)
 * [mainCommandWidth ()](Scene_Base.md#maincommandwidth---number)
 * [onAutosaveFailure ()](Scene_Base.md#onautosavefailure-)
 * [onAutosaveSuccess ()](Scene_Base.md#onautosavesuccess-)

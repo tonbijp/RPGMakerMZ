@@ -88,6 +88,7 @@ v1.0.2 で変更あり。
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [isRightInputMode ()](Scene_Base.md#isrightinputmode---boolean)
+* [isStarted ()](Scene_Base.md#isstarted---boolean)
 * [mainCommandWidth ()](Scene_Base.md#maincommandwidth---number)
 * [onAutosaveFailure ()](Scene_Base.md#onautosavefailure-)
 * [onAutosaveSuccess ()](Scene_Base.md#onautosavesuccess-)

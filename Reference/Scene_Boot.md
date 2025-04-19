@@ -137,7 +137,7 @@ SceneManager._scene
 
 
 #### isReady () → {Boolean}
-オーバーライド: [Scene_Base](Scene_Base.md#isReady-)
+オーバーライド: [Scene_Base](Scene_Base.md#isready---boolean)
 
 
 #### loadPlayerData ()

@@ -87,6 +87,7 @@ SceneManager._scene
 * [isBusy ()](Scene_Base.md#isbusy---boolean)
 * [isReady ()](Scene_Base.md#isready---boolean)
 * [isRightInputMode ()](Scene_Base.md#isrightinputmode---boolean)
+* [isStarted ()](Scene_Base.md#isstarted---boolean)
 * [mainCommandWidth ()](Scene_Base.md#maincommandwidth---number)
 * [onAutosaveFailure ()](Scene_Base.md#onautosavefailure-)
 * [onAutosaveSuccess ()](Scene_Base.md#onautosavesuccess-)
@@ -107,7 +108,6 @@ SceneManager._scene
 
 * [actor ()](Scene_MenuBase.md#actor---game_actor)
 * [arePageButtonsEnabled ()](Scene_MenuBase.md#arepagebuttonsenabled---boolean)
-* [create ()](Scene_MenuBase.md#create-)
 * [createButtons ()](Scene_MenuBase.md#createbuttons-)
 * [createCancelButton ()](Scene_MenuBase.md#createcancelbutton-)
 * [createHelpWindow ()](Scene_MenuBase.md#createhelpwindow-)
