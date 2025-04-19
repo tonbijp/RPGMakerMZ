@@ -203,6 +203,8 @@ MV でサブクラスだった [Scene_Battle](Scene_Battle.md) と [Scene_Map](S
 #### isRightInputMode () → {Boolean}
 **@MZ** 右手入力モードか(規定値:true)。
 
+#### isStarted () → {Boolean}
+**@MZ** シーンが開始して動作しているか。
 
 #### mainCommandWidth () → {[Number](Number.md)}
 **@MZ** メインコマンドの幅を返す(規定値:240)。
