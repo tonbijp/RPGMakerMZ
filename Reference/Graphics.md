@@ -42,7 +42,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `_errorPrinter` | HTMLElemant | [static] エラー表示 p要素 |
 | `_tickHandler` |  | **@MZ** [static]  |
 | `_fpsCounter` |  | **@MZ** [static]  |
-| `_loadingSpinner` |  | **@MZ** [static]  |
+| `_loadingSpinner` | HTMLElemant | **@MZ** [static]ローディングスピナー　div要素 |
 | `_effekseer` |  | **@MZ** [static]  |
 | `_wasLoading` |  | **@MZ** [static]  |
 | `_canvas` | HTMLCanvasElement | [static] canvas要素 |
