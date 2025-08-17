@@ -1,6 +1,6 @@
 //=================================================
 // TF_LayeredMap.js
-// Version :1.0.0.0
+// Version :1.1.0.0
 // For : RPGツクールMZ (RPG Maker MZ)
 // ----------------------------------------------
 // Copyright : Tobishima-Factory 2018-2025
@@ -259,7 +259,7 @@
     const _Tilemap_createLayers = Tilemap.prototype._createLayers;
     Tilemap.prototype._createLayers = function() {
         _Tilemap_createLayers.call( this );
-        const maxBillboard = Math.ceil( this._height / $gameMap.tileHeight() ) + 4;  // 縦タイル数とスクロール時に必要になる+4
+        const maxBillboard = Math.ceil( this._height / this.tileHeight ) + 4;  // 縦タイル数とスクロール時に必要になる+4
         if( !this.hasOwnProperty( "_billboards" ) ) {
             this._billboards = [];
         }
@@ -291,8 +291,8 @@
     Tilemap.prototype._addSpot = function( startX, startY, x, y ) {
         const mx = startX + x; //  描画対象のマップ x座標(タイル数)
         const my = startY + y; //  描画対象のマップ y座標(タイル数)
-        const dx = x * $gameMap.tileWidth(); //  描画位置の x座標(ピクセル)
-        const dy = y * $gameMap.tileHeight(); //  描画位置の y座標(ピクセル)
+        const dx = x * this.tileWidth; //  描画位置の x座標(ピクセル)
+        const dy = y * this.tileHeight; //  描画位置の y座標(ピクセル)
         const tileId0 = this._readMapData( mx, my, 0 ); // 低層タイルA
         const tileId1 = this._readMapData( mx, my, 1 ); // 低層タイルA2右側など
         const tileId2 = this._readMapData( mx, my, 2 ); // B 〜 E タイル
@@ -333,7 +333,7 @@
             this._addTile( this._lowerLayer, tileId, dx, dy );
             return;
         }
-        const y = dy / $gameMap.tileHeight();
+        const y = dy / this.tileHeight;
 
         /**
          * 指定位置の壁の状態を調べる。
@@ -352,9 +352,9 @@
 
         /**
          * 優先階(priorityFloor)を得る。
-         * @param {Number} tileId タイルID
+         * @returns {Number} 階数(1〜3)
          */
-        const getPriorityFloor = ( tileId ) => {
+        const getPriorityFloor = () => {
             if( floorType === FLOOR2_BOARD ) return 2;
             if( floorType === FLOOR3_BOARD ) return 3;
             return 1;
@@ -378,17 +378,17 @@
             return 1;
         };
 
-        const floorNumber = getFloorNumber( getPriorityFloor( tileId ) );
+        const floorNumber = getFloorNumber( getPriorityFloor() );
 
         if( floorNumber === 2 ) {
             // 2階設定は、ひとつ下の書割りに書き込む
-            this._addTile( this._billboards[ y + 1 ], tileId, dx, -$gameMap.tileHeight() * 2 );
+            this._addTile( this._billboards[ y + 1 ], tileId, dx, -this.tileHeight * 2 );
         } else if( floorNumber === 3 ) {
             // 3階設定は、ふたつ下の書割りに書き込む
-            this._addTile( this._billboards[ y + 2 ], tileId, dx, -$gameMap.tileHeight() * 3 );
+            this._addTile( this._billboards[ y + 2 ], tileId, dx, -this.tileHeight * 3 );
         } else if( this.flags[ tileId ] & MASK_ALL_DIR ) {
             // 通行不可設定のどれかがONだと書割り
-            this._addTile( this._billboards[ y ], tileId, dx, -$gameMap.tileHeight() );
+            this._addTile( this._billboards[ y ], tileId, dx, -this.tileHeight );
         } else {
             // 全方向通行可の場合は通常の高層[☆]表示
             this._addSpotTile( tileId, dx, dy );
@@ -402,15 +402,15 @@
     Tilemap.prototype.updateTransform = function() {
         const ox = Math.ceil( this.origin.x );
         const oy = Math.ceil( this.origin.y );
-        const startX = Math.floor( ( ox - this._margin ) / $gameMap.tileWidth() );
-        const startY = Math.floor( ( oy - this._margin ) / $gameMap.tileHeight() );
-        const posX = startX * $gameMap.tileWidth() - ox;
-        const posY = startY * $gameMap.tileHeight() - oy;
+        const startX = Math.floor( ( ox - this._margin ) / this.tileWidth );
+        const startY = Math.floor( ( oy - this._margin ) / this.tileHeight );
+        const posX = startX * this.tileWidth - ox;
+        const posY = startY * this.tileHeight - oy;
         const l = this._billboards.length;
         for( let i = 0; i < l; i++ ) {
             const curItem = this._billboards[ i ];
             curItem.x = posX;
-            curItem.y = posY + $gameMap.tileHeight() * ( i + 1 );
+            curItem.y = posY + this.tileHeight * ( i + 1 );
         };
 
         _Tilemap_updateTransform.apply( this, arguments );
@@ -521,9 +521,9 @@
                 // [×]でもオートタイルの0番は通行判定が空なので、tileId をひとつずらす
                 ( isCollisionTile( flags[ tileId + 1 ] ) ? 1 : 0 ); // [×]
             switch( autotileFlags ) {
-                case 1: if( !TF_isA2FullCollision ) { setEmptyLinePass( flags, tileId ); }; break;   // [×]
-                case 2: setIgnorePass( flags, tileId ); break;   // [○][♢]
-                case 3: if( TF_useLayeredCounter ) { setCounterPass( flags, tileId ); }; break;   // [×][♢]
+                case 1: if( !TF_isA2FullCollision ) { setEmptyLinePass( flags, tileId ); }; break;  // [×]
+                case 2: setIgnorePass( flags, tileId ); break;                                      // [○][♢]
+                case 3: if( TF_useLayeredCounter ) { setCounterPass( flags, tileId ); }; break;     // [×][♢]
             }
         }
     }
@@ -581,7 +581,7 @@
                 // 壁(側面)
                 case 2: setVerticalPass( flags, tileId ); break;        // [○][♢]
                 case 3: setWallSidePass( flags, tileId ); break;        // [×][♢]
-                case 6: setBillboardPass( flags, tileId ); break;    // [☆][♢]
+                case 6: setBillboardPass( flags, tileId ); break;       // [☆][♢]
                 // 壁(上面)
                 case 9: if( !TF_isA4UpperOpen ) { setEmptyLinePass( flags, tileId ); } break;   // [×]
                 case 10: setIgnorePass( flags, tileId ); break;         // [○][♢]
@@ -801,28 +801,28 @@
          */
         const checkCollision = ( x, y, wallNumber ) => {
             const CLILISION_TABLE = {
-                28: [//  0x1C 机・・←↓
+                0x1C: [//   机・・←↓
                     false, false, false,
                     false, false, false,
                     true, true, true,
                     true, true, true,
                     true, true, true,
                 ],
-                29: [ // 0x1D 椅子(北) ・・←・
+                0x1D: [ //  椅子(北) ・・←・
                     false, true, false,
                     false, true, false,
                     false, true, false,
                     false, false, false,
                     false, false, false,
                 ],
-                30: [ // 0x1E 椅子(南)・・・↓
+                0x1E: [ //  椅子(南)・・・↓
                     false, false, false,
                     false, false, false,
                     false, true, false,
                     false, true, false,
                     false, true, false,
                 ],
-                31: [ // 0x1F 杭・・・・
+                0x1F: [ //  杭・・・・
                     false, false, false,
                     false, false, false,
                     false, false, false,
