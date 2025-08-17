@@ -196,13 +196,13 @@ v1.9.0 で変更あり。
 
 | 名前 | 型 | 説明 |
 | --- | --- | --- |
-| `pictureId` | [Number](Number.md) | ピクチャID |
-| `name` | [String](String.md) | 名前 |
+| `pictureId` | [Number](Number.md) | [番号] ピクチャID |
+| `name` | [String](String.md) | [画像] フォルダ/ファイル名 |
 | `origin` | [Number](Number.md) | [[原点]](Game_Picture.md#原点) |
-| `x` | [Number](Number.md) | x座標(ピクセル) |
-| `y` | [Number](Number.md) | y座標(ピクセル) |
-| `scaleX` | [Number](Number.md) | 拡大率[幅] |
-| `scaleY` | [Number](Number.md) | 拡大率[高さ] |
+| `x` | [Number](Number.md) | [X] x座標(ピクセル) |
+| `y` | [Number](Number.md) | [Y] y座標(ピクセル) |
+| `scaleX` | [Number](Number.md) | [幅] 幅の拡大率 |
+| `scaleY` | [Number](Number.md) | [高さ] 高さの拡大率 |
 | `opacity` | [Number](Number.md) | [不透明度] |
 | `blendMode` | [Number](Number.md) | [[合成方法]](Sprite.md#合成方法) |
 

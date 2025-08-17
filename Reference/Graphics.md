@@ -26,8 +26,8 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 
 | 識別子 | 型 | 説明 |
 | --- | --- | --- |
-| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ**[static][read-only] PIXIアプリケーション |
-| `effekseer` | EffekseerContext  | **@MZ**[static][read-only] Effekseerコンテキスト |
+| `app` | [PIXI.Application](PIXI.Application.md) | **@MZ** [static][read-only] PIXIアプリケーション |
+| `effekseer` | EffekseerContext  | **@MZ** [static][read-only] Effekseerコンテキスト |
 | `frameCount` | [Number](Number.md) | [static] フレームカウント |
 | `width` | [Number](Number.md) | [static] ゲーム画面の幅(規定値: 816ピクセル) |
 | `height` | [Number](Number.md) | [static] ゲーム画面の高さ(規定値: 624ピクセル) |
@@ -42,7 +42,7 @@ BLEND_ から始まるプロパティは PIXI.blendModes と同じ画像の[\[�
 | `_errorPrinter` | HTMLElemant | [static] エラー表示 p要素 |
 | `_tickHandler` |  | **@MZ** [static]  |
 | `_fpsCounter` |  | **@MZ** [static]  |
-| `_loadingSpinner` |  | **@MZ** [static]  |
+| `_loadingSpinner` | HTMLElemant | **@MZ** [static] ローディングスピナー　div要素 |
 | `_effekseer` |  | **@MZ** [static]  |
 | `_wasLoading` |  | **@MZ** [static]  |
 | `_canvas` | HTMLCanvasElement | [static] canvas要素 |
